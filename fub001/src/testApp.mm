@@ -17,26 +17,22 @@ testApp::testApp(): ofBaseApp() {
 	
 }
 
+//--------------------------------------------------------------
+
+
 void testApp::setup(){	
+	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofLog(OF_LOG_VERBOSE, "Testapp setup");
 
 	ofSetDataPathRoot("data/");
-	ofEnableAlphaBlending();
-	ofBackground(0,0,0);	
-	
-	//	ofSetLogLevel(OF_LOG_VERBOSE);
-	
 	lucidaGrande.loadFont("LucidaGrande.ttc",22, false, true);
 	
-	
-	//pluginByType <int> obj;
-	//obj.get(pluginController);
-	setupCalled = true;
-	
+	ofEnableAlphaBlending();
+	ofBackground(0,0,0);	
 	glEnable (GL_MULTISAMPLE_ARB);
     glHint (GL_MULTISAMPLE_FILTER_HINT_NV, GL_NICEST);
 	
-	
+	setupCalled = true;	
 }
 /*
 void testApp::setReferenceToOtherWindow( CustomGLViewDelegate* delegate, int i )
@@ -50,14 +46,10 @@ void testApp::update()
 {
 	float mousex = (float)mouseX/ofGetWidth();
 	float mousey = (float)mouseY/ofGetHeight();
-	
-
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-	//	ofDrawBitmapString(ofToString(ofGetFrameRate(), 0), 10, 20);
-	
 	fps = ofGetFrameRate();
 }
 
