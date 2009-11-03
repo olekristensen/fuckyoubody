@@ -11,7 +11,6 @@
 		276D9DB81073B3F00084689D /* ofxMSAFluidDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */; };
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		278230EA109EA82D00AE0E24 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 278230E9109EA82D00AE0E24 /* Credits.html */; };
-		278AB5D4108E4EF70014CCD2 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 278AB5D3108E4EF70014CCD2 /* libdc1394.a */; };
 		27A84E46107CB085008926F1 /* FrostGuiObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A84E45107CB085008926F1 /* FrostGuiObjects.m */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
 		3F1E59AB100B75550091B692 /* SharedContextGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F1E59AA100B75550091B692 /* SharedContextGLView.m */; };
@@ -116,7 +115,6 @@
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
 		278230E9109EA82D00AE0E24 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		27823130109EC1BE00AE0E24 /* Frost-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Frost-Info.plist"; sourceTree = "<group>"; };
-		278AB5D3108E4EF70014CCD2 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdc1394.a; path = libs/osx/lib/libdc1394.a; sourceTree = "<group>"; };
 		27A84E44107CB085008926F1 /* FrostGuiObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrostGuiObjects.h; sourceTree = "<group>"; };
 		27A84E45107CB085008926F1 /* FrostGuiObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrostGuiObjects.m; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 				DD7CC3F71063C47100D3736A /* libOpenCV.a in Frameworks */,
 				DDFEC8871063FA200068D31A /* IOKit.framework in Frameworks */,
 				DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */,
-				278AB5D4108E4EF70014CCD2 /* libdc1394.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1223,7 +1220,6 @@
 				E439E8EF0FEFE04E0042BF96 /* AppKit.framework */,
 				E439E8F30FEFE05F0042BF96 /* Cocoa.framework */,
 				DDFEC8861063FA200068D31A /* IOKit.framework */,
-				278AB5D3108E4EF70014CCD2 /* libdc1394.a */,
 				DDD48937107636A80083759A /* CoreMIDI.framework */,
 			);
 			sourceTree = "<group>";

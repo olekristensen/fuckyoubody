@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -278,8 +280,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>25</integer>
-									<integer>7</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -312,14 +312,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>DD4F16BD1047336400D10100</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>CustomGLViewDelegate.cpp</string>
+								<string>CustomGLView.mm</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>DD4F16BE1047336400D10100</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>CustomGLViewDelegate.cpp</string>
+										<string>CustomGLView.mm</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DD2DC35810A09A86008724BA</string>
+										<string>DD2DC37610A09C3C008724BA</string>
 										<key>history</key>
 										<array>
 											<string>DDB84A26105BFC4400D1ED92</string>
@@ -412,7 +410,6 @@
 											<string>DDF7303F107E4ECD004DBB9B</string>
 											<string>DDF73205107F49D8004DBB9B</string>
 											<string>DDF73206107F49D8004DBB9B</string>
-											<string>DDF73211107F49FD004DBB9B</string>
 											<string>DDF73217107F4AA8004DBB9B</string>
 											<string>DDF73218107F4AA8004DBB9B</string>
 											<string>DDF7324F107F4DEF004DBB9B</string>
@@ -446,16 +443,17 @@
 											<string>DD2DC33110A098DD008724BA</string>
 											<string>DD2DC33410A098DD008724BA</string>
 											<string>DD2DC33610A098DD008724BA</string>
-											<string>DD2DC33810A098DD008724BA</string>
 											<string>DD2DC33910A098DD008724BA</string>
 											<string>DD2DC34810A09A5B008724BA</string>
 											<string>DD2DC34910A09A5B008724BA</string>
 											<string>DD2DC34A10A09A5B008724BA</string>
 											<string>DD2DC34B10A09A5B008724BA</string>
 											<string>DD2DC34C10A09A5B008724BA</string>
-											<string>DD2DC34D10A09A5B008724BA</string>
 											<string>DD2DC35610A09A86008724BA</string>
-											<string>DD2DC35710A09A86008724BA</string>
+											<string>DD2DC36D10A09C34008724BA</string>
+											<string>DD2DC36E10A09C34008724BA</string>
+											<string>DD2DC37510A09C3C008724BA</string>
+											<string>DD2DC37410A09C3C008724BA</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -792,6 +790,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>DD2DC37710A09C3C008724BA</string>
 		<string>DD2DC1EA10A06787008724BA</string>
 		<string>DD2DC1EB10A06787008724BA</string>
 		<string>/Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/openFrameworks.xcodeproj</string>

@@ -6,7 +6,7 @@
 
 #include "ofMain.h"
 
-#include "ofxMidi.h"
+//#include "ofxMidi.h"
 //#include "ofxOsc.h"
 //#include "guiController.h"
 
