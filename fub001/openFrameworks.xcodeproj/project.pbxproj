@@ -19,6 +19,9 @@
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
 		DD0C016A1066874900BB3F9F /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */; };
+		DD2DC3AD10A0A10A008724BA /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2DC3A910A0A10A008724BA /* testApp.mm */; };
+		DD2DC3AE10A0A10A008724BA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2DC3AA10A0A10A008724BA /* MainMenu.xib */; };
+		DD2DC3BC10A0A373008724BA /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2DC3BB10A0A373008724BA /* TestAppController.mm */; };
 		DD45B91B106FDC4F00B4B19C /* ofxMSASpline2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */; };
 		DD45B91C106FDC4F00B4B19C /* ofxMSASpline3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B911106FDC4F00B4B19C /* ofxMSASpline3D.cpp */; };
 		DD45B91D106FDC4F00B4B19C /* ofxMSASurface3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */; };
@@ -32,9 +35,11 @@
 		DD7CC4081063C47100D3736A /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3EA1063C47100D3736A /* ofxCvImage.cpp */; };
 		DD7CC4091063C47100D3736A /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3ED1063C47100D3736A /* ofxCvShortImage.cpp */; };
 		DD7CC4BE1063CE9100D3736A /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC4B81063CE9100D3736A /* ofxThread.cpp */; };
+		DD9655FB10AD91FA00BA2763 /* PluginManagerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD9655FA10AD91FA00BA2763 /* PluginManagerController.mm */; };
+		DD96565910AD961B00BA2763 /* PluginListView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD96565810AD961B00BA2763 /* PluginListView.mm */; };
+		DD96579010ADAA0300BA2763 /* Plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD96578E10ADAA0300BA2763 /* Plugin.mm */; };
 		DDB6B2DC107621C600D2722D /* ofxCvOpticalFlowBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB6B2D8107621C600D2722D /* ofxCvOpticalFlowBM.cpp */; };
 		DDB6B2DD107621C600D2722D /* ofxCvOpticalFlowLK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB6B2DA107621C600D2722D /* ofxCvOpticalFlowLK.cpp */; };
-		DDB84A04105BF9D200D1ED92 /* OFGuiController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDB84A03105BF9D200D1ED92 /* OFGuiController.mm */; };
 		DDB85163105E809300D1ED92 /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB85151105E809300D1ED92 /* ofxMatrix3x3.cpp */; };
 		DDB85164105E809300D1ED92 /* ofxPoint2f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB85153105E809300D1ED92 /* ofxPoint2f.cpp */; };
 		DDB85165105E809300D1ED92 /* ofxPoint3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB85155105E809300D1ED92 /* ofxPoint3f.cpp */; };
@@ -100,8 +105,6 @@
 		E45BEEA40E8CC911009D7055 /* libPocoXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BEE7A0E8CC911009D7055 /* libPocoXML.a */; };
 		E4A813171003D25E008E2F31 /* CustomGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = E4A813161003D25E008E2F31 /* CustomGLView.mm */; };
 		E4B69E200A3A1BDC003C02F2 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.mm */; };
-		E4B69E210A3A1BDC003C02F2 /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* testApp.mm */; };
-		E4C9805C0FF2901B0018D340 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = E4C980590FF2901B0018D340 /* MainMenu.nib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +133,12 @@
 		DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		DD0C01611066874900BB3F9F /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
+		DD1F23A910ACA4DE0096ECA8 /* of.xcclassmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcclassmodel; path = of.xcclassmodel; sourceTree = "<group>"; };
+		DD2DC3A810A0A10A008724BA /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
+		DD2DC3A910A0A10A008724BA /* testApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testApp.mm; sourceTree = "<group>"; };
+		DD2DC3AA10A0A10A008724BA /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/testApp/MainMenu.xib; sourceTree = "<group>"; };
+		DD2DC3BA10A0A373008724BA /* TestAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppController.h; sourceTree = "<group>"; };
+		DD2DC3BB10A0A373008724BA /* TestAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestAppController.mm; sourceTree = "<group>"; };
 		DD45B90D106FDC4F00B4B19C /* ofxMSASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline.h; sourceTree = "<group>"; };
 		DD45B90E106FDC4F00B4B19C /* ofxMSASpline1D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline1D.h; sourceTree = "<group>"; };
 		DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSASpline2D.cpp; sourceTree = "<group>"; };
@@ -177,12 +186,16 @@
 		DD7CC3EF1063C47100D3736A /* ofxOpenCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		DD7CC4B81063CE9100D3736A /* ofxThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxThread.cpp; sourceTree = "<group>"; };
 		DD7CC4B91063CE9100D3736A /* ofxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxThread.h; sourceTree = "<group>"; };
+		DD9655F910AD91FA00BA2763 /* PluginManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManagerController.h; sourceTree = "<group>"; };
+		DD9655FA10AD91FA00BA2763 /* PluginManagerController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginManagerController.mm; sourceTree = "<group>"; };
+		DD96565710AD961B00BA2763 /* PluginListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginListView.h; sourceTree = "<group>"; };
+		DD96565810AD961B00BA2763 /* PluginListView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginListView.mm; sourceTree = "<group>"; };
+		DD96578E10ADAA0300BA2763 /* Plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Plugin.mm; sourceTree = "<group>"; };
+		DD96578F10ADAA0300BA2763 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
 		DDB6B2D8107621C600D2722D /* ofxCvOpticalFlowBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxCvOpticalFlowBM.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowBM.cpp; sourceTree = SOURCE_ROOT; };
 		DDB6B2D9107621C600D2722D /* ofxCvOpticalFlowBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxCvOpticalFlowBM.h; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowBM.h; sourceTree = SOURCE_ROOT; };
 		DDB6B2DA107621C600D2722D /* ofxCvOpticalFlowLK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxCvOpticalFlowLK.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowLK.cpp; sourceTree = SOURCE_ROOT; };
 		DDB6B2DB107621C600D2722D /* ofxCvOpticalFlowLK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxCvOpticalFlowLK.h; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowLK.h; sourceTree = SOURCE_ROOT; };
-		DDB84A02105BF9D200D1ED92 /* OFGuiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OFGuiController.h; sourceTree = "<group>"; };
-		DDB84A03105BF9D200D1ED92 /* OFGuiController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OFGuiController.mm; sourceTree = "<group>"; };
 		DDB85151105E809300D1ED92 /* ofxMatrix3x3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix3x3.cpp; sourceTree = "<group>"; };
 		DDB85152105E809300D1ED92 /* ofxMatrix3x3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMatrix3x3.h; sourceTree = "<group>"; };
 		DDB85153105E809300D1ED92 /* ofxPoint2f.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPoint2f.cpp; sourceTree = "<group>"; };
@@ -399,9 +412,6 @@
 		E4A813161003D25E008E2F31 /* CustomGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = CustomGLView.mm; path = ../CustomGLView.mm; sourceTree = "<group>"; };
 		E4B69B5B0A3A1756003C02F2 /* FrostDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrostDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 30; path = main.mm; sourceTree = "<group>"; };
-		E4B69E1E0A3A1BDC003C02F2 /* testApp.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = testApp.mm; sourceTree = "<group>"; };
-		E4B69E1F0A3A1BDC003C02F2 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
-		E4C9805A0FF2901B0018D340 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = MainMenu.nib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -495,6 +505,17 @@
 				DD0C01611066874900BB3F9F /* ofxXmlSettings.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		DD2DC3A710A0A10A008724BA /* testApp */ = {
+			isa = PBXGroup;
+			children = (
+				DD2DC3A810A0A10A008724BA /* testApp.h */,
+				DD2DC3A910A0A10A008724BA /* testApp.mm */,
+				DD2DC3BA10A0A373008724BA /* TestAppController.h */,
+				DD2DC3BB10A0A373008724BA /* TestAppController.mm */,
+			);
+			path = testApp;
 			sourceTree = "<group>";
 		};
 		DD45B904106FDC4F00B4B19C /* ofxMSASpline */ = {
@@ -632,6 +653,58 @@
 				DD7CC4B91063CE9100D3736A /* ofxThread.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		DD96560710AD920700BA2763 /* PluginManager */ = {
+			isa = PBXGroup;
+			children = (
+				DD9655F910AD91FA00BA2763 /* PluginManagerController.h */,
+				DD9655FA10AD91FA00BA2763 /* PluginManagerController.mm */,
+				DD96565710AD961B00BA2763 /* PluginListView.h */,
+				DD96565810AD961B00BA2763 /* PluginListView.mm */,
+			);
+			path = PluginManager;
+			sourceTree = "<group>";
+		};
+		DD96578610ADA9E000BA2763 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				DD96578E10ADAA0300BA2763 /* Plugin.mm */,
+				DD96578F10ADAA0300BA2763 /* Plugin.h */,
+				DD96578710ADA9E000BA2763 /* data */,
+				DD96578810ADA9E000BA2763 /* inputs */,
+				DD96578A10ADA9E000BA2763 /* outputs */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		DD96578710ADA9E000BA2763 /* data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		DD96578810ADA9E000BA2763 /* inputs */ = {
+			isa = PBXGroup;
+			children = (
+				DD96578910ADA9E000BA2763 /* computerVisionUtils */,
+			);
+			path = inputs;
+			sourceTree = "<group>";
+		};
+		DD96578910ADA9E000BA2763 /* computerVisionUtils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = computerVisionUtils;
+			sourceTree = "<group>";
+		};
+		DD96578A10ADA9E000BA2763 /* outputs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = outputs;
 			sourceTree = "<group>";
 		};
 		DDB85141105E808700D1ED92 /* addons */ = {
@@ -1206,10 +1279,10 @@
 			isa = PBXGroup;
 			children = (
 				27C26C2C109ECE8400EF775E /* icon.icns */,
-				E4C980560FF2901B0018D340 /* English.lproj */,
 				E4B69B5B0A3A1756003C02F2 /* FrostDebug.app */,
 				27823130109EC1BE00AE0E24 /* Frost-Info.plist */,
 				278230E9109EA82D00AE0E24 /* Credits.html */,
+				DD2DC3AA10A0A10A008724BA /* MainMenu.xib */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				DDB85141105E808700D1ED92 /* addons */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
@@ -1227,24 +1300,16 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DD96578610ADA9E000BA2763 /* Plugins */,
+				DD96560710AD920700BA2763 /* PluginManager */,
+				DD2DC3A710A0A10A008724BA /* testApp */,
+				E4B69E1D0A3A1BDC003C02F2 /* main.mm */,
 				27A84E44107CB085008926F1 /* FrostGuiObjects.h */,
 				27A84E45107CB085008926F1 /* FrostGuiObjects.m */,
 				E434918D0FF29FBB00E5A170 /* ofAppCocoaWindow */,
-				E4B69E1D0A3A1BDC003C02F2 /* main.mm */,
-				E4B69E1E0A3A1BDC003C02F2 /* testApp.mm */,
-				E4B69E1F0A3A1BDC003C02F2 /* testApp.h */,
-				DDB84A02105BF9D200D1ED92 /* OFGuiController.h */,
-				DDB84A03105BF9D200D1ED92 /* OFGuiController.mm */,
+				DD1F23A910ACA4DE0096ECA8 /* of.xcclassmodel */,
 			);
 			path = src;
-			sourceTree = SOURCE_ROOT;
-		};
-		E4C980560FF2901B0018D340 /* English.lproj */ = {
-			isa = PBXGroup;
-			children = (
-				E4C980590FF2901B0018D340 /* MainMenu.nib */,
-			);
-			path = English.lproj;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
@@ -1291,10 +1356,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4C9805C0FF2901B0018D340 /* MainMenu.nib in Resources */,
 				276D9DB11073B3F00084689D /* changelog.txt in Resources */,
 				278230EA109EA82D00AE0E24 /* Credits.html in Resources */,
 				27C26C2D109ECE8400EF775E /* icon.icns in Resources */,
+				DD2DC3AE10A0A10A008724BA /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1322,7 +1387,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4B69E200A3A1BDC003C02F2 /* main.mm in Sources */,
-				E4B69E210A3A1BDC003C02F2 /* testApp.mm in Sources */,
 				E446644B0F5B1CFD005D0BF0 /* ofAppGlutWindow.cpp in Sources */,
 				E446644C0F5B1CFD005D0BF0 /* ofAppRunner.cpp in Sources */,
 				E446644D0F5B1CFD005D0BF0 /* ofArduino.cpp in Sources */,
@@ -1347,7 +1411,6 @@
 				E4A813171003D25E008E2F31 /* CustomGLView.mm in Sources */,
 				3F1E59AB100B75550091B692 /* SharedContextGLView.m in Sources */,
 				3F1E59B1100B77800091B692 /* CustomGLViewDelegate.cpp in Sources */,
-				DDB84A04105BF9D200D1ED92 /* OFGuiController.mm in Sources */,
 				DDB85163105E809300D1ED92 /* ofxMatrix3x3.cpp in Sources */,
 				DDB85164105E809300D1ED92 /* ofxPoint2f.cpp in Sources */,
 				DDB85165105E809300D1ED92 /* ofxPoint3f.cpp in Sources */,
@@ -1385,22 +1448,15 @@
 				DDD48A7D10766F110083759A /* PYMIDIVirtualEndpoint.m in Sources */,
 				DDD48A7E10766F110083759A /* PYMIDIVirtualSource.m in Sources */,
 				27A84E46107CB085008926F1 /* FrostGuiObjects.m in Sources */,
+				DD2DC3AD10A0A10A008724BA /* testApp.mm in Sources */,
+				DD2DC3BC10A0A373008724BA /* TestAppController.mm in Sources */,
+				DD9655FB10AD91FA00BA2763 /* PluginManagerController.mm in Sources */,
+				DD96565910AD961B00BA2763 /* PluginListView.mm in Sources */,
+				DD96579010ADAA0300BA2763 /* Plugin.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		E4C980590FF2901B0018D340 /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E4C9805A0FF2901B0018D340 /* English */,
-			);
-			name = MainMenu.nib;
-			path = English.lproj;
-			sourceTree = SOURCE_ROOT;
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E4B69B4E0A3A1720003C02F2 /* Debug */ = {
@@ -1418,7 +1474,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
@@ -1458,7 +1514,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
 				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;

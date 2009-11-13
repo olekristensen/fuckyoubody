@@ -22,7 +22,7 @@ testApp::testApp(): ofBaseApp() {
 
 void testApp::setup(){	
 	ofSetLogLevel(OF_LOG_VERBOSE);
-	ofLog(OF_LOG_VERBOSE, "Testapp setup");
+	ofLog(OF_LOG_VERBOSE, "TestApp setup");
 
 	ofSetDataPathRoot("data/");
 	lucidaGrande.loadFont("LucidaGrande.ttc",22, false, true);
