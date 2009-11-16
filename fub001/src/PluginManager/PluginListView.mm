@@ -7,16 +7,17 @@
 //
 
 #import "PluginListView.h"
+#include "Plugin.h"
 
 @implementation PluginListView
 
-/*- (void)drawRect:(NSRect)rect{
+- (void)drawRect:(NSRect)rect{
 	[super drawRect:rect];	
 }
 
 - (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect{
 	ofPlugin * p = [[[self dataSource] viewItems] objectAtIndex:rowIndex];
-	if([[p header] isEqualToNumber:[NSNumber numberWithBool:TRUE]]){
+	if([[p header] isEqualToNumber:[NSNumber numberWithBool:YES]]){
 		NSRect bounds = [self rectOfRow:rowIndex];
 		
 		NSBezierPath*    clipShape = [NSBezierPath bezierPathWithRect:bounds];
@@ -42,9 +43,7 @@
 		
 	} else {
 		[super drawRow:rowIndex clipRect:clipRect];
-	}
-	
-	[super drawRow:rowIndex clipRect:clipRect];
-}*/
+	}	
+}
 
 @end

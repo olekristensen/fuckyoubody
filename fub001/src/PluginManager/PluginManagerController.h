@@ -3,14 +3,14 @@
 //
 //  Created by Jonas Jongejan on 13/11/09.
 //
-
+#pragma once
 #import "GLee.h"
 
 
 #import <Cocoa/Cocoa.h>
 #include "testApp.h"
 #include "Plugin.h"
-
+@class ofPlugin;
 
 #include "PluginListView.h"
 
@@ -41,12 +41,17 @@
 	NSMutableArray * viewItems;
 
 	IBOutlet PluginListView * pluginListView;
+	IBOutlet NSView * pluginView;
 
 }	
+@property (assign, readwrite) NSMutableArray *viewItems;
+
 
 -(IBAction) setListViewRow:(id)sender;
 - (void)addHeader:(NSString *)header;
-- (void)addPlugin:(ofPlugin*)p;
+- (void)addPlugin:(ofPlugin *)obj;
+- (void)changeView:(int)row;
+
 
 @end
 

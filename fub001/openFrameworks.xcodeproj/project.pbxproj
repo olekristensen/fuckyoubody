@@ -47,6 +47,8 @@
 		DDB85167105E809300D1ED92 /* ofxVec2f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB85159105E809300D1ED92 /* ofxVec2f.cpp */; };
 		DDB85168105E809300D1ED92 /* ofxVec3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515B105E809300D1ED92 /* ofxVec3f.cpp */; };
 		DDB85169105E809300D1ED92 /* ofxVec4f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515D105E809300D1ED92 /* ofxVec4f.cpp */; };
+		DDBF3A9F10B0343600F41B19 /* _ExampleOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDBF3A9E10B0343600F41B19 /* _ExampleOutput.mm */; };
+		DDBF3BE210B03F8900F41B19 /* _ExampleOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */; };
 		DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD48937107636A80083759A /* CoreMIDI.framework */; };
 		DDD48A7410766F110083759A /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A5F10766F100083759A /* PYMIDIEndpoint.m */; };
 		DDD48A7510766F110083759A /* PYMIDIEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A6110766F100083759A /* PYMIDIEndpointDescriptor.m */; };
@@ -211,6 +213,10 @@
 		DDB8515D105E809300D1ED92 /* ofxVec4f.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVec4f.cpp; sourceTree = "<group>"; };
 		DDB8515E105E809300D1ED92 /* ofxVec4f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec4f.h; sourceTree = "<group>"; };
 		DDB8515F105E809300D1ED92 /* ofxVectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVectorMath.h; sourceTree = "<group>"; };
+		DDBF3A9D10B0343600F41B19 /* _ExampleOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ExampleOutput.h; sourceTree = "<group>"; };
+		DDBF3A9E10B0343600F41B19 /* _ExampleOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = _ExampleOutput.mm; sourceTree = "<group>"; };
+		DDBF3AF810B0385F00F41B19 /* PluginIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginIncludes.h; sourceTree = "<group>"; };
+		DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = _ExampleOutput.xib; sourceTree = "<group>"; };
 		DDD48937107636A80083759A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		DDD48A5D10766F100083759A /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
 		DDD48A5E10766F100083759A /* PYMIDIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpoint.h; sourceTree = "<group>"; };
@@ -674,6 +680,7 @@
 				DD96578710ADA9E000BA2763 /* data */,
 				DD96578810ADA9E000BA2763 /* inputs */,
 				DD96578A10ADA9E000BA2763 /* outputs */,
+				DDBF3AF810B0385F00F41B19 /* PluginIncludes.h */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -703,6 +710,8 @@
 		DD96578A10ADA9E000BA2763 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				DDBF3A9D10B0343600F41B19 /* _ExampleOutput.h */,
+				DDBF3A9E10B0343600F41B19 /* _ExampleOutput.mm */,
 			);
 			path = outputs;
 			sourceTree = "<group>";
@@ -1283,6 +1292,7 @@
 				27823130109EC1BE00AE0E24 /* Frost-Info.plist */,
 				278230E9109EA82D00AE0E24 /* Credits.html */,
 				DD2DC3AA10A0A10A008724BA /* MainMenu.xib */,
+				DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				DDB85141105E808700D1ED92 /* addons */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
@@ -1360,6 +1370,7 @@
 				278230EA109EA82D00AE0E24 /* Credits.html in Resources */,
 				27C26C2D109ECE8400EF775E /* icon.icns in Resources */,
 				DD2DC3AE10A0A10A008724BA /* MainMenu.xib in Resources */,
+				DDBF3BE210B03F8900F41B19 /* _ExampleOutput.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1453,6 +1464,7 @@
 				DD9655FB10AD91FA00BA2763 /* PluginManagerController.mm in Sources */,
 				DD96565910AD961B00BA2763 /* PluginListView.mm in Sources */,
 				DD96579010ADAA0300BA2763 /* Plugin.mm in Sources */,
+				DDBF3A9F10B0343600F41B19 /* _ExampleOutput.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

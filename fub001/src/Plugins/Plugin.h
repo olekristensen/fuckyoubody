@@ -2,9 +2,11 @@
 
 #import "GLee.h"
 
-
 #import <Cocoa/Cocoa.h>
+#include "PluginManagerController.h"
+
 #include "ofMain.h"
+
 //#include "CustomGLViewDelegate.h"
 
 /*
@@ -13,21 +15,35 @@ class ProjectionSurfaces;
 class Tracker;
 */
 
-
-
+@class PluginManagerController;
 
 @interface ofPlugin : NSObject
 {
 	NSString * name;
 	NSNumber * enabled;
 	NSNumber * header;	
+	PluginManagerController * controller;
+	
+	IBOutlet NSView * view;
+	IBOutlet ofPlugin * plugin;
 }
 @property (retain, readwrite) NSString *name;
-@property (retain, readwrite) NSNumber *enabled;
-@property (retain, readwrite) NSNumber *header;
+@property (assign, readwrite) NSNumber *enabled;
+@property (assign, readwrite) NSNumber *header;
+@property (assign, readwrite) PluginManagerController *controller;
+@property (assign, readwrite) NSView * view;
+
+- (BOOL) initWithController:(PluginManagerController*) c;
+- (void) initPlugin; //The function wich the different plugin can put their init code in
+- (BOOL) loadPluginNibFile;
+- (void) setup;
+- (void) draw;
+- (void) update;
 
 /*- (void)drawRect:(NSRect)rect;
  - (void)drawRow:(NSInteger)rowIndex clipRect:(NSRect)clipRect;*/
+
+
 @end
 
 
