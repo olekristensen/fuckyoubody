@@ -42,45 +42,16 @@
 	};
 	27A84E44107CB085008926F1 /* FrostGuiObjects.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1013, 1558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1013, 1443}}";
 			sepNavSelRange = "{1094, 0}";
-			sepNavVisRange = "{0, 2361}";
+			sepNavVisRange = "{657, 857}";
 		};
 	};
 	27A84E45107CB085008926F1 /* FrostGuiObjects.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1125, 5369}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1020, 5525}}";
 			sepNavSelRange = "{1618, 0}";
-			sepNavVisRange = "{0, 3072}";
-		};
-	};
-	3F1E59A9100B75550091B692 /* SharedContextGLView.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 468}}";
-			sepNavSelRange = "{341, 0}";
-			sepNavVisRange = "{0, 488}";
-		};
-	};
-	3F1E59AA100B75550091B692 /* SharedContextGLView.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1083, 1651}}";
-			sepNavSelRange = "{996, 16}";
-			sepNavVisRange = "{679, 982}";
-		};
-	};
-	3F1E59AF100B77800091B692 /* CustomGLViewDelegate.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 1378}}";
-			sepNavSelRange = "{655, 16}";
-			sepNavVisRange = "{458, 833}";
-		};
-	};
-	3F1E59B0100B77800091B692 /* CustomGLViewDelegate.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 2860}}";
-			sepNavSelRange = "{4542, 0}";
-			sepNavVisRange = "{4326, 849}";
-			sepNavWindowFrame = "{{15, 58}, {885, 815}}";
+			sepNavVisRange = "{1148, 832}";
 		};
 	};
 	DD0C01611066874900BB3F9F /* ofxXmlSettings.h */ = {
@@ -124,8 +95,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {554, 490}}",
-							"{{559, 0}, {292, 490}}",
+							"{{0, 0}, {554, 478}}",
+							"{{559, 0}, {292, 478}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -134,8 +105,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {851, 492}}",
-							"{{0, 497}, {851, 0}}",
+							"{{0, 0}, {851, 478}}",
+							"{{0, 483}, {851, 0}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -144,8 +115,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {180, 490}}",
-							"{{185, 0}, {369, 490}}",
+							"{{0, 0}, {179, 478}}",
+							"{{184, 0}, {368, 478}}",
 						);
 					};
 				};
@@ -219,11 +190,17 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-1, 0}, {1114.67, 0}}";
+				"xdesign model diagram view visible rect key" = "{{278, 0}, {836, 0}}";
 			};
 		};
 	};
 	DD2DC3A810A0A10A008724BA /* testApp.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = testApp.h;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/testApp/testApp.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 1558}}";
 			sepNavSelRange = "{613, 0}";
@@ -232,6 +209,12 @@
 		};
 	};
 	DD2DC3A910A0A10A008724BA /* testApp.mm */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = testApp.mm;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/testApp/testApp.mm;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 1533}}";
 			sepNavSelRange = "{454, 0}";
@@ -239,6 +222,12 @@
 		};
 	};
 	DD2DC3BA10A0A373008724BA /* TestAppController.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = TestAppController.h;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/testApp/TestAppController.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 1558}}";
 			sepNavSelRange = "{288, 23}";
@@ -246,6 +235,12 @@
 		};
 	};
 	DD2DC3BB10A0A373008724BA /* TestAppController.mm */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = TestAppController.mm;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/testApp/TestAppController.mm;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 468}}";
 			sepNavSelRange = "{351, 0}";
@@ -425,6 +420,12 @@
 		};
 	};
 	DD9655F910AD91FA00BA2763 /* PluginManagerController.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = PluginManagerController.h;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/PluginManager/PluginManagerController.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1139, 767}}";
 			sepNavSelRange = "{776, 0}";
@@ -432,10 +433,16 @@
 		};
 	};
 	DD9655FA10AD91FA00BA2763 /* PluginManagerController.mm */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = PluginManagerController.mm;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/PluginManager/PluginManagerController.mm;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {792, 1729}}";
+			sepNavIntBoundsRect = "{{0, 0}, {792, 1820}}";
 			sepNavSelRange = "{252, 0}";
-			sepNavVisRange = "{36, 753}";
+			sepNavVisRange = "{36, 710}";
 		};
 	};
 	DD96561B10AD935300BA2763 /* PBXTextBookmark */ = {
@@ -449,6 +456,12 @@
 		vrLoc = 0;
 	};
 	DD96565710AD961B00BA2763 /* PluginListView.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = PluginListView.h;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/PluginManager/PluginListView.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 1533}}";
 			sepNavSelRange = "{198, 0}";
@@ -456,6 +469,12 @@
 		};
 	};
 	DD96565810AD961B00BA2763 /* PluginListView.mm */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = PluginListView.mm;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/PluginManager/PluginListView.mm;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1139, 637}}";
 			sepNavSelRange = "{1636, 0}";
@@ -463,6 +482,12 @@
 		};
 	};
 	DD96578E10ADAA0300BA2763 /* Plugin.mm */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = Plugin.mm;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/Plugins/Plugin.mm;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 1079}}";
 			sepNavSelRange = "{216, 0}";
@@ -470,6 +495,12 @@
 		};
 	};
 	DD96578F10ADAA0300BA2763 /* Plugin.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = Plugin.h;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/Plugins/Plugin.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 1027}}";
 			sepNavSelRange = "{444, 0}";
@@ -1057,6 +1088,41 @@
 		vrLen = 359;
 		vrLoc = 0;
 	};
+	DDA6211910B1618A009C8BDB /* main.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {792, 468}}";
+			sepNavSelRange = "{42, 0}";
+			sepNavVisRange = "{0, 315}";
+		};
+	};
+	DDA6212810B1618A009C8BDB /* testApp.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {792, 546}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 584}";
+		};
+	};
+	DDA6212910B1618A009C8BDB /* testApp.mm */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {792, 1235}}";
+			sepNavSelRange = "{64, 0}";
+			sepNavVisRange = "{0, 679}";
+		};
+	};
+	DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {792, 1105}}";
+			sepNavSelRange = "{130, 0}";
+			sepNavVisRange = "{0, 774}";
+		};
+	};
+	DDA6213A10B1622E009C8BDB /* BasicOpenGLView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {792, 5174}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1100}";
+		};
+	};
 	DDB6B2DA107621C600D2722D /* ofxCvOpticalFlowLK.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1129, 949}}";
@@ -1114,16 +1180,28 @@
 		};
 	};
 	DDBF3A9D10B0343600F41B19 /* _ExampleOutput.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = _ExampleOutput.h;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/Plugins/outputs/_ExampleOutput.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {792, 468}}";
-			sepNavSelRange = "{188, 0}";
-			sepNavVisRange = "{0, 362}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 325}}";
+			sepNavSelRange = "{42, 0}";
+			sepNavVisRange = "{0, 260}";
 		};
 	};
 	DDBF3A9E10B0343600F41B19 /* _ExampleOutput.mm */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.cpp.objcpp;
+		name = _ExampleOutput.mm;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/Plugins/outputs/_ExampleOutput.mm;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 468}}";
-			sepNavSelRange = "{119, 0}";
+			sepNavSelRange = "{359, 0}";
 			sepNavVisRange = "{0, 359}";
 		};
 	};
@@ -1138,6 +1216,12 @@
 		vrLoc = 2926;
 	};
 	DDBF3AF810B0385F00F41B19 /* PluginIncludes.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = PluginIncludes.h;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/Plugins/PluginIncludes.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {792, 1535}}";
 			sepNavSelRange = "{195, 0}";
@@ -1381,49 +1465,6 @@
 			sepNavVisRange = "{1093, 964}";
 		};
 	};
-	E434918E0FF29FBB00E5A170 /* AppDelegate.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 468}}";
-			sepNavSelRange = "{159, 0}";
-			sepNavVisRange = "{0, 159}";
-		};
-	};
-	E434918F0FF29FBB00E5A170 /* AppDelegate.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 468}}";
-			sepNavSelRange = "{165, 0}";
-			sepNavVisRange = "{0, 165}";
-			sepNavWindowFrame = "{{15, 58}, {885, 815}}";
-		};
-	};
-	E43491900FF29FBB00E5A170 /* BasicOpenGLView.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 1118}}";
-			sepNavSelRange = "{253, 19}";
-			sepNavVisRange = "{221, 742}";
-		};
-	};
-	E43491910FF29FBB00E5A170 /* BasicOpenGLView.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 5174}}";
-			sepNavSelRange = "{337, 0}";
-			sepNavVisRange = "{0, 1100}";
-		};
-	};
-	E43491920FF29FBB00E5A170 /* ofAppCocoaWindow.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 1235}}";
-			sepNavSelRange = "{470, 45}";
-			sepNavVisRange = "{0, 867}";
-		};
-	};
-	E43491930FF29FBB00E5A170 /* ofAppCocoaWindow.mm */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 3874}}";
-			sepNavSelRange = "{2008, 0}";
-			sepNavVisRange = "{1595, 1010}";
-		};
-	};
 	E44664190F5B1CFD005D0BF0 /* ofAppBaseWindow.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {749, 598}}";
@@ -1518,9 +1559,9 @@
 	};
 	E446643B0F5B1CFD005D0BF0 /* ofConstants.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 5564}}";
+			sepNavIntBoundsRect = "{{0, 0}, {908, 5538}}";
 			sepNavSelRange = "{5060, 0}";
-			sepNavVisRange = "{3557, 2560}";
+			sepNavVisRange = "{4584, 825}";
 			sepNavWindowFrame = "{{15, 58}, {885, 815}}";
 		};
 	};
@@ -1533,9 +1574,9 @@
 	};
 	E446643E0F5B1CFD005D0BF0 /* ofTypes.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 4082}}";
-			sepNavSelRange = "{3605, 20}";
-			sepNavVisRange = "{3211, 740}";
+			sepNavIntBoundsRect = "{{0, 0}, {792, 4069}}";
+			sepNavSelRange = "{37, 25}";
+			sepNavVisRange = "{0, 670}";
 		};
 	};
 	E44664420F5B1CFD005D0BF0 /* ofQtUtils.cpp */ = {
@@ -1607,20 +1648,6 @@
 			sepNavIntBoundsRect = "{{0, 0}, {792, 140725}}";
 			sepNavSelRange = "{1753, 0}";
 			sepNavVisRange = "{0, 4338}";
-		};
-	};
-	E4A813151003D25E008E2F31 /* CustomGLView.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1032, 1274}}";
-			sepNavSelRange = "{363, 19}";
-			sepNavVisRange = "{0, 731}";
-		};
-	};
-	E4A813161003D25E008E2F31 /* CustomGLView.mm */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {792, 4719}}";
-			sepNavSelRange = "{124, 29}";
-			sepNavVisRange = "{0, 645}";
 		};
 	};
 	E4B69B4C0A3A1720003C02F2 /* Project object */ = {
@@ -1804,8 +1831,14 @@
 		);
 	};
 	E4B69E1D0A3A1BDC003C02F2 /* main.mm */ = {
+		isa = PBXFileReference;
+		explicitFileType = sourcecode.cpp.objcpp;
+		fileEncoding = 30;
+		name = main.mm;
+		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/main.mm;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {792, 1569}}";
+			sepNavIntBoundsRect = "{{0, 0}, {792, 468}}";
 			sepNavSelRange = "{315, 0}";
 			sepNavVisRange = "{0, 315}";
 			sepNavWindowFrame = "{{-1192, 0}, {1191, 1484}}";
