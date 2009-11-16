@@ -43,22 +43,22 @@
 				<int key="NSvFlags">268</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="NSTextField" id="791858589">
+					<object class="NSTextField" id="322765902">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{55, 132}, {38, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="680455371">
+						<object class="NSTextFieldCell" key="NSCell" id="416703857">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Label</string>
-							<object class="NSFont" key="NSSupport" id="941717789">
+							<object class="NSFont" key="NSSupport" id="1031567541">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">13</double>
 								<int key="NSfFlags">1044</int>
 							</object>
-							<reference key="NSControlView" ref="791858589"/>
+							<reference key="NSControlView" ref="322765902"/>
 							<object class="NSColor" key="NSBackgroundColor">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
@@ -89,7 +89,7 @@
 							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">134217728</int>
 							<string key="NSContents">Round Textured</string>
-							<reference key="NSSupport" ref="941717789"/>
+							<reference key="NSSupport" ref="1031567541"/>
 							<reference key="NSControlView" ref="333417701"/>
 							<int key="NSButtonFlags">-2038152961</int>
 							<int key="NSButtonFlags2">163</int>
@@ -102,7 +102,7 @@
 				</object>
 				<string key="NSFrameSize">{480, 272}</string>
 				<reference key="NSSuperview"/>
-				<string key="NSClassName">NSView</string>
+				<string key="NSClassName">PluginView</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -120,7 +120,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">text</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="791858589"/>
+						<reference key="destination" ref="322765902"/>
 					</object>
 					<int key="connectionID">20</int>
 				</object>
@@ -166,7 +166,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="333417701"/>
-							<reference ref="791858589"/>
+							<reference ref="322765902"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -186,17 +186,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="791858589"/>
+						<reference key="object" ref="322765902"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="680455371"/>
+							<reference ref="416703857"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
-						<reference key="object" ref="680455371"/>
-						<reference key="parent" ref="791858589"/>
+						<reference key="object" ref="416703857"/>
+						<reference key="parent" ref="322765902"/>
 					</object>
 				</object>
 			</object>
@@ -247,6 +247,14 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
+					<string key="className">PluginView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/PluginManager/PluginView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">_ExampleOutput</string>
 					<string key="superclassName">ofPlugin</string>
 					<object class="NSMutableDictionary" key="actions">
@@ -259,7 +267,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/Plugins/outputs/_ExampleOutput.h</string>
+						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/Plugins/outputs/_ExampleOutput.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -280,7 +288,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">src/Plugins/Plugin.h</string>
+						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/Plugins/Plugin.h</string>
 					</object>
 				</object>
 			</object>

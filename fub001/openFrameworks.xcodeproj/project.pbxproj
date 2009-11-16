@@ -43,6 +43,9 @@
 		DDA6214810B1628E009C8BDB /* SharedContextGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6214710B1628E009C8BDB /* SharedContextGLView.mm */; };
 		DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6217B10B164A1009C8BDB /* CustomGLView.mm */; };
 		DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */; };
+		DDA6242B10B1BCF9009C8BDB /* PluginView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6242A10B1BCF9009C8BDB /* PluginView.mm */; };
+		DDA6266E10B1D1FB009C8BDB /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */; };
+		DDA626B210B1D306009C8BDB /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */; };
 		DDB6B2DC107621C600D2722D /* ofxCvOpticalFlowBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB6B2D8107621C600D2722D /* ofxCvOpticalFlowBM.cpp */; };
 		DDB6B2DD107621C600D2722D /* ofxCvOpticalFlowLK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB6B2DA107621C600D2722D /* ofxCvOpticalFlowLK.cpp */; };
 		DDB85163105E809300D1ED92 /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB85151105E809300D1ED92 /* ofxMatrix3x3.cpp */; };
@@ -107,6 +110,19 @@
 		E45BEEA30E8CC911009D7055 /* libPocoUtil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BEE790E8CC911009D7055 /* libPocoUtil.a */; };
 		E45BEEA40E8CC911009D7055 /* libPocoXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BEE7A0E8CC911009D7055 /* libPocoXML.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DDA626A310B1D21B009C8BDB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DDA626B210B1D306009C8BDB /* BWToolkitFramework.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		276D9D9B1073B3F00084689D /* changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = changelog.txt; sourceTree = "<group>"; };
@@ -203,6 +219,9 @@
 		DDA6217B10B164A1009C8BDB /* CustomGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomGLView.mm; sourceTree = "<group>"; };
 		DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomGLViewDelegate.cpp; sourceTree = "<group>"; };
 		DDA6217D10B164A1009C8BDB /* CustomGLViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGLViewDelegate.h; sourceTree = "<group>"; };
+		DDA6242910B1BCF9009C8BDB /* PluginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginView.h; sourceTree = "<group>"; };
+		DDA6242A10B1BCF9009C8BDB /* PluginView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginView.mm; sourceTree = "<group>"; };
+		DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/myAddons/ofxCocoaPlugins/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
 		DDB6B2D8107621C600D2722D /* ofxCvOpticalFlowBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxCvOpticalFlowBM.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowBM.cpp; sourceTree = SOURCE_ROOT; };
 		DDB6B2D9107621C600D2722D /* ofxCvOpticalFlowBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxCvOpticalFlowBM.h; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowBM.h; sourceTree = SOURCE_ROOT; };
 		DDB6B2DA107621C600D2722D /* ofxCvOpticalFlowLK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxCvOpticalFlowLK.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowLK.cpp; sourceTree = SOURCE_ROOT; };
@@ -449,6 +468,7 @@
 				DD7CC3F71063C47100D3736A /* libOpenCV.a in Frameworks */,
 				DDFEC8871063FA200068D31A /* IOKit.framework in Frameworks */,
 				DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */,
+				DDA6266E10B1D1FB009C8BDB /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,6 +695,8 @@
 				DDA6211C10B1618A009C8BDB /* PluginListView.mm */,
 				DDA6211D10B1618A009C8BDB /* PluginManagerController.h */,
 				DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */,
+				DDA6242910B1BCF9009C8BDB /* PluginView.h */,
+				DDA6242A10B1BCF9009C8BDB /* PluginView.mm */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -1298,6 +1320,7 @@
 				E439E8F30FEFE05F0042BF96 /* Cocoa.framework */,
 				DDFEC8861063FA200068D31A /* IOKit.framework */,
 				DDD48937107636A80083759A /* CoreMIDI.framework */,
+				DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1320,6 +1343,7 @@
 				E4B69B580A3A1756003C02F2 /* Sources */,
 				E4B69B590A3A1756003C02F2 /* Frameworks */,
 				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
+				DDA626A310B1D21B009C8BDB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1451,6 +1475,7 @@
 				DDA6214810B1628E009C8BDB /* SharedContextGLView.mm in Sources */,
 				DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */,
 				DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */,
+				DDA6242B10B1BCF9009C8BDB /* PluginView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1540,6 +1565,11 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				ENABLE_OPENMP_SUPPORT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../myAddons/ofxCocoaPlugins\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1612,6 +1642,11 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				ENABLE_OPENMP_SUPPORT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../myAddons/ofxCocoaPlugins\"",
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G4;
