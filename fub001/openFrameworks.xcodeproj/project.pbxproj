@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,7 +39,7 @@
 		DDA6213210B1618A009C8BDB /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212910B1618A009C8BDB /* testApp.mm */; };
 		DDA6213310B1618A009C8BDB /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212B10B1618A009C8BDB /* TestAppController.mm */; };
 		DDA6213D10B1622E009C8BDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213810B1622E009C8BDB /* AppDelegate.m */; };
-		DDA6213E10B1622E009C8BDB /* BasicOpenGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213A10B1622E009C8BDB /* BasicOpenGLView.m */; };
+		DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */; };
 		DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */; };
 		DDA6214810B1628E009C8BDB /* SharedContextGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6214710B1628E009C8BDB /* SharedContextGLView.m */; };
 		DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6217B10B164A1009C8BDB /* CustomGLView.mm */; };
@@ -197,7 +197,7 @@
 		DDA6213710B1622E009C8BDB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DDA6213810B1622E009C8BDB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicOpenGLView.h; sourceTree = "<group>"; };
-		DDA6213A10B1622E009C8BDB /* BasicOpenGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicOpenGLView.m; sourceTree = "<group>"; };
+		DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BasicOpenGLView.mm; sourceTree = "<group>"; };
 		DDA6213B10B1622E009C8BDB /* ofAppCocoaWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofAppCocoaWindow.h; sourceTree = "<group>"; };
 		DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofAppCocoaWindow.mm; sourceTree = "<group>"; };
 		DDA6214610B1628E009C8BDB /* SharedContextGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedContextGLView.h; sourceTree = "<group>"; };
@@ -726,7 +726,7 @@
 				DDA6213710B1622E009C8BDB /* AppDelegate.h */,
 				DDA6213810B1622E009C8BDB /* AppDelegate.m */,
 				DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */,
-				DDA6213A10B1622E009C8BDB /* BasicOpenGLView.m */,
+				DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */,
 				DDA6213B10B1622E009C8BDB /* ofAppCocoaWindow.h */,
 				DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */,
 			);
@@ -1341,7 +1341,7 @@
 		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "openFrameworks" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			hasScannedForEncodings = 0;
 			mainGroup = E4B69B4A0A3A1720003C02F2;
 			productRefGroup = E4B69B4A0A3A1720003C02F2;
@@ -1452,7 +1452,7 @@
 				DDA6213210B1618A009C8BDB /* testApp.mm in Sources */,
 				DDA6213310B1618A009C8BDB /* TestAppController.mm in Sources */,
 				DDA6213D10B1622E009C8BDB /* AppDelegate.m in Sources */,
-				DDA6213E10B1622E009C8BDB /* BasicOpenGLView.m in Sources */,
+				DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */,
 				DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */,
 				DDA6214810B1628E009C8BDB /* SharedContextGLView.m in Sources */,
 				DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */,
@@ -1497,7 +1497,7 @@
 				);
 				OTHER_LDFLAGS = ./libs/osx/lib/libdc1394.a;
 				PRODUCT_NAME = FROST;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				VALID_ARCHS = "x86_64 i386";
 			};
@@ -1537,7 +1537,7 @@
 				);
 				OTHER_LDFLAGS = ./libs/osx/lib/libdc1394.a;
 				PRODUCT_NAME = FROST;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				VALID_ARCHS = "x86_64 i386";
 			};
@@ -1546,8 +1546,7 @@
 		E4B69B600A3A1757003C02F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_OPENMP_SUPPORT = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1557,6 +1556,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					"./libs/osx/include/**",
 					../../../libs/poco/include,
@@ -1610,7 +1610,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/win32\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = FrostDebug;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALID_ARCHS = i386;
@@ -1622,8 +1622,7 @@
 		E4B69B610A3A1757003C02F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_OPENMP_SUPPORT = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1631,6 +1630,7 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = (
 					"./libs/osx/include/**",
 					../../../libs/poco/include,
@@ -1684,7 +1684,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/win32\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = Frost;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				STRIP_INSTALLED_PRODUCT = NO;
 				VALID_ARCHS = i386;
