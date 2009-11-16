@@ -91,7 +91,7 @@
 		[button setBezelStyle:NSTexturedRoundedBezelStyle];
 		[button setImage:[self image]];
 		[button setImagePosition:[self imagePosition]];
-		isbutton = TRUE;
+		isbutton = YES;
 		
 	} else {
 		[button setButtonType: NSSwitchButton ];

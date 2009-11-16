@@ -11,7 +11,6 @@
 		276D9DB81073B3F00084689D /* ofxMSAFluidDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */; };
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		278230EA109EA82D00AE0E24 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 278230E9109EA82D00AE0E24 /* Credits.html */; };
-		27A84E46107CB085008926F1 /* FrostGuiObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = 27A84E45107CB085008926F1 /* FrostGuiObjects.m */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
@@ -38,10 +37,10 @@
 		DDA6213110B1618A009C8BDB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA6212710B1618A009C8BDB /* MainMenu.xib */; };
 		DDA6213210B1618A009C8BDB /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212910B1618A009C8BDB /* testApp.mm */; };
 		DDA6213310B1618A009C8BDB /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212B10B1618A009C8BDB /* TestAppController.mm */; };
-		DDA6213D10B1622E009C8BDB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213810B1622E009C8BDB /* AppDelegate.m */; };
+		DDA6213D10B1622E009C8BDB /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213810B1622E009C8BDB /* AppDelegate.mm */; };
 		DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */; };
 		DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */; };
-		DDA6214810B1628E009C8BDB /* SharedContextGLView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA6214710B1628E009C8BDB /* SharedContextGLView.m */; };
+		DDA6214810B1628E009C8BDB /* SharedContextGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6214710B1628E009C8BDB /* SharedContextGLView.mm */; };
 		DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6217B10B164A1009C8BDB /* CustomGLView.mm */; };
 		DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */; };
 		DDB6B2DC107621C600D2722D /* ofxCvOpticalFlowBM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB6B2D8107621C600D2722D /* ofxCvOpticalFlowBM.cpp */; };
@@ -120,8 +119,6 @@
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
 		278230E9109EA82D00AE0E24 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		27823130109EC1BE00AE0E24 /* Frost-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Frost-Info.plist"; sourceTree = "<group>"; };
-		27A84E44107CB085008926F1 /* FrostGuiObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrostGuiObjects.h; sourceTree = "<group>"; };
-		27A84E45107CB085008926F1 /* FrostGuiObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrostGuiObjects.m; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
@@ -195,13 +192,13 @@
 		DDA6212A10B1618A009C8BDB /* TestAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppController.h; sourceTree = "<group>"; };
 		DDA6212B10B1618A009C8BDB /* TestAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestAppController.mm; sourceTree = "<group>"; };
 		DDA6213710B1622E009C8BDB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		DDA6213810B1622E009C8BDB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DDA6213810B1622E009C8BDB /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicOpenGLView.h; sourceTree = "<group>"; };
 		DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BasicOpenGLView.mm; sourceTree = "<group>"; };
 		DDA6213B10B1622E009C8BDB /* ofAppCocoaWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofAppCocoaWindow.h; sourceTree = "<group>"; };
 		DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofAppCocoaWindow.mm; sourceTree = "<group>"; };
 		DDA6214610B1628E009C8BDB /* SharedContextGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedContextGLView.h; sourceTree = "<group>"; };
-		DDA6214710B1628E009C8BDB /* SharedContextGLView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedContextGLView.m; sourceTree = "<group>"; };
+		DDA6214710B1628E009C8BDB /* SharedContextGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedContextGLView.mm; sourceTree = "<group>"; };
 		DDA6217A10B164A1009C8BDB /* CustomGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGLView.h; sourceTree = "<group>"; };
 		DDA6217B10B164A1009C8BDB /* CustomGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomGLView.mm; sourceTree = "<group>"; };
 		DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomGLViewDelegate.cpp; sourceTree = "<group>"; };
@@ -722,9 +719,9 @@
 				DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */,
 				DDA6217D10B164A1009C8BDB /* CustomGLViewDelegate.h */,
 				DDA6214610B1628E009C8BDB /* SharedContextGLView.h */,
-				DDA6214710B1628E009C8BDB /* SharedContextGLView.m */,
+				DDA6214710B1628E009C8BDB /* SharedContextGLView.mm */,
 				DDA6213710B1622E009C8BDB /* AppDelegate.h */,
-				DDA6213810B1622E009C8BDB /* AppDelegate.m */,
+				DDA6213810B1622E009C8BDB /* AppDelegate.mm */,
 				DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */,
 				DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */,
 				DDA6213B10B1622E009C8BDB /* ofAppCocoaWindow.h */,
@@ -1307,8 +1304,6 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				27A84E44107CB085008926F1 /* FrostGuiObjects.h */,
-				27A84E45107CB085008926F1 /* FrostGuiObjects.m */,
 				DD1F23A910ACA4DE0096ECA8 /* of.xcclassmodel */,
 			);
 			path = src;
@@ -1443,7 +1438,6 @@
 				DDD48A7C10766F110083759A /* PYMIDIVirtualDestination.m in Sources */,
 				DDD48A7D10766F110083759A /* PYMIDIVirtualEndpoint.m in Sources */,
 				DDD48A7E10766F110083759A /* PYMIDIVirtualSource.m in Sources */,
-				27A84E46107CB085008926F1 /* FrostGuiObjects.m in Sources */,
 				DDA6212C10B1618A009C8BDB /* main.mm in Sources */,
 				DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */,
 				DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */,
@@ -1451,10 +1445,10 @@
 				DDA6213010B1618A009C8BDB /* Plugin.mm in Sources */,
 				DDA6213210B1618A009C8BDB /* testApp.mm in Sources */,
 				DDA6213310B1618A009C8BDB /* TestAppController.mm in Sources */,
-				DDA6213D10B1622E009C8BDB /* AppDelegate.m in Sources */,
+				DDA6213D10B1622E009C8BDB /* AppDelegate.mm in Sources */,
 				DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */,
 				DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */,
-				DDA6214810B1628E009C8BDB /* SharedContextGLView.m in Sources */,
+				DDA6214810B1628E009C8BDB /* SharedContextGLView.mm in Sources */,
 				DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */,
 				DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */,
 			);
@@ -1466,7 +1460,7 @@
 		E4B69B4E0A3A1720003C02F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1498,14 +1492,14 @@
 				PRODUCT_NAME = FROST;
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
-				VALID_ARCHS = "x86_64 i386";
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
 		E4B69B4F0A3A1720003C02F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1537,14 +1531,13 @@
 				PRODUCT_NAME = FROST;
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
-				VALID_ARCHS = "x86_64 i386";
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};
 		E4B69B600A3A1757003C02F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_OPENMP_SUPPORT = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1607,10 +1600,8 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/win32\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = FrostDebug;
-				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				STRIP_INSTALLED_PRODUCT = NO;
-				VALID_ARCHS = i386;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -1619,7 +1610,6 @@
 		E4B69B610A3A1757003C02F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_OPENMP_SUPPORT = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -1680,10 +1670,8 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/win32\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = Frost;
-				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				STRIP_INSTALLED_PRODUCT = NO;
-				VALID_ARCHS = i386;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
