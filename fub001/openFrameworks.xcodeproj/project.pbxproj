@@ -12,6 +12,8 @@
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		278230EA109EA82D00AE0E24 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 278230E9109EA82D00AE0E24 /* Credits.html */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
+		7FCBFB6810B37E7B00EE26F3 /* _ExampleOutputAgain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBFB6610B37E7B00EE26F3 /* _ExampleOutputAgain.mm */; };
+		7FCBFB6910B37E7B00EE26F3 /* _ExampleOutputAgain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCBFB6710B37E7B00EE26F3 /* _ExampleOutputAgain.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -134,9 +136,12 @@
 		276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAFluidSolver.cpp; sourceTree = "<group>"; };
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
 		278230E9109EA82D00AE0E24 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
-		27823130109EC1BE00AE0E24 /* Frost-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Frost-Info.plist"; sourceTree = "<group>"; };
+		27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
+		7FCBFB6510B37E7B00EE26F3 /* _ExampleOutputAgain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ExampleOutputAgain.h; sourceTree = "<group>"; };
+		7FCBFB6610B37E7B00EE26F3 /* _ExampleOutputAgain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = _ExampleOutputAgain.mm; sourceTree = "<group>"; };
+		7FCBFB6710B37E7B00EE26F3 /* _ExampleOutputAgain.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = _ExampleOutputAgain.xib; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -144,7 +149,6 @@
 		DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		DD0C01611066874900BB3F9F /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
-		DD1F23A910ACA4DE0096ECA8 /* of.xcclassmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcclassmodel; path = of.xcclassmodel; sourceTree = "<group>"; };
 		DD45B90D106FDC4F00B4B19C /* ofxMSASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline.h; sourceTree = "<group>"; };
 		DD45B90E106FDC4F00B4B19C /* ofxMSASpline1D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline1D.h; sourceTree = "<group>"; };
 		DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSASpline2D.cpp; sourceTree = "<group>"; };
@@ -221,7 +225,7 @@
 		DDA6217D10B164A1009C8BDB /* CustomGLViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGLViewDelegate.h; sourceTree = "<group>"; };
 		DDA6242910B1BCF9009C8BDB /* PluginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginView.h; sourceTree = "<group>"; };
 		DDA6242A10B1BCF9009C8BDB /* PluginView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginView.mm; sourceTree = "<group>"; };
-		DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/myAddons/ofxCocoaPlugins/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../myAddons/ofxCocoaPlugins/BWToolkitFramework.framework; sourceTree = "<group>"; };
 		DDB6B2D8107621C600D2722D /* ofxCvOpticalFlowBM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxCvOpticalFlowBM.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowBM.cpp; sourceTree = SOURCE_ROOT; };
 		DDB6B2D9107621C600D2722D /* ofxCvOpticalFlowBM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxCvOpticalFlowBM.h; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowBM.h; sourceTree = SOURCE_ROOT; };
 		DDB6B2DA107621C600D2722D /* ofxCvOpticalFlowLK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxCvOpticalFlowLK.cpp; path = ../../../addons/ofxOpenCv/src/ofxCvOpticalFlowLK.cpp; sourceTree = SOURCE_ROOT; };
@@ -433,7 +437,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* FrostDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrostDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -715,8 +719,12 @@
 		DDA6212010B1618A009C8BDB /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				7FCBFB6510B37E7B00EE26F3 /* _ExampleOutputAgain.h */,
+				7FCBFB6610B37E7B00EE26F3 /* _ExampleOutputAgain.mm */,
+				7FCBFB6710B37E7B00EE26F3 /* _ExampleOutputAgain.xib */,
 				DDA6212110B1618A009C8BDB /* _ExampleOutput.h */,
 				DDA6212210B1618A009C8BDB /* _ExampleOutput.mm */,
+				DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */,
 			);
 			path = outputs;
 			sourceTree = "<group>";
@@ -1304,10 +1312,9 @@
 			isa = PBXGroup;
 			children = (
 				27C26C2C109ECE8400EF775E /* icon.icns */,
-				E4B69B5B0A3A1756003C02F2 /* FrostDebug.app */,
-				27823130109EC1BE00AE0E24 /* Frost-Info.plist */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
+				27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */,
 				278230E9109EA82D00AE0E24 /* Credits.html */,
-				DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */,
 				DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1327,7 +1334,6 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				DD1F23A910ACA4DE0096ECA8 /* of.xcclassmodel */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1351,7 +1357,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* FrostDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1382,6 +1388,7 @@
 				27C26C2D109ECE8400EF775E /* icon.icns in Resources */,
 				DDBF3BE210B03F8900F41B19 /* _ExampleOutput.xib in Resources */,
 				DDA6213110B1618A009C8BDB /* MainMenu.xib in Resources */,
+				7FCBFB6910B37E7B00EE26F3 /* _ExampleOutputAgain.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1476,6 +1483,7 @@
 				DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */,
 				DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */,
 				DDA6242B10B1BCF9009C8BDB /* PluginView.mm in Sources */,
+				7FCBFB6810B37E7B00EE26F3 /* _ExampleOutputAgain.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1485,7 +1493,7 @@
 		E4B69B4E0A3A1720003C02F2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
@@ -1514,7 +1522,7 @@
 					"-D__MACOSX_CORE__",
 					"-lpthread",
 				);
-				PRODUCT_NAME = FROST;
+				PRODUCT_NAME = "Fuck You Buddy Debug";
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				VALID_ARCHS = i386;
@@ -1524,7 +1532,7 @@
 		E4B69B4F0A3A1720003C02F2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
 				COPY_PHASE_STRIP = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -1553,7 +1561,7 @@
 					"-D__MACOSX_CORE__",
 					"-lpthread",
 				);
-				PRODUCT_NAME = FROST;
+				PRODUCT_NAME = "Fuck You Buddy";
 				SDKROOT = macosx10.6;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				VALID_ARCHS = i386;
@@ -1581,7 +1589,7 @@
 					"./libs/osx/include/**",
 					../../../libs/poco/include,
 				);
-				INFOPLIST_FILE = "Frost-Info.plist";
+				INFOPLIST_FILE = "fuckYouBuddy-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1629,7 +1637,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/win32\"";
 				PREBINDING = NO;
-				PRODUCT_NAME = FrostDebug;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
@@ -1656,7 +1663,7 @@
 					"./libs/osx/include/**",
 					../../../libs/poco/include,
 				);
-				INFOPLIST_FILE = "Frost-Info.plist";
+				INFOPLIST_FILE = "fuckYouBuddy-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1704,7 +1711,6 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/ofxOpenCv/libs/opencv/lib/win32\"";
 				PREBINDING = NO;
-				PRODUCT_NAME = Frost;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				STRIP_INSTALLED_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
