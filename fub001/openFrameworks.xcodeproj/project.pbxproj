@@ -56,6 +56,8 @@
 		DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728910B5846F009CAFC7 /* testApp.mm */; };
 		DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728B10B5846F009CAFC7 /* TestAppController.mm */; };
 		DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC772A410B58518009CAFC7 /* Plugin.mm */; };
+		DDC772F510B59085009CAFC7 /* PluginOpenGLLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */; };
+		DDC773E710B5ABDE009CAFC7 /* OutputOpenglBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */; };
 		DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD48937107636A80083759A /* CoreMIDI.framework */; };
 		DDD48A7410766F110083759A /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A5F10766F100083759A /* PYMIDIEndpoint.m */; };
 		DDD48A7510766F110083759A /* PYMIDIEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A6110766F100083759A /* PYMIDIEndpointDescriptor.m */; };
@@ -241,6 +243,10 @@
 		DDC7728B10B5846F009CAFC7 /* TestAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TestAppController.mm; path = src/testApp/TestAppController.mm; sourceTree = SOURCE_ROOT; };
 		DDC772A310B58518009CAFC7 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
 		DDC772A410B58518009CAFC7 /* Plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Plugin.mm; sourceTree = "<group>"; };
+		DDC772F310B59085009CAFC7 /* PluginOpenGLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginOpenGLLayer.h; sourceTree = "<group>"; };
+		DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOpenGLLayer.mm; sourceTree = "<group>"; };
+		DDC773E510B5ABDE009CAFC7 /* OutputOpenglBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputOpenglBackground.h; sourceTree = "<group>"; };
+		DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OutputOpenglBackground.mm; sourceTree = "<group>"; };
 		DDD48937107636A80083759A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		DDD48A5D10766F100083759A /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
 		DDD48A5E10766F100083759A /* PYMIDIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpoint.h; sourceTree = "<group>"; };
@@ -696,6 +702,10 @@
 				DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */,
 				DDA6242910B1BCF9009C8BDB /* PluginView.h */,
 				DDA6242A10B1BCF9009C8BDB /* PluginView.mm */,
+				DDC772F310B59085009CAFC7 /* PluginOpenGLLayer.h */,
+				DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */,
+				DDC773E510B5ABDE009CAFC7 /* OutputOpenglBackground.h */,
+				DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -1486,6 +1496,8 @@
 				DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */,
 				DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */,
 				DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */,
+				DDC772F510B59085009CAFC7 /* PluginOpenGLLayer.mm in Sources */,
+				DDC773E710B5ABDE009CAFC7 /* OutputOpenglBackground.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

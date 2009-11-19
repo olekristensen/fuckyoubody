@@ -16,26 +16,26 @@ extern ofAppBaseWindow * window;
 
 
 -(void) awakeFromNib {
-	NSLog(@"Awake from nib");
-	[pluginManagerController addHeader:@"Test"];
-	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
-	[pluginManagerController addHeader:@"Test2"];
-//	[pluginManagerController addPlugin:[[_ExampleOutputAgain alloc] init]];
 
-	
+ NSLog(@"Awake from nib");
+		
 	[pluginManagerController setFrame:[mainView bounds]];
 	[mainView addSubview:pluginManagerController];
 	
 	baseApp = OFSAptr;
 	cocoaWindow = window;
-	
 	((ofAppCocoaWindow*)cocoaWindow)->windowController = self;
-	
 	((ofAppCocoaWindow*)cocoaWindow)->setup();
+}
 
-	[pluginManagerController callSetup];
-	
-	
+-(void) setupPlugins{
+	[pluginManagerController addHeader:@"Test"];
+	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
+	[pluginManagerController addHeader:@"Test2"];
+	//	[pluginManagerController addPlugin:[[_ExampleOutputAgain alloc] init]];
+
+
+
 }
 
 @end

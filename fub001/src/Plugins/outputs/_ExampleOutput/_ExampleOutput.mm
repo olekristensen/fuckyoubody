@@ -20,4 +20,15 @@
 	[text setStringValue:s];
 }
 
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+	GLfloat rotate = timeInterval * 60.0; // 60 degrees per second!
+	glRotatef(rotate, 0.0, 0.0, 1.0);
+	glBegin(GL_QUADS);
+	 glColor3f(1.0, 1.0, 1.0);
+	 glVertex2f(0, 0);
+	 glVertex2f(-1, 0);
+	 glVertex2f(-1, - 1);
+	 glVertex2f(0, -1);
+	glEnd();
+}
 @end
