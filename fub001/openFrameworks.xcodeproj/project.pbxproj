@@ -12,8 +12,6 @@
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		278230EA109EA82D00AE0E24 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 278230E9109EA82D00AE0E24 /* Credits.html */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
-		7FCBFB6810B37E7B00EE26F3 /* _ExampleOutputAgain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FCBFB6610B37E7B00EE26F3 /* _ExampleOutputAgain.mm */; };
-		7FCBFB6910B37E7B00EE26F3 /* _ExampleOutputAgain.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCBFB6710B37E7B00EE26F3 /* _ExampleOutputAgain.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -34,11 +32,6 @@
 		DDA6212C10B1618A009C8BDB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211910B1618A009C8BDB /* main.mm */; };
 		DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211C10B1618A009C8BDB /* PluginListView.mm */; };
 		DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */; };
-		DDA6212F10B1618A009C8BDB /* _ExampleOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212210B1618A009C8BDB /* _ExampleOutput.mm */; };
-		DDA6213010B1618A009C8BDB /* Plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212410B1618A009C8BDB /* Plugin.mm */; };
-		DDA6213110B1618A009C8BDB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA6212710B1618A009C8BDB /* MainMenu.xib */; };
-		DDA6213210B1618A009C8BDB /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212910B1618A009C8BDB /* testApp.mm */; };
-		DDA6213310B1618A009C8BDB /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6212B10B1618A009C8BDB /* TestAppController.mm */; };
 		DDA6213D10B1622E009C8BDB /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213810B1622E009C8BDB /* AppDelegate.mm */; };
 		DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */; };
 		DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */; };
@@ -57,7 +50,12 @@
 		DDB85167105E809300D1ED92 /* ofxVec2f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB85159105E809300D1ED92 /* ofxVec2f.cpp */; };
 		DDB85168105E809300D1ED92 /* ofxVec3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515B105E809300D1ED92 /* ofxVec3f.cpp */; };
 		DDB85169105E809300D1ED92 /* ofxVec4f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515D105E809300D1ED92 /* ofxVec4f.cpp */; };
-		DDBF3BE210B03F8900F41B19 /* _ExampleOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */; };
+		DDC7728C10B5846F009CAFC7 /* _ExampleOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */; };
+		DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */; };
+		DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7728710B5846F009CAFC7 /* MainMenu.xib */; };
+		DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728910B5846F009CAFC7 /* testApp.mm */; };
+		DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728B10B5846F009CAFC7 /* TestAppController.mm */; };
+		DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC772A410B58518009CAFC7 /* Plugin.mm */; };
 		DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD48937107636A80083759A /* CoreMIDI.framework */; };
 		DDD48A7410766F110083759A /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A5F10766F100083759A /* PYMIDIEndpoint.m */; };
 		DDD48A7510766F110083759A /* PYMIDIEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A6110766F100083759A /* PYMIDIEndpointDescriptor.m */; };
@@ -139,9 +137,6 @@
 		27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
-		7FCBFB6510B37E7B00EE26F3 /* _ExampleOutputAgain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ExampleOutputAgain.h; sourceTree = "<group>"; };
-		7FCBFB6610B37E7B00EE26F3 /* _ExampleOutputAgain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = _ExampleOutputAgain.mm; sourceTree = "<group>"; };
-		7FCBFB6710B37E7B00EE26F3 /* _ExampleOutputAgain.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = _ExampleOutputAgain.xib; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -201,16 +196,6 @@
 		DDA6211C10B1618A009C8BDB /* PluginListView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginListView.mm; sourceTree = "<group>"; };
 		DDA6211D10B1618A009C8BDB /* PluginManagerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManagerController.h; sourceTree = "<group>"; };
 		DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginManagerController.mm; sourceTree = "<group>"; };
-		DDA6212110B1618A009C8BDB /* _ExampleOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ExampleOutput.h; sourceTree = "<group>"; };
-		DDA6212210B1618A009C8BDB /* _ExampleOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = _ExampleOutput.mm; sourceTree = "<group>"; };
-		DDA6212310B1618A009C8BDB /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
-		DDA6212410B1618A009C8BDB /* Plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Plugin.mm; sourceTree = "<group>"; };
-		DDA6212510B1618A009C8BDB /* PluginIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginIncludes.h; sourceTree = "<group>"; };
-		DDA6212710B1618A009C8BDB /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		DDA6212810B1618A009C8BDB /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testApp.h; sourceTree = "<group>"; };
-		DDA6212910B1618A009C8BDB /* testApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testApp.mm; sourceTree = "<group>"; };
-		DDA6212A10B1618A009C8BDB /* TestAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppController.h; sourceTree = "<group>"; };
-		DDA6212B10B1618A009C8BDB /* TestAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestAppController.mm; sourceTree = "<group>"; };
 		DDA6213710B1622E009C8BDB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DDA6213810B1622E009C8BDB /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicOpenGLView.h; sourceTree = "<group>"; };
@@ -245,7 +230,17 @@
 		DDB8515D105E809300D1ED92 /* ofxVec4f.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVec4f.cpp; sourceTree = "<group>"; };
 		DDB8515E105E809300D1ED92 /* ofxVec4f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec4f.h; sourceTree = "<group>"; };
 		DDB8515F105E809300D1ED92 /* ofxVectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVectorMath.h; sourceTree = "<group>"; };
-		DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = _ExampleOutput.xib; sourceTree = "<group>"; };
+		DDC7728210B5846F009CAFC7 /* _ExampleOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ExampleOutput.h; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.h; sourceTree = SOURCE_ROOT; };
+		DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = _ExampleOutput.mm; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.mm; sourceTree = SOURCE_ROOT; };
+		DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = _ExampleOutput.xib; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.xib; sourceTree = SOURCE_ROOT; };
+		DDC7728510B5846F009CAFC7 /* PluginIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginIncludes.h; path = src/Plugins/PluginIncludes.h; sourceTree = SOURCE_ROOT; };
+		DDC7728710B5846F009CAFC7 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/testApp/MainMenu.xib; sourceTree = SOURCE_ROOT; };
+		DDC7728810B5846F009CAFC7 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = src/testApp/testApp.h; sourceTree = SOURCE_ROOT; };
+		DDC7728910B5846F009CAFC7 /* testApp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = testApp.mm; path = src/testApp/testApp.mm; sourceTree = SOURCE_ROOT; };
+		DDC7728A10B5846F009CAFC7 /* TestAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestAppController.h; path = src/testApp/TestAppController.h; sourceTree = SOURCE_ROOT; };
+		DDC7728B10B5846F009CAFC7 /* TestAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TestAppController.mm; path = src/testApp/TestAppController.mm; sourceTree = SOURCE_ROOT; };
+		DDC772A310B58518009CAFC7 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
+		DDC772A410B58518009CAFC7 /* Plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Plugin.mm; sourceTree = "<group>"; };
 		DDD48937107636A80083759A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		DDD48A5D10766F100083759A /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
 		DDD48A5E10766F100083759A /* PYMIDIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpoint.h; sourceTree = "<group>"; };
@@ -686,8 +681,6 @@
 				DDA6211910B1618A009C8BDB /* main.mm */,
 				DDA6213610B1622E009C8BDB /* ofAppCocoaWindow */,
 				DDA6211A10B1618A009C8BDB /* PluginManager */,
-				DDA6211F10B1618A009C8BDB /* Plugins */,
-				DDA6212610B1618A009C8BDB /* testApp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -695,6 +688,8 @@
 		DDA6211A10B1618A009C8BDB /* PluginManager */ = {
 			isa = PBXGroup;
 			children = (
+				DDC772A310B58518009CAFC7 /* Plugin.h */,
+				DDC772A410B58518009CAFC7 /* Plugin.mm */,
 				DDA6211B10B1618A009C8BDB /* PluginListView.h */,
 				DDA6211C10B1618A009C8BDB /* PluginListView.mm */,
 				DDA6211D10B1618A009C8BDB /* PluginManagerController.h */,
@@ -703,42 +698,6 @@
 				DDA6242A10B1BCF9009C8BDB /* PluginView.mm */,
 			);
 			path = PluginManager;
-			sourceTree = "<group>";
-		};
-		DDA6211F10B1618A009C8BDB /* Plugins */ = {
-			isa = PBXGroup;
-			children = (
-				DDA6212010B1618A009C8BDB /* outputs */,
-				DDA6212310B1618A009C8BDB /* Plugin.h */,
-				DDA6212410B1618A009C8BDB /* Plugin.mm */,
-				DDA6212510B1618A009C8BDB /* PluginIncludes.h */,
-			);
-			path = Plugins;
-			sourceTree = "<group>";
-		};
-		DDA6212010B1618A009C8BDB /* outputs */ = {
-			isa = PBXGroup;
-			children = (
-				7FCBFB6510B37E7B00EE26F3 /* _ExampleOutputAgain.h */,
-				7FCBFB6610B37E7B00EE26F3 /* _ExampleOutputAgain.mm */,
-				7FCBFB6710B37E7B00EE26F3 /* _ExampleOutputAgain.xib */,
-				DDA6212110B1618A009C8BDB /* _ExampleOutput.h */,
-				DDA6212210B1618A009C8BDB /* _ExampleOutput.mm */,
-				DDBF3BE110B03F8900F41B19 /* _ExampleOutput.xib */,
-			);
-			path = outputs;
-			sourceTree = "<group>";
-		};
-		DDA6212610B1618A009C8BDB /* testApp */ = {
-			isa = PBXGroup;
-			children = (
-				DDA6212710B1618A009C8BDB /* MainMenu.xib */,
-				DDA6212810B1618A009C8BDB /* testApp.h */,
-				DDA6212910B1618A009C8BDB /* testApp.mm */,
-				DDA6212A10B1618A009C8BDB /* TestAppController.h */,
-				DDA6212B10B1618A009C8BDB /* TestAppController.mm */,
-			);
-			path = testApp;
 			sourceTree = "<group>";
 		};
 		DDA6213610B1622E009C8BDB /* ofAppCocoaWindow */ = {
@@ -803,6 +762,49 @@
 			);
 			path = src;
 			sourceTree = "<group>";
+		};
+		DDC7727F10B5846F009CAFC7 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7728010B5846F009CAFC7 /* outputs */,
+				DDC7728510B5846F009CAFC7 /* PluginIncludes.h */,
+			);
+			name = Plugins;
+			path = src/Plugins;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDC7728010B5846F009CAFC7 /* outputs */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7728110B5846F009CAFC7 /* _ExampleOutput */,
+			);
+			name = outputs;
+			path = src/Plugins/outputs;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDC7728110B5846F009CAFC7 /* _ExampleOutput */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7728210B5846F009CAFC7 /* _ExampleOutput.h */,
+				DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */,
+				DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */,
+			);
+			name = _ExampleOutput;
+			path = src/Plugins/outputs/_ExampleOutput;
+			sourceTree = SOURCE_ROOT;
+		};
+		DDC7728610B5846F009CAFC7 /* testApp */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7728710B5846F009CAFC7 /* MainMenu.xib */,
+				DDC7728810B5846F009CAFC7 /* testApp.h */,
+				DDC7728910B5846F009CAFC7 /* testApp.mm */,
+				DDC7728A10B5846F009CAFC7 /* TestAppController.h */,
+				DDC7728B10B5846F009CAFC7 /* TestAppController.mm */,
+			);
+			name = testApp;
+			path = src/testApp;
+			sourceTree = SOURCE_ROOT;
 		};
 		DDD48A5C10766F100083759A /* pymidi */ = {
 			isa = PBXGroup;
@@ -1315,6 +1317,8 @@
 				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
 				27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */,
 				278230E9109EA82D00AE0E24 /* Credits.html */,
+				DDC7727F10B5846F009CAFC7 /* Plugins */,
+				DDC7728610B5846F009CAFC7 /* testApp */,
 				DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1386,9 +1390,8 @@
 				276D9DB11073B3F00084689D /* changelog.txt in Resources */,
 				278230EA109EA82D00AE0E24 /* Credits.html in Resources */,
 				27C26C2D109ECE8400EF775E /* icon.icns in Resources */,
-				DDBF3BE210B03F8900F41B19 /* _ExampleOutput.xib in Resources */,
-				DDA6213110B1618A009C8BDB /* MainMenu.xib in Resources */,
-				7FCBFB6910B37E7B00EE26F3 /* _ExampleOutputAgain.xib in Resources */,
+				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
+				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,10 +1475,6 @@
 				DDA6212C10B1618A009C8BDB /* main.mm in Sources */,
 				DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */,
 				DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */,
-				DDA6212F10B1618A009C8BDB /* _ExampleOutput.mm in Sources */,
-				DDA6213010B1618A009C8BDB /* Plugin.mm in Sources */,
-				DDA6213210B1618A009C8BDB /* testApp.mm in Sources */,
-				DDA6213310B1618A009C8BDB /* TestAppController.mm in Sources */,
 				DDA6213D10B1622E009C8BDB /* AppDelegate.mm in Sources */,
 				DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */,
 				DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */,
@@ -1483,7 +1482,10 @@
 				DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */,
 				DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */,
 				DDA6242B10B1BCF9009C8BDB /* PluginView.mm in Sources */,
-				7FCBFB6810B37E7B00EE26F3 /* _ExampleOutputAgain.mm in Sources */,
+				DDC7728C10B5846F009CAFC7 /* _ExampleOutput.mm in Sources */,
+				DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */,
+				DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */,
+				DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
