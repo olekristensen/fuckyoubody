@@ -37,6 +37,8 @@ public:
 	ofTrueTypeFont	lucidaGrande;
 	
 	bool setupCalled;
+	bool controlSetupCalled;
+
 	int fps;
 	
 };

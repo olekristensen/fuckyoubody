@@ -26,12 +26,20 @@ extern ofAppBaseWindow * window;
 	cocoaWindow = window;
 	((ofAppCocoaWindow*)cocoaWindow)->windowController = self;
 	((ofAppCocoaWindow*)cocoaWindow)->setup();
+	
+	ofSetBackgroundAuto(false);
+
 }
 
 -(void) setupPlugins{
-	[pluginManagerController addHeader:@"Test"];
+	[pluginManagerController addHeader:@"Input"];
+
+	[pluginManagerController addHeader:@"Calculation"];
+	[pluginManagerController addPlugin:[[ProjectionSurfaces alloc] init]];
+
+	[pluginManagerController addHeader:@"Output"];
 	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
-	[pluginManagerController addHeader:@"Test2"];
+
 	//	[pluginManagerController addPlugin:[[_ExampleOutputAgain alloc] init]];
 
 

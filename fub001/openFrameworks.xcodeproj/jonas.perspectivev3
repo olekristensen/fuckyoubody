@@ -271,6 +271,8 @@
 							<array>
 								<string>E4B69B4A0A3A1720003C02F2</string>
 								<string>DDC7727F10B5846F009CAFC7</string>
+								<string>DDC7776E10B70079009CAFC7</string>
+								<string>DDC7776F10B70079009CAFC7</string>
 								<string>DDC7728010B5846F009CAFC7</string>
 								<string>DDC7728110B5846F009CAFC7</string>
 								<string>DDC7728610B5846F009CAFC7</string>
@@ -289,15 +291,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>9</integer>
-									<integer>7</integer>
-									<integer>6</integer>
-									<integer>5</integer>
+									<integer>41</integer>
+									<integer>39</integer>
+									<integer>24</integer>
+									<integer>23</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {325, 724}}</string>
+							<string>{{0, 374}, {325, 724}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -332,7 +334,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>DD4F16BD1047336400D10100</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>PluginManagerController.mm</string>
+								<string>ProjectionSurfaces.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -340,11 +342,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>DD4F16BE1047336400D10100</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>PluginManagerController.mm</string>
+										<string>ProjectionSurfaces.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DDC7758C10B5D133009CAFC7</string>
+										<string>DDC778E410B73492009CAFC7</string>
 										<key>history</key>
 										<array>
 											<string>DD96580610ADB70300BA2763</string>
@@ -358,7 +360,6 @@
 											<string>DDA623E510B17326009C8BDB</string>
 											<string>DDA623E610B17326009C8BDB</string>
 											<string>DDA623E810B17326009C8BDB</string>
-											<string>DDA623E910B17326009C8BDB</string>
 											<string>DDA623EA10B17326009C8BDB</string>
 											<string>DDA623EB10B17326009C8BDB</string>
 											<string>DDA623EC10B17326009C8BDB</string>
@@ -406,27 +407,35 @@
 											<string>DDBF3A2110B2C32D00BC00EA</string>
 											<string>DDBF3A2410B2C32D00BC00EA</string>
 											<string>DDC7729A10B584DC009CAFC7</string>
-											<string>DDC7729B10B584DC009CAFC7</string>
-											<string>DDC7729C10B584DC009CAFC7</string>
 											<string>DDC7741710B5AE08009CAFC7</string>
 											<string>DDC7743610B5C3E3009CAFC7</string>
-											<string>DDC774D010B5CAB1009CAFC7</string>
 											<string>DDC774D510B5CB1E009CAFC7</string>
-											<string>DDC774F210B5CC59009CAFC7</string>
-											<string>DDC774F410B5CC59009CAFC7</string>
-											<string>DDC7750B10B5CC92009CAFC7</string>
-											<string>DDC7750C10B5CC92009CAFC7</string>
-											<string>DDC7755410B5CF68009CAFC7</string>
-											<string>DDC7756910B5D08E009CAFC7</string>
-											<string>DDC7756A10B5D08E009CAFC7</string>
-											<string>DDC7756B10B5D08E009CAFC7</string>
-											<string>DDC7756C10B5D08E009CAFC7</string>
-											<string>DDC7756D10B5D08E009CAFC7</string>
-											<string>DDC7757810B5D0AC009CAFC7</string>
-											<string>DDC7757E10B5D0C4009CAFC7</string>
-											<string>DDC7757F10B5D0C4009CAFC7</string>
-											<string>DDC7758A10B5D133009CAFC7</string>
-											<string>DDC7758B10B5D133009CAFC7</string>
+											<string>DDC7759C10B5D356009CAFC7</string>
+											<string>DDC775B110B5D3B9009CAFC7</string>
+											<string>DDC776B610B5F9D5009CAFC7</string>
+											<string>DDC776C710B5F9FC009CAFC7</string>
+											<string>DDC7772410B5FEE1009CAFC7</string>
+											<string>DDC7776210B600CC009CAFC7</string>
+											<string>DDC7779E10B70576009CAFC7</string>
+											<string>DDC7779F10B70576009CAFC7</string>
+											<string>DDC7782D10B71E6F009CAFC7</string>
+											<string>DDC7782E10B71E6F009CAFC7</string>
+											<string>DDC7783510B72071009CAFC7</string>
+											<string>DDC7783610B72071009CAFC7</string>
+											<string>DDC7783A10B72071009CAFC7</string>
+											<string>DDC7786810B72271009CAFC7</string>
+											<string>DDC7786910B72271009CAFC7</string>
+											<string>DDC7786A10B72271009CAFC7</string>
+											<string>DDC7787C10B722C9009CAFC7</string>
+											<string>DDC7788810B7230F009CAFC7</string>
+											<string>DDC7788F10B7232A009CAFC7</string>
+											<string>DDC7789510B72348009CAFC7</string>
+											<string>DDC778BC10B72CDC009CAFC7</string>
+											<string>DDC778BD10B72CDC009CAFC7</string>
+											<string>DDC778C310B72D4D009CAFC7</string>
+											<string>DDC778CF10B72E2D009CAFC7</string>
+											<string>DDC778E310B73492009CAFC7</string>
+											<string>DDC778C210B72D4D009CAFC7</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -763,7 +772,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>DDC7758D10B5D133009CAFC7</string>
 		<string>DDC7730C10B590F9009CAFC7</string>
 		<string>DDC7730D10B590F9009CAFC7</string>
 		<string>/Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/openFrameworks.xcodeproj</string>

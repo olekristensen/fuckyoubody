@@ -14,11 +14,12 @@
 #include "ofMain.h"
 
 
-@interface _ExampleOutput : ofPlugin {
+@interface ProjectionSurfaces : ofPlugin {
 	IBOutlet NSTextField * text;
 	NSString * s;
-	
+@public
 	ofImage * img;
+	string * haha;
 }
 @property (retain, readwrite) NSString *s;
 

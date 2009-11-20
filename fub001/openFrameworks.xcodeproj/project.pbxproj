@@ -58,6 +58,9 @@
 		DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC772A410B58518009CAFC7 /* Plugin.mm */; };
 		DDC772F510B59085009CAFC7 /* PluginOpenGLLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */; };
 		DDC773E710B5ABDE009CAFC7 /* OutputOpenglBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */; };
+		DDC7777310B70079009CAFC7 /* ProjectionSurfaces.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */; };
+		DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */; };
+		DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */; };
 		DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD48937107636A80083759A /* CoreMIDI.framework */; };
 		DDD48A7410766F110083759A /* PYMIDIEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A5F10766F100083759A /* PYMIDIEndpoint.m */; };
 		DDD48A7510766F110083759A /* PYMIDIEndpointDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A6110766F100083759A /* PYMIDIEndpointDescriptor.m */; };
@@ -247,6 +250,11 @@
 		DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOpenGLLayer.mm; sourceTree = "<group>"; };
 		DDC773E510B5ABDE009CAFC7 /* OutputOpenglBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputOpenglBackground.h; sourceTree = "<group>"; };
 		DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OutputOpenglBackground.mm; sourceTree = "<group>"; };
+		DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionSurfaces.h; sourceTree = "<group>"; };
+		DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ProjectionSurfaces.mm; sourceTree = "<group>"; };
+		DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectionSurfaces.xib; sourceTree = "<group>"; };
+		DDC7783110B71E84009CAFC7 /* PluginOpenGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginOpenGLControl.h; sourceTree = "<group>"; };
+		DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOpenGLControl.mm; sourceTree = "<group>"; };
 		DDD48937107636A80083759A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		DDD48A5D10766F100083759A /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
 		DDD48A5E10766F100083759A /* PYMIDIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpoint.h; sourceTree = "<group>"; };
@@ -704,6 +712,8 @@
 				DDA6242A10B1BCF9009C8BDB /* PluginView.mm */,
 				DDC772F310B59085009CAFC7 /* PluginOpenGLLayer.h */,
 				DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */,
+				DDC7783110B71E84009CAFC7 /* PluginOpenGLControl.h */,
+				DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */,
 				DDC773E510B5ABDE009CAFC7 /* OutputOpenglBackground.h */,
 				DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */,
 			);
@@ -776,6 +786,7 @@
 		DDC7727F10B5846F009CAFC7 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				DDC7776E10B70079009CAFC7 /* calculation */,
 				DDC7728010B5846F009CAFC7 /* outputs */,
 				DDC7728510B5846F009CAFC7 /* PluginIncludes.h */,
 			);
@@ -815,6 +826,24 @@
 			name = testApp;
 			path = src/testApp;
 			sourceTree = SOURCE_ROOT;
+		};
+		DDC7776E10B70079009CAFC7 /* calculation */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */,
+			);
+			path = calculation;
+			sourceTree = "<group>";
+		};
+		DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */ = {
+			isa = PBXGroup;
+			children = (
+				DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */,
+				DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */,
+				DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */,
+			);
+			path = ProjectionSurfaces;
+			sourceTree = "<group>";
 		};
 		DDD48A5C10766F100083759A /* pymidi */ = {
 			isa = PBXGroup;
@@ -1402,6 +1431,7 @@
 				27C26C2D109ECE8400EF775E /* icon.icns in Resources */,
 				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
+				DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1498,6 +1528,8 @@
 				DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */,
 				DDC772F510B59085009CAFC7 /* PluginOpenGLLayer.mm in Sources */,
 				DDC773E710B5ABDE009CAFC7 /* OutputOpenglBackground.mm in Sources */,
+				DDC7777310B70079009CAFC7 /* ProjectionSurfaces.mm in Sources */,
+				DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
