@@ -10,18 +10,62 @@
 #import "GLee.h"
 
 #import <Cocoa/Cocoa.h>
+
 #include "Plugin.h"
 #include "ofMain.h"
 
+#include "ofxVectorMath.h"
+#include "ofxXmlSettings.h"
+
+#include "Warp.h"
+#include "coordWarp.h"
+
+@interface ProjectionSurfacesObject : NSObject {
+@public
+	float aspect;
+	Warp * warp;
+	coordWarping * coordWarp;
+	string * name;
+	
+	ofxPoint2f * corners[4];
+}
+-(void) recalculate;
+-(void) setCorner:(int) n x:(float)x y:(float) y;
+-(id) initWithName:(NSString*)n;
+
+@end
+
+@interface ProjectorObject : NSObject {
+@public
+	NSMutableArray * surfaces;
+	string * name;
+	float width;
+	float height;
+}
+@property (retain, readwrite) 	NSMutableArray * surfaces;
+
+-(id) initWithName:(NSString*)n;
+@end
+
 
 @interface ProjectionSurfaces : ofPlugin {
-	IBOutlet NSTextField * text;
-	NSString * s;
+	IBOutlet NSPopUpButton * projectorsButton;
+	IBOutlet NSPopUpButton * surfacesButton;	
+	
+	ofTrueTypeFont	* verdana;
+	ofxVec2f * lastMousePos;
+	int selectedCorner;
+	int selectedSurface;
+	
+	ofPoint * position;
+	float scale;
+	
+	NSMutableArray * projectors;
+	
 @public
-	ofImage * img;
-	string * haha;
 }
-@property (retain, readwrite) NSString *s;
-
--(IBAction) pressButton:(id)sender;
+-(IBAction) selectProjector:(id)sender;
+-(IBAction) selectSurface:(id)sender;
+-(ProjectorObject*) getCurrentProjector;
+-(ProjectionSurfacesObject*) getCurrentSurface;
 @end

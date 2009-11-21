@@ -47,6 +47,7 @@
 	
 	
 	ofSetColor(255,255,255);
-	((ProjectionSurfaces*)[controller getPlugin:[ProjectionSurfaces class]])->img->draw(0, 0,0.5,0.5);
+//	((ProjectionSurfaces*)[controller getPlugin:[ProjectionSurfaces class]])->img->draw(0, 0,0.5,0.5);
+//	GetPlugin(ProjectionSurfaces)->img->draw(0, 0,0.5,0.5);
 }
 @end

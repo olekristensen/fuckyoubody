@@ -73,6 +73,8 @@
 		DDD48A7C10766F110083759A /* PYMIDIVirtualDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A6F10766F110083759A /* PYMIDIVirtualDestination.m */; };
 		DDD48A7D10766F110083759A /* PYMIDIVirtualEndpoint.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A7110766F110083759A /* PYMIDIVirtualEndpoint.m */; };
 		DDD48A7E10766F110083759A /* PYMIDIVirtualSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A7310766F110083759A /* PYMIDIVirtualSource.m */; };
+		DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDDF8F3610B7581400CF73FD /* Warp.mm */; };
+		DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDDF8F4610B758AB00CF73FD /* coordWarp.mm */; };
 		DDFEC8871063FA200068D31A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDFEC8861063FA200068D31A /* IOKit.framework */; };
 		E439E8F00FEFE04E0042BF96 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E439E8EF0FEFE04E0042BF96 /* AppKit.framework */; };
 		E439E8F40FEFE05F0042BF96 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E439E8F30FEFE05F0042BF96 /* Cocoa.framework */; };
@@ -279,6 +281,10 @@
 		DDD48A7110766F110083759A /* PYMIDIVirtualEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualEndpoint.m; sourceTree = "<group>"; };
 		DDD48A7210766F110083759A /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
 		DDD48A7310766F110083759A /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
+		DDDF8F3610B7581400CF73FD /* Warp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Warp.mm; sourceTree = "<group>"; };
+		DDDF8F3710B7581400CF73FD /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
+		DDDF8F4510B758AB00CF73FD /* coordWarp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coordWarp.h; sourceTree = "<group>"; };
+		DDDF8F4610B758AB00CF73FD /* coordWarp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = coordWarp.mm; sourceTree = "<group>"; };
 		DDFEC8861063FA200068D31A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		E439E8EF0FEFE04E0042BF96 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E439E8F30FEFE05F0042BF96 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -838,9 +844,13 @@
 		DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */ = {
 			isa = PBXGroup;
 			children = (
+				DDDF8F3610B7581400CF73FD /* Warp.mm */,
+				DDDF8F3710B7581400CF73FD /* Warp.h */,
 				DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */,
 				DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */,
 				DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */,
+				DDDF8F4510B758AB00CF73FD /* coordWarp.h */,
+				DDDF8F4610B758AB00CF73FD /* coordWarp.mm */,
 			);
 			path = ProjectionSurfaces;
 			sourceTree = "<group>";
@@ -1530,6 +1540,8 @@
 				DDC773E710B5ABDE009CAFC7 /* OutputOpenglBackground.mm in Sources */,
 				DDC7777310B70079009CAFC7 /* ProjectionSurfaces.mm in Sources */,
 				DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */,
+				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
+				DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
