@@ -22,8 +22,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="63"/>
-			<integer value="200"/>
 			<integer value="220"/>
+			<integer value="200"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1866,7 +1866,7 @@ xOP//8Tk///E4///xOP//8Tj///D4///xOT//8Pj///E4///xOP//8Tj///E5P//AA4BAAADAAAAAQEn
 AAABAQADAAAAAQAfAAABAgADAAAABAAAj5oBAwADAAAAAQABAAABBgADAAAAAQACAAABEQAEAAAAAQAA
 AAgBEgADAAAAAQABAAABFQADAAAAAQAEAAABFgADAAAAAQAfAAABFwAEAAAAAQAAjuQBHAADAAAAAQAB
 AAABUgADAAAAAQABAAABUwADAAAABAAAj6KHcwAHAAAnrAAAj6oAAAAAAAgACAAIAAgAAQABAAEAAQAA
-J6xhcHBsAgAAAG1udHJSR0IgWFlaIAfZAAsAFgAUAB0ABGFjc3BBUFBMAAAAAAAAAAAAAAAAAAAAAAAA
+J6xhcHBsAgAAAG1udHJSR0IgWFlaIAfZAAsAFwALAA0AA2Fjc3BBUFBMAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAD21gABAAAAANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAEXJYWVoAAAFQAAAAFGdYWVoAAAFkAAAAFGJYWVoAAAF4AAAAFHd0cHQAAAGMAAAAFGNo
 YWQAAAGgAAAALHJUUkMAAAHMAAAIDGdUUkMAAAnYAAAIDGJUUkMAABHkAAAIDGFhcmcAABnwAAAAIGFh
@@ -2107,7 +2107,7 @@ W3zH7gL3tzcOqD32jztuLDm5TeJe3IuNYNFlyYTwPuqDUHYQFK0AsRA1FDe6D0epfRyhNDqYXppReuhV
 AAMAAAABAEoAAAEBAAMAAAABACAAAAECAAMAAAAEAAAHRgEDAAMAAAABAAUAAAEGAAMAAAABAAIAAAER
 AAQAAAABAAAACAESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABACAAAAEXAAQAAAABAAAGgwEc
 AAMAAAABAAEAAAE9AAMAAAABAAIAAAFSAAMAAAABAAEAAAFTAAMAAAAEAAAHTodzAAcAACesAAAHVgAA
-AAAACAAIAAgACAABAAEAAQABAAAnrGFwcGwCAAAAbW50clJHQiBYWVogB9kACwAWABQAHQAEYWNzcEFQ
+AAAACAAIAAgACAABAAEAAQABAAAnrGFwcGwCAAAAbW50clJHQiBYWVogB9kACwAXAAsADQADYWNzcEFQ
 UEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBsAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARclhZWgAAAVAAAAAUZ1hZWgAAAWQAAAAUYlhZWgAA
 AXgAAAAUd3RwdAAAAYwAAAAUY2hhZAAAAaAAAAAsclRSQwAAAcwAAAgMZ1RSQwAACdgAAAgMYlRSQwAA
@@ -2748,14 +2748,6 @@ eHQAAAAAQ29weXJpZ2h0IEFwcGxlLCBJbmMuLCAyMDA5AA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">redo:</string>
-						<reference key="source" ref="1003"/>
-						<reference key="destination" ref="346390819"/>
-					</object>
-					<int key="connectionID">281</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">delete:</string>
 						<reference key="source" ref="1003"/>
 						<reference key="destination" ref="589100170"/>
@@ -2793,14 +2785,6 @@ eHQAAAAAQ29weXJpZ2h0IEFwcGxlLCBJbmMuLCAyMDA5AA</bytes>
 						<reference key="destination" ref="256886697"/>
 					</object>
 					<int key="connectionID">286</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">undo:</string>
-						<reference key="source" ref="1003"/>
-						<reference key="destination" ref="1067687305"/>
-					</object>
-					<int key="connectionID">287</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2857,6 +2841,22 @@ eHQAAAAAQ29weXJpZ2h0IEFwcGxlLCBJbmMuLCAyMDA5AA</bytes>
 						<reference key="destination" ref="52676250"/>
 					</object>
 					<int key="connectionID">294</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">performUndo:</string>
+						<reference key="source" ref="7891207"/>
+						<reference key="destination" ref="1067687305"/>
+					</object>
+					<int key="connectionID">295</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">performRedo:</string>
+						<reference key="source" ref="7891207"/>
+						<reference key="destination" ref="346390819"/>
+					</object>
+					<int key="connectionID">296</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3924,9 +3924,9 @@ eHQAAAAAQ29weXJpZ2h0IEFwcGxlLCBJbmMuLCAyMDA5AA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{671, -28}, {320, 240}}</string>
+					<string>{{671, 45}, {320, 240}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{671, -28}, {320, 240}}</string>
+					<string>{{671, 45}, {320, 240}}</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4047,7 +4047,7 @@ eHQAAAAAQ29weXJpZ2h0IEFwcGxlLCBJbmMuLCAyMDA5AA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">294</int>
+			<int key="maxID">296</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4067,11 +4067,15 @@ eHQAAAAAQ29weXJpZ2h0IEFwcGxlLCBJbmMuLCAyMDA5AA</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>performRedo:</string>
+							<string>performUndo:</string>
 							<string>setListViewRow:</string>
 							<string>setPluginAlpha:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>

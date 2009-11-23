@@ -27,10 +27,15 @@
 	coordWarping * coordWarp;
 	string * name;
 	
+	NSUndoManager * undoManager;
+	
+	float lastUndoX, lastUndoY;
+	
 	ofxPoint2f * corners[4];
 }
 -(void) recalculate;
--(void) setCorner:(int) n x:(float)x y:(float) y;
+-(void) setCornerObject:(NSArray*)obj;
+-(void) setCorner:(int) n x:(float)x y:(float) y projector:(int)projector surface:(int)surface storeUndo:(BOOL)undo;
 -(id) initWithName:(NSString*)n;
 
 @end
@@ -51,7 +56,7 @@
 @interface ProjectionSurfaces : ofPlugin {
 	IBOutlet NSPopUpButton * projectorsButton;
 	IBOutlet NSPopUpButton * surfacesButton;	
-	
+	IBOutlet NSButton * showGrid;
 	ofTrueTypeFont	* verdana;
 	ofxVec2f * lastMousePos;
 	int selectedCorner;
@@ -60,12 +65,25 @@
 	ofPoint * position;
 	float scale;
 	
+	float w, h;
+	
 	NSMutableArray * projectors;
+	
+	ProjectionSurfacesObject* lastAppliedSurface;
+	
 	
 @public
 }
 -(IBAction) selectProjector:(id)sender;
 -(IBAction) selectSurface:(id)sender;
+
 -(ProjectorObject*) getCurrentProjector;
 -(ProjectionSurfacesObject*) getCurrentSurface;
+-(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize;
+-(void) applyProjection:(ProjectionSurfacesObject*) obj width:(float) _w height:(float) _h;
+-(void) applyProjection:(ProjectionSurfacesObject*) obj;
+-(void) apply:(string)projection surface:(string)surface;
+-(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h;;
+-(float) getAspect;
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p;
 @end
