@@ -13,6 +13,7 @@
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
 		6EA4017910BBE5F7006FBAAB /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4017710BBE5F7006FBAAB /* Camera.mm */; };
 		6EA4017A10BBE5F7006FBAAB /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EA4017810BBE5F7006FBAAB /* Camera.xib */; };
+		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -38,11 +39,7 @@
 		DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211C10B1618A009C8BDB /* PluginListView.mm */; };
 		DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */; };
 		DDA6213D10B1622E009C8BDB /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213810B1622E009C8BDB /* AppDelegate.mm */; };
-		DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */; };
 		DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */; };
-		DDA6214810B1628E009C8BDB /* SharedContextGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6214710B1628E009C8BDB /* SharedContextGLView.mm */; };
-		DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6217B10B164A1009C8BDB /* CustomGLView.mm */; };
-		DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */; };
 		DDA6242B10B1BCF9009C8BDB /* PluginView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6242A10B1BCF9009C8BDB /* PluginView.mm */; };
 		DDA6266E10B1D1FB009C8BDB /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */; };
 		DDA626B210B1D306009C8BDB /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */; };
@@ -151,6 +148,8 @@
 		6EA4017610BBE5F7006FBAAB /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = input/Camera/Camera.h; sourceTree = "<group>"; };
 		6EA4017710BBE5F7006FBAAB /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Camera.mm; path = input/Camera/Camera.mm; sourceTree = "<group>"; };
 		6EA4017810BBE5F7006FBAAB /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Camera.xib; path = input/Camera/Camera.xib; sourceTree = "<group>"; };
+		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedContextLayer.h; sourceTree = "<group>"; };
+		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedContextLayer.mm; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -218,16 +217,8 @@
 		DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginManagerController.mm; sourceTree = "<group>"; };
 		DDA6213710B1622E009C8BDB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DDA6213810B1622E009C8BDB /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
-		DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicOpenGLView.h; sourceTree = "<group>"; };
-		DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BasicOpenGLView.mm; sourceTree = "<group>"; };
 		DDA6213B10B1622E009C8BDB /* ofAppCocoaWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofAppCocoaWindow.h; sourceTree = "<group>"; };
 		DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofAppCocoaWindow.mm; sourceTree = "<group>"; };
-		DDA6214610B1628E009C8BDB /* SharedContextGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedContextGLView.h; sourceTree = "<group>"; };
-		DDA6214710B1628E009C8BDB /* SharedContextGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedContextGLView.mm; sourceTree = "<group>"; };
-		DDA6217A10B164A1009C8BDB /* CustomGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGLView.h; sourceTree = "<group>"; };
-		DDA6217B10B164A1009C8BDB /* CustomGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomGLView.mm; sourceTree = "<group>"; };
-		DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomGLViewDelegate.cpp; sourceTree = "<group>"; };
-		DDA6217D10B164A1009C8BDB /* CustomGLViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomGLViewDelegate.h; sourceTree = "<group>"; };
 		DDA6242910B1BCF9009C8BDB /* PluginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginView.h; sourceTree = "<group>"; };
 		DDA6242A10B1BCF9009C8BDB /* PluginView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginView.mm; sourceTree = "<group>"; };
 		DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = ../../../myAddons/ofxCocoaPlugins/BWToolkitFramework.framework; sourceTree = "<group>"; };
@@ -772,6 +763,8 @@
 				DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */,
 				DDC773E510B5ABDE009CAFC7 /* OutputOpenglBackground.h */,
 				DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */,
+				6EA4026510BC115E006FBAAB /* SharedContextLayer.h */,
+				6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -779,16 +772,8 @@
 		DDA6213610B1622E009C8BDB /* ofAppCocoaWindow */ = {
 			isa = PBXGroup;
 			children = (
-				DDA6217A10B164A1009C8BDB /* CustomGLView.h */,
-				DDA6217B10B164A1009C8BDB /* CustomGLView.mm */,
-				DDA6217C10B164A1009C8BDB /* CustomGLViewDelegate.cpp */,
-				DDA6217D10B164A1009C8BDB /* CustomGLViewDelegate.h */,
-				DDA6214610B1628E009C8BDB /* SharedContextGLView.h */,
-				DDA6214710B1628E009C8BDB /* SharedContextGLView.mm */,
 				DDA6213710B1622E009C8BDB /* AppDelegate.h */,
 				DDA6213810B1622E009C8BDB /* AppDelegate.mm */,
-				DDA6213910B1622E009C8BDB /* BasicOpenGLView.h */,
-				DDA6213A10B1622E009C8BDB /* BasicOpenGLView.mm */,
 				DDA6213B10B1622E009C8BDB /* ofAppCocoaWindow.h */,
 				DDA6213C10B1622E009C8BDB /* ofAppCocoaWindow.mm */,
 			);
@@ -1581,11 +1566,7 @@
 				DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */,
 				DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */,
 				DDA6213D10B1622E009C8BDB /* AppDelegate.mm in Sources */,
-				DDA6213E10B1622E009C8BDB /* BasicOpenGLView.mm in Sources */,
 				DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */,
-				DDA6214810B1628E009C8BDB /* SharedContextGLView.mm in Sources */,
-				DDA6217E10B164A1009C8BDB /* CustomGLView.mm in Sources */,
-				DDA6217F10B164A1009C8BDB /* CustomGLViewDelegate.cpp in Sources */,
 				DDA6242B10B1BCF9009C8BDB /* PluginView.mm in Sources */,
 				DDC7728C10B5846F009CAFC7 /* _ExampleOutput.mm in Sources */,
 				DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */,
@@ -1598,6 +1579,7 @@
 				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
 				DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */,
 				6EA4017910BBE5F7006FBAAB /* Camera.mm in Sources */,
+				6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */,
 				DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */,
 				DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */,
 			);
