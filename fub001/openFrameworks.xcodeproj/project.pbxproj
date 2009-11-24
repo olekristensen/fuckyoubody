@@ -11,8 +11,8 @@
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		278230EA109EA82D00AE0E24 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 278230E9109EA82D00AE0E24 /* Credits.html */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
-		6E4CE37910BAE1AC0001B810 /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E4CE37810BAE1AC0001B810 /* Camera.mm */; };
-		6E4CE38E10BAE9BC0001B810 /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E4CE38D10BAE9BC0001B810 /* Camera.xib */; };
+		6EA4017910BBE5F7006FBAAB /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4017710BBE5F7006FBAAB /* Camera.mm */; };
+		6EA4017A10BBE5F7006FBAAB /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EA4017810BBE5F7006FBAAB /* Camera.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -144,9 +144,9 @@
 		27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
-		6E4CE37710BAE1AC0001B810 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
-		6E4CE37810BAE1AC0001B810 /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
-		6E4CE38D10BAE9BC0001B810 /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Camera.xib; sourceTree = "<group>"; };
+		6EA4017610BBE5F7006FBAAB /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Camera.h; path = input/Camera/Camera.h; sourceTree = "<group>"; };
+		6EA4017710BBE5F7006FBAAB /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Camera.mm; path = input/Camera/Camera.mm; sourceTree = "<group>"; };
+		6EA4017810BBE5F7006FBAAB /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Camera.xib; path = input/Camera/Camera.xib; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -532,9 +532,9 @@
 		6E4CE36110BAE1600001B810 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				6E4CE37710BAE1AC0001B810 /* Camera.h */,
-				6E4CE37810BAE1AC0001B810 /* Camera.mm */,
-				6E4CE38D10BAE9BC0001B810 /* Camera.xib */,
+				6EA4017610BBE5F7006FBAAB /* Camera.h */,
+				6EA4017710BBE5F7006FBAAB /* Camera.mm */,
+				6EA4017810BBE5F7006FBAAB /* Camera.xib */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -1462,7 +1462,7 @@
 				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
 				DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */,
-				6E4CE38E10BAE9BC0001B810 /* Camera.xib in Resources */,
+				6EA4017A10BBE5F7006FBAAB /* Camera.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1563,7 +1563,7 @@
 				DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */,
 				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
 				DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */,
-				6E4CE37910BAE1AC0001B810 /* Camera.mm in Sources */,
+				6EA4017910BBE5F7006FBAAB /* Camera.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
