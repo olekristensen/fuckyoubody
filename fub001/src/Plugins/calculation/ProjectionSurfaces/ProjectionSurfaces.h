@@ -57,6 +57,7 @@
 	IBOutlet NSPopUpButton * projectorsButton;
 	IBOutlet NSPopUpButton * surfacesButton;	
 	IBOutlet NSButton * showGrid;
+	IBOutlet NSSlider * aspectSlider;
 	ofTrueTypeFont	* verdana;
 	ofxVec2f * lastMousePos;
 	int selectedCorner;
@@ -70,12 +71,13 @@
 	NSMutableArray * projectors;
 	
 	ProjectionSurfacesObject* lastAppliedSurface;
-	
+	NSUserDefaults *userDefaults;
 	
 @public
 }
 -(IBAction) selectProjector:(id)sender;
 -(IBAction) selectSurface:(id)sender;
+-(IBAction) setAspect:(id)sender;
 
 -(ProjectorObject*) getCurrentProjector;
 -(ProjectionSurfacesObject*) getCurrentSurface;

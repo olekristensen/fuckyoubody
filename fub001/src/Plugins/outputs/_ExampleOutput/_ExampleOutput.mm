@@ -27,6 +27,8 @@
 -(void) setup{
 //	CGLSetCurrentContext(openglContext);
 
+	
+
 	img = new ofImage;
 	img->loadImage("/Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub_/fub001_/bin/data/icon.png");
 }

@@ -5,7 +5,7 @@
 //  Created by Jonas Jongejan on 15/11/09.
 
 #import "ProjectionSurfaces.h"
-
+#import "_ExampleOutput.h"
 
 
 
@@ -58,12 +58,6 @@
 	
 	if(undo){
 		NSArray * a = [NSArray arrayWithObjects:[NSNumber numberWithInt:n], [NSNumber numberWithFloat:x], [NSNumber numberWithFloat:y], nil];
-		/*[undoManager registerUndoWithTarget:self
-		 selector:@selector(setCornerObject:)
-		 object:a];
-		 [undoManager setActionName:@"Set projections surface corner"];
-		 NSLog(@"Register undo");
-		 */
 		[self setCornerObject:a];
 	} else {
 		corners[n]->set(x,y);
@@ -71,9 +65,7 @@
 	
 	[userDefaults setValue:[NSNumber numberWithDouble:corners[n]->x] forKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.x",projector, surface, n]];
 	[userDefaults setValue:[NSNumber numberWithDouble:corners[n]->y] forKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.y",projector, surface, n]];
-	[userDefaults release];
-	
-	
+	[userDefaults release];	
 }
 
 -(void) setCornerObject:(NSArray*)obj{
@@ -81,16 +73,10 @@
 	float x = [[obj objectAtIndex:1] floatValue]; 
 	float y = [[obj objectAtIndex:2] floatValue];
 	
-	//   if (x != lastUndoX || y != lastUndoY) {
 	corners[corner]->set(x,y);
 	[self recalculate];
 	lastUndoX = x;
 	lastUndoY = y;
-	//}
-	
-	
-	
-	
 }
 
 @end
@@ -104,7 +90,7 @@
 }
 
 -(void) initPlugin{
-	NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
 	
 	[projectorsButton removeAllItems];
@@ -135,6 +121,7 @@
 				surface->corners[i]->x = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.x",projI, surfI, i]];
 				surface->corners[i]->y = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.y",projI, surfI, i]];
 			}
+			surface->aspect =  [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.aspect",projI, surfI]];
 			[surface recalculate];
 			surface->undoManager = undoManager;
 			
@@ -154,32 +141,32 @@
 	scale = 0.8;
 	
 	lastMousePos = new ofxVec2f;
-	[userDefaults release];
+	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];	
 	
 }
 
 -(IBAction) selectProjector:(id)sender{
-	
+	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];
 }
 -(IBAction) selectSurface:(id)sender{
-	
+	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];	
 }
 
-
+-(IBAction) setAspect:(id)sender{
+	[self getCurrentSurface]->aspect = [sender floatValue];
+	int projector = [projectorsButton indexOfSelectedItem];
+	int surface = [surfacesButton indexOfSelectedItem];
+	[userDefaults setValue:[NSNumber numberWithFloat:[sender floatValue]] forKey:[NSString stringWithFormat:@"projector%d.surface%d.aspect",projector, surface]];
+}
 
 -(void) setup{
-	//	CGLSetCurrentContext(openglContext);
+}
+
+-(void) controlSetup{
+	verdana = new ofTrueTypeFont();
 	
-	/*	img = new ofImage;
-	 img->loadImage("/Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub_/fub001_/bin/data/icon.png");
-	 NSLog(@"Set blaaa");
-	 haha = new string("blaa");
-	 */	
-	verdana = new ofTrueTypeFont;
-	//	ofSetDataPathRoot("data/");
 	
-	//	verdana->loadFont("LucidaGrande.ttc",40, true, true, false);
-	//	cout<<ofToDataPath("LucidaGrande.ttc", true)<<endl;
+	verdana->loadFont("LucidaGrande.ttc",40, true, true, false);
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -231,22 +218,18 @@
 	glPopMatrix();}
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
-	//for(int i=0;i<10;i++){
-	//		for(int u=0;u<100000;u++){
-	//			sqrt(cos(sin(i*i)));
-	//		}
-	//	}
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	[self applyProjection:surface];
-//	[self apply:"Front" surface:"Floor"];
-	ofSetColor(255, 255, 255);
-	if([showGrid state] == NSOnState){
-	[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0];
-	}
-	glPopMatrix();
+	{
+		//	[self apply:"Front" surface:"Floor"];
+		ofSetColor(255, 255, 255);
+		if([showGrid state] == NSOnState){
+			[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0];
+		}
+	} glPopMatrix();
 }
 
 -(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize{
@@ -279,15 +262,15 @@
 	glScaled(fontSize, fontSize, 1.0);
 	//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
 	
-	/*	if(aspect < 1.0){
-	 glTranslated( aspect*0.5*1.0/fontSize-verdana->stringHeight(text)/2.0,  10, 0);	
-	 
-	 glRotated(90, 0, 0, 1.0);
-	 } else {
-	 glTranslated( aspect*0.5*1.0/fontSize-verdana->stringWidth(text)/2.0,  0.5*1.0/fontSize+verdana->stringHeight(text)/2.0, 0);	
-	 }
-	 
-	 verdana->drawString(text,0,0);*/
+	if(aspect < 1.0){
+		glTranslated( aspect*0.5*1.0/fontSize-verdana->stringHeight(text)/2.0,  10, 0);	
+		
+		glRotated(90, 0, 0, 1.0);
+	} else {
+		glTranslated( aspect*0.5*1.0/fontSize-verdana->stringWidth(text)/2.0,  0.5*1.0/fontSize+verdana->stringHeight(text)/2.0, 0);	
+	}
+	
+	verdana->drawString(text,0,0);
 }
 
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p{
@@ -341,7 +324,7 @@
 			ProjectionSurfacesObject * surf;			
 			for(surf in [proj surfaces]){
 				if(strcmp(surf->name->c_str(), surface.c_str()) == 0){
-				//	cout<<"found"<<endl;
+					//	cout<<"found"<<endl;
 					[self applyProjection:surf width:_w height:_h];
 				}
 				
