@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		276D9DB11073B3F00084689D /* changelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 276D9D9B1073B3F00084689D /* changelog.txt */; };
 		276D9DB81073B3F00084689D /* ofxMSAFluidDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */; };
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		278230EA109EA82D00AE0E24 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 278230E9109EA82D00AE0E24 /* Credits.html */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
+		6E4CE37910BAE1AC0001B810 /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E4CE37810BAE1AC0001B810 /* Camera.mm */; };
+		6E4CE38E10BAE9BC0001B810 /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E4CE38D10BAE9BC0001B810 /* Camera.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -132,7 +133,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		276D9D9B1073B3F00084689D /* changelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = changelog.txt; sourceTree = "<group>"; };
 		276D9DA91073B3F00084689D /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		276D9DAB1073B3F00084689D /* ofxMSAFluid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluid.h; sourceTree = "<group>"; };
 		276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAFluidDrawer.cpp; sourceTree = "<group>"; };
@@ -144,6 +144,9 @@
 		27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
+		6E4CE37710BAE1AC0001B810 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		6E4CE37810BAE1AC0001B810 /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
+		6E4CE38D10BAE9BC0001B810 /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Camera.xib; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -498,7 +501,6 @@
 			isa = PBXGroup;
 			children = (
 				27EC4A181073CB3600CCDB99 /* msaColor.h */,
-				276D9D9B1073B3F00084689D /* changelog.txt */,
 				276D9DA91073B3F00084689D /* LICENSE.txt */,
 				276D9DAA1073B3F00084689D /* src */,
 			);
@@ -517,6 +519,24 @@
 				276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		6E4CE36010BAE1580001B810 /* input */ = {
+			isa = PBXGroup;
+			children = (
+				6E4CE36110BAE1600001B810 /* Camera */,
+			);
+			name = input;
+			sourceTree = "<group>";
+		};
+		6E4CE36110BAE1600001B810 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				6E4CE37710BAE1AC0001B810 /* Camera.h */,
+				6E4CE37810BAE1AC0001B810 /* Camera.mm */,
+				6E4CE38D10BAE9BC0001B810 /* Camera.xib */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		DD0C01501066874900BB3F9F /* ofxXmlSettings */ = {
@@ -792,6 +812,7 @@
 		DDC7727F10B5846F009CAFC7 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				6E4CE36010BAE1580001B810 /* input */,
 				DDC7776E10B70079009CAFC7 /* calculation */,
 				DDC7728010B5846F009CAFC7 /* outputs */,
 				DDC7728510B5846F009CAFC7 /* PluginIncludes.h */,
@@ -1436,12 +1457,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				276D9DB11073B3F00084689D /* changelog.txt in Resources */,
 				278230EA109EA82D00AE0E24 /* Credits.html in Resources */,
 				27C26C2D109ECE8400EF775E /* icon.icns in Resources */,
 				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
 				DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */,
+				6E4CE38E10BAE9BC0001B810 /* Camera.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1542,6 +1563,7 @@
 				DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */,
 				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
 				DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */,
+				6E4CE37910BAE1AC0001B810 /* Camera.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,3 +10,4 @@
 #include "_ExampleOutput.h"
 //#include "_ExampleOutputAgain.h"
 #include "ProjectionSurfaces.h"
+#include "Camera.h"

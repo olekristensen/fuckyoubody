@@ -34,6 +34,7 @@ extern ofAppBaseWindow * window;
 
 -(void) setupPlugins{
 	[pluginManagerController addHeader:@"Input"];
+	[pluginManagerController addPlugin:[[Camera alloc] init]];
 
 	[pluginManagerController addHeader:@"Calculation"];
 	[pluginManagerController addPlugin:[[ProjectionSurfaces alloc] init]];
