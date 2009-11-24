@@ -1,0 +1,1729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
+	<data>
+		<int key="IBDocument.SystemTarget">1060</int>
+		<string key="IBDocument.SystemVersion">10C540</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string>com.brandonwalkin.BWToolkit</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>740</string>
+				<string>1.2.2</string>
+			</object>
+		</object>
+		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="1"/>
+		</object>
+		<object class="NSArray" key="IBDocument.PluginDependencies">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+			<string>com.brandonwalkin.BWToolkit</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys" id="0">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+		</object>
+		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSCustomObject" id="1001">
+				<string key="NSClassName">ParallelWorld</string>
+			</object>
+			<object class="NSCustomObject" id="1003">
+				<string key="NSClassName">FirstResponder</string>
+			</object>
+			<object class="NSCustomObject" id="1004">
+				<string key="NSClassName">NSApplication</string>
+			</object>
+			<object class="NSCustomView" id="342841082">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">274</int>
+				<object class="NSMutableArray" key="NSSubviews">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="BWGradientBox" id="101199659">
+						<reference key="NSNextResponder" ref="342841082"/>
+						<int key="NSvFlags">274</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="BWStyledTextField" id="686765117">
+								<reference key="NSNextResponder" ref="101199659"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{248, 175}, {165, 47}}</string>
+								<reference key="NSSuperview" ref="101199659"/>
+								<bool key="NSEnabled">YES</bool>
+								<object class="BWStyledTextFieldCell" key="NSCell" id="104341370">
+									<int key="NSCellFlags">68288064</int>
+									<int key="NSCellFlags2">272630784</int>
+									<string key="NSContents">Mouse here</string>
+									<object class="NSFont" key="NSSupport" id="81191833">
+										<string key="NSName">MarkerFelt-Thin</string>
+										<double key="NSSize">35</double>
+										<int key="NSfFlags">16</int>
+									</object>
+									<reference key="NSControlView" ref="686765117"/>
+									<object class="NSColor" key="NSBackgroundColor">
+										<int key="NSColorSpace">6</int>
+										<string key="NSCatalogName">System</string>
+										<string key="NSColorName">controlColor</string>
+										<object class="NSColor" key="NSColor">
+											<int key="NSColorSpace">3</int>
+											<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+										</object>
+									</object>
+									<object class="NSColor" key="NSTextColor">
+										<int key="NSColorSpace">10</int>
+										<object class="NSImage" key="NSImage">
+											<int key="NSImageFlags">549453824</int>
+											<string key="NSSize">{165, 39}</string>
+											<object class="NSMutableArray" key="NSReps">
+												<bool key="EncodedWithXMLCoder">YES</bool>
+												<object class="NSArray">
+													<bool key="EncodedWithXMLCoder">YES</bool>
+													<integer value="0"/>
+													<object class="NSCachedImageRep">
+														<object class="NSMutableData" key="NSTIFFRepresentation">
+															<bytes key="NS.bytes">TU0AKgAAZJRmdYT/ZXWE/2V0g/9ldYT/ZXWD/2V1hP9ldYT/ZnWE/2V1g/9ldYT/ZXSD/2V1hP9ldYT/
+ZXSD/2V1hP9ldYT/ZnWE/2V1hP9ldIP/ZXWE/2V1g/9ldYT/ZXWE/2Z1hP9ldYP/ZXWE/2V0g/9ldYT/
+ZXWE/2V0g/9ldYT/ZXWE/2Z1hP9ldYT/ZXSD/2V1hP9ldYP/ZXWE/2V1hP9mdYT/ZXWD/2V1hP9ldIP/
+ZXWE/2V1hP9ldIP/ZXWE/2V1hP9mdYT/ZXWE/2V0g/9ldYT/ZXWD/2V1hP9ldYT/ZnWE/2V1g/9ldYT/
+ZXSD/2V1hP9ldYT/ZXSD/2V1hP9ldYT/ZnWE/2V1hP9ldIP/ZXWE/2V1g/9ldYT/ZXWE/2Z1hP9ldYP/
+ZXWE/2V0g/9ldYT/ZXWE/2V0g/9ldYT/ZXWE/2Z1hP9ldYT/ZXSD/2V1hP9ldYP/ZXWE/2V1hP9mdYT/
+ZXWD/2V1hP9ldIP/ZXWE/2V1hP9ldIP/ZXWE/2V1hP9mdYT/ZXWE/2V0g/9ldYT/ZXWD/2V1hP9ldYT/
+ZnWE/2V1g/9ldYT/ZXSD/2V1hP9ldYT/ZXSD/2V1hP9ldYT/ZnWE/2V1hP9ldIP/ZXWE/2V1g/9ldYT/
+ZXWE/2Z1hP9ldYP/ZXWE/2V0g/9ldYT/ZXWE/2V0g/9ldYT/ZXWE/2Z1hP9ldYT/ZXSD/2V1hP9ldYP/
+ZXWE/2V1hP9mdYT/ZXWD/2V1hP9ldIP/ZXWE/2V1hP9ldIP/ZXWE/2V1hP9mdYT/ZXWE/2V0g/9ldYT/
+ZXWD/2V1hP9ldYT/ZnWE/2V1g/9ldYT/ZXSD/2V1hP9ldYT/ZXSD/2V1hP9ldYT/ZnWE/2V1hP9ldIP/
+ZXWE/2V1g/9ndoX/ZnaE/2Z2hf9ndoX/Z3aF/2Z2hP9mdYT/ZnaF/2Z1hP9mdoX/Z3aF/2Z2hf9mdoT/
+Z3aF/2Z2hf9mdoX/Z3aF/2Z2hP9mdoX/Z3aF/2d2hf9mdoT/ZnWE/2Z2hf9mdYT/ZnaF/2d2hf9mdoX/
+ZnaE/2d2hf9mdoX/ZnaF/2d2hf9mdoT/ZnaF/2d2hf9ndoX/ZnaE/2Z1hP9mdoX/ZnWE/2Z2hf9ndoX/
+ZnaF/2Z2hP9ndoX/ZnaF/2Z2hf9ndoX/ZnaE/2Z2hf9ndoX/Z3aF/2Z2hP9mdYT/ZnaF/2Z1hP9mdoX/
+Z3aF/2Z2hf9mdoT/Z3aF/2Z2hf9mdoX/Z3aF/2Z2hP9mdoX/Z3aF/2d2hf9mdoT/ZnWE/2Z2hf9mdYT/
+ZnaF/2d2hf9mdoX/ZnaE/2d2hf9mdoX/ZnaF/2d2hf9mdoT/ZnaF/2d2hf9ndoX/ZnaE/2Z1hP9mdoX/
+ZnWE/2Z2hf9ndoX/ZnaF/2Z2hP9ndoX/ZnaF/2Z2hf9ndoX/ZnaE/2Z2hf9ndoX/Z3aF/2Z2hP9mdYT/
+ZnaF/2Z1hP9mdoX/Z3aF/2Z2hf9mdoT/Z3aF/2Z2hf9mdoX/Z3aF/2Z2hP9mdoX/Z3aF/2d2hf9mdoT/
+ZnWE/2Z2hf9mdYT/ZnaF/2d2hf9mdoX/ZnaE/2d2hf9mdoX/ZnaF/2d2hf9mdoT/ZnaF/2d2hf9ndoX/
+ZnaE/2Z1hP9mdoX/ZnWE/2Z2hf9ndoX/ZnaF/2Z2hP9ndoX/ZnaF/2Z2hf9ndoX/ZnaE/2Z2hf9ndoX/
+Z3aF/2Z2hP9mdYT/ZnaF/2Z1hP9mdoX/Z3aF/2Z2hf9mdoT/Z3aF/2Z2hf9mdoX/Z3aF/2Z2hP9mdoX/
+Z3aF/2d2hf9nd4b/aHeG/2h3hv9nd4b/Z3eF/2h3hv9od4b/aHiG/2h3hv9nd4b/aHeG/2h4hv9od4b/
+aHiG/2h3hv9nd4b/Z3eG/2h3hv9od4b/Z3eG/2d3hf9od4b/aHeG/2h4hv9od4b/Z3eG/2h3hv9oeIb/
+aHeG/2h4hv9od4b/Z3eG/2d3hv9od4b/aHeG/2d3hv9nd4X/aHeG/2h3hv9oeIb/aHeG/2d3hv9od4b/
+aHiG/2h3hv9oeIb/aHeG/2d3hv9nd4b/aHeG/2h3hv9nd4b/Z3eF/2h3hv9od4b/aHiG/2h3hv9nd4b/
+aHeG/2h4hv9od4b/aHiG/2h3hv9nd4b/Z3eG/2h3hv9od4b/Z3eG/2d3hf9od4b/aHeG/2h4hv9od4b/
+Z3eG/2h3hv9oeIb/aHeG/2h4hv9od4b/Z3eG/2d3hv9od4b/aHeG/2d3hv9nd4X/aHeG/2h3hv9oeIb/
+aHeG/2d3hv9od4b/aHiG/2h3hv9oeIb/aHeG/2d3hv9nd4b/aHeG/2h3hv9nd4b/Z3eF/2h3hv9od4b/
+aHiG/2h3hv9nd4b/aHeG/2h4hv9od4b/aHiG/2h3hv9nd4b/Z3eG/2h3hv9od4b/Z3eG/2d3hf9od4b/
+aHeG/2h4hv9od4b/Z3eG/2h3hv9oeIb/aHeG/2h4hv9od4b/Z3eG/2d3hv9od4b/aHeG/2d3hv9nd4X/
+aHeG/2h3hv9oeIb/aHeG/2d3hv9od4b/aHiG/2h3hv9oeIb/aHeG/2d3hv9nd4b/aHeG/2h3hv9nd4b/
+Z3eF/2h3hv9od4b/aHiG/2h3hv9nd4b/aHeG/2h4hv9od4b/aHiG/2h3hv9nd4b/Z3eG/2h3hv9od4b/
+Z3eG/2d3hf9qeoj/a3qI/2t6if9qeoj/a3qI/2p5iP9qeYj/a3qI/2p5iP9reon/anmI/2p5iP9reoj/
+anmI/2t6iP9reon/anqI/2t6iP9reon/anqI/2t6iP9qeYj/anmI/2t6iP9qeYj/a3qJ/2p5iP9qeYj/
+a3qI/2p5iP9reoj/a3qJ/2p6iP9reoj/a3qJ/2p6iP9reoj/anmI/2p5iP9reoj/anmI/2t6if9qeYj/
+anmI/2t6iP9qeYj/a3qI/2t6if9qeoj/a3qI/2t6if9qeoj/a3qI/2p5iP9qeYj/a3qI/2p5iP9reon/
+anmI/2p5iP9reoj/anmI/2t6iP9reon/anqI/2t6iP9reon/anqI/2t6iP9qeYj/anmI/2t6iP9qeYj/
+a3qJ/2p5iP9qeYj/a3qI/2p5iP9reoj/a3qJ/2p6iP9reoj/a3qJ/2p6iP9reoj/anmI/2p5iP9reoj/
+anmI/2t6if9qeYj/anmI/2t6iP9qeYj/a3qI/2t6if9qeoj/a3qI/2t6if9qeoj/a3qI/2p5iP9qeYj/
+a3qI/2p5iP9reon/anmI/2p5iP9reoj/anmI/2t6iP9reon/anqI/2t6iP9reon/anqI/2t6iP9qeYj/
+anmI/2t6iP9qeYj/a3qJ/2p5iP9qeYj/a3qI/2p5iP9reoj/a3qJ/2p6iP9reoj/a3qJ/2p6iP9reoj/
+anmI/2p5iP9reoj/anmI/2t6if9qeYj/anmI/2t6iP9qeYj/a3qI/2t6if9qeoj/a3qI/2t6if9qeoj/
+a3qI/2p5iP9qeYj/a3qI/2p5iP9reon/anmI/2p5iP9reoj/anmI/2t6iP9reon/anqI/2t6iP9reon/
+anqI/2t6iP9se4r/a3qJ/2x7if9se4r/a3qJ/2x7iv9se4r/bHuJ/2x7if9se4r/bHuK/2x7if9se4r/
+bHuJ/2t6if9se4n/bHuK/2t6if9se4n/bHuK/2t6if9se4r/bHuK/2x7if9se4n/bHuK/2x7iv9se4n/
+bHuK/2x7if9reon/bHuJ/2x7iv9reon/bHuJ/2x7iv9reon/bHuK/2x7iv9se4n/bHuJ/2x7iv9se4r/
+bHuJ/2x7iv9se4n/a3qJ/2x7if9se4r/a3qJ/2x7if9se4r/a3qJ/2x7iv9se4r/bHuJ/2x7if9se4r/
+bHuK/2x7if9se4r/bHuJ/2t6if9se4n/bHuK/2t6if9se4n/bHuK/2t6if9se4r/bHuK/2x7if9se4n/
+bHuK/2x7iv9se4n/bHuK/2x7if9reon/bHuJ/2x7iv9reon/bHuJ/2x7iv9reon/bHuK/2x7iv9se4n/
+bHuJ/2x7iv9se4r/bHuJ/2x7iv9se4n/a3qJ/2x7if9se4r/a3qJ/2x7if9se4r/a3qJ/2x7iv9se4r/
+bHuJ/2x7if9se4r/bHuK/2x7if9se4r/bHuJ/2t6if9se4n/bHuK/2t6if9se4n/bHuK/2t6if9se4r/
+bHuK/2x7if9se4n/bHuK/2x7iv9se4n/bHuK/2x7if9reon/bHuJ/2x7iv9reon/bHuJ/2x7iv9reon/
+bHuK/2x7iv9se4n/bHuJ/2x7iv9se4r/bHuJ/2x7iv9se4n/a3qJ/2x7if9se4r/a3qJ/2x7if9se4r/
+a3qJ/2x7iv9se4r/bHuJ/2x7if9se4r/bHuK/2x7if9se4r/bHuJ/2t6if9se4n/bHuK/2t6if9se4n/
+bHuK/2t6if9tfIr/bn2L/218iv9tfIv/bn2L/218iv9tfIv/bXyK/219i/9tfIv/bXyK/218iv9tfIv/
+bXyK/219i/9tfIv/bXyK/259i/9tfIr/bXyL/259i/9tfIr/bXyL/218iv9tfYv/bXyL/218iv9tfIr/
+bXyL/218iv9tfYv/bXyL/218iv9ufYv/bXyK/218i/9ufYv/bXyK/218i/9tfIr/bX2L/218i/9tfIr/
+bXyK/218i/9tfIr/bX2L/218i/9tfIr/bn2L/218iv9tfIv/bn2L/218iv9tfIv/bXyK/219i/9tfIv/
+bXyK/218iv9tfIv/bXyK/219i/9tfIv/bXyK/259i/9tfIr/bXyL/259i/9tfIr/bXyL/218iv9tfYv/
+bXyL/218iv9tfIr/bXyL/218iv9tfYv/bXyL/218iv9ufYv/bXyK/218i/9ufYv/bXyK/218i/9tfIr/
+bX2L/218i/9tfIr/bXyK/218i/9tfIr/bX2L/218i/9tfIr/bn2L/218iv9tfIv/bn2L/218iv9tfIv/
+bXyK/219i/9tfIv/bXyK/218iv9tfIv/bXyK/219i/9tfIv/bXyK/259i/9tfIr/bXyL/259i/9tfIr/
+bXyL/218iv9tfYv/bXyL/218iv9tfIr/bXyL/218iv9tfYv/bXyL/218iv9ufYv/bXyK/218i/9ufYv/
+bXyK/218i/9tfIr/bX2L/218i/9tfIr/bXyK/218i/9tfIr/bX2L/218i/9tfIr/bn2L/218iv9tfIv/
+bn2L/218iv9tfIv/bXyK/219i/9tfIv/bXyK/218iv9tfIv/bXyK/219i/9tfIv/bXyK/259i/9tfIr/
+bXyL/259i/9vfoz/b32M/29+jP9ufYz/bn2M/29+jP9ufYz/b36M/259jP9ufYz/b36M/259jP9vfoz/
+bn2M/299jP9ufYz/b36M/299jP9vfoz/bn2M/259jP9vfoz/bn2M/29+jP9ufYz/bn2M/29+jP9ufYz/
+b36M/259jP9vfYz/bn2M/29+jP9vfYz/b36M/259jP9ufYz/b36M/259jP9vfoz/bn2M/259jP9vfoz/
+bn2M/29+jP9ufYz/b32M/259jP9vfoz/b32M/29+jP9ufYz/bn2M/29+jP9ufYz/b36M/259jP9ufYz/
+b36M/259jP9vfoz/bn2M/299jP9ufYz/b36M/299jP9vfoz/bn2M/259jP9vfoz/bn2M/29+jP9ufYz/
+bn2M/29+jP9ufYz/b36M/259jP9vfYz/bn2M/29+jP9vfYz/b36M/259jP9ufYz/b36M/259jP9vfoz/
+bn2M/259jP9vfoz/bn2M/29+jP9ufYz/b32M/259jP9vfoz/b32M/29+jP9ufYz/bn2M/29+jP9ufYz/
+b36M/259jP9ufYz/b36M/259jP9vfoz/bn2M/299jP9ufYz/b36M/299jP9vfoz/bn2M/259jP9vfoz/
+bn2M/29+jP9ufYz/bn2M/29+jP9ufYz/b36M/259jP9vfYz/bn2M/29+jP9vfYz/b36M/259jP9ufYz/
+b36M/259jP9vfoz/bn2M/259jP9vfoz/bn2M/29+jP9ufYz/b32M/259jP9vfoz/b32M/29+jP9ufYz/
+bn2M/29+jP9ufYz/b36M/259jP9ufYz/b36M/259jP9vfoz/bn2M/299jP9ufYz/b36M/299jP9vfoz/
+bn2M/259jP9vfo3/cH6N/3B/jf9vfo3/cH+N/3B/jf9vfo3/cH+N/3B+jf9wf43/b36N/3B/jf9vfo3/
+cH6N/3B/jv9wf43/b36N/3B+jf9wf43/b36N/3B/jf9wf43/b36N/3B/jf9wfo3/cH+N/29+jf9wf43/
+b36N/3B+jf9wf47/cH+N/29+jf9wfo3/cH+N/29+jf9wf43/cH+N/29+jf9wf43/cH6N/3B/jf9vfo3/
+cH+N/29+jf9wfo3/cH+O/3B/jf9vfo3/cH6N/3B/jf9vfo3/cH+N/3B/jf9vfo3/cH+N/3B+jf9wf43/
+b36N/3B/jf9vfo3/cH6N/3B/jv9wf43/b36N/3B+jf9wf43/b36N/3B/jf9wf43/b36N/3B/jf9wfo3/
+cH+N/29+jf9wf43/b36N/3B+jf9wf47/cH+N/29+jf9wfo3/cH+N/29+jf9wf43/cH+N/29+jf9wf43/
+cH6N/3B/jf9vfo3/cH+N/29+jf9wfo3/cH+O/3B/jf9vfo3/cH6N/3B/jf9vfo3/cH+N/3B/jf9vfo3/
+cH+N/3B+jf9wf43/b36N/3B/jf9vfo3/cH6N/3B/jv9wf43/b36N/3B+jf9wf43/b36N/3B/jf9wf43/
+b36N/3B/jf9wfo3/cH+N/29+jf9wf43/b36N/3B+jf9wf47/cH+N/29+jf9wfo3/cH+N/29+jf9wf43/
+cH+N/29+jf9wf43/cH6N/3B/jf9vfo3/cH+N/29+jf9wfo3/cH+O/3B/jf9vfo3/cH6N/3B/jf9vfo3/
+cH+N/3B/jf9vfo3/cH+N/3B+jf9wf43/b36N/3B/jf9vfo3/cH6N/3B/jv9wf43/b36N/3B+jf9wf43/
+b36N/3B/jf9ygY//c4GQ/3OBkP9zgZD/coGP/3KBj/9ygZD/c4GQ/3KBj/9ygY//c4GQ/3KBj/9ygY//
+c4GQ/3KBj/9zgZD/coGP/3OBkP9zgZD/c4GQ/3KBj/9ygY//coGQ/3OBkP9ygY//coGP/3OBkP9ygY//
+coGP/3OBkP9ygY//c4GQ/3KBj/9zgZD/c4GQ/3OBkP9ygY//coGP/3KBkP9zgZD/coGP/3KBj/9zgZD/
+coGP/3KBj/9zgZD/coGP/3OBkP9ygY//c4GQ/3OBkP9zgZD/coGP/3KBj/9ygZD/c4GQ/3KBj/9ygY//
+c4GQ/3KBj/9ygY//c4GQ/3KBj/9zgZD/coGP/3OBkP9zgZD/c4GQ/3KBj/9ygY//coGQ/3OBkP9ygY//
+coGP/3OBkP9ygY//coGP/3OBkP9ygY//c4GQ/3KBj/9zgZD/c4GQ/3OBkP9ygY//coGP/3KBkP9zgZD/
+coGP/3KBj/9zgZD/coGP/3KBj/9zgZD/coGP/3OBkP9ygY//c4GQ/3OBkP9zgZD/coGP/3KBj/9ygZD/
+c4GQ/3KBj/9ygY//c4GQ/3KBj/9ygY//c4GQ/3KBj/9zgZD/coGP/3OBkP9zgZD/c4GQ/3KBj/9ygY//
+coGQ/3OBkP9ygY//coGP/3OBkP9ygY//coGP/3OBkP9ygY//c4GQ/3KBj/9zgZD/c4GQ/3OBkP9ygY//
+coGP/3KBkP9zgZD/coGP/3KBj/9zgZD/coGP/3KBj/9zgZD/coGP/3OBkP9ygY//c4GQ/3OBkP9zgZD/
+coGP/3KBj/9ygZD/c4GQ/3KBj/9ygY//c4GQ/3KBj/9ygY//c4GQ/3KBj/9zgZD/coGP/3OBkP9zgZD/
+c4GQ/3KBj/9zgpD/dIKR/3OCkP9zgpD/dIOR/3SDkf9zgpD/dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/
+c4KQ/3SCkf90gpH/c4KQ/3SCkf9zgpD/c4KQ/3SDkf90g5H/c4KQ/3SCkf9zgpD/dIKR/3OCkP9zgpD/
+dIOR/3OCkP90gpH/dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/dIOR/3OCkP90gpH/c4KQ/3SCkf9zgpD/
+c4KQ/3SDkf9zgpD/dIKR/3SCkf9zgpD/dIKR/3OCkP9zgpD/dIOR/3SDkf9zgpD/dIKR/3OCkP90gpH/
+c4KQ/3OCkP90g5H/c4KQ/3SCkf90gpH/c4KQ/3SCkf9zgpD/c4KQ/3SDkf90g5H/c4KQ/3SCkf9zgpD/
+dIKR/3OCkP9zgpD/dIOR/3OCkP90gpH/dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/dIOR/3OCkP90gpH/
+c4KQ/3SCkf9zgpD/c4KQ/3SDkf9zgpD/dIKR/3SCkf9zgpD/dIKR/3OCkP9zgpD/dIOR/3SDkf9zgpD/
+dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/c4KQ/3SCkf90gpH/c4KQ/3SCkf9zgpD/c4KQ/3SDkf90g5H/
+c4KQ/3SCkf9zgpD/dIKR/3OCkP9zgpD/dIOR/3OCkP90gpH/dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/
+dIOR/3OCkP90gpH/c4KQ/3SCkf9zgpD/c4KQ/3SDkf9zgpD/dIKR/3SCkf9zgpD/dIKR/3OCkP9zgpD/
+dIOR/3SDkf9zgpD/dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/c4KQ/3SCkf90gpH/c4KQ/3SCkf9zgpD/
+c4KQ/3SDkf91g5L/dYSS/3WDkv91hJL/dYOS/3WEkv91hJL/dYOS/3WEkv91hJL/dYOS/3WEkv91hJL/
+dYOS/3WEkv90g5H/dYOS/3WEkv91g5L/dYSS/3WDkv91hJL/dYSS/3WDkv91hJL/dYSS/3WDkv91hJL/
+dYSS/3WDkv91hJL/dIOR/3WDkv91hJL/dYOS/3WEkv91g5L/dYSS/3WEkv91g5L/dYSS/3WEkv91g5L/
+dYSS/3WEkv91g5L/dYSS/3SDkf91g5L/dYSS/3WDkv91hJL/dYOS/3WEkv91hJL/dYOS/3WEkv91hJL/
+dYOS/3WEkv91hJL/dYOS/3WEkv90g5H/dYOS/3WEkv91g5L/dYSS/3WDkv91hJL/dYSS/3WDkv91hJL/
+dYSS/3WDkv91hJL/dYSS/3WDkv91hJL/dIOR/3WDkv91hJL/dYOS/3WEkv91g5L/dYSS/3WEkv91g5L/
+dYSS/3WEkv91g5L/dYSS/3WEkv91g5L/dYSS/3SDkf91g5L/dYSS/3WDkv91hJL/dYOS/3WEkv91hJL/
+dYOS/3WEkv91hJL/dYOS/3WEkv91hJL/dYOS/3WEkv90g5H/dYOS/3WEkv91g5L/dYSS/3WDkv91hJL/
+dYSS/3WDkv91hJL/dYSS/3WDkv91hJL/dYSS/3WDkv91hJL/dIOR/3WDkv91hJL/dYOS/3WEkv91g5L/
+dYSS/3WEkv91g5L/dYSS/3WEkv91g5L/dYSS/3WEkv91g5L/dYSS/3SDkf91g5L/dYSS/3WDkv91hJL/
+dYOS/3WEkv91hJL/dYOS/3WEkv91hJL/dYOS/3WEkv91hJL/dYOS/3WEkv90g5H/dYOS/3WEkv91g5L/
+dYSS/3WDkv93hZP/doST/3eFk/92hJL/doWT/3aEk/92hJP/doWT/3eFk/92hJL/doWT/3aFk/92hJL/
+doWT/3aFk/92hZP/d4WT/3aEk/93hZP/doSS/3aFk/92hJP/doST/3aFk/93hZP/doSS/3aFk/92hZP/
+doSS/3aFk/92hZP/doWT/3eFk/92hJP/d4WT/3aEkv92hZP/doST/3aEk/92hZP/d4WT/3aEkv92hZP/
+doWT/3aEkv92hZP/doWT/3aFk/93hZP/doST/3eFk/92hJL/doWT/3aEk/92hJP/doWT/3eFk/92hJL/
+doWT/3aFk/92hJL/doWT/3aFk/92hZP/d4WT/3aEk/93hZP/doSS/3aFk/92hJP/doST/3aFk/93hZP/
+doSS/3aFk/92hZP/doSS/3aFk/92hZP/doWT/3eFk/92hJP/d4WT/3aEkv92hZP/doST/3aEk/92hZP/
+d4WT/3aEkv92hZP/doWT/3aEkv92hZP/doWT/3aFk/93hZP/doST/3eFk/92hJL/doWT/3aEk/92hJP/
+doWT/3eFk/92hJL/doWT/3aFk/92hJL/doWT/3aFk/92hZP/d4WT/3aEk/93hZP/doSS/3aFk/92hJP/
+doST/3aFk/93hZP/doSS/3aFk/92hZP/doSS/3aFk/92hZP/doWT/3eFk/92hJP/d4WT/3aEkv92hZP/
+doST/3aEk/92hZP/d4WT/3aEkv92hZP/doWT/3aEkv92hZP/doWT/3aFk/93hZP/doST/3eFk/92hJL/
+doWT/3aEk/92hJP/doWT/3eFk/92hJL/doWT/3aFk/92hJL/doWT/3aFk/92hZP/d4WT/3aEk/93hZP/
+doSS/3aFk/94hpT/d4aU/3eGlP93hpT/eIaV/3iGlP94hpT/eIaU/3eGlP93hpT/eIaU/3iGlP93hpT/
+eIaU/3eGlP94hpX/eIaU/3eGlP93hpT/d4aU/3iGlf94hpT/eIaU/3iGlP93hpT/d4aU/3iGlP94hpT/
+d4aU/3iGlP93hpT/eIaV/3iGlP93hpT/d4aU/3eGlP94hpX/eIaU/3iGlP94hpT/d4aU/3eGlP94hpT/
+eIaU/3eGlP94hpT/d4aU/3iGlf94hpT/d4aU/3eGlP93hpT/eIaV/3iGlP94hpT/eIaU/3eGlP93hpT/
+eIaU/3iGlP93hpT/eIaU/3eGlP94hpX/eIaU/3eGlP93hpT/d4aU/3iGlf94hpT/eIaU/3iGlP93hpT/
+d4aU/3iGlP94hpT/d4aU/3iGlP93hpT/eIaV/3iGlP93hpT/d4aU/3eGlP94hpX/eIaU/3iGlP94hpT/
+d4aU/3eGlP94hpT/eIaU/3eGlP94hpT/d4aU/3iGlf94hpT/d4aU/3eGlP93hpT/eIaV/3iGlP94hpT/
+eIaU/3eGlP93hpT/eIaU/3iGlP93hpT/eIaU/3eGlP94hpX/eIaU/3eGlP93hpT/d4aU/3iGlf94hpT/
+eIaU/3iGlP93hpT/d4aU/3iGlP94hpT/d4aU/3iGlP93hpT/eIaV/3iGlP93hpT/d4aU/3eGlP94hpX/
+eIaU/3iGlP94hpT/d4aU/3eGlP94hpT/eIaU/3eGlP94hpT/d4aU/3iGlf94hpT/d4aU/3eGlP93hpT/
+eIaV/3iGlP94hpT/eIaU/3eGlP93hpT/eIaU/3iGlP93hpT/eIaU/3eGlP94hpX/eIaU/3eGlP93hpT/
+d4aU/3iGlf94h5X/eYeW/3mHlf95h5b/eYeV/3iHlf95h5X/eIeV/3mHlf95iJb/eYeV/3iHlf95h5X/
+eIeV/3mHlv95h5X/eIeV/3mHlv95h5X/eYeW/3mHlf94h5X/eYeV/3iHlf95h5X/eYiW/3mHlf94h5X/
+eYeV/3iHlf95h5b/eYeV/3iHlf95h5b/eYeV/3mHlv95h5X/eIeV/3mHlf94h5X/eYeV/3mIlv95h5X/
+eIeV/3mHlf94h5X/eYeW/3mHlf94h5X/eYeW/3mHlf95h5b/eYeV/3iHlf95h5X/eIeV/3mHlf95iJb/
+eYeV/3iHlf95h5X/eIeV/3mHlv95h5X/eIeV/3mHlv95h5X/eYeW/3mHlf94h5X/eYeV/3iHlf95h5X/
+eYiW/3mHlf94h5X/eYeV/3iHlf95h5b/eYeV/3iHlf95h5b/eYeV/3mHlv95h5X/eIeV/3mHlf94h5X/
+eYeV/3mIlv95h5X/eIeV/3mHlf94h5X/eYeW/3mHlf94h5X/eYeW/3mHlf95h5b/eYeV/3iHlf95h5X/
+eIeV/3mHlf95iJb/eYeV/3iHlf95h5X/eIeV/3mHlv95h5X/eIeV/3mHlv95h5X/eYeW/3mHlf94h5X/
+eYeV/3iHlf95h5X/eYiW/3mHlf94h5X/eYeV/3iHlf95h5b/eYeV/3iHlf95h5b/eYeV/3mHlv95h5X/
+eIeV/3mHlf94h5X/eYeV/3mIlv95h5X/eIeV/3mHlf94h5X/eYeW/3mHlf94h5X/eYeW/3mHlf95h5b/
+eYeV/3iHlf95h5X/eIeV/3mHlf95iJb/eYeV/3iHlf95h5X/eIeV/3mHlv95h5X/eIeV/3mHlv95h5X/
+eYeW/3mHlf97iZf/fIqY/3uJl/97iZf/fIqY/3uKmP98ipj/fIqY/3uKmP97iZf/fIqY/3uJl/98ipj/
+e4mY/3yKmP97ipj/e4mX/3yKmP97iZf/e4mX/3yKmP97ipj/fIqY/3yKmP97ipj/e4mX/3yKmP97iZf/
+fIqY/3uJmP98ipj/e4qY/3uJl/98ipj/e4mX/3uJl/98ipj/e4qY/3yKmP98ipj/e4qY/3uJl/98ipj/
+e4mX/3yKmP97iZj/fIqY/3uKmP97iZf/fIqY/3uJl/97iZf/fIqY/3uKmP98ipj/fIqY/3uKmP97iZf/
+fIqY/3uJl/98ipj/e4mY/3yKmP97ipj/e4mX/3yKmP97iZf/e4mX/3yKmP97ipj/fIqY/3yKmP97ipj/
+e4mX/3yKmP97iZf/fIqY/3uJmP98ipj/e4qY/3uJl/98ipj/e4mX/3uJl/98ipj/e4qY/3yKmP98ipj/
+e4qY/3uJl/98ipj/e4mX/3yKmP97iZj/fIqY/3uKmP97iZf/fIqY/3uJl/97iZf/fIqY/3uKmP98ipj/
+fIqY/3uKmP97iZf/fIqY/3uJl/98ipj/e4mY/3yKmP97ipj/e4mX/3yKmP97iZf/e4mX/3yKmP97ipj/
+fIqY/3yKmP97ipj/e4mX/3yKmP97iZf/fIqY/3uJmP98ipj/e4qY/3uJl/98ipj/e4mX/3uJl/98ipj/
+e4qY/3yKmP98ipj/e4qY/3uJl/98ipj/e4mX/3yKmP97iZj/fIqY/3uKmP97iZf/fIqY/3uJl/97iZf/
+fIqY/3uKmP98ipj/fIqY/3uKmP97iZf/fIqY/3uJl/98ipj/e4mY/3yKmP97ipj/e4mX/3yKmP97iZf/
+e4mX/3yKmP99i5n/fYuZ/32Lmf98ipj/fYuZ/3yKmP98i5n/fIqY/3yKmf99i5n/fIqY/32Lmf98ipj/
+fYuZ/3yLmf98ipj/fYuZ/32Lmf99i5n/fIqY/32Lmf98ipj/fIuZ/3yKmP98ipn/fYuZ/3yKmP99i5n/
+fIqY/32Lmf98i5n/fIqY/32Lmf99i5n/fYuZ/3yKmP99i5n/fIqY/3yLmf98ipj/fIqZ/32Lmf98ipj/
+fYuZ/3yKmP99i5n/fIuZ/3yKmP99i5n/fYuZ/32Lmf98ipj/fYuZ/3yKmP98i5n/fIqY/3yKmf99i5n/
+fIqY/32Lmf98ipj/fYuZ/3yLmf98ipj/fYuZ/32Lmf99i5n/fIqY/32Lmf98ipj/fIuZ/3yKmP98ipn/
+fYuZ/3yKmP99i5n/fIqY/32Lmf98i5n/fIqY/32Lmf99i5n/fYuZ/3yKmP99i5n/fIqY/3yLmf98ipj/
+fIqZ/32Lmf98ipj/fYuZ/3yKmP99i5n/fIuZ/3yKmP99i5n/fYuZ/32Lmf98ipj/fYuZ/3yKmP98i5n/
+fIqY/3yKmf99i5n/fIqY/32Lmf98ipj/fYuZ/3yLmf98ipj/fYuZ/32Lmf99i5n/fIqY/32Lmf98ipj/
+fIuZ/3yKmP98ipn/fYuZ/3yKmP99i5n/fIqY/32Lmf98i5n/fIqY/32Lmf99i5n/fYuZ/3yKmP99i5n/
+fIqY/3yLmf98ipj/fIqZ/32Lmf98ipj/fYuZ/3yKmP99i5n/fIuZ/3yKmP99i5n/fYuZ/32Lmf98ipj/
+fYuZ/3yKmP98i5n/fIqY/3yKmf99i5n/fIqY/32Lmf98ipj/fYuZ/3yLmf98ipj/fYuZ/32Lmf99i5n/
+fIqY/32Lmf9+jJr/foya/32Mmf9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/
+fYuZ/36Mmv9+jJr/foya/36Mmv99jJn/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/
+foya/32Lmf9+jJr/foya/36Mmv9+jJr/fYyZ/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/
+foya/36Mmv99i5n/foya/36Mmv9+jJr/foya/32Mmf9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/
+foya/36Mmv9+jJr/fYuZ/36Mmv9+jJr/foya/36Mmv99jJn/foya/36Mmv9+jJr/foya/36Mmv9+jJr/
+foya/36Mmv9+jJr/foya/32Lmf9+jJr/foya/36Mmv9+jJr/fYyZ/36Mmv9+jJr/foya/36Mmv9+jJr/
+foya/36Mmv9+jJr/foya/36Mmv99i5n/foya/36Mmv9+jJr/foya/32Mmf9+jJr/foya/36Mmv9+jJr/
+foya/36Mmv9+jJr/foya/36Mmv9+jJr/fYuZ/36Mmv9+jJr/foya/36Mmv99jJn/foya/36Mmv9+jJr/
+foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/32Lmf9+jJr/foya/36Mmv9+jJr/fYyZ/36Mmv9+jJr/
+foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv99i5n/foya/36Mmv9+jJr/foya/32Mmf9+jJr/
+foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/fYuZ/36Mmv9+jJr/foya/36Mmv99jJn/
+foya/36Mmv9/jZv/f42b/3+Nm/+Ajpz/gI2b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/gI6b/3+Nm/9/jZv/
+f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/gI6c/4CNm/9/jZv/f42b/3+Nm/9/jZv/f42b/4COm/9/jZv/
+f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/4COnP+AjZv/f42b/3+Nm/9/jZv/f42b/3+Nm/+Ajpv/
+f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/+Ajpz/gI2b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/
+gI6b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/gI6c/4CNm/9/jZv/f42b/3+Nm/9/jZv/
+f42b/4COm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/4COnP+AjZv/f42b/3+Nm/9/jZv/
+f42b/3+Nm/+Ajpv/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/+Ajpz/gI2b/3+Nm/9/jZv/
+f42b/3+Nm/9/jZv/gI6b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/gI6c/4CNm/9/jZv/
+f42b/3+Nm/9/jZv/f42b/4COm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/4COnP+AjZv/
+f42b/3+Nm/9/jZv/f42b/3+Nm/+Ajpv/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/+Ajpz/
+gI2b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/gI6b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/
+gI6c/4CNm/+Ajpz/gY+d/4COnP+Ajpz/gI6c/4GPnP+Ajpz/gY+d/4GPnP+Ajpz/gI6c/4GPnf+Ajpz/
+gY+d/4GPnP+Ajpz/gI6c/4GPnf+Ajpz/gI6c/4COnP+Bj5z/gI6c/4GPnf+Bj5z/gI6c/4COnP+Bj53/
+gI6c/4GPnf+Bj5z/gI6c/4COnP+Bj53/gI6c/4COnP+Ajpz/gY+c/4COnP+Bj53/gY+c/4COnP+Ajpz/
+gY+d/4COnP+Bj53/gY+c/4COnP+Ajpz/gY+d/4COnP+Ajpz/gI6c/4GPnP+Ajpz/gY+d/4GPnP+Ajpz/
+gI6c/4GPnf+Ajpz/gY+d/4GPnP+Ajpz/gI6c/4GPnf+Ajpz/gI6c/4COnP+Bj5z/gI6c/4GPnf+Bj5z/
+gI6c/4COnP+Bj53/gI6c/4GPnf+Bj5z/gI6c/4COnP+Bj53/gI6c/4COnP+Ajpz/gY+c/4COnP+Bj53/
+gY+c/4COnP+Ajpz/gY+d/4COnP+Bj53/gY+c/4COnP+Ajpz/gY+d/4COnP+Ajpz/gI6c/4GPnP+Ajpz/
+gY+d/4GPnP+Ajpz/gI6c/4GPnf+Ajpz/gY+d/4GPnP+Ajpz/gI6c/4GPnf+Ajpz/gI6c/4COnP+Bj5z/
+gI6c/4GPnf+Bj5z/gI6c/4COnP+Bj53/gI6c/4GPnf+Bj5z/gI6c/4COnP+Bj53/gI6c/4COnP+Ajpz/
+gY+c/4COnP+Bj53/gY+c/4COnP+Ajpz/gY+d/4COnP+Bj53/gY+c/4COnP+Ajpz/gY+d/4COnP+Ajpz/
+gI6c/4GPnP+Ajpz/gY+d/4GPnP+Ajpz/gI6c/4GPnf+Ajpz/gY+d/4GPnP+Ajpz/gI6c/4GPnf+Ajpz/
+gI6c/4COnP+Cj53/gpCe/4KQnv+Cj53/gpCd/4GPnf+Bj53/gpCe/4GPnf+CkJ7/gY+d/4GPnf+CkJ7/
+gY+d/4KQnf+CkJ7/go+d/4KQnv+CkJ7/go+d/4KQnf+Bj53/gY+d/4KQnv+Bj53/gpCe/4GPnf+Bj53/
+gpCe/4GPnf+CkJ3/gpCe/4KPnf+CkJ7/gpCe/4KPnf+CkJ3/gY+d/4GPnf+CkJ7/gY+d/4KQnv+Bj53/
+gY+d/4KQnv+Bj53/gpCd/4KQnv+Cj53/gpCe/4KQnv+Cj53/gpCd/4GPnf+Bj53/gpCe/4GPnf+CkJ7/
+gY+d/4GPnf+CkJ7/gY+d/4KQnf+CkJ7/go+d/4KQnv+CkJ7/go+d/4KQnf+Bj53/gY+d/4KQnv+Bj53/
+gpCe/4GPnf+Bj53/gpCe/4GPnf+CkJ3/gpCe/4KPnf+CkJ7/gpCe/4KPnf+CkJ3/gY+d/4GPnf+CkJ7/
+gY+d/4KQnv+Bj53/gY+d/4KQnv+Bj53/gpCd/4KQnv+Cj53/gpCe/4KQnv+Cj53/gpCd/4GPnf+Bj53/
+gpCe/4GPnf+CkJ7/gY+d/4GPnf+CkJ7/gY+d/4KQnf+CkJ7/go+d/4KQnv+CkJ7/go+d/4KQnf+Bj53/
+gY+d/4KQnv+Bj53/gpCe/4GPnf+Bj53/gpCe/4GPnf+CkJ3/gpCe/4KPnf+CkJ7/gpCe/4KPnf+CkJ3/
+gY+d/4GPnf+CkJ7/gY+d/4KQnv+Bj53/gY+d/4KQnv+Bj53/gpCd/4KQnv+Cj53/gpCe/4KQnv+Cj53/
+gpCd/4GPnf+Bj53/gpCe/4GPnf+CkJ7/gY+d/4GPnf+CkJ7/gY+d/4KQnf+CkJ7/go+d/4KQnv+CkJ7/
+go+d/4KQnf+EkqD/hJGf/4SSoP+EkqD/hJGf/4SSoP+FkqD/hJKg/4SSn/+EkqD/hZKg/4SSoP+FkqD/
+hJKg/4SRn/+Ekp//hJKg/4SRn/+EkqD/hJKg/4SRn/+EkqD/hZKg/4SSoP+Ekp//hJKg/4WSoP+EkqD/
+hZKg/4SSoP+EkZ//hJKf/4SSoP+EkZ//hJKg/4SSoP+EkZ//hJKg/4WSoP+EkqD/hJKf/4SSoP+FkqD/
+hJKg/4WSoP+EkqD/hJGf/4SSn/+EkqD/hJGf/4SSoP+EkqD/hJGf/4SSoP+FkqD/hJKg/4SSn/+EkqD/
+hZKg/4SSoP+FkqD/hJKg/4SRn/+Ekp//hJKg/4SRn/+EkqD/hJKg/4SRn/+EkqD/hZKg/4SSoP+Ekp//
+hJKg/4WSoP+EkqD/hZKg/4SSoP+EkZ//hJKf/4SSoP+EkZ//hJKg/4SSoP+EkZ//hJKg/4WSoP+EkqD/
+hJKf/4SSoP+FkqD/hJKg/4WSoP+EkqD/hJGf/4SSn/+EkqD/hJGf/4SSoP+EkqD/hJGf/4SSoP+FkqD/
+hJKg/4SSn/+EkqD/hZKg/4SSoP+FkqD/hJKg/4SRn/+Ekp//hJKg/4SRn/+EkqD/hJKg/4SRn/+EkqD/
+hZKg/4SSoP+Ekp//hJKg/4WSoP+EkqD/hZKg/4SSoP+EkZ//hJKf/4SSoP+EkZ//hJKg/4SSoP+EkZ//
+hJKg/4WSoP+EkqD/hJKf/4SSoP+FkqD/hJKg/4WSoP+EkqD/hJGf/4SSn/+EkqD/hJGf/4SSoP+EkqD/
+hJGf/4SSoP+FkqD/hJKg/4SSn/+EkqD/hZKg/4SSoP+FkqD/hJKg/4SRn/+Ekp//hJKg/4SRn/+EkqD/
+hJKg/4SRn/+Fk6H/hpSh/4WToP+Gk6H/hpOh/4WToP+Gk6H/hZOg/4aTof+Fk6H/hZOg/4WTof+Gk6H/
+hZOg/4aTof+Gk6H/hZOh/4aUof+Fk6D/hpOh/4aTof+Fk6D/hpOh/4WToP+Gk6H/hZOh/4WToP+Fk6H/
+hpOh/4WToP+Gk6H/hpOh/4WTof+GlKH/hZOg/4aTof+Gk6H/hZOg/4aTof+Fk6D/hpOh/4WTof+Fk6D/
+hZOh/4aTof+Fk6D/hpOh/4aTof+Fk6H/hpSh/4WToP+Gk6H/hpOh/4WToP+Gk6H/hZOg/4aTof+Fk6H/
+hZOg/4WTof+Gk6H/hZOg/4aTof+Gk6H/hZOh/4aUof+Fk6D/hpOh/4aTof+Fk6D/hpOh/4WToP+Gk6H/
+hZOh/4WToP+Fk6H/hpOh/4WToP+Gk6H/hpOh/4WTof+GlKH/hZOg/4aTof+Gk6H/hZOg/4aTof+Fk6D/
+hpOh/4WTof+Fk6D/hZOh/4aTof+Fk6D/hpOh/4aTof+Fk6H/hpSh/4WToP+Gk6H/hpOh/4WToP+Gk6H/
+hZOg/4aTof+Fk6H/hZOg/4WTof+Gk6H/hZOg/4aTof+Gk6H/hZOh/4aUof+Fk6D/hpOh/4aTof+Fk6D/
+hpOh/4WToP+Gk6H/hZOh/4WToP+Fk6H/hpOh/4WToP+Gk6H/hpOh/4WTof+GlKH/hZOg/4aTof+Gk6H/
+hZOg/4aTof+Fk6D/hpOh/4WTof+Fk6D/hZOh/4aTof+Fk6D/hpOh/4aTof+Fk6H/hpSh/4WToP+Gk6H/
+hpOh/4WToP+Gk6H/hZOg/4aTof+Fk6H/hZOg/4WTof+Gk6H/hZOg/4aTof+Gk6H/hZOh/4aUof+Fk6D/
+hpOh/4aTof+HlaL/h5Si/4eVov+GlKL/h5Si/4eUov+HlKL/h5Si/4aUov+HlKL/h5Si/4eUov+HlaL/
+h5Si/4eUov+GlKL/h5Wi/4eUov+HlaL/hpSi/4eUov+HlKL/h5Si/4eUov+GlKL/h5Si/4eUov+HlKL/
+h5Wi/4eUov+HlKL/hpSi/4eVov+HlKL/h5Wi/4aUov+HlKL/h5Si/4eUov+HlKL/hpSi/4eUov+HlKL/
+h5Si/4eVov+HlKL/h5Si/4aUov+HlaL/h5Si/4eVov+GlKL/h5Si/4eUov+HlKL/h5Si/4aUov+HlKL/
+h5Si/4eUov+HlaL/h5Si/4eUov+GlKL/h5Wi/4eUov+HlaL/hpSi/4eUov+HlKL/h5Si/4eUov+GlKL/
+h5Si/4eUov+HlKL/h5Wi/4eUov+HlKL/hpSi/4eVov+HlKL/h5Wi/4aUov+HlKL/h5Si/4eUov+HlKL/
+hpSi/4eUov+HlKL/h5Si/4eVov+HlKL/h5Si/4aUov+HlaL/h5Si/4eVov+GlKL/h5Si/4eUov+HlKL/
+h5Si/4aUov+HlKL/h5Si/4eUov+HlaL/h5Si/4eUov+GlKL/h5Wi/4eUov+HlaL/hpSi/4eUov+HlKL/
+h5Si/4eUov+GlKL/h5Si/4eUov+HlKL/h5Wi/4eUov+HlKL/hpSi/4eVov+HlKL/h5Wi/4aUov+HlKL/
+h5Si/4eUov+HlKL/hpSi/4eUov+HlKL/h5Si/4eVov+HlKL/h5Si/4aUov+HlaL/h5Si/4eVov+GlKL/
+h5Si/4eUov+HlKL/h5Si/4aUov+HlKL/h5Si/4eUov+HlaL/h5Si/4eUov+GlKL/h5Wi/4eUov+HlaL/
+hpSi/4eUov+HlaP/iJWj/4iVo/+HlaP/iJWj/4iWo/+IlaP/iJWj/4iVo/+IlqP/iJWj/4iWo/+HlaP/
+iJWj/4iWpP+IlaP/h5Wj/4iVo/+IlaP/h5Wj/4iVo/+IlqP/iJWj/4iVo/+IlaP/iJaj/4iVo/+IlqP/
+h5Wj/4iVo/+IlqT/iJWj/4eVo/+IlaP/iJWj/4eVo/+IlaP/iJaj/4iVo/+IlaP/iJWj/4iWo/+IlaP/
+iJaj/4eVo/+IlaP/iJak/4iVo/+HlaP/iJWj/4iVo/+HlaP/iJWj/4iWo/+IlaP/iJWj/4iVo/+IlqP/
+iJWj/4iWo/+HlaP/iJWj/4iWpP+IlaP/h5Wj/4iVo/+IlaP/h5Wj/4iVo/+IlqP/iJWj/4iVo/+IlaP/
+iJaj/4iVo/+IlqP/h5Wj/4iVo/+IlqT/iJWj/4eVo/+IlaP/iJWj/4eVo/+IlaP/iJaj/4iVo/+IlaP/
+iJWj/4iWo/+IlaP/iJaj/4eVo/+IlaP/iJak/4iVo/+HlaP/iJWj/4iVo/+HlaP/iJWj/4iWo/+IlaP/
+iJWj/4iVo/+IlqP/iJWj/4iWo/+HlaP/iJWj/4iWpP+IlaP/h5Wj/4iVo/+IlaP/h5Wj/4iVo/+IlqP/
+iJWj/4iVo/+IlaP/iJaj/4iVo/+IlqP/h5Wj/4iVo/+IlqT/iJWj/4eVo/+IlaP/iJWj/4eVo/+IlaP/
+iJaj/4iVo/+IlaP/iJWj/4iWo/+IlaP/iJaj/4eVo/+IlaP/iJak/4iVo/+HlaP/iJWj/4iVo/+HlaP/
+iJWj/4iWo/+IlaP/iJWj/4iVo/+IlqP/iJWj/4iWo/+HlaP/iJWj/4iWpP+IlaP/h5Wj/4iVo/+IlaP/
+h5Wj/4iVo/+JlqT/iZek/4qXpf+Jl6T/iZak/4mWpP+Jl6T/ipel/4mWpP+Jl6T/ipel/4mXpP+Jl6T/
+iZek/4mWpP+Kl6X/iZak/4mXpP+Kl6X/iZek/4mWpP+JlqT/iZek/4qXpf+JlqT/iZek/4qXpf+Jl6T/
+iZek/4mXpP+JlqT/ipel/4mWpP+Jl6T/ipel/4mXpP+JlqT/iZak/4mXpP+Kl6X/iZak/4mXpP+Kl6X/
+iZek/4mXpP+Jl6T/iZak/4qXpf+JlqT/iZek/4qXpf+Jl6T/iZak/4mWpP+Jl6T/ipel/4mWpP+Jl6T/
+ipel/4mXpP+Jl6T/iZek/4mWpP+Kl6X/iZak/4mXpP+Kl6X/iZek/4mWpP+JlqT/iZek/4qXpf+JlqT/
+iZek/4qXpf+Jl6T/iZek/4mXpP+JlqT/ipel/4mWpP+Jl6T/ipel/4mXpP+JlqT/iZak/4mXpP+Kl6X/
+iZak/4mXpP+Kl6X/iZek/4mXpP+Jl6T/iZak/4qXpf+JlqT/iZek/4qXpf+Jl6T/iZak/4mWpP+Jl6T/
+ipel/4mWpP+Jl6T/ipel/4mXpP+Jl6T/iZek/4mWpP+Kl6X/iZak/4mXpP+Kl6X/iZek/4mWpP+JlqT/
+iZek/4qXpf+JlqT/iZek/4qXpf+Jl6T/iZek/4mXpP+JlqT/ipel/4mWpP+Jl6T/ipel/4mXpP+JlqT/
+iZak/4mXpP+Kl6X/iZak/4mXpP+Kl6X/iZek/4mXpP+Jl6T/iZak/4qXpf+JlqT/iZek/4qXpf+Jl6T/
+iZak/4mWpP+Jl6T/ipel/4mWpP+Jl6T/ipel/4mXpP+Jl6T/iZek/4mWpP+Kl6X/iZak/4mXpP+Kl6X/
+iZek/4mWpP+Lmab/jJmm/4uZpv+Lmab/jJmn/4yZp/+Lmab/jJmn/4uZpv+Mmaf/i5mm/4uYpv+Mmaf/
+i5mm/4yZpv+Mmaf/i5mm/4yZpv+Lmab/i5mm/4yZp/+Mmaf/i5mm/4yZp/+Lmab/jJmn/4uZpv+LmKb/
+jJmn/4uZpv+Mmab/jJmn/4uZpv+Mmab/i5mm/4uZpv+Mmaf/jJmn/4uZpv+Mmaf/i5mm/4yZp/+Lmab/
+i5im/4yZp/+Lmab/jJmm/4yZp/+Lmab/jJmm/4uZpv+Lmab/jJmn/4yZp/+Lmab/jJmn/4uZpv+Mmaf/
+i5mm/4uYpv+Mmaf/i5mm/4yZpv+Mmaf/i5mm/4yZpv+Lmab/i5mm/4yZp/+Mmaf/i5mm/4yZp/+Lmab/
+jJmn/4uZpv+LmKb/jJmn/4uZpv+Mmab/jJmn/4uZpv+Mmab/i5mm/4uZpv+Mmaf/jJmn/4uZpv+Mmaf/
+i5mm/4yZp/+Lmab/i5im/4yZp/+Lmab/jJmm/4yZp/+Lmab/jJmm/4uZpv+Lmab/jJmn/4yZp/+Lmab/
+jJmn/4uZpv+Mmaf/i5mm/4uYpv+Mmaf/i5mm/4yZpv+Mmaf/i5mm/4yZpv+Lmab/i5mm/4yZp/+Mmaf/
+i5mm/4yZp/+Lmab/jJmn/4uZpv+LmKb/jJmn/4uZpv+Mmab/jJmn/4uZpv+Mmab/i5mm/4uZpv+Mmaf/
+jJmn/4uZpv+Mmaf/i5mm/4yZp/+Lmab/i5im/4yZp/+Lmab/jJmm/4yZp/+Lmab/jJmm/4uZpv+Lmab/
+jJmn/4yZp/+Lmab/jJmn/4uZpv+Mmaf/i5mm/4uYpv+Mmaf/i5mm/4yZpv+Mmaf/i5mm/4yZpv+Lmab/
+i5mm/4yZp/+Nmqf/jZqo/42aqP+Nmqj/jZqn/42aqP+Nmqj/jZqn/42aqP+Nmqj/jZqn/42bqP+Nmqj/
+jZqn/42aqP+Mmqf/jZqn/42aqP+Nmqj/jZqo/42ap/+Nmqj/jZqo/42ap/+Nmqj/jZqo/42ap/+Nm6j/
+jZqo/42ap/+Nmqj/jJqn/42ap/+Nmqj/jZqo/42aqP+Nmqf/jZqo/42aqP+Nmqf/jZqo/42aqP+Nmqf/
+jZuo/42aqP+Nmqf/jZqo/4yap/+Nmqf/jZqo/42aqP+Nmqj/jZqn/42aqP+Nmqj/jZqn/42aqP+Nmqj/
+jZqn/42bqP+Nmqj/jZqn/42aqP+Mmqf/jZqn/42aqP+Nmqj/jZqo/42ap/+Nmqj/jZqo/42ap/+Nmqj/
+jZqo/42ap/+Nm6j/jZqo/42ap/+Nmqj/jJqn/42ap/+Nmqj/jZqo/42aqP+Nmqf/jZqo/42aqP+Nmqf/
+jZqo/42aqP+Nmqf/jZuo/42aqP+Nmqf/jZqo/4yap/+Nmqf/jZqo/42aqP+Nmqj/jZqn/42aqP+Nmqj/
+jZqn/42aqP+Nmqj/jZqn/42bqP+Nmqj/jZqn/42aqP+Mmqf/jZqn/42aqP+Nmqj/jZqo/42ap/+Nmqj/
+jZqo/42ap/+Nmqj/jZqo/42ap/+Nm6j/jZqo/42ap/+Nmqj/jJqn/42ap/+Nmqj/jZqo/42aqP+Nmqf/
+jZqo/42aqP+Nmqf/jZqo/42aqP+Nmqf/jZuo/42aqP+Nmqf/jZqo/4yap/+Nmqf/jZqo/42aqP+Nmqj/
+jZqn/42aqP+Nmqj/jZqn/42aqP+Nmqj/jZqn/42bqP+Nmqj/jZqn/42aqP+Mmqf/jZqn/42aqP+Nmqj/
+jZqo/42ap/+OnKn/jpuo/46cqf+Om6j/jpup/46bqP+Om6j/jpup/46cqf+Om6j/jpup/46bqf+Om6j/
+jpup/46bqf+Om6n/jpyp/46bqP+OnKn/jpuo/46bqf+Om6j/jpuo/46bqf+OnKn/jpuo/46bqf+Om6n/
+jpuo/46bqf+Om6n/jpup/46cqf+Om6j/jpyp/46bqP+Om6n/jpuo/46bqP+Om6n/jpyp/46bqP+Om6n/
+jpup/46bqP+Om6n/jpup/46bqf+OnKn/jpuo/46cqf+Om6j/jpup/46bqP+Om6j/jpup/46cqf+Om6j/
+jpup/46bqf+Om6j/jpup/46bqf+Om6n/jpyp/46bqP+OnKn/jpuo/46bqf+Om6j/jpuo/46bqf+OnKn/
+jpuo/46bqf+Om6n/jpuo/46bqf+Om6n/jpup/46cqf+Om6j/jpyp/46bqP+Om6n/jpuo/46bqP+Om6n/
+jpyp/46bqP+Om6n/jpup/46bqP+Om6n/jpup/46bqf+OnKn/jpuo/46cqf+Om6j/jpup/46bqP+Om6j/
+jpup/46cqf+Om6j/jpup/46bqf+Om6j/jpup/46bqf+Om6n/jpyp/46bqP+OnKn/jpuo/46bqf+Om6j/
+jpuo/46bqf+OnKn/jpuo/46bqf+Om6n/jpuo/46bqf+Om6n/jpup/46cqf+Om6j/jpyp/46bqP+Om6n/
+jpuo/46bqP+Om6n/jpyp/46bqP+Om6n/jpup/46bqP+Om6n/jpup/46bqf+OnKn/jpuo/46cqf+Om6j/
+jpup/46bqP+Om6j/jpup/46cqf+Om6j/jpup/46bqf+Om6j/jpup/46bqf+Om6n/jpyp/46bqP+OnKn/
+jpuo/46bqf+Pnar/j5yq/4+cqv+PnKr/kJ2q/4+cqv+Qnar/j52q/4+cqf+PnKr/kJ2q/5Cdqv+PnKr/
+kJ2q/4+cqf+Qnar/j52q/4+cqv+PnKr/j5yq/5Cdqv+PnKr/kJ2q/4+dqv+PnKn/j5yq/5Cdqv+Qnar/
+j5yq/5Cdqv+PnKn/kJ2q/4+dqv+PnKr/j5yq/4+cqv+Qnar/j5yq/5Cdqv+Pnar/j5yp/4+cqv+Qnar/
+kJ2q/4+cqv+Qnar/j5yp/5Cdqv+Pnar/j5yq/4+cqv+PnKr/kJ2q/4+cqv+Qnar/j52q/4+cqf+PnKr/
+kJ2q/5Cdqv+PnKr/kJ2q/4+cqf+Qnar/j52q/4+cqv+PnKr/j5yq/5Cdqv+PnKr/kJ2q/4+dqv+PnKn/
+j5yq/5Cdqv+Qnar/j5yq/5Cdqv+PnKn/kJ2q/4+dqv+PnKr/j5yq/4+cqv+Qnar/j5yq/5Cdqv+Pnar/
+j5yp/4+cqv+Qnar/kJ2q/4+cqv+Qnar/j5yp/5Cdqv+Pnar/j5yq/4+cqv+PnKr/kJ2q/4+cqv+Qnar/
+j52q/4+cqf+PnKr/kJ2q/5Cdqv+PnKr/kJ2q/4+cqf+Qnar/j52q/4+cqv+PnKr/j5yq/5Cdqv+PnKr/
+kJ2q/4+dqv+PnKn/j5yq/5Cdqv+Qnar/j5yq/5Cdqv+PnKn/kJ2q/4+dqv+PnKr/j5yq/4+cqv+Qnar/
+j5yq/5Cdqv+Pnar/j5yp/4+cqv+Qnar/kJ2q/4+cqv+Qnar/j5yp/5Cdqv+Pnar/j5yq/4+cqv+PnKr/
+kJ2q/4+cqv+Qnar/j52q/4+cqf+PnKr/kJ2q/5Cdqv+PnKr/kJ2q/4+cqf+Qnar/j52q/4+cqv+PnKr/
+j5yq/5Cdqv+Qnar/kZ6r/5Geq/+Rnqv/kJ2r/5Cdqv+Qnav/kJ2q/5Geq/+Rnqv/kJ6r/5Cdqv+Rnqv/
+kJ2r/5Geq/+Qnav/kJ2q/5Geq/+Rnqv/kZ6r/5Cdq/+Qnar/kJ2r/5Cdqv+Rnqv/kZ6r/5Ceq/+Qnar/
+kZ6r/5Cdq/+Rnqv/kJ2r/5Cdqv+Rnqv/kZ6r/5Geq/+Qnav/kJ2q/5Cdq/+Qnar/kZ6r/5Geq/+Qnqv/
+kJ2q/5Geq/+Qnav/kZ6r/5Cdq/+Qnar/kZ6r/5Geq/+Rnqv/kJ2r/5Cdqv+Qnav/kJ2q/5Geq/+Rnqv/
+kJ6r/5Cdqv+Rnqv/kJ2r/5Geq/+Qnav/kJ2q/5Geq/+Rnqv/kZ6r/5Cdq/+Qnar/kJ2r/5Cdqv+Rnqv/
+kZ6r/5Ceq/+Qnar/kZ6r/5Cdq/+Rnqv/kJ2r/5Cdqv+Rnqv/kZ6r/5Geq/+Qnav/kJ2q/5Cdq/+Qnar/
+kZ6r/5Geq/+Qnqv/kJ2q/5Geq/+Qnav/kZ6r/5Cdq/+Qnar/kZ6r/5Geq/+Rnqv/kJ2r/5Cdqv+Qnav/
+kJ2q/5Geq/+Rnqv/kJ6r/5Cdqv+Rnqv/kJ2r/5Geq/+Qnav/kJ2q/5Geq/+Rnqv/kZ6r/5Cdq/+Qnar/
+kJ2r/5Cdqv+Rnqv/kZ6r/5Ceq/+Qnar/kZ6r/5Cdq/+Rnqv/kJ2r/5Cdqv+Rnqv/kZ6r/5Geq/+Qnav/
+kJ2q/5Cdq/+Qnar/kZ6r/5Geq/+Qnqv/kJ2q/5Geq/+Qnav/kZ6r/5Cdq/+Qnar/kZ6r/5Geq/+Rnqv/
+kJ2r/5Cdqv+Qnav/kJ2q/5Geq/+Rnqv/kJ6r/5Cdqv+Rnqv/kJ2r/5Geq/+Qnav/kJ2q/5Geq/+Rnqv/
+kZ6r/5Cdq/+Rnqz/kp+s/5GerP+Snqz/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Snqz/kp+s/5KfrP+Sn6z/
+kp+s/5KfrP+Sn6z/kZ6s/5KfrP+Rnqz/kp6s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kp6s/5KfrP+Sn6z/
+kp+s/5KfrP+Sn6z/kp+s/5GerP+Sn6z/kZ6s/5KerP+Sn6z/kp+s/5KfrP+Sn6z/kp+s/5KerP+Sn6z/
+kp+s/5KfrP+Sn6z/kp+s/5KfrP+Rnqz/kp+s/5GerP+Snqz/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Snqz/
+kp+s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kZ6s/5KfrP+Rnqz/kp6s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/
+kp6s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kp+s/5GerP+Sn6z/kZ6s/5KerP+Sn6z/kp+s/5KfrP+Sn6z/
+kp+s/5KerP+Sn6z/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Rnqz/kp+s/5GerP+Snqz/kp+s/5KfrP+Sn6z/
+kp+s/5KfrP+Snqz/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kZ6s/5KfrP+Rnqz/kp6s/5KfrP+Sn6z/
+kp+s/5KfrP+Sn6z/kp6s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kp+s/5GerP+Sn6z/kZ6s/5KerP+Sn6z/
+kp+s/5KfrP+Sn6z/kp+s/5KerP+Sn6z/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Rnqz/kp+s/5GerP+Snqz/
+kp+s/5KfrP+Sn6z/kp+s/5KfrP+Snqz/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kZ6s/5KfrP+Rnqz/
+kp6s/5KfrP+Uoa7/lKGu/5Shrv+Uoa7/laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa//lKGu/5Shrv+Uoa7/
+laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/lKGv/5Shrv+Uoa7/
+lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Shrv+Voa//lKGu/5Shrv+Uoa7/lKGu/5Shr/+Uoa7/
+lKGu/5Shrv+Voa//lKGu/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa//
+lKGu/5Shrv+Uoa7/laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/
+lKGv/5Shrv+Uoa7/lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Shrv+Voa//lKGu/5Shrv+Uoa7/
+lKGu/5Shr/+Uoa7/lKGu/5Shrv+Voa//lKGu/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/laGv/5Shrv+Uoa7/
+lKGu/5Shrv+Uoa//lKGu/5Shrv+Uoa7/laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Whr/+Uoa7/
+lKGu/5Shrv+Uoa7/lKGv/5Shrv+Uoa7/lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Shrv+Voa//
+lKGu/5Shrv+Uoa7/lKGu/5Shr/+Uoa7/lKGu/5Shrv+Voa//lKGu/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/
+laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa//lKGu/5Shrv+Uoa7/laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/
+lKGu/5Whr/+Wo7D/lqKw/5Wir/+Voq//laKv/5aisP+Voq//lqOw/5Wir/+WorD/laKv/5Wir/+WorD/
+laKv/5Wir/+WorD/lqOw/5aisP+Voq//laKv/5Wir/+WorD/laKv/5ajsP+Voq//lqKw/5Wir/+Voq//
+lqKw/5Wir/+Voq//lqKw/5ajsP+WorD/laKv/5Wir/+Voq//lqKw/5Wir/+Wo7D/laKv/5aisP+Voq//
+laKv/5aisP+Voq//laKv/5aisP+Wo7D/lqKw/5Wir/+Voq//laKv/5aisP+Voq//lqOw/5Wir/+WorD/
+laKv/5Wir/+WorD/laKv/5Wir/+WorD/lqOw/5aisP+Voq//laKv/5Wir/+WorD/laKv/5ajsP+Voq//
+lqKw/5Wir/+Voq//lqKw/5Wir/+Voq//lqKw/5ajsP+WorD/laKv/5Wir/+Voq//lqKw/5Wir/+Wo7D/
+laKv/5aisP+Voq//laKv/5aisP+Voq//laKv/5aisP+Wo7D/lqKw/5Wir/+Voq//laKv/5aisP+Voq//
+lqOw/5Wir/+WorD/laKv/5Wir/+WorD/laKv/5Wir/+WorD/lqOw/5aisP+Voq//laKv/5Wir/+WorD/
+laKv/5ajsP+Voq//lqKw/5Wir/+Voq//lqKw/5Wir/+Voq//lqKw/5ajsP+WorD/laKv/5Wir/+Voq//
+lqKw/5Wir/+Wo7D/laKv/5aisP+Voq//laKv/5aisP+Voq//laKv/5aisP+Wo7D/lqKw/5Wir/+Voq//
+laKv/5aisP+Voq//lqOw/5Wir/+WorD/laKv/5Wir/+WorD/laKv/5Wir/+WorD/lqOw/5aisP+Voq//
+laKv/5Wir/+Xo7H/lqOw/5ejsP+XpLH/l6Sx/5ajsP+Wo7D/l6Ow/5ajsP+Wo7D/l6Sx/5ajsP+Wo7D/
+l6Ox/5ajsP+Wo7D/l6Ox/5ajsP+Xo7D/l6Sx/5eksf+Wo7D/lqOw/5ejsP+Wo7D/lqOw/5eksf+Wo7D/
+lqOw/5ejsf+Wo7D/lqOw/5ejsf+Wo7D/l6Ow/5eksf+XpLH/lqOw/5ajsP+Xo7D/lqOw/5ajsP+XpLH/
+lqOw/5ajsP+Xo7H/lqOw/5ajsP+Xo7H/lqOw/5ejsP+XpLH/l6Sx/5ajsP+Wo7D/l6Ow/5ajsP+Wo7D/
+l6Sx/5ajsP+Wo7D/l6Ox/5ajsP+Wo7D/l6Ox/5ajsP+Xo7D/l6Sx/5eksf+Wo7D/lqOw/5ejsP+Wo7D/
+lqOw/5eksf+Wo7D/lqOw/5ejsf+Wo7D/lqOw/5ejsf+Wo7D/l6Ow/5eksf+XpLH/lqOw/5ajsP+Xo7D/
+lqOw/5ajsP+XpLH/lqOw/5ajsP+Xo7H/lqOw/5ajsP+Xo7H/lqOw/5ejsP+XpLH/l6Sx/5ajsP+Wo7D/
+l6Ow/5ajsP+Wo7D/l6Sx/5ajsP+Wo7D/l6Ox/5ajsP+Wo7D/l6Ox/5ajsP+Xo7D/l6Sx/5eksf+Wo7D/
+lqOw/5ejsP+Wo7D/lqOw/5eksf+Wo7D/lqOw/5ejsf+Wo7D/lqOw/5ejsf+Wo7D/l6Ow/5eksf+XpLH/
+lqOw/5ajsP+Xo7D/lqOw/5ajsP+XpLH/lqOw/5ajsP+Xo7H/lqOw/5ajsP+Xo7H/lqOw/5ejsP+XpLH/
+l6Sx/5ajsP+Wo7D/l6Ow/5ajsP+Wo7D/l6Sx/5ajsP+Wo7D/l6Ox/5ajsP+Wo7D/l6Ox/5ajsP+Xo7D/
+l6Sx/5eksf+XpLH/mKWy/5iksf+XpLH/l6Sx/5ilsv+YpLH/mKWy/5ilsv+XpLH/mKSy/5ilsv+YpLH/
+mKWy/5ilsv+XpLH/l6Sx/5ilsv+YpLH/l6Sx/5eksf+YpbL/mKSx/5ilsv+YpbL/l6Sx/5iksv+YpbL/
+mKSx/5ilsv+YpbL/l6Sx/5eksf+YpbL/mKSx/5eksf+XpLH/mKWy/5iksf+YpbL/mKWy/5eksf+YpLL/
+mKWy/5iksf+YpbL/mKWy/5eksf+XpLH/mKWy/5iksf+XpLH/l6Sx/5ilsv+YpLH/mKWy/5ilsv+XpLH/
+mKSy/5ilsv+YpLH/mKWy/5ilsv+XpLH/l6Sx/5ilsv+YpLH/l6Sx/5eksf+YpbL/mKSx/5ilsv+YpbL/
+l6Sx/5iksv+YpbL/mKSx/5ilsv+YpbL/l6Sx/5eksf+YpbL/mKSx/5eksf+XpLH/mKWy/5iksf+YpbL/
+mKWy/5eksf+YpLL/mKWy/5iksf+YpbL/mKWy/5eksf+XpLH/mKWy/5iksf+XpLH/l6Sx/5ilsv+YpLH/
+mKWy/5ilsv+XpLH/mKSy/5ilsv+YpLH/mKWy/5ilsv+XpLH/l6Sx/5ilsv+YpLH/l6Sx/5eksf+YpbL/
+mKSx/5ilsv+YpbL/l6Sx/5iksv+YpbL/mKSx/5ilsv+YpbL/l6Sx/5eksf+YpbL/mKSx/5eksf+XpLH/
+mKWy/5iksf+YpbL/mKWy/5eksf+YpLL/mKWy/5iksf+YpbL/mKWy/5eksf+XpLH/mKWy/5iksf+XpLH/
+l6Sx/5ilsv+YpLH/mKWy/5ilsv+XpLH/mKSy/5ilsv+YpLH/mKWy/5ilsv+XpLH/l6Sx/5ilsv+YpLH/
+l6Sx/5eksf+ZpbP/maaz/5mms/+ZprP/maaz/5mlsv+ZpbL/maaz/5mlsv+ZprP/maWy/5mlsv+ZprP/
+maWy/5mms/+ZprP/maWz/5mms/+ZprP/maaz/5mms/+ZpbL/maWy/5mms/+ZpbL/maaz/5mlsv+ZpbL/
+maaz/5mlsv+ZprP/maaz/5mls/+ZprP/maaz/5mms/+ZprP/maWy/5mlsv+ZprP/maWy/5mms/+ZpbL/
+maWy/5mms/+ZpbL/maaz/5mms/+ZpbP/maaz/5mms/+ZprP/maaz/5mlsv+ZpbL/maaz/5mlsv+ZprP/
+maWy/5mlsv+ZprP/maWy/5mms/+ZprP/maWz/5mms/+ZprP/maaz/5mms/+ZpbL/maWy/5mms/+ZpbL/
+maaz/5mlsv+ZpbL/maaz/5mlsv+ZprP/maaz/5mls/+ZprP/maaz/5mms/+ZprP/maWy/5mlsv+ZprP/
+maWy/5mms/+ZpbL/maWy/5mms/+ZpbL/maaz/5mms/+ZpbP/maaz/5mms/+ZprP/maaz/5mlsv+ZpbL/
+maaz/5mlsv+ZprP/maWy/5mlsv+ZprP/maWy/5mms/+ZprP/maWz/5mms/+ZprP/maaz/5mms/+ZpbL/
+maWy/5mms/+ZpbL/maaz/5mlsv+ZpbL/maaz/5mlsv+ZprP/maaz/5mls/+ZprP/maaz/5mms/+ZprP/
+maWy/5mlsv+ZprP/maWy/5mms/+ZpbL/maWy/5mms/+ZpbL/maaz/5mms/+ZpbP/maaz/5mms/+ZprP/
+maaz/5mlsv+ZpbL/maaz/5mlsv+ZprP/maWy/5mlsv+ZprP/maWy/5mms/+ZprP/maWz/5mms/+ZprP/
+maaz/5mms/+bqLX/m6e0/5uotf+cqLX/m6e0/5uotf+cqLX/m6i1/5uotf+bqLX/nKi1/5uotf+cqLX/
+m6i1/5untP+bqLX/m6i1/5untP+bqLX/nKi1/5untP+bqLX/nKi1/5uotf+bqLX/m6i1/5yotf+bqLX/
+nKi1/5uotf+bp7T/m6i1/5uotf+bp7T/m6i1/5yotf+bp7T/m6i1/5yotf+bqLX/m6i1/5uotf+cqLX/
+m6i1/5yotf+bqLX/m6e0/5uotf+bqLX/m6e0/5uotf+cqLX/m6e0/5uotf+cqLX/m6i1/5uotf+bqLX/
+nKi1/5uotf+cqLX/m6i1/5untP+bqLX/m6i1/5untP+bqLX/nKi1/5untP+bqLX/nKi1/5uotf+bqLX/
+m6i1/5yotf+bqLX/nKi1/5uotf+bp7T/m6i1/5uotf+bp7T/m6i1/5yotf+bp7T/m6i1/5yotf+bqLX/
+m6i1/5uotf+cqLX/m6i1/5yotf+bqLX/m6e0/5uotf+bqLX/m6e0/5uotf+cqLX/m6e0/5uotf+cqLX/
+m6i1/5uotf+bqLX/nKi1/5uotf+cqLX/m6i1/5untP+bqLX/m6i1/5untP+bqLX/nKi1/5untP+bqLX/
+nKi1/5uotf+bqLX/m6i1/5yotf+bqLX/nKi1/5uotf+bp7T/m6i1/5uotf+bp7T/m6i1/5yotf+bp7T/
+m6i1/5yotf+bqLX/m6i1/5uotf+cqLX/m6i1/5yotf+bqLX/m6e0/5uotf+bqLX/m6e0/5uotf+cqLX/
+m6e0/5uotf+cqLX/m6i1/5uotf+bqLX/nKi1/5uotf+cqLX/m6i1/5untP+bqLX/m6i1/5untP+bqLX/
+nKi1/5untP+cqbb/nam2/5yptv+dqbb/nam2/5yptv+dqbb/nKi1/52ptv+cqbb/nKi2/5yptv+dqbb/
+nKm2/52ptv+dqbb/nKm2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/5yotf+dqbb/nKm2/5yotv+cqbb/
+nam2/5yptv+dqbb/nam2/5yptv+dqbb/nKm2/52ptv+dqbb/nKm2/52ptv+cqLX/nam2/5yptv+cqLb/
+nKm2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/5yptv+dqbb/nam2/5yptv+dqbb/nKi1/52ptv+cqbb/
+nKi2/5yptv+dqbb/nKm2/52ptv+dqbb/nKm2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/5yotf+dqbb/
+nKm2/5yotv+cqbb/nam2/5yptv+dqbb/nam2/5yptv+dqbb/nKm2/52ptv+dqbb/nKm2/52ptv+cqLX/
+nam2/5yptv+cqLb/nKm2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/5yptv+dqbb/nam2/5yptv+dqbb/
+nKi1/52ptv+cqbb/nKi2/5yptv+dqbb/nKm2/52ptv+dqbb/nKm2/52ptv+cqbb/nam2/52ptv+cqbb/
+nam2/5yotf+dqbb/nKm2/5yotv+cqbb/nam2/5yptv+dqbb/nam2/5yptv+dqbb/nKm2/52ptv+dqbb/
+nKm2/52ptv+cqLX/nam2/5yptv+cqLb/nKm2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/5yptv+dqbb/
+nam2/5yptv+dqbb/nKi1/52ptv+cqbb/nKi2/5yptv+dqbb/nKm2/52ptv+dqbb/nKm2/52ptv+cqbb/
+nam2/52ptv+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/56qt/+eqrf/
+nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/naq3/56qt/+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/
+nqq3/56qt/+eqrf/naq3/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/56qt/+eqrf/naq3/56qt/+eqrf/
+nqq3/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/nqq3/52qt/+eqrf/
+nqq3/56qt/+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/naq3/56qt/+eqrf/nqq3/56qt/+dqrf/
+nqq3/56qt/+eqrf/nqq3/56qt/+eqrf/naq3/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/56qt/+eqrf/
+naq3/56qt/+eqrf/nqq3/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/
+nqq3/52qt/+eqrf/nqq3/56qt/+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/naq3/56qt/+eqrf/
+nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/nqq3/56qt/+eqrf/naq3/56qt/+eqrf/nqq3/52qt/+eqrf/
+nqq3/56qt/+eqrf/naq3/56qt/+eqrf/nqq3/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/56qt/+dqrf/
+nqq3/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/56qt/+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+eqrf/
+naq3/56qt/8ADgEAAAMAAAABAKUAAAEBAAMAAAABACcAAAECAAMAAAAEAABlQgEDAAMAAAABAAEAAAEG
+AAMAAAABAAIAAAERAAQAAAABAAAACAESAAMAAAABAAEAAAEVAAMAAAABAAQAAAEWAAMAAAABACcAAAEX
+AAQAAAABAABkjAEcAAMAAAABAAEAAAFSAAMAAAABAAEAAAFTAAMAAAAEAABlSodzAAcAACesAABlUgAA
+AAAACAAIAAgACAABAAEAAQABAAAnrGFwcGwCAAAAbW50clJHQiBYWVogB9kACwAXAAsADQADYWNzcEFQ
+UEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPbWAAEAAAAA0y1hcHBsAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARclhZWgAAAVAAAAAUZ1hZWgAAAWQAAAAUYlhZWgAA
+AXgAAAAUd3RwdAAAAYwAAAAUY2hhZAAAAaAAAAAsclRSQwAAAcwAAAgMZ1RSQwAACdgAAAgMYlRSQwAA
+EeQAAAgMYWFyZwAAGfAAAAAgYWFnZwAAGhAAAAAgYWFiZwAAGjAAAAAgdmNndAAAGlAAAAYSbmRpbgAA
+IGQAAAY+ZGVzYwAAJqQAAABkZHNjbQAAJwgAAABWbW1vZAAAJ2AAAAAoY3BydAAAJ4gAAAAkWFlaIAAA
+AAAAAGXbAAA6RgAACaRYWVogAAAAAAAAaMsAAKyrAAAaoVhZWiAAAAAAAAAoMAAAGQ8AAK7oWFlaIAAA
+AAAAAPNSAAEAAAABFs9zZjMyAAAAAAABDEIAAAXe///zJgAAB5IAAP2R///7ov///aMAAAPcAADAbGN1
+cnYAAAAAAAAEAAAAAAUACgAPABQAGQAeACMAKAAtADIANwA7AEAARQBKAE8AVABZAF4AYwBoAG0AcgB3
+AHwAgQCGAIsAkACVAJoAnwCkAKkArgCyALcAvADBAMYAywDQANUA2gDgAOUA6gDwAPUA+wEBAQcBDAES
+ARgBHgElASsBMQE4AT4BRQFLAVIBWQFgAWYBbQF1AXwBgwGKAZIBmQGhAagBsAG4AcAByAHQAdgB4AHp
+AfEB+gICAgsCFAIcAiUCLgI3AkACSgJTAlwCZgJwAnkCgwKNApcCoQKrArUCvwLKAtQC3wLqAvQC/wMK
+AxUDIAMrAzcDQgNNA1kDZQNwA3wDiAOUA6ADrAO5A8UD0gPeA+sD+AQEBBEEHgQsBDkERgRUBGEEbwR8
+BIoEmASmBLQEwgTRBN8E7gT8BQsFGgUoBTcFRwVWBWUFdAWEBZMFowWzBcMF0wXjBfMGAwYUBiQGNQZF
+BlYGZwZ4BokGmgarBr0GzgbgBvIHAwcVBycHOQdMB14HcAeDB5YHqAe7B84H4Qf0CAgIGwgvCEIIVghq
+CH4IkgimCLoIzgjjCPcJDAkhCTYJSwlgCXUJigmgCbUJywngCfYKDAoiCjkKTwplCnwKkgqpCsAK1wru
+CwULHQs0C0sLYwt7C5MLqwvDC9sL8wwMDCQMPQxWDG4MhwyhDLoM0wztDQYNIA06DVQNbg2IDaINvA3X
+DfEODA4nDkIOXQ54DpMOrw7KDuYPAg8eDzoPVg9yD44Pqw/ID+QQARAeEDsQWBB2EJMQsRDOEOwRChEo
+EUYRZBGDEaERwBHfEf4SHRI8ElsSehKaErkS2RL5ExkTORNZE3oTmhO7E9sT/BQdFD4UXxSBFKIUxBTl
+FQcVKRVLFW0VkBWyFdUV9xYaFj0WYBaDFqcWyhbuFxIXNRdZF30XohfGF+oYDxg0GFkYfRijGMgY7RkT
+GTgZXhmEGaoZ0Bn2Gh0aQxpqGpAatxreGwYbLRtUG3wboxvLG/McGxxDHGwclBy9HOYdDh03HWAdih2z
+Hd0eBh4wHloehB6uHtgfAx8tH1gfgx+uH9kgBCAwIFsghyCzIN4hCiE3IWMhjyG8IekiFSJCInAinSLK
+IvgjJSNTI4EjryPdJAwkOiRpJJckxiT1JSQlVCWDJbMl4iYSJkImciajJtMnAyc0J2UnlifHJ/goKihb
+KI0ovijwKSIpVSmHKbkp7CofKlIqhSq4KusrHitSK4YruivuLCIsViyKLL8s9C0pLV4tky3ILf0uMy5p
+Lp4u1C8LL0Evdy+uL+QwGzBSMIkwwTD4MTAxZzGfMdcyDzJIMoAyuDLxMyozYzOcM9U0DzRINII0vDT2
+NTA1ajWlNd82GjZVNpA2yzcGN0I3fje5N/U4MThtOKo45jkjOWA5nTnaOhc6VDqSOs87DTtLO4k7xzwG
+PEQ8gzzCPQE9QD1/Pb89/j4+Pn4+vj7+Pz8/fz/AQABAQUCCQMRBBUFHQYhBykIMQk5CkULTQxZDWEOb
+Q95EIURlRKhE7EUwRXRFuEX8RkBGhUbKRw5HU0eZR95II0hpSK9I9Uk7SYFJx0oOSlVKm0riSypLcUu4
+TABMSEyQTNhNIE1oTbFN+k5CToxO1U8eT2dPsU/7UEVQj1DZUSRRblG5UgRST1KaUuVTMVN8U8hUFFRg
+VK1U+VVGVZJV31YsVnpWx1cUV2JXsFf+WExYmljpWThZhlnVWiRadFrDWxNbY1uyXANcU1yjXPRdRF2V
+XeZeN16JXtpfLF9+X9BgImB0YMdhGWFsYb9iEmJlYrljDGNgY7RkCGRcZLFlBWVaZa9mBGZZZq9nBGda
+Z7BoBmhcaLJpCWlfabZqDWpkarxrE2tra8NsG2xzbMttI218bdVuLm6HbuBvOm+Tb+1wR3ChcPtxVnGw
+cgtyZnLBcxxzeHPTdC90i3TndUN1oHX8dll2tncTd3B3zngreIl453lFeaN6Anpger97Hnt9e9x8PHyb
+fPt9W327fht+fH7cfz1/nn//gGCAwoEjgYWB54JJgquDDoNwg9OENoSZhPyFYIXDhieGi4bvh1SHuIgd
+iIGI5olMibGKFop8iuKLSIuujBSMe4zijUiNr44Xjn6O5Y9Nj7WQHZCFkO6RVpG/kiiSkZL6k2STzZQ3
+lKGVC5V1leCWSpa1lyCXi5f3mGKYzpk6maaaEpp+muubV5vEnDGcn50MnXmd555VnsOfMZ+goA+gfaDs
+oVuhy6I6oqqjGqOKo/qkaqTbpUylvKYupp+nEKeCp/SoZajYqUqpvKovqqKrFauIq/usb6zjrVaty64/
+rrOvKK+dsBGwh7D8sXGx57JdstOzSbO/tDa0rbUktZu2EraJtwG3ebfxuGm44blaudK6S7rEuz67t7ww
+vKq9JL2evhm+k78Ov4nABMB/wPrBdsHxwm3C6cNmw+LEX8TcxVnF1sZTxtHHTsfMyErIyclHycbKRcrE
+y0PLwsxCzMHNQc3BzkLOws9Dz8PQRNDG0UfRyNJK0szTTtPQ1FPU1tVY1dvWXtbi12XX6dht2PHZddn6
+2n/bA9uI3A7ck90Z3Z7eJN6q3zHft+A+4MXhTOHT4lri4uNq4/LkeuUC5YvmE+ac5yXnr+g46MLpTOnW
+6mDq6ut16//siu0W7aHuLO6470Tv0PBc8OnxdfIC8o/zHPOq9Df0xfVT9eH2b/b+94z4G/iq+Tn5yfpZ
++uj7ePwI/Jn9Kf26/kv+3P9uY3VydgAAAAAAAAQAAAAABQAKAA8AFAAZAB4AIwAoAC0AMgA3ADsAQABF
+AEoATwBUAFkAXgBjAGgAbQByAHcAfACBAIYAiwCQAJUAmgCfAKQAqQCuALIAtwC8AMEAxgDLANAA1QDa
+AOAA5QDqAPAA9QD7AQEBBwEMARIBGAEeASUBKwExATgBPgFFAUsBUgFZAWABZgFtAXUBfAGDAYoBkgGZ
+AaEBqAGwAbgBwAHIAdAB2AHgAekB8QH6AgICCwIUAhwCJQIuAjcCQAJKAlMCXAJmAnACeQKDAo0ClwKh
+AqsCtQK/AsoC1ALfAuoC9AL/AwoDFQMgAysDNwNCA00DWQNlA3ADfAOIA5QDoAOsA7kDxQPSA94D6wP4
+BAQEEQQeBCwEOQRGBFQEYQRvBHwEigSYBKYEtATCBNEE3wTuBPwFCwUaBSgFNwVHBVYFZQV0BYQFkwWj
+BbMFwwXTBeMF8wYDBhQGJAY1BkUGVgZnBngGiQaaBqsGvQbOBuAG8gcDBxUHJwc5B0wHXgdwB4MHlgeo
+B7sHzgfhB/QICAgbCC8IQghWCGoIfgiSCKYIugjOCOMI9wkMCSEJNglLCWAJdQmKCaAJtQnLCeAJ9goM
+CiIKOQpPCmUKfAqSCqkKwArXCu4LBQsdCzQLSwtjC3sLkwurC8ML2wvzDAwMJAw9DFYMbgyHDKEMugzT
+DO0NBg0gDToNVA1uDYgNog28DdcN8Q4MDicOQg5dDngOkw6vDsoO5g8CDx4POg9WD3IPjg+rD8gP5BAB
+EB4QOxBYEHYQkxCxEM4Q7BEKESgRRhFkEYMRoRHAEd8R/hIdEjwSWxJ6EpoSuRLZEvkTGRM5E1kTehOa
+E7sT2xP8FB0UPhRfFIEUohTEFOUVBxUpFUsVbRWQFbIV1RX3FhoWPRZgFoMWpxbKFu4XEhc1F1kXfRei
+F8YX6hgPGDQYWRh9GKMYyBjtGRMZOBleGYQZqhnQGfYaHRpDGmoakBq3Gt4bBhstG1QbfBujG8sb8xwb
+HEMcbByUHL0c5h0OHTcdYB2KHbMd3R4GHjAeWh6EHq4e2B8DHy0fWB+DH64f2SAEIDAgWyCHILMg3iEK
+ITchYyGPIbwh6SIVIkIicCKdIsoi+CMlI1MjgSOvI90kDCQ6JGkklyTGJPUlJCVUJYMlsyXiJhImQiZy
+JqMm0ycDJzQnZSeWJ8cn+CgqKFsojSi+KPApIilVKYcpuSnsKh8qUiqFKrgq6yseK1Irhiu6K+4sIixW
+LIosvyz0LSktXi2TLcgt/S4zLmkuni7ULwsvQS93L64v5DAbMFIwiTDBMPgxMDFnMZ8x1zIPMkgygDK4
+MvEzKjNjM5wz1TQPNEg0gjS8NPY1MDVqNaU13zYaNlU2kDbLNwY3Qjd+N7k39TgxOG04qjjmOSM5YDmd
+Odo6FzpUOpI6zzsNO0s7iTvHPAY8RDyDPMI9AT1APX89vz3+Pj4+fj6+Pv4/Pz9/P8BAAEBBQIJAxEEF
+QUdBiEHKQgxCTkKRQtNDFkNYQ5tD3kQhRGVEqETsRTBFdEW4RfxGQEaFRspHDkdTR5lH3kgjSGlIr0j1
+STtJgUnHSg5KVUqbSuJLKktxS7hMAExITJBM2E0gTWhNsU36TkJOjE7VTx5PZ0+xT/tQRVCPUNlRJFFu
+UblSBFJPUppS5VMxU3xTyFQUVGBUrVT5VUZVklXfVixWelbHVxRXYlewV/5YTFiaWOlZOFmGWdVaJFp0
+WsNbE1tjW7JcA1xTXKNc9F1EXZVd5l43Xole2l8sX35f0GAiYHRgx2EZYWxhv2ISYmViuWMMY2BjtGQI
+ZFxksWUFZVplr2YEZllmr2cEZ1pnsGgGaFxosmkJaV9ptmoNamRqvGsTa2trw2wbbHNsy20jbXxt1W4u
+bodu4G86b5Nv7XBHcKFw+3FWcbByC3JmcsFzHHN4c9N0L3SLdOd1Q3Wgdfx2WXa2dxN3cHfOeCt4iXjn
+eUV5o3oCemB6v3see3173Hw8fJt8+31bfbt+G358ftx/PX+ef/+AYIDCgSOBhYHngkmCq4MOg3CD04Q2
+hJmE/IVghcOGJ4aLhu+HVIe4iB2IgYjmiUyJsYoWinyK4otIi66MFIx7jOKNSI2vjheOfo7lj02PtZAd
+kIWQ7pFWkb+SKJKRkvqTZJPNlDeUoZULlXWV4JZKlrWXIJeLl/eYYpjOmTqZppoSmn6a65tXm8ScMZyf
+nQydeZ3nnlWew58xn6CgD6B9oOyhW6HLojqiqqMao4qj+qRqpNulTKW8pi6mn6cQp4Kn9KhlqNipSqm8
+qi+qoqsVq4ir+6xvrOOtVq3Lrj+us68or52wEbCHsPyxcbHnsl2y07NJs7+0NrSttSS1m7YStom3Abd5
+t/G4abjhuVq50rpLusS7Pru3vDC8qr0kvZ6+Gb6Tvw6/icAEwH/A+sF2wfHCbcLpw2bD4sRfxNzFWcXW
+xlPG0cdOx8zISsjJyUfJxspFysTLQ8vCzELMwc1BzcHOQs7Cz0PPw9BE0MbRR9HI0krSzNNO09DUU9TW
+1VjV29Ze1uLXZdfp2G3Y8dl12fraf9sD24jcDtyT3Rndnt4k3qrfMd+34D7gxeFM4dPiWuLi42rj8uR6
+5QLli+YT5pznJeev6DjowulM6dbqYOrq63Xr/+yK7Rbtoe4s7rjvRO/Q8Fzw6fF18gLyj/Mc86r0N/TF
+9VP14fZv9v73jPgb+Kr5OfnJ+ln66Pt4/Aj8mf0p/br+S/7c/25jdXJ2AAAAAAAABAAAAAAFAAoADwAU
+ABkAHgAjACgALQAyADcAOwBAAEUASgBPAFQAWQBeAGMAaABtAHIAdwB8AIEAhgCLAJAAlQCaAJ8ApACp
+AK4AsgC3ALwAwQDGAMsA0ADVANoA4ADlAOoA8AD1APsBAQEHAQwBEgEYAR4BJQErATEBOAE+AUUBSwFS
+AVkBYAFmAW0BdQF8AYMBigGSAZkBoQGoAbABuAHAAcgB0AHYAeAB6QHxAfoCAgILAhQCHAIlAi4CNwJA
+AkoCUwJcAmYCcAJ5AoMCjQKXAqECqwK1Ar8CygLUAt8C6gL0Av8DCgMVAyADKwM3A0IDTQNZA2UDcAN8
+A4gDlAOgA6wDuQPFA9ID3gPrA/gEBAQRBB4ELAQ5BEYEVARhBG8EfASKBJgEpgS0BMIE0QTfBO4E/AUL
+BRoFKAU3BUcFVgVlBXQFhAWTBaMFswXDBdMF4wXzBgMGFAYkBjUGRQZWBmcGeAaJBpoGqwa9Bs4G4Aby
+BwMHFQcnBzkHTAdeB3AHgweWB6gHuwfOB+EH9AgICBsILwhCCFYIagh+CJIIpgi6CM4I4wj3CQwJIQk2
+CUsJYAl1CYoJoAm1CcsJ4An2CgwKIgo5Ck8KZQp8CpIKqQrACtcK7gsFCx0LNAtLC2MLewuTC6sLwwvb
+C/MMDAwkDD0MVgxuDIcMoQy6DNMM7Q0GDSANOg1UDW4NiA2iDbwN1w3xDgwOJw5CDl0OeA6TDq8Oyg7m
+DwIPHg86D1YPcg+OD6sPyA/kEAEQHhA7EFgQdhCTELEQzhDsEQoRKBFGEWQRgxGhEcAR3xH+Eh0SPBJb
+EnoSmhK5EtkS+RMZEzkTWRN6E5oTuxPbE/wUHRQ+FF8UgRSiFMQU5RUHFSkVSxVtFZAVshXVFfcWGhY9
+FmAWgxanFsoW7hcSFzUXWRd9F6IXxhfqGA8YNBhZGH0YoxjIGO0ZExk4GV4ZhBmqGdAZ9hodGkMaahqQ
+Grca3hsGGy0bVBt8G6MbyxvzHBscQxxsHJQcvRzmHQ4dNx1gHYodsx3dHgYeMB5aHoQerh7YHwMfLR9Y
+H4Mfrh/ZIAQgMCBbIIcgsyDeIQohNyFjIY8hvCHpIhUiQiJwIp0iyiL4IyUjUyOBI68j3SQMJDokaSSX
+JMYk9SUkJVQlgyWzJeImEiZCJnImoybTJwMnNCdlJ5Ynxyf4KCooWyiNKL4o8CkiKVUphym5KewqHypS
+KoUquCrrKx4rUiuGK7or7iwiLFYsiiy/LPQtKS1eLZMtyC39LjMuaS6eLtQvCy9BL3cvri/kMBswUjCJ
+MMEw+DEwMWcxnzHXMg8ySDKAMrgy8TMqM2MznDPVNA80SDSCNLw09jUwNWo1pTXfNho2VTaQNss3BjdC
+N343uTf1ODE4bTiqOOY5IzlgOZ052joXOlQ6kjrPOw07SzuJO8c8BjxEPIM8wj0BPUA9fz2/Pf4+Pj5+
+Pr4+/j8/P38/wEAAQEFAgkDEQQVBR0GIQcpCDEJOQpFC00MWQ1hDm0PeRCFEZUSoROxFMEV0RbhF/EZA
+RoVGykcOR1NHmUfeSCNIaUivSPVJO0mBScdKDkpVSptK4ksqS3FLuEwATEhMkEzYTSBNaE2xTfpOQk6M
+TtVPHk9nT7FP+1BFUI9Q2VEkUW5RuVIEUk9SmlLlUzFTfFPIVBRUYFStVPlVRlWSVd9WLFZ6VsdXFFdi
+V7BX/lhMWJpY6Vk4WYZZ1VokWnRaw1sTW2NbslwDXFNco1z0XURdlV3mXjdeiV7aXyxffl/QYCJgdGDH
+YRlhbGG/YhJiZWK5YwxjYGO0ZAhkXGSxZQVlWmWvZgRmWWavZwRnWmewaAZoXGiyaQlpX2m2ag1qZGq8
+axNra2vDbBtsc2zLbSNtfG3Vbi5uh27gbzpvk2/tcEdwoXD7cVZxsHILcmZywXMcc3hz03QvdIt053VD
+daB1/HZZdrZ3E3dwd854K3iJeOd5RXmjegJ6YHq/ex57fXvcfDx8m3z7fVt9u34bfnx+3H89f55//4Bg
+gMKBI4GFgeeCSYKrgw6DcIPThDaEmYT8hWCFw4YnhouG74dUh7iIHYiBiOaJTImxihaKfIrii0iLrowU
+jHuM4o1Ija+OF45+juWPTY+1kB2QhZDukVaRv5IokpGS+pNkk82UN5ShlQuVdZXglkqWtZcgl4uX95hi
+mM6ZOpmmmhKafprrm1ebxJwxnJ+dDJ15neeeVZ7DnzGfoKAPoH2g7KFbocuiOqKqoxqjiqP6pGqk26VM
+pbymLqafpxCngqf0qGWo2KlKqbyqL6qiqxWriKv7rG+s461WrcuuP66zryivnbARsIew/LFxseeyXbLT
+s0mzv7Q2tK21JLWbthK2ibcBt3m38bhpuOG5WrnSuku6xLs+u7e8MLyqvSS9nr4ZvpO/Dr+JwATAf8D6
+wXbB8cJtwunDZsPixF/E3MVZxdbGU8bRx07HzMhKyMnJR8nGykXKxMtDy8LMQszBzUHNwc5CzsLPQ8/D
+0ETQxtFH0cjSStLM007T0NRT1NbVWNXb1l7W4tdl1+nYbdjx2XXZ+tp/2wPbiNwO3JPdGd2e3iTeqt8x
+37fgPuDF4Uzh0+Ja4uLjauPy5HrlAuWL5hPmnOcl56/oOOjC6Uzp1upg6urrdev/7IrtFu2h7izuuO9E
+79DwXPDp8XXyAvKP8xzzqvQ39MX1U/Xh9m/2/veM+Bv4qvk5+cn6Wfro+3j8CPyZ/Sn9uv5L/tz/bnBh
+cmEAAAAAAAMAAAACZmYAAPKnAAANWQAAE9AAAAsDcGFyYQAAAAAAAwAAAAJmZgAA8qcAAA1ZAAAT0AAA
+CwNwYXJhAAAAAAADAAAAAmZmAADypwAADVkAABPQAAALA3ZjZ3QAAAAAAAAAAAADAQAAAgAAAAQAEAAo
+AEsAewC4AQIBUwGxAhwCkQMVA7EEYAUiBfQG1gfKCNYJ9wsfDGoNwg8kEJoSIxOsFT8W9BibGlAcDR3N
+H4ohVSMbJNsmoyhkKiUr3i2ILx8wsTJHM981dDcLOKA6NTvAPUY+0EBTQdBDS0TBRjBHm0kDSmZLw00X
+Tm9PuFEEUkxTj1TPVhJXUliIWcBa9VwhXUxedV+WYLxh3WMBZCFlPmZXZ21ohmmcaq9rwWzPbd9u7m/4
+cQJyDHMZdCV1MnY+d0l4WXlpemt7RnwbfO99xn6if3yAWoE4ghqDAIPohNGFwIaxh6aInomaipeLmoyb
+jaKOrY+5kMeR1ZLlk/OU9ZXqltqXzZjBmbWaspuwnK2drp6xn7WgvKHCosmj0aTWpd6m5qfpqO2p8qr1
+q/Ss8q3vrvOwD7Ewsk6za7SDtZ62trfLuNu567r7vAm9Fb4gvynAMsE+wkrDWMRmxXbGiceeyLTJy8q/
+y6LMgM1czjjPE8/u0MXRmtJx00XUFtTp1bvWjtdi2DTZBdnX2qzbgNxV3SzeBN7V33vgH+DA4WTiCeKw
+41vkB+Sy5WHmD+a852roGOjH6XTqIOrK63fsI+zM7XXuHe7C72vwFPC48Vzx//Kk80rz8fSS9TH1z/Ze
+9un3V/fC+Br4YPim+Oz5c/ob+67+I///AAAABAASACwAUgCGAMgBFQFjAb4CJwKhAycDtwRgBSAF6gbE
+B7QIuAnNCuoMIA1oDsMQIxGNEwgUihYdF7sZXRsDHKseVyAOIcEjfCUpJt4okiozK6stDy5rL8kxLTKP
+M/U1WTa/OCI5fzrfPD49mj72QFFBpkL6RElFmEbiSCdJb0qrS+lNI05bT5FQx1H7UyhUVFWAVqNXxljm
+WgNbIlw7XVlec1+IYJxhrmLBY9Nk42XxZv9oDmkcaihrNGxBbVJuZW90cIlxmnKyc8t00XW2dpJ3a3hI
+eSh6CHrqe818sX2bfoR/boBbgUqCOoMshB6FEoYHhvyH8ojrieSK3YvVjM2Nw466j6qQm5GOkoGTdZRu
+lWeWYJdcmFiZV5pWm1WcVZ1VnlSfVaBVoVSiU6NVpFOlT6ZNp0moUKl2qqarzqz6rh+vSLBvsZSys7PT
+tPW2FbczuFK5cLqOu7K81r37vyTATsF8wq3D4MUMxhvHFMgHyPrJ78rly9zM0M3Fzr3Ps9Cn0ZvSj9OE
+1HjVadZX10TYM9kf2gra9Nvf3MPdkt5d3yjf9eDD4ZDiXOMp4/bkweWI5k7nE+fX6JrpWeoX6tbrkOxL
+7QXtve5x7yXv3vCP8UDx8PKk81j0CvS29WL2D/a791X35/iJ+Tj5//rt/Av9Z/66/zP/d/+7//8AAAAC
+AAsAGgAxAFAAdwCnAOABHwFhAa0CAQJgAsgDOwO5BEIE2AV+BjEG6ge4CIwJbApcC1IMTw1VDmIPdxCT
+EbMS0hP1FRUWOxdaGH0ZnBq6G9Mc6x37HwcgFyEpIjojTSRfJW4meieGKJApmSqgK6YsqS2pLqgvpDCg
+MZUyhjN6NGk1VzZENy44FTkAOec6yjuwPJs9iT55P2hAUkE/QihDFUP9ROVFyUatR5NIekldSj9LI0wG
+TOlNy06tT5FQdlFfUkZTL1QXVQNV8FbRV6VYdVlBWhBa4FuxXINdVF4lXvlfzGCeYXNiR2MbY/BkxWWY
+Zm1nQGgWaOtpwWqVa2lsPG0MbdFujG8/b/JwpHFTcgVyt3NndBd0yHV5dit23neReEZ4/Hm1enB7K3vp
+fKt9b34yfvl/woCNgV2CLYL9g82Em4Vthj6HD4fgiLCJhIpXiyqL/YzRjaSOe49SkCqRA5HckrmTlZRy
+lU+WM5ccmAiY85nhmtCbwpyynaSem5+ToIuhhqKEo4aki6WQppWnnKinqbOqv6vNrOCt8a8FsBqxL7JJ
+s2S0g7WitsO35LkMujG7WbyCva2+2sAFwS/CW8OKxLPF3ccKyDLJYcqsy/vNQ85/z7rQ7dIk02XUpNXy
+11fYydpM2/Tdv9+44ebkUecj6mzuavN2+ln//wAAbmRpbgAAAAAAAAY2AACVRgAAVs8AAFKpAACRTgAA
+KHIAABcKAABQDQAAVDkAAtwoAAKo9QABczMAAwEAAAIAAAAYADIATQBmAH4AlgCuAMYA3QD0AQwBIgE6
+AVABaAF/AZcBrgHGAd8B+AIQAigCQgJcAnYCkAKrAsYC4gL/AxsDOANVA3QDkwOzA9MD8wQVBDcEWgR9
+BKMEyQTyBRwFRwVzBZ8FzAX5BigGVwaHBrgG6QccB1AHhge9B/QILAhmCKII3gkcCVsJnAnfCiMKaQqw
+CvkLQwuSC+EMMAyFDNoNMA2JDeQOQQ6gDv4PYA/GEC0QlBEAEXAR4RJUEs0TRBO/FDwUuRU7Fb8WRxbS
+F10X6xh9GREZqRpDGt4bfRwhHMUdbB4SHrwfZyAVIMUhdCIlIuIjxiSyJaEmiid5KGcpVypEKzAsIC0L
+LfYu4S/KMLMxnDKDM200VTU7NiI3Cjf0ON45yzq+O8c82z3uPwFAGUEpQjlDTURfRXJGhUeYSK5JxUrd
+S/tNGU41T15QhVGwUtpUEVVIVoVXxFjmWf9bIFxBXWhelV/AYPBiJmNkZKRl5WcraHZpxWsWbG9txW8a
+cHRxy3MmdIB113cweIl543tyfSN+4oClgm6EO4YVh/WJ1YvGjbiPr5Gmk6GVp5etmbGbuJ3Dn8Oh36SS
+p1uqGKzTr4CyNLTft5m6VL0Uv9/CvMWQyH7LcM570XXUkde72t3eA+FJ5Kfohu2W9XX5NPrX++382f2m
+/qH//wAAABYAMQBLAGYAfgCXALAAyADgAPgBEQEpAUEBWQFxAYoBowG9AdYB8AIKAiQCPgJZAnQCkAKs
+AskC5gMEAyIDQANfA38DngPAA+IEBAQnBEoEbwSWBMAE7wUfBVEFhAW3BesGIAZWBowGxAb8BzYHcQeu
+B+wIKghqCKsI7gkxCXYJvQoFCk8KmwroCzYLiAvbDC4MhgzfDTkNlg31DlUOuA8aD4EP6xBWEMIRNBGn
+EhwSlRMQE4sUDBSLFQ4VlRYeFqsXORfIGFsY8BmJGiMavhtcG/4coR1FHekejh83H94giyE0Id8iiyNe
+JD8lKCYOJvQn3ijHKbQqnCuILHYtYy5RL0AwLzEiMhQzCTQBNPc17zbqN+g46TnuOvQ8BT0YPis/QEBY
+QWtCgUOaRLFFzEblSAFJH0o/S2FMiE2sTtZQBFEzUmBTl1TSVgtXTVh4WYRak1urXL5d3F78YBZhOmJg
+Y45kvWXqZxxoUmmKasJsAW0+bndvs3DwcihzZ3Shddl3EnhLeYV633xiffd/j4Engr+EWIX5h5uJO4rh
+jI6OPI/tkaCTV5UZluWYrpp+nFWeMqAOof6kKKZfqJKqxa0Br0Kxg7PQti+4krsCvXnAB8KUxTbH3sqS
+zV/QHtL81ebYxNut3rnhxuTf6I/r2e6c8Ofy1PRz9fj3tP//AAAAJQBPAHgAoADHAOwBEgE2AVwBgAGl
+AcsB8QIYAj8CZwKPArkC5AMQAz4DbAOdA84EAgQ3BG4EqATjBSIFYwWlBegGLQZzBrsHBQdSB6EH8ghF
+CJsI8wlNCasKCwpuCtQLPAusDBsMjw0GDYAN/g6ADwIPihAXEKIRLRG5EkcS3BNxFAsUpRVFFegWkRc7
+F+YYlxlLGgEauht2HDcc+B27Hn0fRCALINYhnyJrI04kPSU0JionIigdKRwqHSseLCctLi46L0kwWTFw
+MogzpjTDNeQ3Cjg0OWM6mzv3PWk+4EBkQeVDckUBRpZILEnGS19M+k6PUChRvFNLVOBWb1f+WYVbElyg
+Xjhfy2FjYv9koWZAZ+NpimszbOJui3A5ceVzmHVFdvV4qHpdfAR9pH9KgO6CkoQ0hdyHg4kkisaMa44N
+j62RSJLhlH6WHpe7mVWa8ZyOniufwqFhovuklaY2p9KpZ6sFrJmuM6/LsWmy+LSVtiy3xLlduvS8i74o
+v8nBZ8MHxKTGT8f5yZ7LTM0Czp3QG9Ge0yrUv9Zn2AjZudtr3Q7eruBX4ezjbeTk5lPnuekU6lDrg+yt
+7cbu0e/U8MbxtfKQ82z0LPTr9Z72SPby94j4HPiv+S/5qvok+p77Avtm+8r8LvyH/NH9G/1l/a/9+v5N
+/rn/Jv+S//8AAGRlc2MAAAAAAAAACkNvbG9yIExDRAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABtbHVjAAAAAAAA
+AAIAAAAMZGFESwAAABwAAAAoZW5VUwAAABIAAABEAEwAQwBEAC0AZgBhAHIAdgBlAHMAawDmAHIAbQBD
+AG8AbABvAHIAIABMAEMARAAAbW1vZAAAAAAAAAYQAACchAAAAADDlfiAAAAAAAAAAAAAAAAAAAAAAHRl
+eHQAAAAAQ29weXJpZ2h0IEFwcGxlLCBJbmMuLCAyMDA5AA</bytes>
+														</object>
+														<string key="NSModelPixelLogicalRect">{{0, 0}, {165, 39}}</string>
+														<string key="NSModelPixelDrawingRect">{{0, 0}, {165, 39}}</string>
+													</object>
+												</object>
+											</object>
+											<object class="NSColor" key="NSColor" id="512275479">
+												<int key="NSColorSpace">3</int>
+												<bytes key="NSWhite">MCAwAA</bytes>
+											</object>
+										</object>
+									</object>
+									<bool key="BWSTFCShadowIsBelow">YES</bool>
+									<bool key="BWSTFCHasShadow">YES</bool>
+									<bool key="BWSTFCHasGradient">YES</bool>
+									<object class="NSColor" key="BWSTFCShadowColor" id="758847857">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MSAxIDEAA</bytes>
+									</object>
+									<object class="NSMutableDictionary" key="BWSTFCPreviousAttributes">
+										<bool key="EncodedWithXMLCoder">YES</bool>
+										<object class="NSArray" key="dict.sortedKeys">
+											<bool key="EncodedWithXMLCoder">YES</bool>
+											<string>NSColor</string>
+											<string>NSFont</string>
+											<string>NSOriginalFont</string>
+											<string>NSParagraphStyle</string>
+											<string>NSShadow</string>
+										</object>
+										<object class="NSMutableArray" key="dict.values">
+											<bool key="EncodedWithXMLCoder">YES</bool>
+											<object class="NSColor">
+												<int key="NSColorSpace">10</int>
+												<object class="NSImage" key="NSImage">
+													<int key="NSImageFlags">549453824</int>
+													<string key="NSSize">{76, 37}</string>
+													<object class="NSMutableArray" key="NSReps">
+														<bool key="EncodedWithXMLCoder">YES</bool>
+														<object class="NSArray">
+															<bool key="EncodedWithXMLCoder">YES</bool>
+															<integer value="0"/>
+															<object class="NSCachedImageRep">
+																<object class="NSMutableData" key="NSTIFFRepresentation">
+																	<bytes key="NS.bytes">TU0AKgAAK/hmdYT/ZXWE/2V0g/9ldYT/ZXWD/2V1hP9ldYT/ZnWE/2V1g/9ldYT/ZXSD/2V1hP9ldYT/
+ZXSD/2V1hP9ldYT/ZnWE/2V1hP9ldIP/ZXWE/2V1g/9ldYT/ZXWE/2Z1hP9ldYP/ZXWE/2V0g/9ldYT/
+ZXWE/2V0g/9ldYT/ZXWE/2Z1hP9ldYT/ZXSD/2V1hP9ldYP/ZXWE/2V1hP9mdYT/ZXWD/2V1hP9ldIP/
+ZXWE/2V1hP9ldIP/ZXWE/2V1hP9mdYT/ZXWE/2V0g/9ldYT/ZXWD/2V1hP9ldYT/ZnWE/2V1g/9ldYT/
+ZXSD/2V1hP9ldYT/ZXSD/2V1hP9ldYT/ZnWE/2V1hP9ldIP/ZXWE/2V1g/9ldYT/ZXWE/2Z1hP9ldYP/
+ZXWE/2V0g/9ldYT/Z3aF/2Z2hP9mdoX/Z3aF/2d2hf9mdoT/ZnWE/2Z2hf9mdYT/ZnaF/2d2hf9mdoX/
+ZnaE/2d2hf9mdoX/ZnaF/2d2hf9mdoT/ZnaF/2d2hf9ndoX/ZnaE/2Z1hP9mdoX/ZnWE/2Z2hf9ndoX/
+ZnaF/2Z2hP9ndoX/ZnaF/2Z2hf9ndoX/ZnaE/2Z2hf9ndoX/Z3aF/2Z2hP9mdYT/ZnaF/2Z1hP9mdoX/
+Z3aF/2Z2hf9mdoT/Z3aF/2Z2hf9mdoX/Z3aF/2Z2hP9mdoX/Z3aF/2d2hf9mdoT/ZnWE/2Z2hf9mdYT/
+ZnaF/2d2hf9mdoX/ZnaE/2d2hf9mdoX/ZnaF/2d2hf9mdoT/ZnaF/2d2hf9ndoX/ZnaE/2Z1hP9mdoX/
+ZnWE/2Z2hf9ndoX/ZnaF/2l4h/9peYf/aXiH/2l4h/9peIf/aXmH/2l4h/9peYj/aXmH/2l4h/9peIf/
+aXmH/2l4h/9qeYj/aXmH/2l4h/9peIf/aXmH/2l4h/9peIf/aXiH/2l5h/9peIf/aXmI/2l5h/9peIf/
+aXiH/2l5h/9peIf/anmI/2l5h/9peIf/aXiH/2l5h/9peIf/aXiH/2l4h/9peYf/aXiH/2l5iP9peYf/
+aXiH/2l4h/9peYf/aXiH/2p5iP9peYf/aXiH/2l4h/9peYf/aXiH/2l4h/9peIf/aXmH/2l4h/9peYj/
+aXmH/2l4h/9peIf/aXmH/2l4h/9qeYj/aXmH/2l4h/9peIf/aXmH/2l4h/9peIf/aXiH/2l5h/9peIf/
+aXmI/2l5h/9peIf/aXiH/2l5h/9qeoj/a3qI/2t6if9qeoj/a3qI/2p5iP9qeYj/a3qI/2p5iP9reon/
+anmI/2p5iP9reoj/anmI/2t6iP9reon/anqI/2t6iP9reon/anqI/2t6iP9qeYj/anmI/2t6iP9qeYj/
+a3qJ/2p5iP9qeYj/a3qI/2p5iP9reoj/a3qJ/2p6iP9reoj/a3qJ/2p6iP9reoj/anmI/2p5iP9reoj/
+anmI/2t6if9qeYj/anmI/2t6iP9qeYj/a3qI/2t6if9qeoj/a3qI/2t6if9qeoj/a3qI/2p5iP9qeYj/
+a3qI/2p5iP9reon/anmI/2p5iP9reoj/anmI/2t6iP9reon/anqI/2t6iP9reon/anqI/2t6iP9qeYj/
+anmI/2t6iP9qeYj/a3qJ/2p5iP9qeYj/bHuK/2t6if9se4n/bHuK/2t6if9se4r/bHuK/2x7if9se4n/
+bHuK/2x7iv9se4n/bHuK/2x7if9reon/bHuJ/2x7iv9reon/bHuJ/2x7iv9reon/bHuK/2x7iv9se4n/
+bHuJ/2x7iv9se4r/bHuJ/2x7iv9se4n/a3qJ/2x7if9se4r/a3qJ/2x7if9se4r/a3qJ/2x7iv9se4r/
+bHuJ/2x7if9se4r/bHuK/2x7if9se4r/bHuJ/2t6if9se4n/bHuK/2t6if9se4n/bHuK/2t6if9se4r/
+bHuK/2x7if9se4n/bHuK/2x7iv9se4n/bHuK/2x7if9reon/bHuJ/2x7iv9reon/bHuJ/2x7iv9reon/
+bHuK/2x7iv9se4n/bHuJ/2x7iv9se4r/bHuJ/218iv9ufYv/bXyK/218i/9ufYv/bXyK/218i/9tfIr/
+bX2L/218i/9tfIr/bXyK/218i/9tfIr/bX2L/218i/9tfIr/bn2L/218iv9tfIv/bn2L/218iv9tfIv/
+bXyK/219i/9tfIv/bXyK/218iv9tfIv/bXyK/219i/9tfIv/bXyK/259i/9tfIr/bXyL/259i/9tfIr/
+bXyL/218iv9tfYv/bXyL/218iv9tfIr/bXyL/218iv9tfYv/bXyL/218iv9ufYv/bXyK/218i/9ufYv/
+bXyK/218i/9tfIr/bX2L/218i/9tfIr/bXyK/218i/9tfIr/bX2L/218i/9tfIr/bn2L/218iv9tfIv/
+bn2L/218iv9tfIv/bXyK/219i/9tfIv/bXyK/218iv9wf43/cH+N/3B/jf9vfo3/cH6N/3B/jf9wf43/
+cH+N/29+jf9wf43/cH+N/3B+jf9wf43/cH+N/3B/jf9vfo3/cH+N/3B/jf9wf43/b36N/3B+jf9wf43/
+cH+N/3B/jf9vfo3/cH+N/3B/jf9wfo3/cH+N/3B/jf9wf43/b36N/3B/jf9wf43/cH+N/29+jf9wfo3/
+cH+N/3B/jf9wf43/b36N/3B/jf9wf43/cH6N/3B/jf9wf43/cH+N/29+jf9wf43/cH+N/3B/jf9vfo3/
+cH6N/3B/jf9wf43/cH+N/29+jf9wf43/cH+N/3B+jf9wf43/cH+N/3B/jf9vfo3/cH+N/3B/jf9wf43/
+b36N/3B+jf9wf43/cH+N/3B/jf9vfo3/cH+N/3B/jf9wfo3/cX+O/3GAjv9xgI7/cX+O/3GAjv9xgI//
+cYCO/3GAjv9xgI7/cYCP/3GAjv9xgI7/cX+O/3GAjv9ygI//cYCO/3F/jv9xgI7/cYCO/3F/jv9xgI7/
+cYCP/3GAjv9xgI7/cYCO/3GAj/9xgI7/cYCO/3F/jv9xgI7/coCP/3GAjv9xf47/cYCO/3GAjv9xf47/
+cYCO/3GAj/9xgI7/cYCO/3GAjv9xgI//cYCO/3GAjv9xf47/cYCO/3KAj/9xgI7/cX+O/3GAjv9xgI7/
+cX+O/3GAjv9xgI//cYCO/3GAjv9xgI7/cYCP/3GAjv9xgI7/cX+O/3GAjv9ygI//cYCO/3F/jv9xgI7/
+cYCO/3F/jv9xgI7/cYCP/3GAjv9xgI7/cYCO/3GAj/9xgI7/cYCO/3KBj/9zgZD/c4GQ/3OBkP9ygY//
+coGP/3KBkP9zgZD/coGP/3KBj/9zgZD/coGP/3KBj/9zgZD/coGP/3OBkP9ygY//c4GQ/3OBkP9zgZD/
+coGP/3KBj/9ygZD/c4GQ/3KBj/9ygY//c4GQ/3KBj/9ygY//c4GQ/3KBj/9zgZD/coGP/3OBkP9zgZD/
+c4GQ/3KBj/9ygY//coGQ/3OBkP9ygY//coGP/3OBkP9ygY//coGP/3OBkP9ygY//c4GQ/3KBj/9zgZD/
+c4GQ/3OBkP9ygY//coGP/3KBkP9zgZD/coGP/3KBj/9zgZD/coGP/3KBj/9zgZD/coGP/3OBkP9ygY//
+c4GQ/3OBkP9zgZD/coGP/3KBj/9ygZD/c4GQ/3KBj/9ygY//c4GQ/3KBj/9zgpD/dIKR/3OCkP9zgpD/
+dIOR/3SDkf9zgpD/dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/c4KQ/3SCkf90gpH/c4KQ/3SCkf9zgpD/
+c4KQ/3SDkf90g5H/c4KQ/3SCkf9zgpD/dIKR/3OCkP9zgpD/dIOR/3OCkP90gpH/dIKR/3OCkP90gpH/
+c4KQ/3OCkP90g5H/dIOR/3OCkP90gpH/c4KQ/3SCkf9zgpD/c4KQ/3SDkf9zgpD/dIKR/3SCkf9zgpD/
+dIKR/3OCkP9zgpD/dIOR/3SDkf9zgpD/dIKR/3OCkP90gpH/c4KQ/3OCkP90g5H/c4KQ/3SCkf90gpH/
+c4KQ/3SCkf9zgpD/c4KQ/3SDkf90g5H/c4KQ/3SCkf9zgpD/dIKR/3OCkP9zgpD/doWT/3eFk/92hZP/
+doWT/3aFk/92hZP/d4WT/3aFk/92hZP/doWT/3aFk/93hZP/doWT/3aEk/93hZP/doSS/3aFk/93hZP/
+doWT/3aFk/92hZP/doWT/3eFk/92hZP/doWT/3aFk/92hZP/d4WT/3aFk/92hJP/d4WT/3aEkv92hZP/
+d4WT/3aFk/92hZP/doWT/3aFk/93hZP/doWT/3aFk/92hZP/doWT/3eFk/92hZP/doST/3eFk/92hJL/
+doWT/3eFk/92hZP/doWT/3aFk/92hZP/d4WT/3aFk/92hZP/doWT/3aFk/93hZP/doWT/3aEk/93hZP/
+doSS/3aFk/93hZP/doWT/3aFk/92hZP/doWT/3eFk/92hZP/doWT/3aFk/92hZP/d4WT/3iGlP93hpT/
+eIaU/3eFlP94hpT/d4aU/3eGlP93hpT/eIaV/3eFlP94hpT/d4aU/3eFlP94hpT/d4aU/3iGlP94hpT/
+d4aU/3iGlP93hZT/eIaU/3eGlP93hpT/d4aU/3iGlf93hZT/eIaU/3eGlP93hZT/eIaU/3eGlP94hpT/
+eIaU/3eGlP94hpT/d4WU/3iGlP93hpT/d4aU/3eGlP94hpX/d4WU/3iGlP93hpT/d4WU/3iGlP93hpT/
+eIaU/3iGlP93hpT/eIaU/3eFlP94hpT/d4aU/3eGlP93hpT/eIaV/3eFlP94hpT/d4aU/3eFlP94hpT/
+d4aU/3iGlP94hpT/d4aU/3iGlP93hZT/eIaU/3eGlP93hpT/d4aU/3iGlf93hZT/eIaU/3eGlP95h5X/
+eYeV/3mHlf95h5X/eYiW/3mHlf95iJb/eYeV/3iHlf95h5X/eYeW/3mIlv95h5X/eYeW/3iHlf95iJb/
+eYeV/3mHlf95h5X/eYeV/3mIlv95h5X/eYiW/3mHlf94h5X/eYeV/3mHlv95iJb/eYeV/3mHlv94h5X/
+eYiW/3mHlf95h5X/eYeV/3mHlf95iJb/eYeV/3mIlv95h5X/eIeV/3mHlf95h5b/eYiW/3mHlf95h5b/
+eIeV/3mIlv95h5X/eYeV/3mHlf95h5X/eYiW/3mHlf95iJb/eYeV/3iHlf95h5X/eYeW/3mIlv95h5X/
+eYeW/3iHlf95iJb/eYeV/3mHlf95h5X/eYeV/3mIlv95h5X/eYiW/3mHlf94h5X/eYeV/3mHlv95iJb/
+eoiW/3qJl/96iJb/eomX/3qIlv96iJb/eoiW/3qIlv96iJb/e4mX/3qIlv96iJb/eoiX/3qIlv96iZf/
+eoiW/3qIlv96iZf/eoiW/3qJl/96iJb/eoiW/3qIlv96iJb/eoiW/3uJl/96iJb/eoiW/3qIl/96iJb/
+eomX/3qIlv96iJb/eomX/3qIlv96iZf/eoiW/3qIlv96iJb/eoiW/3qIlv97iZf/eoiW/3qIlv96iJf/
+eoiW/3qJl/96iJb/eoiW/3qJl/96iJb/eomX/3qIlv96iJb/eoiW/3qIlv96iJb/e4mX/3qIlv96iJb/
+eoiX/3qIlv96iZf/eoiW/3qIlv96iZf/eoiW/3qJl/96iJb/eoiW/3qIlv96iJb/eoiW/3uJl/96iJb/
+eoiW/3yKmP99i5n/fIqY/3yLmf99i5n/fYuZ/32Lmf99i5n/fYuZ/3yLmf99i5n/fYuZ/32Lmf99i5n/
+fYuZ/32Lmf98ipj/fYuZ/3yKmP98i5n/fYuZ/32Lmf99i5n/fYuZ/32Lmf98i5n/fYuZ/32Lmf99i5n/
+fYuZ/32Lmf99i5n/fIqY/32Lmf98ipj/fIuZ/32Lmf99i5n/fYuZ/32Lmf99i5n/fIuZ/32Lmf99i5n/
+fYuZ/32Lmf99i5n/fYuZ/3yKmP99i5n/fIqY/3yLmf99i5n/fYuZ/32Lmf99i5n/fYuZ/3yLmf99i5n/
+fYuZ/32Lmf99i5n/fYuZ/32Lmf98ipj/fYuZ/3yKmP98i5n/fYuZ/32Lmf99i5n/fYuZ/32Lmf98i5n/
+fYuZ/32Lmf9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/fYuZ/36Mmv9+jJr/
+foya/36Mmv99jJn/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/32Lmf9+jJr/
+foya/36Mmv9+jJr/fYyZ/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv99i5n/
+foya/36Mmv9+jJr/foya/32Mmf9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/
+fYuZ/36Mmv9+jJr/foya/36Mmv99jJn/foya/36Mmv9+jJr/foya/36Mmv9+jJr/foya/36Mmv9+jJr/
+foya/32Lmf9+jJr/gI6c/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/4COm/9/jZv/f42b/3+Nm/9/jZv/
+f42b/3+Nm/9/jZv/gI2b/4COnP9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/+Ajpv/f42b/3+Nm/9/jZv/
+f42b/3+Nm/9/jZv/f42b/4CNm/+Ajpz/f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/gI6b/3+Nm/9/jZv/
+f42b/3+Nm/9/jZv/f42b/3+Nm/+AjZv/gI6c/3+Nm/9/jZv/f42b/3+Nm/9/jZv/f42b/4COm/9/jZv/
+f42b/3+Nm/9/jZv/f42b/3+Nm/9/jZv/gI2b/4COnP9/jZv/f42b/3+Nm/9/jZv/f42b/3+Nm/+Ajpv/
+f42b/3+Nm/9/jZv/f42b/4GOnP+Ajpz/gI6c/4GPnf+Bj53/gI6c/4COnP+Ajpz/gI6c/4COnP+Bj53/
+gI6c/4COnP+Bj5z/gI6c/4COnP+Bjpz/gI6c/4COnP+Bj53/gY+d/4COnP+Ajpz/gI6c/4COnP+Ajpz/
+gY+d/4COnP+Ajpz/gY+c/4COnP+Ajpz/gY6c/4COnP+Ajpz/gY+d/4GPnf+Ajpz/gI6c/4COnP+Ajpz/
+gI6c/4GPnf+Ajpz/gI6c/4GPnP+Ajpz/gI6c/4GOnP+Ajpz/gI6c/4GPnf+Bj53/gI6c/4COnP+Ajpz/
+gI6c/4COnP+Bj53/gI6c/4COnP+Bj5z/gI6c/4COnP+Bjpz/gI6c/4COnP+Bj53/gY+d/4COnP+Ajpz/
+gI6c/4COnP+Ajpz/gY+d/4COnP+Bj53/gpCe/4KPnf+Bj53/gY+d/4KQnv+Cj53/gpCe/4KQnv+Bj53/
+gpCd/4KQnv+Cj53/gpCe/4KQnv+Bj53/gY+d/4KQnv+Cj53/gY+d/4GPnf+CkJ7/go+d/4KQnv+CkJ7/
+gY+d/4KQnf+CkJ7/go+d/4KQnv+CkJ7/gY+d/4GPnf+CkJ7/go+d/4GPnf+Bj53/gpCe/4KPnf+CkJ7/
+gpCe/4GPnf+CkJ3/gpCe/4KPnf+CkJ7/gpCe/4GPnf+Bj53/gpCe/4KPnf+Bj53/gY+d/4KQnv+Cj53/
+gpCe/4KQnv+Bj53/gpCd/4KQnv+Cj53/gpCe/4KQnv+Bj53/gY+d/4KQnv+Cj53/gY+d/4GPnf+CkJ7/
+go+d/4KQnv+CkJ7/gY+d/4KQnf+CkJ7/hJKg/4SSoP+FkqD/hJKg/4SSoP+Ekp//hJKf/4SSoP+EkZ//
+hJKg/4SSn/+EkZ//hJKg/4SSn/+EkqD/hZKg/4SSoP+EkqD/hZKg/4SSoP+EkqD/hJKf/4SSn/+EkqD/
+hJGf/4SSoP+Ekp//hJGf/4SSoP+Ekp//hJKg/4WSoP+EkqD/hJKg/4WSoP+EkqD/hJKg/4SSn/+Ekp//
+hJKg/4SRn/+EkqD/hJKf/4SRn/+EkqD/hJKf/4SSoP+FkqD/hJKg/4SSoP+FkqD/hJKg/4SSoP+Ekp//
+hJKf/4SSoP+EkZ//hJKg/4SSn/+EkZ//hJKg/4SSn/+EkqD/hZKg/4SSoP+EkqD/hZKg/4SSoP+EkqD/
+hJKf/4SSn/+EkqD/hJGf/4SSoP+Ekp//hJGf/4WTof+Fk6D/hZOh/4aTof+Fk6D/hZOh/4aUof+Fk6H/
+hZOh/4aTof+GlKH/hZOh/4aTof+Fk6H/hZOg/4WTof+Fk6H/hZOg/4WTof+Gk6H/hZOg/4WTof+GlKH/
+hZOh/4WTof+Gk6H/hpSh/4WTof+Gk6H/hZOh/4WToP+Fk6H/hZOh/4WToP+Fk6H/hpOh/4WToP+Fk6H/
+hpSh/4WTof+Fk6H/hpOh/4aUof+Fk6H/hpOh/4WTof+Fk6D/hZOh/4WTof+Fk6D/hZOh/4aTof+Fk6D/
+hZOh/4aUof+Fk6H/hZOh/4aTof+GlKH/hZOh/4aTof+Fk6H/hZOg/4WTof+Fk6H/hZOg/4WTof+Gk6H/
+hZOg/4WTof+GlKH/hZOh/4WTof+Gk6H/hpSh/4WTof+GlKL/h5Wi/4aUov+HlKL/h5Wi/4aUov+HlaL/
+hpSh/4eVov+HlKL/hpSh/4aUov+HlKL/hpSi/4eVov+HlKL/hpSi/4eVov+GlKL/h5Si/4eVov+GlKL/
+h5Wi/4aUof+HlaL/h5Si/4aUof+GlKL/h5Si/4aUov+HlaL/h5Si/4aUov+HlaL/hpSi/4eUov+HlaL/
+hpSi/4eVov+GlKH/h5Wi/4eUov+GlKH/hpSi/4eUov+GlKL/h5Wi/4eUov+GlKL/h5Wi/4aUov+HlKL/
+h5Wi/4aUov+HlaL/hpSh/4eVov+HlKL/hpSh/4aUov+HlKL/hpSi/4eVov+HlKL/hpSi/4eVov+GlKL/
+h5Si/4eVov+GlKL/h5Wi/4aUof+HlaL/h5Si/4aUof+GlKL/iJaj/4iWo/+IlqP/iJWj/4iVo/+IlqP/
+iJWj/4iWo/+IlaP/iJWj/4iWo/+IlaP/iJaj/4iVo/+IlqP/iJWj/4iWo/+IlqP/iJaj/4iVo/+IlaP/
+iJaj/4iVo/+IlqP/iJWj/4iVo/+IlqP/iJWj/4iWo/+IlaP/iJaj/4iVo/+IlqP/iJaj/4iWo/+IlaP/
+iJWj/4iWo/+IlaP/iJaj/4iVo/+IlaP/iJaj/4iVo/+IlqP/iJWj/4iWo/+IlaP/iJaj/4iWo/+IlqP/
+iJWj/4iVo/+IlqP/iJWj/4iWo/+IlaP/iJWj/4iWo/+IlaP/iJaj/4iVo/+IlqP/iJWj/4iWo/+IlqP/
+iJaj/4iVo/+IlaP/iJaj/4iVo/+IlqP/iJWj/4iVo/+IlqP/iJWj/4qXpf+KmKX/ipil/4qXpf+KmKX/
+i5im/4qXpf+KmKX/ipil/4uYpv+Kl6X/i5il/4qXpf+KmKX/i5im/4qYpf+Kl6X/ipil/4qYpf+Kl6X/
+ipil/4uYpv+Kl6X/ipil/4qYpf+LmKb/ipel/4uYpf+Kl6X/ipil/4uYpv+KmKX/ipel/4qYpf+KmKX/
+ipel/4qYpf+LmKb/ipel/4qYpf+KmKX/i5im/4qXpf+LmKX/ipel/4qYpf+LmKb/ipil/4qXpf+KmKX/
+ipil/4qXpf+KmKX/i5im/4qXpf+KmKX/ipil/4uYpv+Kl6X/i5il/4qXpf+KmKX/i5im/4qYpf+Kl6X/
+ipil/4qYpf+Kl6X/ipil/4uYpv+Kl6X/ipil/4qYpf+LmKb/ipel/4uYpf+Lmab/jJmn/4yZp/+Mmaf/
+jJmm/4uYpv+Mmaf/jJmn/4uYpv+Mmab/jJmn/4yZpv+Mmab/jJmn/4uZpv+Mmaf/i5mm/4yZp/+Mmaf/
+jJmn/4yZpv+LmKb/jJmn/4yZp/+LmKb/jJmm/4yZp/+Mmab/jJmm/4yZp/+Lmab/jJmn/4uZpv+Mmaf/
+jJmn/4yZp/+Mmab/i5im/4yZp/+Mmaf/i5im/4yZpv+Mmaf/jJmm/4yZpv+Mmaf/i5mm/4yZp/+Lmab/
+jJmn/4yZp/+Mmaf/jJmm/4uYpv+Mmaf/jJmn/4uYpv+Mmab/jJmn/4yZpv+Mmab/jJmn/4uZpv+Mmaf/
+i5mm/4yZp/+Mmaf/jJmn/4yZpv+LmKb/jJmn/4yZp/+LmKb/jJmm/4yZp/+Mmab/jJqn/42aqP+Nmqf/
+jJqn/42aqP+Nm6j/jZqn/42aqP+Mmqf/jZqo/42ap/+Mmqf/jZqo/4yap/+Nmqj/jZqo/4yap/+Nmqj/
+jZqn/4yap/+Nmqj/jZuo/42ap/+Nmqj/jJqn/42aqP+Nmqf/jJqn/42aqP+Mmqf/jZqo/42aqP+Mmqf/
+jZqo/42ap/+Mmqf/jZqo/42bqP+Nmqf/jZqo/4yap/+Nmqj/jZqn/4yap/+Nmqj/jJqn/42aqP+Nmqj/
+jJqn/42aqP+Nmqf/jJqn/42aqP+Nm6j/jZqn/42aqP+Mmqf/jZqo/42ap/+Mmqf/jZqo/4yap/+Nmqj/
+jZqo/4yap/+Nmqj/jZqn/4yap/+Nmqj/jZuo/42ap/+Nmqj/jJqn/42aqP+Nmqf/jJqn/46bqf+OnKn/
+jpup/46bqf+Om6j/jpup/46cqf+Om6n/jpup/46bqf+Om6n/j5yp/46bqf+Om6j/jpyp/46bqP+Om6n/
+jpyp/46bqf+Om6n/jpuo/46bqf+OnKn/jpup/46bqf+Om6n/jpup/4+cqf+Om6n/jpuo/46cqf+Om6j/
+jpup/46cqf+Om6n/jpup/46bqP+Om6n/jpyp/46bqf+Om6n/jpup/46bqf+PnKn/jpup/46bqP+OnKn/
+jpuo/46bqf+OnKn/jpup/46bqf+Om6j/jpup/46cqf+Om6n/jpup/46bqf+Om6n/j5yp/46bqf+Om6j/
+jpyp/46bqP+Om6n/jpyp/46bqf+Om6n/jpuo/46bqf+OnKn/jpup/46bqf+Om6n/jpup/4+cqf+Rnqv/
+kJ2r/5Geq/+Qnar/kZ6r/5Cdq/+Qnav/kJ2r/5Geq/+Qnar/kZ6r/5Cdq/+Qnar/kZ6r/5Cdq/+Rnqv/
+kZ6r/5Cdq/+Rnqv/kJ2q/5Geq/+Qnav/kJ2r/5Cdq/+Rnqv/kJ2q/5Geq/+Qnav/kJ2q/5Geq/+Qnav/
+kZ6r/5Geq/+Qnav/kZ6r/5Cdqv+Rnqv/kJ2r/5Cdq/+Qnav/kZ6r/5Cdqv+Rnqv/kJ2r/5Cdqv+Rnqv/
+kJ2r/5Geq/+Rnqv/kJ2r/5Geq/+Qnar/kZ6r/5Cdq/+Qnav/kJ2r/5Geq/+Qnar/kZ6r/5Cdq/+Qnar/
+kZ6r/5Cdq/+Rnqv/kZ6r/5Cdq/+Rnqv/kJ2q/5Geq/+Qnav/kJ2r/5Cdq/+Rnqv/kJ2q/5Geq/+Qnav/
+kp+s/5KfrP+Rnqz/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Rnqz/kZ6s/5KfrP+Sn6z/kp6s/5KfrP+Rnqz/
+kp+s/5KfrP+Sn6z/kZ6s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kZ6s/5GerP+Sn6z/kp+s/5KerP+Sn6z/
+kZ6s/5KfrP+Sn6z/kp+s/5GerP+Sn6z/kp+s/5KfrP+Sn6z/kp+s/5GerP+Rnqz/kp+s/5KfrP+Snqz/
+kp+s/5GerP+Sn6z/kp+s/5KfrP+Rnqz/kp+s/5KfrP+Sn6z/kp+s/5KfrP+Rnqz/kZ6s/5KfrP+Sn6z/
+kp6s/5KfrP+Rnqz/kp+s/5KfrP+Sn6z/kZ6s/5KfrP+Sn6z/kp+s/5KfrP+Sn6z/kZ6s/5GerP+Sn6z/
+kp+s/5Kfrf+ToK3/k6Ct/5Ogrf+ToK3/kp+t/5Ogrf+Sn63/k6Ct/5Ogrv+ToK3/k5+t/5Ogrf+Tn63/
+k6Ct/5Ogrf+Sn63/k6Ct/5Ogrf+ToK3/k6Ct/5Kfrf+ToK3/kp+t/5Ogrf+ToK7/k6Ct/5Ofrf+ToK3/
+k5+t/5Ogrf+ToK3/kp+t/5Ogrf+ToK3/k6Ct/5Ogrf+Sn63/k6Ct/5Kfrf+ToK3/k6Cu/5Ogrf+Tn63/
+k6Ct/5Ofrf+ToK3/k6Ct/5Kfrf+ToK3/k6Ct/5Ogrf+ToK3/kp+t/5Ogrf+Sn63/k6Ct/5Ogrv+ToK3/
+k5+t/5Ogrf+Tn63/k6Ct/5Ogrf+Sn63/k6Ct/5Ogrf+ToK3/k6Ct/5Kfrf+ToK3/kp+t/5Ogrf+ToK7/
+k6Ct/5Ofrf+Uoa7/laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/lKGv/5Shrv+Uoa7/lKGu/5Shrv+Voa//
+lKGu/5Shrv+Uoa7/lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Shr/+Uoa7/lKGu/5Shrv+Uoa7/
+laGv/5Shrv+Uoa7/lKGu/5Shrv+Voa//lKGu/5Shrv+Uoa7/lKGu/5Shrv+Uoa//lKGu/5Shrv+Uoa7/
+lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/laGv/5Shrv+Uoa7/lKGu/5Shrv+Uoa7/lKGv/5Shrv+Uoa7/
+lKGu/5Shrv+Voa//lKGu/5Shrv+Uoa7/lKGu/5Whr/+Uoa7/lKGu/5Shrv+Uoa7/lKGu/5Shr/+Uoa7/
+lKGu/5Shrv+Uoa7/l6Ow/5ajsP+Xo7H/lqOw/5eksf+Wo7D/lqOw/5ajsP+Wo7D/l6Sx/5ajsP+Xo7D/
+lqOw/5eksf+Wo7D/lqOw/5ejsP+Wo7D/l6Ox/5ajsP+XpLH/lqOw/5ajsP+Wo7D/lqOw/5eksf+Wo7D/
+l6Ow/5ajsP+XpLH/lqOw/5ajsP+Xo7D/lqOw/5ejsf+Wo7D/l6Sx/5ajsP+Wo7D/lqOw/5ajsP+XpLH/
+lqOw/5ejsP+Wo7D/l6Sx/5ajsP+Wo7D/l6Ow/5ajsP+Xo7H/lqOw/5eksf+Wo7D/lqOw/5ajsP+Wo7D/
+l6Sx/5ajsP+Xo7D/lqOw/5eksf+Wo7D/lqOw/5ejsP+Wo7D/l6Ox/5ajsP+XpLH/lqOw/5ajsP+Wo7D/
+lqOw/5eksf+Wo7D/l6Ow/5ilsv+YpbL/l6Sx/5iksv+YpLH/mKWy/5ilsv+YpbL/mKSy/5ilsv+XpLH/
+mKSy/5ilsv+XpLH/mKSy/5ilsv+YpbL/mKWy/5eksf+YpLL/mKSx/5ilsv+YpbL/mKWy/5iksv+YpbL/
+l6Sx/5iksv+YpbL/l6Sx/5iksv+YpbL/mKWy/5ilsv+XpLH/mKSy/5iksf+YpbL/mKWy/5ilsv+YpLL/
+mKWy/5eksf+YpLL/mKWy/5eksf+YpLL/mKWy/5ilsv+YpbL/l6Sx/5iksv+YpLH/mKWy/5ilsv+YpbL/
+mKSy/5ilsv+XpLH/mKSy/5ilsv+XpLH/mKSy/5ilsv+YpbL/mKWy/5eksf+YpLL/mKSx/5ilsv+YpbL/
+mKWy/5iksv+YpbL/l6Sx/5iksv+ZprP/maWy/5mms/+ZprP/maaz/5mlsv+ZpbL/maaz/5ilsv+ZpbP/
+maaz/5mls/+ZpbL/maaz/5mls/+ZpbL/maaz/5mlsv+ZprP/maaz/5mms/+ZpbL/maWy/5mms/+YpbL/
+maWz/5mms/+ZpbP/maWy/5mms/+ZpbP/maWy/5mms/+ZpbL/maaz/5mms/+ZprP/maWy/5mlsv+ZprP/
+mKWy/5mls/+ZprP/maWz/5mlsv+ZprP/maWz/5mlsv+ZprP/maWy/5mms/+ZprP/maaz/5mlsv+ZpbL/
+maaz/5ilsv+ZpbP/maaz/5mls/+ZpbL/maaz/5mls/+ZpbL/maaz/5mlsv+ZprP/maaz/5mms/+ZpbL/
+maWy/5mms/+YpbL/maWz/5mms/+ZpbP/mqaz/5qntP+ap7T/mqaz/5qms/+ap7T/mqe0/5untP+ap7T/
+mqaz/5qntP+ap7T/mqa0/5untP+ap7T/mqaz/5qms/+ap7T/mqe0/5qms/+aprP/mqe0/5qntP+bp7T/
+mqe0/5qms/+ap7T/mqe0/5qmtP+bp7T/mqe0/5qms/+aprP/mqe0/5qntP+aprP/mqaz/5qntP+ap7T/
+m6e0/5qntP+aprP/mqe0/5qntP+aprT/m6e0/5qntP+aprP/mqaz/5qntP+ap7T/mqaz/5qms/+ap7T/
+mqe0/5untP+ap7T/mqaz/5qntP+ap7T/mqa0/5untP+ap7T/mqaz/5qms/+ap7T/mqe0/5qms/+aprP/
+mqe0/5qntP+bp7T/mqe0/5qms/+ap7T/mqe0/5yptv+dqbb/nam2/5yptv+dqbb/nKm2/5yptv+dqbb/
+nKm2/52ptv+cqbb/nKm2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/5yptv+cqbb/
+nam2/5yptv+dqbb/nKm2/5yptv+dqbb/nKm2/52ptv+dqbb/nKm2/52ptv+dqbb/nKm2/52ptv+cqbb/
+nKm2/52ptv+cqbb/nam2/5yptv+cqbb/nam2/5yptv+dqbb/nam2/5yptv+dqbb/nam2/5yptv+dqbb/
+nKm2/5yptv+dqbb/nKm2/52ptv+cqbb/nKm2/52ptv+cqbb/nam2/52ptv+cqbb/nam2/52ptv+cqbb/
+nam2/5yptv+cqbb/nam2/5yptv+dqbb/nKm2/5yptv+eqrf/naq3/56qt/+eqrf/naq3/56qt/+eq7j/
+nqq3/56qt/+eqrf/nqu4/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/52qt/+eqrf/nqq3/52qt/+eqrf/
+nqu4/56qt/+eqrf/nqq3/56ruP+eqrf/nqq3/56qt/+dqrf/nqq3/56qt/+dqrf/nqq3/56qt/+dqrf/
+nqq3/56ruP+eqrf/nqq3/56qt/+eq7j/nqq3/56qt/+eqrf/naq3/56qt/+eqrf/naq3/56qt/+eqrf/
+naq3/56qt/+eq7j/nqq3/56qt/+eqrf/nqu4/56qt/+eqrf/nqq3/52qt/+eqrf/nqq3/52qt/+eqrf/
+nqq3/52qt/+eqrf/nqu4/56qt/+eqrf/nqq3/56ruP+eqrf/AA4BAAADAAAAAQBMAAABAQADAAAAAQAl
+AAABAgADAAAABAAALKYBAwADAAAAAQABAAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQAB
+AAABFQADAAAAAQAEAAABFgADAAAAAQAlAAABFwAEAAAAAQAAK/ABHAADAAAAAQABAAABUgADAAAAAQAB
+AAABUwADAAAABAAALK6HcwAHAAAnrAAALLYAAAAAAAgACAAIAAgAAQABAAEAAQAAJ6xhcHBsAgAAAG1u
+dHJSR0IgWFlaIAfZAAsAFwALAA0AA2Fjc3BBUFBMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD21gAB
+AAAAANMtYXBwbAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEXJY
+WVoAAAFQAAAAFGdYWVoAAAFkAAAAFGJYWVoAAAF4AAAAFHd0cHQAAAGMAAAAFGNoYWQAAAGgAAAALHJU
+UkMAAAHMAAAIDGdUUkMAAAnYAAAIDGJUUkMAABHkAAAIDGFhcmcAABnwAAAAIGFhZ2cAABoQAAAAIGFh
+YmcAABowAAAAIHZjZ3QAABpQAAAGEm5kaW4AACBkAAAGPmRlc2MAACakAAAAZGRzY20AACcIAAAAVm1t
+b2QAACdgAAAAKGNwcnQAACeIAAAAJFhZWiAAAAAAAABl2wAAOkYAAAmkWFlaIAAAAAAAAGjLAACsqwAA
+GqFYWVogAAAAAAAAKDAAABkPAACu6FhZWiAAAAAAAADzUgABAAAAARbPc2YzMgAAAAAAAQxCAAAF3v//
+8yYAAAeSAAD9kf//+6L///2jAAAD3AAAwGxjdXJ2AAAAAAAABAAAAAAFAAoADwAUABkAHgAjACgALQAy
+ADcAOwBAAEUASgBPAFQAWQBeAGMAaABtAHIAdwB8AIEAhgCLAJAAlQCaAJ8ApACpAK4AsgC3ALwAwQDG
+AMsA0ADVANoA4ADlAOoA8AD1APsBAQEHAQwBEgEYAR4BJQErATEBOAE+AUUBSwFSAVkBYAFmAW0BdQF8
+AYMBigGSAZkBoQGoAbABuAHAAcgB0AHYAeAB6QHxAfoCAgILAhQCHAIlAi4CNwJAAkoCUwJcAmYCcAJ5
+AoMCjQKXAqECqwK1Ar8CygLUAt8C6gL0Av8DCgMVAyADKwM3A0IDTQNZA2UDcAN8A4gDlAOgA6wDuQPF
+A9ID3gPrA/gEBAQRBB4ELAQ5BEYEVARhBG8EfASKBJgEpgS0BMIE0QTfBO4E/AULBRoFKAU3BUcFVgVl
+BXQFhAWTBaMFswXDBdMF4wXzBgMGFAYkBjUGRQZWBmcGeAaJBpoGqwa9Bs4G4AbyBwMHFQcnBzkHTAde
+B3AHgweWB6gHuwfOB+EH9AgICBsILwhCCFYIagh+CJIIpgi6CM4I4wj3CQwJIQk2CUsJYAl1CYoJoAm1
+CcsJ4An2CgwKIgo5Ck8KZQp8CpIKqQrACtcK7gsFCx0LNAtLC2MLewuTC6sLwwvbC/MMDAwkDD0MVgxu
+DIcMoQy6DNMM7Q0GDSANOg1UDW4NiA2iDbwN1w3xDgwOJw5CDl0OeA6TDq8Oyg7mDwIPHg86D1YPcg+O
+D6sPyA/kEAEQHhA7EFgQdhCTELEQzhDsEQoRKBFGEWQRgxGhEcAR3xH+Eh0SPBJbEnoSmhK5EtkS+RMZ
+EzkTWRN6E5oTuxPbE/wUHRQ+FF8UgRSiFMQU5RUHFSkVSxVtFZAVshXVFfcWGhY9FmAWgxanFsoW7hcS
+FzUXWRd9F6IXxhfqGA8YNBhZGH0YoxjIGO0ZExk4GV4ZhBmqGdAZ9hodGkMaahqQGrca3hsGGy0bVBt8
+G6MbyxvzHBscQxxsHJQcvRzmHQ4dNx1gHYodsx3dHgYeMB5aHoQerh7YHwMfLR9YH4Mfrh/ZIAQgMCBb
+IIcgsyDeIQohNyFjIY8hvCHpIhUiQiJwIp0iyiL4IyUjUyOBI68j3SQMJDokaSSXJMYk9SUkJVQlgyWz
+JeImEiZCJnImoybTJwMnNCdlJ5Ynxyf4KCooWyiNKL4o8CkiKVUphym5KewqHypSKoUquCrrKx4rUiuG
+K7or7iwiLFYsiiy/LPQtKS1eLZMtyC39LjMuaS6eLtQvCy9BL3cvri/kMBswUjCJMMEw+DEwMWcxnzHX
+Mg8ySDKAMrgy8TMqM2MznDPVNA80SDSCNLw09jUwNWo1pTXfNho2VTaQNss3BjdCN343uTf1ODE4bTiq
+OOY5IzlgOZ052joXOlQ6kjrPOw07SzuJO8c8BjxEPIM8wj0BPUA9fz2/Pf4+Pj5+Pr4+/j8/P38/wEAA
+QEFAgkDEQQVBR0GIQcpCDEJOQpFC00MWQ1hDm0PeRCFEZUSoROxFMEV0RbhF/EZARoVGykcOR1NHmUfe
+SCNIaUivSPVJO0mBScdKDkpVSptK4ksqS3FLuEwATEhMkEzYTSBNaE2xTfpOQk6MTtVPHk9nT7FP+1BF
+UI9Q2VEkUW5RuVIEUk9SmlLlUzFTfFPIVBRUYFStVPlVRlWSVd9WLFZ6VsdXFFdiV7BX/lhMWJpY6Vk4
+WYZZ1VokWnRaw1sTW2NbslwDXFNco1z0XURdlV3mXjdeiV7aXyxffl/QYCJgdGDHYRlhbGG/YhJiZWK5
+YwxjYGO0ZAhkXGSxZQVlWmWvZgRmWWavZwRnWmewaAZoXGiyaQlpX2m2ag1qZGq8axNra2vDbBtsc2zL
+bSNtfG3Vbi5uh27gbzpvk2/tcEdwoXD7cVZxsHILcmZywXMcc3hz03QvdIt053VDdaB1/HZZdrZ3E3dw
+d854K3iJeOd5RXmjegJ6YHq/ex57fXvcfDx8m3z7fVt9u34bfnx+3H89f55//4BggMKBI4GFgeeCSYKr
+gw6DcIPThDaEmYT8hWCFw4YnhouG74dUh7iIHYiBiOaJTImxihaKfIrii0iLrowUjHuM4o1Ija+OF45+
+juWPTY+1kB2QhZDukVaRv5IokpGS+pNkk82UN5ShlQuVdZXglkqWtZcgl4uX95himM6ZOpmmmhKafprr
+m1ebxJwxnJ+dDJ15neeeVZ7DnzGfoKAPoH2g7KFbocuiOqKqoxqjiqP6pGqk26VMpbymLqafpxCngqf0
+qGWo2KlKqbyqL6qiqxWriKv7rG+s461WrcuuP66zryivnbARsIew/LFxseeyXbLTs0mzv7Q2tK21JLWb
+thK2ibcBt3m38bhpuOG5WrnSuku6xLs+u7e8MLyqvSS9nr4ZvpO/Dr+JwATAf8D6wXbB8cJtwunDZsPi
+xF/E3MVZxdbGU8bRx07HzMhKyMnJR8nGykXKxMtDy8LMQszBzUHNwc5CzsLPQ8/D0ETQxtFH0cjSStLM
+007T0NRT1NbVWNXb1l7W4tdl1+nYbdjx2XXZ+tp/2wPbiNwO3JPdGd2e3iTeqt8x37fgPuDF4Uzh0+Ja
+4uLjauPy5HrlAuWL5hPmnOcl56/oOOjC6Uzp1upg6urrdev/7IrtFu2h7izuuO9E79DwXPDp8XXyAvKP
+8xzzqvQ39MX1U/Xh9m/2/veM+Bv4qvk5+cn6Wfro+3j8CPyZ/Sn9uv5L/tz/bmN1cnYAAAAAAAAEAAAA
+AAUACgAPABQAGQAeACMAKAAtADIANwA7AEAARQBKAE8AVABZAF4AYwBoAG0AcgB3AHwAgQCGAIsAkACV
+AJoAnwCkAKkArgCyALcAvADBAMYAywDQANUA2gDgAOUA6gDwAPUA+wEBAQcBDAESARgBHgElASsBMQE4
+AT4BRQFLAVIBWQFgAWYBbQF1AXwBgwGKAZIBmQGhAagBsAG4AcAByAHQAdgB4AHpAfEB+gICAgsCFAIc
+AiUCLgI3AkACSgJTAlwCZgJwAnkCgwKNApcCoQKrArUCvwLKAtQC3wLqAvQC/wMKAxUDIAMrAzcDQgNN
+A1kDZQNwA3wDiAOUA6ADrAO5A8UD0gPeA+sD+AQEBBEEHgQsBDkERgRUBGEEbwR8BIoEmASmBLQEwgTR
+BN8E7gT8BQsFGgUoBTcFRwVWBWUFdAWEBZMFowWzBcMF0wXjBfMGAwYUBiQGNQZFBlYGZwZ4BokGmgar
+Br0GzgbgBvIHAwcVBycHOQdMB14HcAeDB5YHqAe7B84H4Qf0CAgIGwgvCEIIVghqCH4IkgimCLoIzgjj
+CPcJDAkhCTYJSwlgCXUJigmgCbUJywngCfYKDAoiCjkKTwplCnwKkgqpCsAK1wruCwULHQs0C0sLYwt7
+C5MLqwvDC9sL8wwMDCQMPQxWDG4MhwyhDLoM0wztDQYNIA06DVQNbg2IDaINvA3XDfEODA4nDkIOXQ54
+DpMOrw7KDuYPAg8eDzoPVg9yD44Pqw/ID+QQARAeEDsQWBB2EJMQsRDOEOwRChEoEUYRZBGDEaERwBHf
+Ef4SHRI8ElsSehKaErkS2RL5ExkTORNZE3oTmhO7E9sT/BQdFD4UXxSBFKIUxBTlFQcVKRVLFW0VkBWy
+FdUV9xYaFj0WYBaDFqcWyhbuFxIXNRdZF30XohfGF+oYDxg0GFkYfRijGMgY7RkTGTgZXhmEGaoZ0Bn2
+Gh0aQxpqGpAatxreGwYbLRtUG3wboxvLG/McGxxDHGwclBy9HOYdDh03HWAdih2zHd0eBh4wHloehB6u
+HtgfAx8tH1gfgx+uH9kgBCAwIFsghyCzIN4hCiE3IWMhjyG8IekiFSJCInAinSLKIvgjJSNTI4EjryPd
+JAwkOiRpJJckxiT1JSQlVCWDJbMl4iYSJkImciajJtMnAyc0J2UnlifHJ/goKihbKI0ovijwKSIpVSmH
+Kbkp7CofKlIqhSq4KusrHitSK4YruivuLCIsViyKLL8s9C0pLV4tky3ILf0uMy5pLp4u1C8LL0Evdy+u
+L+QwGzBSMIkwwTD4MTAxZzGfMdcyDzJIMoAyuDLxMyozYzOcM9U0DzRINII0vDT2NTA1ajWlNd82GjZV
+NpA2yzcGN0I3fje5N/U4MThtOKo45jkjOWA5nTnaOhc6VDqSOs87DTtLO4k7xzwGPEQ8gzzCPQE9QD1/
+Pb89/j4+Pn4+vj7+Pz8/fz/AQABAQUCCQMRBBUFHQYhBykIMQk5CkULTQxZDWEObQ95EIURlRKhE7EUw
+RXRFuEX8RkBGhUbKRw5HU0eZR95II0hpSK9I9Uk7SYFJx0oOSlVKm0riSypLcUu4TABMSEyQTNhNIE1o
+TbFN+k5CToxO1U8eT2dPsU/7UEVQj1DZUSRRblG5UgRST1KaUuVTMVN8U8hUFFRgVK1U+VVGVZJV31Ys
+VnpWx1cUV2JXsFf+WExYmljpWThZhlnVWiRadFrDWxNbY1uyXANcU1yjXPRdRF2VXeZeN16JXtpfLF9+
+X9BgImB0YMdhGWFsYb9iEmJlYrljDGNgY7RkCGRcZLFlBWVaZa9mBGZZZq9nBGdaZ7BoBmhcaLJpCWlf
+abZqDWpkarxrE2tra8NsG2xzbMttI218bdVuLm6HbuBvOm+Tb+1wR3ChcPtxVnGwcgtyZnLBcxxzeHPT
+dC90i3TndUN1oHX8dll2tncTd3B3zngreIl453lFeaN6Anpger97Hnt9e9x8PHybfPt9W327fht+fH7c
+fz1/nn//gGCAwoEjgYWB54JJgquDDoNwg9OENoSZhPyFYIXDhieGi4bvh1SHuIgdiIGI5olMibGKFop8
+iuKLSIuujBSMe4zijUiNr44Xjn6O5Y9Nj7WQHZCFkO6RVpG/kiiSkZL6k2STzZQ3lKGVC5V1leCWSpa1
+lyCXi5f3mGKYzpk6maaaEpp+muubV5vEnDGcn50MnXmd555VnsOfMZ+goA+gfaDsoVuhy6I6oqqjGqOK
+o/qkaqTbpUylvKYupp+nEKeCp/SoZajYqUqpvKovqqKrFauIq/usb6zjrVaty64/rrOvKK+dsBGwh7D8
+sXGx57JdstOzSbO/tDa0rbUktZu2EraJtwG3ebfxuGm44blaudK6S7rEuz67t7wwvKq9JL2evhm+k78O
+v4nABMB/wPrBdsHxwm3C6cNmw+LEX8TcxVnF1sZTxtHHTsfMyErIyclHycbKRcrEy0PLwsxCzMHNQc3B
+zkLOws9Dz8PQRNDG0UfRyNJK0szTTtPQ1FPU1tVY1dvWXtbi12XX6dht2PHZddn62n/bA9uI3A7ck90Z
+3Z7eJN6q3zHft+A+4MXhTOHT4lri4uNq4/LkeuUC5YvmE+ac5yXnr+g46MLpTOnW6mDq6ut16//siu0W
+7aHuLO6470Tv0PBc8OnxdfIC8o/zHPOq9Df0xfVT9eH2b/b+94z4G/iq+Tn5yfpZ+uj7ePwI/Jn9Kf26
+/kv+3P9uY3VydgAAAAAAAAQAAAAABQAKAA8AFAAZAB4AIwAoAC0AMgA3ADsAQABFAEoATwBUAFkAXgBj
+AGgAbQByAHcAfACBAIYAiwCQAJUAmgCfAKQAqQCuALIAtwC8AMEAxgDLANAA1QDaAOAA5QDqAPAA9QD7
+AQEBBwEMARIBGAEeASUBKwExATgBPgFFAUsBUgFZAWABZgFtAXUBfAGDAYoBkgGZAaEBqAGwAbgBwAHI
+AdAB2AHgAekB8QH6AgICCwIUAhwCJQIuAjcCQAJKAlMCXAJmAnACeQKDAo0ClwKhAqsCtQK/AsoC1ALf
+AuoC9AL/AwoDFQMgAysDNwNCA00DWQNlA3ADfAOIA5QDoAOsA7kDxQPSA94D6wP4BAQEEQQeBCwEOQRG
+BFQEYQRvBHwEigSYBKYEtATCBNEE3wTuBPwFCwUaBSgFNwVHBVYFZQV0BYQFkwWjBbMFwwXTBeMF8wYD
+BhQGJAY1BkUGVgZnBngGiQaaBqsGvQbOBuAG8gcDBxUHJwc5B0wHXgdwB4MHlgeoB7sHzgfhB/QICAgb
+CC8IQghWCGoIfgiSCKYIugjOCOMI9wkMCSEJNglLCWAJdQmKCaAJtQnLCeAJ9goMCiIKOQpPCmUKfAqS
+CqkKwArXCu4LBQsdCzQLSwtjC3sLkwurC8ML2wvzDAwMJAw9DFYMbgyHDKEMugzTDO0NBg0gDToNVA1u
+DYgNog28DdcN8Q4MDicOQg5dDngOkw6vDsoO5g8CDx4POg9WD3IPjg+rD8gP5BABEB4QOxBYEHYQkxCx
+EM4Q7BEKESgRRhFkEYMRoRHAEd8R/hIdEjwSWxJ6EpoSuRLZEvkTGRM5E1kTehOaE7sT2xP8FB0UPhRf
+FIEUohTEFOUVBxUpFUsVbRWQFbIV1RX3FhoWPRZgFoMWpxbKFu4XEhc1F1kXfReiF8YX6hgPGDQYWRh9
+GKMYyBjtGRMZOBleGYQZqhnQGfYaHRpDGmoakBq3Gt4bBhstG1QbfBujG8sb8xwbHEMcbByUHL0c5h0O
+HTcdYB2KHbMd3R4GHjAeWh6EHq4e2B8DHy0fWB+DH64f2SAEIDAgWyCHILMg3iEKITchYyGPIbwh6SIV
+IkIicCKdIsoi+CMlI1MjgSOvI90kDCQ6JGkklyTGJPUlJCVUJYMlsyXiJhImQiZyJqMm0ycDJzQnZSeW
+J8cn+CgqKFsojSi+KPApIilVKYcpuSnsKh8qUiqFKrgq6yseK1Irhiu6K+4sIixWLIosvyz0LSktXi2T
+Lcgt/S4zLmkuni7ULwsvQS93L64v5DAbMFIwiTDBMPgxMDFnMZ8x1zIPMkgygDK4MvEzKjNjM5wz1TQP
+NEg0gjS8NPY1MDVqNaU13zYaNlU2kDbLNwY3Qjd+N7k39TgxOG04qjjmOSM5YDmdOdo6FzpUOpI6zzsN
+O0s7iTvHPAY8RDyDPMI9AT1APX89vz3+Pj4+fj6+Pv4/Pz9/P8BAAEBBQIJAxEEFQUdBiEHKQgxCTkKR
+QtNDFkNYQ5tD3kQhRGVEqETsRTBFdEW4RfxGQEaFRspHDkdTR5lH3kgjSGlIr0j1STtJgUnHSg5KVUqb
+SuJLKktxS7hMAExITJBM2E0gTWhNsU36TkJOjE7VTx5PZ0+xT/tQRVCPUNlRJFFuUblSBFJPUppS5VMx
+U3xTyFQUVGBUrVT5VUZVklXfVixWelbHVxRXYlewV/5YTFiaWOlZOFmGWdVaJFp0WsNbE1tjW7JcA1xT
+XKNc9F1EXZVd5l43Xole2l8sX35f0GAiYHRgx2EZYWxhv2ISYmViuWMMY2BjtGQIZFxksWUFZVplr2YE
+Zllmr2cEZ1pnsGgGaFxosmkJaV9ptmoNamRqvGsTa2trw2wbbHNsy20jbXxt1W4ubodu4G86b5Nv7XBH
+cKFw+3FWcbByC3JmcsFzHHN4c9N0L3SLdOd1Q3Wgdfx2WXa2dxN3cHfOeCt4iXjneUV5o3oCemB6v3se
+e3173Hw8fJt8+31bfbt+G358ftx/PX+ef/+AYIDCgSOBhYHngkmCq4MOg3CD04Q2hJmE/IVghcOGJ4aL
+hu+HVIe4iB2IgYjmiUyJsYoWinyK4otIi66MFIx7jOKNSI2vjheOfo7lj02PtZAdkIWQ7pFWkb+SKJKR
+kvqTZJPNlDeUoZULlXWV4JZKlrWXIJeLl/eYYpjOmTqZppoSmn6a65tXm8ScMZyfnQydeZ3nnlWew58x
+n6CgD6B9oOyhW6HLojqiqqMao4qj+qRqpNulTKW8pi6mn6cQp4Kn9KhlqNipSqm8qi+qoqsVq4ir+6xv
+rOOtVq3Lrj+us68or52wEbCHsPyxcbHnsl2y07NJs7+0NrSttSS1m7YStom3Abd5t/G4abjhuVq50rpL
+usS7Pru3vDC8qr0kvZ6+Gb6Tvw6/icAEwH/A+sF2wfHCbcLpw2bD4sRfxNzFWcXWxlPG0cdOx8zISsjJ
+yUfJxspFysTLQ8vCzELMwc1BzcHOQs7Cz0PPw9BE0MbRR9HI0krSzNNO09DUU9TW1VjV29Ze1uLXZdfp
+2G3Y8dl12fraf9sD24jcDtyT3Rndnt4k3qrfMd+34D7gxeFM4dPiWuLi42rj8uR65QLli+YT5pznJeev
+6DjowulM6dbqYOrq63Xr/+yK7Rbtoe4s7rjvRO/Q8Fzw6fF18gLyj/Mc86r0N/TF9VP14fZv9v73jPgb
++Kr5OfnJ+ln66Pt4/Aj8mf0p/br+S/7c/25wYXJhAAAAAAADAAAAAmZmAADypwAADVkAABPQAAALA3Bh
+cmEAAAAAAAMAAAACZmYAAPKnAAANWQAAE9AAAAsDcGFyYQAAAAAAAwAAAAJmZgAA8qcAAA1ZAAAT0AAA
+CwN2Y2d0AAAAAAAAAAAAAwEAAAIAAAAEABAAKABLAHsAuAECAVMBsQIcApEDFQOxBGAFIgX0BtYHygjW
+CfcLHwxqDcIPJBCaEiMTrBU/FvQYmxpQHA0dzR+KIVUjGyTbJqMoZColK94tiC8fMLEyRzPfNXQ3Czig
+OjU7wD1GPtBAU0HQQ0tEwUYwR5tJA0pmS8NNF05vT7hRBFJMU49Uz1YSV1JYiFnAWvVcIV1MXnVflmC8
+Yd1jAWQhZT5mV2dtaIZpnGqva8Fsz23fbu5v+HECcgxzGXQldTJ2PndJeFl5aXpre0Z8G3zvfcZ+on98
+gFqBOIIagwCD6ITRhcCGsYemiJ6JmoqXi5qMm42ijq2PuZDHkdWS5ZPzlPWV6pbal82YwZm1mrKbsJyt
+na6esZ+1oLyhwqLJo9Gk1qXepuan6ajtqfKq9av0rPKt767zsA+xMLJOs2u0g7Wetra3y7jbueu6+7wJ
+vRW+IL8pwDLBPsJKw1jEZsV2xonHnsi0ycvKv8uizIDNXM44zxPP7tDF0ZrScdNF1BbU6dW71o7XYtg0
+2QXZ19qs24DcVd0s3gTe1d974B/gwOFk4gnisONb5AfksuVh5g/mvOdq6Bjox+l06iDqyut37CPszO11
+7h3uwu9r8BTwuPFc8f/ypPNK8/H0kvUx9c/2Xvbp91f3wvga+GD4pvjs+XP6G/uu/iP//wAAAAQAEgAs
+AFIAhgDIARUBYwG+AicCoQMnA7cEYAUgBeoGxAe0CLgJzQrqDCANaA7DECMRjRMIFIoWHRe7GV0bAxyr
+HlcgDiHBI3wlKSbeKJIqMyurLQ8uay/JMS0yjzP1NVk2vzgiOX863zw+PZo+9kBRQaZC+kRJRZhG4kgn
+SW9Kq0vpTSNOW0+RUMdR+1MoVFRVgFajV8ZY5loDWyJcO11ZXnNfiGCcYa5iwWPTZONl8Wb/aA5pHGoo
+azRsQW1SbmVvdHCJcZpysnPLdNF1tnaSd2t4SHkoegh66nvNfLF9m36Ef26AW4FKgjqDLIQehRKGB4b8
+h/KI64nkit2L1YzNjcOOuo+qkJuRjpKBk3WUbpVnlmCXXJhYmVeaVptVnFWdVZ5Un1WgVaFUolOjVaRT
+pU+mTadJqFCpdqqmq86s+q4fr0iwb7GUsrOz07T1thW3M7hSuXC6jruyvNa9+78kwE7BfMKtw+DFDMYb
+xxTIB8j6ye/K5cvczNDNxc69z7PQp9Gb0o/ThNR41WnWV9dE2DPZH9oK2vTb39zD3ZLeXd8o3/Xgw+GQ
+4lzjKeP25MHliOZO5xPn1+ia6VnqF+rW65DsS+0F7b3uce8l797wj/FA8fDypPNY9Ar0tvVi9g/2u/dV
+9+f4ifk4+f/67fwL/Wf+uv8z/3f/u///AAAAAgALABoAMQBQAHcApwDgAR8BYQGtAgECYALIAzsDuQRC
+BNgFfgYxBuoHuAiMCWwKXAtSDE8NVQ5iD3cQkxGzEtIT9RUVFjsXWhh9GZwauhvTHOsd+x8HIBchKSI6
+I00kXyVuJnonhiiQKZkqoCumLKktqS6oL6QwoDGVMoYzejRpNVc2RDcuOBU5ADnnOso7sDybPYk+eT9o
+QFJBP0IoQxVD/UTlRclGrUeTSHpJXUo/SyNMBkzpTctOrU+RUHZRX1JGUy9UF1UDVfBW0VelWHVZQVoQ
+WuBbsVyDXVReJV75X8xgnmFzYkdjG2PwZMVlmGZtZ0BoFmjracFqlWtpbDxtDG3RboxvP2/ycKRxU3IF
+crdzZ3QXdMh1eXYrdt53kXhGePx5tXpweyt76XyrfW9+Mn75f8KAjYFdgi2C/YPNhJuFbYY+hw+H4Iiw
+iYSKV4sqi/2M0Y2kjnuPUpAqkQOR3JK5k5WUcpVPljOXHJgImPOZ4ZrQm8Kcsp2knpufk6CLoYaihKOG
+pIulkKaVp5yop6mzqr+rzazgrfGvBbAasS+ySbNktIO1orbDt+S5DLoxu1m8gr2tvtrABcEvwlvDisSz
+xd3HCsgyyWHKrMv7zUPOf8+60O3SJNNl1KTV8tdX2MnaTNv03b/fuOHm5FHnI+ps7mrzdvpZ//8AAG5k
+aW4AAAAAAAAGNgAAlUYAAFbPAABSqQAAkU4AAChyAAAXCgAAUA0AAFQ5AALcKAACqPUAAXMzAAMBAAAC
+AAAAGAAyAE0AZgB+AJYArgDGAN0A9AEMASIBOgFQAWgBfwGXAa4BxgHfAfgCEAIoAkICXAJ2ApACqwLG
+AuIC/wMbAzgDVQN0A5MDswPTA/MEFQQ3BFoEfQSjBMkE8gUcBUcFcwWfBcwF+QYoBlcGhwa4BukHHAdQ
+B4YHvQf0CCwIZgiiCN4JHAlbCZwJ3wojCmkKsAr5C0MLkgvhDDAMhQzaDTANiQ3kDkEOoA7+D2APxhAt
+EJQRABFwEeESVBLNE0QTvxQ8FLkVOxW/FkcW0hddF+sYfRkRGakaQxreG30cIRzFHWweEh68H2cgFSDF
+IXQiJSLiI8YksiWhJooneShnKVcqRCswLCAtCy32LuEvyjCzMZwygzNtNFU1OzYiNwo39DjeOcs6vjvH
+PNs97j8BQBlBKUI5Q01EX0VyRoVHmEiuScVK3Uv7TRlONU9eUIVRsFLaVBFVSFaFV8RY5ln/WyBcQV1o
+XpVfwGDwYiZjZGSkZeVnK2h2acVrFmxvbcVvGnB0cctzJnSAddd3MHiJeeN7cn0jfuKApYJuhDuGFYf1
+idWLxo24j6+RppOhlaeXrZmxm7idw5/Dod+kkqdbqhis06+AsjS037eZulS9FL/fwrzFkMh+y3DOe9F1
+1JHXu9rd3gPhSeSn6IbtlvV1+TT61/vt/Nn9pv6h//8AAAAWADEASwBmAH4AlwCwAMgA4AD4AREBKQFB
+AVkBcQGKAaMBvQHWAfACCgIkAj4CWQJ0ApACrALJAuYDBAMiA0ADXwN/A54DwAPiBAQEJwRKBG8ElgTA
+BO8FHwVRBYQFtwXrBiAGVgaMBsQG/Ac2B3EHrgfsCCoIagirCO4JMQl2Cb0KBQpPCpsK6As2C4gL2wwu
+DIYM3w05DZYN9Q5VDrgPGg+BD+sQVhDCETQRpxIcEpUTEBOLFAwUixUOFZUWHharFzkXyBhbGPAZiRoj
+Gr4bXBv+HKEdRR3pHo4fNx/eIIshNCHfIosjXiQ/JSgmDib0J94oxym0KpwriCx2LWMuUS9AMC8xIjIU
+Mwk0ATT3Ne826jfoOOk57jr0PAU9GD4rP0BAWEFrQoFDmkSxRcxG5UgBSR9KP0thTIhNrE7WUARRM1Jg
+U5dU0lYLV01YeFmEWpNbq1y+Xdxe/GAWYTpiYGOOZL1l6mccaFJpimrCbAFtPm53b7Nw8HIoc2d0oXXZ
+dxJ4S3mFet98Yn33f4+BJ4K/hFiF+YebiTuK4YyOjjyP7ZGgk1eVGZblmK6afpxVnjKgDqH+pCimX6iS
+qsWtAa9CsYOz0LYvuJK7Ar15wAfClMU2x97Kks1f0B7S/NXm2MTbrd654cbk3+iP69nunPDn8tT0c/X4
+97T//wAAACUATwB4AKAAxwDsARIBNgFcAYABpQHLAfECGAI/AmcCjwK5AuQDEAM+A2wDnQPOBAIENwRu
+BKgE4wUiBWMFpQXoBi0Gcwa7BwUHUgehB/IIRQibCPMJTQmrCgsKbgrUCzwLrAwbDI8NBg2ADf4OgA8C
+D4oQFxCiES0RuRJHEtwTcRQLFKUVRRXoFpEXOxfmGJcZSxoBGrobdhw3HPgdux59H0QgCyDWIZ8iayNO
+JD0lNCYqJyIoHSkcKh0rHiwnLS4uOi9JMFkxcDKIM6Y0wzXkNwo4NDljOps79z1pPuBAZEHlQ3JFAUaW
+SCxJxktfTPpOj1AoUbxTS1TgVm9X/lmFWxJcoF44X8thY2L/ZKFmQGfjaYprM2zibotwOXHlc5h1RXb1
+eKh6XXwEfaR/SoDugpKENIXch4OJJIrGjGuODY+tkUiS4ZR+lh6Xu5lVmvGcjp4rn8KhYaL7pJWmNqfS
+qWerBayZrjOvy7Fpsvi0lbYst8S5Xbr0vIu+KL/JwWfDB8Skxk/H+cmey0zNAs6d0BvRntMq1L/WZ9gI
+2bnba90O3q7gV+Hs423k5OZT57npFOpQ64Psre3G7tHv1PDG8bXykPNs9Cz06/We9kj28veI+Bz4r/kv
++ar6JPqe+wL7ZvvK/C78h/zR/Rv9Zf2v/fr+Tf65/yb/kv//AABkZXNjAAAAAAAAAApDb2xvciBMQ0QA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAbWx1YwAAAAAAAAACAAAADGRhREsAAAAcAAAAKGVuVVMAAAASAAAARABM
+AEMARAAtAGYAYQByAHYAZQBzAGsA5gByAG0AQwBvAGwAbwByACAATABDAEQAAG1tb2QAAAAAAAAGEAAA
+nIQAAAAAw5X4gAAAAAAAAAAAAAAAAAAAAAB0ZXh0AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAw
+OQA</bytes>
+																</object>
+																<string key="NSModelPixelLogicalRect">{{0, 0}, {76, 37}}</string>
+																<string key="NSModelPixelDrawingRect">{{0, 0}, {76, 37}}</string>
+															</object>
+														</object>
+													</object>
+													<reference key="NSColor" ref="512275479"/>
+												</object>
+											</object>
+											<reference ref="81191833"/>
+											<reference ref="81191833"/>
+											<object class="NSMutableParagraphStyle">
+												<int key="NSAlignment">4</int>
+												<int key="NSLineBreakMode">2</int>
+												<nil key="NSTabStops"/>
+											</object>
+											<object class="NSShadow">
+												<double key="NSShadowVert">-1</double>
+												<reference key="NSShadowColor" ref="758847857"/>
+											</object>
+										</object>
+									</object>
+									<object class="NSColor" key="BWSTFCStartingColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC4zMjk3MTQ5MjU1IDAuMzc5MjE3MjcxNSAwLjQzMzY3MzQ2OTQAA</bytes>
+									</object>
+									<object class="NSColor" key="BWSTFCEndingColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC41NjA2NDczNjY2IDAuNjA1Mzg4OTczNyAwLjY1ODE2MzI2NTMAA</bytes>
+									</object>
+									<object class="NSColor" key="BWSTFCSolidColor">
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MC40OTI1MzcxMzYyIDAuNTQ0OTk5MTczMyAwLjU5MTgzNjczNDcAA</bytes>
+									</object>
+								</object>
+							</object>
+						</object>
+						<string key="NSFrame">{{0, 155}, {624, 410}}</string>
+						<reference key="NSSuperview" ref="342841082"/>
+						<object class="NSColor" key="BWGBFillStartingColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC42NzU3Njg1MjI3IDAuNzIxOTQ4MTMwNiAwLjc2NTMwNjEyMjQAA</bytes>
+						</object>
+						<object class="NSColor" key="BWGBFillEndingColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC41MTM3NjcxODUyIDAuNTY4NDkwNTE3IDAuNjE3MzQ2OTM4OAA</bytes>
+						</object>
+						<object class="NSColor" key="BWGBFillColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC42MTk2MDA4NjE0IDAuNjYxMTkyMDA1MSAwLjcxOTM4Nzc1NTEAA</bytes>
+						</object>
+						<object class="NSColor" key="BWGBTopBorderColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC41NTc2NjQ2NjM5IDAuNTk4ODkyNDg5OSAwLjY0Mjg1NzE0MjkAA</bytes>
+						</object>
+						<object class="NSColor" key="BWGBBottomBorderColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC40Mjc4NDM2NjA5IDAuNDc5NDI1MTUwOSAwLjUyMDQwODE2MzMAA</bytes>
+						</object>
+						<bool key="BWGBHasTopBorder">YES</bool>
+						<bool key="BWGBHasBottomBorder">YES</bool>
+						<bool key="BWGBHasGradient">YES</bool>
+						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
+						<float key="BWGBBottomInsetAlpha">0.0</float>
+					</object>
+				</object>
+				<string key="NSFrameSize">{624, 565}</string>
+				<reference key="NSSuperview"/>
+				<string key="NSClassName">ofPlugin</string>
+			</object>
+		</object>
+		<object class="IBObjectContainer" key="IBDocument.Objects">
+			<object class="NSMutableArray" key="connectionRecords">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">view</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="342841082"/>
+					</object>
+					<int key="connectionID">4</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">world</string>
+						<reference key="source" ref="101199659"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">5</int>
+				</object>
+			</object>
+			<object class="IBMutableOrderedSet" key="objectRecords">
+				<object class="NSArray" key="orderedObjects">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBObjectRecord">
+						<int key="objectID">0</int>
+						<reference key="object" ref="0"/>
+						<reference key="children" ref="1000"/>
+						<nil key="parent"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-2</int>
+						<reference key="object" ref="1001"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">File's Owner</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-1</int>
+						<reference key="object" ref="1003"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">First Responder</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">-3</int>
+						<reference key="object" ref="1004"/>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Application</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1</int>
+						<reference key="object" ref="342841082"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="101199659"/>
+						</object>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3</int>
+						<reference key="object" ref="101199659"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="686765117"/>
+						</object>
+						<reference key="parent" ref="342841082"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">6</int>
+						<reference key="object" ref="686765117"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="104341370"/>
+						</object>
+						<reference key="parent" ref="101199659"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">7</int>
+						<reference key="object" ref="104341370"/>
+						<reference key="parent" ref="686765117"/>
+					</object>
+				</object>
+			</object>
+			<object class="NSMutableDictionary" key="flattenedProperties">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="NSArray" key="dict.sortedKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>1.IBEditorWindowLastContentRect</string>
+					<string>1.IBPluginDependency</string>
+					<string>3.CustomClassName</string>
+					<string>3.IBPluginDependency</string>
+					<string>6.IBPluginDependency</string>
+					<string>7.IBPluginDependency</string>
+				</object>
+				<object class="NSMutableArray" key="dict.values">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>{{433, 222}, {624, 565}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>TouchField</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+				</object>
+			</object>
+			<object class="NSMutableDictionary" key="unlocalizedProperties">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<reference key="dict.sortedKeys" ref="0"/>
+				<object class="NSMutableArray" key="dict.values">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+				</object>
+			</object>
+			<nil key="activeLocalization"/>
+			<object class="NSMutableDictionary" key="localizations">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<reference key="dict.sortedKeys" ref="0"/>
+				<object class="NSMutableArray" key="dict.values">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+				</object>
+			</object>
+			<nil key="sourceID"/>
+			<int key="maxID">7</int>
+		</object>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">ParallelWorld</string>
+					<string key="superclassName">ofPlugin</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="968458796">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">src/Plugins/outputs/ParallelWorld/ParallelWorld.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">PluginOpenGLControlView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/PluginManager/PluginOpenGLControl.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">TouchField</string>
+					<string key="superclassName">BWGradientBox</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">world</string>
+						<string key="NS.object.0">ParallelWorld</string>
+					</object>
+					<reference key="sourceIdentifier" ref="968458796"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ofPlugin</string>
+					<string key="superclassName">NSView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>controlGlView</string>
+							<string>plugin</string>
+							<string>view</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>PluginOpenGLControlView</string>
+							<string>ofPlugin</string>
+							<string>NSView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/PluginManager/Plugin.h</string>
+					</object>
+				</object>
+			</object>
+			<object class="NSMutableArray" key="referencedPartialClassDescriptionsV3.2+">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">BWGradientBox</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">BWToolkitFramework.framework/Headers/BWGradientBox.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">BWStyledTextField</string>
+					<string key="superclassName">NSTextField</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">BWToolkitFramework.framework/Headers/BWStyledTextField.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">BWStyledTextFieldCell</string>
+					<string key="superclassName">NSTextFieldCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">BWToolkitFramework.framework/Headers/BWStyledTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSActionCell</string>
+					<string key="superclassName">NSCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSActionCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<string key="superclassName">NSResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="826039700">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSApplication.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="994989301">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSApplicationScripting.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="871293382">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSColorPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSHelpManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSPageLayout.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSUserInterfaceItemSearching.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSApplication</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">BWToolkitFramework.framework/Headers/NSApplication+BWAdditions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSCell</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSControl</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="385334028">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSControl.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSMenu</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="1028238014">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSMenu.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSAccessibility.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="826039700"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="994989301"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="871293382"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="385334028"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSDictionaryController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSDragging.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSFontManager.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSFontPanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSKeyValueBinding.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<reference key="sourceIdentifier" ref="1028238014"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSNibLoading.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSOutlineView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSPasteboard.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSSavePanel.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTableView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSToolbarItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="864505954">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">PrintCore.framework/Headers/PDEPluginInterface.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QTKit.framework/Headers/QTCaptureDecompressedAudioOutput.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QTKit.framework/Headers/QTCaptureDecompressedVideoOutput.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QTKit.framework/Headers/QTCaptureFileOutput.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QTKit.framework/Headers/QTCaptureVideoPreviewOutput.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QTKit.framework/Headers/QTCaptureView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QTKit.framework/Headers/QTMovie.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QTKit.framework/Headers/QTMovieView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CAAnimation.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CALayer.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">QuartzCore.framework/Headers/CIImageProvider.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSResponder</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSInterfaceStyle.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSResponder</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSResponder.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTextField</string>
+					<string key="superclassName">NSControl</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTextField.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSTextFieldCell</string>
+					<string key="superclassName">NSActionCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSClipView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSMenuItem.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSRulerView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<string key="superclassName">NSResponder</string>
+					<reference key="sourceIdentifier" ref="864505954"/>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">BWToolkitFramework.framework/Headers/NSView+BWAdditions.h</string>
+					</object>
+				</object>
+			</object>
+		</object>
+		<int key="IBDocument.localizationMode">0</int>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
+			<integer value="1060" key="NS.object.0"/>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
+			<integer value="3000" key="NS.object.0"/>
+		</object>
+		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../../../../openFrameworks.xcodeproj</string>
+		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+	</data>
+	<classes>
+		<class name="NSCachedImageRep">
+			<fallbacks>
+				<name>NSCachedImageRep</name>
+			</fallbacks>
+		</class>
+	</classes>
+</archive>

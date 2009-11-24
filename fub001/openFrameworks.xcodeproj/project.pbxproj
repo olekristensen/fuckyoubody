@@ -17,6 +17,10 @@
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
 		DD0C016A1066874900BB3F9F /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */; };
+		DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */; };
+		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
+		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
+		DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DECA10BC04C100750B7C /* DMXOutput.mm */; };
 		DD45B91B106FDC4F00B4B19C /* ofxMSASpline2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */; };
 		DD45B91C106FDC4F00B4B19C /* ofxMSASpline3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B911106FDC4F00B4B19C /* ofxMSASpline3D.cpp */; };
 		DD45B91D106FDC4F00B4B19C /* ofxMSASurface3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */; };
@@ -154,6 +158,12 @@
 		DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		DD0C01611066874900BB3F9F /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
+		DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelWorld.h; sourceTree = "<group>"; };
+		DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParallelWorld.mm; sourceTree = "<group>"; };
+		DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParallelWorld.xib; sourceTree = "<group>"; };
+		DD26DEC610BC04AA00750B7C /* DMXOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DMXOutput.xib; sourceTree = "<group>"; };
+		DD26DEC910BC04C100750B7C /* DMXOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMXOutput.h; sourceTree = "<group>"; };
+		DD26DECA10BC04C100750B7C /* DMXOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DMXOutput.mm; sourceTree = "<group>"; };
 		DD45B90D106FDC4F00B4B19C /* ofxMSASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline.h; sourceTree = "<group>"; };
 		DD45B90E106FDC4F00B4B19C /* ofxMSASpline1D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline1D.h; sourceTree = "<group>"; };
 		DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSASpline2D.cpp; sourceTree = "<group>"; };
@@ -569,6 +579,26 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		DD26DD8810BBEC1600750B7C /* ParallelWorld */ = {
+			isa = PBXGroup;
+			children = (
+				DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */,
+				DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */,
+				DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */,
+			);
+			path = ParallelWorld;
+			sourceTree = "<group>";
+		};
+		DD26DEC510BC04A100750B7C /* DMXOutput */ = {
+			isa = PBXGroup;
+			children = (
+				DD26DEC610BC04AA00750B7C /* DMXOutput.xib */,
+				DD26DEC910BC04C100750B7C /* DMXOutput.h */,
+				DD26DECA10BC04C100750B7C /* DMXOutput.mm */,
+			);
+			path = DMXOutput;
+			sourceTree = "<group>";
+		};
 		DD45B904106FDC4F00B4B19C /* ofxMSASpline */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,6 +854,8 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				DD26DEC510BC04A100750B7C /* DMXOutput */,
+				DD26DD8810BBEC1600750B7C /* ParallelWorld */,
 				DDC7728110B5846F009CAFC7 /* _ExampleOutput */,
 			);
 			name = outputs;
@@ -1463,6 +1495,8 @@
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
 				DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */,
 				6EA4017A10BBE5F7006FBAAB /* Camera.xib in Resources */,
+				DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */,
+				DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1564,6 +1598,8 @@
 				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
 				DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */,
 				6EA4017910BBE5F7006FBAAB /* Camera.mm in Sources */,
+				DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */,
+				DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,12 @@
 //
 #include "GLee.h"
 
-#include "_ExampleOutput.h"
+
 //#include "_ExampleOutputAgain.h"
-#include "ProjectionSurfaces.h"
 #include "Camera.h"
+
+#include "ProjectionSurfaces.h"
+
+#include "_ExampleOutput.h"
+#include "ParallelWorld.h"
+#include "DMXOutput.h"
