@@ -8,22 +8,43 @@
 #include "ofxVectorMath.h"
 
 
-@interface LedLamp : NSObject
+@interface Lamp : NSObject
+{
+	@public
+	ofxPoint2f * pos;
+	int channel;
+}
+
+-(bool) updateDmx:(ofSerial*) serial mutex:(pthread_mutex_t)mutex;
+
+@end
+
+
+@interface LedLamp : Lamp
 {
 @public
 	int r, g, b, a;
-	ofxPoint2f * pos;
-	int channel;
-	
 	int sentR, sentG, sentB, sentA;
 	
 	bool isOldAndSucks;
 	
 	
 }
--(void) update;
+
 -(void) setLamp:(float)_r g:(float)_g b:(float)_b a:(float)_a;
 @end
+
+
+
+@interface NormalLamp : Lamp
+{
+@public
+	int value;
+	int sentValue;	
+}
+-(void) setLamp:(float)_v;
+@end
+
 
 
 @interface DMXOutput : ofPlugin {

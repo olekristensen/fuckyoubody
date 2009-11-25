@@ -6,6 +6,7 @@
 #include "Plugin.h"
 #include "ofMain.h"
 #include "ofxVectorMath.h"
+#include "PluginOpenGLControl.h"
 
 #define numFingers 3
 
@@ -15,15 +16,17 @@
 	bool fingerActive[numFingers];
 	id identity[numFingers];
 	ofxPoint2f fingerPositions[numFingers];
-	
-	vector<ofxPoint2f> lines1;
-	vector<ofxPoint2f> lines2;
+	float min;
+	float max;
+	vector<float> *lines;
 }
-
+-(IBAction) setMinSize:(id)sender;
+-(IBAction) setMaxSize:(id)sender;
+-(IBAction) remake:(id)sender;
 @end
 
 
-@interface TouchField : BWGradientBox
+@interface TouchField : PluginOpenGLControlView
 {
 	IBOutlet ParallelWorld * world;
 }
