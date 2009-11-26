@@ -547,13 +547,8 @@ bool ret = true;
 
 //								cout<<"make buffer end"<<endl;
 			}
-			
-
-			
-			
 		}
-		
-		
+				
 		[NSThread sleepForTimeInterval:0.003];
 	}
 }
