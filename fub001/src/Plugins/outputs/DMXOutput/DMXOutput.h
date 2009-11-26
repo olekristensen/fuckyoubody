@@ -15,7 +15,7 @@
 	int channel;
 }
 
--(bool) updateDmx:(ofSerial*) serial mutex:(pthread_mutex_t)mutex;
+-(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex;
 
 @end
 
@@ -63,12 +63,24 @@
 	int shownNumber;
 	
 	NSColor * color;
-
-
+	
+	IBOutlet NSColorWell * backgroundColor;
+	IBOutlet NSButton * backgroundGradient;
+	IBOutlet NSSlider * backgroundGradientSpeed;
+	IBOutlet NSSlider * backgroundGradientRotation;
+	
+	IBOutlet NSButton * ledCounter;
+	IBOutlet NSButton * ledCounterFade;	
+	IBOutlet NSColorWell * ledCounterColor;
+	
+	IBOutlet NSSlider * worklight;
+	IBOutlet NSButton * trackingLight;
+	
+	vector<unsigned char> * serialBuffer;
 }
 
 -(void) updateDmx:(id)param;
--(void) makeNumber:(int)n r:(float)_r g:(float)_g b:(float)_b;
+-(void) makeNumber:(int)n r:(float)_r g:(float)_g b:(float)_b a:(float)_a;
 -(LedLamp*) getLamp:(int)x y:(int)y;
 
 @end

@@ -10,7 +10,7 @@
 
 @implementation Lamp
 
--(void) updateDmx:(ofSerial *)serial mutex:(pthread_mutex_t)mutex{	
+-(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
 }
 
 @end
@@ -39,10 +39,10 @@
 	a = _a;
 }
 
--(bool) updateDmx:(ofSerial *)serial mutex:(pthread_mutex_t)mutex{
-	bool ret = true;
+-(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
+bool ret = true;
 	if(channel > 0){					
-		pthread_mutex_lock(&mutex);
+//		pthread_mutex_lock(&mutex);
 		
 		if(a > 254){
 			a = 254;
@@ -56,50 +56,40 @@
 		if(b > 254){
 			b = 254;
 		}
-		pthread_mutex_unlock(&mutex);
 		
 		int n;
 		
 		if(r != sentR ){
 			sentR = r;
-			unsigned char *buffer = new unsigned char[3];
-			buffer[0] = (unsigned char)255;
-			buffer[1] = (unsigned char)channel;
-			buffer[2] = (unsigned char)r;
-			serial->writeBytes(buffer, 3);
-			delete buffer;
+			serialBuffer->push_back((unsigned char)255);
+			serialBuffer->push_back((unsigned char)channel);
+			serialBuffer->push_back((unsigned char)r);
 			ret = false;
 		}
 		if(g != sentG ){
 			sentG = g;
-			unsigned char *buffer = new unsigned char[3];
-			buffer[0] = (unsigned char)255;
-			buffer[1] = (unsigned char)channel+1;
-			buffer[2] = (unsigned char)g;
-			serial->writeBytes(buffer, 3);
-			delete buffer;
+			serialBuffer->push_back((unsigned char)255);
+			serialBuffer->push_back((unsigned char)channel+1);
+			serialBuffer->push_back((unsigned char)g);
 			ret = false;
 		}
 		if(b != sentB){
 			sentB = b;
-			unsigned char *buffer = new unsigned char[3];
-			buffer[0] = (unsigned char)255;
-			buffer[1] = (unsigned char)channel+2;
-			buffer[2] = (unsigned char)b;
-			serial->writeBytes(buffer, 3);
-			delete buffer;
+			serialBuffer->push_back((unsigned char)255);
+			serialBuffer->push_back((unsigned char)channel+2);
+			serialBuffer->push_back((unsigned char)b);
 			ret = false;
 		}
 		if(a != sentA){
 			sentA = a;
-			unsigned char *buffer = new unsigned char[3];
-			buffer[0] = (unsigned char)255;
-			buffer[1] = (unsigned char)channel+3;
-			buffer[2] = (unsigned char)a;
-			serial->writeBytes(buffer, 3);
-			delete buffer;
+			serialBuffer->push_back((unsigned char)255);
+			serialBuffer->push_back((unsigned char)channel+3);
+			serialBuffer->push_back((unsigned char)a);
+
 			ret = false;
 		}
+//		pthread_mutex_unlock(&mutex);
+
 	}
 	return ret;
 }
@@ -112,36 +102,35 @@
 -(id)init{
 	if ([super init]) {
 		sentValue = -1;
-		value = 100;
+		value = 0;
 		
 		return self;
 	}
 }
 
--(bool) updateDmx:(ofSerial *)serial mutex:(pthread_mutex_t)mutex{
+-(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
 	bool ret = true;
 	if(channel > 0){					
-		pthread_mutex_lock(&mutex);
+	//	pthread_mutex_lock(&mutex);
 		
 		if(value > 254){
 			value = 254;
 		}
 		
-		pthread_mutex_unlock(&mutex);
 		
 		int n;
 		
-		if(value != sentValue ){
-			cout<<channel<<"  "<<value<<endl;
-			sentValue = value;
-			unsigned char *buffer = new unsigned char[3];
-			buffer[0] = (unsigned char)255;
-			buffer[1] = (unsigned char)channel;
-			buffer[2] = (unsigned char)value;
-			serial->writeBytes(buffer, 3);
-			delete buffer;
-			ret = false;
-		}
+		//	if(value != sentValue ){
+		//		cout<<channel<<"  "<<value<<endl;
+		sentValue = value;
+	
+		serialBuffer->push_back((unsigned char)255);
+		serialBuffer->push_back((unsigned char)channel);
+		serialBuffer->push_back((unsigned char)value);
+		ret = false;
+	//	pthread_mutex_unlock(&mutex);
+
+		//	}
 		
 	}
 	return ret;
@@ -159,7 +148,7 @@
 
 @implementation DMXOutput
 
--(void) makeNumber:(int)n r:(float)_r g:(float)_g b:(float)_b {
+-(void) makeNumber:(int)n r:(float)_r g:(float)_g b:(float)_b a:(float)_a {
 	int array[15];
 	if(n == 0){
 		int a[15] = { 
@@ -284,11 +273,13 @@
 	
 	int x = 0;
 	int y = 0;
-	pthread_mutex_lock(&mutex);
+	//pthread_mutex_lock(&mutex);
 	
 	for(int i=0;i<15;i++){
 		if(array[i] == 1){
-			[[self getLamp:x y:y] setLamp:_r g:_g b:_b a:array[i]*254];		
+			[[self getLamp:x y:y] setLamp:_r g:_g b:_b a:array[i]*_a];		
+		} else {
+		//	[[self getLamp:x y:y] setLamp:_r g:_g b:_b a:0];			
 		}
 		x ++;
 		if(x> 2){
@@ -296,7 +287,7 @@
 			y++;
 		}
 	}
-	pthread_mutex_unlock(&mutex);
+//	pthread_mutex_unlock(&mutex);
 	
 	
 }
@@ -343,19 +334,27 @@
 		}
 		[lamps addObject:lamp];
 	}
-	/*
-	for(int i=0;i<25;i++){
-		NormalLamp * lamp = [[NormalLamp alloc] init];
-		lamp->channel = i;	
+	
+	for(int i=19;i<25;i++){
+		
+ 		NormalLamp * lamp = [[NormalLamp alloc] init];
+		lamp->channel = i;
+		lamp->value = 254/2.0;
 		[lamps addObject:lamp];
-	}*/
+	}
+	
+	NormalLamp *  lamp2 = [[NormalLamp alloc] init];
+	lamp2->channel = 6;
+	lamp2->value = 120;
+	[lamps addObject:lamp2];
+	
 	
 	ok = serial->setup("/dev/tty.usbserial-A6008iyw", 115200);
-
+	
 	master = 254;
 	sentMaster = -1;
 	pthread_mutex_init(&mutex, NULL);
-	
+	serialBuffer = new vector<unsigned char>;
 	
 	color = [NSColor blueColor];
 	shownNumber = -1;
@@ -369,9 +368,10 @@
 	glTranslated(30, 30, 0);
 	LedLamp * lamp;
 	for(lamp in lamps){
-		ofSetColor(lamp->r, lamp->g, lamp->b, lamp->a);
-		ofCircle(lamp->pos->x*30.0, lamp->pos->y*30.0, 10);
-		
+		if(lamp->pos != nil){
+			ofSetColor(lamp->r, lamp->g, lamp->b, lamp->a);
+			ofCircle(lamp->pos->x*30.0, lamp->pos->y*30.0, 10);
+		}
 	}
 	
 	glPopMatrix();
@@ -379,58 +379,102 @@
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
-	
-	float hue, sat, bright, alph;
-	float add = 0.1;
-	[color getHue:&hue saturation:&sat brightness:&bright alpha:&alph];
-	
-	
-	for(int i=0;i<5;i++){
-		for(int u=0;u<3;u++){
-			LedLamp * lamp = [self getLamp:u y:i];
-			//NSColor * c = [color copy];
-			float h = hue+add*i + u*0.1;
-			if(h > 1)
-				h -= 1;
-			NSColor * c = [NSColor colorWithCalibratedHue:h saturation:sat brightness:bright alpha:alph];
-			[lamp setLamp:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:254];
+	pthread_mutex_lock(&mutex);
+	//Normal light
+	Lamp * lamp;
+	for(lamp in lamps){
+		if(lamp->channel > 18 && lamp->channel < 25){
+			if([trackingLight state] == NSOnState){
+				((NormalLamp*)lamp)->value  = 254/2.0;
+			}
+			else {
+				((NormalLamp*)lamp)->value  = 0;
+			}
+		}
+		if(lamp->channel == 6){
+			((NormalLamp*)lamp)->value  = [worklight intValue];
 		}
 	}
 	
 	
-	hue += add*0.2;
-	if(hue > 1){
-		hue -= 1;	
-	}
-	[color release];
-	color = [NSColor colorWithCalibratedHue:hue saturation:sat brightness:bright alpha:alph];
-	[color retain];
-	
-	
+	//Background
 	for(int i=0;i<5;i++){
 		for(int u=0;u<3;u++){
 			LedLamp * lamp = [self getLamp:u y:i];
-			[lamp setLamp:0 g:0 b:0 a:0];
+			NSColor * c = [backgroundColor color];
+			[lamp setLamp:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*254];
 		}
 	}
 	
-	
-	
-	//	if(shownNumber != int(timeInterval)%10){
-	shownNumber = int(timeInterval)%10;
-	//	shownNumber = int(ofRandom(0, 10));
-	//		[self makeNumber:int(timeInterval)%10 r:int(ofRandom(0, 254)) g:int(ofRandom(0, 254)) b:int(ofRandom(0, 254))];
-	if(timeInterval - int(timeInterval) < 0.6){
-		master += 0.1;
-		if(master > 1) 
-			master = 1;
-	} else {
-		master -= 0.1;
-		if(master < 0) 
-			master = 0;	
+	//Gradient
+	if([backgroundGradient state] == NSOnState){
+		float hue, sat, bright, alph;
+		float add = 0.1;
+		[color getHue:&hue saturation:&sat brightness:&bright alpha:&alph];	
+		
+		for(int i=0;i<5;i++){
+			for(int u=0;u<3;u++){
+				LedLamp * lamp = [self getLamp:u y:i];
+				//NSColor * c = [color copy];
+				float h = hue+add*i + u*[backgroundGradientRotation floatValue];
+				if(h > 1)
+					h -= 1;
+				NSColor * c = [NSColor colorWithCalibratedHue:h saturation:sat brightness:bright alpha:alph];
+				[lamp setLamp:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:254];
+			}
+		}
+		
+		
+		hue += add*[backgroundGradientSpeed floatValue];
+		if(hue > 1){
+			hue -= 1;	
+		}
+		[color release];
+		color = [NSColor colorWithCalibratedHue:hue saturation:sat brightness:bright alpha:alph];
+		[color retain];
+		
 	}
-	//[self makeNumber:shownNumber r:254*master g:254*master b:254*master];
 	
+	
+	
+	//Led counter 
+	
+	if([ledCounter state] == NSOnState){
+		
+		//	if(shownNumber != int(timeInterval)%10){
+		shownNumber = int(timeInterval)%10;
+		//	shownNumber = int(ofRandom(0, 10));
+		//	[self makeNumber:int(timeInterval)%10 r:int(ofRandom(0, 254)) g:int(ofRandom(0, 254)) b:int(ofRandom(0, 254))];
+		
+		if([ledCounterFade state] == NSOnState){
+			
+			if(timeInterval - int(timeInterval) < 0.6){
+				master += 0.1;
+				if(master > 1) 
+					master = 1;
+			} else {
+				master -= 0.1;
+				if(master < 0) 
+					master = 0;	
+			}
+			
+		} else {
+			master = 1;	
+		}
+		
+		NSColor * c = [ledCounterColor color];		
+		[self makeNumber:shownNumber r:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*190*master];
+		for(int i=0;i<5;i++){
+			for(int u=0;u<3;u++){
+				LedLamp * lamp = [self getLamp:u y:i];
+				if(lamp->a > 0){
+					
+					//				lamp->a = ofRandom(0, 190*master);
+				}
+			}
+		}
+		
+	}
 	
 	float x = controlMouseY / 300.0;
 	
@@ -448,40 +492,69 @@
 		}
 	}
 	
-	
+	pthread_mutex_unlock(&mutex);
+
 	//	}
 }
 
 -(void) updateDmx:(id)param{
 	while(1){
+//		cout<<"Buffer size: "<<serialBuffer->size()<<endl;
 		if(serial->available()){
 			serial->flush(true, false);
 			ok = true;
+//			cout<<"Flush"<<endl;
 		}
-		if(ok){			
-			Lamp * lamp;
-			for(lamp in lamps){
+		if(ok){	
+//			cout<<"OK"<<endl;
+			if(serialBuffer->size() > 0){
+//				cout<<"Prepare to send ";
+				int n = MIN(90,serialBuffer->size());
+//				cout<<n<<" bytes"<<endl;
+				unsigned char * bytes = new unsigned char[n];;
+				for(int i=0;i<n;i++){				
+					bytes[i] = serialBuffer->at(0);
+					serialBuffer->erase(serialBuffer->begin());
+				}
+//				cout<<"Send "<<n<<" bytes"<<endl;
+				serial->writeBytes(bytes, n);
+				ok = false;
+			} else {
+//				cout<<"make buffer"<<endl;
+				int n=0;
+				pthread_mutex_lock(&mutex);
+
+				Lamp * lamp;
 				if(master != sentMaster ){
 					sentMaster = master;
-					unsigned char *buffer = new unsigned char[3];
-					buffer[0] = (unsigned char)255;
-					buffer[1] = (unsigned char)0;
-					buffer[2] = (unsigned char)round(master*254);
-					serial->writeBytes(buffer, 3);
-					delete buffer;
-					ok = false;
-				}
-				if(![lamp updateDmx:serial mutex:mutex]){
-					ok = false;
+					//					serial->writeBytes(buffer, 3);
+					serialBuffer->push_back((unsigned char)255);
+					serialBuffer->push_back((unsigned char)0);
+					serialBuffer->push_back((unsigned char)round(master*254));
 				}
 				
+				for(lamp in lamps){
+
+					if(![lamp updateDmx:serialBuffer mutex:mutex]){
+						n++;
+						/*	if(n > 4){
+						 break;	
+						 }*/
+					}
+					
+				}
+				pthread_mutex_unlock(&mutex);
+
+//								cout<<"make buffer end"<<endl;
 			}
+			
+
 			
 			
 		}
 		
 		
-		[NSThread sleepForTimeInterval:0.02];
+		[NSThread sleepForTimeInterval:0.003];
 	}
 }
 @end
