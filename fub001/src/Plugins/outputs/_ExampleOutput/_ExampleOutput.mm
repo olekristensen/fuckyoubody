@@ -33,10 +33,10 @@
 	img->loadImage("/Volumes/Recoil/Development/libs/of_preRelease_v006_xcode_FAT/apps/fub/fub001/bin/data/icon.png");
 }
 
--(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+-(void) draw{
 	
 	glPushMatrix(); {
-		GLfloat rotate = timeInterval * 60.0; // 60 degrees per second!
+		GLfloat rotate = 0;//timeInterval * 60.0; // 60 degrees per second!
 		glRotatef(rotate, 0.0, 0.0, 1.0);
 		glBegin(GL_QUADS);
 		glColor3f(1.0, 1.0, 1.0);
@@ -55,7 +55,7 @@
 	ofEnableAlphaBlending();
 	//	((ProjectionSurfaces*)[controller getPlugin:[ProjectionSurfaces class]])->img->draw(0, 0,0.5,0.5);
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-	img->draw(0, 0,1,1);
+//	img->draw(0, 0,1,1);
 	glPopMatrix();
 }
 @end

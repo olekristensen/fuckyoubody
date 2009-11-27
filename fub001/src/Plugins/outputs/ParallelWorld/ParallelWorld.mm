@@ -6,7 +6,7 @@
 -(void) initPlugin{
 	for(int i=0;i<numFingers;i++){
 		fingerActive[i] = false;	
-		fingerPositions[i] = ofxPoint2f();
+		fingerPositions[i] = new ofxPoint2f();
 		identity[i] = nil;
 	}
 	min = 0.05;
@@ -29,10 +29,10 @@
 	max = [sender floatValue];	
 }
 
--(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+-(void) draw{
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	glPushMatrix();
-	glTranslated(fingerPositions[0].x, 0, 0);
+	glTranslated(fingerPositions[0]->x, 0, 0);
 	for(int i=1;i<lines->size();i+=2){
 		ofSetColor(255, 255, 255);
 		glBegin(GL_POLYGON);
@@ -44,7 +44,7 @@
 	}
 	glPopMatrix();
 	glPushMatrix();
-	glTranslated(fingerPositions[1].x, 0, 0);
+	glTranslated(fingerPositions[1]->x, 0, 0);
 	for(int i=2;i<lines->size();i+=2){
 		ofSetColor(255, 255, 255);
 		glBegin(GL_POLYGON);
@@ -64,7 +64,7 @@
 	ofSetColor(255, 255, 255);
 	for(int i=0;i<numFingers;i++){
 		if(fingerActive[i]){
-			ofCircle(fingerPositions[i].x*ofGetWidth(), fingerPositions[i].y*ofGetHeight(), 20);
+			ofCircle(fingerPositions[i]->x*ofGetWidth(), fingerPositions[i]->y*ofGetHeight(), 20);
 		}
 	}
 	
@@ -93,8 +93,8 @@
 				if(world->fingerActive[i] == false){
 					world->fingerActive[i] = true;
 					world->identity[i] = [touch identity];
-					world->fingerPositions[i].x = [touch normalizedPosition].x; 
-					world->fingerPositions[i].y = 1.0-[touch normalizedPosition].y;
+					world->fingerPositions[i]->x = [touch normalizedPosition].x; 
+					world->fingerPositions[i]->y = 1.0-[touch normalizedPosition].y;
 					
 					break;
 				}
@@ -112,8 +112,8 @@
 		for(int i=0;i<numFingers;i++){
 			if(world->fingerActive[i]){
 				if([world->identity[i] isEqual:[touch identity]]){
-					world->fingerPositions[i].x = [touch normalizedPosition].x; 
-					world->fingerPositions[i].y = 1.0-[touch normalizedPosition].y;
+					world->fingerPositions[i]->x = [touch normalizedPosition].x; 
+					world->fingerPositions[i]->y = 1.0-[touch normalizedPosition].y;
 					break;
 				}
 			}

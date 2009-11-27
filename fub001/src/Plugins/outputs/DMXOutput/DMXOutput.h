@@ -52,6 +52,7 @@
 	NSMutableArray * lamps;
 	ofSerial * serial;
 	bool ok;
+	bool connected;
 	
 	pthread_mutex_t mutex;
 

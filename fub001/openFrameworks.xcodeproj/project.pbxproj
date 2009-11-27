@@ -18,6 +18,7 @@
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
 		DD0C016A1066874900BB3F9F /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */; };
+		DD15CF3D10BFEC71004F73F3 /* PluginOutputView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD15CF3C10BFEC71004F73F3 /* PluginOutputView.mm */; };
 		DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */; };
 		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
 		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
@@ -157,6 +158,8 @@
 		DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		DD0C01611066874900BB3F9F /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
+		DD15CF3B10BFEC71004F73F3 /* PluginOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginOutputView.h; sourceTree = "<group>"; };
+		DD15CF3C10BFEC71004F73F3 /* PluginOutputView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOutputView.mm; sourceTree = "<group>"; };
 		DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelWorld.h; sourceTree = "<group>"; };
 		DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParallelWorld.mm; sourceTree = "<group>"; };
 		DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParallelWorld.xib; sourceTree = "<group>"; };
@@ -765,6 +768,8 @@
 				DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */,
 				6EA4026510BC115E006FBAAB /* SharedContextLayer.h */,
 				6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */,
+				DD15CF3B10BFEC71004F73F3 /* PluginOutputView.h */,
+				DD15CF3C10BFEC71004F73F3 /* PluginOutputView.mm */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -1582,6 +1587,7 @@
 				6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */,
 				DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */,
 				DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */,
+				DD15CF3D10BFEC71004F73F3 /* PluginOutputView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,9 +40,9 @@
 }
 
 -(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
-bool ret = true;
+	bool ret = true;
 	if(channel > 0){					
-//		pthread_mutex_lock(&mutex);
+		//		pthread_mutex_lock(&mutex);
 		
 		if(a > 254){
 			a = 254;
@@ -85,11 +85,11 @@ bool ret = true;
 			serialBuffer->push_back((unsigned char)255);
 			serialBuffer->push_back((unsigned char)channel+3);
 			serialBuffer->push_back((unsigned char)a);
-
+			
 			ret = false;
 		}
-//		pthread_mutex_unlock(&mutex);
-
+		//		pthread_mutex_unlock(&mutex);
+		
 	}
 	return ret;
 }
@@ -111,7 +111,7 @@ bool ret = true;
 -(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
 	bool ret = true;
 	if(channel > 0){					
-	//	pthread_mutex_lock(&mutex);
+		//	pthread_mutex_lock(&mutex);
 		
 		if(value > 254){
 			value = 254;
@@ -123,13 +123,13 @@ bool ret = true;
 		//	if(value != sentValue ){
 		//		cout<<channel<<"  "<<value<<endl;
 		sentValue = value;
-	
+		
 		serialBuffer->push_back((unsigned char)255);
 		serialBuffer->push_back((unsigned char)channel);
 		serialBuffer->push_back((unsigned char)value);
 		ret = false;
-	//	pthread_mutex_unlock(&mutex);
-
+		//	pthread_mutex_unlock(&mutex);
+		
 		//	}
 		
 	}
@@ -279,7 +279,7 @@ bool ret = true;
 		if(array[i] == 1){
 			[[self getLamp:x y:y] setLamp:_r g:_g b:_b a:array[i]*_a];		
 		} else {
-		//	[[self getLamp:x y:y] setLamp:_r g:_g b:_b a:0];			
+			//	[[self getLamp:x y:y] setLamp:_r g:_g b:_b a:0];			
 		}
 		x ++;
 		if(x> 2){
@@ -287,7 +287,7 @@ bool ret = true;
 			y++;
 		}
 	}
-//	pthread_mutex_unlock(&mutex);
+	//	pthread_mutex_unlock(&mutex);
 	
 	
 }
@@ -303,6 +303,7 @@ bool ret = true;
 
 
 -(void) initPlugin{
+		cout<<"initPlugin"<<endl;
 	thread = [[NSThread alloc] initWithTarget:self
 									 selector:@selector(updateDmx:)
 									   object:nil];
@@ -349,8 +350,8 @@ bool ret = true;
 	[lamps addObject:lamp2];
 	
 	
-	ok = serial->setup("/dev/tty.usbserial-A6008iyw", 115200);
-	
+	ok = connected = serial->setup("/dev/tty.usbserial-A6008iyw", 115200);
+	cout<<"Connected: "<<connected<<endl;
 	master = 254;
 	sentMaster = -1;
 	pthread_mutex_init(&mutex, NULL);
@@ -378,7 +379,7 @@ bool ret = true;
 	
 }
 
--(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+-(void) update{
 	pthread_mutex_lock(&mutex);
 	//Normal light
 	Lamp * lamp;
@@ -442,13 +443,15 @@ bool ret = true;
 	if([ledCounter state] == NSOnState){
 		
 		//	if(shownNumber != int(timeInterval)%10){
-		shownNumber = int(timeInterval)%10;
+		float seconds = ofGetElapsedTimeMillis() / 1000.0;
+		shownNumber = int(seconds)%10;
+		
 		//	shownNumber = int(ofRandom(0, 10));
 		//	[self makeNumber:int(timeInterval)%10 r:int(ofRandom(0, 254)) g:int(ofRandom(0, 254)) b:int(ofRandom(0, 254))];
 		
 		if([ledCounterFade state] == NSOnState){
 			
-			if(timeInterval - int(timeInterval) < 0.6){
+			if(seconds - int(seconds) < 0.6){
 				master += 0.1;
 				if(master > 1) 
 					master = 1;
@@ -493,63 +496,69 @@ bool ret = true;
 	}
 	
 	pthread_mutex_unlock(&mutex);
-
+	
 	//	}
 }
 
 -(void) updateDmx:(id)param{
-	while(1){
-//		cout<<"Buffer size: "<<serialBuffer->size()<<endl;
-		if(serial->available()){
-			serial->flush(true, false);
-			ok = true;
-//			cout<<"Flush"<<endl;
-		}
-		if(ok){	
-//			cout<<"OK"<<endl;
-			if(serialBuffer->size() > 0){
-//				cout<<"Prepare to send ";
-				int n = MIN(90,serialBuffer->size());
-//				cout<<n<<" bytes"<<endl;
-				unsigned char * bytes = new unsigned char[n];;
-				for(int i=0;i<n;i++){				
-					bytes[i] = serialBuffer->at(0);
-					serialBuffer->erase(serialBuffer->begin());
-				}
-//				cout<<"Send "<<n<<" bytes"<<endl;
-				serial->writeBytes(bytes, n);
-				ok = false;
-			} else {
-//				cout<<"make buffer"<<endl;
-				int n=0;
-				pthread_mutex_lock(&mutex);
 
-				Lamp * lamp;
-				if(master != sentMaster ){
-					sentMaster = master;
-					//					serial->writeBytes(buffer, 3);
-					serialBuffer->push_back((unsigned char)255);
-					serialBuffer->push_back((unsigned char)0);
-					serialBuffer->push_back((unsigned char)round(master*254));
-				}
-				
-				for(lamp in lamps){
+	if(connected){
+		
+		while(1){
 
-					if(![lamp updateDmx:serialBuffer mutex:mutex]){
-						n++;
-						/*	if(n > 4){
-						 break;	
-						 }*/
+			//		cout<<"Buffer size: "<<serialBuffer->size()<<endl;
+			if(serial->available()){
+				serial->flush(true, false);
+				ok = true;
+				//			cout<<"Flush"<<endl;
+			}
+			if(ok){	
+				//			cout<<"OK"<<endl;
+				if(serialBuffer->size() > 0){
+					//				cout<<"Prepare to send ";
+					int n = MIN(90,serialBuffer->size());
+					//				cout<<n<<" bytes"<<endl;
+					unsigned char * bytes = new unsigned char[n];;
+					for(int i=0;i<n;i++){				
+						bytes[i] = serialBuffer->at(0);
+						serialBuffer->erase(serialBuffer->begin());
+					}
+					//				cout<<"Send "<<n<<" bytes"<<endl;
+					serial->writeBytes(bytes, n);
+					ok = false;
+				} else {
+					//				cout<<"make buffer"<<endl;
+					int n=0;
+					pthread_mutex_lock(&mutex);
+					
+					Lamp * lamp;
+					if(master != sentMaster ){
+						sentMaster = master;
+						//					serial->writeBytes(buffer, 3);
+						serialBuffer->push_back((unsigned char)255);
+						serialBuffer->push_back((unsigned char)0);
+						serialBuffer->push_back((unsigned char)round(master*254));
 					}
 					
+					for(lamp in lamps){
+						
+						if(![lamp updateDmx:serialBuffer mutex:mutex]){
+							n++;
+							/*	if(n > 4){
+							 break;	
+							 }*/
+						}
+						
+					}
+					pthread_mutex_unlock(&mutex);
+					
+					//								cout<<"make buffer end"<<endl;
 				}
-				pthread_mutex_unlock(&mutex);
-
-//								cout<<"make buffer end"<<endl;
 			}
+			
+			
+			[NSThread sleepForTimeInterval:0.003];
 		}
-				
-		[NSThread sleepForTimeInterval:0.003];
 	}
 }
 @end

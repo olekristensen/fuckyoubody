@@ -104,6 +104,7 @@
 	ProjectorObject * projector;
 	
 	int projI = 0;
+	// do thread work
 	for(projector in projectors){
 		NSLog(@"Init projectionsurfaces");
 		
@@ -112,6 +113,7 @@
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Backwall"]];
 		
 		[projector setSurfaces:array];
+		//projector->surfaces = array;
 		[projectorsButton addItemWithTitle:[NSString stringWithCString:projector->name->c_str()]];
 		
 		ProjectionSurfacesObject * surface;
@@ -136,7 +138,7 @@
 		}
 		projI++;
 	}
-	
+
 	position = new ofPoint(0,0);
 	scale = 0.8;
 	
@@ -217,10 +219,10 @@
 	
 	glPopMatrix();}
 
--(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+-(void) update{
 }
 
--(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+-(void) draw{
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	[self applyProjection:surface];
 	{
@@ -319,10 +321,12 @@
 
 -(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h{
 	ProjectorObject * proj;
+	
 	for(proj in projectors){
 		if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
 			ProjectionSurfacesObject * surf;			
-			for(surf in [proj surfaces]){
+			NSArray * a = proj->surfaces;
+			for(surf in a){
 				if(strcmp(surf->name->c_str(), surface.c_str()) == 0){
 					//	cout<<"found"<<endl;
 					[self applyProjection:surf width:_w height:_h];
@@ -379,7 +383,11 @@
 	if(scale < 0.1){
 		scale = 0.1;
 	}
-};
+}
+
+- (void) controlKeyPressed:(int)key{
+	cout<<key<<endl;	
+}
 
 -(ProjectorObject*) getCurrentProjector{
 	return [projectors objectAtIndex:[projectorsButton indexOfSelectedItem]];

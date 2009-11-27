@@ -15,7 +15,7 @@
 	@public
 	bool fingerActive[numFingers];
 	id identity[numFingers];
-	ofxPoint2f fingerPositions[numFingers];
+	ofxPoint2f * fingerPositions[numFingers];
 	float min;
 	float max;
 	vector<float> *lines;
