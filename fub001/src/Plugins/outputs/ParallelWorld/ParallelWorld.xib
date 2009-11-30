@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
 		<string key="IBDocument.SystemVersion">10C540</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
 		<string key="IBDocument.AppKitVersion">1038.25</string>
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">732</string>
+			<string key="NS.object.0">740</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -46,9 +46,10 @@
 					<object class="NSCustomView" id="334134024">
 						<reference key="NSNextResponder" ref="342841082"/>
 						<int key="NSvFlags">286</int>
-						<string key="NSFrame">{{0, 179}, {472, 246}}</string>
+						<string key="NSFrame">{{0, 179}, {624, 386}}</string>
 						<reference key="NSSuperview" ref="342841082"/>
-						<string key="NSClassName">PluginControlView</string>
+						<int key="NSViewLayerContentsRedrawPolicy">2</int>
+						<string key="NSClassName">TouchField</string>
 					</object>
 					<object class="NSButton" id="353629465">
 						<reference key="NSNextResponder" ref="342841082"/>
@@ -119,7 +120,7 @@
 								<string key="NSColorName">controlColor</string>
 								<object class="NSColor" key="NSColor">
 									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC42NjY2NjY2ODY1AA</bytes>
+									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 								</object>
 							</object>
 							<object class="NSColor" key="NSTextColor" id="144923848">
@@ -191,17 +192,10 @@
 							<bool key="NSVertical">NO</bool>
 						</object>
 					</object>
-					<object class="NSCustomView" id="923499854">
-						<reference key="NSNextResponder" ref="342841082"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 440}, {624, 125}}</string>
-						<reference key="NSSuperview" ref="342841082"/>
-						<string key="NSClassName">TouchField</string>
-					</object>
 				</object>
 				<string key="NSFrameSize">{624, 565}</string>
 				<reference key="NSSuperview"/>
-				<string key="NSClassName">ofPlugin</string>
+				<string key="NSClassName">NSView</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -214,22 +208,6 @@
 						<reference key="destination" ref="342841082"/>
 					</object>
 					<int key="connectionID">4</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">world</string>
-						<reference key="source" ref="923499854"/>
-						<reference key="destination" ref="1001"/>
-					</object>
-					<int key="connectionID">9</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">controlGlView</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="923499854"/>
-					</object>
-					<int key="connectionID">10</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -271,6 +249,14 @@
 					</object>
 					<int key="connectionID">30</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">controlOuptutView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="334134024"/>
+					</object>
+					<int key="connectionID">32</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -304,7 +290,6 @@
 						<reference key="object" ref="342841082"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="923499854"/>
 							<reference ref="180747314"/>
 							<reference ref="744845532"/>
 							<reference ref="815429048"/>
@@ -314,11 +299,6 @@
 							<reference ref="334134024"/>
 						</object>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="923499854"/>
-						<reference key="parent" ref="342841082"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
@@ -430,12 +410,10 @@
 					<string>25.IBPluginDependency</string>
 					<string>26.IBPluginDependency</string>
 					<string>28.IBPluginDependency</string>
-					<string>8.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{475, -38}, {624, 565}}</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{926, 120}, {624, 565}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -468,7 +446,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">32</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -513,16 +491,8 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">PluginOpenGLControlView</string>
-					<string key="superclassName">NSView</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/PluginManager/PluginOpenGLControl.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
 					<string key="className">TouchField</string>
-					<string key="superclassName">PluginOpenGLControlView</string>
+					<string key="superclassName">PluginControlView</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">world</string>
 						<string key="NS.object.0">ParallelWorld</string>
@@ -536,13 +506,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>controlGlView</string>
+							<string>controlOuptutView</string>
 							<string>plugin</string>
 							<string>view</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>PluginOpenGLControlView</string>
+							<string>PluginControlView</string>
 							<string>ofPlugin</string>
 							<string>NSView</string>
 						</object>

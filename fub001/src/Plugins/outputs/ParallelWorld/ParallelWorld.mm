@@ -77,7 +77,7 @@
 	}
 }
 
--(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+-(void) controlDraw{
 	ofBackground(0, 0, 0);
 	ofSetColor(255, 255, 255);
 	for(int i=0;i<numFingers;i++){
@@ -85,18 +85,13 @@
 			ofCircle(fingerPositions[i]->x*ofGetWidth(), fingerPositions[i]->y*ofGetHeight(), 20);
 		}
 	}
-	
 }
 @end
 
 
-
-
-
-
-
 @implementation TouchField
 -(void) awakeFromNib{
+	[super awakeFromNib];
 	[self setAcceptsTouchEvents:YES];
 	[self setWantsRestingTouches:YES];
 }

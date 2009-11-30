@@ -961,9 +961,9 @@
 				</object>
 				<string key="NSFrameSize">{1017, 622}</string>
 				<reference key="NSSuperview"/>
-				<string key="NSClassName">ofPlugin</string>
+				<string key="NSClassName">NSView</string>
 			</object>
-			<object class="NSUserDefaultsController" id="230179693">
+			<object class="NSUserDefaultsController" id="174264991">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>camera.1.guid</string>
@@ -1164,10 +1164,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.camera.1.guid</string>
 						<reference key="source" ref="938831306"/>
-						<reference key="destination" ref="230179693"/>
+						<reference key="destination" ref="174264991"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="938831306"/>
-							<reference key="NSDestination" ref="230179693"/>
+							<reference key="NSDestination" ref="174264991"/>
 							<string key="NSLabel">value: values.camera.1.guid</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.camera.1.guid</string>
@@ -1180,10 +1180,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.camera.2.guid</string>
 						<reference key="source" ref="932101371"/>
-						<reference key="destination" ref="230179693"/>
+						<reference key="destination" ref="174264991"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="932101371"/>
-							<reference key="NSDestination" ref="230179693"/>
+							<reference key="NSDestination" ref="174264991"/>
 							<string key="NSLabel">value: values.camera.2.guid</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.camera.2.guid</string>
@@ -1196,10 +1196,10 @@
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.camera.3.guid</string>
 						<reference key="source" ref="810501723"/>
-						<reference key="destination" ref="230179693"/>
+						<reference key="destination" ref="174264991"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="810501723"/>
-							<reference key="NSDestination" ref="230179693"/>
+							<reference key="NSDestination" ref="174264991"/>
 							<string key="NSLabel">value: values.camera.3.guid</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">values.camera.3.guid</string>
@@ -1871,7 +1871,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">110</int>
-						<reference key="object" ref="230179693"/>
+						<reference key="object" ref="174264991"/>
 						<reference key="parent" ref="0"/>
 					</object>
 				</object>
@@ -1984,7 +1984,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{465, 275}, {1017, 622}}</string>
+					<string>{{654, 387}, {1017, 622}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -2179,6 +2179,18 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">PluginControlView</string>
+					<string key="superclassName">NSOpenGLView</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">plugin</string>
+						<string key="NS.object.0">ofPlugin</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/PluginManager/PluginControlView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">PluginOpenGLControlView</string>
 					<string key="superclassName">NSView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -2193,13 +2205,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>controlGlView</string>
+							<string>controlOuptutView</string>
 							<string>plugin</string>
 							<string>view</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>PluginOpenGLControlView</string>
+							<string>PluginControlView</string>
 							<string>ofPlugin</string>
 							<string>NSView</string>
 						</object>
@@ -2520,6 +2532,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">QuartzCore.framework/Headers/CIImageProvider.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSOpenGLView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSOpenGLView.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

@@ -33,7 +33,9 @@
 	
 	if ([userDefaults stringForKey:@"camera.3.guid"] != nil) {
 		sscanf([[userDefaults stringForKey:@"camera.3.guid"] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &cameraGUIDs[2]);
-	}	
+	}
+	
+	
 	
 	[self cameraUpdateGUIDs];
 	
@@ -165,7 +167,8 @@
 }
 
 
--(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+/**
+ -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 
 	float viewWidth = [controlGlView convertSizeToBase: [controlGlView bounds].size].width;
 	float viewHeight = [controlGlView convertSizeToBase: [controlGlView bounds].size].height;
@@ -204,6 +207,7 @@
 		}
 	}
 }
+ **/
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	
