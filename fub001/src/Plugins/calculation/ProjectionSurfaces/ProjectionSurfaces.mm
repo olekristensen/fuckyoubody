@@ -162,13 +162,14 @@
 }
 
 -(void) setup{
+	stageFont = new ofTrueTypeFont();
+	stageFont->loadFont("LucidaGrande.ttc",40, true, true, true);
+
 }
 
 -(void) controlSetup{
-	verdana = new ofTrueTypeFont();
-	
-	
-	verdana->loadFont("LucidaGrande.ttc",40, true, true, false);
+	controlFont = new ofTrueTypeFont();
+	controlFont->loadFont("LucidaGrande.ttc",40, true, true, true);
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -265,14 +266,14 @@
 	//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
 	
 	if(aspect < 1.0){
-		glTranslated( aspect*0.5*1.0/fontSize-verdana->stringHeight(text)/2.0,  10, 0);	
+		glTranslated( aspect*0.5*1.0/fontSize-controlFont->stringHeight(text)/2.0,  10, 0);	
 		
 		glRotated(90, 0, 0, 1.0);
 	} else {
-		glTranslated( aspect*0.5*1.0/fontSize-verdana->stringWidth(text)/2.0,  0.5*1.0/fontSize+verdana->stringHeight(text)/2.0, 0);	
+		glTranslated( aspect*0.5*1.0/fontSize-controlFont->stringWidth(text)/2.0,  0.5*1.0/fontSize+controlFont->stringHeight(text)/2.0, 0);	
 	}
 	
-	verdana->drawString(text,0,0);
+	controlFont->drawString(text,0,0);
 }
 
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p{
@@ -322,9 +323,11 @@
 -(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h{
 	ProjectorObject * proj;
 	
+	
+	
 	for(proj in projectors){
 		if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
-			ProjectionSurfacesObject * surf;			
+			ProjectionSurfacesObject * surf;
 			NSArray * a = proj->surfaces;
 			for(surf in a){
 				if(strcmp(surf->name->c_str(), surface.c_str()) == 0){
@@ -393,7 +396,7 @@
 	return [projectors objectAtIndex:[projectorsButton indexOfSelectedItem]];
 }
 -(ProjectionSurfacesObject*) getCurrentSurface{
-	return [[[self getCurrentProjector] surfaces] objectAtIndex:[surfacesButton indexOfSelectedItem]];	
+	return [[self getCurrentProjector]->surfaces objectAtIndex:[surfacesButton indexOfSelectedItem]];	
 }
 
 @end
