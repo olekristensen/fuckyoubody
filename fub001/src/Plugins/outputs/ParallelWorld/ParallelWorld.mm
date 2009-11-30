@@ -17,7 +17,7 @@
 -(IBAction) remake:(id)sender{
 	lines = new vector<float>;
 	float x = 0;
-	while(x < 1){
+	while(x < 1.3){
 		lines->push_back(x);
 		x += ofRandom(min,max);
 	}
@@ -30,7 +30,9 @@
 }
 
 -(void) draw{
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+
+//	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+	if([rotating state] != NSOnState){
 	glPushMatrix();
 	glTranslated(fingerPositions[0]->x, 0, 0);
 	for(int i=1;i<lines->size();i+=2){
@@ -56,7 +58,23 @@
 	}
 	glPopMatrix();
 	
-	glPopMatrix();
+	} else {
+		float t = ofGetElapsedTimeMillis()/4000.0;
+		glTranslated(t, 0, 0);
+		for(int i=2;i<lines->size();i+=2){
+			if(lines->at(i) + t > 1.1){
+				lines->at(i) -= 1.3;
+				lines->at(i-1) -= 1.3;
+			}
+			ofSetColor(255, 255, 255);
+			glBegin(GL_POLYGON);
+			glVertex2f(lines->at(i), 0);
+			glVertex2f(lines->at(i-1), 0);
+			glVertex2f(lines->at(i-1), 1);
+			glVertex2f(lines->at(i), 1);		
+			glEnd();
+		}
+	}
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{

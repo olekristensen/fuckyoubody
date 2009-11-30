@@ -28,6 +28,7 @@
 		6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9610BFE9E200D120A1 /* ofxVideoGrabber.cpp */; };
 		6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */; };
 		6EADAC5010C00C8900D120A1 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EADAC4F10C00C8900D120A1 /* libdc1394.a */; };
+		7FFA0B8E10C4195100ECBF8B /* PluginControlView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FFA0B8D10C4195100ECBF8B /* PluginControlView.mm */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -195,6 +196,8 @@
 		6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNOSettings.cpp; sourceTree = "<group>"; };
 		6EADAB9910BFE9E200D120A1 /* ofxNOSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNOSettings.h; sourceTree = "<group>"; };
 		6EADAC4F10C00C8900D120A1 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdc1394.a; sourceTree = "<group>"; };
+		7FFA0B8C10C4195100ECBF8B /* PluginControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginControlView.h; sourceTree = "<group>"; };
+		7FFA0B8D10C4195100ECBF8B /* PluginControlView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginControlView.mm; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -868,6 +871,8 @@
 				6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */,
 				DD89999510C3ECC40051758B /* PluginOutputView.h */,
 				DD89999610C3ECC40051758B /* PluginOutputView.mm */,
+				7FFA0B8C10C4195100ECBF8B /* PluginControlView.h */,
+				7FFA0B8D10C4195100ECBF8B /* PluginControlView.mm */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -1700,6 +1705,7 @@
 				6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */,
 				6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */,
 				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
+				7FFA0B8E10C4195100ECBF8B /* PluginControlView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

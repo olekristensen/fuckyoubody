@@ -19,6 +19,8 @@
 	float min;
 	float max;
 	vector<float> *lines;
+	
+	IBOutlet NSButton * rotating;
 }
 -(IBAction) setMinSize:(id)sender;
 -(IBAction) setMaxSize:(id)sender;
