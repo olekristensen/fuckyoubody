@@ -20,9 +20,9 @@
 @interface Cameras: ofPlugin {
 	
 	FrostCameras * c; 
-	ofImage * img;
-	NSString * GUID;
-	
+
+	NSUserDefaults * userDefaults;
+
 	int cameraThreadTimer;
 	int cameraTimer;
 	int numCameras;
@@ -39,17 +39,41 @@
 	
 	int camera_state;
 	
-	float cameraBrightness[3];
-	float cameraExposure[3];
-	float cameraShutter[3];
-	float cameraGamma[3];
-	float cameraGain[3];
-
+	IBOutlet NSTextField * CameraGUID1;
+	IBOutlet NSTextField * CameraGUID2;
+	IBOutlet NSTextField * CameraGUID3;
+	
+	IBOutlet NSSlider * cameraShutter1;
+	IBOutlet NSSlider * cameraShutter2;
+	IBOutlet NSSlider * cameraShutter3;
+	
+	IBOutlet NSSlider * cameraExposure1;
+	IBOutlet NSSlider * cameraExposure2;
+	IBOutlet NSSlider * cameraExposure3;
+	
+	IBOutlet NSSlider * cameraGain1;
+	IBOutlet NSSlider * cameraGain2;
+	IBOutlet NSSlider * cameraGain3;
+	
+	IBOutlet NSSlider * cameraGamma1;
+	IBOutlet NSSlider * cameraGamma2;
+	IBOutlet NSSlider * cameraGamma3;
+	
+	IBOutlet NSSlider * cameraBrightness1;
+	IBOutlet NSSlider * cameraBrightness2;
+	IBOutlet NSSlider * cameraBrightness3;
+	
 	ofTrueTypeFont * lucidaGrande;
 
 }
 @property (assign, readwrite) FrostCameras * c;
 
 -(IBAction) pressButton:(id)sender;
+
+-(IBAction)		cameraBindGuid1:(id)sender;
+-(IBAction)		cameraBindGuid2:(id)sender;
+-(IBAction)		cameraBindGuid3:(id)sender;
+
+-(void)			cameraUpdateGUIDs;
 
 @end

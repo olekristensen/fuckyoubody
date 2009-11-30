@@ -963,6 +963,15 @@
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">ofPlugin</string>
 			</object>
+			<object class="NSUserDefaultsController" id="230179693">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>camera.1.guid</string>
+					<string>camera.2.guid</string>
+					<string>camera.3.guid</string>
+				</object>
+				<bool key="NSSharedInstance">YES</bool>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -982,6 +991,222 @@
 						<reference key="destination" ref="339995853"/>
 					</object>
 					<int key="connectionID">88</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraBrightness1</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="842462548"/>
+					</object>
+					<int key="connectionID">89</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraBrightness2</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="573945157"/>
+					</object>
+					<int key="connectionID">90</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraBrightness3</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="611842391"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraExposure1</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="63258546"/>
+					</object>
+					<int key="connectionID">92</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraExposure2</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="452899615"/>
+					</object>
+					<int key="connectionID">93</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraExposure3</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="147737835"/>
+					</object>
+					<int key="connectionID">94</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraGain1</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="646267356"/>
+					</object>
+					<int key="connectionID">95</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraGain2</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="831266050"/>
+					</object>
+					<int key="connectionID">96</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraGain3</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="910104724"/>
+					</object>
+					<int key="connectionID">97</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraGamma1</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="926501170"/>
+					</object>
+					<int key="connectionID">98</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraGamma2</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="321479113"/>
+					</object>
+					<int key="connectionID">99</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraGamma3</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="558750336"/>
+					</object>
+					<int key="connectionID">100</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">CameraGUID1</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="938831306"/>
+					</object>
+					<int key="connectionID">101</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">CameraGUID2</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="932101371"/>
+					</object>
+					<int key="connectionID">102</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">CameraGUID3</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="810501723"/>
+					</object>
+					<int key="connectionID">103</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraShutter1</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="629045313"/>
+					</object>
+					<int key="connectionID">104</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraShutter2</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="816093974"/>
+					</object>
+					<int key="connectionID">105</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraShutter3</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="651629012"/>
+					</object>
+					<int key="connectionID">106</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cameraBindGuid1:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="797004549"/>
+					</object>
+					<int key="connectionID">107</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cameraBindGuid2:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="610760564"/>
+					</object>
+					<int key="connectionID">108</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cameraBindGuid3:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="498193607"/>
+					</object>
+					<int key="connectionID">109</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.camera.1.guid</string>
+						<reference key="source" ref="938831306"/>
+						<reference key="destination" ref="230179693"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="938831306"/>
+							<reference key="NSDestination" ref="230179693"/>
+							<string key="NSLabel">value: values.camera.1.guid</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.camera.1.guid</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">111</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.camera.2.guid</string>
+						<reference key="source" ref="932101371"/>
+						<reference key="destination" ref="230179693"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="932101371"/>
+							<reference key="NSDestination" ref="230179693"/>
+							<string key="NSLabel">value: values.camera.2.guid</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.camera.2.guid</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">113</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.camera.3.guid</string>
+						<reference key="source" ref="810501723"/>
+						<reference key="destination" ref="230179693"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="810501723"/>
+							<reference key="NSDestination" ref="230179693"/>
+							<string key="NSLabel">value: values.camera.3.guid</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.camera.3.guid</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">115</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1644,6 +1869,11 @@
 						<reference key="object" ref="339995853"/>
 						<reference key="parent" ref="1005"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">110</int>
+						<reference key="object" ref="230179693"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1754,7 +1984,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{554, 352}, {1017, 622}}</string>
+					<string>{{465, 275}, {1017, 622}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -1873,7 +2103,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">88</int>
+			<int key="maxID">115</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1882,8 +2112,66 @@
 					<string key="className">Cameras</string>
 					<string key="superclassName">ofPlugin</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">pressButton:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cameraBindGuid1:</string>
+							<string>cameraBindGuid2:</string>
+							<string>cameraBindGuid3:</string>
+							<string>pressButton:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>CameraGUID1</string>
+							<string>CameraGUID2</string>
+							<string>CameraGUID3</string>
+							<string>cameraBrightness1</string>
+							<string>cameraBrightness2</string>
+							<string>cameraBrightness3</string>
+							<string>cameraExposure1</string>
+							<string>cameraExposure2</string>
+							<string>cameraExposure3</string>
+							<string>cameraGain1</string>
+							<string>cameraGain2</string>
+							<string>cameraGain3</string>
+							<string>cameraGamma1</string>
+							<string>cameraGamma2</string>
+							<string>cameraGamma3</string>
+							<string>cameraShutter1</string>
+							<string>cameraShutter2</string>
+							<string>cameraShutter3</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSTextField</string>
+							<string>NSTextField</string>
+							<string>NSTextField</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+							<string>NSSlider</string>
+						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
@@ -2028,6 +2316,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier" id="743918765">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSControl.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSController</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -2271,6 +2567,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">AppKit.framework/Headers/NSTextFieldCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSUserDefaultsController</string>
+					<string key="superclassName">NSController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSUserDefaultsController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

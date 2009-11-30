@@ -20,7 +20,23 @@
 	
 	c = new FrostCameras();
 	cameraSetupCalled = false;
-
+	
+	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+	
+	if ([userDefaults stringForKey:@"camera.1.guid"] != nil) {
+		sscanf([[userDefaults stringForKey:@"camera.1.guid"] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &cameraGUIDs[0]);
+	}
+	
+	if ([userDefaults stringForKey:@"camera.2.guid"] != nil) {
+		sscanf([[userDefaults stringForKey:@"camera.2.guid"] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &cameraGUIDs[1]);
+	}
+	
+	if ([userDefaults stringForKey:@"camera.3.guid"] != nil) {
+		sscanf([[userDefaults stringForKey:@"camera.3.guid"] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &cameraGUIDs[2]);
+	}	
+	
+	[self cameraUpdateGUIDs];
+	
 }
 
 
@@ -30,31 +46,38 @@
 
 -(void) setup{
 	
-
 	cameraThreadTimer = -500;
 	camera_state = camera_state_running;
 	numCameras = 3;
-	c->setup();
-	
-	cameraSetupCalled = true;
-	
+
 }
 
--(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+-(void) update{
 	
 	if(cameraSetupCalled){
+		
 		if(camera_state == camera_state_closing){
 			
 			if(cameraTimer == 0){
 				cout<<endl<<"ERROR: DEAD CAMERA"<<endl;
 				
-				for(int i=0;i<3;i++){
-					cameraBrightness[i] = c->cameraBrightness[i];
-					cameraExposure[i] = c->cameraExposure[i];
-					cameraShutter[i] = c->cameraShutter[i];
-					cameraGamma[i] = c->cameraGamma[i];
-					cameraGain[i] = c->cameraGain[i];
-				}
+				[cameraShutter1 setFloatValue:c->cameraShutter[0]]; 
+				[cameraExposure1 setFloatValue:c->cameraExposure[0]]; 
+				[cameraGain1 setFloatValue:c->cameraGain[0]]; 
+				[cameraGamma1 setFloatValue:c->cameraGamma[0]];
+				[cameraBrightness1 setFloatValue:c->cameraBrightness[0]];
+				
+				[cameraShutter2 setFloatValue:c->cameraShutter[1]]; 
+				[cameraExposure2 setFloatValue:c->cameraExposure[1]]; 
+				[cameraGain2 setFloatValue:c->cameraGain[1]]; 
+				[cameraGamma2 setFloatValue:c->cameraGamma[1]];
+				[cameraBrightness2 setFloatValue:c->cameraBrightness[1]];
+				
+				[cameraShutter3 setFloatValue:c->cameraShutter[2]]; 
+				[cameraExposure3 setFloatValue:c->cameraExposure[2]]; 
+				[cameraGain3 setFloatValue:c->cameraGain[2]]; 
+				[cameraGamma3 setFloatValue:c->cameraGamma[2]];
+				[cameraBrightness3 setFloatValue:c->cameraBrightness[2]];
 				
 				delete c;
 				
@@ -71,13 +94,23 @@
 				c = new FrostCameras();
 				c->setGUIDs(cameraGUIDs[0], cameraGUIDs[1], cameraGUIDs[2]);
 				
-				for(int i=0;i<3;i++){
-					c->cameraBrightness[i] = cameraBrightness[i];
-					c->cameraExposure[i] = cameraExposure[i];
-					c->cameraShutter[i] = cameraShutter[i];
-					c->cameraGamma[i] = cameraGamma[i];
-					c->cameraGain[i] = cameraGain[i];
-				}
+				c->cameraShutter[0] = [cameraShutter1 floatValue]; 
+				c->cameraExposure[0] = [cameraExposure1 floatValue]; 
+				c->cameraGain[0] = [cameraGain1 floatValue]; 
+				c->cameraGamma[0] = [cameraGamma1 floatValue]; 
+				c->cameraBrightness[0] = [cameraBrightness1 floatValue]; 
+				
+				c->cameraShutter[1] = [cameraShutter2 floatValue]; 
+				c->cameraExposure[1] = [cameraExposure2 floatValue]; 
+				c->cameraGain[1] = [cameraGain2 floatValue]; 
+				c->cameraGamma[1] = [cameraGamma2 floatValue]; 
+				c->cameraBrightness[1] = [cameraBrightness2 floatValue]; 
+				
+				c->cameraShutter[2] = [cameraShutter3 floatValue]; 
+				c->cameraExposure[2] = [cameraExposure3 floatValue]; 
+				c->cameraGain[2] = [cameraGain3 floatValue]; 
+				c->cameraGamma[2] = [cameraGamma3 floatValue]; 
+				c->cameraBrightness[2] = [cameraBrightness3 floatValue]; 
 				
 				c->setup();
 				//	cout<<"GUIDS: "<<cameraGUIDs[0]<<"  "<<cameraGUIDs[1]<<"  "<<cameraGUIDs[2]<<endl;
@@ -124,13 +157,15 @@
 -(void) controlSetup{
 	
 	lucidaGrande = new ofTrueTypeFont();
-
+	lucidaGrande->loadFont("LucidaGrande.ttc",24, true, true, false);
+	c->setup();
+	c->setGUIDs(cameraGUIDs[0], cameraGUIDs[1], cameraGUIDs[2]);
+	cameraSetupCalled = true;
+	
 }
 
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
-	
-	lucidaGrande->loadFont("LucidaGrande.ttc",20, true, true, false);
 
 	float viewWidth = [controlGlView convertSizeToBase: [controlGlView bounds].size].width;
 	float viewHeight = [controlGlView convertSizeToBase: [controlGlView bounds].size].height;
@@ -167,14 +202,49 @@
 				lucidaGrande->drawString("camera offline",(45+((viewWidth/3.0)*i)),(viewHeight/2)+10);
 			}
 		}
-		
 	}
-	
-	
-	
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	
 }
+
+-(IBAction)		cameraBindGuid1:(id)sender{
+	uint64_t guidVal;
+	sscanf([[CameraGUID1 stringValue] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &guidVal);
+	c->setGUID(0, (uint64_t)guidVal);
+	cameraGUIDs[0] = (uint64_t)guidVal;
+	[self cameraUpdateGUIDs];
+}
+
+-(IBAction)		cameraBindGuid2:(id)sender{
+	uint64_t guidVal;
+	sscanf([[CameraGUID2 stringValue] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &guidVal);
+	c->setGUID(1, (uint64_t)guidVal);
+	cameraGUIDs[1] = (uint64_t)guidVal;
+	[self cameraUpdateGUIDs];
+}
+
+-(IBAction)	cameraBindGuid3:(id)sender{
+	uint64_t guidVal;
+	sscanf([[CameraGUID3 stringValue] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &guidVal);
+	c->setGUID(2, (uint64_t)guidVal);
+	cameraGUIDs[2] = (uint64_t)guidVal;
+	[self cameraUpdateGUIDs];
+}
+
+
+-(void) cameraUpdateGUIDs{
+	if(c->getGUID(0) != 0x0ll){
+		[CameraGUID1 setStringValue:[NSString stringWithFormat:@"%llx",c->getGUID(0)]];
+	}
+	if(c->getGUID(1) != 0x0ll){
+		[CameraGUID2 setStringValue:[NSString stringWithFormat:@"%llx",c->getGUID(1)]];
+	}
+	if(c->getGUID(2) != 0x0ll){
+		[CameraGUID3 setStringValue:[NSString stringWithFormat:@"%llx",c->getGUID(2)]];
+	}
+}
+
+
 @end
