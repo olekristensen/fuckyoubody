@@ -49,6 +49,7 @@
 		DD7CC4081063C47100D3736A /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3EA1063C47100D3736A /* ofxCvImage.cpp */; };
 		DD7CC4091063C47100D3736A /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3ED1063C47100D3736A /* ofxCvShortImage.cpp */; };
 		DD7CC4BE1063CE9100D3736A /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC4B81063CE9100D3736A /* ofxThread.cpp */; };
+		DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD89999610C3ECC40051758B /* PluginOutputView.mm */; };
 		DDA6212C10B1618A009C8BDB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211910B1618A009C8BDB /* main.mm */; };
 		DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211C10B1618A009C8BDB /* PluginListView.mm */; };
 		DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */; };
@@ -254,6 +255,8 @@
 		DD7CC3EF1063C47100D3736A /* ofxOpenCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		DD7CC4B81063CE9100D3736A /* ofxThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxThread.cpp; sourceTree = "<group>"; };
 		DD7CC4B91063CE9100D3736A /* ofxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxThread.h; sourceTree = "<group>"; };
+		DD89999510C3ECC40051758B /* PluginOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginOutputView.h; sourceTree = "<group>"; };
+		DD89999610C3ECC40051758B /* PluginOutputView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOutputView.mm; sourceTree = "<group>"; };
 		DDA6211910B1618A009C8BDB /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		DDA6211B10B1618A009C8BDB /* PluginListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginListView.h; sourceTree = "<group>"; };
 		DDA6211C10B1618A009C8BDB /* PluginListView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginListView.mm; sourceTree = "<group>"; };
@@ -863,6 +866,8 @@
 				DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */,
 				6EA4026510BC115E006FBAAB /* SharedContextLayer.h */,
 				6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */,
+				DD89999510C3ECC40051758B /* PluginOutputView.h */,
+				DD89999610C3ECC40051758B /* PluginOutputView.mm */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -1694,6 +1699,7 @@
 				6EADABA410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp in Sources */,
 				6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */,
 				6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */,
+				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
