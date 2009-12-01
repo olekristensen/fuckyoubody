@@ -58,8 +58,7 @@
 	IBOutlet NSPopUpButton * surfacesButton;	
 	IBOutlet NSButton * showGrid;
 	IBOutlet NSSlider * aspectSlider;
-	ofTrueTypeFont	* controlFont;
-	ofTrueTypeFont	* stageFont;
+	ofTrueTypeFont	* font;
 	ofxVec2f * lastMousePos;
 	int selectedCorner;
 	int selectedSurface;

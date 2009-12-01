@@ -48,9 +48,16 @@
 
 -(void) setup{
 	
+	
+	lucidaGrande = new ofTrueTypeFont();
+	lucidaGrande->loadFont("LucidaGrande.ttc",24, true, true, false);
+	c->setup();
+	c->setGUIDs(cameraGUIDs[0], cameraGUIDs[1], cameraGUIDs[2]);
+	
 	cameraThreadTimer = -500;
 	camera_state = camera_state_running;
 	numCameras = 3;
+	cameraSetupCalled = true;
 
 }
 
@@ -138,6 +145,13 @@
 							cameraThreadTimer ++;
 						}
 						cameraLastBlinkCount[i] = ((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->blinkCounter;
+						if(i==0)
+							[[controller cameraFps1] setFloatValue:c->getVidGrabber(i)->fps];
+						if(i==1)
+							[[controller cameraFps2] setFloatValue:c->getVidGrabber(i)->fps];
+						if(i==2)
+							[[controller cameraFps3] setFloatValue:c->getVidGrabber(i)->fps];
+						
 						((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->unlock();
 					}
 				} else {
@@ -156,18 +170,6 @@
 	}
 }
 
--(void) controlSetup{
-	
-	lucidaGrande = new ofTrueTypeFont();
-	lucidaGrande->loadFont("LucidaGrande.ttc",24, true, true, false);
-	c->setup();
-	c->setGUIDs(cameraGUIDs[0], cameraGUIDs[1], cameraGUIDs[2]);
-	cameraSetupCalled = true;
-	
-}
-
-
-/**
  -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 
 	float viewWidth = [controlGlView convertSizeToBase: [controlGlView bounds].size].width;
@@ -207,7 +209,6 @@
 		}
 	}
 }
- **/
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	

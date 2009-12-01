@@ -42,7 +42,7 @@
 	IBOutlet NSTextField * CameraGUID1;
 	IBOutlet NSTextField * CameraGUID2;
 	IBOutlet NSTextField * CameraGUID3;
-	
+		
 	IBOutlet NSSlider * cameraShutter1;
 	IBOutlet NSSlider * cameraShutter2;
 	IBOutlet NSSlider * cameraShutter3;

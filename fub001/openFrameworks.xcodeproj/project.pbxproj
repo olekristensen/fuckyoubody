@@ -28,7 +28,6 @@
 		6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9610BFE9E200D120A1 /* ofxVideoGrabber.cpp */; };
 		6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */; };
 		6EADAC5010C00C8900D120A1 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EADAC4F10C00C8900D120A1 /* libdc1394.a */; };
-		7FFA0B8E10C4195100ECBF8B /* PluginControlView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FFA0B8D10C4195100ECBF8B /* PluginControlView.mm */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -74,8 +73,6 @@
 		DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728910B5846F009CAFC7 /* testApp.mm */; };
 		DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728B10B5846F009CAFC7 /* TestAppController.mm */; };
 		DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC772A410B58518009CAFC7 /* Plugin.mm */; };
-		DDC772F510B59085009CAFC7 /* PluginOpenGLLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */; };
-		DDC773E710B5ABDE009CAFC7 /* OutputOpenglBackground.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */; };
 		DDC7777310B70079009CAFC7 /* ProjectionSurfaces.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */; };
 		DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */; };
 		DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */; };
@@ -196,8 +193,6 @@
 		6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNOSettings.cpp; sourceTree = "<group>"; };
 		6EADAB9910BFE9E200D120A1 /* ofxNOSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNOSettings.h; sourceTree = "<group>"; };
 		6EADAC4F10C00C8900D120A1 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdc1394.a; sourceTree = "<group>"; };
-		7FFA0B8C10C4195100ECBF8B /* PluginControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginControlView.h; sourceTree = "<group>"; };
-		7FFA0B8D10C4195100ECBF8B /* PluginControlView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginControlView.mm; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -302,10 +297,6 @@
 		DDC7728B10B5846F009CAFC7 /* TestAppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TestAppController.mm; path = src/testApp/TestAppController.mm; sourceTree = SOURCE_ROOT; };
 		DDC772A310B58518009CAFC7 /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
 		DDC772A410B58518009CAFC7 /* Plugin.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Plugin.mm; sourceTree = "<group>"; };
-		DDC772F310B59085009CAFC7 /* PluginOpenGLLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginOpenGLLayer.h; sourceTree = "<group>"; };
-		DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOpenGLLayer.mm; sourceTree = "<group>"; };
-		DDC773E510B5ABDE009CAFC7 /* OutputOpenglBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputOpenglBackground.h; sourceTree = "<group>"; };
-		DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OutputOpenglBackground.mm; sourceTree = "<group>"; };
 		DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionSurfaces.h; sourceTree = "<group>"; };
 		DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ProjectionSurfaces.mm; sourceTree = "<group>"; };
 		DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectionSurfaces.xib; sourceTree = "<group>"; };
@@ -861,18 +852,12 @@
 				DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */,
 				DDA6242910B1BCF9009C8BDB /* PluginView.h */,
 				DDA6242A10B1BCF9009C8BDB /* PluginView.mm */,
-				DDC772F310B59085009CAFC7 /* PluginOpenGLLayer.h */,
-				DDC772F410B59085009CAFC7 /* PluginOpenGLLayer.mm */,
 				DDC7783110B71E84009CAFC7 /* PluginOpenGLControl.h */,
 				DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */,
-				DDC773E510B5ABDE009CAFC7 /* OutputOpenglBackground.h */,
-				DDC773E610B5ABDE009CAFC7 /* OutputOpenglBackground.mm */,
 				6EA4026510BC115E006FBAAB /* SharedContextLayer.h */,
 				6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */,
 				DD89999510C3ECC40051758B /* PluginOutputView.h */,
 				DD89999610C3ECC40051758B /* PluginOutputView.mm */,
-				7FFA0B8C10C4195100ECBF8B /* PluginControlView.h */,
-				7FFA0B8D10C4195100ECBF8B /* PluginControlView.mm */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -1681,8 +1666,6 @@
 				DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */,
 				DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */,
 				DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */,
-				DDC772F510B59085009CAFC7 /* PluginOpenGLLayer.mm in Sources */,
-				DDC773E710B5ABDE009CAFC7 /* OutputOpenglBackground.mm in Sources */,
 				DDC7777310B70079009CAFC7 /* ProjectionSurfaces.mm in Sources */,
 				DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */,
 				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
@@ -1705,7 +1688,6 @@
 				6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */,
 				6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */,
 				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
-				7FFA0B8E10C4195100ECBF8B /* PluginControlView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

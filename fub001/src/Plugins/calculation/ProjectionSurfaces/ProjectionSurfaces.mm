@@ -162,14 +162,9 @@
 }
 
 -(void) setup{
-	stageFont = new ofTrueTypeFont();
-	stageFont->loadFont("LucidaGrande.ttc",40, true, true, true);
+	font = new ofTrueTypeFont();
+	font->loadFont("LucidaGrande.ttc",40, true, true, true);
 
-}
-
--(void) controlSetup{
-	controlFont = new ofTrueTypeFont();
-	controlFont->loadFont("LucidaGrande.ttc",40, true, true, true);
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -266,14 +261,14 @@
 	//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
 	
 	if(aspect < 1.0){
-		glTranslated( aspect*0.5*1.0/fontSize-controlFont->stringHeight(text)/2.0,  10, 0);	
+		glTranslated( aspect*0.5*1.0/fontSize-font->stringHeight(text)/2.0,  10, 0);	
 		
 		glRotated(90, 0, 0, 1.0);
 	} else {
-		glTranslated( aspect*0.5*1.0/fontSize-controlFont->stringWidth(text)/2.0,  0.5*1.0/fontSize+controlFont->stringHeight(text)/2.0, 0);	
+		glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize+font->stringHeight(text)/2.0, 0);	
 	}
 	
-	controlFont->drawString(text,0,0);
+	font->drawString(text,0,0);
 }
 
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p{

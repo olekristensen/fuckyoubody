@@ -3,6 +3,7 @@
 
 
 @implementation ParallelWorld
+
 -(void) initPlugin{
 	for(int i=0;i<numFingers;i++){
 		fingerActive[i] = false;	
@@ -77,7 +78,8 @@
 	}
 }
 
--(void) controlDraw{
+-(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+	//cout << [controlOuptutView openGLContext] << endl;
 	ofBackground(0, 0, 0);
 	ofSetColor(255, 255, 255);
 	for(int i=0;i<numFingers;i++){
@@ -91,10 +93,11 @@
 
 @implementation TouchField
 -(void) awakeFromNib{
-	[super awakeFromNib];
 	[self setAcceptsTouchEvents:YES];
 	[self setWantsRestingTouches:YES];
+	[super awakeFromNib];
 }
+
 - (void)touchesBeganWithEvent:(NSEvent *)event{
 	//	NSLog(@"Began");
 	NSSet *touches = [event touchesMatchingPhase:NSTouchPhaseBegan    inView:self];

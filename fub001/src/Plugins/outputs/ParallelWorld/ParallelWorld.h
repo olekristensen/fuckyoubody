@@ -28,7 +28,7 @@
 @end
 
 
-@interface TouchField : PluginControlView
+@interface TouchField : PluginOpenGLControlView
 {
 	IBOutlet ParallelWorld * world;
 }

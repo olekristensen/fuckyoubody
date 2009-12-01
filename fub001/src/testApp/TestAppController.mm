@@ -19,7 +19,6 @@ extern ofAppBaseWindow * window;
 
  NSLog(@"Awake from nib");
 
-
 	[pluginManagerController setFrame:[mainView bounds]];
 	[mainView addSubview:pluginManagerController];
 	
