@@ -28,6 +28,7 @@
 		6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9610BFE9E200D120A1 /* ofxVideoGrabber.cpp */; };
 		6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */; };
 		6EADAC5010C00C8900D120A1 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EADAC4F10C00C8900D120A1 /* libdc1394.a */; };
+		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -193,6 +194,8 @@
 		6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNOSettings.cpp; sourceTree = "<group>"; };
 		6EADAB9910BFE9E200D120A1 /* ofxNOSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNOSettings.h; sourceTree = "<group>"; };
 		6EADAC4F10C00C8900D120A1 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdc1394.a; sourceTree = "<group>"; };
+		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
+		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -844,6 +847,8 @@
 		DDA6211A10B1618A009C8BDB /* PluginManager */ = {
 			isa = PBXGroup;
 			children = (
+				6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */,
+				6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */,
 				DDC772A310B58518009CAFC7 /* Plugin.h */,
 				DDC772A410B58518009CAFC7 /* Plugin.mm */,
 				DDA6211B10B1618A009C8BDB /* PluginListView.h */,
@@ -1688,6 +1693,7 @@
 				6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */,
 				6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */,
 				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
+				6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
