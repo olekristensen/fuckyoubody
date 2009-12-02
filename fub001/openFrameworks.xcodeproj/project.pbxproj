@@ -28,15 +28,14 @@
 		6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */; };
-		6EDB5A7410C6900C00063171 /* com.recoil.frost.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6B10C6900C00063171 /* com.recoil.frost.plist */; };
 		6EDB5A7510C6900C00063171 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6C10C6900C00063171 /* Credits.html */; };
-		6EDB5A7610C6900C00063171 /* fuckYouBuddy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6D10C6900C00063171 /* fuckYouBuddy-Info.plist */; };
 		6EDB5A7710C6900C00063171 /* Hide_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */; };
 		6EDB5A7810C6900C00063171 /* Hide_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6F10C6900C00063171 /* Hide_Status.tiff */; };
 		6EDB5A7910C6900C00063171 /* redlight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7010C6900C00063171 /* redlight.tiff */; };
 		6EDB5A7A10C6900C00063171 /* Show_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */; };
 		6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7210C6900C00063171 /* Show_Status.tiff */; };
 		6EDB5AA210C6903000063171 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDB5AA110C6903000063171 /* libdc1394.a */; };
+		6EFBD23010C691DF008D62C0 /* fuckYouBuddy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -204,15 +203,14 @@
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AvailableProxy.tiff; path = Resources/AvailableProxy.tiff; sourceTree = "<group>"; };
-		6EDB5A6B10C6900C00063171 /* com.recoil.frost.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = com.recoil.frost.plist; path = Resources/com.recoil.frost.plist; sourceTree = "<group>"; };
 		6EDB5A6C10C6900C00063171 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
-		6EDB5A6D10C6900C00063171 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "fuckYouBuddy-Info.plist"; path = "Resources/fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Hide_Status_Pressed.tiff; path = Resources/Hide_Status_Pressed.tiff; sourceTree = "<group>"; };
 		6EDB5A6F10C6900C00063171 /* Hide_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Hide_Status.tiff; path = Resources/Hide_Status.tiff; sourceTree = "<group>"; };
 		6EDB5A7010C6900C00063171 /* redlight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = redlight.tiff; path = Resources/redlight.tiff; sourceTree = "<group>"; };
 		6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status_Pressed.tiff; path = Resources/Show_Status_Pressed.tiff; sourceTree = "<group>"; };
 		6EDB5A7210C6900C00063171 /* Show_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status.tiff; path = Resources/Show_Status.tiff; sourceTree = "<group>"; };
 		6EDB5AA110C6903000063171 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdc1394.a; path = libs/libdc1394.a; sourceTree = "<group>"; };
+		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -662,9 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */,
-				6EDB5A6B10C6900C00063171 /* com.recoil.frost.plist */,
 				6EDB5A6C10C6900C00063171 /* Credits.html */,
-				6EDB5A6D10C6900C00063171 /* fuckYouBuddy-Info.plist */,
 				6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */,
 				6EDB5A6F10C6900C00063171 /* Hide_Status.tiff */,
 				6EDB5A7010C6900C00063171 /* redlight.tiff */,
@@ -1554,6 +1550,7 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
 				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -1625,15 +1622,14 @@
 				DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */,
 				DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */,
 				6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */,
-				6EDB5A7410C6900C00063171 /* com.recoil.frost.plist in Resources */,
 				6EDB5A7510C6900C00063171 /* Credits.html in Resources */,
-				6EDB5A7610C6900C00063171 /* fuckYouBuddy-Info.plist in Resources */,
 				6EDB5A7710C6900C00063171 /* Hide_Status_Pressed.tiff in Resources */,
 				6EDB5A7810C6900C00063171 /* Hide_Status.tiff in Resources */,
 				6EDB5A7910C6900C00063171 /* redlight.tiff in Resources */,
 				6EDB5A7A10C6900C00063171 /* Show_Status_Pressed.tiff in Resources */,
 				6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */,
 				DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */,
+				6EFBD23010C691DF008D62C0 /* fuckYouBuddy-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
