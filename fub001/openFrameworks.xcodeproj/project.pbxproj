@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		276D9DB81073B3F00084689D /* ofxMSAFluidDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */; };
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
-		278230EA109EA82D00AE0E24 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 278230E9109EA82D00AE0E24 /* Credits.html */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
 		6EA4017910BBE5F7006FBAAB /* Cameras.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4017710BBE5F7006FBAAB /* Cameras.mm */; };
 		6EA4017A10BBE5F7006FBAAB /* Cameras.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EA4017810BBE5F7006FBAAB /* Cameras.xib */; };
@@ -27,8 +26,17 @@
 		6EADABA410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp */; };
 		6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9610BFE9E200D120A1 /* ofxVideoGrabber.cpp */; };
 		6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */; };
-		6EADAC5010C00C8900D120A1 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EADAC4F10C00C8900D120A1 /* libdc1394.a */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
+		6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */; };
+		6EDB5A7410C6900C00063171 /* com.recoil.frost.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6B10C6900C00063171 /* com.recoil.frost.plist */; };
+		6EDB5A7510C6900C00063171 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6C10C6900C00063171 /* Credits.html */; };
+		6EDB5A7610C6900C00063171 /* fuckYouBuddy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6D10C6900C00063171 /* fuckYouBuddy-Info.plist */; };
+		6EDB5A7710C6900C00063171 /* Hide_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */; };
+		6EDB5A7810C6900C00063171 /* Hide_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6F10C6900C00063171 /* Hide_Status.tiff */; };
+		6EDB5A7910C6900C00063171 /* redlight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7010C6900C00063171 /* redlight.tiff */; };
+		6EDB5A7A10C6900C00063171 /* Show_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */; };
+		6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7210C6900C00063171 /* Show_Status.tiff */; };
+		6EDB5AA210C6903000063171 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDB5AA110C6903000063171 /* libdc1394.a */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -157,8 +165,6 @@
 		276D9DAE1073B3F00084689D /* ofxMSAFluidParticleUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidParticleUpdater.h; sourceTree = "<group>"; };
 		276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAFluidSolver.cpp; sourceTree = "<group>"; };
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
-		278230E9109EA82D00AE0E24 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
-		27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
 		6EA4017610BBE5F7006FBAAB /* Cameras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cameras.h; path = input/Camera/Cameras.h; sourceTree = "<group>"; };
@@ -195,9 +201,18 @@
 		6EADAB9710BFE9E200D120A1 /* ofxVideoGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoGrabber.h; sourceTree = "<group>"; };
 		6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNOSettings.cpp; sourceTree = "<group>"; };
 		6EADAB9910BFE9E200D120A1 /* ofxNOSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNOSettings.h; sourceTree = "<group>"; };
-		6EADAC4F10C00C8900D120A1 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libdc1394.a; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
+		6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AvailableProxy.tiff; path = Resources/AvailableProxy.tiff; sourceTree = "<group>"; };
+		6EDB5A6B10C6900C00063171 /* com.recoil.frost.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = com.recoil.frost.plist; path = Resources/com.recoil.frost.plist; sourceTree = "<group>"; };
+		6EDB5A6C10C6900C00063171 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
+		6EDB5A6D10C6900C00063171 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "fuckYouBuddy-Info.plist"; path = "Resources/fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
+		6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Hide_Status_Pressed.tiff; path = Resources/Hide_Status_Pressed.tiff; sourceTree = "<group>"; };
+		6EDB5A6F10C6900C00063171 /* Hide_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Hide_Status.tiff; path = Resources/Hide_Status.tiff; sourceTree = "<group>"; };
+		6EDB5A7010C6900C00063171 /* redlight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = redlight.tiff; path = Resources/redlight.tiff; sourceTree = "<group>"; };
+		6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status_Pressed.tiff; path = Resources/Show_Status_Pressed.tiff; sourceTree = "<group>"; };
+		6EDB5A7210C6900C00063171 /* Show_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status.tiff; path = Resources/Show_Status.tiff; sourceTree = "<group>"; };
+		6EDB5AA110C6903000063171 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdc1394.a; path = libs/libdc1394.a; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
 		DD0C015C1066874900BB3F9F /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
@@ -541,7 +556,7 @@
 				DDFEC8871063FA200068D31A /* IOKit.framework in Frameworks */,
 				DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */,
 				DDA6266E10B1D1FB009C8BDB /* BWToolkitFramework.framework in Frameworks */,
-				6EADAC5010C00C8900D120A1 /* libdc1394.a in Frameworks */,
+				6EDB5AA210C6903000063171 /* libdc1394.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +656,23 @@
 				6EADAB9910BFE9E200D120A1 /* ofxNOSettings.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		6ECEB54910C5D6C900B659F0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */,
+				6EDB5A6B10C6900C00063171 /* com.recoil.frost.plist */,
+				6EDB5A6C10C6900C00063171 /* Credits.html */,
+				6EDB5A6D10C6900C00063171 /* fuckYouBuddy-Info.plist */,
+				6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */,
+				6EDB5A6F10C6900C00063171 /* Hide_Status.tiff */,
+				6EDB5A7010C6900C00063171 /* redlight.tiff */,
+				6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */,
+				6EDB5A7210C6900C00063171 /* Show_Status.tiff */,
+				27C26C2C109ECE8400EF775E /* icon.icns */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		DD0C01501066874900BB3F9F /* ofxXmlSettings */ = {
@@ -846,7 +878,7 @@
 				DDA6211810B1618A009C8BDB /* src */,
 			);
 			name = ofxCocoaPlugins;
-			path = ../../../myAddons/ofxCocoaPlugins;
+			path = ../../../../myAddons/ofxCocoaPlugins;
 			sourceTree = "<group>";
 		};
 		DDA6211810B1618A009C8BDB /* src */ = {
@@ -945,9 +977,8 @@
 				DDC7728010B5846F009CAFC7 /* outputs */,
 				DDC7728510B5846F009CAFC7 /* PluginIncludes.h */,
 			);
-			name = Plugins;
-			path = src/Plugins;
-			sourceTree = SOURCE_ROOT;
+			path = Plugins;
+			sourceTree = "<group>";
 		};
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
@@ -981,9 +1012,8 @@
 				DDC7728A10B5846F009CAFC7 /* TestAppController.h */,
 				DDC7728B10B5846F009CAFC7 /* TestAppController.mm */,
 			);
-			name = testApp;
-			path = src/testApp;
-			sourceTree = SOURCE_ROOT;
+			path = testApp;
+			sourceTree = "<group>";
 		};
 		DDC7776E10B70079009CAFC7 /* calculation */ = {
 			isa = PBXGroup;
@@ -1156,7 +1186,17 @@
 		E45BE0360E8CC5DE009D7055 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				DDB85141105E808700D1ED92 /* addons */,
 				E45BEED60E8CCB34009D7055 /* core */,
+				DDD48A5C10766F100083759A /* pymidi */,
+				DD6EA1291062C880001EC207 /* QuartzCore.framework */,
+				DD6EA0CE1062C832001EC207 /* QTKit.framework */,
+				E439E8EF0FEFE04E0042BF96 /* AppKit.framework */,
+				E439E8F30FEFE05F0042BF96 /* Cocoa.framework */,
+				DDFEC8861063FA200068D31A /* IOKit.framework */,
+				DDD48937107636A80083759A /* CoreMIDI.framework */,
+				DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */,
+				6EDB5AA110C6903000063171 /* libdc1394.a */,
 			);
 			name = libs;
 			sourceTree = "<group>";
@@ -1514,32 +1554,20 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				27C26C2C109ECE8400EF775E /* icon.icns */,
+				6ECEB54910C5D6C900B659F0 /* Resources */,
 				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
-				27823130109EC1BE00AE0E24 /* fuckYouBuddy-Info.plist */,
-				278230E9109EA82D00AE0E24 /* Credits.html */,
-				DDC7727F10B5846F009CAFC7 /* Plugins */,
-				DDC7728610B5846F009CAFC7 /* testApp */,
-				DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
-				DDB85141105E808700D1ED92 /* addons */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
-				DDD48A5C10766F100083759A /* pymidi */,
-				DD6EA1291062C880001EC207 /* QuartzCore.framework */,
-				DD6EA0CE1062C832001EC207 /* QTKit.framework */,
-				E439E8EF0FEFE04E0042BF96 /* AppKit.framework */,
-				E439E8F30FEFE05F0042BF96 /* Cocoa.framework */,
-				6EADAC4F10C00C8900D120A1 /* libdc1394.a */,
-				DDFEC8861063FA200068D31A /* IOKit.framework */,
-				DDD48937107636A80083759A /* CoreMIDI.framework */,
-				DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */,
 			);
 			sourceTree = "<group>";
 		};
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				DDC7727F10B5846F009CAFC7 /* Plugins */,
+				DDC7728610B5846F009CAFC7 /* testApp */,
+				DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1589,7 +1617,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				278230EA109EA82D00AE0E24 /* Credits.html in Resources */,
 				27C26C2D109ECE8400EF775E /* icon.icns in Resources */,
 				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
@@ -1597,6 +1624,15 @@
 				6EA4017A10BBE5F7006FBAAB /* Cameras.xib in Resources */,
 				DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */,
 				DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */,
+				6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */,
+				6EDB5A7410C6900C00063171 /* com.recoil.frost.plist in Resources */,
+				6EDB5A7510C6900C00063171 /* Credits.html in Resources */,
+				6EDB5A7610C6900C00063171 /* fuckYouBuddy-Info.plist in Resources */,
+				6EDB5A7710C6900C00063171 /* Hide_Status_Pressed.tiff in Resources */,
+				6EDB5A7810C6900C00063171 /* Hide_Status.tiff in Resources */,
+				6EDB5A7910C6900C00063171 /* redlight.tiff in Resources */,
+				6EDB5A7A10C6900C00063171 /* Show_Status_Pressed.tiff in Resources */,
+				6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */,
 				DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1846,6 +1882,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/libs\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/freeimage/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../../../00573-Xcode-Fat-YCAM-WithGui/addons/ofxOpenCv/libs/opencv/lib/linux\"";
@@ -1921,6 +1958,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_17)",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/libs\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/freeimage/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../../../00573-Xcode-Fat-YCAM-WithGui/addons/ofxOpenCv/libs/opencv/lib/linux\"";
