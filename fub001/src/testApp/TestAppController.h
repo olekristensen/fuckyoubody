@@ -10,6 +10,7 @@
 #include "ofBaseApp.h"
 #include "ofAppBaseWindow.h"
 
+
 @interface TestAppController : NSWindow/* Specify a superclass (eg: NSObject or NSView) */ {
 	IBOutlet NSView * mainView;
 	IBOutlet PluginManagerController * pluginManagerController;

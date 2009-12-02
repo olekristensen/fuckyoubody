@@ -12,6 +12,8 @@
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
+		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
+		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */; };
 		6EDB5A7510C6900C00063171 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6C10C6900C00063171 /* Credits.html */; };
 		6EDB5A7710C6900C00063171 /* Hide_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */; };
@@ -161,10 +163,13 @@
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
-		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedContextLayer.h; sourceTree = "<group>"; };
-		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedContextLayer.mm; sourceTree = "<group>"; };
+		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
+		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
+		6EC1A4BE10C6A83600738AA9 /* PluginUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUISlider.h; sourceTree = "<group>"; };
+		6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISlider.mm; sourceTree = "<group>"; };
+		6EC1A4C310C6A8C000738AA9 /* PluginUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUI.h; sourceTree = "<group>"; };
 		6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AvailableProxy.tiff; path = Resources/AvailableProxy.tiff; sourceTree = "<group>"; };
 		6EDB5A6C10C6900C00063171 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
 		6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Hide_Status_Pressed.tiff; path = Resources/Hide_Status_Pressed.tiff; sourceTree = "<group>"; };
@@ -256,8 +261,8 @@
 		DD7CC3EF1063C47100D3736A /* ofxOpenCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		DD7CC4B81063CE9100D3736A /* ofxThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxThread.cpp; sourceTree = "<group>"; };
 		DD7CC4B91063CE9100D3736A /* ofxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxThread.h; sourceTree = "<group>"; };
-		DD89999510C3ECC40051758B /* PluginOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginOutputView.h; sourceTree = "<group>"; };
-		DD89999610C3ECC40051758B /* PluginOutputView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOutputView.mm; sourceTree = "<group>"; };
+		DD89999510C3ECC40051758B /* PluginOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginOutputView.h; path = PluginManager/PluginOutputView.h; sourceTree = "<group>"; };
+		DD89999610C3ECC40051758B /* PluginOutputView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PluginOutputView.mm; path = PluginManager/PluginOutputView.mm; sourceTree = "<group>"; };
 		DDA6211910B1618A009C8BDB /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		DDA6211B10B1618A009C8BDB /* PluginListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginListView.h; sourceTree = "<group>"; };
 		DDA6211C10B1618A009C8BDB /* PluginListView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginListView.mm; sourceTree = "<group>"; };
@@ -303,8 +308,8 @@
 		DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionSurfaces.h; sourceTree = "<group>"; };
 		DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ProjectionSurfaces.mm; sourceTree = "<group>"; };
 		DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectionSurfaces.xib; sourceTree = "<group>"; };
-		DDC7783110B71E84009CAFC7 /* PluginOpenGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginOpenGLControl.h; sourceTree = "<group>"; };
-		DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginOpenGLControl.mm; sourceTree = "<group>"; };
+		DDC7783110B71E84009CAFC7 /* PluginOpenGLControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginOpenGLControl.h; path = PluginManager/PluginOpenGLControl.h; sourceTree = "<group>"; };
+		DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PluginOpenGLControl.mm; path = PluginManager/PluginOpenGLControl.mm; sourceTree = "<group>"; };
 		DDD48937107636A80083759A /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = /System/Library/Frameworks/CoreMIDI.framework; sourceTree = "<absolute>"; };
 		DDD48A5D10766F100083759A /* PYMIDI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDI.h; sourceTree = "<group>"; };
 		DDD48A5E10766F100083759A /* PYMIDIEndpoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIEndpoint.h; sourceTree = "<group>"; };
@@ -567,6 +572,29 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		6EC1A49010C6A4D800738AA9 /* PluginUI */ = {
+			isa = PBXGroup;
+			children = (
+				6EC1A4BE10C6A83600738AA9 /* PluginUISlider.h */,
+				6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */,
+				6EC1A4C310C6A8C000738AA9 /* PluginUI.h */,
+			);
+			name = PluginUI;
+			sourceTree = "<group>";
+		};
+		6EC1A49910C6A6F600738AA9 /* PluginOpenGLViews */ = {
+			isa = PBXGroup;
+			children = (
+				6EA4026510BC115E006FBAAB /* SharedContextLayer.h */,
+				6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */,
+				DDC7783110B71E84009CAFC7 /* PluginOpenGLControl.h */,
+				DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */,
+				DD89999510C3ECC40051758B /* PluginOutputView.h */,
+				DD89999610C3ECC40051758B /* PluginOutputView.mm */,
+			);
+			name = PluginOpenGLViews;
+			sourceTree = "<group>";
+		};
 		6ECEB54910C5D6C900B659F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,11 +654,11 @@
 				DD17E06910C69CC4008B3E0A /* ofxVideoGrabberFeature.h */,
 				DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */,
 				DD17E06D10C69CD8008B3E0A /* ofxVideoGrabberSDK.h */,
-				DD17E03F10C69BEA008B3E0A /* Libdc1394Grabber */,
 				DD17DFD310C6996D008B3E0A /* Cameras.h */,
 				DD17DFD410C6996D008B3E0A /* Cameras.mm */,
 				DD17DFD610C699A3008B3E0A /* Cameras.xib */,
 				DD17E20710C6AD0E008B3E0A /* Camera */,
+				DD17E03F10C69BEA008B3E0A /* Libdc1394Grabber */,
 			);
 			path = Cameras;
 			sourceTree = "<group>";
@@ -841,6 +869,8 @@
 		DDA6211810B1618A009C8BDB /* src */ = {
 			isa = PBXGroup;
 			children = (
+				6EC1A49910C6A6F600738AA9 /* PluginOpenGLViews */,
+				6EC1A49010C6A4D800738AA9 /* PluginUI */,
 				DDA6211910B1618A009C8BDB /* main.mm */,
 				DDA6213610B1622E009C8BDB /* ofAppCocoaWindow */,
 				DDA6211A10B1618A009C8BDB /* PluginManager */,
@@ -851,22 +881,16 @@
 		DDA6211A10B1618A009C8BDB /* PluginManager */ = {
 			isa = PBXGroup;
 			children = (
-				6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */,
-				6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */,
 				DDC772A310B58518009CAFC7 /* Plugin.h */,
 				DDC772A410B58518009CAFC7 /* Plugin.mm */,
+				DDA6242910B1BCF9009C8BDB /* PluginView.h */,
+				DDA6242A10B1BCF9009C8BDB /* PluginView.mm */,
 				DDA6211B10B1618A009C8BDB /* PluginListView.h */,
 				DDA6211C10B1618A009C8BDB /* PluginListView.mm */,
 				DDA6211D10B1618A009C8BDB /* PluginManagerController.h */,
 				DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */,
-				DDA6242910B1BCF9009C8BDB /* PluginView.h */,
-				DDA6242A10B1BCF9009C8BDB /* PluginView.mm */,
-				DDC7783110B71E84009CAFC7 /* PluginOpenGLControl.h */,
-				DDC7783210B71E84009CAFC7 /* PluginOpenGLControl.mm */,
-				6EA4026510BC115E006FBAAB /* SharedContextLayer.h */,
-				6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */,
-				DD89999510C3ECC40051758B /* PluginOutputView.h */,
-				DD89999610C3ECC40051758B /* PluginOutputView.mm */,
+				6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */,
+				6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */,
 			);
 			path = PluginManager;
 			sourceTree = "<group>";
@@ -1589,6 +1613,7 @@
 				6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */,
 				DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */,
 				6EFBD23010C691DF008D62C0 /* fuckYouBuddy-Info.plist in Resources */,
+				6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */,
 				DD17DFD710C699A3008B3E0A /* Cameras.xib in Resources */,
 				DD17E20610C6AD09008B3E0A /* Camera.xib in Resources */,
 			);
@@ -1691,6 +1716,7 @@
 				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
 				DD4FE4F110C5307B00A11BE9 /* DanceSteps.mm in Sources */,
 				6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */,
+				6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */,
 				DD17DFD510C6996D008B3E0A /* Cameras.mm in Sources */,
 				DD17E04A10C69BEA008B3E0A /* Libdc1394Grabber.cpp in Sources */,
 				DD17E04B10C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.cpp in Sources */,

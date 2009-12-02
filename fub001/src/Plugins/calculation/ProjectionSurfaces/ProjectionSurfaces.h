@@ -13,7 +13,6 @@
 
 #include "Plugin.h"
 #include "ofMain.h"
-
 #include "ofxVectorMath.h"
 #include "ofxXmlSettings.h"
 
