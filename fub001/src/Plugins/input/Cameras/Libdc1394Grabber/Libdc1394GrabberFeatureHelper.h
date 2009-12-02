@@ -7,7 +7,7 @@
 
 #include <dc1394/dc1394.h>
 
-#include "ofxVideoGrabberFeature.h"
+#include "../ofxVideoGrabberFeature.h"
 
 
 class Libdc1394GrabberFeatureHelper

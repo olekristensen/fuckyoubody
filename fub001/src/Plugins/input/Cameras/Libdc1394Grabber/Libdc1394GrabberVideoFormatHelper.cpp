@@ -41,7 +41,17 @@ dc1394video_mode_t  Libdc1394GrabberVideoFormatHelper::videoFormatFromParams( in
 	return DC1394_VIDEO_MODE_640x480_MONO8;
 }
 
+dc1394color_coding_t  Libdc1394GrabberVideoFormatHelper::colorCodingFormat7FromParams( int _vidFormat, bool _forceColor ){
+   if( _vidFormat == VID_FORMAT_RGB )				{ return DC1394_COLOR_CODING_RGB8; }
+	else if( _vidFormat == VID_FORMAT_YUV411 )		{ return DC1394_COLOR_CODING_YUV411; }
+	else if( _vidFormat == VID_FORMAT_YUV422 )		{ return DC1394_COLOR_CODING_YUV422; }
+	else if( _vidFormat == VID_FORMAT_YUV444 )		{ return DC1394_COLOR_CODING_YUV422; }
+	else if( _vidFormat == VID_FORMAT_GREYSCALE )	{ return DC1394_COLOR_CODING_MONO8;}
+	else if( _vidFormat == VID_FORMAT_Y8 )			{ return DC1394_COLOR_CODING_MONO8;}
+	else if( _vidFormat == VID_FORMAT_Y16 )			{ return DC1394_COLOR_CODING_MONO16; }
 
+	return DC1394_COLOR_CODING_RGB8;
+}
 
 dc1394video_mode_t  Libdc1394GrabberVideoFormatHelper::videoFormatFromParams160x120( int _vidFormat, bool _forceColor )
 {
@@ -101,7 +111,7 @@ dc1394video_mode_t  Libdc1394GrabberVideoFormatHelper::videoFormatFromParams1280
 	else if( _vidFormat == VID_FORMAT_GREYSCALE )	{ return DC1394_VIDEO_MODE_1280x960_MONO8;}
 	else if( _vidFormat == VID_FORMAT_Y8 )			{ return DC1394_VIDEO_MODE_1280x960_MONO8;}
 	else if( _vidFormat == VID_FORMAT_Y16 )			{ return DC1394_VIDEO_MODE_1280x960_MONO16; }
-	
+
 	return DC1394_VIDEO_MODE_1280x960_YUV422;
 }
 
@@ -174,6 +184,32 @@ int Libdc1394GrabberVideoFormatHelper::libcd1394ColorFormatToVidFormat(  uint32_
 	return -1;
 }
 
+const char * Libdc1394GrabberVideoFormatHelper::libcd1394ISOFormatToString(dc1394speed_t _ISOspeed)
+{
+	switch (_ISOspeed)
+	{
+		case DC1394_ISO_SPEED_100:
+			return "100";
+			break;
+		case DC1394_ISO_SPEED_200:
+			return "200";
+			break;
+		case DC1394_ISO_SPEED_400:
+			return "400";
+			break;
+		case DC1394_ISO_SPEED_800:
+			return "800";
+			break;
+		case DC1394_ISO_SPEED_1600:
+			return "1600";
+			break;
+		case DC1394_ISO_SPEED_3200:
+			return "3200";
+			break;
+		default:
+			return "";
+	}
+}
 
 /*
 	VID_FORMAT_GREYSCALE  =	0,

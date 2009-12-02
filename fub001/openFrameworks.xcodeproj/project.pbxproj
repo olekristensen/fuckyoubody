@@ -10,22 +10,7 @@
 		276D9DB81073B3F00084689D /* ofxMSAFluidDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */; };
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
-		6EA4017910BBE5F7006FBAAB /* Cameras.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4017710BBE5F7006FBAAB /* Cameras.mm */; };
-		6EA4017A10BBE5F7006FBAAB /* Cameras.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EA4017810BBE5F7006FBAAB /* Cameras.xib */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
-		6EADAB9A10BFE9E200D120A1 /* contourNormals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB7B10BFE9E200D120A1 /* contourNormals.cpp */; };
-		6EADAB9B10BFE9E200D120A1 /* contourSimplify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB7E10BFE9E200D120A1 /* contourSimplify.cpp */; };
-		6EADAB9C10BFE9E200D120A1 /* ofCvCameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB8110BFE9E200D120A1 /* ofCvCameraCalibration.cpp */; };
-		6EADAB9D10BFE9E200D120A1 /* FrostCameras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB8310BFE9E200D120A1 /* FrostCameras.cpp */; };
-		6EADAB9E10BFE9E200D120A1 /* Libdc1394Grabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB8610BFE9E200D120A1 /* Libdc1394Grabber.cpp */; };
-		6EADAB9F10BFE9E200D120A1 /* Libdc1394GrabberFeatureHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB8810BFE9E200D120A1 /* Libdc1394GrabberFeatureHelper.cpp */; };
-		6EADABA010BFE9E200D120A1 /* Libdc1394GrabberFramerateHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB8A10BFE9E200D120A1 /* Libdc1394GrabberFramerateHelper.cpp */; };
-		6EADABA110BFE9E200D120A1 /* Libdc1394GrabberUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB8C10BFE9E200D120A1 /* Libdc1394GrabberUtils.cpp */; };
-		6EADABA210BFE9E200D120A1 /* Libdc1394GrabberVideoFormatHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB8E10BFE9E200D120A1 /* Libdc1394GrabberVideoFormatHelper.cpp */; };
-		6EADABA310BFE9E200D120A1 /* ofxVideoGrabberFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9110BFE9E200D120A1 /* ofxVideoGrabberFeature.cpp */; };
-		6EADABA410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp */; };
-		6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9610BFE9E200D120A1 /* ofxVideoGrabber.cpp */; };
-		6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */; };
 		6EDB5A7510C6900C00063171 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6C10C6900C00063171 /* Credits.html */; };
@@ -34,12 +19,22 @@
 		6EDB5A7910C6900C00063171 /* redlight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7010C6900C00063171 /* redlight.tiff */; };
 		6EDB5A7A10C6900C00063171 /* Show_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */; };
 		6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7210C6900C00063171 /* Show_Status.tiff */; };
-		6EDB5AA210C6903000063171 /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDB5AA110C6903000063171 /* libdc1394.a */; };
 		6EFBD23010C691DF008D62C0 /* fuckYouBuddy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
 		DD0C016A1066874900BB3F9F /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */; };
+		DD17DFD510C6996D008B3E0A /* Cameras.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD17DFD410C6996D008B3E0A /* Cameras.mm */; };
+		DD17DFD710C699A3008B3E0A /* Cameras.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD17DFD610C699A3008B3E0A /* Cameras.xib */; };
+		DD17E00D10C69ADB008B3E0A /* libdc1394.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD17E00C10C69ADB008B3E0A /* libdc1394.a */; };
+		DD17E04A10C69BEA008B3E0A /* Libdc1394Grabber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E04010C69BEA008B3E0A /* Libdc1394Grabber.cpp */; };
+		DD17E04B10C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E04210C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.cpp */; };
+		DD17E04C10C69BEA008B3E0A /* Libdc1394GrabberFramerateHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E04410C69BEA008B3E0A /* Libdc1394GrabberFramerateHelper.cpp */; };
+		DD17E04D10C69BEA008B3E0A /* Libdc1394GrabberUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E04610C69BEA008B3E0A /* Libdc1394GrabberUtils.cpp */; };
+		DD17E04E10C69BEA008B3E0A /* Libdc1394GrabberVideoFormatHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E04810C69BEA008B3E0A /* Libdc1394GrabberVideoFormatHelper.cpp */; };
+		DD17E06410C69C70008B3E0A /* ofxVideoGrabberFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */; };
+		DD17E09810C69E5B008B3E0A /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD17E09710C69E5B008B3E0A /* Camera.mm */; };
+		DD17E20610C6AD09008B3E0A /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD17E20510C6AD09008B3E0A /* Camera.xib */; };
 		DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */; };
 		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
 		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
@@ -166,40 +161,8 @@
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
-		6EA4017610BBE5F7006FBAAB /* Cameras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cameras.h; path = input/Camera/Cameras.h; sourceTree = "<group>"; };
-		6EA4017710BBE5F7006FBAAB /* Cameras.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Cameras.mm; path = input/Camera/Cameras.mm; sourceTree = "<group>"; };
-		6EA4017810BBE5F7006FBAAB /* Cameras.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Cameras.xib; path = input/Camera/Cameras.xib; sourceTree = "<group>"; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedContextLayer.mm; sourceTree = "<group>"; };
-		6EADAB7B10BFE9E200D120A1 /* contourNormals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourNormals.cpp; sourceTree = "<group>"; };
-		6EADAB7C10BFE9E200D120A1 /* contourNormals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourNormals.h; sourceTree = "<group>"; };
-		6EADAB7D10BFE9E200D120A1 /* polylineSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polylineSimplify.h; sourceTree = "<group>"; };
-		6EADAB7E10BFE9E200D120A1 /* contourSimplify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourSimplify.cpp; sourceTree = "<group>"; };
-		6EADAB7F10BFE9E200D120A1 /* contourSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourSimplify.h; sourceTree = "<group>"; };
-		6EADAB8010BFE9E200D120A1 /* convexHull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convexHull.h; sourceTree = "<group>"; };
-		6EADAB8110BFE9E200D120A1 /* ofCvCameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofCvCameraCalibration.cpp; sourceTree = "<group>"; };
-		6EADAB8210BFE9E200D120A1 /* ofCvCameraCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofCvCameraCalibration.h; sourceTree = "<group>"; };
-		6EADAB8310BFE9E200D120A1 /* FrostCameras.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FrostCameras.cpp; sourceTree = "<group>"; };
-		6EADAB8410BFE9E200D120A1 /* FrostCameras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrostCameras.h; sourceTree = "<group>"; };
-		6EADAB8610BFE9E200D120A1 /* Libdc1394Grabber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394Grabber.cpp; sourceTree = "<group>"; };
-		6EADAB8710BFE9E200D120A1 /* Libdc1394Grabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394Grabber.h; sourceTree = "<group>"; };
-		6EADAB8810BFE9E200D120A1 /* Libdc1394GrabberFeatureHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberFeatureHelper.cpp; sourceTree = "<group>"; };
-		6EADAB8910BFE9E200D120A1 /* Libdc1394GrabberFeatureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberFeatureHelper.h; sourceTree = "<group>"; };
-		6EADAB8A10BFE9E200D120A1 /* Libdc1394GrabberFramerateHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberFramerateHelper.cpp; sourceTree = "<group>"; };
-		6EADAB8B10BFE9E200D120A1 /* Libdc1394GrabberFramerateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberFramerateHelper.h; sourceTree = "<group>"; };
-		6EADAB8C10BFE9E200D120A1 /* Libdc1394GrabberUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberUtils.cpp; sourceTree = "<group>"; };
-		6EADAB8D10BFE9E200D120A1 /* Libdc1394GrabberUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberUtils.h; sourceTree = "<group>"; };
-		6EADAB8E10BFE9E200D120A1 /* Libdc1394GrabberVideoFormatHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberVideoFormatHelper.cpp; sourceTree = "<group>"; };
-		6EADAB8F10BFE9E200D120A1 /* Libdc1394GrabberVideoFormatHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberVideoFormatHelper.h; sourceTree = "<group>"; };
-		6EADAB9110BFE9E200D120A1 /* ofxVideoGrabberFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVideoGrabberFeature.cpp; sourceTree = "<group>"; };
-		6EADAB9210BFE9E200D120A1 /* ofxVideoGrabberFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoGrabberFeature.h; sourceTree = "<group>"; };
-		6EADAB9310BFE9E200D120A1 /* ofxVideoGrabberSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoGrabberSDK.h; sourceTree = "<group>"; };
-		6EADAB9410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVideoGrabberSettings.cpp; sourceTree = "<group>"; };
-		6EADAB9510BFE9E200D120A1 /* ofxVideoGrabberSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoGrabberSettings.h; sourceTree = "<group>"; };
-		6EADAB9610BFE9E200D120A1 /* ofxVideoGrabber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVideoGrabber.cpp; sourceTree = "<group>"; };
-		6EADAB9710BFE9E200D120A1 /* ofxVideoGrabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoGrabber.h; sourceTree = "<group>"; };
-		6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxNOSettings.cpp; sourceTree = "<group>"; };
-		6EADAB9910BFE9E200D120A1 /* ofxNOSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNOSettings.h; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AvailableProxy.tiff; path = Resources/AvailableProxy.tiff; sourceTree = "<group>"; };
@@ -209,7 +172,6 @@
 		6EDB5A7010C6900C00063171 /* redlight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = redlight.tiff; path = Resources/redlight.tiff; sourceTree = "<group>"; };
 		6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status_Pressed.tiff; path = Resources/Show_Status_Pressed.tiff; sourceTree = "<group>"; };
 		6EDB5A7210C6900C00063171 /* Show_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status.tiff; path = Resources/Show_Status.tiff; sourceTree = "<group>"; };
-		6EDB5AA110C6903000063171 /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdc1394.a; path = libs/libdc1394.a; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -218,6 +180,26 @@
 		DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
 		DD0C01601066874900BB3F9F /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		DD0C01611066874900BB3F9F /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxXmlSettings.h; sourceTree = "<group>"; };
+		DD17DFD310C6996D008B3E0A /* Cameras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cameras.h; sourceTree = "<group>"; };
+		DD17DFD410C6996D008B3E0A /* Cameras.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Cameras.mm; sourceTree = "<group>"; };
+		DD17DFD610C699A3008B3E0A /* Cameras.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cameras.xib; sourceTree = "<group>"; };
+		DD17E00C10C69ADB008B3E0A /* libdc1394.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdc1394.a; path = libs/osx/lib/libdc1394.a; sourceTree = "<group>"; };
+		DD17E04010C69BEA008B3E0A /* Libdc1394Grabber.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394Grabber.cpp; sourceTree = "<group>"; };
+		DD17E04110C69BEA008B3E0A /* Libdc1394Grabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394Grabber.h; sourceTree = "<group>"; };
+		DD17E04210C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberFeatureHelper.cpp; sourceTree = "<group>"; };
+		DD17E04310C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberFeatureHelper.h; sourceTree = "<group>"; };
+		DD17E04410C69BEA008B3E0A /* Libdc1394GrabberFramerateHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberFramerateHelper.cpp; sourceTree = "<group>"; };
+		DD17E04510C69BEA008B3E0A /* Libdc1394GrabberUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberUtils.h; sourceTree = "<group>"; };
+		DD17E04610C69BEA008B3E0A /* Libdc1394GrabberUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberUtils.cpp; sourceTree = "<group>"; };
+		DD17E04710C69BEA008B3E0A /* Libdc1394GrabberFramerateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberFramerateHelper.h; sourceTree = "<group>"; };
+		DD17E04810C69BEA008B3E0A /* Libdc1394GrabberVideoFormatHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Libdc1394GrabberVideoFormatHelper.cpp; sourceTree = "<group>"; };
+		DD17E04910C69BEA008B3E0A /* Libdc1394GrabberVideoFormatHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Libdc1394GrabberVideoFormatHelper.h; sourceTree = "<group>"; };
+		DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVideoGrabberFeature.cpp; sourceTree = "<group>"; };
+		DD17E06910C69CC4008B3E0A /* ofxVideoGrabberFeature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoGrabberFeature.h; sourceTree = "<group>"; };
+		DD17E06D10C69CD8008B3E0A /* ofxVideoGrabberSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVideoGrabberSDK.h; sourceTree = "<group>"; };
+		DD17E09610C69E5B008B3E0A /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		DD17E09710C69E5B008B3E0A /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
+		DD17E20510C6AD09008B3E0A /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Camera.xib; sourceTree = "<group>"; };
 		DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelWorld.h; sourceTree = "<group>"; };
 		DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParallelWorld.mm; sourceTree = "<group>"; };
 		DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParallelWorld.xib; sourceTree = "<group>"; };
@@ -554,7 +536,7 @@
 				DDFEC8871063FA200068D31A /* IOKit.framework in Frameworks */,
 				DDD48938107636A80083759A /* CoreMIDI.framework in Frameworks */,
 				DDA6266E10B1D1FB009C8BDB /* BWToolkitFramework.framework in Frameworks */,
-				6EDB5AA210C6903000063171 /* libdc1394.a in Frameworks */,
+				DD17E00D10C69ADB008B3E0A /* libdc1394.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,77 +563,6 @@
 				276D9DAE1073B3F00084689D /* ofxMSAFluidParticleUpdater.h */,
 				276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */,
 				276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		6E4CE36010BAE1580001B810 /* input */ = {
-			isa = PBXGroup;
-			children = (
-				6EADAB7910BFE9E200D120A1 /* Cameras */,
-			);
-			name = input;
-			sourceTree = "<group>";
-		};
-		6EADAB7910BFE9E200D120A1 /* Cameras */ = {
-			isa = PBXGroup;
-			children = (
-				6EADAB7A10BFE9E200D120A1 /* computerVisionUtils */,
-				6EADAB7B10BFE9E200D120A1 /* contourNormals.cpp */,
-				6EADAB7C10BFE9E200D120A1 /* contourNormals.h */,
-				6EADAB7D10BFE9E200D120A1 /* polylineSimplify.h */,
-				6EADAB7E10BFE9E200D120A1 /* contourSimplify.cpp */,
-				6EADAB7F10BFE9E200D120A1 /* contourSimplify.h */,
-				6EADAB8010BFE9E200D120A1 /* convexHull.h */,
-				6EADAB8110BFE9E200D120A1 /* ofCvCameraCalibration.cpp */,
-				6EADAB8210BFE9E200D120A1 /* ofCvCameraCalibration.h */,
-				6EADAB8310BFE9E200D120A1 /* FrostCameras.cpp */,
-				6EADAB8410BFE9E200D120A1 /* FrostCameras.h */,
-				6EA4017810BBE5F7006FBAAB /* Cameras.xib */,
-				6EA4017610BBE5F7006FBAAB /* Cameras.h */,
-				6EA4017710BBE5F7006FBAAB /* Cameras.mm */,
-				6EADAB8510BFE9E200D120A1 /* Libdc1394Grabber */,
-				6EADAB9010BFE9E200D120A1 /* src */,
-			);
-			name = Cameras;
-			sourceTree = "<group>";
-		};
-		6EADAB7A10BFE9E200D120A1 /* computerVisionUtils */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = computerVisionUtils;
-			sourceTree = "<group>";
-		};
-		6EADAB8510BFE9E200D120A1 /* Libdc1394Grabber */ = {
-			isa = PBXGroup;
-			children = (
-				6EADAB8610BFE9E200D120A1 /* Libdc1394Grabber.cpp */,
-				6EADAB8710BFE9E200D120A1 /* Libdc1394Grabber.h */,
-				6EADAB8810BFE9E200D120A1 /* Libdc1394GrabberFeatureHelper.cpp */,
-				6EADAB8910BFE9E200D120A1 /* Libdc1394GrabberFeatureHelper.h */,
-				6EADAB8A10BFE9E200D120A1 /* Libdc1394GrabberFramerateHelper.cpp */,
-				6EADAB8B10BFE9E200D120A1 /* Libdc1394GrabberFramerateHelper.h */,
-				6EADAB8C10BFE9E200D120A1 /* Libdc1394GrabberUtils.cpp */,
-				6EADAB8D10BFE9E200D120A1 /* Libdc1394GrabberUtils.h */,
-				6EADAB8E10BFE9E200D120A1 /* Libdc1394GrabberVideoFormatHelper.cpp */,
-				6EADAB8F10BFE9E200D120A1 /* Libdc1394GrabberVideoFormatHelper.h */,
-			);
-			path = Libdc1394Grabber;
-			sourceTree = "<group>";
-		};
-		6EADAB9010BFE9E200D120A1 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				6EADAB9110BFE9E200D120A1 /* ofxVideoGrabberFeature.cpp */,
-				6EADAB9210BFE9E200D120A1 /* ofxVideoGrabberFeature.h */,
-				6EADAB9310BFE9E200D120A1 /* ofxVideoGrabberSDK.h */,
-				6EADAB9410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp */,
-				6EADAB9510BFE9E200D120A1 /* ofxVideoGrabberSettings.h */,
-				6EADAB9610BFE9E200D120A1 /* ofxVideoGrabber.cpp */,
-				6EADAB9710BFE9E200D120A1 /* ofxVideoGrabber.h */,
-				6EADAB9810BFE9E200D120A1 /* ofxNOSettings.cpp */,
-				6EADAB9910BFE9E200D120A1 /* ofxNOSettings.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -699,6 +610,56 @@
 				DD0C01611066874900BB3F9F /* ofxXmlSettings.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		DD17DFCB10C6994D008B3E0A /* input */ = {
+			isa = PBXGroup;
+			children = (
+				DD17DFCC10C6994D008B3E0A /* Cameras */,
+			);
+			path = input;
+			sourceTree = "<group>";
+		};
+		DD17DFCC10C6994D008B3E0A /* Cameras */ = {
+			isa = PBXGroup;
+			children = (
+				DD17E06910C69CC4008B3E0A /* ofxVideoGrabberFeature.h */,
+				DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */,
+				DD17E06D10C69CD8008B3E0A /* ofxVideoGrabberSDK.h */,
+				DD17E03F10C69BEA008B3E0A /* Libdc1394Grabber */,
+				DD17DFD310C6996D008B3E0A /* Cameras.h */,
+				DD17DFD410C6996D008B3E0A /* Cameras.mm */,
+				DD17DFD610C699A3008B3E0A /* Cameras.xib */,
+				DD17E20710C6AD0E008B3E0A /* Camera */,
+			);
+			path = Cameras;
+			sourceTree = "<group>";
+		};
+		DD17E03F10C69BEA008B3E0A /* Libdc1394Grabber */ = {
+			isa = PBXGroup;
+			children = (
+				DD17E04010C69BEA008B3E0A /* Libdc1394Grabber.cpp */,
+				DD17E04110C69BEA008B3E0A /* Libdc1394Grabber.h */,
+				DD17E04210C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.cpp */,
+				DD17E04310C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.h */,
+				DD17E04410C69BEA008B3E0A /* Libdc1394GrabberFramerateHelper.cpp */,
+				DD17E04510C69BEA008B3E0A /* Libdc1394GrabberUtils.h */,
+				DD17E04610C69BEA008B3E0A /* Libdc1394GrabberUtils.cpp */,
+				DD17E04710C69BEA008B3E0A /* Libdc1394GrabberFramerateHelper.h */,
+				DD17E04810C69BEA008B3E0A /* Libdc1394GrabberVideoFormatHelper.cpp */,
+				DD17E04910C69BEA008B3E0A /* Libdc1394GrabberVideoFormatHelper.h */,
+			);
+			path = Libdc1394Grabber;
+			sourceTree = "<group>";
+		};
+		DD17E20710C6AD0E008B3E0A /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				DD17E09610C69E5B008B3E0A /* Camera.h */,
+				DD17E09710C69E5B008B3E0A /* Camera.mm */,
+				DD17E20510C6AD09008B3E0A /* Camera.xib */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		DD26DD8810BBEC1600750B7C /* ParallelWorld */ = {
@@ -968,7 +929,7 @@
 		DDC7727F10B5846F009CAFC7 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				6E4CE36010BAE1580001B810 /* input */,
+				DD17DFCB10C6994D008B3E0A /* input */,
 				DDC7776E10B70079009CAFC7 /* calculation */,
 				DDC7728010B5846F009CAFC7 /* outputs */,
 				DDC7728510B5846F009CAFC7 /* PluginIncludes.h */,
@@ -984,9 +945,8 @@
 				DD26DD8810BBEC1600750B7C /* ParallelWorld */,
 				DDC7728110B5846F009CAFC7 /* _ExampleOutput */,
 			);
-			name = outputs;
-			path = src/Plugins/outputs;
-			sourceTree = SOURCE_ROOT;
+			path = outputs;
+			sourceTree = "<group>";
 		};
 		DDC7728110B5846F009CAFC7 /* _ExampleOutput */ = {
 			isa = PBXGroup;
@@ -1182,6 +1142,7 @@
 		E45BE0360E8CC5DE009D7055 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				DD17E00C10C69ADB008B3E0A /* libdc1394.a */,
 				E45BEED60E8CCB34009D7055 /* core */,
 				DDD48A5C10766F100083759A /* pymidi */,
 				DD6EA1291062C880001EC207 /* QuartzCore.framework */,
@@ -1191,7 +1152,6 @@
 				DDFEC8861063FA200068D31A /* IOKit.framework */,
 				DDD48937107636A80083759A /* CoreMIDI.framework */,
 				DDA6266D10B1D1FB009C8BDB /* BWToolkitFramework.framework */,
-				6EDB5AA110C6903000063171 /* libdc1394.a */,
 			);
 			name = libs;
 			sourceTree = "<group>";
@@ -1618,7 +1578,6 @@
 				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
 				DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */,
-				6EA4017A10BBE5F7006FBAAB /* Cameras.xib in Resources */,
 				DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */,
 				DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */,
 				6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */,
@@ -1630,6 +1589,8 @@
 				6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */,
 				DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */,
 				6EFBD23010C691DF008D62C0 /* fuckYouBuddy-Info.plist in Resources */,
+				DD17DFD710C699A3008B3E0A /* Cameras.xib in Resources */,
+				DD17E20610C6AD09008B3E0A /* Camera.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1724,26 +1685,20 @@
 				DDC7783310B71E84009CAFC7 /* PluginOpenGLControl.mm in Sources */,
 				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
 				DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */,
-				6EA4017910BBE5F7006FBAAB /* Cameras.mm in Sources */,
 				6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */,
 				DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */,
 				DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */,
-				6EADAB9A10BFE9E200D120A1 /* contourNormals.cpp in Sources */,
-				6EADAB9B10BFE9E200D120A1 /* contourSimplify.cpp in Sources */,
-				6EADAB9C10BFE9E200D120A1 /* ofCvCameraCalibration.cpp in Sources */,
-				6EADAB9D10BFE9E200D120A1 /* FrostCameras.cpp in Sources */,
-				6EADAB9E10BFE9E200D120A1 /* Libdc1394Grabber.cpp in Sources */,
-				6EADAB9F10BFE9E200D120A1 /* Libdc1394GrabberFeatureHelper.cpp in Sources */,
-				6EADABA010BFE9E200D120A1 /* Libdc1394GrabberFramerateHelper.cpp in Sources */,
-				6EADABA110BFE9E200D120A1 /* Libdc1394GrabberUtils.cpp in Sources */,
-				6EADABA210BFE9E200D120A1 /* Libdc1394GrabberVideoFormatHelper.cpp in Sources */,
-				6EADABA310BFE9E200D120A1 /* ofxVideoGrabberFeature.cpp in Sources */,
-				6EADABA410BFE9E200D120A1 /* ofxVideoGrabberSettings.cpp in Sources */,
-				6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */,
-				6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */,
 				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
 				DD4FE4F110C5307B00A11BE9 /* DanceSteps.mm in Sources */,
 				6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */,
+				DD17DFD510C6996D008B3E0A /* Cameras.mm in Sources */,
+				DD17E04A10C69BEA008B3E0A /* Libdc1394Grabber.cpp in Sources */,
+				DD17E04B10C69BEA008B3E0A /* Libdc1394GrabberFeatureHelper.cpp in Sources */,
+				DD17E04C10C69BEA008B3E0A /* Libdc1394GrabberFramerateHelper.cpp in Sources */,
+				DD17E04D10C69BEA008B3E0A /* Libdc1394GrabberUtils.cpp in Sources */,
+				DD17E04E10C69BEA008B3E0A /* Libdc1394GrabberVideoFormatHelper.cpp in Sources */,
+				DD17E06410C69C70008B3E0A /* ofxVideoGrabberFeature.cpp in Sources */,
+				DD17E09810C69E5B008B3E0A /* Camera.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1879,6 +1834,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
+					"\"$(SRCROOT)/libs/osx/lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/freeimage/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../../../00573-Xcode-Fat-YCAM-WithGui/addons/ofxOpenCv/libs/opencv/lib/linux\"";
@@ -1955,6 +1911,7 @@
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_18)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/libs\"",
+					"\"$(SRCROOT)/libs/osx/lib\"",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../libs/freeimage/lib\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_10 = "\"$(SRCROOT)/../../../../00573-Xcode-Fat-YCAM-WithGui/addons/ofxOpenCv/libs/opencv/lib/linux\"";

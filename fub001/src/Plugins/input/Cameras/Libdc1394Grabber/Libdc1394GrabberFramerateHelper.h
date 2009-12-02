@@ -4,7 +4,7 @@
 
 #include <dc1394/dc1394.h>
 
-#include "ofxVideoGrabberFeature.h"
+#include "../ofxVideoGrabberFeature.h"
 
 class Libdc1394GrabberFramerateHelper
 {
@@ -12,7 +12,7 @@ class Libdc1394GrabberFramerateHelper
 public:
 
 	static dc1394framerate_t numToDcLibFramerate( int rateNum  );
-	static string DcLibFramerateToString( dc1394framerate_t _framerate );
+	static const char* DcLibFramerateToString( dc1394framerate_t _framerate );
 
 };
 
