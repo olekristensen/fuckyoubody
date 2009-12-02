@@ -12,13 +12,27 @@
 @implementation Cameras
 @synthesize c;
 
+
+
+
 -(void) awakeFromNib{
 	[super awakeFromNib];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(aWillTerminate:)
+												 name:NSApplicationWillTerminateNotification object:nil];
+	
 }
 
+-(void) aWillTerminate:(NSNotification *)notification {
+//	c->exit();
+	delete c;
+}
+
+
 -(void) initPlugin{
-	
 	c = new FrostCameras();
+
 	cameraSetupCalled = false;
 	
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
@@ -36,8 +50,11 @@
 	}
 	
 	
-	
 	[self cameraUpdateGUIDs];
+
+	
+	
+	
 	
 }
 
@@ -46,24 +63,34 @@
 	NSLog(@"Button pressed");
 }
 
--(void) setup{
-	
-	
+-(void) setup {
 	lucidaGrande = new ofTrueTypeFont();
 	lucidaGrande->loadFont("LucidaGrande.ttc",24, true, true, false);
+	
+	cout<<endl<<"-----"<<endl;
+	cout<<"Camera setup"<<endl;
+	cout<<"-----"<<endl;
+	
+	
 	c->setup();
+	cout<<"Bind GUIDS: "<<cameraGUIDs[0]<<", "<<cameraGUIDs[1]<<" and "<<cameraGUIDs[2]<<endl;
 	c->setGUIDs(cameraGUIDs[0], cameraGUIDs[1], cameraGUIDs[2]);
+	
 	
 	cameraThreadTimer = -500;
 	camera_state = camera_state_running;
 	numCameras = 3;
 	cameraSetupCalled = true;
-
+	
 }
 
--(void) update{
-	
+-(void) update:(const CVTimeStamp *)outputTime{
+
+
 	if(cameraSetupCalled){
+		c->update();
+//		cout<<"Camera state: "<<camera_state<<"   "<<cameraThreadTimer<<endl;
+		
 		
 		if(camera_state == camera_state_closing){
 			
@@ -126,7 +153,7 @@
 				cameraTimer = ofGetElapsedTimeMillis();
 			}			
 			if (ofGetElapsedTimeMillis() - cameraTimer > 3000) {
-				c->update();
+								c->update();
 				cameraThreadTimer = 0;
 				camera_state = camera_state_running;
 				cameraTimer = 0;
@@ -135,29 +162,34 @@
 		
 		if (camera_state == camera_state_running) {
 			for(int i=0;i<3;i++){
-				if(c->isRunning(i)){
-					ofLog(OF_LOG_NOTICE, "Camera " + ofToString(i, 0) + " is running");
-					if(((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->lock()){
-						ofLog(OF_LOG_NOTICE, "Got lock on Camera " + ofToString(i, 0));
-						if(((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->blinkCounter != cameraLastBlinkCount[i]){
-							cameraThreadTimer = 0;
-						} else {
+				if(c->cameraConnected[i]){
+					if(c->isRunning(i)){
+						
+//						ofSetLogLevel(OF_LOG_NOTICE);
+						ofLog(OF_LOG_NOTICE, "Camera " + ofToString(i, 0) + " is running");
+						if(((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->lock()){
+							ofLog(OF_LOG_NOTICE, "Got lock on Camera " + ofToString(i, 0));
+							if(((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->blinkCounter != cameraLastBlinkCount[i]){
+								cameraThreadTimer = 0; 
+							} else {
+								cameraThreadTimer ++;
+							}
+							cameraLastBlinkCount[i] = ((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->blinkCounter;
+							if(i==0)
+								[[controller cameraFps1] setFloatValue:c->getVidGrabber(i)->fps];
+							if(i==1)
+								[[controller cameraFps2] setFloatValue:c->getVidGrabber(i)->fps];
+							if(i==2)
+								[[controller cameraFps3] setFloatValue:c->getVidGrabber(i)->fps];
+							
+							((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->unlock();
+						}
+						//ofSetLogLevel(OF_LOG_SILENT);
+					} else {
+						//	ofLog(OF_LOG_WARNING, "Camera " + ofToString(i, 0) + " is NOT running");
+						if(c->hasCameras){
 							cameraThreadTimer ++;
 						}
-						cameraLastBlinkCount[i] = ((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->blinkCounter;
-						if(i==0)
-							[[controller cameraFps1] setFloatValue:c->getVidGrabber(i)->fps];
-						if(i==1)
-							[[controller cameraFps2] setFloatValue:c->getVidGrabber(i)->fps];
-						if(i==2)
-							[[controller cameraFps3] setFloatValue:c->getVidGrabber(i)->fps];
-						
-						((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->unlock();
-					}
-				} else {
-					//	ofLog(OF_LOG_WARNING, "Camera " + ofToString(i, 0) + " is NOT running");
-					if(c->hasCameras){
-						cameraThreadTimer ++;
 					}
 				}
 			}
@@ -170,8 +202,8 @@
 	}
 }
 
- -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
-
+-(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+	
 	float viewWidth = [controlGlView convertSizeToBase: [controlGlView bounds].size].width;
 	float viewHeight = [controlGlView convertSizeToBase: [controlGlView bounds].size].height;
 	
@@ -191,7 +223,7 @@
 	if (c != NULL) {
 		
 		for (int i=0; i<3; i++) {
-			if(c->isRunning(i)){
+			if(c->cameraConnected[i] && c->isRunning(i)){
 				ofSetColor(255,255, 255);
 				c->getVidGrabber(i)->draw((viewWidth/3.0)*i,0,viewWidth/3.0,viewHeight);
 				if(((Libdc1394Grabber*) c->getVidGrabber(i)->videoGrabber)->lock()){

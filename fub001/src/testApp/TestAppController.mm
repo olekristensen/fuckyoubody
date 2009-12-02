@@ -40,6 +40,7 @@ extern ofAppBaseWindow * window;
 
 	[pluginManagerController addHeader:@"Output"];
 	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
+		[pluginManagerController addPlugin:[[DanceSteps alloc] init]];
 	[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
 	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
 

@@ -74,6 +74,8 @@ public:
 	float cameraGammaBefore[3];
 	float cameraGainBefore[3];
 	
+	bool  cameraConnected[3];
+	
 	int camWidth;
 	int camHeight;
 	
@@ -85,6 +87,8 @@ public:
 
 	bool hasCameras;
 	int numCameras;
+	
+	void exitCamera();
 
 private:
 	

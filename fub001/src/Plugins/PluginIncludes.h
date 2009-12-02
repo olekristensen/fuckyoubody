@@ -14,5 +14,6 @@
 #include "ProjectionSurfaces.h"
 
 #include "_ExampleOutput.h"
+#include "DanceSteps.h"
 #include "ParallelWorld.h"
 #include "DMXOutput.h"

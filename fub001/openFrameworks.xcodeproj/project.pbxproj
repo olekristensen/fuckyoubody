@@ -40,6 +40,8 @@
 		DD45B91B106FDC4F00B4B19C /* ofxMSASpline2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */; };
 		DD45B91C106FDC4F00B4B19C /* ofxMSASpline3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B911106FDC4F00B4B19C /* ofxMSASpline3D.cpp */; };
 		DD45B91D106FDC4F00B4B19C /* ofxMSASurface3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */; };
+		DD4FE4F110C5307B00A11BE9 /* DanceSteps.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4FE4EF10C5307B00A11BE9 /* DanceSteps.mm */; };
+		DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */; };
 		DD6EA0CF1062C832001EC207 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6EA0CE1062C832001EC207 /* QTKit.framework */; };
 		DD6EA12A1062C880001EC207 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6EA1291062C880001EC207 /* QuartzCore.framework */; };
 		DD7CC3F71063C47100D3736A /* libOpenCV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7CC3D11063C47100D3736A /* libOpenCV.a */; };
@@ -219,6 +221,9 @@
 		DD45B914106FDC4F00B4B19C /* ofxMSASplineTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASplineTemplate.h; sourceTree = "<group>"; };
 		DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSASurface3D.cpp; sourceTree = "<group>"; };
 		DD45B916106FDC4F00B4B19C /* ofxMSASurface3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASurface3D.h; sourceTree = "<group>"; };
+		DD4FE4EE10C5307B00A11BE9 /* DanceSteps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanceSteps.h; sourceTree = "<group>"; };
+		DD4FE4EF10C5307B00A11BE9 /* DanceSteps.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DanceSteps.mm; sourceTree = "<group>"; };
+		DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DanceSteps.xib; sourceTree = "<group>"; };
 		DD6EA0CE1062C832001EC207 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		DD6EA1291062C880001EC207 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		DD7CC3BB1063C47100D3736A /* cv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cv.h; sourceTree = "<group>"; };
@@ -714,6 +719,16 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		DD4FE4ED10C5307B00A11BE9 /* DanceSteps */ = {
+			isa = PBXGroup;
+			children = (
+				DD4FE4EE10C5307B00A11BE9 /* DanceSteps.h */,
+				DD4FE4EF10C5307B00A11BE9 /* DanceSteps.mm */,
+				DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */,
+			);
+			path = DanceSteps;
+			sourceTree = "<group>";
+		};
 		DD7CC3AF1063C47100D3736A /* ofxOpenCv */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,6 +953,7 @@
 			isa = PBXGroup;
 			children = (
 				DD26DEC510BC04A100750B7C /* DMXOutput */,
+				DD4FE4ED10C5307B00A11BE9 /* DanceSteps */,
 				DD26DD8810BBEC1600750B7C /* ParallelWorld */,
 				DDC7728110B5846F009CAFC7 /* _ExampleOutput */,
 			);
@@ -1581,6 +1597,7 @@
 				6EA4017A10BBE5F7006FBAAB /* Cameras.xib in Resources */,
 				DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */,
 				DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */,
+				DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1693,6 +1710,7 @@
 				6EADABA510BFE9E200D120A1 /* ofxVideoGrabber.cpp in Sources */,
 				6EADABA610BFE9E200D120A1 /* ofxNOSettings.cpp in Sources */,
 				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
+				DD4FE4F110C5307B00A11BE9 /* DanceSteps.mm in Sources */,
 				6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

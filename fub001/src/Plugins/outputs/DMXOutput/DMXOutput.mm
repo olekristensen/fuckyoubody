@@ -379,7 +379,7 @@
 	
 }
 
--(void) update{
+-(void) update:(const CVTimeStamp *)outputTime{
 	pthread_mutex_lock(&mutex);
 	//Normal light
 	Lamp * lamp;

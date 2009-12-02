@@ -11,7 +11,7 @@
 #define numFingers 3
 
 
-@interface ParallelWorld : ofPlugin {
+@interface DanceSteps : ofPlugin {
 	@public
 	bool fingerActive[numFingers];
 	id identity[numFingers];
@@ -19,11 +19,10 @@
 	float min;
 	float max;
 	vector<float> *lines;
-	
+	ofImage * img;
 	float t;
 	
 	IBOutlet NSButton * rotating;
-	IBOutlet NSSlider * speed;
 }
 -(IBAction) setMinSize:(id)sender;
 -(IBAction) setMaxSize:(id)sender;
@@ -31,10 +30,4 @@
 @end
 
 
-@interface TouchField : PluginOpenGLControlView
-{
-	IBOutlet ParallelWorld * world;
-}
-
-@end
 

@@ -53,7 +53,7 @@ Libdc1394Grabber::Libdc1394Grabber()
 
 Libdc1394Grabber::~Libdc1394Grabber()
 {
-	
+	cout<<"Stop"<<endl;
 	dc1394_camera_free_list (list);
 	
 	if (camera != NULL )
@@ -466,8 +466,10 @@ bool Libdc1394Grabber::grabFrame(unsigned char ** _pixels)
 	if(bHasNewFrame)
     {
         bHasNewFrame = false;
+
 		memcpy(*_pixels,pixels,width*height*bpp);
 		unlock();
+
         return true;
     } else {
 		unlock();
@@ -477,9 +479,11 @@ bool Libdc1394Grabber::grabFrame(unsigned char ** _pixels)
 
 void Libdc1394Grabber::captureFrame()
 {
+
     lock();
 	if((!bHasNewFrame) && camera != NULL )
 	{
+		
 		unlock();
 		
 		//  make sure DMA buffer is fresh, even if we're lagging behind the cam
@@ -525,8 +529,11 @@ void Libdc1394Grabber::captureFrame()
 		}
 		
 		if(frame != NULL){
+
 			lock();
 			blinkCounter++;
+					cout<<frame->image[21]<<"  "<<frame->allocated_image_bytes<<"  "<<frame->color_coding<<endl;
+
 			processCameraImageData( frame->image );
 			bHasNewFrame = true;
 			unlock();
@@ -548,6 +555,7 @@ void Libdc1394Grabber::captureFrame()
 
 void Libdc1394Grabber::processCameraImageData( unsigned char* _cameraImageData )
 {
+
     static bool writeonce = true;
 	
 	if( sourceFormatLibDC == DC1394_COLOR_CODING_RAW8 || sourceFormatLibDC == DC1394_COLOR_CODING_MONO8 )
@@ -668,6 +676,7 @@ void Libdc1394Grabber::setBayerPatternIfNeeded()
 
 void Libdc1394Grabber::cleanupCamera()
 {
+
 	stopThread();
 	while(isThreadRunning()) 1;
 	//this sleep seems necessary, at least on OSX, to avoid an occasional hang on exit
@@ -685,7 +694,7 @@ void Libdc1394Grabber::cleanupCamera()
 		}
 		
 		/* cleanup and exit */
-		
+		cout<<"Cleanup camera"<<endl;
 		dc1394_capture_stop(camera);
 		dc1394_reset_bus(camera);
 		dc1394_camera_free (camera);

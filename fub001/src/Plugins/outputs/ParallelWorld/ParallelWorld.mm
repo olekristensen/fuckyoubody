@@ -18,7 +18,7 @@
 -(IBAction) remake:(id)sender{
 	lines = new vector<float>;
 	float x = 0;
-	while(x < 1.3){
+	while(x < 1.8){
 		lines->push_back(x);
 		x += ofRandom(min,max);
 	}
@@ -30,7 +30,7 @@
 	max = [sender floatValue];	
 }
 
--(void) draw{
+-(void) draw:(const CVTimeStamp *)outputTime{
 
 //	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	if([rotating state] != NSOnState){
@@ -60,7 +60,10 @@
 	glPopMatrix();
 	
 	} else {
-		float t = ofGetElapsedTimeMillis()/4000.0;
+//		float framesPerSecond = (outputTime->rateScalar * (double)outputTime->videoTimeScale / (double)outputTime->videoRefreshPeriod);
+		float deltaTime = 1.0 / ofGetFrameRate();
+		t += deltaTime*[speed floatValue];
+//		cout<<t<<endl;
 		glTranslated(t, 0, 0);
 		for(int i=2;i<lines->size();i+=2){
 			if(lines->at(i) + t > 1.1){
@@ -97,7 +100,7 @@
 	[self setWantsRestingTouches:YES];
 	[super awakeFromNib];
 }
-
+/*
 - (void)touchesBeganWithEvent:(NSEvent *)event{
 	//	NSLog(@"Began");
 	NSSet *touches = [event touchesMatchingPhase:NSTouchPhaseBegan    inView:self];
@@ -155,5 +158,5 @@
 		}
 	}
 }
-
+*/
 @end

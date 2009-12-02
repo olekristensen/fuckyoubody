@@ -6,8 +6,9 @@ FrostCameras::FrostCameras(){
 	camHeight = 960/2;
 	
 	csize = cvSize( camWidth, camHeight );
-	
+	cout<<"Create cameras: "<<endl;
 	for (int i=0; i<3; i++) {
+//		cout<<endl<<"Camera "<<i<<":"<<endl;		
 		cameraInited[i] = false;
 		cameraGUIDs[i] = 0x0ll;
 		calibImage[i].setUseTexture(false);
@@ -21,15 +22,22 @@ FrostCameras::FrostCameras(){
 	numCameras = 3;
 	timeSinceLastCameraCheck = 0;
 }
+
+void FrostCameras::exitCamera(){
+	
+}
 FrostCameras::~FrostCameras(){
+	
+	cout<<"Close camera, BYE BYE"<<endl;
+	
 	for(int i=0;i<3;i++){
 		delete vidGrabber[i];
 	}
+
 }
 void FrostCameras::setup(){
 	
 	for (int i=0; i<3; i++) {
-		
 		Libdc1394Grabber * libdc1394Grabber = new Libdc1394Grabber();
 		libdc1394Grabber->listDevices();
 		
@@ -44,6 +52,8 @@ void FrostCameras::setup(){
 	// first init the cams that are bound and exist
 	for (int i=0; i<3; i++) {
 		if(cameraGUIDexists(cameraGUIDs[i])){
+			cout<<endl<<"Camera "<<i<<":"<<endl;		
+			cameraConnected[i] = true;
 			initGrabber(i, cameraGUIDs[i]);
 		}
 	}
@@ -51,7 +61,8 @@ void FrostCameras::setup(){
 	// then init the cams that are NOT bound
 	for (int i=0; i<3; i++) {
 		if(!cameraGUIDexists(cameraGUIDs[i])){
-			initGrabber(i, cameraGUIDs[i]);
+			cameraConnected[i] = false;
+			//initGrabber(i, cameraGUIDs[i]);
 		}
 	}
 	
@@ -96,7 +107,6 @@ bool FrostCameras::isFrameNew(int _grabberIndex){
 }
 
 void FrostCameras::update(){
-	
 	timeSinceLastCameraCheck++;
 	
 	if(timeSinceLastCameraCheck > 250){

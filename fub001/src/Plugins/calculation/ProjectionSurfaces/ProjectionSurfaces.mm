@@ -215,10 +215,10 @@
 	
 	glPopMatrix();}
 
--(void) update{
+-(void) update:(const CVTimeStamp *)outputTime{
 }
 
--(void) draw{
+-(void) draw:(const CVTimeStamp *)outputTime{
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	[self applyProjection:surface];
 	{
@@ -346,7 +346,7 @@
 	ofxVec2f curMouse = [self convertPoint:ofxPoint2f(x,y)];
 	
 	selectedCorner = [self getCurrentSurface]->warp->GetClosestCorner(curMouse.x, curMouse.y);
-	if([self getCurrentSurface]->corners[selectedCorner]->distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.1){
+	if([self getCurrentSurface]->corners[selectedCorner]->distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.3){
 		selectedCorner = -1;
 	} else {
 		//		[[self getCurrentSurface] setCorner:selectedCorner x:[self getCurrentSurface]->corners[selectedCorner]->x y:[self getCurrentSurface]->corners[selectedCorner]->y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:true];	

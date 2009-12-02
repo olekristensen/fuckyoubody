@@ -143,6 +143,7 @@ bool ofxVideoGrabber::isReady()
 void ofxVideoGrabber::grabFrame()
 {
 
+
     if (bGrabberInited){
         bIsFrameNew = videoGrabber->grabFrame(&pixels);
         if(bIsFrameNew) {
@@ -154,8 +155,10 @@ void ofxVideoGrabber::grabFrame()
 			}
 			timeThen = timeNow;
             if (bUseTexture){
+
                 if(targetFormat == VID_FORMAT_GREYSCALE)
                 {
+					
                     tex.loadData(pixels, width, height, GL_LUMINANCE);
                 }
                 else
@@ -195,6 +198,8 @@ void ofxVideoGrabber::close()
         bGrabberInited 		= false;
         bIsFrameNew 		= false;
         videoGrabber->close();
+
+		delete videoGrabber;
     }
 }
 
