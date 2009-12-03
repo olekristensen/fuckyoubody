@@ -19,6 +19,10 @@
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */; };
+		6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */; };
+		6EBB472610C80472004F9A03 /* LensDistortion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB472510C80472004F9A03 /* LensDistortion.mm */; };
+		6EBB472810C80BEA004F9A03 /* LensDistortion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472710C80BEA004F9A03 /* LensDistortion.xib */; };
+		6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472D10C80DFB004F9A03 /* ToDo.rtf */; };
 		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */; };
@@ -181,6 +185,24 @@
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EB7260610C6EF4800347368 /* PluginUIValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIValueTextField.h; sourceTree = "<group>"; };
 		6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIValueTextField.mm; sourceTree = "<group>"; };
+		6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofCvCameraCalibration.cpp; sourceTree = "<group>"; };
+		6EBB46FD10C80317004F9A03 /* ofCvCameraCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofCvCameraCalibration.h; sourceTree = "<group>"; };
+		6EBB470F10C80352004F9A03 /* BlobTrackerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlobTrackerView.xib; sourceTree = "<group>"; };
+		6EBB471010C80352004F9A03 /* BlobTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlobTracking.h; sourceTree = "<group>"; };
+		6EBB471110C80352004F9A03 /* BlobTracking.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlobTracking.mm; sourceTree = "<group>"; };
+		6EBB471210C80352004F9A03 /* BlobTracking.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlobTracking.xib; sourceTree = "<group>"; };
+		6EBB471310C80352004F9A03 /* contourNormals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourNormals.cpp; sourceTree = "<group>"; };
+		6EBB471410C80352004F9A03 /* contourNormals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourNormals.h; sourceTree = "<group>"; };
+		6EBB471510C80352004F9A03 /* contourSimplify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourSimplify.cpp; sourceTree = "<group>"; };
+		6EBB471610C80352004F9A03 /* contourSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourSimplify.h; sourceTree = "<group>"; };
+		6EBB471710C80352004F9A03 /* convexHull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convexHull.h; sourceTree = "<group>"; };
+		6EBB471810C80352004F9A03 /* polylineSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polylineSimplify.h; sourceTree = "<group>"; };
+		6EBB471910C80352004F9A03 /* TrackerView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrackerView.mm; sourceTree = "<group>"; };
+		6EBB471A10C80352004F9A03 /* TrackerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackerView.h; sourceTree = "<group>"; };
+		6EBB472410C80472004F9A03 /* LensDistortion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensDistortion.h; sourceTree = "<group>"; };
+		6EBB472510C80472004F9A03 /* LensDistortion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LensDistortion.mm; sourceTree = "<group>"; };
+		6EBB472710C80BEA004F9A03 /* LensDistortion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LensDistortion.xib; sourceTree = "<group>"; };
+		6EBB472D10C80DFB004F9A03 /* ToDo.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
 		6EC1A4BE10C6A83600738AA9 /* PluginUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUISlider.h; sourceTree = "<group>"; };
 		6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISlider.mm; sourceTree = "<group>"; };
 		6EC1A4C310C6A8C000738AA9 /* PluginUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUI.h; sourceTree = "<group>"; };
@@ -348,10 +370,10 @@
 		DDD48A7110766F110083759A /* PYMIDIVirtualEndpoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualEndpoint.m; sourceTree = "<group>"; };
 		DDD48A7210766F110083759A /* PYMIDIVirtualSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PYMIDIVirtualSource.h; sourceTree = "<group>"; };
 		DDD48A7310766F110083759A /* PYMIDIVirtualSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PYMIDIVirtualSource.m; sourceTree = "<group>"; };
-		DDDF8F3610B7581400CF73FD /* Warp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Warp.mm; sourceTree = "<group>"; };
-		DDDF8F3710B7581400CF73FD /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warp.h; sourceTree = "<group>"; };
-		DDDF8F4510B758AB00CF73FD /* coordWarp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coordWarp.h; sourceTree = "<group>"; };
-		DDDF8F4610B758AB00CF73FD /* coordWarp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = coordWarp.mm; sourceTree = "<group>"; };
+		DDDF8F3610B7581400CF73FD /* Warp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Warp.mm; path = ProjectionSurfaces/Warp.mm; sourceTree = "<group>"; };
+		DDDF8F3710B7581400CF73FD /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Warp.h; path = ProjectionSurfaces/Warp.h; sourceTree = "<group>"; };
+		DDDF8F4510B758AB00CF73FD /* coordWarp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = coordWarp.h; path = ProjectionSurfaces/coordWarp.h; sourceTree = "<group>"; };
+		DDDF8F4610B758AB00CF73FD /* coordWarp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = coordWarp.mm; path = ProjectionSurfaces/coordWarp.mm; sourceTree = "<group>"; };
 		DDFEC8861063FA200068D31A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		E439E8EF0FEFE04E0042BF96 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E439E8F30FEFE05F0042BF96 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -519,7 +541,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -586,12 +608,43 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		6EBB457610C7ECB9004F9A03 /* BlobTracker */ = {
+		6EBB46FB10C80317004F9A03 /* LensDistortion */ = {
 			isa = PBXGroup;
 			children = (
+				6EBB472410C80472004F9A03 /* LensDistortion.h */,
+				6EBB472510C80472004F9A03 /* LensDistortion.mm */,
+				6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */,
+				6EBB46FD10C80317004F9A03 /* ofCvCameraCalibration.h */,
+				6EBB472710C80BEA004F9A03 /* LensDistortion.xib */,
 			);
-			name = BlobTracker;
-			path = ../calculation;
+			path = LensDistortion;
+			sourceTree = "<group>";
+		};
+		6EBB470E10C80352004F9A03 /* BlobTracker */ = {
+			isa = PBXGroup;
+			children = (
+				6EBB472110C80368004F9A03 /* BlobTrackerView */,
+				6EBB471010C80352004F9A03 /* BlobTracking.h */,
+				6EBB471110C80352004F9A03 /* BlobTracking.mm */,
+				6EBB471210C80352004F9A03 /* BlobTracking.xib */,
+				6EBB471310C80352004F9A03 /* contourNormals.cpp */,
+				6EBB471410C80352004F9A03 /* contourNormals.h */,
+				6EBB471510C80352004F9A03 /* contourSimplify.cpp */,
+				6EBB471610C80352004F9A03 /* contourSimplify.h */,
+				6EBB471710C80352004F9A03 /* convexHull.h */,
+				6EBB471810C80352004F9A03 /* polylineSimplify.h */,
+			);
+			path = BlobTracker;
+			sourceTree = "<group>";
+		};
+		6EBB472110C80368004F9A03 /* BlobTrackerView */ = {
+			isa = PBXGroup;
+			children = (
+				6EBB470F10C80352004F9A03 /* BlobTrackerView.xib */,
+				6EBB471910C80352004F9A03 /* TrackerView.mm */,
+				6EBB471A10C80352004F9A03 /* TrackerView.h */,
+			);
+			name = BlobTrackerView;
 			sourceTree = "<group>";
 		};
 		6EC1A49010C6A4D800738AA9 /* PluginUI */ = {
@@ -674,7 +727,8 @@
 			isa = PBXGroup;
 			children = (
 				DD17DFCC10C6994D008B3E0A /* Cameras */,
-				6EBB457610C7ECB9004F9A03 /* BlobTracker */,
+				6EBB46FB10C80317004F9A03 /* LensDistortion */,
+				6EBB470E10C80352004F9A03 /* BlobTracker */,
 			);
 			path = input;
 			sourceTree = "<group>";
@@ -682,14 +736,10 @@
 		DD17DFCC10C6994D008B3E0A /* Cameras */ = {
 			isa = PBXGroup;
 			children = (
-				DD17E06910C69CC4008B3E0A /* ofxVideoGrabberFeature.h */,
-				DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */,
-				DD17E06D10C69CD8008B3E0A /* ofxVideoGrabberSDK.h */,
 				DD17DFD310C6996D008B3E0A /* Cameras.h */,
 				DD17DFD410C6996D008B3E0A /* Cameras.mm */,
 				DD17DFD610C699A3008B3E0A /* Cameras.xib */,
 				DD17E20710C6AD0E008B3E0A /* Camera */,
-				DD17E03F10C69BEA008B3E0A /* Libdc1394Grabber */,
 			);
 			path = Cameras;
 			sourceTree = "<group>";
@@ -717,6 +767,10 @@
 				DD17E09610C69E5B008B3E0A /* Camera.h */,
 				DD17E09710C69E5B008B3E0A /* Camera.mm */,
 				DD17E20510C6AD09008B3E0A /* Camera.xib */,
+				DD17E06910C69CC4008B3E0A /* ofxVideoGrabberFeature.h */,
+				DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */,
+				DD17E06D10C69CD8008B3E0A /* ofxVideoGrabberSDK.h */,
+				DD17E03F10C69BEA008B3E0A /* Libdc1394Grabber */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -1029,6 +1083,10 @@
 		DDC7776E10B70079009CAFC7 /* calculation */ = {
 			isa = PBXGroup;
 			children = (
+				DDDF8F3610B7581400CF73FD /* Warp.mm */,
+				DDDF8F3710B7581400CF73FD /* Warp.h */,
+				DDDF8F4510B758AB00CF73FD /* coordWarp.h */,
+				DDDF8F4610B758AB00CF73FD /* coordWarp.mm */,
 				DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */,
 			);
 			path = calculation;
@@ -1037,13 +1095,9 @@
 		DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */ = {
 			isa = PBXGroup;
 			children = (
-				DDDF8F3610B7581400CF73FD /* Warp.mm */,
-				DDDF8F3710B7581400CF73FD /* Warp.h */,
 				DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */,
 				DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */,
 				DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */,
-				DDDF8F4510B758AB00CF73FD /* coordWarp.h */,
-				DDDF8F4610B758AB00CF73FD /* coordWarp.mm */,
 			);
 			path = ProjectionSurfaces;
 			sourceTree = "<group>";
@@ -1564,9 +1618,10 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				6EBB472D10C80DFB004F9A03 /* ToDo.rtf */,
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
-				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1603,7 +1658,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1652,6 +1707,8 @@
 				6E79135310C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff in Resources */,
 				6E79135410C792B500C65590 /* PluginUISliderBackgroundRight.tiff in Resources */,
 				6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */,
+				6EBB472810C80BEA004F9A03 /* LensDistortion.xib in Resources */,
+				6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1762,6 +1819,8 @@
 				DD17E06410C69C70008B3E0A /* ofxVideoGrabberFeature.cpp in Sources */,
 				DD17E09810C69E5B008B3E0A /* Camera.mm in Sources */,
 				6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */,
+				6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */,
+				6EBB472610C80472004F9A03 /* LensDistortion.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

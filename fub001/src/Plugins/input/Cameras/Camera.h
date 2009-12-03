@@ -31,9 +31,12 @@
 	int myframes;
 	float myfps,frameRate;
 }
+
 @property (assign, readonly) NSView * settingsView;
 @property (assign, readonly) float mytimeNow;
 @property (assign, readonly) float mytimeThen;
+@property (assign, readonly) int width;
+@property (assign, readonly) int height;
 
 -(ofTexture*) getTexture;
 -(float) framerate;

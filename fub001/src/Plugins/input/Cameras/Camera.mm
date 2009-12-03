@@ -10,7 +10,7 @@
 
 
 @implementation Camera
-@synthesize settingsView, mytimeNow, mytimeThen;
+@synthesize settingsView, mytimeNow, mytimeThen, width, height;
 
 
 -(void) setup:(int)camNumber{
@@ -84,7 +84,7 @@
 			myfps = myframes / (mytimeNow-mytimeThen);
 			mytimeThen = mytimeNow;
 			myframes = 0;
-			frameRate = 0.9f * frameRate + 0.1f * myfps;
+			frameRate = 0.5f * frameRate + 0.5f * myfps;
 		}
 		myframes++;
 		

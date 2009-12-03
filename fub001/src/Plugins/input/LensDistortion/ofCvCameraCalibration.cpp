@@ -74,16 +74,15 @@ void ofCvCameraCalibration::calibrate() {
 
 
 void ofCvCameraCalibration::undistort() {
-	/*
-    CvPoint2D32f* backprojPts2d = 0;
-    backprojPts2d = ConvertWorldToPixel( corners3d, 
+	
+	CvPoint2D32f* backprojPts2d = 0;
+/**    backprojPts2d = ConvertWorldToPixel( corners3d, 
                                          numImages, 
                                          cornersFound, 
                                          camera_matrix, 
                                          translation_vectors, 
                                          rotation_matrices );
-	 */
-    
+**/
 	//convert
     CvVect32f  dist = new float[4];
 	CvMatr32f  camM = new float[9];
@@ -99,13 +98,11 @@ void ofCvCameraCalibration::undistort() {
 	for (int i=0; i<colorImages.size(); i++) {
         undistortedImg.push_back( cvCreateImage(csize, IPL_DEPTH_8U, 3) );                 
         cvUnDistortOnce(colorImages[i], undistortedImg[i], camM, dist, 1);
-     /*   
-        drawCircles( undistortedImg[i], points );
-		DrawCircles( image, &backprojPts2d[iImg*cornersFound[iImg]], 
-                    cornersFound[iImg], "Image", 1 );
-		DrawCircles( undistort, &backprojPts2d[iImg*cornersFound[iImg]], 
-                     cornersFound[iImg], "Undistorted", 1 );
-	*/
+//        drawCircles( undistortedImg[i], points );
+//		drawCircles( image, &backprojPts2d[iImg*cornersFound[iImg]], 
+//                    cornersFound[iImg], "Image", 1 );
+//		drawCircles( undistort, &backprojPts2d[iImg*cornersFound[iImg]], 
+//                     cornersFound[iImg], "Undistorted", 1 );
 	}
     
     delete dist;

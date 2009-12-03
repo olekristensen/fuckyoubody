@@ -21,6 +21,15 @@
 	IBOutlet NSView * cam1settings;
 	IBOutlet NSView * cam2settings;
 	Camera * cam[3];
+	
+	int width;
+	int height;
 }
+@property (assign, readonly) int width;
+@property (assign, readonly) int height;
+
+- (Camera*)getCameraWithId:(int)cameraId;
+
+
 
 @end

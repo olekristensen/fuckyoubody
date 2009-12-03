@@ -10,6 +10,7 @@
 
 //#include "_ExampleOutputAgain.h"
 #include "Cameras.h"
+#include "LensDistortion.h"
 
 #include "ProjectionSurfaces.h"
 

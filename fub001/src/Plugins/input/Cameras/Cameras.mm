@@ -10,8 +10,13 @@
 
 
 @implementation Cameras
+@synthesize width, height;
 
 -(void) initPlugin{
+	
+	width = 0;
+	height = 0;
+	
 	for(int i=0;i<3;i++){
 		cam[i] = [[Camera alloc] init];	
 		[cam[i] loadNibFile];
@@ -34,7 +39,8 @@
 	for(int i=0;i<3;i++){
 		[cam[i] setup:i];
 	}
-	
+	width = [cam[1] width];
+	height = [cam[1] height];
 }
 
 -(void) update:(const CVTimeStamp *)outputTime{
@@ -64,4 +70,11 @@
 		[cam[i] getTexture]->draw(i*w, 0,w,h);
 	}
 }
+
+- (Camera*)getCameraWithId:(int)cameraId{
+	if (0 <= cameraId && cameraId <= 3) {
+		return cam[cameraId];
+	}
+}
+
 @end
