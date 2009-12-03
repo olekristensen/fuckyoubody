@@ -6,7 +6,7 @@
 
 #import "ProjectionSurfaces.h"
 #import "_ExampleOutput.h"
-
+#import <pthread.h>
 
 
 @implementation ProjectorObject
@@ -92,7 +92,6 @@
 -(void) initPlugin{
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
-	
 	[projectorsButton removeAllItems];
 	[surfacesButton removeAllItems];
 	
@@ -103,8 +102,10 @@
 	
 	ProjectorObject * projector;
 	
+	pthread_mutex_init(&mutex, NULL);
+	
 	int projI = 0;
-	// do thread work
+	
 	for(projector in projectors){
 		NSLog(@"Init projectionsurfaces");
 		
@@ -231,137 +232,141 @@
 }
 
 -(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize{
-	ofEnableAlphaBlending();
-	ofSetColor(255, 255, 255, 255*a);
-	int xNumber = resolution+floor((aspect-1)*resolution);
-	int yNumber = resolution;
-	fontSize *= 0.0025;
-	
-	for(int i=0;i<=yNumber;i++){
-		ofLine(0, i*1.0/resolution, aspect, i*1.0/resolution);
-	}
-	
-	int xNumberCentered = xNumber;
-	
-	if (fmod(xNumber,2) == 1) {
-		xNumberCentered--;
-	}
-	for(int i=0;i<=xNumberCentered;i++){
-		ofLine(((i*1.0/resolution)-((xNumberCentered/resolution)*0.5))+(0.5*aspect), 0, ((i*1.0/resolution)-((xNumberCentered/resolution)*0.5))+(0.5*aspect), 1.0);
+	if (pthread_mutex_lock(&mutex) == 0) {
+		ofEnableAlphaBlending();
+		ofSetColor(255, 255, 255, 255*a);
+		int xNumber = resolution+floor((aspect-1)*resolution);
+		int yNumber = resolution;
+		fontSize *= 0.0025;
 		
-	}
-	if(drawBorder){
-		ofNoFill();
-		ofSetLineWidth(6);
-		
-		ofSetColor(64, 128, 220,255*a);
-		ofRect(0, 0, 1*aspect, 1);
-		
-		ofFill();
-		ofSetColor(255, 255, 255,255*a);
-		ofSetLineWidth(1);
-	} else {
-		
-		//white sides
-		ofLine(aspect, 0, aspect, 1);
-		ofLine(0, 0, 0, 1);
-		
-		//yellow corners
-		ofSetLineWidth(3);
-		ofSetColor(255, 255,0,255*a);
-		
-		ofLine(0, 0, 0.05, 0.0);
-		ofLine(0, 0, 0.0, 0.05);
-		
-		ofLine(0, 1, 0.05, 1);
-		ofLine(0, 1, 0.0, 0.95);
-		
-		ofLine(aspect, 0, aspect-0.05, 0.0);
-		ofLine(aspect, 0, aspect, 0.05);
-		
-		ofLine(aspect, 1, aspect-0.05, 1.0);
-		ofLine(aspect, 1, aspect, 0.95);
-		
-	}
-	
-	
-	ofSetLineWidth(6);
-	ofSetColor(255, 255,0,255*a);
-	
-	ofFill();
-	
-	//up arrow
-	ofBeginShape();{
-		
-		ofVertex((aspect*0.5), 0);
-		ofVertex((aspect*0.5)-(0.05), 1.0/resolution);
-		ofVertex((aspect*0.5)+(0.05), 1.0/resolution);
-		
-	} ofEndShape(true);
-	
-	ofSetColor(0,0,0,255*a);
-	
-	glPushMatrix();{
-		
-		float fontSizeForN = fontSize * 0.40;
-		
-		glScaled(fontSizeForN, fontSizeForN, 1.0);
-		
-		glTranslated( aspect*0.5*1.0/fontSizeForN-font->stringWidth("N")/1.5,  0.1*1.0/fontSizeForN-(font->stringHeight("N")*0.3), 0);	
-
-		font->drawString("N",0, 0);
-
-	} glPopMatrix();
-	
-	ofSetColor(255, 255,0,255*a);
-	
-	ofNoFill();
-	
-	ofBeginShape();{
-		
-		ofVertex((aspect*0.5)-(0.05), 1.0);
-		ofVertex((aspect*0.5), 1.0-(1.0/resolution));
-		ofVertex((aspect*0.5)+(0.05), 1.0);
-		
-	} ofEndShape(false);
-	
-	// center cross
-	ofLine((aspect*0.5)-0.05, 0.5, (aspect*0.5)+0.05, 0.5);
-	ofLine((aspect*0.5), 1.0/resolution, (aspect*0.5), 1.0-(1.0/resolution));
-	
-	ofSetLineWidth(3);
-	
-	// center elipse
-	ofSetColor(255, 255,255,255*a);
-	ofSetCircleResolution(100);
-	ofNoFill();
-	if(aspect < 1.0){
-		ofEllipse(aspect/2, 0.5, aspect*1.35*((aspect/2)/aspect), aspect*1.35*0.5);
-		ofEllipse(aspect/2, 0.5, aspect*1.45*((aspect/2)/aspect), aspect*1.45*0.5);
-	} else {
-		ofEllipse(aspect/2, 0.5, 1.35*((aspect/2)/aspect), 1.35*0.5);
-		ofEllipse(aspect/2, 0.5, 1.45*((aspect/2)/aspect), 1.45*0.5);
-	}
-	
-	// text label
-	ofSetLineWidth(1);
-	
-	//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
-	
-	glPushMatrix();{
-		
-		glScaled(fontSize, fontSize, 1.0);
-		if(aspect < 1.0){
-			glTranslated( aspect*0.5*1.0/fontSize+(font->stringHeight(text)*0.3*aspect),  0.5*1.0/fontSize-(font->stringWidth(text)*aspect)/2.0, 0);	
-			glRotated(90, 0, 0, 1.0);
-			glScaled(aspect, aspect, 1.0);
-		} else {
-			glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize-(font->stringHeight(text)*0.3), 0);	
+		for(int i=0;i<=yNumber;i++){
+			ofLine(0, i*1.0/resolution, aspect, i*1.0/resolution);
 		}
 		
-		font->drawString(text,0,0);
+		int xNumberCentered = xNumber;
 		
-	} glPopMatrix();
+		if (fmod(xNumber,2) == 1) {
+			xNumberCentered--;
+		}
+		for(int i=0;i<=xNumberCentered;i++){
+			ofLine(((i*1.0/resolution)-((xNumberCentered/resolution)*0.5))+(0.5*aspect), 0, ((i*1.0/resolution)-((xNumberCentered/resolution)*0.5))+(0.5*aspect), 1.0);
+			
+		}
+		if(drawBorder){
+			ofNoFill();
+			ofSetLineWidth(6);
+			
+			ofSetColor(64, 128, 220,255*a);
+			ofRect(0, 0, 1*aspect, 1);
+			
+			ofFill();
+			ofSetColor(255, 255, 255,255*a);
+			ofSetLineWidth(1);
+		} else {
+			
+			//white sides
+			ofLine(aspect, 0, aspect, 1);
+			ofLine(0, 0, 0, 1);
+			
+			//yellow corners
+			ofSetLineWidth(3);
+			ofSetColor(255, 255,0,255*a);
+			
+			ofLine(0, 0, 0.05, 0.0);
+			ofLine(0, 0, 0.0, 0.05);
+			
+			ofLine(0, 1, 0.05, 1);
+			ofLine(0, 1, 0.0, 0.95);
+			
+			ofLine(aspect, 0, aspect-0.05, 0.0);
+			ofLine(aspect, 0, aspect, 0.05);
+			
+			ofLine(aspect, 1, aspect-0.05, 1.0);
+			ofLine(aspect, 1, aspect, 0.95);
+			
+		}
+		
+		
+		ofSetLineWidth(6);
+		ofSetColor(255, 255,0,255*a);
+		
+		ofFill();
+		
+		//up arrow
+		glBegin(GL_POLYGON);{
+			
+			glVertex2f((aspect*0.5), 0);
+			glVertex2f((aspect*0.5)-(0.05), 1.0/resolution);
+			glVertex2f((aspect*0.5)+(0.05), 1.0/resolution);
+			glVertex2f((aspect*0.5), 0);		
+		} glEnd();
+		
+		ofSetColor(0,0,0,255*a);
+		
+		glPushMatrix();{
+			
+			float fontSizeForN = fontSize * 0.40;
+			
+			glScaled(fontSizeForN, fontSizeForN, 1.0);
+			
+			glTranslated( aspect*0.5*1.0/fontSizeForN-font->stringWidth("N")/1.5,  0.1*1.0/fontSizeForN-(font->stringHeight("N")*0.3), 0);	
+			
+			font->drawString("N",0, 0);
+			
+		} glPopMatrix();
+		
+		ofSetColor(255, 255,0,255*a);
+		
+		ofNoFill();
+		
+		glBegin(GL_POLYGON);{
+			
+			glVertex2f((aspect*0.5)-(0.05), 1.0);
+			glVertex2f((aspect*0.5), 1.0-(1.0/resolution));
+			glVertex2f((aspect*0.5)+(0.05), 1.0);
+			
+		} glEnd();
+		
+		// center cross
+		ofLine((aspect*0.5)-0.05, 0.5, (aspect*0.5)+0.05, 0.5);
+		ofLine((aspect*0.5), 1.0/resolution, (aspect*0.5), 1.0-(0.5/resolution));
+		
+		ofSetLineWidth(3);
+		
+		// center elipse
+		ofSetColor(255, 255,255,255*a);
+		ofNoFill();
+		ofSetCircleResolution(100);
+		if(aspect < 1.0){
+			ofEllipse(aspect/2, 0.5, aspect*1.35*((aspect/2)/aspect), aspect*1.35*0.5);
+			ofEllipse(aspect/2, 0.5, aspect*1.45*((aspect/2)/aspect), aspect*1.45*0.5);
+		} else {
+			ofEllipse(aspect/2, 0.5, 1.35*((aspect/2)/aspect), 1.35*0.5);
+			ofEllipse(aspect/2, 0.5, 1.45*((aspect/2)/aspect), 1.45*0.5);
+		}
+		
+		// text label
+		ofSetLineWidth(1);
+		
+		//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
+		
+		glPushMatrix();{
+			
+			glScaled(fontSize, fontSize, 1.0);
+			if(aspect < 1.0){
+				glTranslated( aspect*0.5*1.0/fontSize+(font->stringHeight(text)*0.3*aspect),  0.5*1.0/fontSize-(font->stringWidth(text)*aspect)/2.0, 0);	
+				glRotated(90, 0, 0, 1.0);
+				glScaled(aspect, aspect, 1.0);
+			} else {
+				glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize-(font->stringHeight(text)*0.3), 0);	
+			}
+			
+			font->drawString(text,0,0);
+			
+		} glPopMatrix();
+		pthread_mutex_unlock(&mutex);
+	}
+	
 }
 
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p{

@@ -61,7 +61,8 @@
 	ofxVec2f * lastMousePos;
 	int selectedCorner;
 	int selectedSurface;
-	
+	pthread_mutex_t mutex;
+
 	ofPoint * position;
 	float scale;
 	
