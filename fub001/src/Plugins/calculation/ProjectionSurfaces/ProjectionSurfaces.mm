@@ -138,7 +138,7 @@
 		}
 		projI++;
 	}
-
+	
 	position = new ofPoint(0,0);
 	scale = 0.8;
 	
@@ -164,14 +164,15 @@
 -(void) setup{
 	font = new ofTrueTypeFont();
 	font->loadFont("LucidaGrande.ttc",40, true, true, true);
-
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	w = ofGetWidth();
 	h = ofGetHeight();
 	ofBackground(0, 0, 0);
+	ofFill();
 	
+	ofEnableAlphaBlending();
 	glPushMatrix();
 	
 	float projWidth = [self getCurrentProjector]->width;
@@ -188,7 +189,6 @@
 	}
 	glScaled(scale, scale, 1);
 	glTranslated(-0.5, -aspect/2.0, 0);	 
-	ofEnableAlphaBlending();
 	ofSetColor(255, 255, 255, 30);
 	ofRect(0, 0, 1, aspect);
 	ofSetColor(255, 255, 255, 70);
@@ -196,19 +196,19 @@
 	ofRect(0, 0, 1, aspect);
 	ofFill();
 	
+	ProjectionSurfacesObject* surface = [self getCurrentSurface];
+	ofSetColor(255, 255, 255, 255);
+	[self applyProjection:surface width:1.0 height:aspect];	
+	[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0];
+	glPopMatrix();
+	
 	//Draw current projectorsurface
 	for(int i=0;i<4;i++){
-		ProjectionSurfacesObject* surface = [self getCurrentSurface];
-		ofSetColor(255, 255, 255, 255);
-		[self applyProjection:surface width:1.0 height:aspect];	
-		[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0];
-		glPopMatrix();
 		
-		
-		ofSetColor(255, 0, 0,255);
+		ofSetColor(128, 255,255,255);
 		ofNoFill();
 		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
-		ofSetColor(255, 0, 0,70);
+		ofSetColor(64, 128,220,70);
 		ofFill();
 		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
 	}
@@ -235,40 +235,133 @@
 	ofSetColor(255, 255, 255, 255*a);
 	int xNumber = resolution+floor((aspect-1)*resolution);
 	int yNumber = resolution;
+	fontSize *= 0.0025;
 	
 	for(int i=0;i<=yNumber;i++){
 		ofLine(0, i*1.0/resolution, aspect, i*1.0/resolution);
 	}
-	for(int i=0;i<=xNumber;i++){
-		ofLine(i*1.0/resolution, 0, i*1.0/resolution, 1.0);
+	
+	int xNumberCentered = xNumber;
+	
+	if (fmod(xNumber,2) == 1) {
+		xNumberCentered--;
+	}
+	for(int i=0;i<=xNumberCentered;i++){
+		ofLine(((i*1.0/resolution)-((xNumberCentered/resolution)*0.5))+(0.5*aspect), 0, ((i*1.0/resolution)-((xNumberCentered/resolution)*0.5))+(0.5*aspect), 1.0);
 		
 	}
 	if(drawBorder){
 		ofNoFill();
-		ofSetLineWidth(5);
+		ofSetLineWidth(6);
 		
-		ofSetColor(255, 0, 255255*a);
+		ofSetColor(64, 128, 220,255*a);
 		ofRect(0, 0, 1*aspect, 1);
 		
 		ofFill();
 		ofSetColor(255, 255, 255,255*a);
 		ofSetLineWidth(1);
 	} else {
+		
+		//white sides
 		ofLine(aspect, 0, aspect, 1);
+		ofLine(0, 0, 0, 1);
+		
+		//yellow corners
+		ofSetLineWidth(3);
+		ofSetColor(255, 255,0,255*a);
+		
+		ofLine(0, 0, 0.05, 0.0);
+		ofLine(0, 0, 0.0, 0.05);
+		
+		ofLine(0, 1, 0.05, 1);
+		ofLine(0, 1, 0.0, 0.95);
+		
+		ofLine(aspect, 0, aspect-0.05, 0.0);
+		ofLine(aspect, 0, aspect, 0.05);
+		
+		ofLine(aspect, 1, aspect-0.05, 1.0);
+		ofLine(aspect, 1, aspect, 0.95);
+		
 	}
-	fontSize *= 0.003;
-	glScaled(fontSize, fontSize, 1.0);
+	
+	
+	ofSetLineWidth(6);
+	ofSetColor(255, 255,0,255*a);
+	
+	ofFill();
+	
+	//up arrow
+	ofBeginShape();{
+		
+		ofVertex((aspect*0.5), 0);
+		ofVertex((aspect*0.5)-(0.05), 1.0/resolution);
+		ofVertex((aspect*0.5)+(0.05), 1.0/resolution);
+		
+	} ofEndShape(true);
+	
+	ofSetColor(0,0,0,255*a);
+	
+	glPushMatrix();{
+		
+		float fontSizeForN = fontSize * 0.40;
+		
+		glScaled(fontSizeForN, fontSizeForN, 1.0);
+		
+		glTranslated( aspect*0.5*1.0/fontSizeForN-font->stringWidth("N")/1.5,  0.1*1.0/fontSizeForN-(font->stringHeight("N")*0.3), 0);	
+
+		font->drawString("N",0, 0);
+
+	} glPopMatrix();
+	
+	ofSetColor(255, 255,0,255*a);
+	
+	ofNoFill();
+	
+	ofBeginShape();{
+		
+		ofVertex((aspect*0.5)-(0.05), 1.0);
+		ofVertex((aspect*0.5), 1.0-(1.0/resolution));
+		ofVertex((aspect*0.5)+(0.05), 1.0);
+		
+	} ofEndShape(false);
+	
+	// center cross
+	ofLine((aspect*0.5)-0.05, 0.5, (aspect*0.5)+0.05, 0.5);
+	ofLine((aspect*0.5), 1.0/resolution, (aspect*0.5), 1.0-(1.0/resolution));
+	
+	ofSetLineWidth(3);
+	
+	// center elipse
+	ofSetColor(255, 255,255,255*a);
+	ofSetCircleResolution(100);
+	ofNoFill();
+	if(aspect < 1.0){
+		ofEllipse(aspect/2, 0.5, aspect*1.35*((aspect/2)/aspect), aspect*1.35*0.5);
+		ofEllipse(aspect/2, 0.5, aspect*1.45*((aspect/2)/aspect), aspect*1.45*0.5);
+	} else {
+		ofEllipse(aspect/2, 0.5, 1.35*((aspect/2)/aspect), 1.35*0.5);
+		ofEllipse(aspect/2, 0.5, 1.45*((aspect/2)/aspect), 1.45*0.5);
+	}
+	
+	// text label
+	ofSetLineWidth(1);
+	
 	//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
 	
-	if(aspect < 1.0){
-		glTranslated( aspect*0.5*1.0/fontSize-font->stringHeight(text)/2.0,  10, 0);	
+	glPushMatrix();{
 		
-		glRotated(90, 0, 0, 1.0);
-	} else {
-		glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize+font->stringHeight(text)/2.0, 0);	
-	}
-	
-	font->drawString(text,0,0);
+		glScaled(fontSize, fontSize, 1.0);
+		if(aspect < 1.0){
+			glTranslated( aspect*0.5*1.0/fontSize+(font->stringHeight(text)*0.3*aspect),  0.5*1.0/fontSize-(font->stringWidth(text)*aspect)/2.0, 0);	
+			glRotated(90, 0, 0, 1.0);
+			glScaled(aspect, aspect, 1.0);
+		} else {
+			glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize-(font->stringHeight(text)*0.3), 0);	
+		}
+		
+		font->drawString(text,0,0);
+		
+	} glPopMatrix();
 }
 
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p{
