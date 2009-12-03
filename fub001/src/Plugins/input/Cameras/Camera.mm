@@ -10,8 +10,7 @@
 
 
 @implementation Camera
-@synthesize settingsView;
-
+@synthesize settingsView, mytimeNow, mytimeThen;
 
 
 -(void) setup:(int)camNumber{
@@ -19,29 +18,29 @@
 											 selector:@selector(aWillTerminate:)
 												 name:NSApplicationWillTerminateNotification object:nil];
 	
+//	width = 1280/2;
+//	height = 960/2;
+
 	width = 640;
 	height = 480;
-	
+
 	myframes = 0;
 	ofSetLogLevel(OF_LOG_NOTICE);
 	videoGrabber = new Libdc1394Grabber;
-	//sdk->setFormat7(VID_FORMAT7_0);
+	videoGrabber->setFormat7(VID_FORMAT7_1);
 	videoGrabber->listDevices();
 	videoGrabber->setDiscardFrames(true);
 	videoGrabber->set1394bMode(true);
 	
 	videoGrabber->setDeviceID(camNumber);	
-	camInited = videoGrabber->init(width, height, VID_FORMAT_Y16, VID_FORMAT_GREYSCALE, 30, false);
-	
-	
-	
+	camInited = videoGrabber->init(width, height, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
+		
 	tex = new ofTexture();
 	tex->allocate(width,height,GL_LUMINANCE);
 	pixels = new unsigned char[width * height * 3];
 	memset(pixels, 0, width*height*3);
 	tex->loadData(pixels, width, height, GL_LUMINANCE);	
-	
-	
+		
 	if(camInited){		
 		//Set all on manual
 		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_SHUTTER);
@@ -76,7 +75,6 @@
 }
 
 -(void) update{
-	//	if (bGrabberInited){
 	if(camInited){
 	bIsFrameNew = videoGrabber->grabFrame(&pixels);
 	if(bIsFrameNew) {
@@ -92,9 +90,6 @@
 		
 	}
 	}
-	
-		
-	// }
 }
 
 -(void) aWillTerminate:(NSNotification *)notification {

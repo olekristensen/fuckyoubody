@@ -40,14 +40,18 @@
 -(void) update:(const CVTimeStamp *)outputTime{
 	for(int i=0;i<3;i++){
 		[cam[i] update];
-		if(i==0)
+		if(i==0){
 			[[controller cameraFps1] setFloatValue:[cam[i] framerate]];
-		if(i==1)
+			[[controller cameraStatus1] setState:((ofGetElapsedTimef() - [cam[i] mytimeThen] > 0.0) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+		}
+		if(i==1){
 			[[controller cameraFps2] setFloatValue:[cam[i] framerate]];
-		if(i==2)
+			[[controller cameraStatus2] setState:((ofGetElapsedTimef() - [cam[i] mytimeThen] > 0.0) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+		}
+		if(i==2){
 			[[controller cameraFps3] setFloatValue:[cam[i] framerate]];
-
-	
+			[[controller cameraStatus3] setState:((ofGetElapsedTimef() - [cam[i] mytimeThen] > 0.0) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+		}	
 	}
 }
 

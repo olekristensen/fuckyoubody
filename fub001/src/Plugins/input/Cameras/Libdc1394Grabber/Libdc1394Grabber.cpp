@@ -5,7 +5,7 @@
 
 
 dc1394_t* Libdc1394Grabber::dc1394 = NULL;
-int Libdc1394Grabber::camCounter = 0;
+int Libdc1394Grabber::libUseCount = 0;
 Libdc1394Grabber::Libdc1394Grabber()
 {
 
@@ -62,11 +62,19 @@ cout << "libdcgrabber destructor" << endl;
 
 void Libdc1394Grabber::close()
 {
-
+	libUseCount--;
+	
 	if (camera != NULL )
 	{
 		cleanupCamera();
 	}
+
+	if(dc1394 && libUseCount == 0) {
+		cout << "DELETING DC1394 STATIC OBJECT" << endl;
+		dc1394_free (dc1394);
+		dc1394 = NULL;
+	}
+	
 }
 
 void Libdc1394Grabber::cleanupCamera()
@@ -102,24 +110,17 @@ void Libdc1394Grabber::cleanupCamera()
 	}
 	ofLog(OF_LOG_VERBOSE,"Stopped camera.");
 
-	if(dc1394 && camCounter == 1) {
-		dc1394_free (dc1394);
-		dc1394 = NULL;
-	}
-
 	if(pixels) {
 		delete [] pixels;
 		pixels = NULL;
 	}
-	camCounter --;
-
 }
 
 
 bool Libdc1394Grabber::init( int _width, int _height, int _format, int _targetFormat, int _frameRate, bool _bVerbose, int _deviceID )
 {
 	
-	camCounter ++;
+	libUseCount++;
     ofLog(OF_LOG_VERBOSE, "Input format: %s   TargetFormat: %s",videoFormatToString(_format).c_str(), videoFormatToString(_targetFormat).c_str());
 
 	targetFormat = _targetFormat;
@@ -637,7 +638,7 @@ void Libdc1394Grabber::threadedFunction()
 {
     while(isThreadRunning() )
     {
-		cout<<"Capture"<<endl;
+		//cout<<"Capture"<<endl;
         captureFrame();
         ofSleepMillis(2);
     }
@@ -709,9 +710,11 @@ void Libdc1394Grabber::captureFrame()
 			grabbedFirstImage = true;
 		}
 
-		processCameraImageData( frame->image );
+		if(frame != NULL)
+			processCameraImageData( frame->image );
 
-		dc1394_capture_enqueue(camera, frame);
+		if(frame != NULL)
+			dc1394_capture_enqueue(camera, frame);
 
         lock();
 		bHasNewFrame = true;

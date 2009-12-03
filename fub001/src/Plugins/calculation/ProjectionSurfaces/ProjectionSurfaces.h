@@ -56,7 +56,7 @@
 	IBOutlet NSPopUpButton * projectorsButton;
 	IBOutlet NSPopUpButton * surfacesButton;	
 	IBOutlet NSButton * showGrid;
-	IBOutlet NSSlider * aspectSlider;
+	IBOutlet PluginUISlider * aspectSlider;
 	ofTrueTypeFont	* font;
 	ofxVec2f * lastMousePos;
 	int selectedCorner;

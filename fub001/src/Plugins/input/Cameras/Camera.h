@@ -21,17 +21,20 @@
 	IBOutlet NSView * settingsView;
 	
 	IBOutlet NSTextField * guidTextField;
-	IBOutlet NSSlider * shutterSlider;
-	IBOutlet NSSlider * exposureSlider;
-	IBOutlet NSSlider * gainSlider;
-	IBOutlet NSSlider * gammaSlider;
-	IBOutlet NSSlider * brightnessSlider;
+	IBOutlet PluginUISlider * shutterSlider;
+	IBOutlet PluginUISlider * exposureSlider;
+	IBOutlet PluginUISlider * gainSlider;
+	IBOutlet PluginUISlider * gammaSlider;
+	IBOutlet PluginUISlider * brightnessSlider;
 	
 	float mytimeNow, mytimeThen;
 	int myframes;
 	float myfps,frameRate;
 }
 @property (assign, readonly) NSView * settingsView;
+@property (assign, readonly) float mytimeNow;
+@property (assign, readonly) float mytimeThen;
+
 -(ofTexture*) getTexture;
 -(float) framerate;
 -(void) setup:(int)camNumber;

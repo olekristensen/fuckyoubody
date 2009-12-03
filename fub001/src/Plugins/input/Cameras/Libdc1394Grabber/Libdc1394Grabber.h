@@ -74,7 +74,7 @@ public:
 	void cleanupCamera();
 	
 	static dc1394_t* dc1394;
-	static int camCounter;
+	static int libUseCount;
 	
 	dc1394camera_t* camera;
 	dc1394video_frame_t* frame;
