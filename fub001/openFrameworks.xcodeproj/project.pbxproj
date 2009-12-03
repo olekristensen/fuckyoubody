@@ -10,14 +10,17 @@
 		276D9DB81073B3F00084689D /* ofxMSAFluidDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */; };
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		27C26C2D109ECE8400EF775E /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 27C26C2C109ECE8400EF775E /* icon.icns */; };
+		6E79135010C792B500C65590 /* PluginUISliderBackgroundFill.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134A10C792B500C65590 /* PluginUISliderBackgroundFill.tiff */; };
+		6E79135110C792B500C65590 /* PluginUISliderBackgroundFillLight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134B10C792B500C65590 /* PluginUISliderBackgroundFillLight.tiff */; };
+		6E79135210C792B500C65590 /* PluginUISliderBackgroundLeft.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134C10C792B500C65590 /* PluginUISliderBackgroundLeft.tiff */; };
+		6E79135310C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134D10C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff */; };
+		6E79135410C792B500C65590 /* PluginUISliderBackgroundRight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134E10C792B500C65590 /* PluginUISliderBackgroundRight.tiff */; };
+		6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134F10C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */; };
 		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
-		6EC1F20C10C72B5600C64F9A /* PluginUISliderBackgroundLeft.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1F20910C72B5600C64F9A /* PluginUISliderBackgroundLeft.tiff */; };
-		6EC1F20D10C72B5600C64F9A /* PluginUISliderBackgroundFill.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1F20A10C72B5600C64F9A /* PluginUISliderBackgroundFill.tiff */; };
-		6EC1F20E10C72B5600C64F9A /* PluginUISliderBackgroundRight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1F20B10C72B5600C64F9A /* PluginUISliderBackgroundRight.tiff */; };
 		6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */; };
 		6EDB5A7510C6900C00063171 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6C10C6900C00063171 /* Credits.html */; };
 		6EDB5A7710C6900C00063171 /* Hide_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */; };
@@ -166,6 +169,12 @@
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
 		27C26C2C109ECE8400EF775E /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
+		6E79134A10C792B500C65590 /* PluginUISliderBackgroundFill.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundFill.tiff; path = Resources/PluginUISliderBackgroundFill.tiff; sourceTree = "<group>"; };
+		6E79134B10C792B500C65590 /* PluginUISliderBackgroundFillLight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundFillLight.tiff; path = Resources/PluginUISliderBackgroundFillLight.tiff; sourceTree = "<group>"; };
+		6E79134C10C792B500C65590 /* PluginUISliderBackgroundLeft.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundLeft.tiff; path = Resources/PluginUISliderBackgroundLeft.tiff; sourceTree = "<group>"; };
+		6E79134D10C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundLeftLight.tiff; path = Resources/PluginUISliderBackgroundLeftLight.tiff; sourceTree = "<group>"; };
+		6E79134E10C792B500C65590 /* PluginUISliderBackgroundRight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundRight.tiff; path = Resources/PluginUISliderBackgroundRight.tiff; sourceTree = "<group>"; };
+		6E79134F10C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundRightLight.tiff; path = Resources/PluginUISliderBackgroundRightLight.tiff; sourceTree = "<group>"; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
@@ -175,9 +184,6 @@
 		6EC1A4BE10C6A83600738AA9 /* PluginUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUISlider.h; sourceTree = "<group>"; };
 		6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISlider.mm; sourceTree = "<group>"; };
 		6EC1A4C310C6A8C000738AA9 /* PluginUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUI.h; sourceTree = "<group>"; };
-		6EC1F20910C72B5600C64F9A /* PluginUISliderBackgroundLeft.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PluginUISliderBackgroundLeft.tiff; sourceTree = "<group>"; };
-		6EC1F20A10C72B5600C64F9A /* PluginUISliderBackgroundFill.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PluginUISliderBackgroundFill.tiff; sourceTree = "<group>"; };
-		6EC1F20B10C72B5600C64F9A /* PluginUISliderBackgroundRight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PluginUISliderBackgroundRight.tiff; sourceTree = "<group>"; };
 		6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AvailableProxy.tiff; path = Resources/AvailableProxy.tiff; sourceTree = "<group>"; };
 		6EDB5A6C10C6900C00063171 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
 		6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Hide_Status_Pressed.tiff; path = Resources/Hide_Status_Pressed.tiff; sourceTree = "<group>"; };
@@ -608,9 +614,12 @@
 		6ECEB54910C5D6C900B659F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6EC1F20910C72B5600C64F9A /* PluginUISliderBackgroundLeft.tiff */,
-				6EC1F20A10C72B5600C64F9A /* PluginUISliderBackgroundFill.tiff */,
-				6EC1F20B10C72B5600C64F9A /* PluginUISliderBackgroundRight.tiff */,
+				6E79134A10C792B500C65590 /* PluginUISliderBackgroundFill.tiff */,
+				6E79134B10C792B500C65590 /* PluginUISliderBackgroundFillLight.tiff */,
+				6E79134C10C792B500C65590 /* PluginUISliderBackgroundLeft.tiff */,
+				6E79134D10C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff */,
+				6E79134E10C792B500C65590 /* PluginUISliderBackgroundRight.tiff */,
+				6E79134F10C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff */,
 				6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */,
 				6EDB5A6C10C6900C00063171 /* Credits.html */,
 				6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */,
@@ -1628,9 +1637,12 @@
 				6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */,
 				DD17DFD710C699A3008B3E0A /* Cameras.xib in Resources */,
 				DD17E20610C6AD09008B3E0A /* Camera.xib in Resources */,
-				6EC1F20C10C72B5600C64F9A /* PluginUISliderBackgroundLeft.tiff in Resources */,
-				6EC1F20D10C72B5600C64F9A /* PluginUISliderBackgroundFill.tiff in Resources */,
-				6EC1F20E10C72B5600C64F9A /* PluginUISliderBackgroundRight.tiff in Resources */,
+				6E79135010C792B500C65590 /* PluginUISliderBackgroundFill.tiff in Resources */,
+				6E79135110C792B500C65590 /* PluginUISliderBackgroundFillLight.tiff in Resources */,
+				6E79135210C792B500C65590 /* PluginUISliderBackgroundLeft.tiff in Resources */,
+				6E79135310C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff in Resources */,
+				6E79135410C792B500C65590 /* PluginUISliderBackgroundRight.tiff in Resources */,
+				6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

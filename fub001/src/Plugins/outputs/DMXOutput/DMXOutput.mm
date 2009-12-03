@@ -367,6 +367,7 @@
 	ofEnableAlphaBlending();
 	glPushMatrix();
 	glTranslated(30, 30, 0);
+	ofFill();
 	LedLamp * lamp;
 	for(lamp in lamps){
 		if(lamp->pos != nil){
@@ -376,7 +377,6 @@
 	}
 	
 	glPopMatrix();
-	
 }
 
 -(void) update:(const CVTimeStamp *)outputTime{
