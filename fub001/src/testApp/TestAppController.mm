@@ -34,14 +34,14 @@ extern ofAppBaseWindow * window;
 -(void) setupPlugins{
 	[pluginManagerController addHeader:@"Input"];
 	[pluginManagerController addPlugin:[[Cameras alloc] init]];
-	[pluginManagerController addPlugin:[[LensDistortion alloc] init]];
+	[pluginManagerController addPlugin:[[Lenses alloc] init]];
 
 	[pluginManagerController addHeader:@"Calculation"];
 	[pluginManagerController addPlugin:[[ProjectionSurfaces alloc] init]];
 
 	[pluginManagerController addHeader:@"Output"];
 	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
-		[pluginManagerController addPlugin:[[DanceSteps alloc] init]];
+	[pluginManagerController addPlugin:[[DanceSteps alloc] init]];
 	[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
 	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
 

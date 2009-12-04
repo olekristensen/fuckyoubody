@@ -20,8 +20,8 @@
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */; };
 		6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */; };
-		6EBB472610C80472004F9A03 /* LensDistortion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB472510C80472004F9A03 /* LensDistortion.mm */; };
-		6EBB472810C80BEA004F9A03 /* LensDistortion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472710C80BEA004F9A03 /* LensDistortion.xib */; };
+		6EBB472610C80472004F9A03 /* Lenses.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB472510C80472004F9A03 /* Lenses.mm */; };
+		6EBB472810C80BEA004F9A03 /* Lenses.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472710C80BEA004F9A03 /* Lenses.xib */; };
 		6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472D10C80DFB004F9A03 /* ToDo.rtf */; };
 		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
@@ -199,9 +199,9 @@
 		6EBB471810C80352004F9A03 /* polylineSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polylineSimplify.h; sourceTree = "<group>"; };
 		6EBB471910C80352004F9A03 /* TrackerView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrackerView.mm; sourceTree = "<group>"; };
 		6EBB471A10C80352004F9A03 /* TrackerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackerView.h; sourceTree = "<group>"; };
-		6EBB472410C80472004F9A03 /* LensDistortion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LensDistortion.h; sourceTree = "<group>"; };
-		6EBB472510C80472004F9A03 /* LensDistortion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LensDistortion.mm; sourceTree = "<group>"; };
-		6EBB472710C80BEA004F9A03 /* LensDistortion.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LensDistortion.xib; sourceTree = "<group>"; };
+		6EBB472410C80472004F9A03 /* Lenses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lenses.h; sourceTree = "<group>"; };
+		6EBB472510C80472004F9A03 /* Lenses.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lenses.mm; sourceTree = "<group>"; };
+		6EBB472710C80BEA004F9A03 /* Lenses.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lenses.xib; sourceTree = "<group>"; };
 		6EBB472D10C80DFB004F9A03 /* ToDo.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
 		6EC1A4BE10C6A83600738AA9 /* PluginUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUISlider.h; sourceTree = "<group>"; };
 		6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISlider.mm; sourceTree = "<group>"; };
@@ -608,15 +608,16 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		6EBB46FB10C80317004F9A03 /* LensDistortion */ = {
+		6EBB46FB10C80317004F9A03 /* Lenses */ = {
 			isa = PBXGroup;
 			children = (
-				6EBB472410C80472004F9A03 /* LensDistortion.h */,
-				6EBB472510C80472004F9A03 /* LensDistortion.mm */,
+				6EBB472410C80472004F9A03 /* Lenses.h */,
+				6EBB472510C80472004F9A03 /* Lenses.mm */,
 				6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */,
 				6EBB46FD10C80317004F9A03 /* ofCvCameraCalibration.h */,
-				6EBB472710C80BEA004F9A03 /* LensDistortion.xib */,
+				6EBB472710C80BEA004F9A03 /* Lenses.xib */,
 			);
+			name = Lenses;
 			path = LensDistortion;
 			sourceTree = "<group>";
 		};
@@ -727,7 +728,7 @@
 			isa = PBXGroup;
 			children = (
 				DD17DFCC10C6994D008B3E0A /* Cameras */,
-				6EBB46FB10C80317004F9A03 /* LensDistortion */,
+				6EBB46FB10C80317004F9A03 /* Lenses */,
 				6EBB470E10C80352004F9A03 /* BlobTracker */,
 			);
 			path = input;
@@ -1707,7 +1708,7 @@
 				6E79135310C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff in Resources */,
 				6E79135410C792B500C65590 /* PluginUISliderBackgroundRight.tiff in Resources */,
 				6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */,
-				6EBB472810C80BEA004F9A03 /* LensDistortion.xib in Resources */,
+				6EBB472810C80BEA004F9A03 /* Lenses.xib in Resources */,
 				6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1820,7 +1821,7 @@
 				DD17E09810C69E5B008B3E0A /* Camera.mm in Sources */,
 				6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */,
 				6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */,
-				6EBB472610C80472004F9A03 /* LensDistortion.mm in Sources */,
+				6EBB472610C80472004F9A03 /* Lenses.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

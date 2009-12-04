@@ -1,5 +1,5 @@
 /*
- *  LensDistortion.h
+ *  Lenses.h
  *  openFrameworks
  *
  *  Created by Fuck You Buddy on 03/12/09.
@@ -19,13 +19,13 @@
 #include "Cameras.h"
 #include "ofCvCameraCalibration.h"
 
-@interface LensDistortion : ofPlugin {
+@interface Lenses : ofPlugin {
 
 	ofCvCameraCalibration * cameraCalibrator[3];
 	
-	IBOutlet NSTextField * imageCount1;
-	IBOutlet NSTextField * imageCount2;
-	IBOutlet NSTextField * imageCount3;
+	IBOutlet NSLevelIndicator * imageCount1;
+	IBOutlet NSLevelIndicator * imageCount2;
+	IBOutlet NSLevelIndicator * imageCount3;
 	
 	IBOutlet NSForm * cameraMatrix1; //3x3 table views
 	IBOutlet NSForm * cameraMatrix2;
@@ -47,11 +47,35 @@
 	IBOutlet NSButton * showCalibrated2;
 	IBOutlet NSButton * showCalibrated3;
 	
+	IBOutlet NSBox * box1;
+	IBOutlet NSBox * box2;
+	IBOutlet NSBox * box3;
+
+	IBOutlet NSButton * reset1;
+	IBOutlet NSButton * reset2;
+	IBOutlet NSButton * reset3;
+	
+	ofxCvColorImage originalImage[3];
+    ofxCvGrayscaleImage  undistortedImage[3];
+
+	CvSize csize;
+	
+	int cwidth;
+    int cheight;
+	
+	NSSize boxSize;
+	NSUserDefaults *userDefaults;
+	
 }
+
+-(void)updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)theCameraCalibrator;
 
 -(IBAction) addImage:(id)sender;
 -(IBAction) calibrate:(id)sender;
+-(IBAction) reset:(id)sender;
 
--undistortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId;
+-(void) drawImage:(IplImage*)image atLocationX:(float)x Y:(float)y withWidth:(float)width height: (float)height;
+
+-(ofxPoint2f) undistortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId;
 
 @end
