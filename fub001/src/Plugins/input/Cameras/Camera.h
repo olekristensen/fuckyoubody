@@ -15,7 +15,7 @@
 
 	videoplayerWrapper * videoPlayer;
 	NSMutableArray * movies;
-	BOOL loadMovie;
+	BOOL loadMoviePlease;
 	NSString * loadMovieString;
 	float millisSinceLastMovieEvent;
 	

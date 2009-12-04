@@ -32,6 +32,7 @@
 	videoGrabber->setDiscardFrames(true);
 	videoGrabber->set1394bMode(true);
 	live = YES;
+	loadMoviePlease  = NO;
 	
 	videoGrabber->setDeviceID(camNumber);	
 
@@ -101,9 +102,9 @@
 		}
 	}
 	if(!live){
-		if(loadMovie){
+		if(loadMoviePlease){
 			[self loadMovie:loadMovieString];
-			loadMovie = NO;
+			loadMoviePlease = NO;
 		}
 			videoPlayer->videoPlayer.idleMovie();
 /*		if(millisSinceLastMovieEvent > 1.0/30.0){
@@ -114,7 +115,7 @@
 		}
 		millisSinceLastMovieEvent += 1.0/ofGetFrameRate();
  */
-			
+		cout<<videoPlayer->videoPlayer.getPosition()<<endl;		
 	}
 }
 
@@ -133,6 +134,7 @@
 	if(live){
 		return tex;		
 	} else {
+
 		return &videoPlayer->videoPlayer.getTextureReference();
 	}
 	
@@ -170,9 +172,11 @@
 			NSLog(fileName);
 			[movieSelector addItemWithTitle:fileName];
 			[movies addObject:item];
-			if(i == 1 && live == NO){
+			if(loadMoviePlease == NO && live == NO){
+				cout<<"LoadMoviePlease"<<endl;
 				loadMovieString = [NSString stringWithString:fileName];
-				loadMovie = YES;
+				NSLog(loadMovieString);
+				loadMoviePlease = YES;
 			}
 		} else {
 			
@@ -181,11 +185,14 @@
 }
 
 -(void) loadMovie:(NSString*) name{
-	videoPlayer = new videoplayerWrapper();
-
+	//videoPlayer = new videoplayerWrapper();
 	NSString * file = [NSString stringWithFormat:@"recordedMovies/%@", name];
+
+	cout<<"Load: "<<	[file cString]<<endl;
 	if(videoPlayer->videoPlayer.loadMovie([file cString] )){
 		//	videoPlayer->setLoopState(OF_LOOP_NORMAL);
+		cout<<"Loaded: "<<	[file cString]<<endl;
+
 		videoPlayer->videoPlayer.play();
 	} else {
 		cout<<"Could not load: "<<	[file cString]<<endl;
