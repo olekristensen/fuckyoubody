@@ -84,6 +84,7 @@
 		DDB85167105E809300D1ED92 /* ofxVec2f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB85159105E809300D1ED92 /* ofxVec2f.cpp */; };
 		DDB85168105E809300D1ED92 /* ofxVec3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515B105E809300D1ED92 /* ofxVec3f.cpp */; };
 		DDB85169105E809300D1ED92 /* ofxVec4f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515D105E809300D1ED92 /* ofxVec4f.cpp */; };
+		DDC0C73D10C96BA500402218 /* videoplayerWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC0C73C10C96BA500402218 /* videoplayerWrapper.cpp */; };
 		DDC7728C10B5846F009CAFC7 /* _ExampleOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */; };
 		DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */; };
 		DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7728710B5846F009CAFC7 /* MainMenu.xib */; };
@@ -330,6 +331,8 @@
 		DDB8515D105E809300D1ED92 /* ofxVec4f.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxVec4f.cpp; sourceTree = "<group>"; };
 		DDB8515E105E809300D1ED92 /* ofxVec4f.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVec4f.h; sourceTree = "<group>"; };
 		DDB8515F105E809300D1ED92 /* ofxVectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVectorMath.h; sourceTree = "<group>"; };
+		DDC0C73B10C96BA500402218 /* videoplayerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoplayerWrapper.h; sourceTree = "<group>"; };
+		DDC0C73C10C96BA500402218 /* videoplayerWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = videoplayerWrapper.cpp; sourceTree = "<group>"; };
 		DDC7728210B5846F009CAFC7 /* _ExampleOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ExampleOutput.h; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.h; sourceTree = SOURCE_ROOT; };
 		DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = _ExampleOutput.mm; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.mm; sourceTree = SOURCE_ROOT; };
 		DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = _ExampleOutput.xib; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.xib; sourceTree = SOURCE_ROOT; };
@@ -772,6 +775,8 @@
 				DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */,
 				DD17E06D10C69CD8008B3E0A /* ofxVideoGrabberSDK.h */,
 				DD17E03F10C69BEA008B3E0A /* Libdc1394Grabber */,
+				DDC0C73B10C96BA500402218 /* videoplayerWrapper.h */,
+				DDC0C73C10C96BA500402218 /* videoplayerWrapper.cpp */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -1822,6 +1827,7 @@
 				6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */,
 				6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */,
 				6EBB472610C80472004F9A03 /* Lenses.mm in Sources */,
+				DDC0C73D10C96BA500402218 /* videoplayerWrapper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

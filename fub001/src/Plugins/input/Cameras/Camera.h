@@ -7,9 +7,17 @@
 #include "Plugin.h"
 #include "ofMain.h"
 #include "Libdc1394Grabber.h"
+#include "videoplayerWrapper.h"
 
 @interface Camera : NSObject {
-	Libdc1394Grabber *videoGrabber;
+	Libdc1394Grabber * videoGrabber;
+	BOOL live;
+
+	videoplayerWrapper * videoPlayer;
+	NSMutableArray * movies;
+	BOOL loadMovie;
+	NSString * loadMovieString;
+	float millisSinceLastMovieEvent;
 	
 	ofTexture * tex;
 	unsigned char* pixels;
@@ -27,6 +35,12 @@
 	IBOutlet PluginUISlider * gammaSlider;
 	IBOutlet PluginUISlider * brightnessSlider;
 	
+	IBOutlet NSSegmentedControl * sourceSelector;
+	IBOutlet NSPopUpButton * movieSelector;
+	IBOutlet NSButton * recordButton;
+	
+	
+	
 	float mytimeNow, mytimeThen;
 	int myframes;
 	float myfps,frameRate;
@@ -43,12 +57,20 @@
 -(void) setup:(int)camNumber;
 -(void) update;
 -(BOOL) loadNibFile;
--(void) aWillTerminate:(NSNotification *)notification ;
+-(void) aWillTerminate:(NSNotification *)notification;
+
+-(void) updateMovieList;
+-(void) loadMovie:(NSString*) name;
+
+-(ofTexture*) fetchVideo;
 
 -(IBAction) setShutter:(id)sender;
 -(IBAction) setExposure:(id)sender;
 -(IBAction) setGain:(id)sender;
 -(IBAction) setGamma:(id)sender;
 -(IBAction) setBrightness:(id)sender;
+-(IBAction) setSource:(id)sender;
+-(IBAction) setMovieFile:(id)sender;
+-(IBAction) toggleRecord:(id)sender;
 
 @end
