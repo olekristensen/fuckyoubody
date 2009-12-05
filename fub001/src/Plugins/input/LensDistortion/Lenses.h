@@ -43,9 +43,9 @@
 	IBOutlet NSButton * calibrateButton2;
 	IBOutlet NSButton * calibrateButton3;
 
-	IBOutlet NSButton * showCalibrated1;
-	IBOutlet NSButton * showCalibrated2;
-	IBOutlet NSButton * showCalibrated3;
+	IBOutlet NSButton * showCalibratedButton1;
+	IBOutlet NSButton * showCalibratedButton2;
+	IBOutlet NSButton * showCalibratedButton3;
 	
 	IBOutlet NSBox * box1;
 	IBOutlet NSBox * box2;
@@ -55,17 +55,36 @@
 	IBOutlet NSButton * reset2;
 	IBOutlet NSButton * reset3;
 	
-	ofxCvColorImage originalImage[3];
-    ofxCvGrayscaleImage  undistortedImage[3];
+	pthread_mutex_t mutex;
+	
+	ofxCvColorImage * originalImage[3];
+    ofxCvGrayscaleImage * undistortedImage[3];
 
 	CvSize csize;
 	
+	BOOL justCaptured[3];
+	BOOL justFailedToSeeCheckerBoard[3];
+	BOOL justCalibrated[3];
+	
+	CFTimeInterval captureTime[3];
+	CFTimeInterval failedTime[3];
+	CFTimeInterval calibrationTime[3];
+
 	int cwidth;
     int cheight;
 	
-	NSSize boxSize;
-	NSUserDefaults *userDefaults;
+	int calibrationState[3];
 	
+	ofTrueTypeFont	* font;
+
+	enum calibrationStates {
+		CALIBRATION_VIRGIN,
+		CALIBRATION_ADDEDIMAGES,
+		CALIBRATION_CALIBRATED
+	};
+	
+	NSSize boxSize;
+
 }
 
 -(void)updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)theCameraCalibrator;

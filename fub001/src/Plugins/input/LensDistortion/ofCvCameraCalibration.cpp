@@ -298,7 +298,7 @@ void ofCvCameraCalibration::drawCircles( IplImage* img, vector<ofxPoint2f>& poin
 		int color = (int)( (float)i/points.size()*255.0 );
 		pt.x = (int)points[i].x;
 		pt.y = (int)points[i].y;
-		cvCircle( img, pt, 3, CV_RGB(255-color,0,color), CV_FILLED );
+		cvCircle( img, pt, 7, CV_RGB(64-(color/4),127+(color/2),(color/2)), CV_FILLED );
 	}
 }
 

@@ -10,7 +10,7 @@
 
 
 @implementation Camera
-@synthesize settingsView, mytimeNow, mytimeThen, width, height;
+@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited ;
 
 
 -(void) setup:(int)camNumber{
@@ -35,10 +35,10 @@
 	loadMoviePlease  = NO;
 	
 	videoGrabber->setDeviceID(camNumber);	
-
+	
 	camInited = videoGrabber->init(width, height, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
 	videoPlayer = new videoplayerWrapper();
-
+	
 	movies = [[NSMutableArray array] retain];
 	[self updateMovieList];
 	millisSinceLastMovieEvent = 0;
@@ -48,7 +48,13 @@
 	pixels = new unsigned char[width * height * 3];
 	memset(pixels, 0, width*height*3);
 	tex->loadData(pixels, width, height, GL_LUMINANCE);	
+	<<<<<<< .mine
 	
+	pthread_mutex_init(&mutex, NULL);
+	
+	=======
+	
+	>>>>>>> .r61
 	if(camInited){		
 		//Set all on manual
 		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_SHUTTER);
@@ -87,9 +93,13 @@
 
 -(void) update{
 	if(camInited){
+		pthread_mutex_lock(&mutex);
 		bIsFrameNew = videoGrabber->grabFrame(&pixels);
+		pthread_mutex_unlock(&mutex);
 		if(bIsFrameNew) {
+			pthread_mutex_lock(&mutex);
 			tex->loadData(pixels, width, height, GL_LUMINANCE);
+			pthread_mutex_unlock(&mutex);
 			mytimeNow = ofGetElapsedTimef();
 			if( (mytimeNow-mytimeThen) > 0.05f || myframes == 0 ) {
 				myfps = myframes / (mytimeNow-mytimeThen);
@@ -98,7 +108,6 @@
 				frameRate = 0.5f * frameRate + 0.5f * myfps;
 			}
 			myframes++;
-			
 		}
 	}
 	if(!live){
@@ -106,15 +115,15 @@
 			[self loadMovie:loadMovieString];
 			loadMoviePlease = NO;
 		}
-			videoPlayer->videoPlayer.idleMovie();
-/*		if(millisSinceLastMovieEvent > 1.0/30.0){
-			//
-			videoPlayer->videoPlayer.nextFrame();
-		//	videoPlayer->videoPlayer.idleMovie();
-			millisSinceLastMovieEvent = 0;
-		}
-		millisSinceLastMovieEvent += 1.0/ofGetFrameRate();
- */
+		videoPlayer->videoPlayer.idleMovie();
+		/*		if(millisSinceLastMovieEvent > 1.0/30.0){
+		 //
+		 videoPlayer->videoPlayer.nextFrame();
+		 //	videoPlayer->videoPlayer.idleMovie();
+		 millisSinceLastMovieEvent = 0;
+		 }
+		 millisSinceLastMovieEvent += 1.0/ofGetFrameRate();
+		 */
 		cout<<videoPlayer->videoPlayer.getPosition()<<endl;		
 	}
 }
@@ -134,11 +143,15 @@
 	if(live){
 		return tex;		
 	} else {
-
+		
 		return &videoPlayer->videoPlayer.getTextureReference();
 	}
 	
 	
+}
+
+-(unsigned char*) getPixels{
+	return pixels;
 }
 
 - (BOOL) loadNibFile {	
@@ -187,12 +200,12 @@
 -(void) loadMovie:(NSString*) name{
 	//videoPlayer = new videoplayerWrapper();
 	NSString * file = [NSString stringWithFormat:@"recordedMovies/%@", name];
-
+	
 	cout<<"Load: "<<	[file cString]<<endl;
 	if(videoPlayer->videoPlayer.loadMovie([file cString] )){
 		//	videoPlayer->setLoopState(OF_LOOP_NORMAL);
 		cout<<"Loaded: "<<	[file cString]<<endl;
-
+		
 		videoPlayer->videoPlayer.play();
 	} else {
 		cout<<"Could not load: "<<	[file cString]<<endl;

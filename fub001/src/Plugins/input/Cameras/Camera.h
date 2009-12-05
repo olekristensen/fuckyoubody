@@ -23,7 +23,7 @@
 	unsigned char* pixels;
 	
 	int width, height;
-	bool camInited ;
+	BOOL camInited ;
 	BOOL bIsFrameNew;
 	
 	IBOutlet NSView * settingsView;
@@ -44,6 +44,8 @@
 	float mytimeNow, mytimeThen;
 	int myframes;
 	float myfps,frameRate;
+	pthread_mutex_t mutex;
+
 }
 
 @property (assign, readonly) NSView * settingsView;
@@ -51,6 +53,8 @@
 @property (assign, readonly) float mytimeThen;
 @property (assign, readonly) int width;
 @property (assign, readonly) int height;
+@property (assign, readonly) BOOL camInited;
+
 
 -(ofTexture*) getTexture;
 -(float) framerate;
@@ -58,6 +62,7 @@
 -(void) update;
 -(BOOL) loadNibFile;
 -(void) aWillTerminate:(NSNotification *)notification;
+-(unsigned char*) getPixels;
 
 -(void) updateMovieList;
 -(void) loadMovie:(NSString*) name;
