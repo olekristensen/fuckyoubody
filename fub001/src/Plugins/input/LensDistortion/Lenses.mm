@@ -33,7 +33,7 @@
 		calibrationState[i] = CALIBRATION_VIRGIN;
 		
 		NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] retain];
-
+		
 		for (int j = 0; j < 4; j++) {
 			cameraCalibrator[i]->distortionCoeffs[j] = [userDefaults floatForKey:[NSString stringWithFormat:@"Lenses.%d.distortion.%d",i+1, j]];
 		}
@@ -41,11 +41,11 @@
 		for (int j = 0; j < 9; j++) {
 			cameraCalibrator[i]->camIntrinsics[j] = [userDefaults floatForKey:[NSString stringWithFormat:@"Lenses.%d.matrix.%d",i+1, j]];
 		}
-
+		
 		[userDefaults release];
 		
 		justCaptured[i] = NO;
-		justFailedToSeeCheckerBoard[i] = YES;
+		justFailedToSeeChessboard[i] = YES;
 	}
 	
 	for(int i=0;i<3;i++){
@@ -160,11 +160,11 @@
 			
 			
 			
-			{ // just failed to see the checkerboard
+			{ // just failed to see the chessboard
 				
-				if(justFailedToSeeCheckerBoard[i]){
+				if(justFailedToSeeChessboard[i]){
 					failedTime[i] = drawSeconds;
-					justFailedToSeeCheckerBoard[i] = NO;
+					justFailedToSeeChessboard[i] = NO;
 				}
 				
 				if(calibrationState[i] != CALIBRATION_CALIBRATED){ 
@@ -179,7 +179,7 @@
 					}
 					
 					if(secondsSinceFailed < 2.0 ){
-						string text = "No Checkerboard";
+						string text = "No Chessboard";
 						ofSetColor(255, 0, 255, 255-(255*((drawSeconds-1 - failedSeconds)*3)));
 						font->drawString(text, 
 										 (w*0.5) - (font->stringWidth(text)/2.0),
@@ -191,7 +191,7 @@
 					
 					ofSetColor(255, 255, 255, 255);
 				}
-			} // end failed to see the checkerboard
+			} // end failed to see the chessboard
 			
 			
 			
@@ -291,7 +291,7 @@
 			justCaptured[cameraId-1] = YES;
 			[self updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)cameraCalibrator[cameraId-1]];	
 		} else {
-			justFailedToSeeCheckerBoard[cameraId-1] = YES;
+			justFailedToSeeChessboard[cameraId-1] = YES;
 		}
 		
 		pthread_mutex_unlock(&mutex);
@@ -327,6 +327,38 @@
 	}
 }
 
+-(IBAction) printChessboard:(id)sender{
+	
+	NSBundle *bundle = [NSBundle bundleForClass:[Lenses class]];
+	
+	NSURL * anUrl = [NSURL fileURLWithPath:[bundle pathForResource:@"chessboard" ofType:@"pdf"]];
+	
+	PDFDocument * aPdfDocument;
+	aPdfDocument = [[[PDFDocument alloc] initWithURL:anUrl ] autorelease];
+	
+	PDFView * aPdfView = [[PDFView alloc] init];
+	[aPdfView setDocument:aPdfDocument];
+	[aPdfView print:sender];
+	
+}
+
+
+- (void)printDocument:(id)sender {
+	// Assume documentView returns the custom view to be printed
+	
+}
+
+- (void)printOperationDidRun:(NSPrintOperation *)printOperation
+					 success:(BOOL)success
+				 contextInfo:(void *)info {
+	if (success) {
+		// Can save updated NSPrintInfo, but only if you have
+		// a specific reason for doing so
+		// [self setPrintInfo: [printOperation printInfo]];
+	}
+}
+
+
 -(IBAction) reset:(id)sender{
 	int cameraId = -1;
 	
@@ -348,18 +380,18 @@
 		
 		NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Do you want to reset the Lens Calibration?", @"Title of alert panel which comes up when user chooses Quit")];
 		choice = NSRunAlertPanel(title, 
-								 NSLocalizedString(@"Resetting is not undoable\nIf you reset the calibration you have to do the Checkerboard dance again.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents."), 
+								 NSLocalizedString(@"Resetting is not undoable\nIf you reset the calibration you have to do the Chessboard dance again.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents."), 
 								 NSLocalizedString(@"Reset", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
 								 NSLocalizedString(@"Cancel", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),     // ellipses
 								 nil);
 		
 		if (choice == NSAlertDefaultReturn){           /* Cancel */
 			
-		
-		cameraCalibrator[cameraId-1] = new ofCvCameraCalibration();
-		cameraCalibrator[cameraId-1]->allocate(csize, 7,7);
-		[self updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)cameraCalibrator[cameraId-1]];	
-
+			
+			cameraCalibrator[cameraId-1] = new ofCvCameraCalibration();
+			cameraCalibrator[cameraId-1]->allocate(csize, 7,7);
+			[self updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)cameraCalibrator[cameraId-1]];	
+			
 		}
 	}
 	
@@ -451,15 +483,15 @@
 		sumForCalibration += theCameraCalibrator->camIntrinsics[i];
 	}
 	[matrixForm setNeedsDisplay:YES];
-
+	
 	[userDefaults release];	
-
+	
 	if (sumForCalibration == 0.0) {
 		calibrationState[cameraId-1] = CALIBRATION_VIRGIN;
 	} else {
 		calibrationState[cameraId-1] = CALIBRATION_CALIBRATED;
 	}
-
+	
 	if (calibrationState[cameraId-1] == CALIBRATION_VIRGIN) {
 		if (![box isHidden]) {
 			[[box animator] setHidden:YES];
@@ -471,7 +503,7 @@
 		[showCalibratedButton setEnabled:NO];
 		[showCalibratedButton setHidden:YES];
 	}
-
+	
 	[NSAnimationContext beginGrouping];
 	
 	[[NSAnimationContext currentContext] setDuration:2.0];
@@ -480,7 +512,7 @@
 	[imageCount setIntValue: theCameraCalibrator->colorImages.size()];
 	[[imageCount animator] setHidden:NO];
 	[imageCount setNeedsDisplay:YES];
-
+	
 	[NSAnimationContext endGrouping];
 	
 	if(theCameraCalibrator->colorImages.size() > 0 &&  calibrationState[cameraId-1] != CALIBRATION_CALIBRATED ){
@@ -488,7 +520,7 @@
 		if(theCameraCalibrator->colorImages.size() > [imageCount warningValue]){
 			[calibrateButton setEnabled:YES];
 			[[calibrateButton animator] setHidden:NO];
-
+			
 		}
 	}
 	

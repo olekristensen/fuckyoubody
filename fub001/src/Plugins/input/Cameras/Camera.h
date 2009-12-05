@@ -39,8 +39,6 @@
 	IBOutlet NSPopUpButton * movieSelector;
 	IBOutlet NSButton * recordButton;
 	
-	
-	
 	float mytimeNow, mytimeThen;
 	int myframes;
 	float myfps,frameRate;

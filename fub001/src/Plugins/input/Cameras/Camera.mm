@@ -48,13 +48,8 @@
 	pixels = new unsigned char[width * height * 3];
 	memset(pixels, 0, width*height*3);
 	tex->loadData(pixels, width, height, GL_LUMINANCE);	
-	<<<<<<< .mine
-	
 	pthread_mutex_init(&mutex, NULL);
 	
-	=======
-	
-	>>>>>>> .r61
 	if(camInited){		
 		//Set all on manual
 		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_SHUTTER);
@@ -85,9 +80,7 @@
 			
 		}
 		
-	} else {
 	}
-	
 	
 }
 
@@ -143,15 +136,21 @@
 	if(live){
 		return tex;		
 	} else {
-		
 		return &videoPlayer->videoPlayer.getTextureReference();
 	}
-	
-	
 }
 
 -(unsigned char*) getPixels{
-	return pixels;
+	if(live){
+		return pixels;
+	} else {
+		ofImage returnImage;
+		returnImage.allocate(videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR);
+		returnImage.setFromPixels(videoPlayer->videoPlayer.getPixels(),videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR, TRUE);
+		returnImage.setImageType(OF_IMAGE_GRAYSCALE);
+		returnImage.resize(width, height);
+		return returnImage.getPixels();
+	}
 }
 
 - (BOOL) loadNibFile {	

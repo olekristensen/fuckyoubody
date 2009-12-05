@@ -13,6 +13,7 @@
 #import "GLee.h"
 
 #import <Cocoa/Cocoa.h>
+#import <Quartz/Quartz.h>
 
 #include "Plugin.h"
 #include "ofMain.h"
@@ -63,7 +64,7 @@
 	CvSize csize;
 	
 	BOOL justCaptured[3];
-	BOOL justFailedToSeeCheckerBoard[3];
+	BOOL justFailedToSeeChessboard[3];
 	BOOL justCalibrated[3];
 	
 	CFTimeInterval captureTime[3];
@@ -92,6 +93,7 @@
 -(IBAction) addImage:(id)sender;
 -(IBAction) calibrate:(id)sender;
 -(IBAction) reset:(id)sender;
+-(IBAction) printChessboard:(id)sender;
 
 -(void) drawImage:(IplImage*)image atLocationX:(float)x Y:(float)y withWidth:(float)width height: (float)height;
 
