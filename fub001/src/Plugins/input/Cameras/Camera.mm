@@ -10,20 +10,21 @@
 
 
 @implementation Camera
-@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited ;
+@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber ;
 
 
--(void) setup:(int)camNumber{
+-(void) setup:(int)_camNumber{
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(aWillTerminate:)
 												 name:NSApplicationWillTerminateNotification object:nil];
+	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
 	//	width = 1280/2;
 	//	height = 960/2;
 	
 	width = 640;
 	height = 480;
-	
+	camNumber = _camNumber;
 	myframes = 0;
 	ofSetLogLevel(OF_LOG_NOTICE);
 	videoGrabber = new Libdc1394Grabber;
@@ -38,6 +39,7 @@
 	
 	camInited = videoGrabber->init(width, height, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
 	videoPlayer = new videoplayerWrapper();
+	videoPlayer->videoPlayer.setUseTexture(false);
 	
 	movies = [[NSMutableArray array] retain];
 	[self updateMovieList];
@@ -45,8 +47,8 @@
 	
 	tex = new ofTexture();
 	tex->allocate(width,height,GL_LUMINANCE);
-	pixels = new unsigned char[width * height * 3];
-	memset(pixels, 0, width*height*3);
+	pixels = new unsigned char[width * height];
+	memset(pixels, 0, width*height);
 	tex->loadData(pixels, width, height, GL_LUMINANCE);	
 	pthread_mutex_init(&mutex, NULL);
 	
@@ -82,42 +84,54 @@
 		
 	}
 	
+	
+	if(![userDefaults boolForKey:[NSString stringWithFormat:@"camera%d.live",[self camNumber]]]){
+		live = NO;
+		[movieSelector setEnabled:YES];
+		[recordButton setEnabled:NO];
+		[sourceSelector setSelectedSegment:1];
+		[self updateMovieList];
+	}
+	
+	
 }
 
 -(void) update{
-	if(camInited){
-		pthread_mutex_lock(&mutex);
-		bIsFrameNew = videoGrabber->grabFrame(&pixels);
-		pthread_mutex_unlock(&mutex);
-		if(bIsFrameNew) {
+	if(live){
+		if(camInited){
 			pthread_mutex_lock(&mutex);
-			tex->loadData(pixels, width, height, GL_LUMINANCE);
+			bIsFrameNew = videoGrabber->grabFrame(&pixels);
 			pthread_mutex_unlock(&mutex);
-			mytimeNow = ofGetElapsedTimef();
-			if( (mytimeNow-mytimeThen) > 0.05f || myframes == 0 ) {
-				myfps = myframes / (mytimeNow-mytimeThen);
-				mytimeThen = mytimeNow;
-				myframes = 0;
-				frameRate = 0.5f * frameRate + 0.5f * myfps;
+			if(bIsFrameNew) {
+				pthread_mutex_lock(&mutex);
+				tex->loadData(pixels, width, height, GL_LUMINANCE);
+				pthread_mutex_unlock(&mutex);
+				mytimeNow = ofGetElapsedTimef();
+				if( (mytimeNow-mytimeThen) > 0.05f || myframes == 0 ) {
+					myfps = myframes / (mytimeNow-mytimeThen);
+					mytimeThen = mytimeNow;
+					myframes = 0;
+					frameRate = 0.5f * frameRate + 0.5f * myfps;
+				}
+				myframes++;
 			}
-			myframes++;
 		}
 	}
-	if(!live){
+	else {
 		if(loadMoviePlease){
 			[self loadMovie:loadMovieString];
 			loadMoviePlease = NO;
 		}
 		videoPlayer->videoPlayer.idleMovie();
-		/*		if(millisSinceLastMovieEvent > 1.0/30.0){
-		 //
-		 videoPlayer->videoPlayer.nextFrame();
-		 //	videoPlayer->videoPlayer.idleMovie();
-		 millisSinceLastMovieEvent = 0;
-		 }
-		 millisSinceLastMovieEvent += 1.0/ofGetFrameRate();
-		 */
-		cout<<videoPlayer->videoPlayer.getPosition()<<endl;		
+		if(videoPlayer->videoPlayer.isFrameNew()){
+			for(int i=videoPlayer->videoPlayer.width * videoPlayer->videoPlayer.height -1; i >= 0  ; i--){
+				pixels[i] = videoPlayer->videoPlayer.pixels[i*3];
+			}
+			
+			
+			tex->loadData(pixels, videoPlayer->videoPlayer.width, videoPlayer->videoPlayer.height, GL_LUMINANCE);
+		}
+		
 	}
 }
 
@@ -133,6 +147,7 @@
 
 
 -(ofTexture*) getTexture{
+	return tex;
 	if(live){
 		return tex;		
 	} else {
@@ -141,15 +156,19 @@
 }
 
 -(unsigned char*) getPixels{
+	return pixels;
+	
 	if(live){
 		return pixels;
 	} else {
-		ofImage returnImage;
-		returnImage.allocate(videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR);
-		returnImage.setFromPixels(videoPlayer->videoPlayer.getPixels(),videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR, TRUE);
-		returnImage.setImageType(OF_IMAGE_GRAYSCALE);
-		returnImage.resize(width, height);
-		return returnImage.getPixels();
+		/*ofImage returnImage;
+		 returnImage.allocate(videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR);
+		 returnImage.setFromPixels(videoPlayer->videoPlayer.getPixels(),videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR, TRUE);
+		 returnImage.setImageType(OF_IMAGE_GRAYSCALE);
+		 returnImage.resize(width, height);
+		 return returnImage.getPixels();*/
+		
+		//return ret;
 	}
 }
 
@@ -177,7 +196,10 @@
 		NSNumber *isFile = nil;
 		[item getResourceValue:&isFile forKey:NSURLIsRegularFileKey error:NULL];
 		
-		if ([isFile boolValue]) {
+		NSNumber * isHidden = nil;
+		[item getResourceValue:&isHidden forKey:NSURLIsHiddenKey error:NULL];
+		
+		if ([isFile boolValue] && ![isHidden boolValue]) {
 			NSString *fileName = nil;
 			[item getResourceValue:&fileName forKey:NSURLNameKey error:NULL];
 			
@@ -185,9 +207,7 @@
 			[movieSelector addItemWithTitle:fileName];
 			[movies addObject:item];
 			if(loadMoviePlease == NO && live == NO){
-				cout<<"LoadMoviePlease"<<endl;
 				loadMovieString = [NSString stringWithString:fileName];
-				NSLog(loadMovieString);
 				loadMoviePlease = YES;
 			}
 		} else {
@@ -199,8 +219,6 @@
 -(void) loadMovie:(NSString*) name{
 	//videoPlayer = new videoplayerWrapper();
 	NSString * file = [NSString stringWithFormat:@"recordedMovies/%@", name];
-	
-	cout<<"Load: "<<	[file cString]<<endl;
 	if(videoPlayer->videoPlayer.loadMovie([file cString] )){
 		//	videoPlayer->setLoopState(OF_LOOP_NORMAL);
 		cout<<"Loaded: "<<	[file cString]<<endl;
@@ -249,13 +267,17 @@
 			[recordButton setEnabled:NO];
 			live = NO;
 			[self updateMovieList];
+			
 			break;			
 			
 		default:
 			break;
 	}
+	[userDefaults setValue:[NSNumber numberWithBool:live] forKey:[NSString stringWithFormat:@"camera%d.live",camNumber]];
 }
 -(IBAction) setMovieFile:(id)sender{
+	loadMovieString = [NSString stringWithString:[sender titleOfSelectedItem]];
+	loadMoviePlease = YES;
 	
 }
 -(IBAction) toggleRecord:(id)sender{

@@ -61,7 +61,7 @@
 
 -(void) update:(const CVTimeStamp *)outputTime{	
 	for(int i=0;i<3;i++){
-		if([[GetPlugin(Cameras) getCameraWithId:i] camInited]){
+		if([[GetPlugin(Cameras) getCameraWithId:i] camInited] || ![[GetPlugin(Cameras) getCameraWithId:i] live]){
 			pthread_mutex_lock(&mutex);
 			unsigned char * somePixel = [[GetPlugin(Cameras) getCameraWithId:i] getPixels];
 			ofxCvGrayscaleImage anImage;

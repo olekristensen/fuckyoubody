@@ -26,7 +26,6 @@
 		6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472D10C80DFB004F9A03 /* ToDo.rtf */; };
 		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
-		6ED7418A10CA08FD00730B39 /* chessboard.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6ED7418910CA08FD00730B39 /* chessboard.pdf */; };
 		6EDB5A7310C6900C00063171 /* AvailableProxy.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */; };
 		6EDB5A7510C6900C00063171 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6C10C6900C00063171 /* Credits.html */; };
 		6EDB5A7710C6900C00063171 /* Hide_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */; };
@@ -210,7 +209,6 @@
 		6EC1A4BE10C6A83600738AA9 /* PluginUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUISlider.h; sourceTree = "<group>"; };
 		6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISlider.mm; sourceTree = "<group>"; };
 		6EC1A4C310C6A8C000738AA9 /* PluginUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUI.h; sourceTree = "<group>"; };
-		6ED7418910CA08FD00730B39 /* chessboard.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = chessboard.pdf; sourceTree = SOURCE_ROOT; };
 		6EDB5A6A10C6900C00063171 /* AvailableProxy.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = AvailableProxy.tiff; path = Resources/AvailableProxy.tiff; sourceTree = "<group>"; };
 		6EDB5A6C10C6900C00063171 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
 		6EDB5A6E10C6900C00063171 /* Hide_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Hide_Status_Pressed.tiff; path = Resources/Hide_Status_Pressed.tiff; sourceTree = "<group>"; };
@@ -548,7 +546,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -684,7 +682,6 @@
 		6ECEB54910C5D6C900B659F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6ED7418910CA08FD00730B39 /* chessboard.pdf */,
 				6E79134A10C792B500C65590 /* PluginUISliderBackgroundFill.tiff */,
 				6E79134B10C792B500C65590 /* PluginUISliderBackgroundFillLight.tiff */,
 				6E79134C10C792B500C65590 /* PluginUISliderBackgroundLeft.tiff */,
@@ -1634,7 +1631,7 @@
 				6EBB472D10C80DFB004F9A03 /* ToDo.rtf */,
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
-				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1671,7 +1668,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1722,7 +1719,6 @@
 				6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */,
 				6EBB472810C80BEA004F9A03 /* Lenses.xib in Resources */,
 				6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */,
-				6ED7418A10CA08FD00730B39 /* chessboard.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

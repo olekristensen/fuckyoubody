@@ -21,10 +21,12 @@
 	
 	ofTexture * tex;
 	unsigned char* pixels;
-	
+
+
 	int width, height;
 	BOOL camInited ;
 	BOOL bIsFrameNew;
+	int camNumber;
 	
 	IBOutlet NSView * settingsView;
 	
@@ -43,6 +45,8 @@
 	int myframes;
 	float myfps,frameRate;
 	pthread_mutex_t mutex;
+	
+	NSUserDefaults *userDefaults;
 
 }
 
@@ -52,7 +56,8 @@
 @property (assign, readonly) int width;
 @property (assign, readonly) int height;
 @property (assign, readonly) BOOL camInited;
-
+@property (assign, readonly) BOOL live;
+@property (readwrite) 	int camNumber;
 
 -(ofTexture*) getTexture;
 -(float) framerate;
@@ -64,8 +69,6 @@
 
 -(void) updateMovieList;
 -(void) loadMovie:(NSString*) name;
-
--(ofTexture*) fetchVideo;
 
 -(IBAction) setShutter:(id)sender;
 -(IBAction) setExposure:(id)sender;
