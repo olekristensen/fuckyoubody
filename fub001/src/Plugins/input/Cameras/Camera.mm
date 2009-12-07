@@ -126,9 +126,7 @@
 		if(videoPlayer->videoPlayer.isFrameNew()){
 			for(int i=videoPlayer->videoPlayer.width * videoPlayer->videoPlayer.height -1; i >= 0  ; i--){
 				pixels[i] = videoPlayer->videoPlayer.pixels[i*3];
-			}
-			
-			
+			}			
 			tex->loadData(pixels, videoPlayer->videoPlayer.width, videoPlayer->videoPlayer.height, GL_LUMINANCE);
 		}
 		
@@ -148,28 +146,10 @@
 
 -(ofTexture*) getTexture{
 	return tex;
-	if(live){
-		return tex;		
-	} else {
-		return &videoPlayer->videoPlayer.getTextureReference();
-	}
 }
 
 -(unsigned char*) getPixels{
 	return pixels;
-	
-	if(live){
-		return pixels;
-	} else {
-		/*ofImage returnImage;
-		 returnImage.allocate(videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR);
-		 returnImage.setFromPixels(videoPlayer->videoPlayer.getPixels(),videoPlayer->videoPlayer.getWidth(), videoPlayer->videoPlayer.getHeight(), OF_IMAGE_COLOR, TRUE);
-		 returnImage.setImageType(OF_IMAGE_GRAYSCALE);
-		 returnImage.resize(width, height);
-		 return returnImage.getPixels();*/
-		
-		//return ret;
-	}
 }
 
 - (BOOL) loadNibFile {	
