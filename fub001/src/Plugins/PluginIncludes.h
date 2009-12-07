@@ -12,6 +12,7 @@
 #include "Cameras.h"
 #include "Lenses.h"
 
+#include "Tracking.h"
 #include "ProjectionSurfaces.h"
 
 #include "_ExampleOutput.h"

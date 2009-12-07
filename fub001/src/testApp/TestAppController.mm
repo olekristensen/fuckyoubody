@@ -16,9 +16,9 @@ extern ofAppBaseWindow * window;
 
 
 -(void) awakeFromNib {
-
- NSLog(@"Awake from nib");
-
+	
+	NSLog(@"Awake from nib");
+	
 	[pluginManagerController setFrame:[mainView bounds]];
 	[mainView addSubview:pluginManagerController];
 	
@@ -28,27 +28,28 @@ extern ofAppBaseWindow * window;
 	((ofAppCocoaWindow*)cocoaWindow)->setup();
 	
 	ofSetBackgroundAuto(false);
-
+	
 }
 
 -(void) setupPlugins{
 	[pluginManagerController addHeader:@"Input"];
 	[pluginManagerController addPlugin:[[Cameras alloc] init]];
 	[pluginManagerController addPlugin:[[Lenses alloc] init]];
-
+	
 	[pluginManagerController addHeader:@"Calculation"];
+	[pluginManagerController addPlugin:[[Tracking alloc] init]];
 	[pluginManagerController addPlugin:[[ProjectionSurfaces alloc] init]];
-
+	
 	[pluginManagerController addHeader:@"Output"];
 	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
 	[pluginManagerController addPlugin:[[DanceSteps alloc] init]];
 	[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
 	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
-
+	
 	//	[pluginManagerController addPlugin:[[_ExampleOutputAgain alloc] init]];
-
-
-
+	
+	
+	
 }
 
 @end

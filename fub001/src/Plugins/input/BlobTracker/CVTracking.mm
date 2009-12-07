@@ -1,5 +1,5 @@
 /*
- *  BlobTrackerView.h
+ *  BlobTrackerView.cpp
  *  openFrameworks
  *
  *  Created by Fuck You Buddy on 03/12/09.
@@ -7,3 +7,10 @@
  *
  */
 
+#include "CVTracking.h"
+
+@implementation CVTracking
+
+
+
+@end

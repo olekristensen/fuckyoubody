@@ -25,11 +25,13 @@
 	int width;
 	int height;
 }
-@property (assign, readonly) int width;
-@property (assign, readonly) int height;
+@property (readonly) int width;
+@property (readonly) int height;
 
 - (Camera*)getCameraWithId:(int)cameraId;
-
-
-
+- (ofTexture*)getTexture:(int)cameraId;
+- (unsigned char*)getPixels:(int)cameraId;
+- (BOOL) isFrameNew:(int)cameraId;
+- (int) getWidth:(int)cameraId;
+- (int) getHeight:(int)cameraId;
 @end

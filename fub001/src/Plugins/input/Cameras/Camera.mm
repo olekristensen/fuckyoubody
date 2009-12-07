@@ -160,6 +160,14 @@
 	return pixels;
 }
 
+-(BOOL) isFrameNew{
+	if(live){
+		return bIsFrameNew;
+	} else {
+		return videoPlayer->videoPlayer.isFrameNew(); 
+	}
+}
+
 - (BOOL) loadNibFile {	
 	if (![NSBundle loadNibNamed:@"Camera"  owner:self]){
 		NSLog(@"Warning! Could not load the nib for camera ");

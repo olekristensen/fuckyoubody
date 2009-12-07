@@ -56,8 +56,15 @@
 		DD45B91B106FDC4F00B4B19C /* ofxMSASpline2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */; };
 		DD45B91C106FDC4F00B4B19C /* ofxMSASpline3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B911106FDC4F00B4B19C /* ofxMSASpline3D.cpp */; };
 		DD45B91D106FDC4F00B4B19C /* ofxMSASurface3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */; };
+		DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB76910CD210300EA0F09 /* Tracking.mm */; };
+		DD4AB76E10CD213700EA0F09 /* Tracking.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4AB76D10CD213700EA0F09 /* Tracking.xib */; };
+		DD4AB77D10CD219800EA0F09 /* BlobTracking.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB77610CD219800EA0F09 /* BlobTracking.mm */; };
+		DD4AB77E10CD219800EA0F09 /* contourNormals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB77710CD219800EA0F09 /* contourNormals.cpp */; };
+		DD4AB77F10CD219800EA0F09 /* contourSimplify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB77910CD219800EA0F09 /* contourSimplify.cpp */; };
 		DD4FE4F110C5307B00A11BE9 /* DanceSteps.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4FE4EF10C5307B00A11BE9 /* DanceSteps.mm */; };
 		DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */; };
+		DD5735B110CD2B4100B788BB /* TrackerObject.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5735B010CD2B4100B788BB /* TrackerObject.xib */; };
+		DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD5735B410CD2B5B00B788BB /* TrackerObject.mm */; };
 		DD6EA0CF1062C832001EC207 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6EA0CE1062C832001EC207 /* QTKit.framework */; };
 		DD6EA12A1062C880001EC207 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6EA1291062C880001EC207 /* QuartzCore.framework */; };
 		DD7CC3F71063C47100D3736A /* libOpenCV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7CC3D11063C47100D3736A /* libOpenCV.a */; };
@@ -192,18 +199,6 @@
 		6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIValueTextField.mm; sourceTree = "<group>"; };
 		6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofCvCameraCalibration.cpp; sourceTree = "<group>"; };
 		6EBB46FD10C80317004F9A03 /* ofCvCameraCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofCvCameraCalibration.h; sourceTree = "<group>"; };
-		6EBB470F10C80352004F9A03 /* BlobTrackerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlobTrackerView.xib; sourceTree = "<group>"; };
-		6EBB471010C80352004F9A03 /* BlobTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlobTracking.h; sourceTree = "<group>"; };
-		6EBB471110C80352004F9A03 /* BlobTracking.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlobTracking.mm; sourceTree = "<group>"; };
-		6EBB471210C80352004F9A03 /* BlobTracking.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlobTracking.xib; sourceTree = "<group>"; };
-		6EBB471310C80352004F9A03 /* contourNormals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourNormals.cpp; sourceTree = "<group>"; };
-		6EBB471410C80352004F9A03 /* contourNormals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourNormals.h; sourceTree = "<group>"; };
-		6EBB471510C80352004F9A03 /* contourSimplify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourSimplify.cpp; sourceTree = "<group>"; };
-		6EBB471610C80352004F9A03 /* contourSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourSimplify.h; sourceTree = "<group>"; };
-		6EBB471710C80352004F9A03 /* convexHull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convexHull.h; sourceTree = "<group>"; };
-		6EBB471810C80352004F9A03 /* polylineSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polylineSimplify.h; sourceTree = "<group>"; };
-		6EBB471910C80352004F9A03 /* TrackerView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrackerView.mm; sourceTree = "<group>"; };
-		6EBB471A10C80352004F9A03 /* TrackerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackerView.h; sourceTree = "<group>"; };
 		6EBB472410C80472004F9A03 /* Lenses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lenses.h; sourceTree = "<group>"; };
 		6EBB472510C80472004F9A03 /* Lenses.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lenses.mm; sourceTree = "<group>"; };
 		6EBB472710C80BEA004F9A03 /* Lenses.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lenses.xib; sourceTree = "<group>"; };
@@ -262,9 +257,23 @@
 		DD45B914106FDC4F00B4B19C /* ofxMSASplineTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASplineTemplate.h; sourceTree = "<group>"; };
 		DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSASurface3D.cpp; sourceTree = "<group>"; };
 		DD45B916106FDC4F00B4B19C /* ofxMSASurface3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASurface3D.h; sourceTree = "<group>"; };
+		DD4AB76810CD210300EA0F09 /* Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tracking.h; sourceTree = "<group>"; };
+		DD4AB76910CD210300EA0F09 /* Tracking.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tracking.mm; sourceTree = "<group>"; };
+		DD4AB76D10CD213700EA0F09 /* Tracking.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tracking.xib; sourceTree = "<group>"; };
+		DD4AB77510CD219800EA0F09 /* BlobTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlobTracking.h; sourceTree = "<group>"; };
+		DD4AB77610CD219800EA0F09 /* BlobTracking.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlobTracking.mm; sourceTree = "<group>"; };
+		DD4AB77710CD219800EA0F09 /* contourNormals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourNormals.cpp; sourceTree = "<group>"; };
+		DD4AB77810CD219800EA0F09 /* contourNormals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourNormals.h; sourceTree = "<group>"; };
+		DD4AB77910CD219800EA0F09 /* contourSimplify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourSimplify.cpp; sourceTree = "<group>"; };
+		DD4AB77A10CD219800EA0F09 /* contourSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourSimplify.h; sourceTree = "<group>"; };
+		DD4AB77B10CD219800EA0F09 /* convexHull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convexHull.h; sourceTree = "<group>"; };
+		DD4AB77C10CD219800EA0F09 /* polylineSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polylineSimplify.h; sourceTree = "<group>"; };
 		DD4FE4EE10C5307B00A11BE9 /* DanceSteps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanceSteps.h; sourceTree = "<group>"; };
 		DD4FE4EF10C5307B00A11BE9 /* DanceSteps.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DanceSteps.mm; sourceTree = "<group>"; };
 		DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DanceSteps.xib; sourceTree = "<group>"; };
+		DD5735B010CD2B4100B788BB /* TrackerObject.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackerObject.xib; sourceTree = "<group>"; };
+		DD5735B310CD2B5B00B788BB /* TrackerObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackerObject.h; sourceTree = "<group>"; };
+		DD5735B410CD2B5B00B788BB /* TrackerObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrackerObject.mm; sourceTree = "<group>"; };
 		DD6EA0CE1062C832001EC207 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		DD6EA1291062C880001EC207 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		DD7CC3BB1063C47100D3736A /* cv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cv.h; sourceTree = "<group>"; };
@@ -629,33 +638,6 @@
 			path = LensDistortion;
 			sourceTree = "<group>";
 		};
-		6EBB470E10C80352004F9A03 /* BlobTracker */ = {
-			isa = PBXGroup;
-			children = (
-				6EBB472110C80368004F9A03 /* BlobTrackerView */,
-				6EBB471010C80352004F9A03 /* BlobTracking.h */,
-				6EBB471110C80352004F9A03 /* BlobTracking.mm */,
-				6EBB471210C80352004F9A03 /* BlobTracking.xib */,
-				6EBB471310C80352004F9A03 /* contourNormals.cpp */,
-				6EBB471410C80352004F9A03 /* contourNormals.h */,
-				6EBB471510C80352004F9A03 /* contourSimplify.cpp */,
-				6EBB471610C80352004F9A03 /* contourSimplify.h */,
-				6EBB471710C80352004F9A03 /* convexHull.h */,
-				6EBB471810C80352004F9A03 /* polylineSimplify.h */,
-			);
-			path = BlobTracker;
-			sourceTree = "<group>";
-		};
-		6EBB472110C80368004F9A03 /* BlobTrackerView */ = {
-			isa = PBXGroup;
-			children = (
-				6EBB470F10C80352004F9A03 /* BlobTrackerView.xib */,
-				6EBB471910C80352004F9A03 /* TrackerView.mm */,
-				6EBB471A10C80352004F9A03 /* TrackerView.h */,
-			);
-			name = BlobTrackerView;
-			sourceTree = "<group>";
-		};
 		6EC1A49010C6A4D800738AA9 /* PluginUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,7 +720,6 @@
 			children = (
 				DD17DFCC10C6994D008B3E0A /* Cameras */,
 				6EBB46FB10C80317004F9A03 /* Lenses */,
-				6EBB470E10C80352004F9A03 /* BlobTracker */,
 			);
 			path = input;
 			sourceTree = "<group>";
@@ -833,6 +814,33 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		DD4AB76710CD20E900EA0F09 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
+				DD4AB77410CD219800EA0F09 /* BlobTracking */,
+				DD4AB76810CD210300EA0F09 /* Tracking.h */,
+				DD4AB76910CD210300EA0F09 /* Tracking.mm */,
+				DD4AB76D10CD213700EA0F09 /* Tracking.xib */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
+		DD4AB77410CD219800EA0F09 /* BlobTracking */ = {
+			isa = PBXGroup;
+			children = (
+				DD4AB77510CD219800EA0F09 /* BlobTracking.h */,
+				DD4AB77610CD219800EA0F09 /* BlobTracking.mm */,
+				DD4AB77710CD219800EA0F09 /* contourNormals.cpp */,
+				DD4AB77810CD219800EA0F09 /* contourNormals.h */,
+				DD4AB77910CD219800EA0F09 /* contourSimplify.cpp */,
+				DD4AB77A10CD219800EA0F09 /* contourSimplify.h */,
+				DD4AB77B10CD219800EA0F09 /* convexHull.h */,
+				DD4AB77C10CD219800EA0F09 /* polylineSimplify.h */,
+			);
+			path = BlobTracking;
+			sourceTree = "<group>";
+		};
 		DD4FE4ED10C5307B00A11BE9 /* DanceSteps */ = {
 			isa = PBXGroup;
 			children = (
@@ -841,6 +849,16 @@
 				DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */,
 			);
 			path = DanceSteps;
+			sourceTree = "<group>";
+		};
+		DD5735AF10CD2B2D00B788BB /* TrackerObject */ = {
+			isa = PBXGroup;
+			children = (
+				DD5735B010CD2B4100B788BB /* TrackerObject.xib */,
+				DD5735B310CD2B5B00B788BB /* TrackerObject.h */,
+				DD5735B410CD2B5B00B788BB /* TrackerObject.mm */,
+			);
+			name = TrackerObject;
 			sourceTree = "<group>";
 		};
 		DD7CC3AF1063C47100D3736A /* ofxOpenCv */ = {
@@ -1095,11 +1113,12 @@
 		DDC7776E10B70079009CAFC7 /* calculation */ = {
 			isa = PBXGroup;
 			children = (
+				DD4AB76710CD20E900EA0F09 /* Tracking */,
+				DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */,
 				DDDF8F3610B7581400CF73FD /* Warp.mm */,
 				DDDF8F3710B7581400CF73FD /* Warp.h */,
 				DDDF8F4510B758AB00CF73FD /* coordWarp.h */,
 				DDDF8F4610B758AB00CF73FD /* coordWarp.mm */,
-				DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */,
 			);
 			path = calculation;
 			sourceTree = "<group>";
@@ -1722,6 +1741,8 @@
 				6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */,
 				6EBB472810C80BEA004F9A03 /* Lenses.xib in Resources */,
 				6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */,
+				DD4AB76E10CD213700EA0F09 /* Tracking.xib in Resources */,
+				DD5735B110CD2B4100B788BB /* TrackerObject.xib in Resources */,
 				6E8D6EA110CD386700240809 /* chessboard.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1836,6 +1857,11 @@
 				6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */,
 				6EBB472610C80472004F9A03 /* Lenses.mm in Sources */,
 				DDC0C73D10C96BA500402218 /* videoplayerWrapper.cpp in Sources */,
+				DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */,
+				DD4AB77D10CD219800EA0F09 /* BlobTracking.mm in Sources */,
+				DD4AB77E10CD219800EA0F09 /* contourNormals.cpp in Sources */,
+				DD4AB77F10CD219800EA0F09 /* contourSimplify.cpp in Sources */,
+				DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

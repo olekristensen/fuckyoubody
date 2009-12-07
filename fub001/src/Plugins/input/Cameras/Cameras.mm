@@ -116,4 +116,14 @@
 	}
 }
 
+- (ofTexture*)getTexture:(int)cameraId{
+	return [[self getCameraWithId:cameraId] getTexture];
+}
+- (unsigned char*)getPixels:(int)cameraId{
+	return [[self getCameraWithId:cameraId] getPixels];	
+}
+- (BOOL) isFrameNew:(int)cameraId{
+	return [[self getCameraWithId:cameraId] isFrameNew];		
+}
+
 @end

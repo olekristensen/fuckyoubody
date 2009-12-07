@@ -61,14 +61,17 @@
 @property (readwrite) 	uint64_t camGUID;
 @property (readwrite) 	int camNumber;
 
-
--(ofTexture*) getTexture;
 -(float) framerate;
+-(ofTexture*) getTexture;
+-(unsigned char*) getPixels;
+-(BOOL) isFrameNew;
+
+
 -(void) setup:(int)camNumber withGUID:(uint64_t)camGUID;
 -(void) update;
 -(BOOL) loadNibFile;
 -(void) aWillTerminate:(NSNotification *)notification;
--(unsigned char*) getPixels;
+
 
 -(void) updateMovieList;
 -(void) loadMovie:(NSString*) name;
