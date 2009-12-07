@@ -56,6 +56,8 @@
 	IBOutlet NSButton * reset2;
 	IBOutlet NSButton * reset3;
 	
+	IBOutlet PDFView * checkerBoardPDFView;
+	
 	pthread_mutex_t mutex;
 	
 	ofxCvColorImage * originalImage[3];

@@ -16,6 +16,7 @@
 		6E79135310C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134D10C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff */; };
 		6E79135410C792B500C65590 /* PluginUISliderBackgroundRight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134E10C792B500C65590 /* PluginUISliderBackgroundRight.tiff */; };
 		6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6E79134F10C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff */; };
+		6E8D6EA110CD386700240809 /* chessboard.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6E8D6EA010CD386700240809 /* chessboard.pdf */; };
 		6E9A2A5C10CA102F0003A1B8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
@@ -181,6 +182,7 @@
 		6E79134D10C792B500C65590 /* PluginUISliderBackgroundLeftLight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundLeftLight.tiff; path = Resources/PluginUISliderBackgroundLeftLight.tiff; sourceTree = "<group>"; };
 		6E79134E10C792B500C65590 /* PluginUISliderBackgroundRight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundRight.tiff; path = Resources/PluginUISliderBackgroundRight.tiff; sourceTree = "<group>"; };
 		6E79134F10C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = PluginUISliderBackgroundRightLight.tiff; path = Resources/PluginUISliderBackgroundRightLight.tiff; sourceTree = "<group>"; };
+		6E8D6EA010CD386700240809 /* chessboard.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = chessboard.pdf; path = Resources/chessboard.pdf; sourceTree = "<group>"; };
 		6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
@@ -682,6 +684,7 @@
 		6ECEB54910C5D6C900B659F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6E8D6EA010CD386700240809 /* chessboard.pdf */,
 				6E79134A10C792B500C65590 /* PluginUISliderBackgroundFill.tiff */,
 				6E79134B10C792B500C65590 /* PluginUISliderBackgroundFillLight.tiff */,
 				6E79134C10C792B500C65590 /* PluginUISliderBackgroundLeft.tiff */,
@@ -1719,6 +1722,7 @@
 				6E79135510C792B500C65590 /* PluginUISliderBackgroundRightLight.tiff in Resources */,
 				6EBB472810C80BEA004F9A03 /* Lenses.xib in Resources */,
 				6EBB472E10C80DFB004F9A03 /* ToDo.rtf in Resources */,
+				6E8D6EA110CD386700240809 /* chessboard.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

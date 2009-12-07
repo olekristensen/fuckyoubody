@@ -26,6 +26,7 @@
 	int width, height;
 	BOOL camInited ;
 	BOOL bIsFrameNew;
+	uint64_t camGUID;
 	int camNumber;
 	
 	IBOutlet NSView * settingsView;
@@ -57,11 +58,13 @@
 @property (assign, readonly) int height;
 @property (assign, readonly) BOOL camInited;
 @property (assign, readonly) BOOL live;
+@property (readwrite) 	uint64_t camGUID;
 @property (readwrite) 	int camNumber;
+
 
 -(ofTexture*) getTexture;
 -(float) framerate;
--(void) setup:(int)camNumber;
+-(void) setup:(int)camNumber withGUID:(uint64_t)camGUID;
 -(void) update;
 -(BOOL) loadNibFile;
 -(void) aWillTerminate:(NSNotification *)notification;

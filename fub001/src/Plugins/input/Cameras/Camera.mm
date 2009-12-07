@@ -10,10 +10,10 @@
 
 
 @implementation Camera
-@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber ;
+@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber, camGUID ;
 
 
--(void) setup:(int)_camNumber{
+-(void) setup:(int)_camNumber withGUID:(uint64_t)camGUID{
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(aWillTerminate:)
 												 name:NSApplicationWillTerminateNotification object:nil];
@@ -35,7 +35,9 @@
 	live = YES;
 	loadMoviePlease  = NO;
 	
-	videoGrabber->setDeviceID(camNumber);	
+	if (camGUID != 0x0ll) {
+		videoGrabber->setDeviceID([[NSString stringWithFormat:@"%llx",camGUID] cString]);	
+	}
 	
 	camInited = videoGrabber->init(width, height, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
 	videoPlayer = new videoplayerWrapper();
@@ -63,6 +65,13 @@
 		//Set sliders
 		videoGrabber->getAllFeatureValues();
 		[guidTextField setStringValue:[NSString stringWithFormat:@"%llx",videoGrabber->cameraGUID]];
+
+		[guidTextField bind:@"value"
+				  toObject:[NSUserDefaultsController sharedUserDefaultsController]
+				withKeyPath:[NSString stringWithFormat:@"values.camera.%i.guid", camNumber+1]
+				   options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+													   forKey:@"NSContinuouslyUpdatesValue"]];
+		
 		for(int i=0;i<videoGrabber->availableFeatureAmount;i++){
 			if(videoGrabber->featureVals[i].feature == FEATURE_SHUTTER){
 				[shutterSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
@@ -85,7 +94,7 @@
 	}
 	
 	
-	if(![userDefaults boolForKey:[NSString stringWithFormat:@"camera%d.live",[self camNumber]]]){
+	if(![userDefaults boolForKey:[NSString stringWithFormat:@"camera.%i.live",[self camNumber]+1]]){
 		live = NO;
 		[movieSelector setEnabled:YES];
 		[recordButton setEnabled:NO];
@@ -252,7 +261,7 @@
 		default:
 			break;
 	}
-	[userDefaults setValue:[NSNumber numberWithBool:live] forKey:[NSString stringWithFormat:@"camera%d.live",camNumber]];
+	[userDefaults setValue:[NSNumber numberWithBool:live] forKey:[NSString stringWithFormat:@"camera.%i.live",camNumber+1]];
 }
 -(IBAction) setMovieFile:(id)sender{
 	loadMovieString = [NSString stringWithString:[sender titleOfSelectedItem]];

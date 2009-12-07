@@ -16,6 +16,16 @@
 	pthread_mutex_init(&mutex, NULL);
 	boxSize = [box1 frame].size;
 	
+	NSBundle *bundle = [NSBundle bundleForClass:[Lenses class]];
+	
+	NSURL * anUrl = [NSURL fileURLWithPath:[bundle pathForResource:@"chessboard" ofType:@"pdf"]];
+	
+	PDFDocument * aPdfDocument;
+	aPdfDocument = [[[PDFDocument alloc] initWithURL:anUrl ] retain];
+	
+	[checkerBoardPDFView setDocument:aPdfDocument];
+	
+	
 }
 
 -(void) setup{
@@ -326,38 +336,6 @@
 			[showCalibratedButton3 setState:NSOnState];
 	}
 }
-
--(IBAction) printChessboard:(id)sender{
-	
-	NSBundle *bundle = [NSBundle bundleForClass:[Lenses class]];
-	
-	NSURL * anUrl = [NSURL fileURLWithPath:[bundle pathForResource:@"chessboard" ofType:@"pdf"]];
-	
-	PDFDocument * aPdfDocument;
-	aPdfDocument = [[[PDFDocument alloc] initWithURL:anUrl ] autorelease];
-	
-	PDFView * aPdfView = [[PDFView alloc] init];
-	[aPdfView setDocument:aPdfDocument];
-	[aPdfView print:sender];
-	
-}
-
-
-- (void)printDocument:(id)sender {
-	// Assume documentView returns the custom view to be printed
-	
-}
-
-- (void)printOperationDidRun:(NSPrintOperation *)printOperation
-					 success:(BOOL)success
-				 contextInfo:(void *)info {
-	if (success) {
-		// Can save updated NSPrintInfo, but only if you have
-		// a specific reason for doing so
-		// [self setPrintInfo: [printOperation printInfo]];
-	}
-}
-
 
 -(IBAction) reset:(id)sender{
 	int cameraId = -1;

@@ -17,21 +17,6 @@
 	width = 0;
 	height = 0;
 	
-	/** create and destroy to reset the bus
-	
-	Libdc1394Grabber * videoGrabber = new Libdc1394Grabber;
-	videoGrabber->setFormat7(VID_FORMAT7_1);
-	videoGrabber->listDevices();
-	videoGrabber->setDiscardFrames(true);
-	videoGrabber->set1394bMode(true);
-	
-	videoGrabber->init(640, 480, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
-
-	videoGrabber->close();
-	delete videoGrabber;
-		
-	 **/
-	 
 	for(int i=0;i<3;i++){
 		cam[i] = [[Camera alloc] init];	
 		[cam[i] loadNibFile];
@@ -51,11 +36,47 @@
 
 
 -(void) setup{
-	for(int i=0;i<3;i++){
-		[cam[i] setup:i];
+	
+	NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+	
+	uint64_t guidVal[3];
+	
+	for (int i=0; i<3; i++) {
+		guidVal[i] = 0x0ll;
 	}
+	
+	if ([userDefaults stringForKey:@"camera.1.guid"] != nil) {
+		sscanf([[userDefaults stringForKey:@"camera.1.guid"] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &guidVal[0]);
+	}
+	
+	if ([userDefaults stringForKey:@"camera.2.guid"] != nil) {
+		sscanf([[userDefaults stringForKey:@"camera.2.guid"] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &guidVal[1]);
+	}
+	
+	if ([userDefaults stringForKey:@"camera.3.guid"] != nil) {
+		sscanf([[userDefaults stringForKey:@"camera.3.guid"] cStringUsingEncoding:NSUTF8StringEncoding], "%llx", &guidVal[2]);
+	}
+	
+
+	// first setup the cams with a guid
+	for(int i=0;i<3;i++){
+		if (guidVal[i] != 0x0ll) {
+			[cam[i] setup:i withGUID:guidVal[i]];
+		}
+	}
+
+	// then setup the cams without a guid
+	for(int i=0;i<3;i++){
+		if (guidVal[i] == 0x0ll) {
+			[cam[i] setup:i withGUID:guidVal[i]];
+		}
+	}
+	
 	width = [cam[1] width];
 	height = [cam[1] height];
+	
+	[userDefaults release];
+
 }
 
 -(void) update:(const CVTimeStamp *)outputTime{
