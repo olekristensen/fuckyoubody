@@ -129,7 +129,6 @@
 			}			
 			tex->loadData(pixels, videoPlayer->videoPlayer.width, videoPlayer->videoPlayer.height, GL_LUMINANCE);
 		}
-		
 	}
 }
 

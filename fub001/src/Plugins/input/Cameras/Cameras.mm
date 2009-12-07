@@ -17,6 +17,21 @@
 	width = 0;
 	height = 0;
 	
+	/** create and destroy to reset the bus
+	
+	Libdc1394Grabber * videoGrabber = new Libdc1394Grabber;
+	videoGrabber->setFormat7(VID_FORMAT7_1);
+	videoGrabber->listDevices();
+	videoGrabber->setDiscardFrames(true);
+	videoGrabber->set1394bMode(true);
+	
+	videoGrabber->init(640, 480, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
+
+	videoGrabber->close();
+	delete videoGrabber;
+		
+	 **/
+	 
 	for(int i=0;i<3;i++){
 		cam[i] = [[Camera alloc] init];	
 		[cam[i] loadNibFile];
