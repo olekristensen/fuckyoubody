@@ -361,7 +361,7 @@
 		
 		NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Do you want to reset the Lens Calibration?", @"Title of alert panel which comes up when user chooses Quit")];
 		choice = NSRunAlertPanel(title, 
-								 NSLocalizedString(@"Resetting is not undoable\nIf you reset the calibration you have to do the Chessboard dance again.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents."), 
+								 NSLocalizedString(@"Resetting is not undoable\n\nIf you reset the calibration you will have to do the Chessboard Dance again.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents."), 
 								 NSLocalizedString(@"Reset", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
 								 NSLocalizedString(@"Cancel", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),     // ellipses
 								 nil);

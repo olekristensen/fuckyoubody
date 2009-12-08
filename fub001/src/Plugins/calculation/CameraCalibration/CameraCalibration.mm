@@ -202,11 +202,21 @@
 
 
 -(void) reset{
-	calibHandles[0] = new ofxPoint2f(0.0,0.0);
-	calibHandles[1] = new ofxPoint2f(1,0);
-	calibHandles[2] = new ofxPoint2f(1,1);
-	calibHandles[3] = new ofxPoint2f(0,1);
-	[self recalculate];
+	int choice = NSAlertDefaultReturn;
+	NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Do you want to reset the Calibration?", @"Title of alert panel which comes up when user chooses Quit")];
+	choice = NSRunAlertPanel(title, 
+							 NSLocalizedString(@"Resetting is not undoable\n\nIf you reset the calibration you will have to put four suitable calibration objects on the stage floor again.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents."), 
+							 NSLocalizedString(@"Reset", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
+							 NSLocalizedString(@"Cancel", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),     // ellipses
+							 nil);
+	
+	if (choice == NSAlertDefaultReturn){           /* Cancel */
+		calibHandles[0] = new ofxPoint2f(0.0,0.0);
+		calibHandles[1] = new ofxPoint2f(1,0);
+		calibHandles[2] = new ofxPoint2f(1,1);
+		calibHandles[3] = new ofxPoint2f(0,1);
+		[self recalculate];
+	}
 }
 
 @end
