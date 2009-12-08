@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="70"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -58,24 +58,24 @@
 							<object class="NSCustomView" id="244948088">
 								<reference key="NSNextResponder" ref="635092164"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{0, 200}, {1064, 200}}</string>
+								<string key="NSFrame">{{0, 210}, {1064, 200}}</string>
 								<reference key="NSSuperview" ref="635092164"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 							<object class="NSCustomView" id="192315281">
 								<reference key="NSNextResponder" ref="635092164"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{0, 400}, {1064, 200}}</string>
+								<string key="NSFrame">{{0, 420}, {1064, 200}}</string>
 								<reference key="NSSuperview" ref="635092164"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 						</object>
-						<string key="NSFrameSize">{1064, 600}</string>
+						<string key="NSFrame">{{10, 6}, {1064, 620}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<string key="NSClassName">PluginOpenGLControlView</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{1064, 600}</string>
+				<string key="NSFrameSize">{1074, 636}</string>
 				<reference key="NSSuperview"/>
 				<string key="NSClassName">ofPlugin</string>
 			</object>
@@ -166,14 +166,17 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="192315281"/>
-							<reference ref="244948088"/>
 							<reference ref="510009362"/>
+							<reference ref="244948088"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">69</int>
 						<reference key="object" ref="192315281"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="635092164"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -212,7 +215,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
-					<string>{{315, -30}, {1064, 600}}</string>
+					<string>{{402, 267}, {1074, 636}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -275,7 +278,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">74</int>
+			<int key="maxID">79</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

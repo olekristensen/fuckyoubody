@@ -52,7 +52,7 @@
 		glPushMatrix();{
 			[tracker[i] controlDraw];
 		}glPopMatrix();
-		glTranslated(0, h, 0);
+		glTranslated(0, h+10, 0);
 	}
 	glPopMatrix();
 }

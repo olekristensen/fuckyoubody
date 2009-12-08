@@ -21,7 +21,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
+			<integer value="3"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -63,6 +63,15 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{19, 47}, {58, 14}}</string>
 								<reference key="NSSuperview" ref="254017019"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<object class="NSColor" key="NSShadowColor" id="368896709">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MAA</bytes>
+									</object>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="959482578">
 									<int key="NSCellFlags">68288064</int>
@@ -87,10 +96,7 @@
 										<int key="NSColorSpace">6</int>
 										<string key="NSCatalogName">System</string>
 										<string key="NSColorName">controlTextColor</string>
-										<object class="NSColor" key="NSColor">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MAA</bytes>
-										</object>
+										<reference key="NSColor" ref="368896709"/>
 									</object>
 								</object>
 							</object>
@@ -121,6 +127,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{19, 15}, {84, 14}}</string>
 								<reference key="NSSuperview" ref="254017019"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="328193306">
 									<int key="NSCellFlags">68288064</int>
@@ -159,6 +171,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{19, 79}, {58, 14}}</string>
 								<reference key="NSSuperview" ref="254017019"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="58251352">
 									<int key="NSCellFlags">68288064</int>
@@ -197,6 +215,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{6, 180}, {68, 14}}</string>
 								<reference key="NSSuperview" ref="254017019"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="132167741">
 									<int key="NSCellFlags">68288064</int>
@@ -227,6 +251,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{19, 54}, {58, 14}}</string>
 								<reference key="NSSuperview" ref="306380948"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="1040523420">
 									<int key="NSCellFlags">68288064</int>
@@ -285,6 +315,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{6, 180}, {68, 14}}</string>
 								<reference key="NSSuperview" ref="306380948"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="749664233">
 									<int key="NSCellFlags">68288064</int>
@@ -311,6 +347,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{6, 180}, {56, 14}}</string>
 								<reference key="NSSuperview" ref="556805971"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="786507401">
 									<int key="NSCellFlags">68288064</int>
@@ -337,6 +379,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{7, 157}, {63, 18}}</string>
 								<reference key="NSSuperview" ref="755065694"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentCheckboxCell" key="NSCell" id="809559508">
 									<int key="NSCellFlags">-2080244224</int>
@@ -355,7 +403,7 @@
 											</object>
 											<object class="NSMutableArray" key="dict.values">
 												<bool key="EncodedWithXMLCoder">YES</bool>
-												<object class="NSColor">
+												<object class="NSColor" id="818260862">
 													<int key="NSColorSpace">3</int>
 													<bytes key="NSWhite">MQA</bytes>
 												</object>
@@ -392,6 +440,12 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{6, 180}, {56, 14}}</string>
 								<reference key="NSSuperview" ref="755065694"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="368896709"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
 								<object class="BWTransparentTextFieldCell" key="NSCell" id="675737669">
 									<int key="NSCellFlags">68288064</int>
@@ -407,6 +461,47 @@
 						<string key="NSFrameSize">{266, 200}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<string key="NSClassName">NSView</string>
+					</object>
+					<object class="NSBox" id="841945168">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">12</int>
+						<object class="NSMutableArray" key="NSSubviews">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="NSView" id="952380669">
+								<reference key="NSNextResponder" ref="841945168"/>
+								<int key="NSvFlags">256</int>
+								<string key="NSFrame">{{1, 1}, {1062, 198}}</string>
+								<reference key="NSSuperview" ref="841945168"/>
+							</object>
+						</object>
+						<string key="NSFrameSize">{1064, 200}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<string key="NSOffsets">{0, 0}</string>
+						<object class="NSTextFieldCell" key="NSTitleCell">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents">Box</string>
+							<reference key="NSSupport" ref="26"/>
+							<object class="NSColor" key="NSBackgroundColor">
+								<int key="NSColorSpace">6</int>
+								<string key="NSCatalogName">System</string>
+								<string key="NSColorName">textBackgroundColor</string>
+								<reference key="NSColor" ref="818260862"/>
+							</object>
+							<object class="NSColor" key="NSTextColor">
+								<int key="NSColorSpace">3</int>
+								<bytes key="NSWhite">MCAwLjgwMDAwMDAxMTkAA</bytes>
+							</object>
+						</object>
+						<reference key="NSContentView" ref="952380669"/>
+						<int key="NSBorderType">1</int>
+						<int key="NSBoxType">4</int>
+						<int key="NSTitlePosition">0</int>
+						<bool key="NSTransparent">NO</bool>
+						<object class="NSColor" key="NSBorderColor2">
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MAA</bytes>
+						</object>
 					</object>
 				</object>
 				<string key="NSFrameSize">{1068, 200}</string>
@@ -506,22 +601,13 @@
 						<reference key="object" ref="1005"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="755065694"/>
 							<reference ref="306380948"/>
 							<reference ref="254017019"/>
 							<reference ref="556805971"/>
+							<reference ref="755065694"/>
+							<reference ref="841945168"/>
 						</object>
 						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">2</int>
-						<reference key="object" ref="755065694"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="141384841"/>
-							<reference ref="738486238"/>
-						</object>
-						<reference key="parent" ref="1005"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
@@ -562,20 +648,6 @@
 						<int key="objectID">7</int>
 						<reference key="object" ref="568007442"/>
 						<reference key="parent" ref="183642210"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="141384841"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="675737669"/>
-						</object>
-						<reference key="parent" ref="755065694"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="675737669"/>
-						<reference key="parent" ref="141384841"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
@@ -656,20 +728,6 @@
 						<int key="objectID">37</int>
 						<reference key="object" ref="786507401"/>
 						<reference key="parent" ref="814149602"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">38</int>
-						<reference key="object" ref="738486238"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="809559508"/>
-						</object>
-						<reference key="parent" ref="755065694"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">39</int>
-						<reference key="object" ref="809559508"/>
-						<reference key="parent" ref="738486238"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">20</int>
@@ -755,6 +813,49 @@
 						<reference key="object" ref="959482578"/>
 						<reference key="parent" ref="618044444"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">2</int>
+						<reference key="object" ref="755065694"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="738486238"/>
+							<reference ref="141384841"/>
+						</object>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">38</int>
+						<reference key="object" ref="738486238"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="809559508"/>
+						</object>
+						<reference key="parent" ref="755065694"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">39</int>
+						<reference key="object" ref="809559508"/>
+						<reference key="parent" ref="738486238"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">8</int>
+						<reference key="object" ref="141384841"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="675737669"/>
+						</object>
+						<reference key="parent" ref="755065694"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">9</int>
+						<reference key="object" ref="675737669"/>
+						<reference key="parent" ref="141384841"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">62</int>
+						<reference key="object" ref="841945168"/>
+						<reference key="parent" ref="1005"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -767,45 +868,85 @@
 					<string>1.editorWindowContentRectSynchronizationRect</string>
 					<string>11.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
+					<string>12.IBViewIntegration.shadowBlurRadius</string>
 					<string>15.IBPluginDependency</string>
 					<string>16.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
+					<string>18.IBViewIntegration.shadowBlurRadius</string>
 					<string>19.IBPluginDependency</string>
 					<string>2.IBPluginDependency</string>
 					<string>20.IBPluginDependency</string>
 					<string>21.IBPluginDependency</string>
+					<string>21.IBViewIntegration.shadowBlurRadius</string>
 					<string>22.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
 					<string>35.IBPluginDependency</string>
 					<string>36.IBPluginDependency</string>
+					<string>36.IBViewIntegration.shadowBlurRadius</string>
 					<string>37.IBPluginDependency</string>
 					<string>38.IBPluginDependency</string>
+					<string>38.IBViewIntegration.shadowBlurRadius</string>
 					<string>39.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
+					<string>5.IBViewIntegration.shadowBlurRadius</string>
 					<string>50.IBPluginDependency</string>
 					<string>51.IBPluginDependency</string>
+					<string>51.IBViewIntegration.shadowBlurRadius</string>
 					<string>52.IBPluginDependency</string>
 					<string>53.IBPluginDependency</string>
+					<string>53.IBViewIntegration.shadowBlurRadius</string>
 					<string>54.IBPluginDependency</string>
 					<string>55.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
 					<string>57.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
+					<string>62.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
+					<string>8.IBViewIntegration.shadowBlurRadius</string>
 					<string>9.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{318, 85}, {1068, 200}}</string>
+					<string>{{381, 354}, {1068, 200}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -814,27 +955,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
 					<string>com.brandonwalkin.BWToolkit</string>
 				</object>
 			</object>
@@ -854,7 +975,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">62</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1005,6 +1126,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBFrameworkSource</string>
 						<string key="minorKey">BWToolkitFramework.framework/Headers/NSApplication+BWAdditions.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">NSBox</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBFrameworkSource</string>
+						<string key="minorKey">AppKit.framework/Headers/NSBox.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
