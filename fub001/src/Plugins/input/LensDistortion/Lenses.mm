@@ -113,13 +113,11 @@
 				if (!hasUndistortedImage[i]) {
 					pthread_mutex_lock(&mutex);
 					cvCvtColor( originalImage[i]->getCvImage(), undistortedImage[i]->getCvImage(), CV_RGB2GRAY );
-					pthread_mutex_unlock(&mutex);
 					undistortedImage[i]->flagImageChanged();
 					undistortedImage[i]->undistort( cameraCalibrator[i]->distortionCoeffs[0], cameraCalibrator[i]->distortionCoeffs[1],
 												   cameraCalibrator[i]->distortionCoeffs[2], cameraCalibrator[i]->distortionCoeffs[3],
 												   cameraCalibrator[i]->camIntrinsics[0], cameraCalibrator[i]->camIntrinsics[4],
 												   cameraCalibrator[i]->camIntrinsics[2], cameraCalibrator[i]->camIntrinsics[5] );   
-					pthread_mutex_lock(&mutex);
 					hasUndistortedImage[i] = YES;
 					pthread_mutex_unlock(&mutex);
 				}
@@ -402,13 +400,11 @@
 	if (!hasUndistortedImage[i]) {
 		pthread_mutex_lock(&mutex);
 		cvCvtColor( originalImage[i]->getCvImage(), undistortedImage[i]->getCvImage(), CV_RGB2GRAY );
-		pthread_mutex_unlock(&mutex);
 		undistortedImage[i]->flagImageChanged();
 		undistortedImage[i]->undistort( cameraCalibrator[i]->distortionCoeffs[0], cameraCalibrator[i]->distortionCoeffs[1],
 									   cameraCalibrator[i]->distortionCoeffs[2], cameraCalibrator[i]->distortionCoeffs[3],
 									   cameraCalibrator[i]->camIntrinsics[0], cameraCalibrator[i]->camIntrinsics[4],
 									   cameraCalibrator[i]->camIntrinsics[2], cameraCalibrator[i]->camIntrinsics[5] );   
-		pthread_mutex_lock(&mutex);
 		hasUndistortedImage[i] = YES;
 		pthread_mutex_unlock(&mutex);
 	}
