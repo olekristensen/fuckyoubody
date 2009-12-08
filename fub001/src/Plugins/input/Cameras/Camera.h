@@ -22,9 +22,11 @@
 	ofTexture * tex;
 	unsigned char* pixels;
 
-
 	int width, height;
-	BOOL camInited ;
+	BOOL camInited;
+	BOOL camIsIniting;
+	BOOL camWasInited;
+	BOOL isClosing;
 	BOOL bIsFrameNew;
 	uint64_t camGUID;
 	int camNumber;

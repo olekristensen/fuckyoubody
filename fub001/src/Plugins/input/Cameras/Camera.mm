@@ -8,12 +8,29 @@
 
 #import "Camera.h"
 
+@interface Camera (InternalMethods)
+
+- (void)videoGrabberInit;
+- (void)videoGrabberRespawn;
+
+@end
+
+static float aCameraWillRespawnAt = -1;
+static BOOL camerasRespawning[3];
 
 @implementation Camera
 @synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber, camGUID ;
 
++ (float)aCameraWillRespawnAt { return aCameraWillRespawnAt; }
++ (BOOL)aCameraIsRespawning { return (camerasRespawning[0] || camerasRespawning[1] || camerasRespawning[2]); }
++ (BOOL)allCamerasAreRespawning { return (camerasRespawning[0] && camerasRespawning[1] && camerasRespawning[2]); }
++ (BOOL)thisCameraIsRespawning { return (camerasRespawning[camNumber]); }
++ (float)setCamera:(int)respawningCameraNumber willRespawningAt:(float)timeStamp  { aCameraWillRespawnAt = timeStamp; camerasRespawning[respawningCameraNumber] = YES; }
++ (float)setCamera:(int)respawningCameraNumber isRespawning:(BOOL)isRespawning  { camerasRespawning[respawningCameraNumber] = isRespawning; }
 
--(void) setup:(int)_camNumber withGUID:(uint64_t)camGUID{
+
+
+-(void) setup:(int)_camNumber withGUID:(uint64_t)_camGUID{
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(aWillTerminate:)
 												 name:NSApplicationWillTerminateNotification object:nil];
@@ -22,24 +39,20 @@
 	//	width = 1280/2;
 	//	height = 960/2;
 	
+	for (int i = 0; i < 3; i++) {
+		camerasRespawning[i] = NO;
+	}
+	
 	width = 640;
 	height = 480;
 	camNumber = _camNumber;
+	camGUID = _camGUID;
 	myframes = 0;
-	ofSetLogLevel(OF_LOG_NOTICE);
-	videoGrabber = new Libdc1394Grabber;
-	videoGrabber->setFormat7(VID_FORMAT7_1);
-	videoGrabber->listDevices();
-	videoGrabber->setDiscardFrames(true);
-	videoGrabber->set1394bMode(true);
 	live = YES;
 	loadMoviePlease  = NO;
+	camIsIniting = YES;
+	isClosing = NO;
 	
-	if (camGUID != 0x0ll) {
-		videoGrabber->setDeviceID([[NSString stringWithFormat:@"%llx",camGUID] cString]);	
-	}
-	
-	camInited = videoGrabber->init(width, height, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
 	videoPlayer = new videoplayerWrapper();
 	videoPlayer->videoPlayer.setUseTexture(false);
 	
@@ -54,46 +67,6 @@
 	tex->loadData(pixels, width, height, GL_LUMINANCE);	
 	pthread_mutex_init(&mutex, NULL);
 	
-	if(camInited){		
-		//Set all on manual
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_SHUTTER);
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_EXPOSURE);		
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAIN);		
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAMMA);				
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_BRIGHTNESS);		
-		
-		//Set sliders
-		videoGrabber->getAllFeatureValues();
-		[guidTextField setStringValue:[NSString stringWithFormat:@"%llx",videoGrabber->cameraGUID]];
-
-		[guidTextField bind:@"value"
-				  toObject:[NSUserDefaultsController sharedUserDefaultsController]
-				withKeyPath:[NSString stringWithFormat:@"values.camera.%i.guid", camNumber+1]
-				   options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
-													   forKey:@"NSContinuouslyUpdatesValue"]];
-		
-		for(int i=0;i<videoGrabber->availableFeatureAmount;i++){
-			if(videoGrabber->featureVals[i].feature == FEATURE_SHUTTER){
-				[shutterSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
-			}
-			if(videoGrabber->featureVals[i].feature == FEATURE_EXPOSURE){
-				[exposureSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
-			}
-			if(videoGrabber->featureVals[i].feature == FEATURE_GAIN){
-				[gainSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
-			}
-			if(videoGrabber->featureVals[i].feature == FEATURE_GAMMA){
-				[gammaSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
-			}
-			if(videoGrabber->featureVals[i].feature == FEATURE_BRIGHTNESS){
-				[brightnessSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
-			}
-			
-		}
-		
-	}
-	
-	
 	if(![userDefaults boolForKey:[NSString stringWithFormat:@"camera.%i.live",[self camNumber]+1]]){
 		live = NO;
 		[movieSelector setEnabled:YES];
@@ -101,6 +74,8 @@
 		[sourceSelector setSelectedSegment:1];
 		[self updateMovieList];
 	}
+	
+	[self videoGrabberInit];
 	
 	
 }
@@ -123,10 +98,26 @@
 					frameRate = 0.5f * frameRate + 0.5f * myfps;
 				}
 				myframes++;
+			} else if ((ofGetElapsedTimef()-mytimeThen) > 1.0f) {
+				NSLog(@"Camera %i was TOO LATE",camNumber);
+				frameRate = 0;
+				[self videoGrabberRespawn];
+			} 
+			if ([Camera thisCameraIsRespawning]) {
+				frameRate = 0;
+				mytimeThen = ofGetElapsedTimef() + 5.0f;
+				[self videoGrabberRespawn];
 			}
+			if([Camera allCamerasAreRespawning]){
+				frameRate = 0;
+				aCameraWillRespawnAt = ofGetElapsedTimef() + 5.0f;
+			}
+		} else if (camWasInited && ofGetElapsedTimef()-mytimeThen > 0.1f) {
+			frameRate = 0;
+			mytimeThen=ofGetElapsedTimef();
+			[self videoGrabberRespawn];
 		}
-	}
-	else {
+	} else {
 		if(loadMoviePlease){
 			[self loadMovie:loadMovieString];
 			loadMoviePlease = NO;
@@ -283,5 +274,108 @@
 -(float) framerate{
 	return frameRate;	
 }
+
+-(void) videoGrabberInit{
+	
+	camIsIniting = YES;
+	isClosing = NO;
+
+	ofSetLogLevel(OF_LOG_ERROR);
+	videoGrabber = new Libdc1394Grabber;
+	videoGrabber->setFormat7(VID_FORMAT7_1);
+	videoGrabber->listDevices();
+	videoGrabber->setDiscardFrames(true);
+	videoGrabber->set1394bMode(true);
+	
+	if (camGUID != 0x0ll) {
+		videoGrabber->setDeviceID([[NSString stringWithFormat:@"%llx",camGUID] cString]);	
+	}
+	
+	camInited = videoGrabber->init(width, height, VID_FORMAT_Y8, VID_FORMAT_GREYSCALE, 50, true);
+	
+	if(camInited)
+		camWasInited = camInited;
+	
+	if(camInited){		
+		//Set all on manual
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_SHUTTER);
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_EXPOSURE);		
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAIN);		
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAMMA);				
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_BRIGHTNESS);		
+		
+		//Set sliders
+		videoGrabber->getAllFeatureValues();
+		
+		[guidTextField setStringValue:[NSString stringWithFormat:@"%llx",videoGrabber->cameraGUID]];
+		
+		[guidTextField bind:@"value"
+				   toObject:[NSUserDefaultsController sharedUserDefaultsController]
+				withKeyPath:[NSString stringWithFormat:@"values.camera.%i.guid", camNumber+1]
+					options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+														forKey:@"NSContinuouslyUpdatesValue"]];
+		
+		
+		for(int i=0;i<videoGrabber->availableFeatureAmount;i++){
+			if(videoGrabber->featureVals[i].feature == FEATURE_SHUTTER){
+				[shutterSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+			}
+			if(videoGrabber->featureVals[i].feature == FEATURE_EXPOSURE){
+				[exposureSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+			}
+			if(videoGrabber->featureVals[i].feature == FEATURE_GAIN){
+				[gainSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+			}
+			if(videoGrabber->featureVals[i].feature == FEATURE_GAMMA){
+				[gammaSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+			}
+			if(videoGrabber->featureVals[i].feature == FEATURE_BRIGHTNESS){
+				[brightnessSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+			}
+			
+		}
+	}
+	
+	camIsIniting = NO;
+	
+}
+
+-(void) videoGrabberRespawn{
+	if(![Camera aCameraIsRespawning]){
+		[Camera setCamera:camNumber willRespawningAt:ofGetElapsedTimef()+0.5f];
+		NSLog(@"0: CAMERA %i triggered respawn", camNumber);
+	}
+	
+	[Camera setCamera:camNumber isRespawning:YES];
+
+	NSLog(@"1: CAMERA %i respawn called", camNumber);
+
+	camInited = NO;
+	
+	if(ofGetElapsedTimef() - [Camera aCameraWillRespawnAt] > 0 && [Camera aCameraIsRespawning]){
+		NSLog(@"2: CAMERA %i time for respawn", camNumber);
+		if(!camIsIniting){
+
+			pthread_mutex_lock(&mutex);
+			
+			NSLog(@"3: CAMERA %i got lock", camNumber);
+			
+			if (!isClosing && !camIsIniting && videoGrabber != NULL) {
+				isClosing = YES;
+				NSLog(@"3: CAMERA %i deletes", camNumber);
+				delete videoGrabber;
+				videoGrabber = NULL;
+			} else {
+				camIsIniting = YES;
+				NSLog(@"3: CAMERA %i initialises", camNumber);
+				[self videoGrabberInit];
+				[Camera setCamera:camNumber isRespawning:NO];
+			}
+			pthread_mutex_unlock(&mutex);
+		}
+	}
+}
+
+
 
 @end

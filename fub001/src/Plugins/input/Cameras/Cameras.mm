@@ -84,16 +84,16 @@
 		[cam[i] update];
 		if(i==0){
 			[[controller cameraFps1] setFloatValue:[cam[i] framerate]];
-			[[controller cameraStatus1] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] > 0.0) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+			[[controller cameraStatus1] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
 		}
 		if(i==1){
 			[[controller cameraFps2] setFloatValue:[cam[i] framerate]];
-			[[controller cameraStatus2] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] > 0.0) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+			[[controller cameraStatus2] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
 		}
 		if(i==2){
 			[[controller cameraFps3] setFloatValue:[cam[i] framerate]];
-			[[controller cameraStatus3] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] > 0.0) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
-		}	
+			[[controller cameraStatus3] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+		}
 	}
 }
 

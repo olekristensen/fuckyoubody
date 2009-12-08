@@ -64,8 +64,8 @@
 		glPopMatrix();
 		
 	} else {
-		//		float framesPerSecond = (outputTime->rateScalar * (double)outputTime->videoTimeScale / (double)outputTime->videoRefreshPeriod);
-		float deltaTime = 1.0 / ofGetFrameRate();
+		double framesPerSecond = (outputTime->rateScalar * (double)outputTime->videoTimeScale / (double)outputTime->videoRefreshPeriod);
+		double deltaTime = 1.0 / framesPerSecond;
 		t += deltaTime*[speed floatValue];
 		//		cout<<t<<endl;
 		glTranslated(t, 0, 0);
