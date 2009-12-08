@@ -18,9 +18,6 @@
 	ofBaseApp * baseApp;
 	ofAppBaseWindow * cocoaWindow;
 
-@public
-	IBOutlet BWInsetTextField * statusTextField;
-
 }
 
 -(void) setupPlugins;

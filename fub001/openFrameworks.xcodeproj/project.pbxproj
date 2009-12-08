@@ -77,6 +77,7 @@
 		DD7CC4091063C47100D3736A /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3ED1063C47100D3736A /* ofxCvShortImage.cpp */; };
 		DD7CC4BE1063CE9100D3736A /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC4B81063CE9100D3736A /* ofxThread.cpp */; };
 		DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD89999610C3ECC40051758B /* PluginOutputView.mm */; };
+		DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA5AEA210CE8C56005B53C6 /* CameraCalibration.mm */; };
 		DDA6212C10B1618A009C8BDB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211910B1618A009C8BDB /* main.mm */; };
 		DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211C10B1618A009C8BDB /* PluginListView.mm */; };
 		DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */; };
@@ -315,6 +316,8 @@
 		DD7CC4B91063CE9100D3736A /* ofxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxThread.h; sourceTree = "<group>"; };
 		DD89999510C3ECC40051758B /* PluginOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginOutputView.h; path = PluginManager/PluginOutputView.h; sourceTree = "<group>"; };
 		DD89999610C3ECC40051758B /* PluginOutputView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PluginOutputView.mm; path = PluginManager/PluginOutputView.mm; sourceTree = "<group>"; };
+		DDA5AEA210CE8C56005B53C6 /* CameraCalibration.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraCalibration.mm; sourceTree = "<group>"; };
+		DDA5AEA310CE8C56005B53C6 /* CameraCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraCalibration.h; sourceTree = "<group>"; };
 		DDA6211910B1618A009C8BDB /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		DDA6211B10B1618A009C8BDB /* PluginListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginListView.h; sourceTree = "<group>"; };
 		DDA6211C10B1618A009C8BDB /* PluginListView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginListView.mm; sourceTree = "<group>"; };
@@ -974,6 +977,15 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		DDA5AE8E10CE8850005B53C6 /* CameraCalibration */ = {
+			isa = PBXGroup;
+			children = (
+				DDA5AEA210CE8C56005B53C6 /* CameraCalibration.mm */,
+				DDA5AEA310CE8C56005B53C6 /* CameraCalibration.h */,
+			);
+			path = CameraCalibration;
+			sourceTree = "<group>";
+		};
 		DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */ = {
 			isa = PBXGroup;
 			children = (
@@ -1115,6 +1127,7 @@
 		DDC7776E10B70079009CAFC7 /* calculation */ = {
 			isa = PBXGroup;
 			children = (
+				DDA5AE8E10CE8850005B53C6 /* CameraCalibration */,
 				DD4AB76710CD20E900EA0F09 /* Tracking */,
 				DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */,
 				DDDF8F3610B7581400CF73FD /* Warp.mm */,
@@ -1866,6 +1879,7 @@
 				DD4AB77E10CD219800EA0F09 /* contourNormals.cpp in Sources */,
 				DD4AB77F10CD219800EA0F09 /* contourSimplify.cpp in Sources */,
 				DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */,
+				DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
