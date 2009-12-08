@@ -376,15 +376,15 @@
 }
 
 -(ofxPoint2f) undistortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId{
-	if (cameraId <= 2 && 0 >= cameraId) {
-		ofxPoint2f p = cameraCalibrator[cameraId]->undistortPoint(point.x*cwidth, point.y*cheight);
+	if (cameraId <= 2 && 0 <= cameraId) {
+		ofxPoint2f p = cameraCalibrator[cameraId]->undistortPoint(point.x, point.y);
 		return p;
 	}
 }
 
 -(ofxPoint2f) distortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId{
-	if (cameraId <= 2 && 0 >= cameraId) {
-		ofxPoint2f p = cameraCalibrator[cameraId]->distortPoint(point.x*cwidth, point.y*cheight);
+	if (cameraId <= 2 && 0 <= cameraId) {
+		ofxPoint2f p = cameraCalibrator[cameraId]->distortPoint(point.x, point.y);
 		return p;
 	}
 }

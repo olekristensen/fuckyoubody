@@ -8,6 +8,7 @@
 
 #import "TrackerObject.h"
 #include "Cameras.h"
+#include "Lenses.h"
 /*
  unsigned long int PersistentBlob::idCounter = 0;
  
@@ -63,6 +64,7 @@
 //--------------------
 
 @implementation Blob
+@synthesize cameraId;
 
 -(id)initWithBlob:(ofxCvBlob*)_blob{
 	if([super init]){
@@ -89,15 +91,11 @@
 	blob->centroid.y /= (float)h;
 }
 -(void) lensCorrect{
-	/*
-	
+	Lenses * lenses = GetPlugin(Lenses);
 	for(int i=0;i<blob->nPts;i++){
-		blob->pts[i].x /= (float)w;
-		blob->pts[i].y /= (float)h;
+		blob->pts[i] = [lenses undistortPoint:(ofxPoint2f)blob->pts[i] fromCameraId:cameraId];
 	}
-	blob->area /= (float)w*h;
-	blob->centroid.x /=(float) w;
-	blob->centroid.y /= (float)h;*/
+	blob->centroid = [lenses undistortPoint:blob->centroid fromCameraId:cameraId];
 	
 }
 
@@ -334,6 +332,8 @@
 		for(int i=0;i<contourFinder->nBlobs;i++){
 			ofxCvBlob * blob = &contourFinder->blobs[i];
 			Blob * blobObj = [[Blob alloc] initWithBlob:blob] ;
+			[blobObj setCameraId:trackerNumber];
+			[blobObj lensCorrect];
 			[blobObj normalize:cw height:ch];
 			[blobs addObject:blobObj];
 			

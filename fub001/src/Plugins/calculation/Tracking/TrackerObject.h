@@ -37,10 +37,10 @@
 
 @interface Blob : NSObject
 {
-	
+	int cameraId;
 	ofxCvBlob * blob;
 }
-
+@property (readwrite) int cameraId;
 -(void) normalize:(int)w height:(int)h;
 -(void) lensCorrect;
 
