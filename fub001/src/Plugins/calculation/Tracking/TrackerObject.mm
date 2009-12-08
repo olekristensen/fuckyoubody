@@ -1,4 +1,4 @@
-//
+	//
 //  TrackerObject.mm
 //  openFrameworks
 //
@@ -66,9 +66,39 @@
 
 -(id)initWithBlob:(ofxCvBlob*)_blob{
 	if([super init]){
-		blob = _blob;
+		blob = new ofxCvBlob();
+		blob->area = _blob->area;
+        blob->length = _blob->length ;
+        blob->boundingRect = _blob->boundingRect;
+        blob->centroid = _blob->centroid;
+        blob->hole = _blob->hole;
+		
+        blob->pts = _blob->pts;   
+        blob->nPts = _blob->nPts;
 	} 
 	return self;
+}
+
+-(void) normalize:(int)w height:(int)h{
+	for(int i=0;i<blob->nPts;i++){
+		blob->pts[i].x /= (float)w;
+		blob->pts[i].y /= (float)h;
+	}
+	blob->area /= (float)w*h;
+	blob->centroid.x /=(float) w;
+	blob->centroid.y /= (float)h;
+}
+-(void) lensCorrect{
+	/*
+	
+	for(int i=0;i<blob->nPts;i++){
+		blob->pts[i].x /= (float)w;
+		blob->pts[i].y /= (float)h;
+	}
+	blob->area /= (float)w*h;
+	blob->centroid.x /=(float) w;
+	blob->centroid.y /= (float)h;*/
+	
 }
 
 -(vector <ofPoint>)pts{
@@ -87,7 +117,7 @@
 	return blob->length;		
 }
 -(ofRectangle) boundingRect{
-		return blob->boundingRect;	
+	return blob->boundingRect;	
 }
 -(BOOL) hole{
 	return blob->hole;		
@@ -101,7 +131,7 @@
 //--------------------
 
 @implementation TrackerObject
-@synthesize settingsView, controller;
+@synthesize settingsView, controller, blobs, persistentBlobs;
 
 -(id) initWithId:(int)num{
 	if([super init]){
@@ -121,12 +151,26 @@
 		pthread_mutex_init(&drawingMutex, NULL);
 		threadUpdateContour = NO;
 		
+		userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+		
+		valuesLoaded = NO;
+		
+		
 	}
 	
 	return self;
 }
 
 -(void) setup{
+	cout<<"Load valuye: "<<[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.blur", trackerNumber]]floatValue]<<endl;
+	[blurSlider setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.blur", trackerNumber]]floatValue]];
+	[thresholdSldier setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.threshold", trackerNumber]]floatValue]];
+	[postBlurSlider setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.postBlur", trackerNumber]]floatValue]];
+	[postThresholdSlider setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.postThreshold", trackerNumber]]floatValue]];
+	[activeButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.active", trackerNumber]]intValue]];
+	valuesLoaded = YES;
+	
+	
 	grayImage = new ofxCvGrayscaleImage();
 	grayLastImage = new ofxCvGrayscaleImage();
 	grayImageBlured = new ofxCvGrayscaleImage();		
@@ -154,7 +198,7 @@
 	
 	contourFinder = new ofxCvContourFinder();
 	
-	
+	[self loadBackground];
 	
 	[thread start];
 	
@@ -163,9 +207,14 @@
 
 - (BOOL) loadNibFile {	
 	if (![NSBundle loadNibNamed:@"TrackerObject"  owner:self]){
+		
+		
+		
 		NSLog(@"Warning! Could not load the nib for tracker ");
 		return NO;
 	}
+	
+
 	return YES;
 }
 
@@ -184,6 +233,7 @@
 }
 
 -(void) update{
+	
 	if ([GetPlugin(Cameras) isFrameNew:trackerNumber] && [activeButton state] == NSOnState){
 		//	int t = ofGetElapsedTimeMillis();
 		//if(thread.lock()){
@@ -222,6 +272,7 @@
 			 saveBackground();
 			 }
 			 bLearnBakground = false;*/
+			[self saveBackground];
 			[learnBackgroundButton setState:NSOffState];
 		}
 		
@@ -280,9 +331,12 @@
 		pthread_mutex_unlock(&mutex);
 		
 		[blobs removeAllObjects];
-		for(int i=0;i<[self numBlobs];i++){
+		for(int i=0;i<contourFinder->nBlobs;i++){
 			ofxCvBlob * blob = &contourFinder->blobs[i];
-			Blob * blobObj = [[Blob alloc] initWithBlob:blob];
+			Blob * blobObj = [[Blob alloc] initWithBlob:blob] ;
+			[blobObj normalize:cw height:ch];
+			[blobs addObject:blobObj];
+			
 		}
 		
 		Blob * blob;
@@ -328,7 +382,7 @@
 		}		
 		for(int i=0; i< [persistentBlobs count] ; i++){
 			PersistentBlob * blob = [persistentBlobs objectAtIndex:i];		
-
+			
 			blob->timeoutCounter ++;
 			if(blob->timeoutCounter > 10){
 				[persistentBlobs removeObject:blob];
@@ -340,7 +394,7 @@
 		}
 		
 		
-
+		
 		
 	}	
 }
@@ -350,11 +404,37 @@
 	 return 1;
 	 }*/
 	int r = 0;
-	pthread_mutex_lock(&mutex);
+	/*pthread_mutex_lock(&mutex);
 	r = contourFinder->nBlobs;
 	pthread_mutex_unlock(&mutex);	
-	return r;
+
+	return r;*/
+	return [blobs count];
 }
+
+-(Blob*) getBlob:(int)n{
+	return [blobs objectAtIndex:n];
+}
+
+-(void) saveBackground{
+//	ofLog(OF_LOG_NOTICE, "<<<<<<<< gemmer billede " + ofToString(cameraId));
+	ofImage saveImg;
+	saveImg.allocate(grayBg->getWidth(), grayBg->getHeight(), OF_IMAGE_GRAYSCALE);
+	saveImg.setFromPixels(grayBg->getPixels(), grayBg->getWidth(), grayBg->getHeight(), false);
+	saveImg.saveImage("blobTracker" +ofToString(trackerNumber)+"Background-" + ofToString(0) + ".png");
+	
+}
+-(void) loadBackground{
+	ofImage loadImg;
+	if (loadImg.loadImage("blobTracker" +ofToString(trackerNumber)+"Background-" + ofToString(0) + ".png")) {
+		grayBg->setFromPixels(loadImg.getPixels(), loadImg.getWidth(), loadImg.getHeight());
+//		return true;
+	} else {
+//		return false;
+	}
+	
+}
+
 
 -(void) performBlobTracking:(id)param{
 	while(1){
@@ -369,6 +449,32 @@
 		[NSThread sleepForTimeInterval:0.01];
 	}
 	
+}
+
+-(IBAction) setBlurSliderValue:(id)sender{
+	if(valuesLoaded){
+		[userDefaults setValue:[NSNumber numberWithFloat:[sender floatValue]] forKey:[NSString stringWithFormat:@"tracker%d.blur", trackerNumber]];
+	}
+}
+-(IBAction) setThresholdSliderValue:(id)sender{
+	if(valuesLoaded){
+		[userDefaults setValue:[NSNumber numberWithFloat:[sender floatValue]] forKey:[NSString stringWithFormat:@"tracker%d.threshold", trackerNumber]];
+	}
+}
+-(IBAction) setPostBlurSliderValue:(id)sender{
+	if(valuesLoaded){
+		[userDefaults setValue:[NSNumber numberWithFloat:[sender floatValue]] forKey:[NSString stringWithFormat:@"tracker%d.postBlur", trackerNumber]];
+	}
+}
+-(IBAction) setPostThresholdSliderValue:(id)sender{
+	if(valuesLoaded){
+		[userDefaults setValue:[NSNumber numberWithFloat:[sender floatValue]] forKey:[NSString stringWithFormat:@"tracker%d.postThreshold", trackerNumber]];
+	}
+}
+-(IBAction) setActiveButtonValue:(id)sender{
+	if(valuesLoaded){
+		[userDefaults setValue:[NSNumber numberWithInt:[sender intValue]] forKey:[NSString stringWithFormat:@"tracker%d.active", trackerNumber]];
+	}
 }
 
 

@@ -37,8 +37,12 @@
 
 @interface Blob : NSObject
 {
+	
 	ofxCvBlob * blob;
 }
+
+-(void) normalize:(int)w height:(int)h;
+-(void) lensCorrect;
 
 -(id)initWithBlob:(ofxCvBlob*)_blob;
 -(vector <ofPoint>)pts;
@@ -90,11 +94,23 @@
 	NSThread * thread;
 	pthread_mutex_t mutex;
 	pthread_mutex_t drawingMutex;
+	
+	NSUserDefaults * userDefaults;
+	BOOL valuesLoaded;
 
 
 }
 @property (assign, readonly) NSView * settingsView;
-@property (assign, readwrite) 	PluginManagerController * controller;
+@property (assign, readwrite) PluginManagerController * controller;
+@property (assign, readonly) NSMutableArray * blobs;
+@property (assign, readonly) NSMutableArray * persistentBlobs;
+
+-(IBAction) setBlurSliderValue:(id)sender;
+-(IBAction) setThresholdSliderValue:(id)sender;
+-(IBAction) setPostBlurSliderValue:(id)sender;
+-(IBAction) setPostThresholdSliderValue:(id)sender;
+-(IBAction) setActiveButtonValue:(id)sender;
+
 -(BOOL) loadNibFile;
 
 -(void) setup;
@@ -103,6 +119,10 @@
 -(id) initWithId:(int)num;
 -(void) performBlobTracking:(id)param;
 
+-(void) saveBackground;
+-(void) loadBackground;
+
 -(int) numBlobs;
+-(Blob*) getBlob:(int)n;
 
 @end

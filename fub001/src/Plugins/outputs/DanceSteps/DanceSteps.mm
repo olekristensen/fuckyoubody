@@ -40,11 +40,28 @@
 
 -(void) draw:(const CVTimeStamp *)outputTime{
 
-	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
+/*	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	ofSetColor(255, 255, 255);
 	img->draw(0, 0,1,1);
 	
-	glPopMatrix();
+	for
+	
+	glPopMatrix();*/
+	
+		
+	Blob * blob;
+	//cout<<"Num blobs: "<<[tracker(2) numBlobs]<<endl;
+	for(blob in [tracker(2) blobs]){
+		ofSetColor(255, 255, 255);
+//		glScaled(0.1, 0.1, 0.1);
+		glBegin(GL_LINE_STRIP);
+	//	cout<<"Num points: "<<[blob nPts]<<endl;
+		for(int i=0;i<[blob nPts];i++){
+		//	cout<<[blob pts][i].x<<"  "<<[blob pts][i].y<<endl;
+			glVertex3f([blob pts][i].x, [blob pts][i].y, 0);
+		}
+		glEnd();
+	}
 
 }
 

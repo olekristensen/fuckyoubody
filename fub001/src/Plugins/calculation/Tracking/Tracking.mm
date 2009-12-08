@@ -10,11 +10,15 @@
 
 @implementation Tracking
 
+-(TrackerObject*) trackerNumber:(int)n{
+	return trackerObj[n];	
+}
+
 -(void) initPlugin{
 	for(int i=0;i<3;i++){
-		tracker[i] = [[TrackerObject alloc] initWithId:i];	
-		[tracker[i] setController:controller];
-		[tracker[i] loadNibFile];
+		trackerObj[i] = [[TrackerObject alloc] initWithId:i];	
+		[trackerObj[i] setController:controller];
+		[trackerObj[i] loadNibFile];
 		
 		NSView * dest;
 		
@@ -22,22 +26,21 @@
 		if(i == 1) dest = tracker1settings; 
 		if(i == 2) dest = tracker2settings; 
 		
-		[[tracker[i] settingsView] setFrame:[dest bounds]];
-		[dest addSubview:[tracker[i] settingsView]];
+		[[trackerObj[i] settingsView] setFrame:[dest bounds]];
+		[dest addSubview:[trackerObj[i] settingsView]];
 		
 	}
-	
 }
 
 -(void) setup{
 	for(int i=0;i<3;i++){
-		[tracker[i] setup];
+		[trackerObj[i] setup];
 	}
 }
 
 -(void) update:(const CVTimeStamp *)outputTime{
 	for(int i=0;i<3;i++){
-		[tracker[i] update];
+		[trackerObj[i] update];
 	}
 }
 
@@ -50,7 +53,7 @@
 	glPushMatrix();
 	for(int i=0;i<3;i++){
 		glPushMatrix();{
-			[tracker[i] controlDraw];
+			[trackerObj[i] controlDraw];
 		}glPopMatrix();
 		glTranslated(0, h+10, 0);
 	}

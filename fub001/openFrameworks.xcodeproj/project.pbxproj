@@ -34,6 +34,7 @@
 		6EDB5A7910C6900C00063171 /* redlight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7010C6900C00063171 /* redlight.tiff */; };
 		6EDB5A7A10C6900C00063171 /* Show_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */; };
 		6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7210C6900C00063171 /* Show_Status.tiff */; };
+		6EEF0EE610CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -213,6 +214,7 @@
 		6EDB5A7010C6900C00063171 /* redlight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = redlight.tiff; path = Resources/redlight.tiff; sourceTree = "<group>"; };
 		6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status_Pressed.tiff; path = Resources/Show_Status_Pressed.tiff; sourceTree = "<group>"; };
 		6EDB5A7210C6900C00063171 /* Show_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = Show_Status.tiff; path = Resources/Show_Status.tiff; sourceTree = "<group>"; };
+		6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "org.recoil-performance.fuckYouBuddy.plist"; path = "../../../../../../../../Users/fuckyoubuddy/Library/Preferences/org.recoil-performance.fuckYouBuddy.plist"; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -557,7 +559,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1652,8 +1654,9 @@
 			children = (
 				6EBB472D10C80DFB004F9A03 /* ToDo.rtf */,
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
+				6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
-				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1690,7 +1693,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1744,6 +1747,7 @@
 				DD4AB76E10CD213700EA0F09 /* Tracking.xib in Resources */,
 				DD5735B110CD2B4100B788BB /* TrackerObject.xib in Resources */,
 				6E8D6EA110CD386700240809 /* chessboard.pdf in Resources */,
+				6EEF0EE610CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
