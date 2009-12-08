@@ -94,12 +94,14 @@ Warp::MatrixCalculate()
 	cvsrc[3].y = h;
 
 	for(int i = 0; i < 4; i++){
+		
 		cvdst[i].x = corners[i].x * w;
 		cvdst[i].y = corners[i].y * h;
 	}
 
 	cvSetData( cv_srcmatrix_4x2, cvsrc, sizeof(CvPoint2D32f));
 	cvSetData( cv_dstmatrix_4x2, cvdst, sizeof(CvPoint2D32f));
+	
 
 	cvFindHomography(cv_srcmatrix_4x2, cv_dstmatrix_4x2, cv_translate_3x3);
 	

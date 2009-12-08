@@ -42,16 +42,16 @@
 @public
 	coordWarping * coordWarp;
 	coordWarping * coordWarpCalibration;
-	ofxPoint2f * calibHandles[4];
-	ofxPoint2f * calibPoints[4];
+	ofxPoint2f calibHandles[4];
+	ofxPoint2f calibPoints[4];
 	Warp * warp;
 	
 }
 @property (assign, readwrite) NSString * name;
 @property (assign, readwrite) ProjectionSurfacesObject * surface;
 
--(ofxPoint2f **) calibHandles;
--(ofxPoint2f **) calibPoints;
+-(ofxPoint2f *) calibHandles;
+-(ofxPoint2f *) calibPoints;
 -(void) recalculate;
 -(void) applyWarp;
 -(void) reset;

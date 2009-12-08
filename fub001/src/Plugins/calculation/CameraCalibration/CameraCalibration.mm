@@ -1,6 +1,7 @@
 
 #include "CameraCalibration.h"
 #include "Lenses.h"
+#include "Cameras.h"
 
 @implementation CameraCalibration
 
@@ -16,15 +17,31 @@
 		
 		if(i==0){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-			[obj calibPoints][0] = new ofxPoint2f(0.2,0.2);
-			[obj calibPoints][1] = new ofxPoint2f(0.8,0.2);
-			[obj calibPoints][2] = new ofxPoint2f(0.8,0.8);
-			[obj calibPoints][3] = new ofxPoint2f(0.2,0.8);
+			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
+			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
+			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
+			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
+			//			[obj calibPoints][0] = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertToProjection:ofxPoint2f(0,0) surface:surface]);
+		}
+		if(i==0){
+			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
+			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
+			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
+			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
+			//			[obj calibPoints][0] = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertToProjection:ofxPoint2f(0,0) surface:surface]);
+		}
+		if(i==0){
+			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
+			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
+			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
+			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
 			//			[obj calibPoints][0] = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertToProjection:ofxPoint2f(0,0) surface:surface]);
 		}
 		
 		for(int u=0;u<4;u++){
-			[obj calibHandles][u] = new ofxPoint2f();
+			[obj calibHandles][u] = ofxPoint2f();
 			
 		}
 		
@@ -51,10 +68,10 @@
 	for(int i=0;i<4;i++){
 		ofNoFill();
 		ofSetColor(0, 0,0);
-		ofEllipse([obj calibHandles][i]->x*w, [obj calibHandles][i]->y*h, 21, 21);
-		ofEllipse([obj calibHandles][i]->x*w, [obj calibHandles][i]->y*h, 19, 19);
+		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 21, 21);
+		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 19, 19);
 		ofSetColor(255, 0,0);
-		ofEllipse([obj calibHandles][i]->x*w, [obj calibHandles][i]->y*h, 20, 20);
+		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 20, 20);
 	}
 	
 	
@@ -67,7 +84,8 @@
 		
 		
 		[obj applyWarp];
-		[GetPlugin(Lenses) getUndistortedImageFromCameraId:[cameraSelector selectedSegment]]->draw(0,0,1,1);
+//		[GetPlugin(Lenses) getUndistortedImageFromCameraId:[cameraSelector selectedSegment]]->draw(0,0,1,1);
+		[[GetPlugin(Cameras) getCameraWithId:0] getTexture]->draw(0,0,1,1);
 		glPopMatrix();
 		
 		
@@ -75,10 +93,10 @@
 		ofFill();
 		for(int i=0;i<4;i++){
 			ofSetColor(0, 0,0);
-			ofEllipse([obj calibPoints][i]->x*[obj surface]->aspect, [obj calibPoints][i]->y, 0.05, 0.05);
+			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.05, 0.05);
 			
 			ofSetColor(255, 255,255);
-			ofEllipse([obj calibPoints][i]->x*[obj surface]->aspect, [obj calibPoints][i]->y, 0.03, 0.03);
+			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.03, 0.03);
 		}
 		glPopMatrix();
 	}
@@ -87,14 +105,24 @@
 -(void) controlMousePressed:(float)x y:(float)y button:(int)button{
 	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
 	CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]];
-	selectedCorner = obj->warp->GetClosestCorner(curMouse.x, curMouse.y);
+	
+	float shortestDist = nil;
+	for(int i=0;i<4;i++){
+		cout<<i<<" : "<<[obj calibHandles][i
+										   ].distance(curMouse)<< "  "<<shortestDist<<endl;
 
-	if([obj calibHandles][selectedCorner]->distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.3){
-		selectedCorner = -1;
-	} else {
-		//		[[self getCurrentSurface] setCorner:selectedCorner x:[self getCurrentSurface]->corners[selectedCorner]->x y:[self getCurrentSurface]->corners[selectedCorner]->y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:true];	
+		if(shortestDist == nil || [obj calibHandles][i].distance(curMouse) < shortestDist){
+			
+			shortestDist = [obj calibHandles][i].distance(curMouse);
+			selectedCorner = i;
+		}
 	}
-		cout<<"Selected corner"<<selectedCorner<<endl;
+
+	
+	if([obj calibHandles][selectedCorner].distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.3){
+		selectedCorner = -1;
+	} 
+	cout<<"Selected corner"<<selectedCorner<<endl;
 	lastMousePos->x = curMouse.x;	
 	lastMousePos->y = curMouse.y;	
 }
@@ -102,9 +130,9 @@
 	CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]];
 	
 	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
-	ofxVec2f newPos =  obj->warp->corners[selectedCorner] + (curMouse-*lastMousePos);
+	ofxVec2f newPos =  [obj calibHandles][selectedCorner] + (curMouse-*lastMousePos);
 	if(selectedCorner != -1){
-		[obj calibHandles][selectedCorner] = new ofxPoint2f(newPos);
+			[obj calibHandles][selectedCorner] = ofxPoint2f(newPos);
 	} else {		
 		//*position += (curMouse- ((ofxPoint2f)*lastMousePos));
 	}
@@ -124,10 +152,7 @@
 -(ofxPoint2f) convertMousePoint:(ofxPoint2f)p{
 	CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]];
 	
-	ofxPoint2f p2 = ofxPoint2f(p.x, p.y);
-	float projWidth = 1024;
-	float projHeight = 768;	
-	float aspect =(float)  projHeight/projWidth;
+	ofxPoint2f p2 = ofxPoint2f(p);
 	//float viewAspect = [obj surface]->aspect;
 	
 	//p2-= ofxPoint2f(w/2.0, h/2.0);	
@@ -139,8 +164,8 @@
 	 }
 	 */
 	//p2 /= ofxPoint2f((float)scale,(float)scale);
-/*	p2 -= ofxPoint2f(-0.5, -aspect/2.0);
-	p2 /= ofxPoint2f((float)1.0,(float)aspect);*/
+	/*	p2 -= ofxPoint2f(-0.5, -aspect/2.0);
+	 p2 /= ofxPoint2f((float)1.0,(float)aspect);*/
 	p2.x /= 640.0;
 	p2.y /= 480.0;
 	return p2;
@@ -164,14 +189,18 @@
 		warp = new Warp();
 		coordWarp = new coordWarping;	
 		coordWarpCalibration = new coordWarping;
+		for(int i=0;i<4;i++){
+			calibPoints[i] = ofxPoint2f();
+			calibHandles[i] = ofxPoint2f();
+		}
 	}
 	return self;
 }
 
--(ofxPoint2f **) calibHandles{
+-(ofxPoint2f *) calibHandles{
 	return calibHandles;
 }
--(ofxPoint2f **) calibPoints{
+-(ofxPoint2f *) calibPoints{
 	return calibPoints;
 }
 
@@ -182,7 +211,12 @@
 	a[2] = ofxPoint2f(1,1);
 	a[3] = ofxPoint2f(0,1);
 	
-	coordWarpCalibration->calculateMatrix(*calibHandles, *calibPoints);	
+	ofxPoint2f pts[4];
+	for(int i=0;i<4;i++){
+		pts[i] = [GetPlugin(ProjectionSurfaces) convertToProjection:calibPoints[i] surface:surface];
+	}
+	
+	coordWarpCalibration->calculateMatrix(calibHandles, pts);	
 	
 	ofxPoint2f corners[4];
 	for(int u=0;u<4;u++){
@@ -192,6 +226,7 @@
 	
 	warp->MatrixCalculate();
 	coordWarp->calculateMatrix(a, warp->corners);		
+	
 	
 }
 
@@ -211,10 +246,10 @@
 							 nil);
 	
 	if (choice == NSAlertDefaultReturn){           /* Cancel */
-		calibHandles[0] = new ofxPoint2f(0.0,0.0);
-		calibHandles[1] = new ofxPoint2f(1,0);
-		calibHandles[2] = new ofxPoint2f(1,1);
-		calibHandles[3] = new ofxPoint2f(0,1);
+		calibHandles[0] = ofxPoint2f(0.0,0.0);
+		calibHandles[1] = ofxPoint2f(1,0);
+		calibHandles[2] = ofxPoint2f(1,1);
+		calibHandles[3] = ofxPoint2f(0,1);
 		[self recalculate];
 	}
 }
