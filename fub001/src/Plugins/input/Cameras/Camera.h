@@ -87,4 +87,12 @@
 -(IBAction) setMovieFile:(id)sender;
 -(IBAction) toggleRecord:(id)sender;
 
+
++ (float)aCameraWillRespawnAt;
++ (BOOL)aCameraIsRespawning;
++ (BOOL)allCamerasAreRespawning;
++ (BOOL)thisCameraIsRespawning;
++ (float)setCamera:(int)respawningCameraNumber willRespawningAt:(float)timeStamp;
++ (float)setCamera:(int)respawningCameraNumber isRespawning:(BOOL)isRespawning;
+
 @end

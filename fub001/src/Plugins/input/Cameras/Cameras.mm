@@ -95,6 +95,14 @@
 			[[controller cameraStatus3] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
 		}
 	}
+	if([Camera allCamerasAreRespawning]){
+		[[controller statusTextField] setStringValue:@"Initialising cameras"];
+		[[controller statusBusy] startAnimation:nil];
+	} else if (![Camera aCameraIsRespawning]){
+		[[controller statusTextField] setStringValue:@""];
+		[[controller statusBusy] stopAnimation:nil];
+	}
+
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
