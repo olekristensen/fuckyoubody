@@ -380,16 +380,22 @@
 
 -(ofxPoint2f) undistortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId{
 	if (cameraId <= 2 && 0 <= cameraId) {
-		ofxPoint2f p = cameraCalibrator[cameraId]->undistortPoint(point.x, point.y);
-		return p;
+		if (calibrationState[cameraId] == CALIBRATION_CALIBRATED) {
+			ofxPoint2f p = cameraCalibrator[cameraId]->undistortPoint(point.x, point.y);
+			return p;
+		}
 	}
+	return point;
 }
 
 -(ofxPoint2f) distortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId{
 	if (cameraId <= 2 && 0 <= cameraId) {
-		ofxPoint2f p = cameraCalibrator[cameraId]->distortPoint(point.x, point.y);
-		return p;
+		if (calibrationState[cameraId] == CALIBRATION_CALIBRATED) {
+			ofxPoint2f p = cameraCalibrator[cameraId]->distortPoint(point.x, point.y);
+			return p;
+		}
 	}
+	return point;
 }
 
 -(ofxCvGrayscaleImage*) getUndistortedImageFromCameraId:(int)cameraId{
