@@ -72,6 +72,8 @@
 	CFTimeInterval captureTime[3];
 	CFTimeInterval failedTime[3];
 	CFTimeInterval calibrationTime[3];
+	
+	BOOL hasUndistortedImage[3];
 
 	int cwidth;
     int cheight;
@@ -100,5 +102,7 @@
 -(void) drawImage:(IplImage*)image atLocationX:(float)x Y:(float)y withWidth:(float)width height: (float)height;
 
 -(ofxPoint2f) undistortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId;
+-(ofxCvGrayscaleImage*) getUndistortedImageFromCameraId:(int)cameraId;
+
 
 @end

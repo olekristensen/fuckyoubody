@@ -78,6 +78,7 @@
 			anImage.allocate( cwidth,cheight );
 			anImage.setFromPixels(somePixel, cwidth, cheight );
 			originalImage[i]->setFromGrayscalePlanarImages(anImage, anImage, anImage );
+			hasUndistortedImage[i] = NO;
 			pthread_mutex_unlock(&mutex);
 		}
 	}
@@ -109,14 +110,19 @@
 			}
 			
 			if(calibrationState[i] == CALIBRATION_CALIBRATED && [showCalibratedButton state] == NSOnState && timeInterval - calibrationTime[i] > 4 ){
-				
-				cvCvtColor( originalImage[i]->getCvImage(), undistortedImage[i]->getCvImage(), CV_RGB2GRAY );
-				undistortedImage[i]->flagImageChanged();
-				undistortedImage[i]->undistort( cameraCalibrator[i]->distortionCoeffs[0], cameraCalibrator[i]->distortionCoeffs[1],
-											   cameraCalibrator[i]->distortionCoeffs[2], cameraCalibrator[i]->distortionCoeffs[3],
-											   cameraCalibrator[i]->camIntrinsics[0], cameraCalibrator[i]->camIntrinsics[4],
-											   cameraCalibrator[i]->camIntrinsics[2], cameraCalibrator[i]->camIntrinsics[5] );      
-				
+				if (!hasUndistortedImage[i]) {
+					pthread_mutex_lock(&mutex);
+					cvCvtColor( originalImage[i]->getCvImage(), undistortedImage[i]->getCvImage(), CV_RGB2GRAY );
+					pthread_mutex_unlock(&mutex);
+					undistortedImage[i]->flagImageChanged();
+					undistortedImage[i]->undistort( cameraCalibrator[i]->distortionCoeffs[0], cameraCalibrator[i]->distortionCoeffs[1],
+												   cameraCalibrator[i]->distortionCoeffs[2], cameraCalibrator[i]->distortionCoeffs[3],
+												   cameraCalibrator[i]->camIntrinsics[0], cameraCalibrator[i]->camIntrinsics[4],
+												   cameraCalibrator[i]->camIntrinsics[2], cameraCalibrator[i]->camIntrinsics[5] );   
+					pthread_mutex_lock(&mutex);
+					hasUndistortedImage[i] = YES;
+					pthread_mutex_unlock(&mutex);
+				}
 				undistortedImage[i]->draw(0, 0,w,h);
 			} else {
 				originalImage[i]->draw(0, 0,w,h);
@@ -387,6 +393,26 @@
 		ofxPoint2f p = cameraCalibrator[cameraId]->distortPoint(point.x, point.y);
 		return p;
 	}
+}
+
+-(ofxCvGrayscaleImage*) getUndistortedImageFromCameraId:(int)cameraId{
+	
+	int i = cameraId;
+	
+	if (!hasUndistortedImage[i]) {
+		pthread_mutex_lock(&mutex);
+		cvCvtColor( originalImage[i]->getCvImage(), undistortedImage[i]->getCvImage(), CV_RGB2GRAY );
+		pthread_mutex_unlock(&mutex);
+		undistortedImage[i]->flagImageChanged();
+		undistortedImage[i]->undistort( cameraCalibrator[i]->distortionCoeffs[0], cameraCalibrator[i]->distortionCoeffs[1],
+									   cameraCalibrator[i]->distortionCoeffs[2], cameraCalibrator[i]->distortionCoeffs[3],
+									   cameraCalibrator[i]->camIntrinsics[0], cameraCalibrator[i]->camIntrinsics[4],
+									   cameraCalibrator[i]->camIntrinsics[2], cameraCalibrator[i]->camIntrinsics[5] );   
+		pthread_mutex_lock(&mutex);
+		hasUndistortedImage[i] = YES;
+		pthread_mutex_unlock(&mutex);
+	}
+	return undistortedImage[i];
 }
 
 -(void)updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)theCameraCalibrator{
