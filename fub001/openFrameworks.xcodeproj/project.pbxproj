@@ -12,6 +12,7 @@
 		6E9A2A5C10CA102F0003A1B8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
+		6EB354F610CEC796008624B2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6EB354F510CEC796008624B2 /* icon.icns */; };
 		6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */; };
 		6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */; };
 		6EBB472610C80472004F9A03 /* Lenses.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB472510C80472004F9A03 /* Lenses.mm */; };
@@ -19,6 +20,8 @@
 		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF10B610CE96350011C596 /* CameraCalibration.xib */; };
+		6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */; };
+		6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -74,7 +77,6 @@
 		DDA5AF4510CEBE2B005B53C6 /* PluginUISliderBackgroundLeftLight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3410CEBE2B005B53C6 /* PluginUISliderBackgroundLeftLight.tiff */; };
 		DDA5AF4610CEBE2B005B53C6 /* PluginUISliderBackgroundRight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3510CEBE2B005B53C6 /* PluginUISliderBackgroundRight.tiff */; };
 		DDA5AF4710CEBE2B005B53C6 /* PluginUISliderBackgroundRightLight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3610CEBE2B005B53C6 /* PluginUISliderBackgroundRightLight.tiff */; };
-		DDA5AF4810CEBE2B005B53C6 /* recoilLogo.gif in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3710CEBE2B005B53C6 /* recoilLogo.gif */; };
 		DDA5AF4910CEBE2B005B53C6 /* redlight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3810CEBE2B005B53C6 /* redlight.tiff */; };
 		DDA5AF4A10CEBE2B005B53C6 /* Show_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3910CEBE2B005B53C6 /* Show_Status_Pressed.tiff */; };
 		DDA5AF4B10CEBE2B005B53C6 /* Show_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3A10CEBE2B005B53C6 /* Show_Status.tiff */; };
@@ -190,6 +192,7 @@
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
+		6EB354F510CEC796008624B2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = SOURCE_ROOT; };
 		6EB7260610C6EF4800347368 /* PluginUIValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIValueTextField.h; sourceTree = "<group>"; };
 		6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIValueTextField.mm; sourceTree = "<group>"; };
 		6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofCvCameraCalibration.cpp; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 		6EC1A4C310C6A8C000738AA9 /* PluginUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUI.h; sourceTree = "<group>"; };
 		6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "org.recoil-performance.fuckYouBuddy.plist"; path = "../../../../../../../../Users/fuckyoubuddy/Library/Preferences/org.recoil-performance.fuckYouBuddy.plist"; sourceTree = "<group>"; };
 		6EEF10B610CE96350011C596 /* CameraCalibration.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraCalibration.xib; sourceTree = "<group>"; };
+		6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoLight.png; sourceTree = "<group>"; };
+		6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoDark.png; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -316,7 +321,6 @@
 		DDA5AF3410CEBE2B005B53C6 /* PluginUISliderBackgroundLeftLight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PluginUISliderBackgroundLeftLight.tiff; sourceTree = "<group>"; };
 		DDA5AF3510CEBE2B005B53C6 /* PluginUISliderBackgroundRight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PluginUISliderBackgroundRight.tiff; sourceTree = "<group>"; };
 		DDA5AF3610CEBE2B005B53C6 /* PluginUISliderBackgroundRightLight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = PluginUISliderBackgroundRightLight.tiff; sourceTree = "<group>"; };
-		DDA5AF3710CEBE2B005B53C6 /* recoilLogo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = recoilLogo.gif; sourceTree = "<group>"; };
 		DDA5AF3810CEBE2B005B53C6 /* redlight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = redlight.tiff; sourceTree = "<group>"; };
 		DDA5AF3910CEBE2B005B53C6 /* Show_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Show_Status_Pressed.tiff; sourceTree = "<group>"; };
 		DDA5AF3A10CEBE2B005B53C6 /* Show_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Show_Status.tiff; sourceTree = "<group>"; };
@@ -674,6 +678,7 @@
 		6ECEB54910C5D6C900B659F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6EB354F510CEC796008624B2 /* icon.icns */,
 				DDA5AF2B10CEBE2B005B53C6 /* AvailableProxy.tiff */,
 				DDA5AF2C10CEBE2B005B53C6 /* chessboard.pages */,
 				DDA5AF2D10CEBE2B005B53C6 /* chessboard.pdf */,
@@ -686,7 +691,8 @@
 				DDA5AF3410CEBE2B005B53C6 /* PluginUISliderBackgroundLeftLight.tiff */,
 				DDA5AF3510CEBE2B005B53C6 /* PluginUISliderBackgroundRight.tiff */,
 				DDA5AF3610CEBE2B005B53C6 /* PluginUISliderBackgroundRightLight.tiff */,
-				DDA5AF3710CEBE2B005B53C6 /* recoilLogo.gif */,
+				6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */,
+				6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */,
 				DDA5AF3810CEBE2B005B53C6 /* redlight.tiff */,
 				DDA5AF3910CEBE2B005B53C6 /* Show_Status_Pressed.tiff */,
 				DDA5AF3A10CEBE2B005B53C6 /* Show_Status.tiff */,
@@ -1761,12 +1767,14 @@
 				DDA5AF4510CEBE2B005B53C6 /* PluginUISliderBackgroundLeftLight.tiff in Resources */,
 				DDA5AF4610CEBE2B005B53C6 /* PluginUISliderBackgroundRight.tiff in Resources */,
 				DDA5AF4710CEBE2B005B53C6 /* PluginUISliderBackgroundRightLight.tiff in Resources */,
-				DDA5AF4810CEBE2B005B53C6 /* recoilLogo.gif in Resources */,
 				DDA5AF4910CEBE2B005B53C6 /* redlight.tiff in Resources */,
 				DDA5AF4A10CEBE2B005B53C6 /* Show_Status_Pressed.tiff in Resources */,
 				DDA5AF4B10CEBE2B005B53C6 /* Show_Status.tiff in Resources */,
 				DDA5AF7610CEBE74005B53C6 /* ToDo.rtf in Resources */,
 				6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */,
+				6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */,
+				6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */,
+				6EB354F610CEC796008624B2 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
