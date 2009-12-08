@@ -85,7 +85,14 @@
 -(void) applyProjection:(ProjectionSurfacesObject*) obj width:(float) _w height:(float) _h;
 -(void) applyProjection:(ProjectionSurfacesObject*) obj;
 -(void) apply:(string)projection surface:(string)surface;
--(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h;;
+-(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h;
+-(ProjectionSurfacesObject*) getProjectionSurfaceByName:(string)projection surface:(string)surface;
+-(ofxPoint2f) convertToProjection:(ofxPoint2f)p;
+-(ofxPoint2f) convertFromProjection:(ofxPoint2f)p;
+-(ofxPoint2f) convertToProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface;
+-(ofxPoint2f) convertFromProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface;
+
+
 -(float) getAspect;
--(ofxPoint2f) convertPoint:(ofxPoint2f)p;
+-(ofxPoint2f) convertMousePoint:(ofxPoint2f)p;
 @end

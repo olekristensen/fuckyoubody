@@ -369,7 +369,7 @@
 	
 }
 
--(ofxPoint2f) convertPoint:(ofxPoint2f)p{
+-(ofxPoint2f) convertMousePoint:(ofxPoint2f)p{
 	ofxPoint2f p2 = ofxPoint2f(p.x, p.y);
 	float projWidth = [self getCurrentProjector]->width;
 	float projHeight = [self getCurrentProjector]->height;	
@@ -414,10 +414,7 @@
 }
 
 -(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h{
-	ProjectorObject * proj;
-	
-	
-	
+	/*ProjectorObject * proj;
 	for(proj in projectors){
 		if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
 			ProjectionSurfacesObject * surf;
@@ -430,9 +427,52 @@
 				
 			}
 		}
-	}
+	}*/
+	[self applyProjection:[self getProjectionSurfaceByName:projection surface:surface] width:_w height:_h];
+	
 	
 }
+
+-(ProjectionSurfacesObject*) getProjectionSurfaceByName:(string)projection surface:(string)surface{
+	ProjectorObject * proj;
+	for(proj in projectors){
+		if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
+			ProjectionSurfacesObject * surf;
+			NSArray * a = proj->surfaces;
+			for(surf in a){
+				if(strcmp(surf->name->c_str(), surface.c_str()) == 0){
+					return surf;
+				}
+				
+			}
+		}
+	}	
+}
+
+-(ofxPoint2f) convertToProjection:(ofxPoint2f)p{
+	if(lastAppliedSurface != nil){
+		return [self convertToProjection:p surface:lastAppliedSurface]; 
+	}
+}
+-(ofxPoint2f) convertFromProjection:(ofxPoint2f)p{
+	if(lastAppliedSurface != nil){
+		return [self convertFromProjection:p surface:lastAppliedSurface]; 
+	}	
+}
+-(ofxPoint2f) convertToProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface{
+	p.x /= surface->aspect;
+	ofxPoint2f r = (ofxPoint2f) surface->coordWarp->transform(p.x, p.y);
+	return r;
+}
+-(ofxPoint2f) convertFromProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface{
+	ofxPoint2f r = surface->coordWarp->inversetransform(p.x, p.y);
+	r.x = p.x*surface->aspect;
+	r.y = p.y;
+	return r;
+}
+
+
+
 
 -(float) getAspect{
 	if(lastAppliedSurface != nil){
@@ -441,7 +481,7 @@
 }
 
 -(void) controlMousePressed:(float)x y:(float)y button:(int)button{
-	ofxVec2f curMouse = [self convertPoint:ofxPoint2f(x,y)];
+	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
 	
 	selectedCorner = [self getCurrentSurface]->warp->GetClosestCorner(curMouse.x, curMouse.y);
 	if([self getCurrentSurface]->corners[selectedCorner]->distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.3){
@@ -453,7 +493,7 @@
 	lastMousePos->y = curMouse.y;	
 }
 -(void) controlMouseDragged:(float)x y:(float)y button:(int)button{
-	ofxVec2f curMouse = [self convertPoint:ofxPoint2f(x,y)];
+	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
 	ofxVec2f newPos =  [self getCurrentSurface]->warp->corners[selectedCorner] + (curMouse-*lastMousePos);
 	if(selectedCorner != -1){
 		[[self getCurrentSurface] setCorner:selectedCorner x:newPos.x y:newPos.y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:NO];

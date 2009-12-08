@@ -18,6 +18,7 @@
 		6EBB472810C80BEA004F9A03 /* Lenses.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472710C80BEA004F9A03 /* Lenses.xib */; };
 		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
+		6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF10B610CE96350011C596 /* CameraCalibration.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -200,6 +201,7 @@
 		6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISlider.mm; sourceTree = "<group>"; };
 		6EC1A4C310C6A8C000738AA9 /* PluginUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUI.h; sourceTree = "<group>"; };
 		6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "org.recoil-performance.fuckYouBuddy.plist"; path = "../../../../../../../../Users/fuckyoubuddy/Library/Preferences/org.recoil-performance.fuckYouBuddy.plist"; sourceTree = "<group>"; };
+		6EEF10B610CE96350011C596 /* CameraCalibration.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraCalibration.xib; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -984,6 +986,7 @@
 			children = (
 				DDA5AEA210CE8C56005B53C6 /* CameraCalibration.mm */,
 				DDA5AEA310CE8C56005B53C6 /* CameraCalibration.h */,
+				6EEF10B610CE96350011C596 /* CameraCalibration.xib */,
 			);
 			path = CameraCalibration;
 			sourceTree = "<group>";
@@ -1763,6 +1766,7 @@
 				DDA5AF4A10CEBE2B005B53C6 /* Show_Status_Pressed.tiff in Resources */,
 				DDA5AF4B10CEBE2B005B53C6 /* Show_Status.tiff in Resources */,
 				DDA5AF7610CEBE74005B53C6 /* ToDo.rtf in Resources */,
+				6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

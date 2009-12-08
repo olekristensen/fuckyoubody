@@ -8,6 +8,7 @@
 
 #import "Cameras.h"
 
+#define NUM_CAMERAS 3
 
 @implementation Cameras
 @synthesize width, height;
@@ -17,7 +18,7 @@
 	width = 0;
 	height = 0;
 	
-	for(int i=0;i<3;i++){
+	for(int i=0;i<NUM_CAMERAS;i++){
 		cam[i] = [[Camera alloc] init];	
 		[cam[i] loadNibFile];
 		
@@ -39,9 +40,9 @@
 	
 	NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
-	uint64_t guidVal[3];
+	uint64_t guidVal[NUM_CAMERAS];
 	
-	for (int i=0; i<3; i++) {
+	for (int i=0; i<NUM_CAMERAS; i++) {
 		guidVal[i] = 0x0ll;
 	}
 	
@@ -59,14 +60,14 @@
 	
 
 	// first setup the cams with a guid
-	for(int i=0;i<3;i++){
+	for(int i=0;i<NUM_CAMERAS;i++){
 		if (guidVal[i] != 0x0ll) {
 			[cam[i] setup:i withGUID:guidVal[i]];
 		}
 	}
 
 	// then setup the cams without a guid
-	for(int i=0;i<3;i++){
+	for(int i=0;i<NUM_CAMERAS;i++){
 		if (guidVal[i] == 0x0ll) {
 			[cam[i] setup:i withGUID:guidVal[i]];
 		}
@@ -113,13 +114,13 @@
 	float windowHeight = ofGetHeight();
 	h = fminf(h,windowHeight);
 	
-	for(int i=0;i<3;i++){
+	for(int i=0;i<NUM_CAMERAS;i++){
 		[cam[i] getTexture]->draw(i*w, 0,w,h);
 	}
 }
 
 - (Camera*)getCameraWithId:(int)cameraId{
-	if (0 <= cameraId && cameraId <= 3) {
+	if (0 <= cameraId && cameraId < NUM_CAMERAS) {
 		return cam[cameraId];
 	}
 }

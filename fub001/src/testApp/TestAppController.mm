@@ -39,6 +39,7 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addHeader:@"Calculation"];
 	[pluginManagerController addPlugin:[[Tracking alloc] init]];
 	[pluginManagerController addPlugin:[[ProjectionSurfaces alloc] init]];
+	[pluginManagerController addPlugin:[[CameraCalibration alloc] init]];
 	
 	[pluginManagerController addHeader:@"Output"];
 	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];

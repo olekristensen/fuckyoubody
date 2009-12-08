@@ -14,6 +14,7 @@
 
 #include "Tracking.h"
 #include "ProjectionSurfaces.h"
+#include "CameraCalibration.h"
 
 #include "_ExampleOutput.h"
 #include "DanceSteps.h"
