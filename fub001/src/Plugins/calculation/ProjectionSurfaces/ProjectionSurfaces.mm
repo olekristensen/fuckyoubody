@@ -179,14 +179,14 @@
 	float projWidth = [self getCurrentProjector]->width;
 	float projHeight = [self getCurrentProjector]->height;	
 	float aspect =(float)  projHeight/projWidth;
-	float viewAspect = (float)ofGetHeight() / ofGetWidth();
+	float viewAspect = (float)h / w;
 	
-	glTranslated(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
+	glTranslated(w/2.0, h/2.0, 0);
 	glTranslated(position->x, position->y, 0);
 	if(viewAspect > aspect){
-		glScaled(ofGetWidth(), ofGetWidth(), 1.0);
+		glScaled(w, w, 1.0);
 	} else {
-		glScaled(ofGetHeight()/aspect, ofGetHeight()/aspect, 1.0);	
+		glScaled(h/aspect, h/aspect, 1.0);	
 	}
 	glScaled(scale, scale, 1);
 	glTranslated(-0.5, -aspect/2.0, 0);	 
@@ -360,8 +360,8 @@
 			} else {
 				glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize-(font->stringHeight(text)*0.3), 0);	
 			}
-			
-			font->drawString(text,0,0);
+			ofFill();
+			font->drawStringAsShapes(text,0,0);
 			
 		} glPopMatrix();
 		pthread_mutex_unlock(&mutex);

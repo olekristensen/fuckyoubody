@@ -34,7 +34,6 @@
 		6EDB5A7910C6900C00063171 /* redlight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7010C6900C00063171 /* redlight.tiff */; };
 		6EDB5A7A10C6900C00063171 /* Show_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7110C6900C00063171 /* Show_Status_Pressed.tiff */; };
 		6EDB5A7B10C6900C00063171 /* Show_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 6EDB5A7210C6900C00063171 /* Show_Status.tiff */; };
-		6EEF0EE610CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -822,11 +821,11 @@
 		DD4AB76710CD20E900EA0F09 /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
-				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
-				DD4AB77410CD219800EA0F09 /* BlobTracking */,
 				DD4AB76810CD210300EA0F09 /* Tracking.h */,
 				DD4AB76910CD210300EA0F09 /* Tracking.mm */,
 				DD4AB76D10CD213700EA0F09 /* Tracking.xib */,
+				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
+				DD4AB77410CD219800EA0F09 /* BlobTracking */,
 			);
 			path = Tracking;
 			sourceTree = "<group>";
@@ -1760,7 +1759,6 @@
 				DD4AB76E10CD213700EA0F09 /* Tracking.xib in Resources */,
 				DD5735B110CD2B4100B788BB /* TrackerObject.xib in Resources */,
 				6E8D6EA110CD386700240809 /* chessboard.pdf in Resources */,
-				6EEF0EE610CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

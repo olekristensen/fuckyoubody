@@ -77,8 +77,8 @@
 			ofxCvGrayscaleImage anImage;
 			anImage.allocate( cwidth,cheight );
 			anImage.setFromPixels(somePixel, cwidth, cheight );
-			originalImage[i]->setFromGrayscalePlanarImages(anImage, anImage, anImage );
 			hasUndistortedImage[i] = NO;
+			originalImage[i]->setFromGrayscalePlanarImages(anImage, anImage, anImage );
 			pthread_mutex_unlock(&mutex);
 		}
 	}
@@ -206,7 +206,6 @@
 					ofSetColor(255, 255, 255, 255);
 				}
 			} // end failed to see the chessboard
-			
 			
 			
 			{ // just calibrated

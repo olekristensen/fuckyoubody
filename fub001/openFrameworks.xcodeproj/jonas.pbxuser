@@ -80,6 +80,20 @@
 			sepNavVisRange = "{0, 896}";
 		};
 	};
+	6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {994, 5551}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1236}";
+		};
+	};
+	6EBB46FD10C80317004F9A03 /* ofCvCameraCalibration.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {994, 1118}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1251}";
+		};
+	};
 	6EBB471010C80352004F9A03 /* BlobTracking.h */ = {
 		isa = PBXFileReference;
 		fileEncoding = 4;
@@ -136,11 +150,18 @@
 		path = /Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/src/Plugins/input/BlobTracker/CVTracking.h;
 		sourceTree = "<absolute>";
 	};
+	6EBB472410C80472004F9A03 /* Lenses.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {994, 1404}}";
+			sepNavSelRange = "{1366, 15}";
+			sepNavVisRange = "{1070, 850}";
+		};
+	};
 	6EBB472510C80472004F9A03 /* Lenses.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1811, 7189}}";
-			sepNavSelRange = "{11506, 73}";
-			sepNavVisRange = "{10238, 1927}";
+			sepNavIntBoundsRect = "{{0, 0}, {1055, 6929}}";
+			sepNavSelRange = "{3319, 0}";
+			sepNavVisRange = "{2891, 1601}";
 		};
 	};
 	6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {
@@ -306,7 +327,7 @@
 	};
 	DD17DFD310C6996D008B3E0A /* Cameras.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 1518}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 584}}";
 			sepNavSelRange = "{432, 65}";
 			sepNavVisRange = "{0, 728}";
 			sepNavWindowFrame = "{{15, 45}, {1191, 833}}";
@@ -314,9 +335,9 @@
 	};
 	DD17DFD410C6996D008B3E0A /* Cameras.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1104, 1518}}";
-			sepNavSelRange = "{2090, 9}";
-			sepNavVisRange = "{0, 2204}";
+			sepNavIntBoundsRect = "{{0, 0}, {1111, 1794}}";
+			sepNavSelRange = "{3044, 41}";
+			sepNavVisRange = "{1842, 1555}";
 		};
 	};
 	DD17E01210C69AE3008B3E0A /* PBXTextBookmark */ = {
@@ -625,16 +646,16 @@
 	};
 	DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {994, 494}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 561}}";
 			sepNavSelRange = "{447, 0}";
-			sepNavVisRange = "{178, 379}";
+			sepNavVisRange = "{0, 650}";
 		};
 	};
 	DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {994, 2106}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 2184}}";
 			sepNavSelRange = "{1283, 0}";
-			sepNavVisRange = "{1117, 577}";
+			sepNavVisRange = "{583, 1189}";
 			sepNavWindowFrame = "{{15, 45}, {1191, 833}}";
 		};
 	};
@@ -759,7 +780,7 @@
 		fRef = 6EBB472510C80472004F9A03 /* Lenses.mm */;
 		name = "Lenses.mm: 506";
 		rLen = 0;
-		rLoc = 15389;
+		rLoc = 16347;
 		rType = 0;
 		vrLen = 942;
 		vrLoc = 13161;
@@ -846,30 +867,30 @@
 	};
 	DD4AB76810CD210300EA0F09 /* Tracking.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 1518}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 561}}";
 			sepNavSelRange = "{336, 0}";
-			sepNavVisRange = "{0, 336}";
+			sepNavVisRange = "{0, 380}";
 		};
 	};
 	DD4AB76910CD210300EA0F09 /* Tracking.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1139, 767}}";
-			sepNavSelRange = "{753, 0}";
-			sepNavVisRange = "{0, 1108}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 806}}";
+			sepNavSelRange = "{780, 0}";
+			sepNavVisRange = "{137, 924}";
 		};
 	};
 	DD4AB77510CD219800EA0F09 /* BlobTracking.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 1950}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 2067}}";
 			sepNavSelRange = "{621, 14}";
-			sepNavVisRange = "{254, 2284}";
+			sepNavVisRange = "{587, 665}";
 		};
 	};
 	DD4AB77610CD219800EA0F09 /* BlobTracking.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1412, 7670}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1412, 7813}}";
 			sepNavSelRange = "{2123, 25}";
-			sepNavVisRange = "{829, 3441}";
+			sepNavVisRange = "{0, 730}";
 		};
 	};
 	DD4AB77710CD219800EA0F09 /* contourNormals.cpp */ = {
@@ -1092,16 +1113,16 @@
 	};
 	DD5735B310CD2B5B00B788BB /* TrackerObject.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 1470}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 1820}}";
 			sepNavSelRange = "{464, 17}";
-			sepNavVisRange = "{0, 1746}";
+			sepNavVisRange = "{693, 968}";
 		};
 	};
 	DD5735B410CD2B5B00B788BB /* TrackerObject.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1356, 4212}}";
-			sepNavSelRange = "{5614, 0}";
-			sepNavVisRange = "{4290, 3140}";
+			sepNavIntBoundsRect = "{{0, 0}, {1055, 6526}}";
+			sepNavSelRange = "{4620, 18}";
+			sepNavVisRange = "{3308, 1385}";
 		};
 	};
 	DD5735E710CD484900B788BB /* PBXTextBookmark */ = {
@@ -1878,20 +1899,20 @@
 		);
 		name = "/Users/jonas/Documents/udvilking/of_preRelease_v0.06_xcode_FAT/apps/fub/fub001/fuckYouBuddy-Info.plist";
 		rLen = 0;
-		rLoc = 9223372036854775807;
+		rLoc = 9223372036854775808;
 	};
 	DDA5AEA210CE8C56005B53C6 /* CameraCalibration.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {994, 4433}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 3744}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1122}";
+			sepNavVisRange = "{0, 830}";
 		};
 	};
 	DDA5AEA310CE8C56005B53C6 /* CameraCalibration.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {994, 793}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 1196}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 819}";
+			sepNavVisRange = "{0, 575}";
 		};
 	};
 	DDA6211910B1618A009C8BDB /* main.mm */ = {
@@ -1918,17 +1939,17 @@
 	};
 	DDA6211D10B1618A009C8BDB /* PluginManagerController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {994, 910}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 1144}}";
 			sepNavSelRange = "{1648, 1}";
-			sepNavVisRange = "{958, 819}";
+			sepNavVisRange = "{676, 1352}";
 			sepNavWindowFrame = "{{15, 45}, {1191, 833}}";
 		};
 	};
 	DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1379, 4654}}";
-			sepNavSelRange = "{8901, 0}";
-			sepNavVisRange = "{8668, 467}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 4966}}";
+			sepNavSelRange = "{10319, 0}";
+			sepNavVisRange = "{8592, 1099}";
 			sepNavWindowFrame = "{{15, 45}, {1191, 833}}";
 		};
 	};
@@ -2543,9 +2564,9 @@
 	};
 	DDC772A310B58518009CAFC7 /* Plugin.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {754, 1534}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 1586}}";
 			sepNavSelRange = "{479, 39}";
-			sepNavVisRange = "{0, 2649}";
+			sepNavVisRange = "{1125, 1243}";
 		};
 	};
 	DDC772A410B58518009CAFC7 /* Plugin.mm */ = {
@@ -2579,16 +2600,16 @@
 	};
 	DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {994, 1326}}";
+			sepNavIntBoundsRect = "{{0, 0}, {994, 1339}}";
 			sepNavSelRange = "{93, 244}";
-			sepNavVisRange = "{0, 510}";
+			sepNavVisRange = "{0, 803}";
 		};
 	};
 	DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1153, 6591}}";
-			sepNavSelRange = "{1174, 644}";
-			sepNavVisRange = "{756, 1249}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 6227}}";
+			sepNavSelRange = "{4994, 0}";
+			sepNavVisRange = "{4938, 1140}";
 		};
 	};
 	DDC7779E10B70576009CAFC7 /* PBXTextBookmark */ = {
@@ -3270,8 +3291,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 281970515;
-			PBXWorkspaceStateSaveDate = 281970515;
+			PBXPerProjectTemplateStateSaveDate = 281974151;
+			PBXWorkspaceStateSaveDate = 281974151;
 		};
 		perUserProjectItems = {
 			DD029D5B10C95FF500105E5A = DD029D5B10C95FF500105E5A /* PBXTextBookmark */;
@@ -3390,8 +3411,8 @@
 			DD899E4410C46B980051758B = DD899E4410C46B980051758B /* PBXTextBookmark */;
 			DD899E4510C46B980051758B = DD899E4510C46B980051758B /* PBXTextBookmark */;
 			DD96580610ADB70300BA2763 = DD96580610ADB70300BA2763 /* PBXTextBookmark */;
-			DDA5AE8810CE8756005B53C6 /* PBXTextBookmark */ = DDA5AE8810CE8756005B53C6 /* PBXTextBookmark */;
-			DDA5AE8C10CE8756005B53C6 /* PlistBookmark */ = DDA5AE8C10CE8756005B53C6 /* PlistBookmark */;
+			DDA5AE8810CE8756005B53C6 = DDA5AE8810CE8756005B53C6 /* PBXTextBookmark */;
+			DDA5AE8C10CE8756005B53C6 = DDA5AE8C10CE8756005B53C6 /* PlistBookmark */;
 			DDA622B810B17101009C8BDB = DDA622B810B17101009C8BDB /* PBXTextBookmark */;
 			DDA623DF10B17326009C8BDB = DDA623DF10B17326009C8BDB /* PBXTextBookmark */;
 			DDA623E310B17326009C8BDB = DDA623E310B17326009C8BDB /* PBXTextBookmark */;
