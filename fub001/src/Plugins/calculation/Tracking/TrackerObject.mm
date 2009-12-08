@@ -37,17 +37,18 @@
 		centroid = new ofxPoint2f;
 		lastcentroid = new ofxPoint2f;
 		centroidV = new ofxVec2f;
-		blobs = new vector<ofxCvBlob>;
+		blobs = [[NSMutableArray array] retain];
 	}
 	return self;
 }
 
 -(ofxPoint2f) getLowestPoint{
 	ofxPoint2f low;
-	for(int i=0;i<blobs->size();i++){
-		for(int u=0;u< blobs->at(i).nPts;u++){
-			if(blobs->at(i).pts[u].y > low.y){
-				low = blobs->at(i).pts[u];
+	Blob * blob;
+	for(blob in blobs){
+		for(int u=0;u< [blob nPts];u++){
+			if([blob pts][u].y > low.y){
+				low = [blob pts][u];
 			}
 		}
 	}
@@ -57,6 +58,42 @@
 
 @end
 
+//--------------------
+//-- Blob --
+//--------------------
+
+@implementation Blob
+
+-(id)initWithBlob:(ofxCvBlob*)_blob{
+	if([super init]){
+		blob = _blob;
+	} 
+	return self;
+}
+
+-(vector <ofPoint>)pts{
+	return blob->pts;
+}
+-(int)nPts{
+	return blob->nPts;	
+}
+-(ofPoint)centroid{
+	return blob->centroid;		
+}
+-(float) area{
+	return blob->area;		
+}
+-(float)length{
+	return blob->length;		
+}
+-(ofRectangle) boundingRect{
+		return blob->boundingRect;	
+}
+-(BOOL) hole{
+	return blob->hole;		
+}
+
+@end
 
 
 //--------------------
@@ -78,6 +115,7 @@
 										   object:nil];
 		
 		persistentBlobs = [[NSMutableArray array] retain];
+		blobs = [[NSMutableArray array] retain];
 		
 		pthread_mutex_init(&mutex, NULL);
 		pthread_mutex_init(&drawingMutex, NULL);
@@ -228,26 +266,31 @@
 		 }
 		 }
 		 */
-		PersistentBlob * blob;		
+		PersistentBlob * pblob;		
 		
 		//Clear blobs
-		for(blob in persistentBlobs){
-			ofxPoint2f p = blob->centroid - blob->lastcentroid;
-			blob->centroidV = new ofxVec2f(p.x, p.y);
-			blob->lastcentroid = blob->centroid ;
-			blob->blobs->clear();
+		for(pblob in persistentBlobs){
+			ofxPoint2f p = pblob->centroid - pblob->lastcentroid;
+			pblob->centroidV = new ofxVec2f(p.x, p.y);
+			pblob->lastcentroid = pblob->centroid ;
+			[pblob->blobs removeAllObjects];
 		}
 		
 		
 		pthread_mutex_unlock(&mutex);
 		
-		
+		[blobs removeAllObjects];
 		for(int i=0;i<[self numBlobs];i++){
 			ofxCvBlob * blob = &contourFinder->blobs[i];
+			Blob * blobObj = [[Blob alloc] initWithBlob:blob];
+		}
+		
+		Blob * blob;
+		for(blob in blobs){
 			bool blobFound = false;
 			float shortestDist = 0;
 			int bestId = -1;
-			ofxPoint2f centroid = ofxPoint2f(blob->centroid.x, blob->centroid.y);
+			ofxPoint2f centroid = ofxPoint2f([blob centroid].x, [blob centroid].y);
 			
 			//Går igennem alle grupper for at finde den nærmeste gruppe som blobben kan tilhøre
 			//Magisk høj dist: 0.3
@@ -264,21 +307,21 @@
 				PersistentBlob * bestBlob = ((PersistentBlob*)[persistentBlobs objectAtIndex:bestId]);
 				//Fandt en gruppe som den her blob kan tilhøre.. Pusher blobben ind
 				bestBlob->timeoutCounter = 0;
-				bestBlob->blobs->push_back(*blob);
+				[bestBlob->blobs addObject:blob];
 				
 				//regner centroid ud fra alle blobs i den
 				bestBlob->centroid = new ofxPoint2f();
-				for(int g=0;g<bestBlob->blobs->size();g++){
-					ofxPoint2f blobCentroid = ofxPoint2f(bestBlob->blobs->at(g).centroid.x, bestBlob->blobs->at(g).centroid.y);
+				for(int g=0;g<[bestBlob->blobs count];g++){
+					ofxPoint2f blobCentroid = ofxPoint2f([[bestBlob->blobs objectAtIndex:g] centroid].x, [[bestBlob->blobs objectAtIndex:g] centroid].y);
 					*bestBlob->centroid += blobCentroid;					
 				}
-				*bestBlob->centroid /= (float)bestBlob->blobs->size();
+				*bestBlob->centroid /= (float)[bestBlob->blobs count];
 			}
 			
 			if(!blobFound){
 				//Der var ingen gruppe til den her blob, så vi laver en
 				PersistentBlob * newB = [[[PersistentBlob alloc] init] retain];
-				newB->blobs->push_back(*blob);
+				[newB->blobs addObject:blob];
 				*newB->centroid = centroid;
 				[persistentBlobs addObject:newB];		
 			}

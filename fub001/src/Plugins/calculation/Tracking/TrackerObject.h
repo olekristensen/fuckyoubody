@@ -27,13 +27,31 @@
 	
 
 	int timeoutCounter;
-	vector<ofxCvBlob> * blobs;
+	NSMutableArray * blobs;
 	
 }
 
 -(ofxPoint2f) getLowestPoint;
 
 @end
+
+@interface Blob : NSObject
+{
+	ofxCvBlob * blob;
+}
+
+-(id)initWithBlob:(ofxCvBlob*)_blob;
+-(vector <ofPoint>)pts;
+-(int)nPts;
+-(ofPoint)centroid;
+-(float) area;
+-(float)length;
+-(ofRectangle) boundingRect;
+-(BOOL) hole;
+
+
+@end
+
  
 
 @interface TrackerObject : NSObject {
@@ -60,7 +78,8 @@
 	ofxCvContourFinder 	* contourFinder;
 	
 	NSMutableArray * persistentBlobs;
-	
+	NSMutableArray * blobs;
+
 	IBOutlet NSSlider * blurSlider;
 	IBOutlet NSSlider * thresholdSldier;
 	IBOutlet NSSlider * postBlurSlider;
