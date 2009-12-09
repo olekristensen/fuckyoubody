@@ -80,9 +80,9 @@
 
 }
 
--(void) update:(const CVTimeStamp *)outputTime{
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	for(int i=0;i<3;i++){
-		[cam[i] update];
+		[cam[i] update:timeInterval displayTime:outputTime];
 		if(i==0){
 			[[controller cameraFps1] setFloatValue:[cam[i] framerate]];
 			[[controller cameraStatus1] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];

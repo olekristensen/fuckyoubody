@@ -94,7 +94,7 @@
 	
 }
 
--(void) draw:(const CVTimeStamp *)outputTime{
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if([drawButton state] == NSOnState){
 		ofSetColor(255, 255, 255);
 		CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]];

@@ -114,8 +114,8 @@
 -(BOOL) loadNibFile;
 
 -(void) setup;
--(void) controlDraw;
--(void) update;
+-(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
 -(id) initWithId:(int)num;
 -(void) performBlobTracking:(id)param;
 

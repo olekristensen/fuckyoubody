@@ -80,7 +80,7 @@ static BOOL camerasRespawning[3];
 	
 }
 
--(void) update{
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if(live){
 		if(camInited){
 			pthread_mutex_lock(&mutex);

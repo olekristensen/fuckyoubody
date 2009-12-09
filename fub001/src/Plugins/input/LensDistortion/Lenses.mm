@@ -71,7 +71,7 @@
 	font->loadFont("LucidaGrande.ttc",18, true, true, true);
 }
 
--(void) update:(const CVTimeStamp *)outputTime{	
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{	
 	for(int i=0;i<3;i++){
 		if([[GetPlugin(Cameras) getCameraWithId:i] camInited] || ![[GetPlugin(Cameras) getCameraWithId:i] live]){
 			pthread_mutex_lock(&mutex);

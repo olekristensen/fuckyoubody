@@ -379,7 +379,7 @@
 	glPopMatrix();
 }
 
--(void) update:(const CVTimeStamp *)outputTime{
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	pthread_mutex_lock(&mutex);
 	//Normal light
 	Lamp * lamp;

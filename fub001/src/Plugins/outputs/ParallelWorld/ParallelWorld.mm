@@ -34,7 +34,7 @@
 	max = [sender floatValue];	
 }
 
--(void) draw:(const CVTimeStamp *)outputTime{
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	//	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	if([rotating state] != NSOnState){

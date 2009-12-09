@@ -38,9 +38,9 @@
 	}
 }
 
--(void) update:(const CVTimeStamp *)outputTime{
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	for(int i=0;i<3;i++){
-		[trackerObj[i] update];
+		[trackerObj[i] update:timeInterval displayTime:outputTime];
 	}
 }
 
@@ -53,7 +53,7 @@
 	glPushMatrix();
 	for(int i=0;i<3;i++){
 		glPushMatrix();{
-			[trackerObj[i] controlDraw];
+			[trackerObj[i] controlDraw:timeInterval displayTime:timeStamp];
 		}glPopMatrix();
 		glTranslated(0, h+10, 0);
 	}

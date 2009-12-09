@@ -38,7 +38,7 @@
 	img->loadImage("danseDiagramOrden.png");;	
 }
 
--(void) draw:(const CVTimeStamp *)outputTime{
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 
 /*	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	ofSetColor(255, 255, 255);

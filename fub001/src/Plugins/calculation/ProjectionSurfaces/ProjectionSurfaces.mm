@@ -223,10 +223,10 @@
 	
 	glPopMatrix();}
 
--(void) update:(const CVTimeStamp *)outputTime{
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 }
 
--(void) draw:(const CVTimeStamp *)outputTime{
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	[self applyProjection:surface];
 	{

@@ -217,7 +217,7 @@
 }
 
 
--(void) controlDraw{
+-(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	float h = 200;
 	float w = h * 640.0/480.0;
 	pthread_mutex_lock(&mutex);		
@@ -232,7 +232,7 @@
 	pthread_mutex_unlock(&mutex);				
 }
 
--(void) update{
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	if ([GetPlugin(Cameras) isFrameNew:trackerNumber] && [activeButton state] == NSOnState){
 		//	int t = ofGetElapsedTimeMillis();
