@@ -97,10 +97,10 @@
 		}
 	}
 	if([Camera allCamerasAreRespawning]){
-		[[controller statusTextField] setStringValue:@"Initialising cameras"];
+		[[[controller statusTextField] animator] setStringValue:@"Initialising cameras"];
 		[[controller statusBusy] startAnimation:nil];
 	} else if (![Camera aCameraIsRespawning]){
-		[[controller statusTextField] setStringValue:@""];
+		[[[controller statusTextField] animator] setStringValue:@""];
 		[[controller statusBusy] stopAnimation:nil];
 	}
 

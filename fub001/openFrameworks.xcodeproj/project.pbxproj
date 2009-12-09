@@ -13,6 +13,7 @@
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB354F610CEC796008624B2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6EB354F510CEC796008624B2 /* icon.icns */; };
+		6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */; };
 		6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */; };
 		6EBB46FE10C80317004F9A03 /* ofCvCameraCalibration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */; };
 		6EBB472610C80472004F9A03 /* Lenses.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EBB472510C80472004F9A03 /* Lenses.mm */; };
@@ -193,6 +194,7 @@
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EB354F510CEC796008624B2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = SOURCE_ROOT; };
+		6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoForCalibration.png; sourceTree = "<group>"; };
 		6EB7260610C6EF4800347368 /* PluginUIValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIValueTextField.h; sourceTree = "<group>"; };
 		6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIValueTextField.mm; sourceTree = "<group>"; };
 		6EBB46FC10C80317004F9A03 /* ofCvCameraCalibration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofCvCameraCalibration.cpp; sourceTree = "<group>"; };
@@ -569,7 +571,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -693,6 +695,7 @@
 				DDA5AF3610CEBE2B005B53C6 /* PluginUISliderBackgroundRightLight.tiff */,
 				6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */,
 				6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */,
+				6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */,
 				DDA5AF3810CEBE2B005B53C6 /* redlight.tiff */,
 				DDA5AF3910CEBE2B005B53C6 /* Show_Status_Pressed.tiff */,
 				DDA5AF3A10CEBE2B005B53C6 /* Show_Status.tiff */,
@@ -1680,7 +1683,7 @@
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
-				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1717,7 +1720,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1775,6 +1778,7 @@
 				6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */,
 				6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */,
 				6EB354F610CEC796008624B2 /* icon.icns in Resources */,
+				6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

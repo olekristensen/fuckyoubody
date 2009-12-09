@@ -165,6 +165,9 @@
 -(void) setup{
 	font = new ofTrueTypeFont();
 	font->loadFont("LucidaGrande.ttc",40, true, true, true);
+	recoilLogo = new ofImage();
+	NSBundle *bundle = [NSBundle mainBundle];
+	recoilLogo->loadImage([[bundle pathForResource:@"recoilLogoForCalibration" ofType:@"png"] cString]);
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -234,6 +237,7 @@
 -(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize{
 	if (pthread_mutex_lock(&mutex) == 0) {
 		ofEnableAlphaBlending();
+		ofSetLineWidth(1);
 		ofSetColor(255, 255, 255, 255*a);
 		int xNumber = resolution+floor((aspect-1)*resolution);
 		int yNumber = resolution;
@@ -331,18 +335,36 @@
 		ofLine((aspect*0.5)-0.05, 0.5, (aspect*0.5)+0.05, 0.5);
 		ofLine((aspect*0.5), 1.0/resolution, (aspect*0.5), 1.0-(0.5/resolution));
 		
-		ofSetLineWidth(3);
+			glPushMatrix();{
+				
+				glScaled(fontSize, fontSize, 1.0);
+				if(aspect < 1.0){
+					glTranslated( aspect*0.5*1.0/fontSize-(recoilLogo->getHeight()*0.4*aspect),  0.5*1.0/fontSize-(recoilLogo->getWidth()*aspect)/2.0, 0);	
+					glRotated(90, 0, 0, 1.0);
+					glScaled(aspect, aspect, 1.0);
+				} else {
+					glTranslated( aspect*0.5*1.0/fontSize-recoilLogo->getWidth()/2.0,  0.5*1.0/fontSize+(recoilLogo->getHeight()*0.4), 0);	
+				}
+				ofFill();
+				ofSetColor(255,255,255,255);
+				recoilLogo->draw(recoilLogo->getWidth()*0.20, recoilLogo->getHeight()*0.2075, recoilLogo->getWidth()*0.6,recoilLogo->getHeight()*0.6);
+			} glPopMatrix();
 		
 		// center elipse
-		ofSetColor(255, 255,255,255*a);
 		ofNoFill();
 		ofSetCircleResolution(100);
 		if(aspect < 1.0){
-			ofEllipse(aspect/2, 0.5, aspect*1.35*((aspect/2)/aspect), aspect*1.35*0.5);
-			ofEllipse(aspect/2, 0.5, aspect*1.45*((aspect/2)/aspect), aspect*1.45*0.5);
+			ofSetLineWidth(5);
+			ofSetColor(64, 128, 220,255*a);
+			for (float i = 1.35; i < 1.37; i+=0.01) {
+				ofEllipse(aspect/2, 0.5, aspect*i*((aspect/2)/aspect), aspect*i*0.5);
+			}
 		} else {
-			ofEllipse(aspect/2, 0.5, 1.35*((aspect/2)/aspect), 1.35*0.5);
-			ofEllipse(aspect/2, 0.5, 1.45*((aspect/2)/aspect), 1.45*0.5);
+			ofSetLineWidth(5);
+			ofSetColor(64, 128, 220,255*a);
+			for (float i = 1.35; i < 1.37; i+=0.01) {
+				ofEllipse(aspect/2, 0.5,i*((aspect/2)/aspect), i*0.5);
+			}
 		}
 		
 		// text label
@@ -351,7 +373,6 @@
 		//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
 		
 		glPushMatrix();{
-			
 			glScaled(fontSize, fontSize, 1.0);
 			if(aspect < 1.0){
 				glTranslated( aspect*0.5*1.0/fontSize+(font->stringHeight(text)*0.3*aspect),  0.5*1.0/fontSize-(font->stringWidth(text)*aspect)/2.0, 0);	
@@ -360,10 +381,16 @@
 			} else {
 				glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize-(font->stringHeight(text)*0.3), 0);	
 			}
-			ofFill();
+			ofSetColor(0, 0, 0,200);
+			ofNoFill();
+			ofSetLineWidth(6);
 			font->drawStringAsShapes(text,0,0);
-			
+			ofFill();
+			ofSetColor(255, 255, 255,255);
+			font->drawStringAsShapes(text,0,0);
+			ofSetLineWidth(1);
 		} glPopMatrix();
+		
 		pthread_mutex_unlock(&mutex);
 	}
 	
@@ -415,19 +442,19 @@
 
 -(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h{
 	/*ProjectorObject * proj;
-	for(proj in projectors){
-		if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
-			ProjectionSurfacesObject * surf;
-			NSArray * a = proj->surfaces;
-			for(surf in a){
-				if(strcmp(surf->name->c_str(), surface.c_str()) == 0){
-					//	cout<<"found"<<endl;
-					[self applyProjection:surf width:_w height:_h];
-				}
-				
-			}
-		}
-	}*/
+	 for(proj in projectors){
+	 if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
+	 ProjectionSurfacesObject * surf;
+	 NSArray * a = proj->surfaces;
+	 for(surf in a){
+	 if(strcmp(surf->name->c_str(), surface.c_str()) == 0){
+	 //	cout<<"found"<<endl;
+	 [self applyProjection:surf width:_w height:_h];
+	 }
+	 
+	 }
+	 }
+	 }*/
 	[self applyProjection:[self getProjectionSurfaceByName:projection surface:surface] width:_w height:_h];
 	
 	

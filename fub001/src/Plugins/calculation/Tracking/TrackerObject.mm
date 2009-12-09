@@ -220,14 +220,16 @@
 -(void) controlDraw{
 	float h = 200;
 	float w = h * 640.0/480.0;
-	pthread_mutex_lock(&drawingMutex);		
+	pthread_mutex_lock(&mutex);		
 	ofSetColor(255, 255, 255);
 	[GetPlugin(Cameras) getTexture:trackerNumber]->draw(0,0,w,h);
 	grayBg->draw(w,0,w,h);
+	ofSetColor(64, 128, 220);
+	ofSetColor(150, 171, 219);
 	grayDiff->draw(w*2,0,w,h);
 	grayDiff->draw(w*3,0,w,h);
 	contourFinder->draw(w*3,0,w,h);
-	pthread_mutex_unlock(&drawingMutex);				
+	pthread_mutex_unlock(&mutex);				
 }
 
 -(void) update{

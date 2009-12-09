@@ -58,6 +58,7 @@
 	IBOutlet NSButton * showGrid;
 	IBOutlet PluginUISlider * aspectSlider;
 	ofTrueTypeFont	* font;
+	ofImage * recoilLogo;
 	ofxVec2f * lastMousePos;
 	int selectedCorner;
 	int selectedSurface;
