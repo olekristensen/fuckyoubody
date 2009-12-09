@@ -4,7 +4,7 @@
 #include "Cameras.h"
 
 @implementation CameraCalibration
-
+@synthesize cameraCalibrations;
 -(void) initPlugin{
 	cameraCalibrations = [[NSMutableArray array] retain];
 	lastMousePos = new ofxVec2f();

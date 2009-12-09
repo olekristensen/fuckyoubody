@@ -44,6 +44,12 @@
 	}
 }
 
+-(void) draw:(const CVTimeStamp *)outputTime{
+	for(int i=0;i<3;i++){
+		[trackerObj[i] draw];
+	}
+}
+
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	float h = ofGetHeight()/3.0;
 	h = 200;

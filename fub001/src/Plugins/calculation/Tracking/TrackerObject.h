@@ -30,6 +30,7 @@
 	NSMutableArray * blobs;
 	
 }
+@property (assign) NSMutableArray * blobs;
 
 -(ofxPoint2f) getLowestPoint;
 
@@ -43,6 +44,7 @@
 @property (readwrite) int cameraId;
 -(void) normalize:(int)w height:(int)h;
 -(void) lensCorrect;
+-(void) warp;
 
 -(id)initWithBlob:(ofxCvBlob*)_blob;
 -(vector <ofPoint>)pts;
@@ -59,6 +61,8 @@
  
 
 @interface TrackerObject : NSObject {
+	long unsigned int pidCounter;
+
 	IBOutlet NSView * settingsView;
 	int trackerNumber;
 	PluginManagerController * controller;
@@ -90,6 +94,7 @@
 	IBOutlet NSSlider * postThresholdSlider;
 	IBOutlet NSButton * activeButton;
 	IBOutlet NSButton * learnBackgroundButton;
+	IBOutlet NSButton * drawDebugButton;
 	
 	NSThread * thread;
 	pthread_mutex_t mutex;
@@ -116,13 +121,18 @@
 -(void) setup;
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
+-(void) draw;
 -(id) initWithId:(int)num;
 -(void) performBlobTracking:(id)param;
+
 
 -(void) saveBackground;
 -(void) loadBackground;
 
 -(int) numBlobs;
 -(Blob*) getBlob:(int)n;
+
+-(int) numPersistentBlobs;
+-(PersistentBlob*) getPersistentBlob:(int)n;
 
 @end

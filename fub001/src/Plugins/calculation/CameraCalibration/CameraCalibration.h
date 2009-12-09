@@ -28,7 +28,7 @@
 	NSUserDefaults *userDefaults;
 
 }
-
+@property (assign, readonly) NSMutableArray * cameraCalibrations;
 -(ofxPoint2f) convertMousePoint:(ofxPoint2f)p;
 -(IBAction) reset:(id)sender;
 @end

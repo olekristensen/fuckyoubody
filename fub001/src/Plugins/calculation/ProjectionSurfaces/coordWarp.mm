@@ -30,6 +30,14 @@ void coordWarping::calculateMatrix(ofxPoint2f src[4], ofxPoint2f dst[4]){
 	
 }
 
+
+ofxPoint2f coordWarping::transform(ofxPoint2f p){
+	return transform(p.x,p.y);
+}
+ofxPoint2f coordWarping::inversetransform(ofxPoint2f p){
+	return inversetransform(p.x,p.y);	
+}
+
 //---------------------------		
 ofxPoint2f coordWarping::transform(float xIn, float yIn){
 	ofxPoint2f out;

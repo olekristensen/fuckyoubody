@@ -9,6 +9,7 @@
 #import "TrackerObject.h"
 #include "Cameras.h"
 #include "Lenses.h"
+#include "CameraCalibration.h"
 /*
  unsigned long int PersistentBlob::idCounter = 0;
  
@@ -31,7 +32,7 @@
  */
 
 @implementation PersistentBlob
-
+@synthesize blobs;
 -(id) init{
 	if([super init]){
 		timeoutCounter = 0;
@@ -95,7 +96,18 @@
 	for(int i=0;i<blob->nPts;i++){
 		blob->pts[i] = [lenses undistortPoint:(ofxPoint2f)blob->pts[i] fromCameraId:cameraId];
 	}
-	blob->centroid = [lenses undistortPoint:blob->centroid fromCameraId:cameraId];
+	blob->centroid = [lenses undistortPoint:blob->centroid fromCameraId:cameraId];	
+}
+-(void) warp{
+	CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:cameraId]);
+	
+	for(int i=0;i<blob->nPts;i++){
+		blob->pts[i] = calibrator->coordWarp->transform(blob->pts[i]);
+	}
+	blob->centroid = calibrator->coordWarp->transform(blob->centroid);
+	/*blob->area /= (float)w*h;
+	blob->centroid.x /=(float) w;
+	blob->centroid.y /= (float)h;*/
 	
 }
 
@@ -152,6 +164,7 @@
 		userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 		
 		valuesLoaded = NO;
+		pidCounter = 0;
 		
 		
 	}
@@ -160,12 +173,13 @@
 }
 
 -(void) setup{
-	cout<<"Load valuye: "<<[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.blur", trackerNumber]]floatValue]<<endl;
 	[blurSlider setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.blur", trackerNumber]]floatValue]];
 	[thresholdSldier setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.threshold", trackerNumber]]floatValue]];
 	[postBlurSlider setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.postBlur", trackerNumber]]floatValue]];
 	[postThresholdSlider setFloatValue:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.postThreshold", trackerNumber]]floatValue]];
 	[activeButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.active", trackerNumber]]intValue]];
+	[drawDebugButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.debug", trackerNumber]]intValue]];
+
 	valuesLoaded = YES;
 	
 	
@@ -216,6 +230,19 @@
 	return YES;
 }
 
+-(void) draw{
+	if([drawDebugButton state] == NSOnState){
+		Blob * blob;
+		ofSetColor(255, 255, 255);
+		for(blob in blobs){
+			glBegin(GL_LINE_STRIP);
+			for(int i=0;i<[blob nPts];i++){
+				glVertex2f([blob pts][i].x, [blob pts][i].y);
+			}
+			glEnd();
+		}
+	}
+}
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	float h = 200;
@@ -337,6 +364,7 @@
 			[blobObj setCameraId:trackerNumber];
 			[blobObj lensCorrect];
 			[blobObj normalize:cw height:ch];
+			[blobObj warp];
 			[blobs addObject:blobObj];
 			
 		}
@@ -379,6 +407,7 @@
 				PersistentBlob * newB = [[[PersistentBlob alloc] init] retain];
 				[newB->blobs addObject:blob];
 				*newB->centroid = centroid;
+				newB->pid = pidCounter++;
 				[persistentBlobs addObject:newB];		
 			}
 		}		
@@ -402,21 +431,21 @@
 }
 
 -(int) numBlobs{
-	/*	if(mouseBlob){
-	 return 1;
-	 }*/
-	int r = 0;
-	/*pthread_mutex_lock(&mutex);
-	r = contourFinder->nBlobs;
-	pthread_mutex_unlock(&mutex);	
-
-	return r;*/
 	return [blobs count];
 }
 
 -(Blob*) getBlob:(int)n{
 	return [blobs objectAtIndex:n];
 }
+
+-(int) numPersistentBlobs{
+	return [persistentBlobs count];
+}
+-(PersistentBlob*) getPersistentBlob:(int)n{
+	return [persistentBlobs objectAtIndex:n];
+	
+}
+
 
 -(void) saveBackground{
 //	ofLog(OF_LOG_NOTICE, "<<<<<<<< gemmer billede " + ofToString(cameraId));

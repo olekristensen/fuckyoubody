@@ -38,6 +38,7 @@
 		DD17E06410C69C70008B3E0A /* ofxVideoGrabberFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */; };
 		DD17E09810C69E5B008B3E0A /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD17E09710C69E5B008B3E0A /* Camera.mm */; };
 		DD17E20610C6AD09008B3E0A /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD17E20510C6AD09008B3E0A /* Camera.xib */; };
+		DD204C6110CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD204C6010CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist */; };
 		DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */; };
 		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
 		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
@@ -47,9 +48,6 @@
 		DD45B91D106FDC4F00B4B19C /* ofxMSASurface3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */; };
 		DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB76910CD210300EA0F09 /* Tracking.mm */; };
 		DD4AB76E10CD213700EA0F09 /* Tracking.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4AB76D10CD213700EA0F09 /* Tracking.xib */; };
-		DD4AB77D10CD219800EA0F09 /* BlobTracking.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB77610CD219800EA0F09 /* BlobTracking.mm */; };
-		DD4AB77E10CD219800EA0F09 /* contourNormals.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB77710CD219800EA0F09 /* contourNormals.cpp */; };
-		DD4AB77F10CD219800EA0F09 /* contourSimplify.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD4AB77910CD219800EA0F09 /* contourSimplify.cpp */; };
 		DD4FE4F110C5307B00A11BE9 /* DanceSteps.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD4FE4EF10C5307B00A11BE9 /* DanceSteps.mm */; };
 		DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */; };
 		DD5735B110CD2B4100B788BB /* TrackerObject.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD5735B010CD2B4100B788BB /* TrackerObject.xib */; };
@@ -237,6 +235,7 @@
 		DD17E09610C69E5B008B3E0A /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		DD17E09710C69E5B008B3E0A /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
 		DD17E20510C6AD09008B3E0A /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Camera.xib; sourceTree = "<group>"; };
+		DD204C6010CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "org.recoil-performance.fuckYouBuddy.plist"; path = "../../../../../../Library/Preferences/org.recoil-performance.fuckYouBuddy.plist"; sourceTree = SOURCE_ROOT; };
 		DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelWorld.h; sourceTree = "<group>"; };
 		DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParallelWorld.mm; sourceTree = "<group>"; };
 		DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParallelWorld.xib; sourceTree = "<group>"; };
@@ -256,14 +255,6 @@
 		DD4AB76810CD210300EA0F09 /* Tracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tracking.h; sourceTree = "<group>"; };
 		DD4AB76910CD210300EA0F09 /* Tracking.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Tracking.mm; sourceTree = "<group>"; };
 		DD4AB76D10CD213700EA0F09 /* Tracking.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Tracking.xib; sourceTree = "<group>"; };
-		DD4AB77510CD219800EA0F09 /* BlobTracking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlobTracking.h; sourceTree = "<group>"; };
-		DD4AB77610CD219800EA0F09 /* BlobTracking.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BlobTracking.mm; sourceTree = "<group>"; };
-		DD4AB77710CD219800EA0F09 /* contourNormals.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourNormals.cpp; sourceTree = "<group>"; };
-		DD4AB77810CD219800EA0F09 /* contourNormals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourNormals.h; sourceTree = "<group>"; };
-		DD4AB77910CD219800EA0F09 /* contourSimplify.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = contourSimplify.cpp; sourceTree = "<group>"; };
-		DD4AB77A10CD219800EA0F09 /* contourSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contourSimplify.h; sourceTree = "<group>"; };
-		DD4AB77B10CD219800EA0F09 /* convexHull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = convexHull.h; sourceTree = "<group>"; };
-		DD4AB77C10CD219800EA0F09 /* polylineSimplify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = polylineSimplify.h; sourceTree = "<group>"; };
 		DD4FE4EE10C5307B00A11BE9 /* DanceSteps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DanceSteps.h; sourceTree = "<group>"; };
 		DD4FE4EF10C5307B00A11BE9 /* DanceSteps.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DanceSteps.mm; sourceTree = "<group>"; };
 		DD4FE4F010C5307B00A11BE9 /* DanceSteps.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DanceSteps.xib; sourceTree = "<group>"; };
@@ -571,7 +562,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -839,24 +830,8 @@
 				DD4AB76910CD210300EA0F09 /* Tracking.mm */,
 				DD4AB76D10CD213700EA0F09 /* Tracking.xib */,
 				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
-				DD4AB77410CD219800EA0F09 /* BlobTracking */,
 			);
 			path = Tracking;
-			sourceTree = "<group>";
-		};
-		DD4AB77410CD219800EA0F09 /* BlobTracking */ = {
-			isa = PBXGroup;
-			children = (
-				DD4AB77510CD219800EA0F09 /* BlobTracking.h */,
-				DD4AB77610CD219800EA0F09 /* BlobTracking.mm */,
-				DD4AB77710CD219800EA0F09 /* contourNormals.cpp */,
-				DD4AB77810CD219800EA0F09 /* contourNormals.h */,
-				DD4AB77910CD219800EA0F09 /* contourSimplify.cpp */,
-				DD4AB77A10CD219800EA0F09 /* contourSimplify.h */,
-				DD4AB77B10CD219800EA0F09 /* convexHull.h */,
-				DD4AB77C10CD219800EA0F09 /* polylineSimplify.h */,
-			);
-			path = BlobTracking;
 			sourceTree = "<group>";
 		};
 		DD4FE4ED10C5307B00A11BE9 /* DanceSteps */ = {
@@ -1682,8 +1657,9 @@
 				DDA5AF7510CEBE74005B53C6 /* ToDo.rtf */,
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */,
+				DD204C6010CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
-				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1720,7 +1696,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1779,6 +1755,7 @@
 				6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */,
 				6EB354F610CEC796008624B2 /* icon.icns in Resources */,
 				6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */,
+				DD204C6110CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1893,9 +1870,6 @@
 				6EBB472610C80472004F9A03 /* Lenses.mm in Sources */,
 				DDC0C73D10C96BA500402218 /* videoplayerWrapper.cpp in Sources */,
 				DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */,
-				DD4AB77D10CD219800EA0F09 /* BlobTracking.mm in Sources */,
-				DD4AB77E10CD219800EA0F09 /* contourNormals.cpp in Sources */,
-				DD4AB77F10CD219800EA0F09 /* contourSimplify.cpp in Sources */,
 				DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */,
 				DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */,
 			);

@@ -21,7 +21,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
+			<integer value="2"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -278,10 +278,10 @@
 						<int key="NSvFlags">274</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="BWTransparentCheckbox" id="738486238">
+							<object class="BWTransparentCheckbox" id="961007590">
 								<reference key="NSNextResponder" ref="755065694"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{7, 157}, {63, 18}}</string>
+								<string key="NSFrame">{{7, 139}, {91, 18}}</string>
 								<reference key="NSSuperview" ref="755065694"/>
 								<bool key="NSViewIsLayerTreeHost">YES</bool>
 								<object class="NSShadow" key="NSViewShadow">
@@ -290,12 +290,12 @@
 								</object>
 								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
-								<object class="BWTransparentCheckboxCell" key="NSCell" id="809559508">
+								<object class="BWTransparentCheckboxCell" key="NSCell" id="38291764">
 									<int key="NSCellFlags">-2080244224</int>
 									<int key="NSCellFlags2">131072</int>
 									<object class="NSAttributedString" key="NSContents">
-										<string key="NSString">Active</string>
-										<object class="NSDictionary" key="NSAttributes">
+										<string key="NSString">Draw debug</string>
+										<object class="NSDictionary" key="NSAttributes" id="832919114">
 											<bool key="EncodedWithXMLCoder">YES</bool>
 											<object class="NSArray" key="dict.sortedKeys">
 												<bool key="EncodedWithXMLCoder">YES</bool>
@@ -323,16 +323,47 @@
 										</object>
 									</object>
 									<reference key="NSSupport" ref="228020202"/>
-									<reference key="NSControlView" ref="738486238"/>
+									<reference key="NSControlView" ref="961007590"/>
 									<int key="NSButtonFlags">1211912703</int>
 									<int key="NSButtonFlags2">130</int>
-									<object class="NSCustomResource" key="NSNormalImage">
+									<object class="NSCustomResource" key="NSNormalImage" id="1043687876">
 										<string key="NSClassName">NSImage</string>
 										<string key="NSResourceName">NSSwitch</string>
 									</object>
-									<object class="NSButtonImageSource" key="NSAlternateImage">
+									<object class="NSButtonImageSource" key="NSAlternateImage" id="902949221">
 										<string key="NSImageName">NSSwitch</string>
 									</object>
+									<string key="NSAlternateContents"/>
+									<string key="NSKeyEquivalent"/>
+									<int key="NSPeriodicDelay">200</int>
+									<int key="NSPeriodicInterval">25</int>
+								</object>
+							</object>
+							<object class="BWTransparentCheckbox" id="738486238">
+								<reference key="NSNextResponder" ref="755065694"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{7, 157}, {63, 18}}</string>
+								<reference key="NSSuperview" ref="755065694"/>
+								<bool key="NSViewIsLayerTreeHost">YES</bool>
+								<object class="NSShadow" key="NSViewShadow">
+									<double key="NSShadowBlurRadius">2</double>
+									<reference key="NSShadowColor" ref="8189838"/>
+								</object>
+								<int key="NSViewLayerContentsRedrawPolicy">2</int>
+								<bool key="NSEnabled">YES</bool>
+								<object class="BWTransparentCheckboxCell" key="NSCell" id="809559508">
+									<int key="NSCellFlags">-2080244224</int>
+									<int key="NSCellFlags2">131072</int>
+									<object class="NSAttributedString" key="NSContents">
+										<string key="NSString">Active</string>
+										<reference key="NSAttributes" ref="832919114"/>
+									</object>
+									<reference key="NSSupport" ref="228020202"/>
+									<reference key="NSControlView" ref="738486238"/>
+									<int key="NSButtonFlags">1211912703</int>
+									<int key="NSButtonFlags2">130</int>
+									<reference key="NSNormalImage" ref="1043687876"/>
+									<reference key="NSAlternateImage" ref="902949221"/>
 									<string key="NSAlternateContents"/>
 									<string key="NSKeyEquivalent"/>
 									<int key="NSPeriodicDelay">200</int>
@@ -501,10 +532,7 @@
 						<int key="NSBoxType">4</int>
 						<int key="NSTitlePosition">0</int>
 						<bool key="NSTransparent">NO</bool>
-						<object class="NSColor" key="NSBorderColor2">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MAA</bytes>
-						</object>
+						<reference key="NSBorderColor2" ref="8189838"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{1068, 200}</string>
@@ -610,6 +638,14 @@
 						<reference key="destination" ref="494753271"/>
 					</object>
 					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">drawDebugButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="961007590"/>
+					</object>
+					<int key="connectionID">75</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -794,6 +830,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="738486238"/>
 							<reference ref="141384841"/>
+							<reference ref="961007590"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -902,6 +939,20 @@
 						<reference key="object" ref="1040523420"/>
 						<reference key="parent" ref="290742825"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">73</int>
+						<reference key="object" ref="961007590"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="38291764"/>
+						</object>
+						<reference key="parent" ref="755065694"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">74</int>
+						<reference key="object" ref="38291764"/>
+						<reference key="parent" ref="961007590"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -951,13 +1002,16 @@
 					<string>6.IBPluginDependency</string>
 					<string>62.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
+					<string>73.IBPluginDependency</string>
+					<string>73.IBViewIntegration.shadowBlurRadius</string>
+					<string>74.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>8.IBViewIntegration.shadowBlurRadius</string>
 					<string>9.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{401, 131}, {1068, 200}}</string>
+					<string>{{355, 131}, {1068, 200}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -1003,6 +1057,9 @@
 					<string>com.brandonwalkin.BWToolkit</string>
 					<real value="2"/>
 					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<real value="2"/>
+					<string>com.brandonwalkin.BWToolkit</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1021,7 +1078,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">72</int>
+			<int key="maxID">75</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1054,6 +1111,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>activeButton</string>
 							<string>blurSlider</string>
+							<string>drawDebugButton</string>
 							<string>learnBackgroundButton</string>
 							<string>postBlurSlider</string>
 							<string>postThresholdSlider</string>
@@ -1064,6 +1122,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSButton</string>
 							<string>NSSlider</string>
+							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSSlider</string>
 							<string>NSSlider</string>
