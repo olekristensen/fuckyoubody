@@ -40,6 +40,8 @@
 		originalImage[i]->allocate( cwidth,cheight );
 		undistortedImage[i] = new ofxCvGrayscaleImage();
 		undistortedImage[i]->allocate( cwidth,cheight );
+		originalImageGreyscale[i] = new ofxCvGrayscaleImage();
+		originalImageGreyscale[i]->allocate( cwidth,cheight );
 		calibrationState[i] = CALIBRATION_VIRGIN;
 		
 		NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] retain];
@@ -74,11 +76,9 @@
 		if([[GetPlugin(Cameras) getCameraWithId:i] camInited] || ![[GetPlugin(Cameras) getCameraWithId:i] live]){
 			pthread_mutex_lock(&mutex);
 			unsigned char * somePixel = [[GetPlugin(Cameras) getCameraWithId:i] getPixels];
-			ofxCvGrayscaleImage anImage;
-			anImage.allocate( cwidth,cheight );
-			anImage.setFromPixels(somePixel, cwidth, cheight );
+			originalImageGreyscale[i]->setFromPixels(somePixel, cwidth, cheight );
 			hasUndistortedImage[i] = NO;
-			originalImage[i]->setFromGrayscalePlanarImages(anImage, anImage, anImage );
+			originalImage[i]->setFromGrayscalePlanarImages(*originalImageGreyscale[i], *originalImageGreyscale[i], *originalImageGreyscale[i] );
 			pthread_mutex_unlock(&mutex);
 		}
 	}
@@ -402,18 +402,21 @@
 	
 	int i = cameraId;
 	
-	if (!hasUndistortedImage[i]) {
-		pthread_mutex_lock(&mutex);
-		cvCvtColor( originalImage[i]->getCvImage(), undistortedImage[i]->getCvImage(), CV_RGB2GRAY );
-		undistortedImage[i]->flagImageChanged();
-		undistortedImage[i]->undistort( cameraCalibrator[i]->distortionCoeffs[0], cameraCalibrator[i]->distortionCoeffs[1],
-									   cameraCalibrator[i]->distortionCoeffs[2], cameraCalibrator[i]->distortionCoeffs[3],
-									   cameraCalibrator[i]->camIntrinsics[0], cameraCalibrator[i]->camIntrinsics[4],
-									   cameraCalibrator[i]->camIntrinsics[2], cameraCalibrator[i]->camIntrinsics[5] );   
-		hasUndistortedImage[i] = YES;
-		pthread_mutex_unlock(&mutex);
-	}
+	if(calibrationState[i] == CALIBRATION_CALIBRATED){
+		if (!hasUndistortedImage[i]) {
+			pthread_mutex_lock(&mutex);
+			cvCvtColor( originalImage[i]->getCvImage(), undistortedImage[i]->getCvImage(), CV_RGB2GRAY );
+			undistortedImage[i]->flagImageChanged();
+			undistortedImage[i]->undistort( cameraCalibrator[i]->distortionCoeffs[0], cameraCalibrator[i]->distortionCoeffs[1],
+										   cameraCalibrator[i]->distortionCoeffs[2], cameraCalibrator[i]->distortionCoeffs[3],
+										   cameraCalibrator[i]->camIntrinsics[0], cameraCalibrator[i]->camIntrinsics[4],
+										   cameraCalibrator[i]->camIntrinsics[2], cameraCalibrator[i]->camIntrinsics[5] );   
+			hasUndistortedImage[i] = YES;
+			pthread_mutex_unlock(&mutex);
+		}
 	return undistortedImage[i];
+	}
+	return originalImageGreyscale[i];
 }
 
 -(void)updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)theCameraCalibrator{

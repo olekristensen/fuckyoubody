@@ -8,6 +8,7 @@
 -(void) initPlugin{
 	cameraCalibrations = [[NSMutableArray array] retain];
 	lastMousePos = new ofxVec2f();
+	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 }
 
 -(void) setup{
@@ -17,33 +18,35 @@
 		
 		if(i==0){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
-			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
-			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
-			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
-			//			[obj calibPoints][0] = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertToProjection:ofxPoint2f(0,0) surface:surface]);
+			[obj calibPoints][0] = ofxPoint2f(0.0,0);
+			[obj calibPoints][1] = ofxPoint2f(1,0);
+			[obj calibPoints][2] = ofxPoint2f(1,1);
+			[obj calibPoints][3] = ofxPoint2f(0,1);
 		}
-		if(i==0){
+		
+		if(i==1){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
 			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
 			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
 			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
 			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
-			//			[obj calibPoints][0] = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertToProjection:ofxPoint2f(0,0) surface:surface]);
 		}
-		if(i==0){
+		
+		if(i==2){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
 			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
 			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
 			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
 			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
-			//			[obj calibPoints][0] = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertToProjection:ofxPoint2f(0,0) surface:surface]);
 		}
 		
 		for(int u=0;u<4;u++){
-			[obj calibHandles][u] = ofxPoint2f();
-			
+			[obj calibHandles][u].x = [userDefaults doubleForKey:[NSString stringWithFormat:@"camera%d.corner%d.x",i, u]];
+			[obj calibHandles][u].y = [userDefaults doubleForKey:[NSString stringWithFormat:@"camera%d.corner%d.y",i, u]];			
 		}
+		
+		[obj recalculate];
+
 		
 		[cameraCalibrations addObject:obj];
 		
@@ -62,15 +65,16 @@
 	
 	ofSetColor(255, 255, 255);
 	[GetPlugin(Lenses) getUndistortedImageFromCameraId:[cameraSelector selectedSegment]]->draw(0,0,640,480);
-	
+	ofEnableAlphaBlending();
 	
 	ofFill();
 	for(int i=0;i<4;i++){
 		ofNoFill();
-		ofSetColor(0, 0,0);
-		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 21, 21);
-		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 19, 19);
-		ofSetColor(255, 0,0);
+		ofSetColor(0, 0,0,255);
+		ofSetLineWidth(2);
+		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 18, 18);
+		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 22, 22);
+		ofSetColor(255, 255,0,255);
 		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 20, 20);
 	}
 	
@@ -84,8 +88,8 @@
 		
 		
 		[obj applyWarp];
-//		[GetPlugin(Lenses) getUndistortedImageFromCameraId:[cameraSelector selectedSegment]]->draw(0,0,1,1);
-		[[GetPlugin(Cameras) getCameraWithId:0] getTexture]->draw(0,0,1,1);
+				[GetPlugin(Lenses) getUndistortedImageFromCameraId:[cameraSelector selectedSegment]]->draw(0,0,1,1);
+		//[[GetPlugin(Cameras) getCameraWithId:0] getTexture]->draw(0,0,1,1);
 		glPopMatrix();
 		
 		
@@ -108,16 +112,12 @@
 	
 	float shortestDist = nil;
 	for(int i=0;i<4;i++){
-		cout<<i<<" : "<<[obj calibHandles][i
-										   ].distance(curMouse)<< "  "<<shortestDist<<endl;
-
 		if(shortestDist == nil || [obj calibHandles][i].distance(curMouse) < shortestDist){
-			
 			shortestDist = [obj calibHandles][i].distance(curMouse);
 			selectedCorner = i;
 		}
 	}
-
+	
 	
 	if([obj calibHandles][selectedCorner].distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.3){
 		selectedCorner = -1;
@@ -132,11 +132,12 @@
 	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
 	ofxVec2f newPos =  [obj calibHandles][selectedCorner] + (curMouse-*lastMousePos);
 	if(selectedCorner != -1){
-			[obj calibHandles][selectedCorner] = ofxPoint2f(newPos);
+		[obj calibHandles][selectedCorner] = ofxPoint2f(newPos);
+		[userDefaults setDouble:newPos.x forKey:[NSString stringWithFormat:@"camera%d.corner%d.x",[cameraSelector selectedSegment], selectedCorner]];
+		[userDefaults setDouble:newPos.y forKey:[NSString stringWithFormat:@"camera%d.corner%d.y",[cameraSelector selectedSegment], selectedCorner]];
 	} else {		
 		//*position += (curMouse- ((ofxPoint2f)*lastMousePos));
 	}
-	cout<<newPos.x<<endl;
 	lastMousePos->x = curMouse.x;	
 	lastMousePos->y = curMouse.y;	
 	
@@ -153,28 +154,20 @@
 	CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]];
 	
 	ofxPoint2f p2 = ofxPoint2f(p);
-	//float viewAspect = [obj surface]->aspect;
-	
-	//p2-= ofxPoint2f(w/2.0, h/2.0);	
-	//p2 -= *position;
-	/*if(viewAspect > aspect){
-	 p2 /= ofxPoint2f(w,w);
-	 } else {
-	 p2 /= ofxPoint2f((float)h/aspect,(float)h/aspect);
-	 }
-	 */
-	//p2 /= ofxPoint2f((float)scale,(float)scale);
-	/*	p2 -= ofxPoint2f(-0.5, -aspect/2.0);
-	 p2 /= ofxPoint2f((float)1.0,(float)aspect);*/
 	p2.x /= 640.0;
 	p2.y /= 480.0;
-	return p2;
-	//	glTranslated(-projWidth/2.0, -projHeight/2.0, 0);
- 	
+	return p2; 	
 }
 
 -(IBAction) reset:(id)sender{
-	[[cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]] reset];;
+	CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]];
+	[obj reset];
+	
+	for(int i=0;i<4;i++){
+		[userDefaults setDouble:obj->calibHandles[i].x forKey:[NSString stringWithFormat:@"camera%d.corner%d.x",[cameraSelector selectedSegment], i]];
+		[userDefaults setDouble:obj->calibHandles[i].y forKey:[NSString stringWithFormat:@"camera%d.corner%d.y",[cameraSelector selectedSegment], i]];
+	}
+
 }
 
 
@@ -212,11 +205,14 @@
 	a[3] = ofxPoint2f(0,1);
 	
 	ofxPoint2f pts[4];
+	ofxPoint2f hndls[4];
 	for(int i=0;i<4;i++){
 		pts[i] = [GetPlugin(ProjectionSurfaces) convertToProjection:calibPoints[i] surface:surface];
+		hndls[i] = calibHandles[i];
+		hndls[i].x /= surface->aspect;
 	}
 	
-	coordWarpCalibration->calculateMatrix(calibHandles, pts);	
+	coordWarpCalibration->calculateMatrix(hndls, pts);	
 	
 	ofxPoint2f corners[4];
 	for(int u=0;u<4;u++){

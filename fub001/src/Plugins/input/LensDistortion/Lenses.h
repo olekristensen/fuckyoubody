@@ -62,6 +62,8 @@
 	
 	ofxCvColorImage * originalImage[3];
     ofxCvGrayscaleImage * undistortedImage[3];
+	ofxCvGrayscaleImage * originalImageGreyscale[3];
+
 
 	CvSize csize;
 	

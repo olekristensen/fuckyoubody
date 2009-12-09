@@ -46,12 +46,12 @@
 					<object class="NSButton" id="819144659">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{514, 150}, {149, 25}}</string>
+						<string key="NSFrame">{{507, 150}, {156, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="65685715">
 							<int key="NSCellFlags">67239424</int>
-							<int key="NSCellFlags2">134217728</int>
+							<int key="NSCellFlags2">0</int>
 							<string key="NSContents">Reset</string>
 							<object class="NSFont" key="NSSupport" id="1018782290">
 								<string key="NSName">LucidaGrande</string>
@@ -59,8 +59,12 @@
 								<int key="NSfFlags">1044</int>
 							</object>
 							<reference key="NSControlView" ref="819144659"/>
-							<int key="NSButtonFlags">-2038152961</int>
+							<int key="NSButtonFlags">-2035531521</int>
 							<int key="NSButtonFlags2">163</int>
+							<object class="NSCustomResource" key="NSNormalImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">NSStopProgressTemplate</string>
+							</object>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
 							<int key="NSPeriodicDelay">400</int>
@@ -70,17 +74,25 @@
 					<object class="NSButton" id="363019659">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{218, 150}, {149, 25}}</string>
+						<string key="NSFrame">{{282, 150}, {217, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="728966263">
 							<int key="NSCellFlags">67239424</int>
-							<int key="NSCellFlags2">134217728</int>
+							<int key="NSCellFlags2">0</int>
 							<string key="NSContents">Draw in projetion</string>
 							<reference key="NSSupport" ref="1018782290"/>
 							<reference key="NSControlView" ref="363019659"/>
-							<int key="NSButtonFlags">914637055</int>
+							<int key="NSButtonFlags">917258495</int>
 							<int key="NSButtonFlags2">163</int>
+							<object class="NSCustomResource" key="NSNormalImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">NSEnterFullScreenTemplate</string>
+							</object>
+							<object class="NSCustomResource" key="NSAlternateImage">
+								<string key="NSClassName">NSImage</string>
+								<string key="NSResourceName">NSExitFullScreenTemplate</string>
+							</object>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
 							<int key="NSPeriodicDelay">400</int>
@@ -90,7 +102,7 @@
 					<object class="NSSegmentedControl" id="849419110">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{23, 150}, {187, 25}}</string>
+						<string key="NSFrame">{{23, 150}, {251, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSegmentedCell" key="NSCell" id="1029256565">
@@ -105,19 +117,20 @@
 							<object class="NSMutableArray" key="NSSegmentImages">
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="NSSegmentItem">
-									<string key="NSSegmentItemLabel">Cam1</string>
+									<string key="NSSegmentItemLabel">Camera 1</string>
+									<int key="NSSegmentItemImageScaling">0</int>
+								</object>
+								<object class="NSSegmentItem">
+									<string key="NSSegmentItemLabel">Camera 2</string>
+									<int key="NSSegmentItemImageScaling">0</int>
+								</object>
+								<object class="NSSegmentItem">
+									<string key="NSSegmentItemLabel">Camera 3</string>
 									<bool key="NSSegmentItemSelected">YES</bool>
 									<int key="NSSegmentItemImageScaling">0</int>
 								</object>
-								<object class="NSSegmentItem">
-									<string key="NSSegmentItemLabel">Cam 2</string>
-									<int key="NSSegmentItemImageScaling">0</int>
-								</object>
-								<object class="NSSegmentItem">
-									<string key="NSSegmentItemLabel">Cam 3</string>
-									<int key="NSSegmentItemImageScaling">0</int>
-								</object>
 							</object>
+							<int key="NSSelectedSegment">2</int>
 							<int key="NSSegmentStyle">2</int>
 						</object>
 					</object>
@@ -339,6 +352,7 @@
 					<string>20.IBSegmentedControlTracker.RoundRobinState</string>
 					<string>20.IBSegmentedControlTracker.WasGrowing</string>
 					<string>21.IBPluginDependency</string>
+					<string>21.IBSegmentedControlInspectorSelectedSegmentMetadataKey</string>
 					<string>27.IBPluginDependency</string>
 					<string>28.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
@@ -352,7 +366,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{496, 429}, {844, 694}}</string>
+					<string>{{181, 429}, {844, 694}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -360,6 +374,7 @@
 					<integer value="1"/>
 					<integer value="0"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<integer value="0"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

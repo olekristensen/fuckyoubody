@@ -25,6 +25,8 @@
 	ofTrueTypeFont	* font;
 	int selectedCorner;
 	ofxVec2f* lastMousePos;
+	NSUserDefaults *userDefaults;
+
 }
 
 -(ofxPoint2f) convertMousePoint:(ofxPoint2f)p;
@@ -35,8 +37,7 @@
 @interface CameraCalibrationObject : NSObject {
 
 	
-	ProjectionSurfacesObject * surface;
-	
+	ProjectionSurfacesObject * surface;	
 	NSString * name;
 	
 @public
