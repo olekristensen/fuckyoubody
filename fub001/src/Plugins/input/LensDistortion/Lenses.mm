@@ -419,6 +419,10 @@
 	return originalImageGreyscale[i];
 }
 
+-(BOOL) isCalibratedFromCameraId:(int)cameraId{
+	return (calibrationState[cameraId] == CALIBRATION_CALIBRATED);
+}
+
 -(void)updateInterfaceForCamera:(int)cameraId withCalibrator:(ofCvCameraCalibration*)theCameraCalibrator{
 	
 	

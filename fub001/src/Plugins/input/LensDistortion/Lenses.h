@@ -64,7 +64,6 @@
     ofxCvGrayscaleImage * undistortedImage[3];
 	ofxCvGrayscaleImage * originalImageGreyscale[3];
 
-
 	CvSize csize;
 	
 	BOOL justCaptured[3];
@@ -105,6 +104,7 @@
 
 -(ofxPoint2f) undistortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId;
 -(ofxCvGrayscaleImage*) getUndistortedImageFromCameraId:(int)cameraId;
+-(BOOL) isCalibratedFromCameraId:(int)cameraId;
 
 
 @end

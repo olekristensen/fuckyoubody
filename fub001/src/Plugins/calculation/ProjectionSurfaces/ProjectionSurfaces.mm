@@ -209,11 +209,15 @@
 	//Draw current projectorsurface
 	for(int i=0;i<4;i++){
 		
-		ofSetColor(128, 255,255,255);
-		ofNoFill();
-		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
-		ofSetColor(64, 128,220,70);
 		ofFill();
+		ofSetColor(64, 128,220,70);
+		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
+		ofNoFill();
+		ofSetColor(0, 0,0,192);
+		ofSetLineWidth(4);
+		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
+		ofSetColor(128, 255,255,255);
+		ofSetLineWidth(1.5);
 		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
 	}
 	

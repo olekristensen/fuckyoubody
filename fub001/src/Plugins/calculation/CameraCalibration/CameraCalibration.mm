@@ -53,7 +53,7 @@
 	}	
 	
 	font = new ofTrueTypeFont();
-	font->loadFont("LucidaGrande.ttc",40, true, true, true);	
+	font->loadFont("LucidaGrande.ttc",20, true, true, true);	
 }
 
 
@@ -67,14 +67,27 @@
 	[GetPlugin(Lenses) getUndistortedImageFromCameraId:[cameraSelector selectedSegment]]->draw(0,0,640,480);
 	ofEnableAlphaBlending();
 	
-	ofFill();
+	if(	![GetPlugin(Lenses) isCalibratedFromCameraId:[cameraSelector selectedSegment]]){
+		ofNoFill();
+		ofSetColor(0, 0,0,128);
+		ofSetLineWidth(6);
+		font->drawStringAsShapes("Uncalibrated Lens", (w - font->stringWidth("Uncalibrated Lens"))/2.0, (h - font->stringHeight("Uncalibrated Lens"))/2.0);
+		ofSetColor(0, 0,0,208);
+		ofSetLineWidth(3);
+		font->drawStringAsShapes("Uncalibrated Lens", (w - font->stringWidth("Uncalibrated Lens"))/2.0, (h - font->stringHeight("Uncalibrated Lens"))/2.0);
+		ofFill();
+		ofSetColor(255, 255,255,64+(128*(1.0-fmodf(timeInterval/2.0,1.0))));
+		font->drawStringAsShapes("Uncalibrated Lens", (w - font->stringWidth("Uncalibrated Lens"))/2.0, (h - font->stringHeight("Uncalibrated Lens"))/2.0);
+	}
+	
 	for(int i=0;i<4;i++){
 		ofNoFill();
-		ofSetColor(0, 0,0,255);
+		ofSetColor(0, 0,0,192);
 		ofSetLineWidth(2);
 		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 18, 18);
 		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 22, 22);
-		ofSetColor(255, 255,0,255);
+		ofSetLineWidth(1.5);
+		ofSetColor(128, 255,255,255);
 		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 20, 20);
 	}
 	
@@ -86,12 +99,10 @@
 		ofSetColor(255, 255, 255);
 		CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:[cameraSelector selectedSegment]];
 		
-		
 		[obj applyWarp];
 				[GetPlugin(Lenses) getUndistortedImageFromCameraId:[cameraSelector selectedSegment]]->draw(0,0,1,1);
 		//[[GetPlugin(Cameras) getCameraWithId:0] getTexture]->draw(0,0,1,1);
 		glPopMatrix();
-		
 		
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 		ofFill();
