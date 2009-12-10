@@ -97,13 +97,12 @@
 		}
 	}
 	if([Camera allCamerasAreRespawning]){
-		[[[controller statusTextField] animator] setStringValue:@"Initialising cameras"];
+		[[controller statusTextField] setStringValue:@"Initialising cameras"];
 		[[controller statusBusy] startAnimation:nil];
 	} else if (![Camera aCameraIsRespawning]){
-		[[[controller statusTextField] animator] setStringValue:@""];
+		[[controller statusTextField] setStringValue:@""];
 		[[controller statusBusy] stopAnimation:nil];
-	}
-
+	} 
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{

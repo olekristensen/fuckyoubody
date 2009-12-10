@@ -11,6 +11,7 @@
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		6E9A2A5C10CA102F0003A1B8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
+		6EA95CC910D05939000978E0 /* ofxFBOTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EA95CC710D05939000978E0 /* ofxFBOTexture.cpp */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB354F610CEC796008624B2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6EB354F510CEC796008624B2 /* icon.icns */; };
 		6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */; };
@@ -189,6 +190,8 @@
 		6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
+		6EA95CC710D05939000978E0 /* ofxFBOTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFBOTexture.cpp; sourceTree = "<group>"; };
+		6EA95CC810D05939000978E0 /* ofxFBOTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFBOTexture.h; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EB354F510CEC796008624B2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = SOURCE_ROOT; };
@@ -630,6 +633,16 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		6EA95CC610D05939000978E0 /* ofxFBOTexture-MultiSample */ = {
+			isa = PBXGroup;
+			children = (
+				6EA95CC710D05939000978E0 /* ofxFBOTexture.cpp */,
+				6EA95CC810D05939000978E0 /* ofxFBOTexture.h */,
+			);
+			name = "ofxFBOTexture-MultiSample";
+			path = "../../../addons/ofxFBOTexture-MultiSample";
+			sourceTree = "<group>";
+		};
 		6EBB46FB10C80317004F9A03 /* Lenses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1027,6 +1040,7 @@
 		DDB85141105E808700D1ED92 /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				6EA95CC610D05939000978E0 /* ofxFBOTexture-MultiSample */,
 				276D9D9A1073B3F00084689D /* ofxMSAFluid */,
 				DD45B904106FDC4F00B4B19C /* ofxMSASpline */,
 				DD0C01501066874900BB3F9F /* ofxXmlSettings */,
@@ -1872,6 +1886,7 @@
 				DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */,
 				DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */,
 				DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */,
+				6EA95CC910D05939000978E0 /* ofxFBOTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

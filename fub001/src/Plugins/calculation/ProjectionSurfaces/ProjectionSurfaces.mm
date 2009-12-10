@@ -240,7 +240,6 @@
 
 -(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize{
 	if (pthread_mutex_lock(&mutex) == 0) {
-		ofEnableAlphaBlending();
 		ofSetLineWidth(1);
 		ofSetColor(255, 255, 255, 255*a);
 		int xNumber = resolution+floor((aspect-1)*resolution);
