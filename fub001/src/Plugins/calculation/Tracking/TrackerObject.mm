@@ -233,9 +233,9 @@
 -(void) draw{
 	if([drawDebugButton state] == NSOnState){
 		Blob * blob;
-		ofSetColor(255, 255, 255);
+		ofSetColor(255, 255, 255,255);
 		for(blob in blobs){
-			glBegin(GL_LINE_STRIP);
+			glBegin(GL_POLYGON);
 			for(int i=0;i<[blob nPts];i++){
 				glVertex2f([blob pts][i].x, [blob pts][i].y);
 			}

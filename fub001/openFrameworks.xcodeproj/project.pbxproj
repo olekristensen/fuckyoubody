@@ -11,7 +11,6 @@
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
 		6E9A2A5C10CA102F0003A1B8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
-		6EA95CC910D05939000978E0 /* ofxFBOTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EA95CC710D05939000978E0 /* ofxFBOTexture.cpp */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB354F610CEC796008624B2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6EB354F510CEC796008624B2 /* icon.icns */; };
 		6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */; };
@@ -39,7 +38,6 @@
 		DD17E06410C69C70008B3E0A /* ofxVideoGrabberFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */; };
 		DD17E09810C69E5B008B3E0A /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD17E09710C69E5B008B3E0A /* Camera.mm */; };
 		DD17E20610C6AD09008B3E0A /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD17E20510C6AD09008B3E0A /* Camera.xib */; };
-		DD204C6110CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist in Resources */ = {isa = PBXBuildFile; fileRef = DD204C6010CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist */; };
 		DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */; };
 		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
 		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
@@ -190,8 +188,6 @@
 		6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
-		6EA95CC710D05939000978E0 /* ofxFBOTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFBOTexture.cpp; sourceTree = "<group>"; };
-		6EA95CC810D05939000978E0 /* ofxFBOTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFBOTexture.h; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EB354F510CEC796008624B2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = SOURCE_ROOT; };
@@ -238,7 +234,6 @@
 		DD17E09610C69E5B008B3E0A /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		DD17E09710C69E5B008B3E0A /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
 		DD17E20510C6AD09008B3E0A /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Camera.xib; sourceTree = "<group>"; };
-		DD204C6010CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "org.recoil-performance.fuckYouBuddy.plist"; path = "../../../../../../Library/Preferences/org.recoil-performance.fuckYouBuddy.plist"; sourceTree = SOURCE_ROOT; };
 		DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelWorld.h; sourceTree = "<group>"; };
 		DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParallelWorld.mm; sourceTree = "<group>"; };
 		DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParallelWorld.xib; sourceTree = "<group>"; };
@@ -565,7 +560,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -631,16 +626,6 @@
 				276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		6EA95CC610D05939000978E0 /* ofxFBOTexture-MultiSample */ = {
-			isa = PBXGroup;
-			children = (
-				6EA95CC710D05939000978E0 /* ofxFBOTexture.cpp */,
-				6EA95CC810D05939000978E0 /* ofxFBOTexture.h */,
-			);
-			name = "ofxFBOTexture-MultiSample";
-			path = "../../../addons/ofxFBOTexture-MultiSample";
 			sourceTree = "<group>";
 		};
 		6EBB46FB10C80317004F9A03 /* Lenses */ = {
@@ -1040,7 +1025,6 @@
 		DDB85141105E808700D1ED92 /* addons */ = {
 			isa = PBXGroup;
 			children = (
-				6EA95CC610D05939000978E0 /* ofxFBOTexture-MultiSample */,
 				276D9D9A1073B3F00084689D /* ofxMSAFluid */,
 				DD45B904106FDC4F00B4B19C /* ofxMSASpline */,
 				DD0C01501066874900BB3F9F /* ofxXmlSettings */,
@@ -1671,9 +1655,8 @@
 				DDA5AF7510CEBE74005B53C6 /* ToDo.rtf */,
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */,
-				DD204C6010CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
-				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1710,7 +1693,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1769,7 +1752,6 @@
 				6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */,
 				6EB354F610CEC796008624B2 /* icon.icns in Resources */,
 				6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */,
-				DD204C6110CFE6E000BEF03F /* org.recoil-performance.fuckYouBuddy.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1886,7 +1868,6 @@
 				DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */,
 				DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */,
 				DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */,
-				6EA95CC910D05939000978E0 /* ofxFBOTexture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

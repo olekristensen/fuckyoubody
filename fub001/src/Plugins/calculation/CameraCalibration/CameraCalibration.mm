@@ -18,10 +18,10 @@
 		
 		if(i==0){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-			[obj calibPoints][0] = ofxPoint2f(0.0,0);
-			[obj calibPoints][1] = ofxPoint2f(1,0);
-			[obj calibPoints][2] = ofxPoint2f(1,1);
-			[obj calibPoints][3] = ofxPoint2f(0,1);
+			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
+			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
+			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
+			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
 		}
 		
 		if(i==1){
@@ -107,11 +107,24 @@
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 		ofFill();
 		for(int i=0;i<4;i++){
-			ofSetColor(0, 0,0);
+			/*ofSetColor(0, 0,0);
 			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.05, 0.05);
 			
 			ofSetColor(255, 255,255);
-			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.03, 0.03);
+			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.04, 0.04);
+			ofSetColor(255, 0,0);
+			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.01, 0.01);*/
+			
+			ofNoFill();
+			ofSetLineWidth(2);
+			ofSetColor(255, 0,0);
+			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.02, 0.02);
+			ofSetColor(255, 255,255);
+			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.035, 0.035);
+
+			
+			
+
 		}
 		glPopMatrix();
 	}

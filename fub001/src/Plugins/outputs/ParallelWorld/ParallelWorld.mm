@@ -10,6 +10,8 @@
 @implementation ParallelWorld
 -(void) initPlugin{
 	lines = [[NSMutableArray array] retain];
+	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+
 }
 
 
@@ -35,7 +37,9 @@
 				}
 			}
 			
-			
+			optimalLeft -= [userDefaults floatForKey:@"parallel.corridor.width"]/200.0;
+			optimalRight += [userDefaults floatForKey:@"parallel.corridor.width"]/200.0;			
+						
 			
 			ParallelLine * line;
 			for(line in lines){

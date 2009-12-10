@@ -39,7 +39,8 @@ enum DrawFlags {
 	IBOutlet NSButton * corridorBackPerspectiveControl;	
 	
 	NSMutableArray * lines;
-	
+	NSUserDefaults *userDefaults;
+
 }
 
 -(IBAction) clear:(id)sender;
