@@ -8,6 +8,8 @@
 
 #import "DMXOutput.h"
 
+
+
 @implementation Lamp
 
 -(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{

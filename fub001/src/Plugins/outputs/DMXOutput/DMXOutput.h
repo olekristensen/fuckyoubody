@@ -8,6 +8,7 @@
 #include "ofxVectorMath.h"
 
 
+
 @interface Lamp : NSObject
 {
 	@public
