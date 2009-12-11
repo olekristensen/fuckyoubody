@@ -75,11 +75,7 @@ static BOOL camerasRespawning[3];
 		[self updateMovieList];
 	}
 	
-	
-	
-	
 	[self videoGrabberInit];
-	
 	
 }
 
@@ -221,33 +217,36 @@ static BOOL camerasRespawning[3];
 	if(videoPlayer->videoPlayer.loadMovie([file cString] )){
 		//	videoPlayer->setLoopState(OF_LOOP_NORMAL);
 		cout<<"Loaded: "<<	[file cString]<<endl;
-		
 		videoPlayer->videoPlayer.play();
 	} else {
 		cout<<"Could not load: "<<	[file cString]<<endl;
 	}
-	
 }
 
 
 
 -(IBAction) setShutter:(id)sender{
+	[userDefaults setValue:[sender value] forKey:[NSString stringWithFormat:@"camera.%i.shutter",camNumber+1]];
 	if(camInited)
 		videoGrabber->setFeatureValue([sender floatValue], FEATURE_SHUTTER);
 }
 -(IBAction) setExposure:(id)sender{
+	[userDefaults setValue:[sender value] forKey:[NSString stringWithFormat:@"camera.%i.exposure",camNumber+1]];
 	if(camInited)
 		videoGrabber->setFeatureValue([sender floatValue], FEATURE_EXPOSURE);	
 }
 -(IBAction) setGain:(id)sender{
+	[userDefaults setValue:[sender value] forKey:[NSString stringWithFormat:@"camera.%i.gain",camNumber+1]];
 	if(camInited)
 		videoGrabber->setFeatureValue([sender floatValue], FEATURE_GAIN);
 }
 -(IBAction) setGamma:(id)sender{
+	[userDefaults setValue:[sender value] forKey:[NSString stringWithFormat:@"camera.%i.gamma",camNumber+1]];
 	if(camInited)
 		videoGrabber->setFeatureValue([sender floatValue], FEATURE_GAMMA);
 }
 -(IBAction) setBrightness:(id)sender{
+	[userDefaults setValue:[sender value] forKey:[NSString stringWithFormat:@"camera.%i.brightness",camNumber+1]];
 	if(camInited)
 		videoGrabber->setFeatureValue([sender floatValue], FEATURE_BRIGHTNESS);
 }
@@ -277,7 +276,7 @@ static BOOL camerasRespawning[3];
 -(IBAction) setMovieFile:(id)sender{
 	
 	loadMovieString = [NSString stringWithString:[sender titleOfSelectedItem]];
-	[userDefaults setValue:[NSString stringWithString:[sender titleOfSelectedItem]] forKey:[NSString stringWithFormat:@"camera.%i.movie.fileName",camNumber+1]];
+	[userDefaults setValue:loadMovieString forKey:[NSString stringWithFormat:@"camera.%i.movie.fileName",camNumber+1]];
 	loadMoviePlease = YES;
 	
 }
@@ -330,22 +329,52 @@ static BOOL camerasRespawning[3];
 		
 		//Set sliders
 		videoGrabber->getAllFeatureValues();
-				
+		
 		for(int i=0;i<videoGrabber->availableFeatureAmount;i++){
 			if(videoGrabber->featureVals[i].feature == FEATURE_SHUTTER){
-				[shutterSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				if ([userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.shutter",camNumber+1]] != nil) {
+					videoGrabber->setFeatureValue(
+												  [userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.shutter",camNumber+1]],
+												  FEATURE_SHUTTER);
+				} else {
+					[shutterSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				}
 			}
 			if(videoGrabber->featureVals[i].feature == FEATURE_EXPOSURE){
-				[exposureSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				if ([userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.exposure",camNumber+1]] != nil) {
+					videoGrabber->setFeatureValue(
+												  [userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.exposure",camNumber+1]],
+												  FEATURE_EXPOSURE);
+				} else {
+					[exposureSlider setFloatValue:videoGrabber->featureVals[i].currVal];
+				}
 			}
 			if(videoGrabber->featureVals[i].feature == FEATURE_GAIN){
-				[gainSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				if ([userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.gain",camNumber+1]] != nil) {
+					videoGrabber->setFeatureValue(
+												  [userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.gain",camNumber+1]],
+												  FEATURE_GAIN);
+				} else {
+					[gainSlider setFloatValue:videoGrabber->featureVals[i].currVal];	
+				}
 			}
 			if(videoGrabber->featureVals[i].feature == FEATURE_GAMMA){
-				[gammaSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				if ([userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.gamma",camNumber+1]] != nil) {
+					videoGrabber->setFeatureValue(
+												  [userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.gamma",camNumber+1]],
+												  FEATURE_GAMMA);
+				} else {
+					[gammaSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				}
 			}
 			if(videoGrabber->featureVals[i].feature == FEATURE_BRIGHTNESS){
-				[brightnessSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				if ([userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.shutter",camNumber+1]] != nil) {
+					videoGrabber->setFeatureValue(
+												  [userDefaults floatForKey:[NSString stringWithFormat:@"camera.%i.brightness",camNumber+1]],
+												  FEATURE_BRIGHTNESS);
+				} else {
+					[brightnessSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
+				}
 			}
 			
 		}
