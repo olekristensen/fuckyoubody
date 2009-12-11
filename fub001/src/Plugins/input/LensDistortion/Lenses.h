@@ -102,6 +102,7 @@
 
 -(void) drawImage:(IplImage*)image atLocationX:(float)x Y:(float)y withWidth:(float)width height: (float)height;
 
+-(ofxPoint2f) distortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId;
 -(ofxPoint2f) undistortPoint:(ofxPoint2f)point fromCameraId:(int)cameraId;
 -(ofxCvGrayscaleImage*) getUndistortedImageFromCameraId:(int)cameraId;
 -(BOOL) isCalibratedFromCameraId:(int)cameraId;

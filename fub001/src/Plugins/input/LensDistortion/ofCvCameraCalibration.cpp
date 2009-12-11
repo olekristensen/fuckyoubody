@@ -113,28 +113,28 @@ ofPoint ofCvCameraCalibration::undistortPoint(float _x, float _y) {
 	float u0 = camIntrinsics[2],
 	v0 = camIntrinsics[5],
 	fx = camIntrinsics[0],
-	fy = camIntrinsics[4]; 
+	fy = camIntrinsics[4];
 	float _fx = 1.0/fx,
-	_fy = 1.0/fy; 
-	float k1 = distortionCoeffs[0],
-	k2 = distortionCoeffs[1],
-	p1 = distortionCoeffs[2],
-	p2 = distortionCoeffs[3]; 
+	_fy = 1.0/fy;
+	float k1 = -distortionCoeffs[0],
+	k2 = -distortionCoeffs[1],
+	p1 = -distortionCoeffs[2],
+	p2 = -distortionCoeffs[3];
 	
-	float y         = (_y - v0)*_fy; 
-	float y2      = y*y; 
-	float ky      = 1 + (k1 + k2*y2)*y2; 
-	float k2y      = 2*k2*y2; 
-	float _2p1y      = 2*p1*y; 
-	float _3p1y2   = 3*p1*y2; 
-	float p2y2      = p2*y2; 
+	float y         = (_y - v0)*_fy;
+	float y2      = y*y;
+	float ky      = 1 + (k1 + k2*y2)*y2;
+	float k2y      = 2*k2*y2;
+	float _2p1y      = 2*p1*y;
+	float _3p1y2   = 3*p1*y2;
+	float p2y2      = p2*y2;
 	
-	float x      = (_x - u0)*_fx; 
-	float x2   = x*x; 
-	float kx   = (k1 + k2*x2)*x2; 
-	float d      = kx + ky + k2y*x2; 
-	float _u   = fx*(x*(d + _2p1y) + p2y2 + (3*p2)*x2) + u0; 
-	float _v   = fy*(y*(d + (2*p2)*x) + _3p1y2 + p1*x2) + v0; 
+	float x      = (_x - u0)*_fx;
+	float x2   = x*x;
+	float kx   = (k1 + k2*x2)*x2;
+	float d      = kx + ky + k2y*x2;
+	float _u   = fx*(x*(d + _2p1y) + p2y2 + (3*p2)*x2) + u0;
+	float _v   = fy*(y*(d + (2*p2)*x) + _3p1y2 + p1*x2) + v0;
 	
 	return ofPoint(_u, _v);   
 }
@@ -162,7 +162,6 @@ ofPoint ofCvCameraCalibration::distortPoint(float _x, float _y) {
 	
 	float _u = xd*fx + cx; 
 	float _v = yd*fy + cy; 
-	
 	return ofPoint(_u, _v);
 }
 

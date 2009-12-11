@@ -32,18 +32,31 @@ enum DrawFlags {
 
 @interface ParallelWorld : ofPlugin {
 	IBOutlet NSSegmentedControl * modeControl;	
+
+
+	IBOutlet NSSlider * adderSpeedControl;
+	IBOutlet NSSlider * adderWidthControl;
+	IBOutlet NSSlider * adderRotateControl;
+	IBOutlet NSButton * adderAddControl;
+	IBOutlet NSSegmentedControl * adderModeControl;	
+
 	IBOutlet NSSlider * corridorSpeedControl;
 	IBOutlet NSButton * corridorFrontProjectorControl;
 	IBOutlet NSButton * corridorBackProjectorControl;
 	IBOutlet NSButton * corridorFrontPerspectiveControl;
 	IBOutlet NSButton * corridorBackPerspectiveControl;	
-	
+	IBOutlet NSSegmentedControl * cameraControl;	
+	IBOutlet NSTextField * numberLinesControl;
+
 	NSMutableArray * lines;
 	NSUserDefaults *userDefaults;
 
 }
 
 -(IBAction) clear:(id)sender;
+-(IBAction) removeOldest:(id)sender;
+
+-(void) rotate:(float)rotate;
 
 @end
 

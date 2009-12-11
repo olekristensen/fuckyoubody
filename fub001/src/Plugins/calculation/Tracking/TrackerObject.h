@@ -40,8 +40,11 @@
 {
 	int cameraId;
 	ofxCvBlob * blob;
+	ofxCvBlob * originalblob;
 }
 @property (readwrite) int cameraId;
+@property (readonly) ofxCvBlob * originalblob;
+
 -(void) normalize:(int)w height:(int)h;
 -(void) lensCorrect;
 -(void) warp;
@@ -95,14 +98,16 @@
 	IBOutlet NSButton * activeButton;
 	IBOutlet NSButton * learnBackgroundButton;
 	IBOutlet NSButton * drawDebugButton;
-	
+	IBOutlet NSSlider * persistentSlider;
+	IBOutlet NSPopUpButton * presetMenu;
+
 	NSThread * thread;
 	pthread_mutex_t mutex;
 	pthread_mutex_t drawingMutex;
 	
 	NSUserDefaults * userDefaults;
 	BOOL valuesLoaded;
-
+	int preset;
 
 }
 @property (assign, readonly) NSView * settingsView;
@@ -115,6 +120,9 @@
 -(IBAction) setPostBlurSliderValue:(id)sender;
 -(IBAction) setPostThresholdSliderValue:(id)sender;
 -(IBAction) setActiveButtonValue:(id)sender;
+-(IBAction) loadPresetControl:(id)sender;
+-(IBAction) setPersistentSliderValue:(id)sender;
+-(void) loadPreset:(int)n;
 
 -(BOOL) loadNibFile;
 
