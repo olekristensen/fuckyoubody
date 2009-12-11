@@ -75,6 +75,9 @@ static BOOL camerasRespawning[3];
 		[self updateMovieList];
 	}
 	
+	
+	
+	
 	[self videoGrabberInit];
 	
 	
@@ -170,6 +173,8 @@ static BOOL camerasRespawning[3];
 -(void) updateMovieList{
 	[movieSelector removeAllItems];
 	[movies removeAllObjects];
+	NSString * fileNameFromDefaults = [userDefaults stringForKey:[NSString stringWithFormat:@"camera.%i.movie.fileName",camNumber+1]];
+	BOOL foundFileNameFromDefaults = NO;
 	NSFileManager * filesystem = [NSFileManager defaultManager];
 	NSLog([NSString stringWithCString:ofToDataPath("recordedMovies/", true).c_str()]);
 	NSError *error = nil;
@@ -197,10 +202,17 @@ static BOOL camerasRespawning[3];
 				loadMovieString = [NSString stringWithString:fileName];
 				loadMoviePlease = YES;
 			}
-		} else {
-			
+			NSLog(fileNameFromDefaults);
+			if ([fileNameFromDefaults compare:loadMovieString]) {
+				NSLog(@"found");
+				foundFileNameFromDefaults = YES;
+			}
 		}
 	}
+	if (foundFileNameFromDefaults){
+		loadMovieString = fileNameFromDefaults;
+		[movieSelector selectItemWithTitle:loadMovieString];
+	}	
 }
 
 -(void) loadMovie:(NSString*) name{
@@ -263,7 +275,9 @@ static BOOL camerasRespawning[3];
 	[userDefaults setValue:[NSNumber numberWithBool:live] forKey:[NSString stringWithFormat:@"camera.%i.live",camNumber+1]];
 }
 -(IBAction) setMovieFile:(id)sender{
+	
 	loadMovieString = [NSString stringWithString:[sender titleOfSelectedItem]];
+	[userDefaults setValue:[NSString stringWithString:[sender titleOfSelectedItem]] forKey:[NSString stringWithFormat:@"camera.%i.movie.fileName",camNumber+1]];
 	loadMoviePlease = YES;
 	
 }
@@ -297,15 +311,6 @@ static BOOL camerasRespawning[3];
 		camWasInited = camInited;
 	
 	if(camInited){		
-		//Set all on manual
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_SHUTTER);
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_EXPOSURE);		
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAIN);		
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAMMA);				
-		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_BRIGHTNESS);		
-		
-		//Set sliders
-		videoGrabber->getAllFeatureValues();
 		
 		[guidTextField setStringValue:[NSString stringWithFormat:@"%llx",videoGrabber->cameraGUID]];
 		
@@ -316,6 +321,16 @@ static BOOL camerasRespawning[3];
 														forKey:@"NSContinuouslyUpdatesValue"]];
 		
 		
+		//Set all on manual
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_SHUTTER);
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_EXPOSURE);		
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAIN);		
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_GAMMA);				
+		videoGrabber->setFeatureMode(FEATURE_MODE_MANUAL, FEATURE_BRIGHTNESS);		
+		
+		//Set sliders
+		videoGrabber->getAllFeatureValues();
+				
 		for(int i=0;i<videoGrabber->availableFeatureAmount;i++){
 			if(videoGrabber->featureVals[i].feature == FEATURE_SHUTTER){
 				[shutterSlider setFloatValue:videoGrabber->featureVals[i].currVal];			
