@@ -38,6 +38,11 @@
 		DD17E06410C69C70008B3E0A /* ofxVideoGrabberFeature.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD17E06310C69C70008B3E0A /* ofxVideoGrabberFeature.cpp */; };
 		DD17E09810C69E5B008B3E0A /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD17E09710C69E5B008B3E0A /* Camera.mm */; };
 		DD17E20610C6AD09008B3E0A /* Camera.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD17E20510C6AD09008B3E0A /* Camera.xib */; };
+		DD204E6F10D63DE500BEF03F /* GTA.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD204E6E10D63DE500BEF03F /* GTA.mm */; };
+		DD204E7110D63E3D00BEF03F /* GTA.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD204E7010D63E3D00BEF03F /* GTA.xib */; };
+		DD20522B10D67BF400BEF03F /* ofxFBOTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD20522510D67BF400BEF03F /* ofxFBOTexture.cpp */; };
+		DD20522C10D67BF400BEF03F /* ofxShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD20522710D67BF400BEF03F /* ofxShader.cpp */; };
+		DD20522D10D67BF400BEF03F /* shaderBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD20522910D67BF400BEF03F /* shaderBlur.cpp */; };
 		DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */; };
 		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
 		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
@@ -53,6 +58,10 @@
 		DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD5735B410CD2B5B00B788BB /* TrackerObject.mm */; };
 		DD6EA0CF1062C832001EC207 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6EA0CE1062C832001EC207 /* QTKit.framework */; };
 		DD6EA12A1062C880001EC207 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6EA1291062C880001EC207 /* QuartzCore.framework */; };
+		DD7C61EB10D699BC00D5B056 /* simpleBlurHorizontal.frag in Sources */ = {isa = PBXBuildFile; fileRef = DD7C61E710D699BC00D5B056 /* simpleBlurHorizontal.frag */; };
+		DD7C61EC10D699BC00D5B056 /* simpleBlurHorizontal.vert in Sources */ = {isa = PBXBuildFile; fileRef = DD7C61E810D699BC00D5B056 /* simpleBlurHorizontal.vert */; };
+		DD7C61ED10D699BC00D5B056 /* simpleBlurVertical.frag in Sources */ = {isa = PBXBuildFile; fileRef = DD7C61E910D699BC00D5B056 /* simpleBlurVertical.frag */; };
+		DD7C61EE10D699BC00D5B056 /* simpleBlurVertical.vert in Sources */ = {isa = PBXBuildFile; fileRef = DD7C61EA10D699BC00D5B056 /* simpleBlurVertical.vert */; };
 		DD7CC3F71063C47100D3736A /* libOpenCV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7CC3D11063C47100D3736A /* libOpenCV.a */; };
 		DD7CC4041063C47100D3736A /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3E11063C47100D3736A /* ofxCvColorImage.cpp */; };
 		DD7CC4051063C47100D3736A /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3E41063C47100D3736A /* ofxCvContourFinder.cpp */; };
@@ -234,6 +243,15 @@
 		DD17E09610C69E5B008B3E0A /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		DD17E09710C69E5B008B3E0A /* Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
 		DD17E20510C6AD09008B3E0A /* Camera.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Camera.xib; sourceTree = "<group>"; };
+		DD204E6D10D63DE500BEF03F /* GTA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTA.h; sourceTree = "<group>"; };
+		DD204E6E10D63DE500BEF03F /* GTA.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GTA.mm; sourceTree = "<group>"; };
+		DD204E7010D63E3D00BEF03F /* GTA.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GTA.xib; sourceTree = "<group>"; };
+		DD20522510D67BF400BEF03F /* ofxFBOTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxFBOTexture.cpp; sourceTree = "<group>"; };
+		DD20522610D67BF400BEF03F /* ofxFBOTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxFBOTexture.h; sourceTree = "<group>"; };
+		DD20522710D67BF400BEF03F /* ofxShader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxShader.cpp; sourceTree = "<group>"; };
+		DD20522810D67BF400BEF03F /* ofxShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxShader.h; sourceTree = "<group>"; };
+		DD20522910D67BF400BEF03F /* shaderBlur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shaderBlur.cpp; sourceTree = "<group>"; };
+		DD20522A10D67BF400BEF03F /* shaderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderBlur.h; sourceTree = "<group>"; };
 		DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelWorld.h; sourceTree = "<group>"; };
 		DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParallelWorld.mm; sourceTree = "<group>"; };
 		DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParallelWorld.xib; sourceTree = "<group>"; };
@@ -261,6 +279,10 @@
 		DD5735B410CD2B5B00B788BB /* TrackerObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrackerObject.mm; sourceTree = "<group>"; };
 		DD6EA0CE1062C832001EC207 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		DD6EA1291062C880001EC207 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
+		DD7C61E710D699BC00D5B056 /* simpleBlurHorizontal.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleBlurHorizontal.frag; sourceTree = "<group>"; };
+		DD7C61E810D699BC00D5B056 /* simpleBlurHorizontal.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleBlurHorizontal.vert; sourceTree = "<group>"; };
+		DD7C61E910D699BC00D5B056 /* simpleBlurVertical.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleBlurVertical.frag; sourceTree = "<group>"; };
+		DD7C61EA10D699BC00D5B056 /* simpleBlurVertical.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = simpleBlurVertical.vert; sourceTree = "<group>"; };
 		DD7CC3BB1063C47100D3736A /* cv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cv.h; sourceTree = "<group>"; };
 		DD7CC3BC1063C47100D3736A /* cv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cv.hpp; sourceTree = "<group>"; };
 		DD7CC3BD1063C47100D3736A /* cvaux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvaux.h; sourceTree = "<group>"; };
@@ -560,7 +582,7 @@
 		E45BEE780E8CC911009D7055 /* libPocoNet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoNet.a; path = ../../../libs/poco/lib/libPocoNet.a; sourceTree = SOURCE_ROOT; };
 		E45BEE790E8CC911009D7055 /* libPocoUtil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoUtil.a; path = ../../../libs/poco/lib/libPocoUtil.a; sourceTree = SOURCE_ROOT; };
 		E45BEE7A0E8CC911009D7055 /* libPocoXML.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPocoXML.a; path = ../../../libs/poco/lib/libPocoXML.a; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuck You Buddy Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -775,6 +797,34 @@
 			name = Camera;
 			sourceTree = "<group>";
 		};
+		DD204E6B10D63D3500BEF03F /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				DDDF8F3610B7581400CF73FD /* Warp.mm */,
+				DDDF8F3710B7581400CF73FD /* Warp.h */,
+				DDDF8F4510B758AB00CF73FD /* coordWarp.h */,
+				DDDF8F4610B758AB00CF73FD /* coordWarp.mm */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
+		DD204E6C10D63D5400BEF03F /* GTA */ = {
+			isa = PBXGroup;
+			children = (
+				DD7C61E610D699BC00D5B056 /* shaders */,
+				DD20522510D67BF400BEF03F /* ofxFBOTexture.cpp */,
+				DD20522610D67BF400BEF03F /* ofxFBOTexture.h */,
+				DD20522710D67BF400BEF03F /* ofxShader.cpp */,
+				DD20522810D67BF400BEF03F /* ofxShader.h */,
+				DD20522910D67BF400BEF03F /* shaderBlur.cpp */,
+				DD20522A10D67BF400BEF03F /* shaderBlur.h */,
+				DD204E6D10D63DE500BEF03F /* GTA.h */,
+				DD204E6E10D63DE500BEF03F /* GTA.mm */,
+				DD204E7010D63E3D00BEF03F /* GTA.xib */,
+			);
+			name = GTA;
+			sourceTree = "<group>";
+		};
 		DD26DD8810BBEC1600750B7C /* ParallelWorld */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,6 +901,18 @@
 			);
 			name = TrackerObject;
 			sourceTree = "<group>";
+		};
+		DD7C61E610D699BC00D5B056 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				DD7C61E710D699BC00D5B056 /* simpleBlurHorizontal.frag */,
+				DD7C61E810D699BC00D5B056 /* simpleBlurHorizontal.vert */,
+				DD7C61E910D699BC00D5B056 /* simpleBlurVertical.frag */,
+				DD7C61EA10D699BC00D5B056 /* simpleBlurVertical.vert */,
+			);
+			name = shaders;
+			path = bin/data/shaders;
+			sourceTree = SOURCE_ROOT;
 		};
 		DD7CC3AF1063C47100D3736A /* ofxOpenCv */ = {
 			isa = PBXGroup;
@@ -1080,6 +1142,7 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				DD204E6C10D63D5400BEF03F /* GTA */,
 				DD26DEC510BC04A100750B7C /* DMXOutput */,
 				DD4FE4ED10C5307B00A11BE9 /* DanceSteps */,
 				DD26DD8810BBEC1600750B7C /* ParallelWorld */,
@@ -1114,13 +1177,10 @@
 		DDC7776E10B70079009CAFC7 /* calculation */ = {
 			isa = PBXGroup;
 			children = (
+				DD204E6B10D63D3500BEF03F /* utils */,
 				DDA5AE8E10CE8850005B53C6 /* CameraCalibration */,
 				DD4AB76710CD20E900EA0F09 /* Tracking */,
 				DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */,
-				DDDF8F3610B7581400CF73FD /* Warp.mm */,
-				DDDF8F3710B7581400CF73FD /* Warp.h */,
-				DDDF8F4510B758AB00CF73FD /* coordWarp.h */,
-				DDDF8F4610B758AB00CF73FD /* coordWarp.mm */,
 			);
 			path = calculation;
 			sourceTree = "<group>";
@@ -1656,7 +1716,7 @@
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
-				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */,
+				E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E44664170F5B1CFD005D0BF0 /* openFrameworks */,
 				DDB85141105E808700D1ED92 /* addons */,
@@ -1693,7 +1753,7 @@
 			);
 			name = openFrameworks;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Fuck You Buddy Debug.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1752,6 +1812,7 @@
 				6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */,
 				6EB354F610CEC796008624B2 /* icon.icns in Resources */,
 				6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */,
+				DD204E7110D63E3D00BEF03F /* GTA.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1868,6 +1929,14 @@
 				DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */,
 				DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */,
 				DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */,
+				DD204E6F10D63DE500BEF03F /* GTA.mm in Sources */,
+				DD20522B10D67BF400BEF03F /* ofxFBOTexture.cpp in Sources */,
+				DD20522C10D67BF400BEF03F /* ofxShader.cpp in Sources */,
+				DD20522D10D67BF400BEF03F /* shaderBlur.cpp in Sources */,
+				DD7C61EB10D699BC00D5B056 /* simpleBlurHorizontal.frag in Sources */,
+				DD7C61EC10D699BC00D5B056 /* simpleBlurHorizontal.vert in Sources */,
+				DD7C61ED10D699BC00D5B056 /* simpleBlurVertical.frag in Sources */,
+				DD7C61EE10D699BC00D5B056 /* simpleBlurVertical.vert in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
