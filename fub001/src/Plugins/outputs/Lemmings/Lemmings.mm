@@ -48,9 +48,9 @@
 				if( dist >= 0 ){
 					int shortestI = -1;
 					float shortestDist;
-					for( int i = 0; i < [b nPts]; i++){
+					for( int i = 0; i < [b nPts] ; i+=5){
 						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-						float dist = ((ofxPoint2f*) [lemming position])->distance(p);
+						float dist = ((ofxPoint2f*) [lemming position])->distanceSquared(p);
 						if(shortestI == -1 || dist < shortestDist){
 							shortestI = i;
 							shortestDist = dist;
@@ -59,12 +59,9 @@
 					
 					if(shortestI != -1){
 						ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][shortestI] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-						[lemming setPosition:new ofxVec2f(p)];
+						[lemming setDestination:new ofxVec2f(p)];
+						[lemming setLagFactor:0.33];
 					}
-					
-					[lemming setRadius:0.03];
-				} else {
-					[lemming setRadius:0.01];
 				}
 			}
 
@@ -75,7 +72,7 @@
 	Lemming * lemming;
 
 	while (lemmingDiff > 0) {
-		[lemmingList addObject:[[[Lemming alloc]initWithX:ofRandom(0, 1) Y:ofRandom(0, 1)]autorelease]];
+		[lemmingList addObject:[[[Lemming alloc]initWithX:ofRandom(0, 1) Y:ofRandom(0, 1) spawnTime:timeInterval]autorelease]];
 		lemmingDiff--;
 		NSLog(@"adding a lemming");
 	}
@@ -94,6 +91,9 @@
 }
 
 -(void) setup{
+
+	lemmingDiff = 200;
+	
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -187,24 +187,33 @@
 @end
 
 @implementation Lemming
-@synthesize radius, position, spawnTime, lemmingList, dying;
+@synthesize radius, position, spawnTime, lemmingList, dying, lagFactor, destination;
 
--(id) initWithX:(float)xPosition Y:(float)yPosition{
+-(id) initWithX:(float)xPosition Y:(float)yPosition spawnTime:(CFTimeInterval)timeInterval{
 	
 	self = [super init];
 	
 	position = new ofxVec2f();
+	destination = new ofxVec2f();
 	radius = 0.01;
+	lagFactor = ofRandom(0.005, 0.1);
 	
 	if (self) {
-		position->x = xPosition;
-		position->y = yPosition;
+		
+		position->x = 0.25;
+		position->y = 0.0;
+		
+		destination->x = xPosition;
+		destination->y = yPosition;
     }
+	
+	spawnTime = timeInterval;
 	
 	return self;
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	*position += (*destination - *position) * lagFactor;
 	ofCircle(position->x, position->y, radius);
 }
 

@@ -36,6 +36,8 @@
 	
 	float			radius;
 	ofxVec2f		*position;
+	ofxVec2f		*destination;
+	float			lagFactor;
 	double			spawnTime;
 	BOOL			dying;
 	double			deathTime;
@@ -43,10 +45,12 @@
 
 }
 
--(id) initWithX:(float)xPosition Y:(float)yPosition;
+-(id) initWithX:(float)xPosition Y:(float)yPosition spawnTime:(CFTimeInterval)timeInterval;
 
 @property (readwrite) float radius;
+@property (readwrite) float lagFactor;
 @property (assign, readwrite) ofxVec2f *position;
+@property (assign, readwrite) ofxVec2f *destination;
 @property (readwrite) double spawnTime;
 @property (assign) NSMutableArray * lemmingList;
 @property (assign) BOOL	dying;
