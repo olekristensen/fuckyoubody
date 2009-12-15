@@ -32,6 +32,10 @@
 	IBOutlet NSButton * wallBrakeControl;
 	IBOutlet NSSlider * wallCamXControl;
 	IBOutlet NSSlider * wallBlurControl;
+	IBOutlet NSSlider * wallNoiseControl;
+
+	IBOutlet NSButton * floorActiveControl;
+
 	float camXPos;
 	float zscale;
 	

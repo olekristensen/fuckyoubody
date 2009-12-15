@@ -73,8 +73,8 @@
 			if([obj obstacle] == YES){
 				if([wallBrakeControl state] == NSOnState){
 					[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * step * 60.0/ofGetFrameRate();
-					if([obj pos]->z > 160){
-						[obj pos]->z = 160;
+					if([obj pos]->z > 150){
+						[obj pos]->z = 150;
 					}
 				} else {
 					[obj pos]->z = -1000;	
@@ -135,7 +135,9 @@
 	//	glTranslatef(0, +0.1, 0);
 	glScaled(800, 600, 1);
 	glTranslated(camXPos, 0, 0);	
-	
+	float b = [wallNoiseControl floatValue]/100.0;
+	glTranslated(ofRandom(-0.1*b, 0.1*b), ofRandom(-0.1*b, 0.1*b), ofRandom(-0.1*b, 0.1*b));	
+
 	int i=0;
 	NSArray * sortedArray = [wallObjects sortedArrayUsingSelector:@selector(compare:)];
 	for(obj in sortedArray){
@@ -156,6 +158,9 @@
 		glBegin(GL_POLYGON);{
 			glTranslated(0, 0, position.z);
 			float s = [wallSizeControl floatValue]/100.0;
+			if([obj obstacle]){
+				s *= 1.8;
+			}
 			glVertex3f(position.x - s*0.5*1.0/aspect, position.y - s*0.5, position.z);
 			glVertex3f(position.x + s*0.5*1.0/aspect, position.y - s*0.5, position.z);
 			glVertex3f(position.x + s*0.5*1.0/aspect, position.y + s*0.5, position.z);
@@ -308,7 +313,7 @@
 		
 		blur->endRender();
 		if([wallBlurControl floatValue] > 0){
-			blur->blur(10, [wallBlurControl floatValue]/100.0);
+			blur->blur(2, [wallBlurControl floatValue]/100.0);
 		}
 		
 		glViewport(0,0,ofGetWidth(),ofGetHeight());
@@ -322,6 +327,15 @@
 		blur->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1, true);
 		glPopMatrix();
 	}
+	
+	if([floorActiveControl state] == NSOnState){\
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+		ofSetColor(255, 255, 255);
+		ofFill();
+		glRotated(-45, 0, 0, 1);
+		ofRect(0, 3-3*(int(outputTime->hostTime/([wallSpeedControl floatValue]/100.0*100000.0))%10000)/10000.0-1.0, 0.06, 0.4);
+		glPopMatrix();
+	}	
 	
 	
 	
