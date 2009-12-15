@@ -19,4 +19,5 @@
 #include "DanceSteps.h"
 #include "ParallelWorld.h"
 #include "DMXOutput.h"
+#include "Lemmings.h"
 #include "GTA.h"

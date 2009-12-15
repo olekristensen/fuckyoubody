@@ -477,6 +477,7 @@
 			}
 		}
 	}	
+	cout<<"No surface found"<<endl;
 }
 
 -(ofxPoint2f) convertToProjection:(ofxPoint2f)p{
@@ -496,8 +497,8 @@
 }
 -(ofxPoint2f) convertFromProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface{
 	ofxPoint2f r = surface->coordWarp->inversetransform(p.x, p.y);
-	r.x = p.x*surface->aspect;
-	r.y = p.y;
+	r.x *= surface->aspect;
+	//r.y = p.y;
 	return r;
 }
 

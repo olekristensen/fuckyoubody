@@ -34,10 +34,10 @@
 		
 		if(i==2){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
-			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
-			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
-			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
+			[obj calibPoints][0] = ofxPoint2f(0,0);
+			[obj calibPoints][1] = ofxPoint2f(1,0);
+			[obj calibPoints][2] = ofxPoint2f(1,1);
+			[obj calibPoints][3] = ofxPoint2f(0,1);
 		}
 		
 		for(int u=0;u<4;u++){
@@ -87,7 +87,23 @@
 		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 18, 18);
 		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 22, 22);
 		ofSetLineWidth(1.5);
-		ofSetColor(128, 255,255,255);
+
+		switch (i) {
+			case 0:
+				ofSetColor(255,0,0);
+				break;
+			case 1:
+				ofSetColor(255, 0,255);
+				break;
+			case 2:
+				ofSetColor(0, 255,0);
+				break;
+			case 3:
+				ofSetColor(255, 255,0);
+				break;
+			default:
+				break;
+		}
 		ofEllipse([obj calibHandles][i].x*w, [obj calibHandles][i].y*h, 20, 20);
 	}
 	
@@ -116,9 +132,28 @@
 			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.01, 0.01);*/
 			
 			ofNoFill();
-			ofSetLineWidth(2);
-			ofSetColor(255, 0,0);
+
+			switch (i) {
+				case 0:
+					ofSetColor(255,0,0);
+					break;
+				case 1:
+					ofSetColor(255, 0,255);
+					break;
+				case 2:
+					ofSetColor(0, 255,0);
+					break;
+				case 3:
+					ofSetColor(255, 255,0);
+					break;
+				default:
+					break;
+			}
+			
+			ofSetLineWidth(4);
+
 			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.02, 0.02);
+			ofSetLineWidth(2);
 			ofSetColor(255, 255,255);
 			ofEllipse([obj calibPoints][i].x*[obj surface]->aspect, [obj calibPoints][i].y, 0.035, 0.035);
 

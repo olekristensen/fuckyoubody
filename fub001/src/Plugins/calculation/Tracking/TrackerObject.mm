@@ -91,17 +91,22 @@
 	blob->area /= (float)w*h;
 	blob->centroid.x /=(float) w;
 	blob->centroid.y /= (float)h;
+	blob->boundingRect.width /= (float)w; 
+	blob->boundingRect.height /= (float)h; 
+	blob->boundingRect.x /= (float)w; 
+	blob->boundingRect.y /= (float)h; 
 	
 	originalblob->pts = blob->pts;
 	originalblob->area = blob->area;
 	originalblob->centroid = blob->centroid;
+	originalblob->boundingRect = blob->boundingRect;
 }
 -(void) lensCorrect{
 	Lenses * lenses = GetPlugin(Lenses);
 	for(int i=0;i<blob->nPts;i++){
 		blob->pts[i] = [lenses undistortPoint:(ofxPoint2f)blob->pts[i] fromCameraId:cameraId];
 	}
-	blob->centroid = [lenses undistortPoint:blob->centroid fromCameraId:cameraId];	
+	blob->centroid = [lenses undistortPoint:blob->centroid fromCameraId:cameraId];
 	
 	originalblob->pts = blob->pts;
 	originalblob->centroid = blob->centroid;

@@ -73,8 +73,8 @@
 			if([obj obstacle] == YES){
 				if([wallBrakeControl state] == NSOnState){
 					[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * step * 60.0/ofGetFrameRate();
-					if([obj pos]->z > 150){
-						[obj pos]->z = 150;
+					if([obj pos]->z > 160){
+						[obj pos]->z = 160;
 					}
 				} else {
 					[obj pos]->z = -1000;	
@@ -319,7 +319,7 @@
 		ofEnableAlphaBlending();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
-		blur->draw(0, 0, 1, 1, true);
+		blur->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1, true);
 		glPopMatrix();
 	}
 	

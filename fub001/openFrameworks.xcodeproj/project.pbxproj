@@ -23,6 +23,8 @@
 		6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF10B610CE96350011C596 /* CameraCalibration.xib */; };
 		6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */; };
 		6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */; };
+		6EF62EE110D64B12009E7872 /* Lemmings.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EF62EDF10D64B12009E7872 /* Lemmings.mm */; };
+		6EF62EE210D64B12009E7872 /* Lemmings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF62EE010D64B12009E7872 /* Lemmings.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -215,6 +217,9 @@
 		6EEF10B610CE96350011C596 /* CameraCalibration.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraCalibration.xib; sourceTree = "<group>"; };
 		6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoLight.png; sourceTree = "<group>"; };
 		6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoDark.png; sourceTree = "<group>"; };
+		6EF62EDE10D64B12009E7872 /* Lemmings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lemmings.h; sourceTree = "<group>"; };
+		6EF62EDF10D64B12009E7872 /* Lemmings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lemmings.mm; sourceTree = "<group>"; };
+		6EF62EE010D64B12009E7872 /* Lemmings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lemmings.xib; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -714,6 +719,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		6EF62EDD10D64B12009E7872 /* Lemmings */ = {
+			isa = PBXGroup;
+			children = (
+				6EF62EDE10D64B12009E7872 /* Lemmings.h */,
+				6EF62EDF10D64B12009E7872 /* Lemmings.mm */,
+				6EF62EE010D64B12009E7872 /* Lemmings.xib */,
+			);
+			path = Lemmings;
+			sourceTree = "<group>";
+		};
 		DD0C01501066874900BB3F9F /* ofxXmlSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1145,6 +1160,7 @@
 				DD204E6C10D63D5400BEF03F /* GTA */,
 				DD26DEC510BC04A100750B7C /* DMXOutput */,
 				DD4FE4ED10C5307B00A11BE9 /* DanceSteps */,
+				6EF62EDD10D64B12009E7872 /* Lemmings */,
 				DD26DD8810BBEC1600750B7C /* ParallelWorld */,
 				DDC7728110B5846F009CAFC7 /* _ExampleOutput */,
 			);
@@ -1812,6 +1828,7 @@
 				6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */,
 				6EB354F610CEC796008624B2 /* icon.icns in Resources */,
 				6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */,
+				6EF62EE210D64B12009E7872 /* Lemmings.xib in Resources */,
 				DD204E7110D63E3D00BEF03F /* GTA.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1929,6 +1946,7 @@
 				DD4AB76A10CD210300EA0F09 /* Tracking.mm in Sources */,
 				DD5735B510CD2B5B00B788BB /* TrackerObject.mm in Sources */,
 				DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */,
+				6EF62EE110D64B12009E7872 /* Lemmings.mm in Sources */,
 				DD204E6F10D63DE500BEF03F /* GTA.mm in Sources */,
 				DD20522B10D67BF400BEF03F /* ofxFBOTexture.cpp in Sources */,
 				DD20522C10D67BF400BEF03F /* ofxShader.cpp in Sources */,

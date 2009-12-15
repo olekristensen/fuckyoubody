@@ -45,6 +45,7 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
 	[pluginManagerController addPlugin:[[DanceSteps alloc] init]];
 	[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
+	[pluginManagerController addPlugin:[[Lemmings alloc] init]];
 	[pluginManagerController addPlugin:[[GTA alloc] init]];
 	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
 	

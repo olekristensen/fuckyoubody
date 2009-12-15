@@ -25,15 +25,11 @@
 }
 
 -(void) setup{
-	//	CGLSetCurrentContext(openglContext);
-	
-	
-	
 	img = new ofImage;
 	img->loadImage("/Volumes/Recoil/Development/libs/of_preRelease_v006_xcode_FAT/apps/fub/fub001/bin/data/icon.png");
 }
 
--(void) draw{
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime {
 	
 	glPushMatrix(); {
 		GLfloat rotate = 0;//timeInterval * 60.0; // 60 degrees per second!
