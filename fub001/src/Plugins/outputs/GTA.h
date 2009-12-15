@@ -31,7 +31,7 @@
 	IBOutlet NSSlider * wallZScaleControl;
 	IBOutlet NSButton * wallBrakeControl;
 	IBOutlet NSSlider * wallCamXControl;
-	
+	IBOutlet NSSlider * wallBlurControl;
 	float camXPos;
 	
 	NSMutableArray * wallObjects;

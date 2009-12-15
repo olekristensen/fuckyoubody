@@ -49,7 +49,7 @@
 
 -(void) setup{
 	aspect = [GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"]->aspect; 
-
+	
 	[self generateObjects];
 	blur = new shaderBlur();
 	blur->setup(800, 600);
@@ -63,7 +63,7 @@
 			float a = 255.0-5.0*(float)[obj pos]->z* [wallZScaleControl floatValue]/100.0;
 			if([obj obstacle] == YES){
 				if([wallBrakeControl state] == NSOnState){
-					[obj pos]->z += [wallSpeedControl floatValue]/50.0 * 60.0/ofGetFrameRate();
+					[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * 60.0/ofGetFrameRate();
 					if([obj pos]->z > 150){
 						[obj pos]->z = 150;
 					}
@@ -71,8 +71,8 @@
 					[obj pos]->z = -1000;	
 				}
 			} else {			
-				
-				[obj pos]->z += [wallSpeedControl floatValue]/50.0 * 60.0/ofGetFrameRate();
+				//cout<<ofGetFrameRate()<<endl;
+				[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * 60.0/ofGetFrameRate();
 				//float moveX = 0.003* [wallSpeedControl floatValue]/100.0 * 60.0/ofGetFrameRate();
 				
 				while([obj pos]->z > 455){
@@ -296,7 +296,9 @@
 	//ofRect(0, 0, 100, 100);
 	
 	blur->endRender();
-	
+	if([wallBlurControl floatValue] > 0){
+		blur->blur(10, [wallBlurControl floatValue]/100.0);
+	}
 	
 	glViewport(0,0,ofGetWidth(),ofGetHeight());
 	
