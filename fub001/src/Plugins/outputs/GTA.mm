@@ -57,13 +57,22 @@
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	camXPos += ([wallCamXControl floatValue]/100.0 - camXPos) * 0.1;
+	zscale += ([wallZScaleControl floatValue]- zscale) * 0.1;
+}
+
+-(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
+	
+}
+
+-(void) updateStep:(float)step{
 	if([wallSpeedControl floatValue] != 0){
 		WallObject * obj;
 		for(obj in wallObjects){
-			float a = 255.0-5.0*(float)[obj pos]->z* [wallZScaleControl floatValue]/100.0;
+			float a = 255.0-5.0*(float)[obj pos]->z* zscale/100.0;
 			if([obj obstacle] == YES){
 				if([wallBrakeControl state] == NSOnState){
-					[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * 60.0/ofGetFrameRate();
+					[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * step * 60.0/ofGetFrameRate();
 					if([obj pos]->z > 150){
 						[obj pos]->z = 150;
 					}
@@ -72,7 +81,7 @@
 				}
 			} else {			
 				//cout<<ofGetFrameRate()<<endl;
-				[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * 60.0/ofGetFrameRate();
+				[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * step * 60.0/ofGetFrameRate();
 				//float moveX = 0.003* [wallSpeedControl floatValue]/100.0 * 60.0/ofGetFrameRate();
 				
 				while([obj pos]->z > 455){
@@ -82,14 +91,10 @@
 			}
 			//}
 		}	
-	}
+	}	
 }
 
--(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
-	
-}
-
--(void) drawFBO{
+-(void) drawFBO:(float)alph{
 	GLfloat density = 0.002; 
 	GLfloat fogColor[4] = {0, 0, 0, 1.0}; 
 	
@@ -129,7 +134,6 @@
 	 */
 	//	glTranslatef(0, +0.1, 0);
 	glScaled(800, 600, 1);
-	camXPos += ([wallCamXControl floatValue]/100.0 - camXPos) * 0.1;
 	glTranslated(camXPos, 0, 0);	
 	
 	int i=0;
@@ -139,15 +143,16 @@
 		//	blur->endRender();
 		glScaled(1, 0.5, 1);
 		
-		float a = 300.0-3.0*fabs((float)[obj pos]->z)* [wallZScaleControl floatValue]/100.0;
+		float a = 300.0-3.0*fabs((float)[obj pos]->z)* zscale/100.0;
 		if([obj pos]->z > 0){
 			a = 255;	
 		}
 		a = 255;	
-		ofxPoint3f position = *[obj pos] + *[obj offset]*[wallZScaleControl floatValue]/100.0;
+		ofxPoint3f position = *[obj pos] + *[obj offset]*zscale/100.0;
 		
-		glScaled(1, 1, [wallZScaleControl floatValue]/100.0);
-		ofSetColor(255, 255, 255, 255);
+		glScaled(1, 1, zscale/100.0);
+		ofSetColor(alph*255, alph*255, alph*255, 255);
+
 		glBegin(GL_POLYGON);{
 			glTranslated(0, 0, position.z);
 			float s = [wallSizeControl floatValue]/100.0;
@@ -251,62 +256,75 @@
 	//	glScaled(blur->fbo1.getWidth(), blur->fbo1.getHeight(), 1);	
 	
 	//
-	
-	blur->beginRender();
-	//glPushMatrix();
-	int w, h;
-	
-	w = 800;
-	h = 600;	
-	
-	glViewport(0, -h+ h/10.0, w, h*2);
-	
-	float halfFov, theTan, screenFov, as;
-	screenFov 		= 120.0f;
-	
-	float eyeX 		= (float)w / 2.0;
-	float eyeY 		= (float)h / 2.0;
-	halfFov 		= PI * screenFov / 360.0;
-	theTan 			= tanf(halfFov);
-	float dist 		= eyeY / theTan;
-	float nearDist 	= dist / 10.0;	// near / far clip plane
-	float farDist 	= dist * 10.0;
-	as 			= (float)w/(float)h;
-	
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(screenFov, as, nearDist, farDist);
-	
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(eyeX, eyeY, dist, eyeX, h/2.0, 0.0, 0.0, 1.0, 0.0);
-	
-	glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.
-  	glTranslatef(0, -h, 0);       // shift origin up to upper-left corner.
-	
-	//	glTranslatef(0, +h*0.5, 0);       // shift origin up to upper-left corner.
-	
-	//	ofSetupScreen();
-	ofBackground(0, 0, 0);
-	ofSetColor(200, 200, 0);
-	//ofRect(10,10, 780, 580);
-	//glPopMatrix();
-	[self drawFBO];
-	//ofSetColor(200, 200, 255);
-	//ofRect(0, 0, 100, 100);
-	
-	blur->endRender();
-	if([wallBlurControl floatValue] > 0){
-		blur->blur(10, [wallBlurControl floatValue]/100.0);
+	int n=1;
+	for(int i=0;i<n;i++){
+		[self updateStep:1.0/n];
+		
+		
+		blur->beginRender();
+		//glPushMatrix();
+		int w, h;
+		
+		w = 800;
+		h = 600;	
+		
+		glViewport(0, -h+ h/10.0, w, h*2);
+		
+		float halfFov, theTan, screenFov, as;
+		screenFov 		= 120.0f;
+		
+		float eyeX 		= (float)w / 2.0;
+		float eyeY 		= (float)h / 2.0;
+		halfFov 		= PI * screenFov / 360.0;
+		theTan 			= tanf(halfFov);
+		float dist 		= eyeY / theTan;
+		float nearDist 	= dist / 10.0;	// near / far clip plane
+		float farDist 	= dist * 10.0;
+		as 			= (float)w/(float)h;
+		
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		gluPerspective(screenFov, as, nearDist, farDist);
+		
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		gluLookAt(eyeX, eyeY, dist, eyeX, h/2.0, 0.0, 0.0, 1.0, 0.0);
+		
+		glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.
+		glTranslatef(0, -h, 0);       // shift origin up to upper-left corner.
+		
+		//	glTranslatef(0, +h*0.5, 0);       // shift origin up to upper-left corner.
+		
+		//	ofSetupScreen();
+		ofBackground(0, 0, 0);
+		ofSetColor(200, 200, 0);
+		//ofRect(10,10, 780, 580);
+		//glPopMatrix();
+		ofDisableAlphaBlending();
+
+		[self drawFBO:1.0/n];
+		//ofSetColor(200, 200, 255);
+		//ofRect(0, 0, 100, 100);
+		
+		blur->endRender();
+		if([wallBlurControl floatValue] > 0){
+			blur->blur(10, [wallBlurControl floatValue]/100.0);
+		}
+		
+		glViewport(0,0,ofGetWidth(),ofGetHeight());
+		
+		ofSetupScreen();
+		glScaled(ofGetWidth(), ofGetHeight(), 1);
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
+		ofEnableAlphaBlending();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+
+		blur->draw(0, 0, 1, 1, true);
+		glPopMatrix();
 	}
 	
-	glViewport(0,0,ofGetWidth(),ofGetHeight());
 	
-	ofSetupScreen();
-	glScaled(ofGetWidth(), ofGetHeight(), 1);
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
-	blur->draw(0, 0, 1, 1, true);
-	glPopMatrix();
+	
 	//ofSetColor(255, 255, 255);
 	
 	
