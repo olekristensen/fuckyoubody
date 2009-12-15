@@ -82,7 +82,7 @@
 
 -(ProjectorObject*) getCurrentProjector;
 -(ProjectionSurfacesObject*) getCurrentSurface;
--(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize;
+-(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize simple:(BOOL)simple;
 -(void) applyProjection:(ProjectionSurfacesObject*) obj width:(float) _w height:(float) _h;
 -(void) applyProjection:(ProjectionSurfacesObject*) obj;
 -(void) apply:(string)projection surface:(string)surface;

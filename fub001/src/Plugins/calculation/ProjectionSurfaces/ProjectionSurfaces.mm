@@ -203,7 +203,7 @@
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	ofSetColor(255, 255, 255, 255);
 	[self applyProjection:surface width:1.0 height:aspect];	
-	[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0];
+	[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
 	glPopMatrix();
 	
 	//Draw current projectorsurface
@@ -227,18 +227,38 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	ProjectionSurfacesObject* surface = [self getCurrentSurface];
-	[self applyProjection:surface];
-	{
-		//	[self apply:"Front" surface:"Floor"];
-		ofSetColor(255, 255, 255);
-		if([showGrid state] == NSOnState){
-			[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0];
+	ProjectorObject * proj;
+	string s =  *[self getCurrentSurface]->name;
+	int i=0;
+	for(proj in projectors){
+		ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:*proj->name surface:s];
+		BOOL simple = YES;
+		if([projectorsButton indexOfSelectedItem] == i){
+			simple = NO;
 		}
-	} glPopMatrix();
+		ofSetColor(255, 255, 255);
+		[self apply:*proj->name surface:s];
+		if([showGrid state] == NSOnState){
+			[self drawGrid:s aspect:surf->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0 simple:simple];
+		}
+		glPopMatrix();
+		i++;
+	}
+	
+	/*
+	 ProjectionSurfacesObject* surface = [self getCurrentSurface];
+	 [self applyProjection:surface];
+	 {
+	 //	[self apply:"Front" surface:"Floor"];
+	 ofSetColor(255, 255, 255);
+	 if([showGrid state] == NSOnState){
+	 [self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0];
+	 }
+	 } glPopMatrix();*/
+	
 }
 
--(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize{
+-(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize simple:(BOOL)simple{
 	if (pthread_mutex_lock(&mutex) == 0) {
 		ofSetLineWidth(1);
 		ofSetColor(255, 255, 255, 255*a);
@@ -298,46 +318,48 @@
 		ofSetColor(255, 255,0,255*a);
 		
 		ofFill();
-		
-		//up arrow
-		glBegin(GL_POLYGON);{
+		if(!simple){
 			
-			glVertex2f((aspect*0.5), 0);
-			glVertex2f((aspect*0.5)-(0.05), 1.0/resolution);
-			glVertex2f((aspect*0.5)+(0.05), 1.0/resolution);
-			glVertex2f((aspect*0.5), 0);		
-		} glEnd();
-		
-		ofSetColor(0,0,0,255*a);
-		
-		glPushMatrix();{
+			//up arrow
+			glBegin(GL_POLYGON);{
+				
+				glVertex2f((aspect*0.5), 0);
+				glVertex2f((aspect*0.5)-(0.05), 1.0/resolution);
+				glVertex2f((aspect*0.5)+(0.05), 1.0/resolution);
+				glVertex2f((aspect*0.5), 0);		
+			} glEnd();
 			
-			float fontSizeForN = fontSize * 0.40;
+			ofSetColor(0,0,0,255*a);
 			
-			glScaled(fontSizeForN, fontSizeForN, 1.0);
+			glPushMatrix();{
+				
+				float fontSizeForN = fontSize * 0.40;
+				
+				glScaled(fontSizeForN, fontSizeForN, 1.0);
+				
+				glTranslated( aspect*0.5*1.0/fontSizeForN-font->stringWidth("N")/1.5,  0.1*1.0/fontSizeForN-(font->stringHeight("N")*0.3), 0);	
+				
+				font->drawString("N",0, 0);
+				
+			} glPopMatrix();
 			
-			glTranslated( aspect*0.5*1.0/fontSizeForN-font->stringWidth("N")/1.5,  0.1*1.0/fontSizeForN-(font->stringHeight("N")*0.3), 0);	
+			ofSetColor(255, 255,0,255*a);
 			
-			font->drawString("N",0, 0);
+			ofNoFill();
 			
-		} glPopMatrix();
-		
-		ofSetColor(255, 255,0,255*a);
-		
-		ofNoFill();
-		
-		glBegin(GL_POLYGON);{
+			glBegin(GL_POLYGON);{
+				
+				glVertex2f((aspect*0.5)-(0.05), 1.0);
+				glVertex2f((aspect*0.5), 1.0-(1.0/resolution));
+				glVertex2f((aspect*0.5)+(0.05), 1.0);
+				
+			} glEnd();
 			
-			glVertex2f((aspect*0.5)-(0.05), 1.0);
-			glVertex2f((aspect*0.5), 1.0-(1.0/resolution));
-			glVertex2f((aspect*0.5)+(0.05), 1.0);
 			
-		} glEnd();
-		
-		// center cross
-		ofLine((aspect*0.5)-0.05, 0.5, (aspect*0.5)+0.05, 0.5);
-		ofLine((aspect*0.5), 1.0/resolution, (aspect*0.5), 1.0-(0.5/resolution));
-		
+			// center cross
+			ofLine((aspect*0.5)-0.05, 0.5, (aspect*0.5)+0.05, 0.5);
+			ofLine((aspect*0.5), 1.0/resolution, (aspect*0.5), 1.0-(0.5/resolution));
+			
 			glPushMatrix();{
 				
 				glScaled(fontSize, fontSize, 1.0);
@@ -352,48 +374,47 @@
 				ofSetColor(255,255,255,255);
 				recoilLogo->draw(recoilLogo->getWidth()*0.20, recoilLogo->getHeight()*0.2075, recoilLogo->getWidth()*0.6,recoilLogo->getHeight()*0.6);
 			} glPopMatrix();
-		
-		// center elipse
-		ofNoFill();
-		ofSetCircleResolution(100);
-		if(aspect < 1.0){
-			ofSetLineWidth(5);
-			ofSetColor(64, 128, 220,255*a);
-			for (float i = 1.35; i < 1.37; i+=0.01) {
-				ofEllipse(aspect/2, 0.5, aspect*i*((aspect/2)/aspect), aspect*i*0.5);
-			}
-		} else {
-			ofSetLineWidth(5);
-			ofSetColor(64, 128, 220,255*a);
-			for (float i = 1.35; i < 1.37; i+=0.01) {
-				ofEllipse(aspect/2, 0.5,i*((aspect/2)/aspect), i*0.5);
-			}
-		}
-		
-		// text label
-		ofSetLineWidth(1);
-		
-		//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
-		
-		glPushMatrix();{
-			glScaled(fontSize, fontSize, 1.0);
-			if(aspect < 1.0){
-				glTranslated( aspect*0.5*1.0/fontSize+(font->stringHeight(text)*0.3*aspect),  0.5*1.0/fontSize-(font->stringWidth(text)*aspect)/2.0, 0);	
-				glRotated(90, 0, 0, 1.0);
-				glScaled(aspect, aspect, 1.0);
-			} else {
-				glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize-(font->stringHeight(text)*0.3), 0);	
-			}
-			ofSetColor(0, 0, 0,200);
+			// center elipse
 			ofNoFill();
-			ofSetLineWidth(6);
-			font->drawStringAsShapes(text,0,0);
-			ofFill();
-			ofSetColor(255, 255, 255,255);
-			font->drawStringAsShapes(text,0,0);
+			ofSetCircleResolution(100);
+			if(aspect < 1.0){
+				ofSetLineWidth(5);
+				ofSetColor(64, 128, 220,255*a);
+				for (float i = 1.35; i < 1.37; i+=0.01) {
+					ofEllipse(aspect/2, 0.5, aspect*i*((aspect/2)/aspect), aspect*i*0.5);
+				}
+			} else {
+				ofSetLineWidth(5);
+				ofSetColor(64, 128, 220,255*a);
+				for (float i = 1.35; i < 1.37; i+=0.01) {
+					ofEllipse(aspect/2, 0.5,i*((aspect/2)/aspect), i*0.5);
+				}
+			}
+			
+			// text label
 			ofSetLineWidth(1);
-		} glPopMatrix();
-		
+			
+			//	glTranslated( aspect*0.5*1/0.003-verdana.stringWidth(text)/2.0,  0.5*1/0.003+verdana.stringHeight(text)/2.0, 0);
+			
+			glPushMatrix();{
+				glScaled(fontSize, fontSize, 1.0);
+				if(aspect < 1.0){
+					glTranslated( aspect*0.5*1.0/fontSize+(font->stringHeight(text)*0.3*aspect),  0.5*1.0/fontSize-(font->stringWidth(text)*aspect)/2.0, 0);	
+					glRotated(90, 0, 0, 1.0);
+					glScaled(aspect, aspect, 1.0);
+				} else {
+					glTranslated( aspect*0.5*1.0/fontSize-font->stringWidth(text)/2.0,  0.5*1.0/fontSize-(font->stringHeight(text)*0.3), 0);	
+				}
+				ofSetColor(0, 0, 0,200);
+				ofNoFill();
+				ofSetLineWidth(6);
+				font->drawStringAsShapes(text,0,0);
+				ofFill();
+				ofSetColor(255, 255, 255,255);
+				font->drawStringAsShapes(text,0,0);
+				ofSetLineWidth(1);
+			} glPopMatrix();
+		}
 		pthread_mutex_unlock(&mutex);
 	}
 	
@@ -553,7 +574,28 @@
 }
 
 - (void) controlKeyPressed:(int)key{
-	cout<<key<<endl;	
+	if(key >= 123 && key <= 126){
+		if(selectedCorner != -1){
+			ofxVec2f newPos =  [self getCurrentSurface]->warp->corners[selectedCorner];
+			float n = 0.0003;
+			if(key == 123){
+				newPos += ofxVec2f(-n,0);
+			}
+			if(key == 124){
+				newPos += ofxVec2f(n,0);
+			}
+			if(key == 125){
+				newPos += ofxVec2f(0,n);
+			}
+			if(key == 126){
+				newPos += ofxVec2f(0,-n);
+			}
+
+			[[self getCurrentSurface] setCorner:selectedCorner x:newPos.x y:newPos.y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:NO];
+		}
+		[[self getCurrentSurface] recalculate];
+	}
+	
 }
 
 -(ProjectorObject*) getCurrentProjector{

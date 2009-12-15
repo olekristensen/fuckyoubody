@@ -62,7 +62,10 @@
 						[lemming setDestination:new ofxVec2f(p)];
 						[lemming setLagFactor:0.33];
 					}
+				} else {
+					[lemming setDestination:new ofxVec2f(*[lemming position] + ofxVec2f(ofRandom(0.0,0.002),ofRandom(0.0,0.004)))];
 				}
+
 			}
 
 			free(pointArray);
@@ -92,7 +95,7 @@
 
 -(void) setup{
 
-	lemmingDiff = 200;
+	lemmingDiff = 400;
 	
 }
 
@@ -154,16 +157,34 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ofFill();
-	ofSetColor(255, 255, 255,127);
 	ofEnableAlphaBlending();
 	Lemming * lemming;
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	
+	ofSetColor(0, 127,0,127);
+	ofRect(0, 0, 1, 1);
+
+	ofSetColor(255, 255, 255,255);
+
 	for(lemming in lemmingList){
 		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
 	}
 	
+	glPopMatrix();
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
+	
+	ofSetColor(0,0,255,255);
+	ofRect(0, 0, 1, 1);
+
+	ofSetColor(255, 255, 255,255);
+
+	for(lemming in lemmingList){
+		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
+	}
+
+
 	glPopMatrix();
 	
 	/*[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
@@ -214,6 +235,18 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	*position += (*destination - *position) * lagFactor;
+	
+	if (position->x < 0.0 || position->x > 1.0 || position->y < 0.0 || position->y > 1.0 ) {
+		
+		lagFactor = ofRandom(0.005, 0.1);
+
+		position->x = 0.25;
+		position->y = 0.0;
+		
+		destination->x = ofRandom(0, 1.0);
+		destination->y = ofRandom(0, 1.0);
+		
+	}
 	ofCircle(position->x, position->y, radius);
 }
 
