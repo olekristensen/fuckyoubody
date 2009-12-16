@@ -49,6 +49,8 @@
 		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
 		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
 		DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DECA10BC04C100750B7C /* DMXOutput.mm */; };
+		DD2F6BBD10D8FB1300996CD8 /* Strategi.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2F6BBC10D8FB1300996CD8 /* Strategi.mm */; };
+		DD2F6BBF10D8FB1D00996CD8 /* Strategi.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD2F6BBE10D8FB1D00996CD8 /* Strategi.xib */; };
 		DD45B91B106FDC4F00B4B19C /* ofxMSASpline2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */; };
 		DD45B91C106FDC4F00B4B19C /* ofxMSASpline3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B911106FDC4F00B4B19C /* ofxMSASpline3D.cpp */; };
 		DD45B91D106FDC4F00B4B19C /* ofxMSASurface3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD45B915106FDC4F00B4B19C /* ofxMSASurface3D.cpp */; };
@@ -263,6 +265,9 @@
 		DD26DEC610BC04AA00750B7C /* DMXOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DMXOutput.xib; sourceTree = "<group>"; };
 		DD26DEC910BC04C100750B7C /* DMXOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMXOutput.h; sourceTree = "<group>"; };
 		DD26DECA10BC04C100750B7C /* DMXOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DMXOutput.mm; sourceTree = "<group>"; };
+		DD2F6BBB10D8FB1300996CD8 /* Strategi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Strategi.h; sourceTree = "<group>"; };
+		DD2F6BBC10D8FB1300996CD8 /* Strategi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Strategi.mm; sourceTree = "<group>"; };
+		DD2F6BBE10D8FB1D00996CD8 /* Strategi.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Strategi.xib; sourceTree = "<group>"; };
 		DD45B90D106FDC4F00B4B19C /* ofxMSASpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline.h; sourceTree = "<group>"; };
 		DD45B90E106FDC4F00B4B19C /* ofxMSASpline1D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSASpline1D.h; sourceTree = "<group>"; };
 		DD45B90F106FDC4F00B4B19C /* ofxMSASpline2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSASpline2D.cpp; sourceTree = "<group>"; };
@@ -860,6 +865,16 @@
 			path = DMXOutput;
 			sourceTree = "<group>";
 		};
+		DD2F6BBA10D8FB0500996CD8 /* Strategi */ = {
+			isa = PBXGroup;
+			children = (
+				DD2F6BBE10D8FB1D00996CD8 /* Strategi.xib */,
+				DD2F6BBB10D8FB1300996CD8 /* Strategi.h */,
+				DD2F6BBC10D8FB1300996CD8 /* Strategi.mm */,
+			);
+			path = Strategi;
+			sourceTree = "<group>";
+		};
 		DD45B904106FDC4F00B4B19C /* ofxMSASpline */ = {
 			isa = PBXGroup;
 			children = (
@@ -1157,6 +1172,7 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				DD2F6BBA10D8FB0500996CD8 /* Strategi */,
 				DD204E6C10D63D5400BEF03F /* GTA */,
 				DD26DEC510BC04A100750B7C /* DMXOutput */,
 				DD4FE4ED10C5307B00A11BE9 /* DanceSteps */,
@@ -1830,6 +1846,7 @@
 				6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */,
 				6EF62EE210D64B12009E7872 /* Lemmings.xib in Resources */,
 				DD204E7110D63E3D00BEF03F /* GTA.xib in Resources */,
+				DD2F6BBF10D8FB1D00996CD8 /* Strategi.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1955,6 +1972,7 @@
 				DD7C61EC10D699BC00D5B056 /* simpleBlurHorizontal.vert in Sources */,
 				DD7C61ED10D699BC00D5B056 /* simpleBlurVertical.frag in Sources */,
 				DD7C61EE10D699BC00D5B056 /* simpleBlurVertical.vert in Sources */,
+				DD2F6BBD10D8FB1300996CD8 /* Strategi.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

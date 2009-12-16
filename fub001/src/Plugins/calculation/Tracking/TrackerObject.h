@@ -42,6 +42,8 @@
 	int cameraId;
 	ofxCvBlob * blob;
 	ofxCvBlob * originalblob;
+	@public
+	CvSeq * cvSeq; 
 }
 @property (readwrite) int cameraId;
 @property (readonly) ofxCvBlob * originalblob;

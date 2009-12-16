@@ -21,3 +21,4 @@
 #include "DMXOutput.h"
 #include "Lemmings.h"
 #include "GTA.h"
+#include "Strategi.h"
