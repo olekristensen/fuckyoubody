@@ -52,16 +52,17 @@
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	float h = ofGetHeight()/3.0;
-	h = 200;
+	h = 226;
 	float w = h * 640.0/480.0;
 	//	float w = ofGetWidth()/4.0;
 	
 	glPushMatrix();
+	glTranslated(0, 26, 0);
 	for(int i=0;i<3;i++){
 		glPushMatrix();{
 			[trackerObj[i] controlDraw:timeInterval displayTime:timeStamp];
 		}glPopMatrix();
-		glTranslated(0, h+10, 0);
+		glTranslated(0, h, 0);
 	}
 	glPopMatrix();
 }

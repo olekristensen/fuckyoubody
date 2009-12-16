@@ -87,7 +87,7 @@ void Libdc1394Grabber::cleanupCamera()
 		ofLog(OF_LOG_VERBOSE,"Stopped capture thread.");
 		
 		//this sleep seems necessary, at least on OSX, to avoid an occasional hang on exit
-		ofSleepMillis(40);
+		ofSleepMillis(60);
 		
 		dc1394switch_t is_iso_on = DC1394_OFF;
 		if(camera) {

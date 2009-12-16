@@ -16,6 +16,7 @@
 #include "ofMain.h"
 #include "ofxOpenCv.h"
 #include "ofxVectorMath.h"
+#include "ofxCvOpticalFlowLK.h"
 
 @interface PersistentBlob : NSObject
 {
@@ -84,8 +85,9 @@
 	ofxCvGrayscaleImage * threadGrayImage;
 	ofxCvGrayscaleImage * threadGrayLastImage;
 	BOOL threadUpdateContour;
+	BOOL threadUpdateOpticalFlow;
 
-	
+	ofxCvOpticalFlowLK	* opticalFlow;
 	ofxCvContourFinder 	* contourFinder;
 	
 	NSMutableArray * persistentBlobs;
@@ -96,6 +98,7 @@
 	IBOutlet NSSlider * postBlurSlider;
 	IBOutlet NSSlider * postThresholdSlider;
 	IBOutlet NSButton * activeButton;
+	IBOutlet NSButton * opticalFlowActiveButton;
 	IBOutlet NSButton * learnBackgroundButton;
 	IBOutlet NSButton * drawDebugButton;
 	IBOutlet NSSlider * persistentSlider;
@@ -122,6 +125,8 @@
 -(IBAction) setActiveButtonValue:(id)sender;
 -(IBAction) loadPresetControl:(id)sender;
 -(IBAction) setPersistentSliderValue:(id)sender;
+-(IBAction) setOpticalFlowActiveButtonValue:(id)sender;
+
 -(void) loadPreset:(int)n;
 
 -(BOOL) loadNibFile;
