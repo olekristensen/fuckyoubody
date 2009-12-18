@@ -19,7 +19,7 @@ static float aCameraWillRespawnAt = -1;
 static BOOL camerasRespawning[3];
 
 @implementation Camera
-@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber, camGUID ;
+@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber, camGUID, recordButton;
 
 + (float)aCameraWillRespawnAt { return aCameraWillRespawnAt; }
 + (BOOL)aCameraIsRespawning { return (camerasRespawning[0] || camerasRespawning[1] || camerasRespawning[2]); }
@@ -119,6 +119,7 @@ static BOOL camerasRespawning[3];
 					}
 					recording = YES;
 				} else if(recording){
+					recording = NO;
 					saver->finishMovie();	
 					numFiles ++;
 				}				

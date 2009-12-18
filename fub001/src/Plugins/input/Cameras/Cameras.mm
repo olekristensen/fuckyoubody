@@ -134,4 +134,10 @@
 	return [[self getCameraWithId:cameraId] isFrameNew];		
 }
 
+-(IBAction) recordAll:(id)sender{
+	for(int i=0;i<NUM_CAMERAS;i++){
+		[[cam[i] recordButton] setState:[sender state]];
+	}
+}
+
 @end

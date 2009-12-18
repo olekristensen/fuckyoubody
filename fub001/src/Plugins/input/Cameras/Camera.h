@@ -68,6 +68,7 @@
 @property (assign, readonly) BOOL live;
 @property (readwrite) 	uint64_t camGUID;
 @property (readwrite) 	int camNumber;
+@property (assign, readwrite) NSButton * recordButton;
 
 -(float) framerate;
 -(ofTexture*) getTexture;

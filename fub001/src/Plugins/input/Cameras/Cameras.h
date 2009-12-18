@@ -36,4 +36,6 @@
 - (BOOL) isFrameNew:(int)cameraId;
 - (int) getWidth:(int)cameraId;
 - (int) getHeight:(int)cameraId;
+
+-(IBAction) recordAll:(id)sender;
 @end
