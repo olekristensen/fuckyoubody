@@ -14,6 +14,10 @@
 #include "ofMain.h"
 
 
+#define RADIUS 0.01
+#define RADIUS_SQUARED 0.001
+
+
 @interface Lemmings : ofPlugin {
 
 	NSMutableArray	*lemmingList;
@@ -21,8 +25,11 @@
 
 	IBOutlet NSSegmentedControl * cameraControl;
 	IBOutlet NSTextField * numberLemmingsControl;
+	
+	IBOutlet NSSlider * damp;
 
 	int lemmingDiff;
+	pthread_mutex_t mutex;
 	
 }
 
@@ -36,8 +43,8 @@
 	
 	float			radius;
 	ofxVec2f		*position;
-	ofxVec2f		*destination;
-	float			lagFactor;
+	ofxVec2f		*vel;
+		ofxVec2f		*totalforce;
 	double			spawnTime;
 	BOOL			dying;
 	double			deathTime;
@@ -48,9 +55,9 @@
 -(id) initWithX:(float)xPosition Y:(float)yPosition spawnTime:(CFTimeInterval)timeInterval;
 
 @property (readwrite) float radius;
-@property (readwrite) float lagFactor;
 @property (assign, readwrite) ofxVec2f *position;
-@property (assign, readwrite) ofxVec2f *destination;
+@property (assign, readwrite) ofxVec2f *totalforce;
+@property (assign, readwrite) ofxVec2f *vel;
 @property (readwrite) double spawnTime;
 @property (assign) NSMutableArray * lemmingList;
 @property (assign) BOOL	dying;

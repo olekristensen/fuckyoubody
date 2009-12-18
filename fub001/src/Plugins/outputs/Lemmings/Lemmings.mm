@@ -15,87 +15,162 @@
 -(void) initPlugin{
 	lemmingList = [[NSMutableArray array] retain];
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+	pthread_mutex_init(&mutex, NULL);
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	PersistentBlob * blob;
-	
-	[numberLemmingsControl setIntValue:[lemmingList count]];
-	
-	for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
-		BOOL lineFound = NO;
-	
-		Blob * b;
-		BOOL anyBlobs = NO;
-		for(b in [blob blobs]){
-			anyBlobs = YES;
-			Lemming * lemming;
-			
-			CvPoint2D32f * pointArray = new CvPoint2D32f[ [b nPts] ];
-			
-			for( int i = 0; i < [b nPts]; i++){
-				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-				pointArray[i].x = p.x;
-				pointArray[i].y = p.y;
-			}
-			
-			CvMat pointMat = cvMat( 1, [b pts].size(), CV_32FC2, pointArray);
-
-			for(lemming in lemmingList){
+	if(ofGetFrameRate() > 2){
+		/*	PersistentBlob * blob;
+		 
+		 [numberLemmingsControl setIntValue:[lemmingList count]];
+		 
+		 for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
+		 BOOL lineFound = NO;
+		 
+		 Blob * b;
+		 BOOL anyBlobs = NO;
+		 for(b in [blob blobs]){
+		 anyBlobs = YES;
+		 Lemming * lemming;
+		 
+		 CvPoint2D32f * pointArray = new CvPoint2D32f[ [b nPts] ];
+		 
+		 for( int i = 0; i < [b nPts]; i++){
+		 ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
+		 pointArray[i].x = p.x;
+		 pointArray[i].y = p.y;
+		 }
+		 
+		 CvMat pointMat = cvMat( 1, [b pts].size(), CV_32FC2, pointArray);
+		 
+		 for(lemming in lemmingList){
+		 
+		 double dist = cvPointPolygonTest(&pointMat, cvPoint2D32f([lemming position]->x, [lemming position]->y), 0);
+		 
+		 if( dist >= 0 ){
+		 int shortestI = -1;
+		 float shortestDist;
+		 for( int i = 0; i < [b nPts] ; i+=5){
+		 ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
+		 float dist = ((ofxPoint2f*) [lemming position])->distanceSquared(p);
+		 if(shortestI == -1 || dist < shortestDist){
+		 shortestI = i;
+		 shortestDist = dist;
+		 }
+		 }
+		 
+		 if(shortestI != -1){
+		 ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][shortestI] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
+		 [lemming setDestination:new ofxVec2f(p)];
+		 [lemming setLagFactor:0.33];
+		 }
+		 } else {
+		 [lemming setDestination:new ofxVec2f(*[lemming position] + ofxVec2f(ofRandom(0.0,0.002),ofRandom(0.0,0.004)))];
+		 }
+		 
+		 }
+		 
+		 free(pointArray);
+		 }
+		 }*/
 		
-				double dist = cvPointPolygonTest(&pointMat, cvPoint2D32f([lemming position]->x, [lemming position]->y), 0);
-				
-				if( dist >= 0 ){
-					int shortestI = -1;
-					float shortestDist;
-					for( int i = 0; i < [b nPts] ; i+=5){
-						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-						float dist = ((ofxPoint2f*) [lemming position])->distanceSquared(p);
-						if(shortestI == -1 || dist < shortestDist){
-							shortestI = i;
-							shortestDist = dist;
-						}
-					}
+		Lemming * lemming;
+		
+		while (lemmingDiff > 0) {
+			//		[lemmingList addObject:[[[Lemming alloc]initWithX:ofRandom(0, 1) Y:ofRandom(0, 1) spawnTime:timeInterval]autorelease]];
+			[lemmingList addObject:[[[Lemming alloc]initWithX:ofRandom(0, 1) Y:ofRandom(0, 1) spawnTime:timeInterval]autorelease]];
+			lemmingDiff--;
+			NSLog(@"adding a lemming");
+		}
+		while (lemmingDiff < 0) {
+			[[lemmingList lastObject] setDying:YES];
+			lemmingDiff++;
+			NSLog(@"removing a lemming");
+		}
+		
+		//Kill lemming
+		for(lemming in lemmingList){
+			if ([lemming dying]) {
+				[lemmingList removeObject:lemming];
+			}
+		}
+		
+		
+		int i=0;
+#pragma omp parallel for
+		for(int i=0;i<[lemmingList count];i++){
+			lemming =[lemmingList objectAtIndex:i];
+#pragma omp parallel for
+			for(int u=i+1;u<[lemmingList count];u++){
+				Lemming * otherLemming = [lemmingList objectAtIndex:u];
+				ofxPoint2f l1 = *[lemming position];
+				ofxPoint2f l2 = *[otherLemming position];
+				double distSq =		l1.distanceSquared(l2);
+				if(distSq < RADIUS_SQUARED*1.1 ){
+					ofxVec2f diff = *[lemming position] - *[otherLemming position];
+					diff.normalize();
 					
-					if(shortestI != -1){
-						ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][shortestI] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-						[lemming setDestination:new ofxVec2f(p)];
-						[lemming setLagFactor:0.33];
-					}
-				} else {
-					[lemming setDestination:new ofxVec2f(*[lemming position] + ofxVec2f(ofRandom(0.0,0.002),ofRandom(0.0,0.004)))];
+					pthread_mutex_lock(&mutex);
+					double iDist = ((double)RADIUS_SQUARED*1.1 - (double)distSq)/(double)(RADIUS_SQUARED*1.1); 
+					diff *= MIN(iDist*3, 0.02);
+					*[lemming totalforce] += diff;
+					*[otherLemming totalforce] -= diff;				
+					pthread_mutex_unlock(&mutex);
 				}
-
 			}
-
-			free(pointArray);
+			i++;
 		}
-	}
-	
-	Lemming * lemming;
-
-	while (lemmingDiff > 0) {
-		[lemmingList addObject:[[[Lemming alloc]initWithX:ofRandom(0, 1) Y:ofRandom(0, 1) spawnTime:timeInterval]autorelease]];
-		lemmingDiff--;
-		NSLog(@"adding a lemming");
-	}
-	while (lemmingDiff < 0) {
-		[[lemmingList lastObject] setDying:YES];
-		lemmingDiff++;
-		NSLog(@"removing a lemming");
-	}
 		
-	for(lemming in lemmingList){
-		if ([lemming dying]) {
-			[lemmingList removeObject:lemming];
+		//Add random force
+		for(lemming in lemmingList){
+			*[lemming totalforce]  += ofxVec2f(ofRandom(-1, 1), ofRandom(-1, 1))*0.01;
+	//				*[lemming totalforce]  += ofxVec2f(0,-1)*0.01;
 		}
+		
+		
+		lemming = [lemmingList objectAtIndex:99];
+		
+		//cout<<"før: "<<[lemming position]->x<<"  "<<[lemming position]->y<<"  "<<[lemming totalforce]->x<<"  "<<[lemming totalforce]->y<<endl;
+		//Move the lemming
+		for(lemming in lemmingList){
+			*[lemming vel] *= [damp floatValue]/100.0;
+			*[lemming vel] += *[lemming totalforce];
+			[lemming setTotalforce:new ofxVec2f()];
+			
+			*[lemming position] += *[lemming vel] * 1.0/ofGetFrameRate();
+		}
+		
+		//Add Border
+		for(lemming in lemmingList){
+			if([lemming position]->x < 0 ){
+				[lemming vel]->x *= -0.9;
+				[lemming position]->x = 0.00001;
+			}
+			if([lemming position]->y < 0 ){
+				[lemming vel]->y *= -0.9;
+				[lemming position]->y = 0.00001;				
+			}
+			if([lemming position]->x > 1){
+				[lemming vel]->x *= -0.9;
+				[lemming position]->x = 0.99999;				
+			}
+			if([lemming position]->y > 1){
+				[lemming vel]->y *= -0.9;
+				[lemming position]->y = 0.99999;								
+			}
+			
+			
+		}
+		
+		
+		lemming = [lemmingList objectAtIndex:99];
+		//cout<<"efter: "<<[lemming position]->x<<"  "<<[lemming position]->y<<"   -    "<<[lemming vel]->x<<"   "<<[lemming vel]->y<<endl;
 	}
-	
 }
 
 -(void) setup{
-
-	lemmingDiff = 400;
+	
+	lemmingDiff = 200;
 	
 }
 
@@ -164,9 +239,9 @@
 	
 	ofSetColor(0, 127,0,127);
 	ofRect(0, 0, 1, 1);
-
+	
 	ofSetColor(255, 255, 255,255);
-
+	
 	for(lemming in lemmingList){
 		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
 	}
@@ -177,24 +252,24 @@
 	
 	ofSetColor(0,0,255,255);
 	ofRect(0, 0, 1, 1);
-
+	
 	ofSetColor(255, 255, 255,255);
-
+	
 	for(lemming in lemmingList){
 		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
 	}
-
-
+	
+	
 	glPopMatrix();
 	
 	/*[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
-	
-	for(lemming in lemmingList){
-		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
-	}
-	
-	glPopMatrix();
-	*/
+	 
+	 for(lemming in lemmingList){
+	 [lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
+	 }
+	 
+	 glPopMatrix();
+	 */
 }
 
 -(IBAction) addLemming:(id)sender{
@@ -208,45 +283,41 @@
 @end
 
 @implementation Lemming
-@synthesize radius, position, spawnTime, lemmingList, dying, lagFactor, destination;
+@synthesize radius, position, spawnTime, lemmingList, dying, vel, totalforce;
 
 -(id) initWithX:(float)xPosition Y:(float)yPosition spawnTime:(CFTimeInterval)timeInterval{
 	
-	self = [super init];
-	
-	position = new ofxVec2f();
-	destination = new ofxVec2f();
-	radius = 0.01;
-	lagFactor = ofRandom(0.005, 0.1);
-	
-	if (self) {
+	if ([super init]){
 		
-		position->x = 0.25;
-		position->y = 0.0;
+		position = new ofxVec2f();
+		vel = new ofxVec2f();
+		//		*vel *= 0.00001;
+		totalforce = new ofxVec2f();
+		radius = RADIUS;
 		
-		destination->x = xPosition;
-		destination->y = yPosition;
-    }
-	
-	spawnTime = timeInterval;
+		
+		position->x = xPosition;
+		position->y = yPosition;
+		
+		
+		spawnTime = timeInterval;
+	}
 	
 	return self;
 }
 
--(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	*position += (*destination - *position) * lagFactor;
-	
-	if (position->x < 0.0 || position->x > 1.0 || position->y < 0.0 || position->y > 1.0 ) {
-		
-		lagFactor = ofRandom(0.005, 0.1);
 
-		position->x = 0.25;
-		position->y = 0.0;
-		
-		destination->x = ofRandom(0, 1.0);
-		destination->y = ofRandom(0, 1.0);
-		
-	}
+
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	//	*position += (*destination - *position) * lagFactor;
+	
+	/*if (position->x < 0.0 || position->x > 1.0 || position->y < 0.0 || position->y > 1.0 ) {
+	 
+	 
+	 position->x = ofRandom(0, 1);
+	 position->y = 0.0;
+	 
+	 }*/
 	ofCircle(position->x, position->y, radius);
 }
 
