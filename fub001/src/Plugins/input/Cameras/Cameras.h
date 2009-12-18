@@ -16,6 +16,8 @@
 #include "ofMain.h"
 #include "Camera.h"
 
+
+
 @interface Cameras : ofPlugin {
 	IBOutlet NSView * cam0settings;
 	IBOutlet NSView * cam1settings;

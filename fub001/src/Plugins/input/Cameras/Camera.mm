@@ -24,7 +24,6 @@ static BOOL camerasRespawning[3];
 + (float)aCameraWillRespawnAt { return aCameraWillRespawnAt; }
 + (BOOL)aCameraIsRespawning { return (camerasRespawning[0] || camerasRespawning[1] || camerasRespawning[2]); }
 + (BOOL)allCamerasAreRespawning { return (camerasRespawning[0] && camerasRespawning[1] && camerasRespawning[2]); }
-+ (BOOL)thisCameraIsRespawning { return (camerasRespawning[camNumber]); }
 + (float)setCamera:(int)respawningCameraNumber willRespawningAt:(float)timeStamp  { aCameraWillRespawnAt = timeStamp; camerasRespawning[respawningCameraNumber] = YES; }
 + (float)setCamera:(int)respawningCameraNumber isRespawning:(BOOL)isRespawning  { camerasRespawning[respawningCameraNumber] = isRespawning; }
 
@@ -64,6 +63,10 @@ static BOOL camerasRespawning[3];
 	tex->allocate(width,height,GL_LUMINANCE);
 	pixels = new unsigned char[width * height];
 	memset(pixels, 0, width*height);
+	
+	rgbTmpPixels = new unsigned char[width * height*3];
+	memset(rgbTmpPixels, 0, width*height*3);
+	
 	tex->loadData(pixels, width, height, GL_LUMINANCE);	
 	pthread_mutex_init(&mutex, NULL);
 	
@@ -72,8 +75,14 @@ static BOOL camerasRespawning[3];
 		[movieSelector setEnabled:YES];
 		[recordButton setEnabled:NO];
 		[sourceSelector setSelectedSegment:1];
-		[self updateMovieList];
+
 	}
+
+	[self updateMovieList];	
+	
+	saver = new ofxQtVideoSaver();
+	saver->setCodecQualityLevel(OF_QT_SAVER_CODEC_QUALITY_NORMAL);
+	recording = NO;
 	
 	[self videoGrabberInit];
 	
@@ -97,21 +106,40 @@ static BOOL camerasRespawning[3];
 					frameRate = 0.5f * frameRate + 0.5f * myfps;
 				}
 				myframes++;
+				
+				if([recordButton state] == NSOnState){
+					for(int i=0;i<width*height*3;i+=3){
+						rgbTmpPixels[i] = pixels[i/3];
+						rgbTmpPixels[i+1] = pixels[i/3];
+						rgbTmpPixels[i+2] = pixels[i/3];
+					}
+					saver->addFrame(rgbTmpPixels, 1.0f / frameRate); 	
+					if(!recording){
+						saver->setup(640,480,[[NSString stringWithFormat:@"recordedMovies/camera%i_recording%i.mov",[self camNumber]+1, numFiles] cString]);	
+					}
+					recording = YES;
+				} else if(recording){
+					saver->finishMovie();	
+					numFiles ++;
+				}				
 			} else if ((ofGetElapsedTimef()-mytimeThen) > 1.0f) {
 				NSLog(@"Camera %i was TOO LATE",camNumber);
 				frameRate = 0;
 				[self videoGrabberRespawn];
 			} 
-			if ([Camera thisCameraIsRespawning]) {
+			if (camerasRespawning[camNumber]) {
+				NSLog(@"Camera %i schedules respawn for itself",camNumber);
 				frameRate = 0;
 				mytimeThen = ofGetElapsedTimef() + 5.0f;
 				[self videoGrabberRespawn];
 			}
 			if([Camera allCamerasAreRespawning]){
+				NSLog(@"Camera %i schedules respawn for all",camNumber);
 				frameRate = 0;
 				aCameraWillRespawnAt = ofGetElapsedTimef() + 5.0f;
 			}
 		} else if (camWasInited && ofGetElapsedTimef()-mytimeThen > 0.1f) {
+			NSLog(@"Camera %i was alive, but not anymore",camNumber);
 			frameRate = 0;
 			mytimeThen=ofGetElapsedTimef();
 			[self videoGrabberRespawn];
@@ -177,6 +205,7 @@ static BOOL camerasRespawning[3];
 	NSURL *url = [NSURL URLWithString:[NSString stringWithCString:ofToDataPath("recordedMovies/", true).c_str()]];
 	NSArray * content = [filesystem contentsOfDirectoryAtURL:url includingPropertiesForKeys:[NSArray array] options:0 error:&error];
 	NSLog(@"Found %d files",[content count]);
+	numFiles = [content count];
 	NSURL * item;
 	int i=0;
 	for(item in content){
@@ -293,7 +322,7 @@ static BOOL camerasRespawning[3];
 	camIsIniting = YES;
 	isClosing = NO;
 	
-	ofSetLogLevel(OF_LOG_ERROR);
+	ofSetLogLevel(OF_LOG_NOTICE);
 	videoGrabber = new Libdc1394Grabber;
 	videoGrabber->setFormat7(VID_FORMAT7_1);
 	videoGrabber->listDevices();
@@ -406,8 +435,8 @@ static BOOL camerasRespawning[3];
 			} else {
 				camIsIniting = YES;
 				NSLog(@"3: CAMERA %i initialises", camNumber);
-				[self videoGrabberInit];
 				[Camera setCamera:camNumber isRespawning:NO];
+				[self videoGrabberInit];
 			}
 			pthread_mutex_unlock(&mutex);
 		}

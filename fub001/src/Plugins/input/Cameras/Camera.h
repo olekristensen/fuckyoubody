@@ -8,6 +8,7 @@
 #include "ofMain.h"
 #include "Libdc1394Grabber.h"
 #include "videoplayerWrapper.h"
+#include "ofxQtVideoSaver.h"
 
 @interface Camera : NSObject {
 	Libdc1394Grabber * videoGrabber;
@@ -21,6 +22,7 @@
 	
 	ofTexture * tex;
 	unsigned char* pixels;
+	unsigned char* rgbTmpPixels;
 
 	int width, height;
 	BOOL camInited;
@@ -50,7 +52,11 @@
 	pthread_mutex_t mutex;
 	
 	NSUserDefaults *userDefaults;
+	
+	ofxQtVideoSaver		*saver;
+	BOOL recording;
 
+	int numFiles;
 }
 
 @property (assign, readonly) NSView * settingsView;

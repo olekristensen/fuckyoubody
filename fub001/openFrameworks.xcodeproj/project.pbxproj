@@ -135,6 +135,7 @@
 		DDD48A7E10766F110083759A /* PYMIDIVirtualSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD48A7310766F110083759A /* PYMIDIVirtualSource.m */; };
 		DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDDF8F3610B7581400CF73FD /* Warp.mm */; };
 		DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDDF8F4610B758AB00CF73FD /* coordWarp.mm */; };
+		DDE036CA10DBAEB600A233CF /* ofxQtVideoSaver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDE036C810DBAEB600A233CF /* ofxQtVideoSaver.cpp */; };
 		DDFEC8871063FA200068D31A /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDFEC8861063FA200068D31A /* IOKit.framework */; };
 		E439E8F00FEFE04E0042BF96 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E439E8EF0FEFE04E0042BF96 /* AppKit.framework */; };
 		E439E8F40FEFE05F0042BF96 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E439E8F30FEFE05F0042BF96 /* Cocoa.framework */; };
@@ -430,6 +431,8 @@
 		DDDF8F3710B7581400CF73FD /* Warp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Warp.h; path = ProjectionSurfaces/Warp.h; sourceTree = "<group>"; };
 		DDDF8F4510B758AB00CF73FD /* coordWarp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = coordWarp.h; path = ProjectionSurfaces/coordWarp.h; sourceTree = "<group>"; };
 		DDDF8F4610B758AB00CF73FD /* coordWarp.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = coordWarp.mm; path = ProjectionSurfaces/coordWarp.mm; sourceTree = "<group>"; };
+		DDE036C810DBAEB600A233CF /* ofxQtVideoSaver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxQtVideoSaver.cpp; sourceTree = "<group>"; };
+		DDE036C910DBAEB600A233CF /* ofxQtVideoSaver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxQtVideoSaver.h; sourceTree = "<group>"; };
 		DDFEC8861063FA200068D31A /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		E439E8EF0FEFE04E0042BF96 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E439E8F30FEFE05F0042BF96 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -791,6 +794,7 @@
 		DD17DFCC10C6994D008B3E0A /* Cameras */ = {
 			isa = PBXGroup;
 			children = (
+				DDE036C710DBAEB600A233CF /* ofxMovieSaver */,
 				DD17DFD310C6996D008B3E0A /* Cameras.h */,
 				DD17DFD410C6996D008B3E0A /* Cameras.mm */,
 				DD17DFD610C699A3008B3E0A /* Cameras.xib */,
@@ -1272,6 +1276,15 @@
 			);
 			name = pymidi;
 			path = src/pymidi;
+			sourceTree = "<group>";
+		};
+		DDE036C710DBAEB600A233CF /* ofxMovieSaver */ = {
+			isa = PBXGroup;
+			children = (
+				DDE036C810DBAEB600A233CF /* ofxQtVideoSaver.cpp */,
+				DDE036C910DBAEB600A233CF /* ofxQtVideoSaver.h */,
+			);
+			name = ofxMovieSaver;
 			sourceTree = "<group>";
 		};
 		E44664170F5B1CFD005D0BF0 /* openFrameworks */ = {
@@ -1990,6 +2003,7 @@
 				DD7C61ED10D699BC00D5B056 /* simpleBlurVertical.frag in Sources */,
 				DD7C61EE10D699BC00D5B056 /* simpleBlurVertical.vert in Sources */,
 				DD2F6BBD10D8FB1300996CD8 /* Strategi.mm in Sources */,
+				DDE036CA10DBAEB600A233CF /* ofxQtVideoSaver.cpp in Sources */,
 				6E842D8E10DA7A0900F4FB4C /* Arkade.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
