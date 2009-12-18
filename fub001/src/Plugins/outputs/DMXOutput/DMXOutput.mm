@@ -340,16 +340,34 @@
 	
 	for(int i=19;i<25;i++){
 		
- 		NormalLamp * lamp = [[NormalLamp alloc] init];
-		lamp->channel = i;
-		lamp->value = 254/2.0;
-		[lamps addObject:lamp];
+		if (i != 23) {
+			NormalLamp * lamp = [[NormalLamp alloc] init];
+			lamp->channel = i;
+			lamp->value = 254/2.0;
+			[lamps addObject:lamp];
+		}
+		
 	}
 	
 	NormalLamp *  lamp2 = [[NormalLamp alloc] init];
 	lamp2->channel = 6;
 	lamp2->value = 120;
 	[lamps addObject:lamp2];
+	
+	NormalLamp *  lamp3 = [[NormalLamp alloc] init];
+	lamp3->channel = 3;
+	lamp3->value = 120;
+	[lamps addObject:lamp3];
+	
+	NormalLamp *  lamp4 = [[NormalLamp alloc] init];
+	lamp4->channel = 4;
+	lamp4->value = 120;
+	[lamps addObject:lamp4];
+
+	NormalLamp * lamp5 = [[NormalLamp alloc] init];
+	lamp5->channel = 23;
+	lamp5->value = 254/2.0;
+	[lamps addObject:lamp5];
 	
 	
 	ok = connected = serial->setup("/dev/tty.usbserial-A6008iyw", 115200);
@@ -394,7 +412,7 @@
 				((NormalLamp*)lamp)->value  = 0;
 			}
 		}
-		if(lamp->channel == 6){
+		if(lamp->channel == 6 || lamp->channel == 3 ||lamp->channel == 4 ||lamp->channel == 23){
 			((NormalLamp*)lamp)->value  = [worklight intValue];
 		}
 	}

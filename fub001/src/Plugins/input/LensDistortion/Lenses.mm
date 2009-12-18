@@ -272,13 +272,12 @@
 				}
 			}// end just calibrated
 			
-			ofSetColor(255, 255, 255, 100);
-
-
-			
 			glTranslated(w, 0, 0);
 		}
 	}glPopMatrix();
+
+	
+	ofSetColor(255, 255, 255, 100);
 	
 	for(int y=0;y<6;y++){
 		ofLine(0, h*(y/6.0), w*3, h*(y/6.0));

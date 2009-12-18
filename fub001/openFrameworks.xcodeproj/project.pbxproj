@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		276D9DB81073B3F00084689D /* ofxMSAFluidDrawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAC1073B3F00084689D /* ofxMSAFluidDrawer.cpp */; };
 		276D9DB91073B3F00084689D /* ofxMSAFluidSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */; };
+		6E842D8E10DA7A0900F4FB4C /* Arkade.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E842D8D10DA7A0900F4FB4C /* Arkade.mm */; };
+		6E842D9010DA7A1300F4FB4C /* Arkade.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E842D8F10DA7A1300F4FB4C /* Arkade.xib */; };
 		6E9A2A5C10CA102F0003A1B8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
@@ -198,6 +200,9 @@
 		276D9DAF1073B3F00084689D /* ofxMSAFluidSolver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMSAFluidSolver.cpp; sourceTree = "<group>"; };
 		276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMSAFluidSolver.h; sourceTree = "<group>"; };
 		27EC4A181073CB3600CCDB99 /* msaColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msaColor.h; path = example/src/msaColor.h; sourceTree = "<group>"; };
+		6E842D8C10DA7A0900F4FB4C /* Arkade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arkade.h; sourceTree = "<group>"; };
+		6E842D8D10DA7A0900F4FB4C /* Arkade.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Arkade.mm; sourceTree = "<group>"; };
+		6E842D8F10DA7A1300F4FB4C /* Arkade.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Arkade.xib; sourceTree = "<group>"; };
 		6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
@@ -658,6 +663,16 @@
 				276D9DB01073B3F00084689D /* ofxMSAFluidSolver.h */,
 			);
 			path = src;
+			sourceTree = "<group>";
+		};
+		6E842D8A10DA7A0100F4FB4C /* Arkade */ = {
+			isa = PBXGroup;
+			children = (
+				6E842D8C10DA7A0900F4FB4C /* Arkade.h */,
+				6E842D8D10DA7A0900F4FB4C /* Arkade.mm */,
+				6E842D8F10DA7A1300F4FB4C /* Arkade.xib */,
+			);
+			path = Arkade;
 			sourceTree = "<group>";
 		};
 		6EBB46FB10C80317004F9A03 /* Lenses */ = {
@@ -1178,6 +1193,7 @@
 				DD4FE4ED10C5307B00A11BE9 /* DanceSteps */,
 				6EF62EDD10D64B12009E7872 /* Lemmings */,
 				DD26DD8810BBEC1600750B7C /* ParallelWorld */,
+				6E842D8A10DA7A0100F4FB4C /* Arkade */,
 				DDC7728110B5846F009CAFC7 /* _ExampleOutput */,
 			);
 			path = outputs;
@@ -1847,6 +1863,7 @@
 				6EF62EE210D64B12009E7872 /* Lemmings.xib in Resources */,
 				DD204E7110D63E3D00BEF03F /* GTA.xib in Resources */,
 				DD2F6BBF10D8FB1D00996CD8 /* Strategi.xib in Resources */,
+				6E842D9010DA7A1300F4FB4C /* Arkade.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1973,6 +1990,7 @@
 				DD7C61ED10D699BC00D5B056 /* simpleBlurVertical.frag in Sources */,
 				DD7C61EE10D699BC00D5B056 /* simpleBlurVertical.vert in Sources */,
 				DD2F6BBD10D8FB1300996CD8 /* Strategi.mm in Sources */,
+				6E842D8E10DA7A0900F4FB4C /* Arkade.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1992,7 +2010,8 @@
 				GCC_ENABLE_SSE42_EXTENSIONS = YES;
 				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = 4.0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
@@ -2067,11 +2086,10 @@
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../../../myAddons/ofxCocoaPlugins\"",
 				);
+				GCC_AUTO_VECTORIZATION = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = G4;
-				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
 				HEADER_SEARCH_PATHS = (

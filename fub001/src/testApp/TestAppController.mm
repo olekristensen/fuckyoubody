@@ -48,6 +48,8 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addPlugin:[[Lemmings alloc] init]];
 	[pluginManagerController addPlugin:[[GTA alloc] init]];
 	[pluginManagerController addPlugin:[[Strategi alloc] init]];
+	[pluginManagerController addPlugin:[[Arkade alloc] init]];
+
 	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
 	
 	//	[pluginManagerController addPlugin:[[_ExampleOutputAgain alloc] init]];

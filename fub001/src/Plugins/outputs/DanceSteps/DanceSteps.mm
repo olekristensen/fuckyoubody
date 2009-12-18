@@ -35,7 +35,7 @@
 }
 
 -(void) setup{
-	img->loadImage("danseDiagramOrden.png");;	
+	img->loadImage("logo.png");;	
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -48,7 +48,7 @@
 	
 	glPopMatrix();*/
 	
-		
+		/**
 	Blob * blob;
 	//cout<<"Num blobs: "<<[tracker(2) numBlobs]<<endl;
 	for(blob in [tracker(2) blobs]){
@@ -62,6 +62,27 @@
 		}
 		glEnd();
 	}
+		 **/
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+	
+	ofSetColor(255, 255, 255,255);
+	
+	img->draw(0, 0,1,1);
+	
+	glPopMatrix();
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
+		
+	ofSetColor(255, 255, 255,255);
+	
+	img->draw(0, 0,1,1);
+	
+	
+	glPopMatrix();
+	
+	
+	
 
 }
 

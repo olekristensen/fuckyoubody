@@ -25,11 +25,15 @@
 	IBOutlet NSColorWell * player2LineColor;
 	IBOutlet NSSlider * blurSlider;
 	IBOutlet NSSlider * lineWidth;
-	
+	IBOutlet NSSlider * fade;
+	IBOutlet NSButton * pause;
+
 	ofxCvGrayscaleImage * images[2];
 	ofxCvContourFinder * contourFinder[2];
 	NSMutableArray * blobs;
 	float area[2];
+	ofImage * texture;
+
 }
 -(IBAction) restart:(id)sender;
 

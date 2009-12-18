@@ -26,10 +26,10 @@
 		
 		if(i==1){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
-			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
-			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
-			[obj calibPoints][3] = ofxPoint2f(0.2,0.8);
+			[obj calibPoints][0] = ofxPoint2f(0.3,0.3);
+			[obj calibPoints][1] = ofxPoint2f(0.7,0.3);
+			[obj calibPoints][2] = ofxPoint2f(0.7,0.6);
+			[obj calibPoints][3] = ofxPoint2f(0.3,0.6);
 		}
 		
 		if(i==2){

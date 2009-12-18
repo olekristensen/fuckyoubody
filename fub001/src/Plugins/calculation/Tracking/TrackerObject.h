@@ -76,7 +76,8 @@
 	int cw, ch;
 	
 	ofxCvGrayscaleImage *	grayImage;
-	ofxCvGrayscaleImage *	grayLastImage;
+	ofxCvGrayscaleImage *	flowImage;
+	ofxCvGrayscaleImage *	flowLastImage;
 	ofxCvGrayscaleImage *	grayImageBlured;	
 	ofxCvGrayscaleImage *	grayBgMask;	
 	ofxCvGrayscaleImage *	grayBg;
@@ -85,7 +86,10 @@
 	//Images used by thread
 	ofxCvGrayscaleImage * threadGrayDiff;
 	ofxCvGrayscaleImage * threadGrayImage;
-	ofxCvGrayscaleImage * threadGrayLastImage;
+	
+	ofxCvGrayscaleImage * threadFlowLastImage;
+	ofxCvGrayscaleImage * threadFlowImage;
+	
 	BOOL threadUpdateContour;
 	BOOL threadUpdateOpticalFlow;
 
@@ -119,6 +123,7 @@
 @property (assign, readwrite) PluginManagerController * controller;
 @property (assign, readonly) NSMutableArray * blobs;
 @property (assign, readonly) NSMutableArray * persistentBlobs;
+@property (assign, readonly) ofxCvOpticalFlowLK	* opticalFlow;
 
 -(IBAction) setBlurSliderValue:(id)sender;
 -(IBAction) setThresholdSliderValue:(id)sender;

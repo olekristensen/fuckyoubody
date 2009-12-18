@@ -193,56 +193,53 @@
 	
 	
 	grayImage = new ofxCvGrayscaleImage();
-	grayLastImage = new ofxCvGrayscaleImage();
 	grayImageBlured = new ofxCvGrayscaleImage();		
 	grayBgMask = new ofxCvGrayscaleImage();		
 	grayBg = new ofxCvGrayscaleImage();
 	grayDiff = new ofxCvGrayscaleImage();
 	
+	flowImage = new ofxCvGrayscaleImage();
+	flowLastImage = new ofxCvGrayscaleImage();
 	
 	threadGrayDiff = new ofxCvGrayscaleImage();
 	threadGrayImage = new ofxCvGrayscaleImage();
-	threadGrayLastImage = new ofxCvGrayscaleImage();
+	threadFlowLastImage = new ofxCvGrayscaleImage();
+	threadFlowImage = new ofxCvGrayscaleImage();
 	
 	
 	grayImageBlured->allocate(cw,ch);
 	grayImage->allocate(cw,ch);
-	grayLastImage->allocate(cw,ch);
 	grayBg->allocate(cw,ch);
 	grayBgMask->allocate(cw,ch);
 	grayBgMask->set(255);
 	grayDiff->allocate(cw,ch);	
 	
+	flowImage->allocate(cw/2,ch/2);
+	flowLastImage->allocate(cw/2,ch/2);
+	
 	threadGrayDiff->allocate(cw,ch);
 	threadGrayImage->allocate(cw,ch);
-	threadGrayLastImage->allocate(cw,ch);
-	threadGrayLastImage->set(0);
+	threadFlowLastImage->allocate(cw/2,ch/2);
+	threadFlowLastImage->set(0);
+	threadFlowImage->allocate(cw/2,ch/2);
+	threadFlowImage->set(0);
 	
 	contourFinder = new ofxCvContourFinder();
 	opticalFlow = new ofxCvOpticalFlowLK();
 	
-	opticalFlow->allocate(cw, ch);
+	opticalFlow->allocate(cw/2, ch/2);
 	opticalFlow->setCalcStep(5,5);
-
 	
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	
-	
 	[thread start];
-	
-	
 }
 
 - (BOOL) loadNibFile {	
 	if (![NSBundle loadNibNamed:@"TrackerObject"  owner:self]){
-		
-		
-		
 		NSLog(@"Warning! Could not load the nib for tracker ");
 		return NO;
 	}
-	
-	
 	return YES;
 }
 
@@ -256,6 +253,24 @@
 				glVertex2f([blob pts][i].x, [blob pts][i].y);
 			}
 			glEnd();
+		}
+		
+		if ([opticalFlowActiveButton state] == NSOnState){
+			glPushMatrix();{
+				
+				CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
+
+				[calibrator applyWarp];
+				
+				glScaled(1.0/320.0, 1.0/240.0, 1);
+				
+				ofSetColor(255, 255, 255,127);
+				
+				opticalFlow->draw();
+			
+				glPopMatrix();
+				
+			}glPopMatrix();
 		}
 	}
 }
@@ -312,6 +327,20 @@
 		}
 	}
 	
+	if ([opticalFlowActiveButton state] == NSOnState){
+		
+		glPushMatrix();{
+			
+			glTranslated(w*3, 0, 0);
+			glScaled(320.0/w, 240.0/h, 1);
+			
+			ofSetColor(255, 255, 255,127);
+			
+			opticalFlow->draw();
+			
+		}glPopMatrix();
+	}
+	
 	pthread_mutex_unlock(&mutex);				
 }
 
@@ -321,9 +350,11 @@
 		
 		pthread_mutex_lock(&drawingMutex);
 		
-		*grayLastImage = *grayImage;
-
+		*flowLastImage = *flowImage;
+		
 		grayImage->setFromPixels([GetPlugin(Cameras) getPixels:trackerNumber], [GetPlugin(Cameras) width],[GetPlugin(Cameras) height]);
+		
+		flowImage->scaleIntoMe(*grayImage, CV_INTER_AREA);
 		
 		if(preset == 1){
 			int nPoints = 4;
@@ -339,7 +370,7 @@
 		if(blur % 2 == 0) blur += 1;
 		
 		grayImageBlured->blur(blur);
-
+		
 		pthread_mutex_unlock(&drawingMutex);
 		
 		if ([activeButton state] == NSOnState){
@@ -390,7 +421,7 @@
 			threadUpdateContour = YES;
 			
 			// contourFinder.findContours(grayDiff, 20, (getPlugin<Cameras*>(controller)->getWidth()*getPlugin<Cameras*>(controller)->getHeight())/3, 10, false, true);	
-						
+			
 			/**
 			 postBlur = 0;
 			 postThreshold = 0; 
@@ -436,17 +467,17 @@
 				//Går igennem alle grupper for at finde den nærmeste gruppe som blobben kan tilhøre
 				//Magisk høj dist: 0.3
 				
-				for(int u=0;u<[persistentBlobs count];u++){
-					//Giv forrang til døde persistent blobs
-					if(((PersistentBlob*)[persistentBlobs objectAtIndex:u])->timeoutCounter > 5){
-						float dist = centroid.distance(*((PersistentBlob*)[persistentBlobs objectAtIndex:u])->centroid);
-						if(dist < [persistentSlider floatValue]*0.5 && (dist < shortestDist || bestId == -1)){
-							bestId = u;
-							shortestDist = dist;
-							blobFound = true;
-						}
-					}
-				}
+				/*for(int u=0;u<[persistentBlobs count];u++){
+				 //Giv forrang til døde persistent blobs
+				 if(((PersistentBlob*)[persistentBlobs objectAtIndex:u])->timeoutCounter > 5){
+				 float dist = centroid.distance(*((PersistentBlob*)[persistentBlobs objectAtIndex:u])->centroid);
+				 if(dist < [persistentSlider floatValue]*0.5 && (dist < shortestDist || bestId == -1)){
+				 bestId = u;
+				 shortestDist = dist;
+				 blobFound = true;
+				 }
+				 }
+				 }*/
 				if(!blobFound){						
 					for(int u=0;u<[persistentBlobs count];u++){
 						float dist = centroid.distance(*((PersistentBlob*)[persistentBlobs objectAtIndex:u])->centroid);
@@ -495,14 +526,15 @@
 				}			
 			}
 		}
-		if ([opticalFlowActiveButton state] == NSOnState){
 		
+		if ([opticalFlowActiveButton state] == NSOnState){
+			
 			pthread_mutex_lock(&mutex);
-
-			*threadGrayImage = *grayImage;
-			*threadGrayLastImage = *grayLastImage;
+			
+			*threadFlowImage = *flowImage;
+			*threadFlowLastImage = *flowLastImage;
 			threadUpdateOpticalFlow = YES;
-
+			
 			pthread_mutex_unlock(&mutex);
 			
 		}
@@ -554,10 +586,10 @@
 		}
 		
 		if(threadUpdateOpticalFlow){
-//			opticalFlow->calc(*threadGrayLastImage, *threadGrayImage, 11);
+			opticalFlow->calc(*threadFlowLastImage, *threadFlowImage, 11);
 			threadUpdateOpticalFlow = false;			
 		}
-
+		
 		pthread_mutex_unlock(&mutex);
 		
 		[NSThread sleepForTimeInterval:0.01];

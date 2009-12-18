@@ -22,3 +22,4 @@
 #include "Lemmings.h"
 #include "GTA.h"
 #include "Strategi.h"
+#include "Arkade.h"
