@@ -27,6 +27,9 @@
 	IBOutlet NSTextField * numberLemmingsControl;
 	
 	IBOutlet NSSlider * damp;
+	IBOutlet NSSlider * motionTreshold;
+	IBOutlet NSSlider * motionMultiplier;
+		IBOutlet NSSlider * motionGravity;
 
 	int lemmingDiff;
 	pthread_mutex_t mutex;

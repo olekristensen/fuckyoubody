@@ -25,6 +25,8 @@
 		6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF10B610CE96350011C596 /* CameraCalibration.xib */; };
 		6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */; };
 		6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */; };
+		6EF3001D10DD1C78007A0A98 /* Ulykke.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF3001C10DD1C78007A0A98 /* Ulykke.xib */; };
+		6EF3002110DD1C80007A0A98 /* Ulykke.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3002010DD1C80007A0A98 /* Ulykke.mm */; };
 		6EF62EE110D64B12009E7872 /* Lemmings.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EF62EDF10D64B12009E7872 /* Lemmings.mm */; };
 		6EF62EE210D64B12009E7872 /* Lemmings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF62EE010D64B12009E7872 /* Lemmings.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
@@ -225,6 +227,9 @@
 		6EEF10B610CE96350011C596 /* CameraCalibration.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraCalibration.xib; sourceTree = "<group>"; };
 		6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoLight.png; sourceTree = "<group>"; };
 		6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoDark.png; sourceTree = "<group>"; };
+		6EF3001C10DD1C78007A0A98 /* Ulykke.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Ulykke.xib; sourceTree = "<group>"; };
+		6EF3001F10DD1C80007A0A98 /* Ulykke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ulykke.h; sourceTree = "<group>"; };
+		6EF3002010DD1C80007A0A98 /* Ulykke.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Ulykke.mm; sourceTree = "<group>"; };
 		6EF62EDE10D64B12009E7872 /* Lemmings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lemmings.h; sourceTree = "<group>"; };
 		6EF62EDF10D64B12009E7872 /* Lemmings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lemmings.mm; sourceTree = "<group>"; };
 		6EF62EE010D64B12009E7872 /* Lemmings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lemmings.xib; sourceTree = "<group>"; };
@@ -742,6 +747,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		6EF3001B10DD1C6F007A0A98 /* Ulykke */ = {
+			isa = PBXGroup;
+			children = (
+				6EF3001C10DD1C78007A0A98 /* Ulykke.xib */,
+				6EF3001F10DD1C80007A0A98 /* Ulykke.h */,
+				6EF3002010DD1C80007A0A98 /* Ulykke.mm */,
+			);
+			path = Ulykke;
+			sourceTree = "<group>";
+		};
 		6EF62EDD10D64B12009E7872 /* Lemmings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1191,6 +1206,7 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				6EF3001B10DD1C6F007A0A98 /* Ulykke */,
 				DD2F6BBA10D8FB0500996CD8 /* Strategi */,
 				DD204E6C10D63D5400BEF03F /* GTA */,
 				DD26DEC510BC04A100750B7C /* DMXOutput */,
@@ -1877,6 +1893,7 @@
 				DD204E7110D63E3D00BEF03F /* GTA.xib in Resources */,
 				DD2F6BBF10D8FB1D00996CD8 /* Strategi.xib in Resources */,
 				6E842D9010DA7A1300F4FB4C /* Arkade.xib in Resources */,
+				6EF3001D10DD1C78007A0A98 /* Ulykke.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2005,6 +2022,7 @@
 				DD2F6BBD10D8FB1300996CD8 /* Strategi.mm in Sources */,
 				DDE036CA10DBAEB600A233CF /* ofxQtVideoSaver.cpp in Sources */,
 				6E842D8E10DA7A0900F4FB4C /* Arkade.mm in Sources */,
+				6EF3002110DD1C80007A0A98 /* Ulykke.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

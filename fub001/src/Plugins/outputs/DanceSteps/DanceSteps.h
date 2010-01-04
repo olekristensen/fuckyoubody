@@ -22,6 +22,8 @@
 	ofImage * img;
 	float t;
 	
+	ofTrueTypeFont	* font;
+	
 	IBOutlet NSButton * rotating;
 }
 -(IBAction) setMinSize:(id)sender;

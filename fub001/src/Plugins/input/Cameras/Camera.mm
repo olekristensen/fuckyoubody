@@ -113,7 +113,7 @@ static BOOL camerasRespawning[3];
 						rgbTmpPixels[i+1] = pixels[i/3];
 						rgbTmpPixels[i+2] = pixels[i/3];
 					}
-					saver->addFrame(rgbTmpPixels, 1.0f / frameRate); 	
+					saver->addFrame(rgbTmpPixels, 1.0f / MIN(frameRate, ofGetFrameRate())); 	
 					if(!recording){
 						saver->setup(640,480,[[NSString stringWithFormat:@"recordedMovies/camera%i_recording%i.mov",[self camNumber]+1, numFiles] cString]);	
 					}
@@ -152,6 +152,14 @@ static BOOL camerasRespawning[3];
 		}
 		videoPlayer->videoPlayer.idleMovie();
 		if(videoPlayer->videoPlayer.isFrameNew()){
+			mytimeNow = ofGetElapsedTimef();
+			if( (mytimeNow-mytimeThen) > 0.05f || myframes == 0 ) {
+				myfps = myframes / (mytimeNow-mytimeThen);
+				mytimeThen = mytimeNow;
+				myframes = 0;
+				frameRate = 0.5f * frameRate + 0.5f * myfps;
+			}
+			myframes++;
 			for(int i=videoPlayer->videoPlayer.width * videoPlayer->videoPlayer.height -1; i >= 0  ; i--){
 				pixels[i] = videoPlayer->videoPlayer.pixels[i*3];
 			}			

@@ -145,6 +145,9 @@
 -(id) initWithId:(int)num;
 -(void) performBlobTracking:(id)param;
 
+-(ofPoint) flowAtX:(float) pointX Y: (float) pointY;
+-(ofPoint) flowInRegionX:(float) regionX Y: (float) regionY width: (float) regionWidth height: (float) regionHeight;
+
 -(void) saveBackground;
 -(void) loadBackground;
 

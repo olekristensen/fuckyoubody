@@ -155,7 +155,7 @@
 //--------------------
 
 @implementation TrackerObject
-@synthesize settingsView, controller, blobs, persistentBlobs;
+@synthesize settingsView, controller, blobs, persistentBlobs, opticalFlow;
 
 -(id) initWithId:(int)num{
 	if([super init]){
@@ -356,14 +356,14 @@
 		
 		flowImage->scaleIntoMe(*grayImage, CV_INTER_AREA);
 		
-		if(preset == 1){
+		/*if(preset == 1){
 			int nPoints = 4;
 			CvPoint _cp[4]= {{0,200}, {640,250},{640,600},{0,600}};			
 			CvPoint* cp = _cp; 
 			cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
 			grayImage->flagImageChanged();
 		}
-		
+		*/
 		*grayImageBlured = *grayImage;
 		
 		int blur = [blurSlider intValue];
@@ -659,7 +659,22 @@
 	[self loadBackground];
 }
 
+-(ofPoint) flowAtX:(float) pointX Y: (float) pointY{
 
+	CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
+		
+	ofPoint inPoint = calibrator->coordWarp->inversetransform(pointX, pointY);
+	ofPoint returnPoint = opticalFlow->flowAtPoint(inPoint.x*320, inPoint.y*240);
 
+	returnPoint.x *= 1.0/320; 
+	returnPoint.y *= 1.0/240;
+	
+	return returnPoint;
+}
+
+-(ofPoint) flowInRegionX:(float) regionX Y: (float) regionY width: (float) regionWidth height: (float) regionHeight{
+
+//	opticalFlow->flowInRegion(<#int x#>, <#int y#>, <#int w#>, <#int h#>);
+}
 
 @end

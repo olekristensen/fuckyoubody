@@ -19,10 +19,11 @@
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	
+	[numberLemmingsControl setIntValue:[lemmingList count]];
+	
 	if(ofGetFrameRate() > 2){
 		/*	PersistentBlob * blob;
-		 
-		 [numberLemmingsControl setIntValue:[lemmingList count]];
 		 
 		 for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 		 BOOL lineFound = NO;
@@ -123,9 +124,40 @@
 		
 		//Add random force
 		for(lemming in lemmingList){
-			*[lemming totalforce]  += ofxVec2f(ofRandom(-1, 1), ofRandom(-1, 1))*0.01;
-	//				*[lemming totalforce]  += ofxVec2f(0,-1)*0.01;
+			//			*[lemming totalforce]  += ofxVec2f(ofRandom(-1, 1), ofRandom(-1, 1))*0.01;
+			//				*[lemming totalforce]  += ofxVec2f(0,-1)*0.01;
 		}
+		
+		for (lemming in lemmingList) {
+			ofxPoint2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertToProjection:*[lemming position] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+			ofxVec2f p = [tracker([cameraControl selectedSegment]) flowAtX:lemmingPosition.x Y:lemmingPosition.y];
+			if (p.length() > [motionTreshold floatValue]* 0.01) {
+				*[lemming totalforce] -= p * [motionMultiplier floatValue];
+				[lemming setRadius: [lemming radius] + 0.0025 ];
+			}
+		}
+		
+		for (lemming in lemmingList) {
+			PersistentBlob * nearestBlob;	
+			float shortestDist = -1;
+			
+			PersistentBlob * blob;
+			for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
+				ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*blob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+				if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
+					shortestDist = c.distanceSquared(*[lemming position]);
+					nearestBlob = blob;
+				}
+			}
+			
+			if(shortestDist != -1){	
+				ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*nearestBlob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+
+				*[lemming totalforce] += (c - *[lemming position])*([motionGravity floatValue]/100.0) ;
+			}
+			
+		}
+		
 		
 		
 		lemming = [lemmingList objectAtIndex:99];
@@ -237,10 +269,10 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	
-	ofSetColor(0, 0,255,127);
+	ofSetColor(0, 0,0,255);
 	ofRect(0, 0, 1, 1);
 	
-	ofSetColor(255, 255, 255,255);
+	ofSetColor(255,255, 255,255);
 	
 	for(lemming in lemmingList){
 		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
@@ -318,6 +350,8 @@
 	 position->y = 0.0;
 	 
 	 }*/
+	
+	radius -= (radius - RADIUS) *0.01;
 	ofCircle(position->x, position->y, radius);
 }
 
