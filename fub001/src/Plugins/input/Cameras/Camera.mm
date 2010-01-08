@@ -27,8 +27,7 @@ static BOOL camerasRespawning[3];
 + (BOOL)allCamerasAreRespawning { return (camerasRespawning[0] && camerasRespawning[1] && camerasRespawning[2]); }
 + (float)setCamera:(int)respawningCameraNumber willRespawningAt:(float)timeStamp  { aCameraWillRespawnAt = timeStamp; camerasRespawning[respawningCameraNumber] = YES; }
 + (float)setCamera:(int)respawningCameraNumber isRespawning:(BOOL)isRespawning  { camerasRespawning[respawningCameraNumber] = isRespawning; }
-
-
+- (BOOL)thisCameraIsRespawning {return camerasRespawning[camNumber]; }
 
 -(void) setup:(int)_camNumber withGUID:(uint64_t)_camGUID{
 	[[NSNotificationCenter defaultCenter] addObserver:self

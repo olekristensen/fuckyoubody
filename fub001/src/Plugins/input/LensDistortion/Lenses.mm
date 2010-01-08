@@ -276,15 +276,15 @@
 		}
 	}glPopMatrix();
 
-	
-	ofSetColor(255, 255, 255, 100);
+	ofSetLineWidth(2);
+	ofSetColor(24, 24, 24, 24);
 	
 	for(int y=0;y<6;y++){
 		ofLine(0, h*(y/6.0), w*3, h*(y/6.0));
 	}
 	
-	for(int x=0;x<6*3;x++){
-		ofLine( w*3*(x/18.0),0, w*3*(x/18.0), h);
+	for(int x=0;x<8*3;x++){
+		ofLine( w*3*(x/24.0),0, w*3*(x/24.0), h);
 	}
 	
 }
