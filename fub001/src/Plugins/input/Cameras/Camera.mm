@@ -7,6 +7,7 @@
 //
 
 #import "Camera.h"
+#import "Tracking.h"
 
 @interface Camera (InternalMethods)
 
@@ -152,6 +153,7 @@ static BOOL camerasRespawning[3];
 		}
 		videoPlayer->videoPlayer.idleMovie();
 		if(videoPlayer->videoPlayer.isFrameNew()){
+			
 			mytimeNow = ofGetElapsedTimef();
 			if( (mytimeNow-mytimeThen) > 0.05f || myframes == 0 ) {
 				myfps = myframes / (mytimeNow-mytimeThen);
@@ -256,6 +258,7 @@ static BOOL camerasRespawning[3];
 		//	videoPlayer->setLoopState(OF_LOOP_NORMAL);
 		cout<<"Loaded: "<<	[file cString]<<endl;
 		videoPlayer->videoPlayer.play();
+		[[[GetPlugin(Tracking) trackerNumber:camNumber] learnBackgroundButton] setState:NSOnState];
 	} else {
 		cout<<"Could not load: "<<	[file cString]<<endl;
 	}

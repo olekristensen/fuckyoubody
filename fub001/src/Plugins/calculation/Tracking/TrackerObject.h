@@ -42,11 +42,14 @@
 	int cameraId;
 	ofxCvBlob * blob;
 	ofxCvBlob * originalblob;
+	ofxCvBlob * floorblob;
+
 	@public
 	CvSeq * cvSeq; 
 }
 @property (readwrite) int cameraId;
 @property (readonly) ofxCvBlob * originalblob;
+@property (readonly) ofxCvBlob * floorblob;
 
 -(void) normalize:(int)w height:(int)h;
 -(void) lensCorrect;
@@ -109,7 +112,15 @@
 	IBOutlet NSButton * drawDebugButton;
 	IBOutlet NSSlider * persistentSlider;
 	IBOutlet NSPopUpButton * presetMenu;
-
+	IBOutlet NSButton * setMaskButton;
+		IBOutlet NSTextField * maskText;
+	
+	IBOutlet NSTextField * blobCounter;
+	IBOutlet NSTextField * blobCounter2;
+	IBOutlet NSTextField * pblobCounter;
+	IBOutlet NSTextField * currrentPblobCounter;
+	IBOutlet NSTextField * newestId;
+	
 	NSThread * thread;
 	pthread_mutex_t mutex;
 	pthread_mutex_t drawingMutex;
@@ -117,6 +128,7 @@
 	NSUserDefaults * userDefaults;
 	BOOL valuesLoaded;
 	int preset;
+	int setMaskCorner;
 
 }
 @property (assign, readonly) NSView * settingsView;
@@ -124,6 +136,7 @@
 @property (assign, readonly) NSMutableArray * blobs;
 @property (assign, readonly) NSMutableArray * persistentBlobs;
 @property (assign, readonly) ofxCvOpticalFlowLK	* opticalFlow;
+@property (assign, readwrite) NSButton * learnBackgroundButton;
 
 -(IBAction) setBlurSliderValue:(id)sender;
 -(IBAction) setThresholdSliderValue:(id)sender;
@@ -156,5 +169,8 @@
 
 -(int) numPersistentBlobs;
 -(PersistentBlob*) getPersistentBlob:(int)n;
+
+-(void) controlMousePressed:(float)x y:(float)y button:(int)button;
+
 
 @end

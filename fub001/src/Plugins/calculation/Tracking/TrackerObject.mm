@@ -65,11 +65,13 @@
 //--------------------
 
 @implementation Blob
-@synthesize cameraId, originalblob;
+@synthesize cameraId, originalblob, floorblob;
 
 -(id)initWithBlob:(ofxCvBlob*)_blob{
 	if([super init]){
 		blob = new ofxCvBlob();
+		floorblob = new ofxCvBlob();
+		
 		originalblob = new ofxCvBlob();
 		originalblob->area = blob->area = _blob->area;
         originalblob->length = blob->length = _blob->length ;
@@ -77,8 +79,16 @@
         originalblob->centroid = blob->centroid = _blob->centroid;
         originalblob->hole = blob->hole = _blob->hole;
 		
-        originalblob->pts = blob->pts = _blob->pts;   
-        originalblob->nPts = blob->nPts = _blob->nPts;
+		floorblob->nPts = originalblob->nPts = blob->nPts = _blob->nPts;
+		floorblob->pts =  originalblob->pts = blob->pts = _blob->pts; 
+		
+		
+		
+		for(int i=0;i<_blob->pts.size();i++){
+			if(_blob->pts[i].x != originalblob->pts[i].x || _blob->pts[i].y != originalblob->pts[i].y){
+				//	cout<<_blob->pts[i].x<<" != "<<originalblob->pts[i].x<<" || "<<_blob->pts[i].y<<" != "<<originalblob->pts[i].y<<endl;
+			}
+		}
 	} 
 	return self;
 }
@@ -108,21 +118,26 @@
 	}
 	blob->centroid = [lenses undistortPoint:blob->centroid fromCameraId:cameraId];
 	
-	originalblob->pts = blob->pts;
-	originalblob->centroid = blob->centroid;
+	//originalblob->pts = blob->pts;
+	//originalblob->centroid = blob->centroid;
 	
 }
 -(void) warp{
 	CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:cameraId]);
 	
+	ProjectionSurfacesObject * projection = [calibrator surface];//((ProjectionSurfacesObject*)[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]);
+	
 	for(int i=0;i<blob->nPts;i++){
 		blob->pts[i] = calibrator->coordWarp->transform(blob->pts[i]);
 	}
 	blob->centroid = calibrator->coordWarp->transform(blob->centroid);
-	/*blob->area /= (float)w*h;
-	 blob->centroid.x /=(float) w;
-	 blob->centroid.y /= (float)h;*/
 	
+	
+	//Convert the blob to floor space, for better sizing 
+	for(int i=0;i<blob->nPts;i++){
+		floorblob->pts[i] = [GetPlugin(ProjectionSurfaces) convertFromProjection:blob->pts[i] surface:projection];
+	}
+	floorblob->centroid = [GetPlugin(ProjectionSurfaces) convertFromProjection:blob->centroid surface:projection];
 }
 
 -(vector <ofPoint>)pts{
@@ -155,7 +170,7 @@
 //--------------------
 
 @implementation TrackerObject
-@synthesize settingsView, controller, blobs, persistentBlobs, opticalFlow;
+@synthesize settingsView, controller, blobs, persistentBlobs, opticalFlow,learnBackgroundButton;
 
 -(id) initWithId:(int)num{
 	if([super init]){
@@ -180,6 +195,7 @@
 		
 		valuesLoaded = NO;
 		pidCounter = 0;
+		setMaskCorner = -1;
 		
 		
 	}
@@ -252,6 +268,8 @@
 			for(int i=0;i<[blob nPts];i++){
 				glVertex2f([blob pts][i].x, [blob pts][i].y);
 			}
+			glVertex2f([blob pts][0].x, [blob pts][0].y);
+			
 			glEnd();
 		}
 		
@@ -259,7 +277,7 @@
 			glPushMatrix();{
 				
 				CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
-
+				
 				[calibrator applyWarp];
 				
 				glScaled(1.0/320.0, 1.0/240.0, 1);
@@ -267,7 +285,7 @@
 				ofSetColor(255, 255, 255,127);
 				
 				opticalFlow->draw();
-			
+				
 				glPopMatrix();
 				
 			}glPopMatrix();
@@ -282,12 +300,22 @@
 	ofSetColor(255, 255, 255);
 	//	[GetPlugin(Cameras) getTexture:trackerNumber]->draw(0,0,w,h);
 	grayImage->draw(0,0,w,h);
+	
 	grayBg->draw(w,0,w,h);
 	ofSetColor(64, 128, 220);
 	ofSetColor(150, 171, 219);
 	grayDiff->draw(w*2,0,w,h);
-	grayDiff->draw(w*3,0,w,h);
-	//	contourFinder->draw(w*3,0,w,h);
+	
+	
+	ofEnableAlphaBlending();
+	ofFill();
+	ofSetColor(0, 0, 0,255);
+	ofRect(w*3,0,w,h);	
+	ofSetColor(100, 100, 100,255);
+	grayImage->draw(w*3,0,w,h);
+	
+	
+	//contourFinder->draw(w*3,0,w,h);
 	
 	PersistentBlob * blob;
 	
@@ -321,7 +349,14 @@
 		for(b in [blob blobs]){
 			glBegin(GL_LINE_STRIP);
 			for(int i=0;i<[b nPts];i++){
-				glVertex2f(w*3+[b originalblob]->pts[i].x*w, [b originalblob]->pts[i].y*h);
+				ofxVec2f p = [b pts][i];
+				//				p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" surface:"Floor"];
+				p = [b originalblob]->pts[i];
+				glVertex2f(w*3+p.x*w, p.y*h);
+				
+				//glVertex2f(w*3+p.x/640.0*w, p.y/480.0*h);
+				//cout<<p.x<<"  "<<p.y<<endl;
+				
 			}
 			glEnd();
 		}
@@ -344,7 +379,74 @@
 	pthread_mutex_unlock(&mutex);				
 }
 
+-(void) controlMousePressed:(float)x y:(float)y button:(int)button{
+	if(setMaskCorner >= 0){
+		float h = 200;
+		float w = h * 640.0/480.0;
+		
+		if(x < w){
+			ofPoint p = ofPoint((float)x/w, (float)y/h);
+			[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, setMaskCorner]];
+			[userDefaults setValue:[NSNumber numberWithFloat:p.y] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.y", trackerNumber,preset, setMaskCorner]];
+			
+			setMaskCorner ++;
+			if(setMaskCorner == 1){
+				[maskText setStringValue:@"Select top-right corner"];	
+			}
+			if(setMaskCorner == 2){
+				[maskText setStringValue:@"Select bottom-right corner"];	
+			}
+			if(setMaskCorner == 3){
+				[maskText setStringValue:@"Select bottom-left corner"];	
+			}
+			
+			
+			if(setMaskCorner == 4){
+				[activeButton setHidden:NO];
+				[activeButton setNeedsDisplay:YES];
+				
+				[opticalFlowActiveButton setHidden:NO];
+				[opticalFlowActiveButton setNeedsDisplay:YES];
+				
+				[drawDebugButton setHidden:NO];
+				[drawDebugButton setNeedsDisplay:YES];
+				
+				[setMaskButton setHidden:NO];
+				[setMaskButton setNeedsDisplay:YES];
+				
+				[presetMenu setHidden:NO];
+				[presetMenu setNeedsDisplay:YES];
+				
+				setMaskCorner = -1;
+				[maskText setStringValue:@""];
+				[setMaskButton setState:NSOffState];
+			}
+			
+		}
+	}
+}
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	
+	if([setMaskButton state] == NSOnState && setMaskCorner == -1){
+		[activeButton setHidden:YES];
+		[activeButton setNeedsDisplay:YES];
+		
+		[opticalFlowActiveButton setHidden:YES];
+		[opticalFlowActiveButton setNeedsDisplay:YES];
+		
+		[drawDebugButton setHidden:YES];
+		[drawDebugButton setNeedsDisplay:YES];
+		
+		[setMaskButton setHidden:YES];
+		[setMaskButton setNeedsDisplay:YES];
+		
+		[presetMenu setHidden:YES];
+		[presetMenu setNeedsDisplay:YES];
+		
+		setMaskCorner = 0;
+		[maskText setStringValue:@"Select first top-left corner of mask, and go counterwise around"];
+	}
+	
 	
 	if ([GetPlugin(Cameras) isFrameNew:trackerNumber] && ( [opticalFlowActiveButton state] == NSOnState || [activeButton state] == NSOnState)) {
 		
@@ -356,14 +458,37 @@
 		
 		flowImage->scaleIntoMe(*grayImage, CV_INTER_AREA);
 		
-		/*if(preset == 1){
-			int nPoints = 4;
-			CvPoint _cp[4]= {{0,200}, {640,250},{640,600},{0,600}};			
-			CvPoint* cp = _cp; 
-			cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
-			grayImage->flagImageChanged();
+		
+		ofPoint maskPoints[4];
+		for(int i=0;i<4;i++){
+			maskPoints[i] = ofPoint(640.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, i]] floatValue], 480.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.y", trackerNumber,preset, i]] floatValue]);
 		}
-		*/
+		
+		 int nPoints = 4;
+		 CvPoint _cp[4]= {{0,0}, {640,0},{maskPoints[1].x,maskPoints[1].y},{maskPoints[0].x,maskPoints[0].y}};			
+		 CvPoint* cp = _cp; 
+		 cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0,0,0,10));
+
+		CvPoint _cp2[4] = {{640,0}, {640,480},{maskPoints[2].x,maskPoints[2].y},{maskPoints[1].x,maskPoints[1].y}};			
+		cp = _cp2; 
+		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
+		
+		CvPoint _cp3[4] = {{640,480}, {0,480},{maskPoints[3].x,maskPoints[3].y},{maskPoints[2].x,maskPoints[2].y}};			
+		cp = _cp3; 
+		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
+		
+		CvPoint _cp4[4] = {{0,480}, {0,0},{maskPoints[0].x,maskPoints[0].y},{maskPoints[3].x,maskPoints[3].y}};			
+		cp = _cp4; 
+		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
+		grayImage->flagImageChanged();
+		 
+		
+	//	[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, setMaskCorner]];
+		
+
+		
+		
+		
 		*grayImageBlured = *grayImage;
 		
 		int blur = [blurSlider intValue];
@@ -442,7 +567,6 @@
 			}
 			
 			
-			pthread_mutex_unlock(&mutex);
 			
 			[blobs removeAllObjects];
 			for(int i=0;i<contourFinder->nBlobs;i++){
@@ -457,12 +581,24 @@
 				
 			}
 			
+			[blobCounter2 setIntValue:contourFinder->blobs.size()];
+			
+			pthread_mutex_unlock(&mutex);
+			
+			
+			[currrentPblobCounter setIntValue:0];
+			
 			Blob * blob;
 			for(blob in blobs){
 				bool blobFound = false;
 				float shortestDist = 0;
 				int bestId = -1;
+				CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:[blob cameraId]]);
+				ProjectionSurfacesObject * projection = [calibrator surface];//((ProjectionSurfacesObject*)[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]);
+				
 				ofxPoint2f centroid = ofxPoint2f([blob centroid].x, [blob centroid].y);
+				//				ofxPoint2f floorCentroid = [GetPlugin(ProjectionSurfaces) convertPoint:centroid fromProjection:"Front" surface:"Floor"];
+				ofxPoint2f floorCentroid = [GetPlugin(ProjectionSurfaces) convertFromProjection:centroid surface:projection];
 				
 				//Går igennem alle grupper for at finde den nærmeste gruppe som blobben kan tilhøre
 				//Magisk høj dist: 0.3
@@ -480,7 +616,9 @@
 				 }*/
 				if(!blobFound){						
 					for(int u=0;u<[persistentBlobs count];u++){
-						float dist = centroid.distance(*((PersistentBlob*)[persistentBlobs objectAtIndex:u])->centroid);
+						//						ofxPoint2f centroidPoint = [GetPlugin(ProjectionSurfaces) convertPoint:*((PersistentBlob*)[persistentBlobs objectAtIndex:u])->centroid fromProjection:"Front" surface:"Floor"];
+						ofxPoint2f centroidPoint = [GetPlugin(ProjectionSurfaces) convertFromProjection:*((PersistentBlob*)[persistentBlobs objectAtIndex:u])->centroid surface:projection];
+						float dist = floorCentroid.distance(centroidPoint);
 						if(dist < [persistentSlider floatValue] && (dist < shortestDist || bestId == -1)){
 							bestId = u;
 							shortestDist = dist;
@@ -489,8 +627,13 @@
 					}
 				}
 				
-				if(blobFound){		
+				if(blobFound){	
+					[currrentPblobCounter setIntValue:[currrentPblobCounter intValue] +1];
+					
 					PersistentBlob * bestBlob = ((PersistentBlob*)[persistentBlobs objectAtIndex:bestId]);
+					
+					//					[bestBlob->blobs removeAllObjects];
+					
 					//Fandt en gruppe som den her blob kan tilhøre.. Pusher blobben ind
 					bestBlob->timeoutCounter = 0;
 					[bestBlob->blobs addObject:blob];
@@ -511,8 +654,13 @@
 					*newB->centroid = centroid;
 					newB->pid = pidCounter++;
 					[persistentBlobs addObject:newB];		
+					
+					[newestId setIntValue:pidCounter];
 				}
 			}		
+			
+			
+			//Delete all the old pblobs
 			for(int i=0; i< [persistentBlobs count] ; i++){
 				PersistentBlob * blob = [persistentBlobs objectAtIndex:i];		
 				
@@ -539,6 +687,10 @@
 			
 		}
 	}	
+	
+	[blobCounter setIntValue:[self numBlobs]];
+	
+	[pblobCounter setIntValue:[self numPersistentBlobs]];
 }
 
 -(int) numBlobs{
@@ -581,7 +733,7 @@
 		pthread_mutex_lock(&mutex);			
 		
 		if(threadUpdateContour){
-			contourFinder->findContours(*threadGrayDiff, 20, (cw*ch)/3, 10, false, true);	
+			contourFinder->findContours(*threadGrayDiff, 20, (cw*ch)/30, 10, false, true);	
 			threadUpdateContour = false;			
 		}
 		
@@ -660,12 +812,12 @@
 }
 
 -(ofPoint) flowAtX:(float) pointX Y: (float) pointY{
-
+	
 	CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
-		
+	
 	ofPoint inPoint = calibrator->coordWarp->inversetransform(pointX, pointY);
 	ofPoint returnPoint = opticalFlow->flowAtPoint(inPoint.x*320, inPoint.y*240);
-
+	
 	returnPoint.x *= 1.0/320; 
 	returnPoint.y *= 1.0/240;
 	
@@ -673,8 +825,8 @@
 }
 
 -(ofPoint) flowInRegionX:(float) regionX Y: (float) regionY width: (float) regionWidth height: (float) regionHeight{
-
-//	opticalFlow->flowInRegion(<#int x#>, <#int y#>, <#int w#>, <#int h#>);
+	
+	//	opticalFlow->flowInRegion(<#int x#>, <#int y#>, <#int w#>, <#int h#>);
 }
 
 @end

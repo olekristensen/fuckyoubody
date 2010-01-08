@@ -523,6 +523,14 @@
 	return r;
 }
 
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection surface:(string)surface{
+	return [self convertToProjection:p surface:[self getProjectionSurfaceByName:projection surface:surface]];	
+}
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection surface:(string)surface{
+	return [self convertFromProjection:p surface:[self getProjectionSurfaceByName:projection surface:surface]];
+}
+
+
 
 
 

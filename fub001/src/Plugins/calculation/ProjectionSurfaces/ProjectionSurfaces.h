@@ -92,6 +92,9 @@
 -(ofxPoint2f) convertFromProjection:(ofxPoint2f)p;
 -(ofxPoint2f) convertToProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface;
 -(ofxPoint2f) convertFromProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface;
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection surface:(string)surface;
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection surface:(string)surface;
+
 
 
 -(float) getAspect;

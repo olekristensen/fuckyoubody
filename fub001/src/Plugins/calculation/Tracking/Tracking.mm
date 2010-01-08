@@ -66,4 +66,23 @@
 	}
 	glPopMatrix();
 }
+
+-(void) controlMousePressed:(float)x y:(float)y button:(int)button {
+	int h = 226;
+
+	if(y<26){
+		
+	} else if(y < 	26+h-26){
+		[trackerObj[0] controlMousePressed:x y:y-26 button:button];
+	} else if(y < 26+h){
+		
+	} else if(y < 26+h+h-26){
+		[trackerObj[1] controlMousePressed:x y:y-(26+h) button:button];	
+	} else if(y < 26+h+h){
+		
+	} else if(y < 26+h+h+h-26){
+		[trackerObj[2] controlMousePressed:x y:y-(26+h+h) button:button];	
+	}
+}
+
 @end

@@ -269,7 +269,7 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	
-	ofSetColor(0, 0,0,255);
+	ofSetColor(0, 127,255,255);
 	ofRect(0, 0, 1, 1);
 	
 	ofSetColor(255,255, 255,255);
