@@ -205,7 +205,6 @@
 
 -(void) setup{
 	calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
-	projector = [calibrator projector];
 	valuesLoaded = YES;
 	
 	

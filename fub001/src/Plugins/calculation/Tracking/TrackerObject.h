@@ -142,7 +142,7 @@
 @property (assign, readonly) ofxCvOpticalFlowLK	* opticalFlow;
 @property (assign, readwrite) NSButton * learnBackgroundButton;
 @property (assign, readonly) CameraCalibrationObject* calibrator;
-@property (assign, readonly) ProjectorObject * projector;
+@property (assign, readwrite) ProjectorObject * projector;
 
 
 -(IBAction) setBlurSliderValue:(id)sender;
