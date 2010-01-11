@@ -95,7 +95,6 @@
 		DDA5AF4910CEBE2B005B53C6 /* redlight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3810CEBE2B005B53C6 /* redlight.tiff */; };
 		DDA5AF4A10CEBE2B005B53C6 /* Show_Status_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3910CEBE2B005B53C6 /* Show_Status_Pressed.tiff */; };
 		DDA5AF4B10CEBE2B005B53C6 /* Show_Status.tiff in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF3A10CEBE2B005B53C6 /* Show_Status.tiff */; };
-		DDA5AF7610CEBE74005B53C6 /* ToDo.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DDA5AF7510CEBE74005B53C6 /* ToDo.rtf */; };
 		DDA6212C10B1618A009C8BDB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211910B1618A009C8BDB /* main.mm */; };
 		DDA6212D10B1618A009C8BDB /* PluginListView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211C10B1618A009C8BDB /* PluginListView.mm */; };
 		DDA6212E10B1618A009C8BDB /* PluginManagerController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA6211E10B1618A009C8BDB /* PluginManagerController.mm */; };
@@ -233,6 +232,7 @@
 		6EF62EDE10D64B12009E7872 /* Lemmings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lemmings.h; sourceTree = "<group>"; };
 		6EF62EDF10D64B12009E7872 /* Lemmings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lemmings.mm; sourceTree = "<group>"; };
 		6EF62EE010D64B12009E7872 /* Lemmings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lemmings.xib; sourceTree = "<group>"; };
+		6EFB76EE10FB4DAB00C20033 /* lpFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lpFilter.h; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -358,7 +358,6 @@
 		DDA5AF3810CEBE2B005B53C6 /* redlight.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = redlight.tiff; sourceTree = "<group>"; };
 		DDA5AF3910CEBE2B005B53C6 /* Show_Status_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Show_Status_Pressed.tiff; sourceTree = "<group>"; };
 		DDA5AF3A10CEBE2B005B53C6 /* Show_Status.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Show_Status.tiff; sourceTree = "<group>"; };
-		DDA5AF7510CEBE74005B53C6 /* ToDo.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ToDo.rtf; sourceTree = "<group>"; };
 		DDA6211910B1618A009C8BDB /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		DDA6211B10B1618A009C8BDB /* PluginListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginListView.h; sourceTree = "<group>"; };
 		DDA6211C10B1618A009C8BDB /* PluginListView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginListView.mm; sourceTree = "<group>"; };
@@ -1789,7 +1788,6 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				DDA5AF7510CEBE74005B53C6 /* ToDo.rtf */,
 				6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */,
 				6EEF0EE510CE7B240011C596 /* org.recoil-performance.fuckYouBuddy.plist */,
 				6ECEB54910C5D6C900B659F0 /* Resources */,
@@ -1807,6 +1805,7 @@
 				DDC7727F10B5846F009CAFC7 /* Plugins */,
 				DDC7728610B5846F009CAFC7 /* testApp */,
 				DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */,
+				6EFB76EE10FB4DAB00C20033 /* lpFilter.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1883,7 +1882,6 @@
 				DDA5AF4910CEBE2B005B53C6 /* redlight.tiff in Resources */,
 				DDA5AF4A10CEBE2B005B53C6 /* Show_Status_Pressed.tiff in Resources */,
 				DDA5AF4B10CEBE2B005B53C6 /* Show_Status.tiff in Resources */,
-				DDA5AF7610CEBE74005B53C6 /* ToDo.rtf in Resources */,
 				6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */,
 				6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */,
 				6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */,

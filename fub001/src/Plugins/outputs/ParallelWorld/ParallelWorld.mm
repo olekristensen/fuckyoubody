@@ -28,7 +28,7 @@
 			BOOL anyBlobs = NO;
 			for(b in [blob blobs]){
 				anyBlobs = YES;
-				for(int i=0;i<[b nPts];i+= 5){
+				for(int i=0;i<[b nPts];i+= 1){
 					if(optimalLeft == NULL || [b pts][i].x < optimalLeft){
 						optimalLeft = [b pts][i].x;
 					}
@@ -191,7 +191,13 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ParallelLine * line;
 	ofSetColor(255, 255, 255,255);
+	int i =0;
 	for(line in lines){
+	/*	if(i==0){
+			cout<<[line left]<<endl;
+		}	
+		i++;
+*/
 		glBegin(GL_QUADS);
 		glVertex2f(MIN([line left],0.5), 0);
 		glVertex2f(MIN([line left],0.5), 1);

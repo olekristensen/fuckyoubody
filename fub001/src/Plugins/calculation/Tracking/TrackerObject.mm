@@ -273,6 +273,15 @@
 			glEnd();
 		}
 		
+		CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
+		
+		[calibrator applyWarp];
+		for(int i=0;i<640;i++){
+			ofLine(i/640.0, 0, i/640.0, 1);
+		}
+		
+		glPopMatrix();
+		
 		if ([opticalFlowActiveButton state] == NSOnState){
 			glPushMatrix();{
 				
@@ -291,6 +300,7 @@
 			}glPopMatrix();
 		}
 	}
+
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -315,7 +325,7 @@
 	grayImage->draw(w*3,0,w,h);
 	
 	
-	//contourFinder->draw(w*3,0,w,h);
+//	contourFinder->draw(w*3,0,w,h);
 	
 	PersistentBlob * blob;
 	
@@ -735,6 +745,13 @@
 		if(threadUpdateContour){
 			contourFinder->findContours(*threadGrayDiff, 20, (cw*ch)/30, 10, false, true);	
 			threadUpdateContour = false;			
+			
+		/*	int l = -1;
+			if(contourFinder->nBlobs > 0){
+			for(int i=0;i<contourFinder->blobs[0]->
+				
+				}
+			*/
 		}
 		
 		if(threadUpdateOpticalFlow){
