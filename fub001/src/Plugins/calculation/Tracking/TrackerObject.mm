@@ -170,7 +170,7 @@
 //--------------------
 
 @implementation TrackerObject
-@synthesize settingsView, controller, blobs, persistentBlobs, opticalFlow,learnBackgroundButton;
+@synthesize settingsView, controller, blobs, persistentBlobs, opticalFlow,learnBackgroundButton,calibrator,projector;
 
 -(id) initWithId:(int)num{
 	if([super init]){
@@ -204,7 +204,8 @@
 }
 
 -(void) setup{
-	
+	calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
+	projector = [calibrator projector];
 	valuesLoaded = YES;
 	
 	
@@ -249,6 +250,8 @@
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	
 	[thread start];
+	
+
 }
 
 - (BOOL) loadNibFile {	
@@ -275,13 +278,13 @@
 		
 		CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
 		
-		[calibrator applyWarp];
+	/*	[calibrator applyWarp];
 		for(int i=0;i<640;i++){
 			ofLine(i/640.0, 0, i/640.0, 1);
 		}
 		
 		glPopMatrix();
-		
+	*/	
 		if ([opticalFlowActiveButton state] == NSOnState){
 			glPushMatrix();{
 				
@@ -436,6 +439,7 @@
 	}
 }
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	
 	
 	if([setMaskButton state] == NSOnState && setMaskCorner == -1){
 		[activeButton setHidden:YES];
@@ -603,7 +607,6 @@
 				bool blobFound = false;
 				float shortestDist = 0;
 				int bestId = -1;
-				CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:[blob cameraId]]);
 				ProjectionSurfacesObject * projection = [calibrator surface];//((ProjectionSurfacesObject*)[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]);
 				
 				ofxPoint2f centroid = ofxPoint2f([blob centroid].x, [blob centroid].y);

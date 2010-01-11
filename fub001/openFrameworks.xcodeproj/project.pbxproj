@@ -29,6 +29,8 @@
 		6EF3002110DD1C80007A0A98 /* Ulykke.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EF3002010DD1C80007A0A98 /* Ulykke.mm */; };
 		6EF62EE110D64B12009E7872 /* Lemmings.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EF62EDF10D64B12009E7872 /* Lemmings.mm */; };
 		6EF62EE210D64B12009E7872 /* Lemmings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF62EE010D64B12009E7872 /* Lemmings.xib */; };
+		6EFB775C10FB86B400C20033 /* Lines.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB775B10FB86B400C20033 /* Lines.mm */; };
+		6EFB775E10FB86BE00C20033 /* Lines.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EFB775D10FB86BE00C20033 /* Lines.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -232,7 +234,10 @@
 		6EF62EDE10D64B12009E7872 /* Lemmings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lemmings.h; sourceTree = "<group>"; };
 		6EF62EDF10D64B12009E7872 /* Lemmings.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lemmings.mm; sourceTree = "<group>"; };
 		6EF62EE010D64B12009E7872 /* Lemmings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lemmings.xib; sourceTree = "<group>"; };
-		6EFB76EE10FB4DAB00C20033 /* lpFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lpFilter.h; sourceTree = "<group>"; };
+		6EFB76EE10FB4DAB00C20033 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		6EFB775A10FB86B400C20033 /* Lines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lines.h; sourceTree = "<group>"; };
+		6EFB775B10FB86B400C20033 /* Lines.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lines.mm; sourceTree = "<group>"; };
+		6EFB775D10FB86BE00C20033 /* Lines.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lines.xib; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -766,6 +771,16 @@
 			path = Lemmings;
 			sourceTree = "<group>";
 		};
+		6EFB775910FB86A200C20033 /* Lines */ = {
+			isa = PBXGroup;
+			children = (
+				6EFB775A10FB86B400C20033 /* Lines.h */,
+				6EFB775B10FB86B400C20033 /* Lines.mm */,
+				6EFB775D10FB86BE00C20033 /* Lines.xib */,
+			);
+			path = Lines;
+			sourceTree = "<group>";
+		};
 		DD0C01501066874900BB3F9F /* ofxXmlSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1205,6 +1220,7 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				6EFB775910FB86A200C20033 /* Lines */,
 				6EF3001B10DD1C6F007A0A98 /* Ulykke */,
 				DD2F6BBA10D8FB0500996CD8 /* Strategi */,
 				DD204E6C10D63D5400BEF03F /* GTA */,
@@ -1805,7 +1821,7 @@
 				DDC7727F10B5846F009CAFC7 /* Plugins */,
 				DDC7728610B5846F009CAFC7 /* testApp */,
 				DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */,
-				6EFB76EE10FB4DAB00C20033 /* lpFilter.h */,
+				6EFB76EE10FB4DAB00C20033 /* Filter.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -1892,6 +1908,7 @@
 				DD2F6BBF10D8FB1D00996CD8 /* Strategi.xib in Resources */,
 				6E842D9010DA7A1300F4FB4C /* Arkade.xib in Resources */,
 				6EF3001D10DD1C78007A0A98 /* Ulykke.xib in Resources */,
+				6EFB775E10FB86BE00C20033 /* Lines.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2021,6 +2038,7 @@
 				DDE036CA10DBAEB600A233CF /* ofxQtVideoSaver.cpp in Sources */,
 				6E842D8E10DA7A0900F4FB4C /* Arkade.mm in Sources */,
 				6EF3002110DD1C80007A0A98 /* Ulykke.mm in Sources */,
+				6EFB775C10FB86B400C20033 /* Lines.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

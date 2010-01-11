@@ -16,6 +16,8 @@
 #include "ofMain.h"
 #include "ofxOpenCv.h"
 #include "ofxVectorMath.h"
+#import "CameraCalibration.h"
+#include "ProjectionSurfaces.h"
 #include "ofxCvOpticalFlowLK.h"
 
 @interface PersistentBlob : NSObject
@@ -75,6 +77,8 @@
 	IBOutlet NSView * settingsView;
 	int trackerNumber;
 	PluginManagerController * controller;
+	CameraCalibrationObject* calibrator;
+	ProjectorObject * projector;
 	
 	int cw, ch;
 	
@@ -137,6 +141,9 @@
 @property (assign, readonly) NSMutableArray * persistentBlobs;
 @property (assign, readonly) ofxCvOpticalFlowLK	* opticalFlow;
 @property (assign, readwrite) NSButton * learnBackgroundButton;
+@property (assign, readonly) CameraCalibrationObject* calibrator;
+@property (assign, readonly) ProjectorObject * projector;
+
 
 -(IBAction) setBlurSliderValue:(id)sender;
 -(IBAction) setThresholdSliderValue:(id)sender;

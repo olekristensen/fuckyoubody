@@ -1,4 +1,5 @@
 #import "PluginIncludes.h"
+//#include "Filter.h"
 
 @implementation BlobLink
 
@@ -11,6 +12,10 @@
 -(void) initPlugin{
 	lines = [[NSMutableArray array] retain];
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+	
+
+	
+	
 	
 }
 
@@ -49,8 +54,23 @@
 					for(link in [line links]){
 						//See if blob is linked to line
 						if(link->blobId == blob->pid){
-							[line setLeft:([line left] + (optimalLeft - [line left])*[corridorSpeedControl floatValue]*0.01)];
-							[line setRight:([line right] + (optimalRight - [line right])*[corridorSpeedControl floatValue]*0.01)];
+							
+							[line setLeft:[line leftFilter]->filter(optimalLeft)];			
+							[line setRight:[line rightFilter]->filter(optimalRight)];			
+							if(ofGetFrameRate()<50){
+								[line setLeft:[line leftFilter]->filter(optimalLeft)];			
+								[line setRight:[line rightFilter]->filter(optimalRight)];							
+							}
+							[line setLeft:[line leftFilter]->filter(optimalLeft)];			
+							[line setRight:[line rightFilter]->filter(optimalRight)];			
+							if(ofGetFrameRate()<50){
+								[line setLeft:[line leftFilter]->filter(optimalLeft)];			
+								[line setRight:[line rightFilter]->filter(optimalRight)];							
+							}
+							
+													   
+							//[line setLeft:([line left] + (optimalLeft - [line left])*[corridorSpeedControl floatValue]*0.01)];
+							//[line setRight:([line right] + (optimalRight - [line right])*[corridorSpeedControl floatValue]*0.01)];
 							link->lastConfirm = outputTime->videoTime;
 							lineFound = YES;
 						}
@@ -62,6 +82,8 @@
 					BlobLink * link = [[BlobLink alloc] init]; 
 					[newLine setLeft:optimalLeft];
 					[newLine setRight:optimalRight];
+					[newLine leftFilter]->setStartValue(optimalLeft);
+					[newLine rightFilter]->setStartValue(optimalRight);
 					
 					link->blobId = blob->pid;
 					link->linkTime = outputTime->videoTime;
@@ -100,8 +122,6 @@
 		ParallelLine * line;
 		for(line in lines){
 			float w = [line right] - [line left];
-			
-			
 			[line setLeft:[line left]  + ((([line left]+[line right])/2.0 - [adderWidthControl floatValue] - [line left])*[adderSpeedControl floatValue]*0.01) ];
 			[line setRight:[line right]  + ((([line left]+[line right])/2.0 + [adderWidthControl floatValue] - [line right])*[adderSpeedControl floatValue]*0.01) ];
 		}
@@ -120,8 +140,11 @@
 							 [line setLeft:[line left]+blob->centroidV->x];
 							 [line setRight:[line right]+blob->centroidV->x];*/
 							if([adderModeControl selectedSegment] == 1){
+								
 								[line setLeft:([line left] + (blob->centroid->x-[adderWidthControl floatValue] - [line left])*[adderSpeedControl floatValue]*0.01)];
 								[line setRight:([line right] + (blob->centroid->x+[adderWidthControl floatValue] - [line right])*[adderSpeedControl floatValue]*0.01)];
+								
+								
 							} else {
 								[self rotate:((blob->centroid->x - ([line left]+[line right])/2.0)*[adderSpeedControl floatValue]*0.01)]; 
 							}
@@ -245,11 +268,20 @@
 
 
 @implementation ParallelLine
-@synthesize left, right, spawnTime, drawingMode, links;
+@synthesize left, right, spawnTime, drawingMode, links, leftFilter, rightFilter;
 
 -(id)init{
 	if([super init]){
 		links = [[NSMutableArray array] retain];
+		
+		leftFilter = new Filter();	
+		leftFilter->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
+		leftFilter->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
+		
+		rightFilter = new Filter();	
+		rightFilter->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
+		rightFilter->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
+		
 	}	
 	return self;
 }

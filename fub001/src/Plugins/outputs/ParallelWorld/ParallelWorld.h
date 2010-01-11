@@ -10,6 +10,8 @@
 #include "Tracking.h"
 #define numFingers 3
 
+#include "Filter.h"
+
 enum DrawFlags {
 	DrawFrontProjector = 1,
 	DrawBackProjector = 2,
@@ -50,6 +52,7 @@ enum DrawFlags {
 
 	NSMutableArray * lines;
 	NSUserDefaults *userDefaults;
+	
 
 }
 
@@ -67,12 +70,18 @@ enum DrawFlags {
 	double spawnTime;
 	int drawingMode;
 	
+	Filter * leftFilter, *rightFilter;
+
+	
 	NSMutableArray * links;
 	
 }
 @property (readwrite) float left;
 @property (readwrite) float right;
 @property (readwrite) double spawnTime;
+@property (readwrite) 	Filter * leftFilter;
+@property (readwrite) 	Filter * rightFilter;
+
 @property int drawingMode;
 @property (assign) NSMutableArray * links;
 

@@ -88,6 +88,7 @@
 -(void) apply:(string)projection surface:(string)surface;
 -(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h;
 -(ProjectionSurfacesObject*) getProjectionSurfaceByName:(string)projection surface:(string)surface;
+-(ProjectorObject*) getProjectorByName:(string)projection;
 -(ofxPoint2f) convertToProjection:(ofxPoint2f)p;
 -(ofxPoint2f) convertFromProjection:(ofxPoint2f)p;
 -(ofxPoint2f) convertToProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface;

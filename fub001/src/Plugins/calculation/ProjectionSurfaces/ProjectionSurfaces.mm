@@ -501,6 +501,17 @@
 	cout<<"No surface found"<<endl;
 }
 
+-(ProjectorObject*) getProjectorByName:(string)projection{
+	ProjectorObject * proj;
+	for(proj in projectors){
+		if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
+			return proj;		
+		}
+	}	
+	cout<<"No projector found"<<endl;
+	
+}
+
 -(ofxPoint2f) convertToProjection:(ofxPoint2f)p{
 	if(lastAppliedSurface != nil){
 		return [self convertToProjection:p surface:lastAppliedSurface]; 
@@ -598,7 +609,7 @@
 			if(key == 126){
 				newPos += ofxVec2f(0,-n);
 			}
-
+			
 			[[self getCurrentSurface] setCorner:selectedCorner x:newPos.x y:newPos.y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:NO];
 		}
 		[[self getCurrentSurface] recalculate];

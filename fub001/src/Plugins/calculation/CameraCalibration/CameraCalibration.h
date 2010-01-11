@@ -36,7 +36,7 @@
 
 @interface CameraCalibrationObject : NSObject {
 
-	
+	ProjectorObject * projector;
 	ProjectionSurfacesObject * surface;	
 	NSString * name;
 	
@@ -50,7 +50,7 @@
 }
 @property (assign, readwrite) NSString * name;
 @property (assign, readwrite) ProjectionSurfacesObject * surface;
-
+@property (assign, readwrite) ProjectorObject * projector;
 -(ofxPoint2f *) calibHandles;
 -(ofxPoint2f *) calibPoints;
 -(void) recalculate;

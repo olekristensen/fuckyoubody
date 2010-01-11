@@ -9,15 +9,22 @@
 	cameraCalibrations = [[NSMutableArray array] retain];
 	lastMousePos = new ofxVec2f();
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
-}
-
--(void) setup{
+	
 	for(int i=0;i<3;i++){
 		CameraCalibrationObject * obj = [[[CameraCalibrationObject alloc] init] retain];		
 		[obj setName:[NSString stringWithFormat:@"CAMERA%d",i]];
 		
+		[cameraCalibrations addObject:obj];
+
+	}	
+}
+
+-(void) setup{
+	for(int i=0;i<3;i++){
+		CameraCalibrationObject * obj = [cameraCalibrations objectAtIndex:i];
 		if(i==0){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+			[obj setProjector:[GetPlugin(ProjectionSurfaces) getProjectorByName:"Front"]];
 			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
 			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
 			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
@@ -26,6 +33,7 @@
 		
 		if(i==1){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Back" surface:"Floor"]];
+			[obj setProjector:[GetPlugin(ProjectionSurfaces) getProjectorByName:"Back"]];
 			[obj calibPoints][0] = ofxPoint2f(0.2,0.2);
 			[obj calibPoints][1] = ofxPoint2f(0.8,0.2);
 			[obj calibPoints][2] = ofxPoint2f(0.8,0.8);
@@ -34,6 +42,7 @@
 		
 		if(i==2){
 			[obj setSurface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+			[obj setProjector:[GetPlugin(ProjectionSurfaces) getProjectorByName:"Front"]];
 			[obj calibPoints][0] = ofxPoint2f(0,0);
 			[obj calibPoints][1] = ofxPoint2f(1,0);
 			[obj calibPoints][2] = ofxPoint2f(1,1);
@@ -46,9 +55,8 @@
 		}
 		
 		[obj recalculate];
-
 		
-		[cameraCalibrations addObject:obj];
+		
 		
 	}	
 	
@@ -236,7 +244,7 @@
 
 
 @implementation CameraCalibrationObject
-@synthesize name, surface;
+@synthesize name, surface,projector;
 -(id) init{
 	if([super init]){
 		warp = new Warp();
