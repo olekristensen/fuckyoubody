@@ -13,13 +13,13 @@
 	float frontLeft, frontRight, backLeft, backRight;
 	Filter * leftFrontFilter, *rightFrontFilter;
 	Filter * leftBackFilter, *rightBackFilter;
-	
+		float width;
 	NSMutableArray * links;
 
 }
 @property (assign, readwrite) NSMutableArray * links;
 
--(void)drawWithBalance:(float)balance fromtAlpha:(float)frontA backAlpha:(float)backA;
+-(void)drawWithBalance:(float)balance fromtAlpha:(float)frontA backAlpha:(float)backA width:(float)w timeout:(bool)timeout;
 -(void)setFrontLeft:(float)frontLeft frontRight:(float)frontRight;
 -(void)setBackLeft:(float)backLeft backRight:(float)backtRight;
 
@@ -30,11 +30,16 @@
 @interface Lines : ofPlugin {
 	IBOutlet NSSegmentedControl * trackingDirection;
 	IBOutlet PluginUISlider * balanceSlider;
-	
+	IBOutlet PluginUISlider * lineWidthSlider;
+	IBOutlet NSButton * trackingButton;
+	IBOutlet NSButton * timeoutLinesButton;
 	
 	NSMutableArray * lines;
+	
 
 }
+
+-(IBAction) removeAllLines:(id)sender;
 
 @end
 
@@ -44,8 +49,11 @@
 {
 @public	
 	int blobId;
+	int projId;
 	double linkTime;
 	double lastConfirm;
+
+	double timeSinceLastConfirm;
 }
 
 
