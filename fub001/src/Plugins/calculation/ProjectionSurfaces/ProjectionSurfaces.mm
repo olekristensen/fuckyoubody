@@ -74,7 +74,7 @@
 	float y = [[obj objectAtIndex:2] floatValue];
 	
 	corners[corner]->set(x,y);
-	[self recalculate];
+	[self recalculate];			
 	lastUndoX = x;
 	lastUndoY = y;
 }
@@ -534,10 +534,10 @@
 	return r;
 }
 
--(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection surface:(string)surface{
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection fromSurface:(string) surface{
 	return [self convertToProjection:p surface:[self getProjectionSurfaceByName:projection surface:surface]];	
 }
--(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection surface:(string)surface{
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection toSurface:(string)surface{
 	return [self convertFromProjection:p surface:[self getProjectionSurfaceByName:projection surface:surface]];
 }
 
