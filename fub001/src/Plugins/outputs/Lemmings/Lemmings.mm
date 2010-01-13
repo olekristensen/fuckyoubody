@@ -4,7 +4,9 @@
 //
 //  Created by Jonas Jongejan on 15/11/09.
 
-#import "PluginIncludes.h"
+#include "ProjectionSurfaces.h"
+#include "Tracking.h"
+#include "Lemmings.h"
 
 @implementation Lemmings
 

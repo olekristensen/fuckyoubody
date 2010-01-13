@@ -119,8 +119,6 @@
 		DDB85168105E809300D1ED92 /* ofxVec3f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515B105E809300D1ED92 /* ofxVec3f.cpp */; };
 		DDB85169105E809300D1ED92 /* ofxVec4f.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDB8515D105E809300D1ED92 /* ofxVec4f.cpp */; };
 		DDC0C73D10C96BA500402218 /* videoplayerWrapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DDC0C73C10C96BA500402218 /* videoplayerWrapper.cpp */; };
-		DDC7728C10B5846F009CAFC7 /* _ExampleOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */; };
-		DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */; };
 		DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDC7728710B5846F009CAFC7 /* MainMenu.xib */; };
 		DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728910B5846F009CAFC7 /* testApp.mm */; };
 		DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDC7728B10B5846F009CAFC7 /* TestAppController.mm */; };
@@ -406,9 +404,6 @@
 		DDB8515F105E809300D1ED92 /* ofxVectorMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxVectorMath.h; sourceTree = "<group>"; };
 		DDC0C73B10C96BA500402218 /* videoplayerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = videoplayerWrapper.h; sourceTree = "<group>"; };
 		DDC0C73C10C96BA500402218 /* videoplayerWrapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = videoplayerWrapper.cpp; sourceTree = "<group>"; };
-		DDC7728210B5846F009CAFC7 /* _ExampleOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _ExampleOutput.h; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.h; sourceTree = SOURCE_ROOT; };
-		DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = _ExampleOutput.mm; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.mm; sourceTree = SOURCE_ROOT; };
-		DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = _ExampleOutput.xib; path = src/Plugins/outputs/_ExampleOutput/_ExampleOutput.xib; sourceTree = SOURCE_ROOT; };
 		DDC7728510B5846F009CAFC7 /* PluginIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginIncludes.h; path = src/Plugins/PluginIncludes.h; sourceTree = SOURCE_ROOT; };
 		DDC7728710B5846F009CAFC7 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainMenu.xib; path = src/testApp/MainMenu.xib; sourceTree = SOURCE_ROOT; };
 		DDC7728810B5846F009CAFC7 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = src/testApp/testApp.h; sourceTree = SOURCE_ROOT; };
@@ -1261,21 +1256,9 @@
 				DD4FE4ED10C5307B00A11BE9 /* DanceSteps */,
 				6EF62EDD10D64B12009E7872 /* Lemmings */,
 				6E842D8A10DA7A0100F4FB4C /* Arkade */,
-				DDC7728110B5846F009CAFC7 /* _ExampleOutput */,
 			);
 			path = outputs;
 			sourceTree = "<group>";
-		};
-		DDC7728110B5846F009CAFC7 /* _ExampleOutput */ = {
-			isa = PBXGroup;
-			children = (
-				DDC7728210B5846F009CAFC7 /* _ExampleOutput.h */,
-				DDC7728310B5846F009CAFC7 /* _ExampleOutput.mm */,
-				DDC7728410B5846F009CAFC7 /* _ExampleOutput.xib */,
-			);
-			name = _ExampleOutput;
-			path = src/Plugins/outputs/_ExampleOutput;
-			sourceTree = SOURCE_ROOT;
 		};
 		DDC7728610B5846F009CAFC7 /* testApp */ = {
 			isa = PBXGroup;
@@ -1904,7 +1887,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
 				DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */,
 				DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */,
@@ -2030,7 +2012,6 @@
 				DDA6213D10B1622E009C8BDB /* AppDelegate.mm in Sources */,
 				DDA6213F10B1622E009C8BDB /* ofAppCocoaWindow.mm in Sources */,
 				DDA6242B10B1BCF9009C8BDB /* PluginView.mm in Sources */,
-				DDC7728C10B5846F009CAFC7 /* _ExampleOutput.mm in Sources */,
 				DDC7728F10B5846F009CAFC7 /* testApp.mm in Sources */,
 				DDC7729010B5846F009CAFC7 /* TestAppController.mm in Sources */,
 				DDC772A510B58518009CAFC7 /* Plugin.mm in Sources */,

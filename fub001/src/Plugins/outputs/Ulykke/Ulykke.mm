@@ -1,13 +1,6 @@
-//
-//  Ulykke.m
-//  openFrameworks
-//
-//  Created by Fuck You Buddy on 19/12/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
-#import "PluginIncludes.h"
-
+#include "ProjectionSurfaces.h"
+#include "Ulykke.h"
+#include "Tracking.h"
 
 @implementation Ulykke
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{

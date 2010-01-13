@@ -6,7 +6,8 @@
 //  Copyright 2009 HalfdanJ. All rights reserved.
 //
 
-#include "PluginIncludes.h"
+#include "ProjectionSurfaces.h"
+#include "Tracking.h"
 
 @implementation Tracking
 

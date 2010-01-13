@@ -1,16 +1,24 @@
-//
-//  GrowingShadow.h
-//  openFrameworks
-//
-//  Created by Fuck You Buddy on 13/01/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+#pragma once
+
+#import "GLee.h"
 
 #import <Cocoa/Cocoa.h>
+#include "Plugin.h"
+#include "ofMain.h"
+#include "ofxVectorMath.h"
 
 
-@interface GrowingShadow : NSObject {
-
+@interface ShadowLineSegment : NSObject
+{
+	
 }
+@end
+
+
+@interface GrowingShadow : ofPlugin {
+	IBOutlet NSSlider * growthSpeedSlider;
+}
+
+-(IBAction) startGrow:(id)sender;
 
 @end

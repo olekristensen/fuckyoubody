@@ -1,6 +1,5 @@
-#import "PluginIncludes.h"
-
-
+#include "DanceSteps.h"
+#include "ProjectionSurfaces.h"
 
 @implementation DanceSteps
 

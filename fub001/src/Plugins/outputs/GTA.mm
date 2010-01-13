@@ -1,5 +1,5 @@
-#import "PluginIncludes.h"
-
+#include "ProjectionSurfaces.h"
+#include "GTA.h"
 
 @implementation WallObject
 @synthesize pos, offset, obstacle, texture;

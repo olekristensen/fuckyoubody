@@ -64,6 +64,7 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addPlugin:[[Strategi alloc] init]];
 	[pluginManagerController addPlugin:[[Arkade alloc] init]];
 	[pluginManagerController addPlugin:[[Ulykke alloc] init]];
+	[pluginManagerController addPlugin:[[GrowingShadow alloc] init]];
 	
 	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
 	

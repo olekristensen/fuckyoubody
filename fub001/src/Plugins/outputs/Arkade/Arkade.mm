@@ -1,13 +1,5 @@
-//
-//  Arkade.mm
-//  openFrameworks
-//
-//  Created by Fuck You Buddy on 17/12/09.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
-#import "PluginIncludes.h"
-
+#include "ProjectionSurfaces.h"
+#include "Arkade.h"
 
 @implementation Arkade
 

@@ -1,12 +1,7 @@
-//
-//  Strategi.mm
-//  openFrameworks
-//
-//  Created by Jonas Jongejan on 16/12/09.
-//  Copyright 2009 HalfdanJ. All rights reserved.
-//
-
-#import "PluginIncludes.h"
+#include "ProjectionSurfaces.h"
+#include "Tracking.h"
+#include "Strategi.h"
+#include "DMXOutput.h"
 
 @implementation StrategiBlob
 
