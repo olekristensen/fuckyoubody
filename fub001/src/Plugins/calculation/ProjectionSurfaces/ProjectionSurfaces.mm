@@ -5,7 +5,6 @@
 //  Created by Jonas Jongejan on 15/11/09.
 
 #import "ProjectionSurfaces.h"
-#import "_ExampleOutput.h"
 #import <pthread.h>
 
 

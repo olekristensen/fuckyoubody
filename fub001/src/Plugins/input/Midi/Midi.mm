@@ -48,7 +48,7 @@
 
 	for (theControl in boundControls){
 		[[theControl midi] update:timeInterval displayTime:outputTime];
-		if(timeInterval - [[theControl midi] lastTimeChanged] > ofRandom(0.1, 5.0)){
+		if(timeInterval - [[theControl midi] lastTimeChanged] > ofRandom(0.02, 20)){
 			[[theControl midi] setSmoothingValue:[[NSNumber alloc] initWithInt:round(ofRandom(0, 1.0)*127)] withTimeInterval: timeInterval];
 		}
 		
@@ -133,7 +133,7 @@
 	theValue = [[NSString alloc] initWithString:@""];
 	
 	if([[[aTableColumn headerCell] stringValue] isEqualToString:@"➜"]){
-		if([[theControl midi] lastTimeChanged] - updateTimeInterval < 0.5){
+		if([[theControl midi] hasChanged]){
 			theValue = [theValue stringByAppendingString:@"➜"];
 		}
 	} 
