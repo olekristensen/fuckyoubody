@@ -9,11 +9,12 @@
 
 #include "_ExampleOutput.h"
 #include "DanceSteps.h"
-#include "ParallelWorld.h"
 #include "Lines.h"
+#include "Stregkode.h"
 #include "DMXOutput.h"
 #include "Lemmings.h"
 #include "GTA.h"
 #include "Strategi.h"
 #include "Arkade.h"
 #include "Ulykke.h"
+#include "Players.h"

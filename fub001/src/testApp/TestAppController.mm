@@ -52,10 +52,13 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addPlugin:[[CameraCalibration alloc] init]];
 	
 	[pluginManagerController addHeader:@"Output"];
-	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
+//	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
+	[pluginManagerController addPlugin:[[Players alloc] init]];
+
 	[pluginManagerController addPlugin:[[DanceSteps alloc] init]];
-	[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
-		[pluginManagerController addPlugin:[[Lines alloc] init]];
+	//[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
+	[pluginManagerController addPlugin:[[Lines alloc] init]];
+	[pluginManagerController addPlugin:[[Stregkode alloc] init]];
 	[pluginManagerController addPlugin:[[Lemmings alloc] init]];
 	[pluginManagerController addPlugin:[[GTA alloc] init]];
 	[pluginManagerController addPlugin:[[Strategi alloc] init]];

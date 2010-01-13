@@ -328,7 +328,6 @@
 	float bb1 =((float)pb12.y-pb11.y)/(pb12.x-pb11.x);
 	float bb2 =((float)pb22.y-pb21.y)/(pb22.x-pb21.x);
 
-	
 	//A i y = a+bx <=> a = y - bx
 	float af1 = pf11.y - bf1*pf11.x;
 	float af2 = pf21.y - bf2*pf21.x;
@@ -338,10 +337,8 @@
 	
 	//intersection xi = - (a1 - a2) / (b1 - b2) yi = a1 + b1xi
 	ofxPoint2f iFront = ofxPoint2f(-(af1 - af2)/(bf1-bf2) , af1 + bf1*(-(af1 - af2)/(bf1-bf2)));
-
 	ofxPoint2f iBack = ofxPoint2f(-(ab1 - ab2)/(bb1-bb2) , ab1 + bb1*(-(ab1 - ab2)/(bb1-bb2)));
 
-	
 	ofSetColor(255, 255, 0);
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	glBegin(GL_LINE_STRIP);
@@ -351,9 +348,6 @@
 	glPopMatrix();
 
 	ofSetColor(255, 120, 0);
-/*
-	ofLine(0.5*0.5, 0, 0.5*0.5, 1);
-	ofLine(0.75, 0, 0.75, 1);*/
 }
 
 

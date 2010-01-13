@@ -31,6 +31,12 @@
 		6EF62EE210D64B12009E7872 /* Lemmings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EF62EE010D64B12009E7872 /* Lemmings.xib */; };
 		6EFB775C10FB86B400C20033 /* Lines.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB775B10FB86B400C20033 /* Lines.mm */; };
 		6EFB775E10FB86BE00C20033 /* Lines.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EFB775D10FB86BE00C20033 /* Lines.xib */; };
+		6EFB7A1810FCD2B300C20033 /* Stregkode.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EFB7A1710FCD2B300C20033 /* Stregkode.xib */; };
+		6EFB7A1B10FCD2BC00C20033 /* Stregkode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB7A1A10FCD2BC00C20033 /* Stregkode.mm */; };
+		6EFB7AB310FCDF8C00C20033 /* Players.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB7AB210FCDF8C00C20033 /* Players.mm */; };
+		6EFB7AB510FCDF9400C20033 /* Players.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EFB7AB410FCDF9400C20033 /* Players.xib */; };
+		6EFB7B7010FDE5FC00C20033 /* GrowingShadow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EFB7B6F10FDE5FC00C20033 /* GrowingShadow.xib */; };
+		6EFB7B7310FDE60800C20033 /* GrowingShadow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB7B7210FDE60800C20033 /* GrowingShadow.mm */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -51,8 +57,6 @@
 		DD20522B10D67BF400BEF03F /* ofxFBOTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD20522510D67BF400BEF03F /* ofxFBOTexture.cpp */; };
 		DD20522C10D67BF400BEF03F /* ofxShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD20522710D67BF400BEF03F /* ofxShader.cpp */; };
 		DD20522D10D67BF400BEF03F /* shaderBlur.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD20522910D67BF400BEF03F /* shaderBlur.cpp */; };
-		DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */; };
-		DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */; };
 		DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD26DEC610BC04AA00750B7C /* DMXOutput.xib */; };
 		DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD26DECA10BC04C100750B7C /* DMXOutput.mm */; };
 		DD2F6BBD10D8FB1300996CD8 /* Strategi.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD2F6BBC10D8FB1300996CD8 /* Strategi.mm */; };
@@ -238,6 +242,15 @@
 		6EFB775A10FB86B400C20033 /* Lines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lines.h; sourceTree = "<group>"; };
 		6EFB775B10FB86B400C20033 /* Lines.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Lines.mm; sourceTree = "<group>"; };
 		6EFB775D10FB86BE00C20033 /* Lines.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Lines.xib; sourceTree = "<group>"; };
+		6EFB7A1710FCD2B300C20033 /* Stregkode.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Stregkode.xib; sourceTree = "<group>"; };
+		6EFB7A1910FCD2BC00C20033 /* Stregkode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stregkode.h; sourceTree = "<group>"; };
+		6EFB7A1A10FCD2BC00C20033 /* Stregkode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Stregkode.mm; sourceTree = "<group>"; };
+		6EFB7AB110FCDF8C00C20033 /* Players.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Players.h; sourceTree = "<group>"; };
+		6EFB7AB210FCDF8C00C20033 /* Players.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Players.mm; sourceTree = "<group>"; };
+		6EFB7AB410FCDF9400C20033 /* Players.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Players.xib; sourceTree = "<group>"; };
+		6EFB7B6F10FDE5FC00C20033 /* GrowingShadow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GrowingShadow.xib; sourceTree = "<group>"; };
+		6EFB7B7110FDE60800C20033 /* GrowingShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrowingShadow.h; sourceTree = "<group>"; };
+		6EFB7B7210FDE60800C20033 /* GrowingShadow.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GrowingShadow.mm; sourceTree = "<group>"; };
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -275,9 +288,6 @@
 		DD20522810D67BF400BEF03F /* ofxShader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxShader.h; sourceTree = "<group>"; };
 		DD20522910D67BF400BEF03F /* shaderBlur.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shaderBlur.cpp; sourceTree = "<group>"; };
 		DD20522A10D67BF400BEF03F /* shaderBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderBlur.h; sourceTree = "<group>"; };
-		DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallelWorld.h; sourceTree = "<group>"; };
-		DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ParallelWorld.mm; sourceTree = "<group>"; };
-		DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ParallelWorld.xib; sourceTree = "<group>"; };
 		DD26DEC610BC04AA00750B7C /* DMXOutput.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DMXOutput.xib; sourceTree = "<group>"; };
 		DD26DEC910BC04C100750B7C /* DMXOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMXOutput.h; sourceTree = "<group>"; };
 		DD26DECA10BC04C100750B7C /* DMXOutput.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DMXOutput.mm; sourceTree = "<group>"; };
@@ -781,6 +791,36 @@
 			path = Lines;
 			sourceTree = "<group>";
 		};
+		6EFB7A1610FCD27700C20033 /* Stregkode */ = {
+			isa = PBXGroup;
+			children = (
+				6EFB7A1710FCD2B300C20033 /* Stregkode.xib */,
+				6EFB7A1910FCD2BC00C20033 /* Stregkode.h */,
+				6EFB7A1A10FCD2BC00C20033 /* Stregkode.mm */,
+			);
+			path = Stregkode;
+			sourceTree = "<group>";
+		};
+		6EFB7AB010FCDF8500C20033 /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				6EFB7AB110FCDF8C00C20033 /* Players.h */,
+				6EFB7AB210FCDF8C00C20033 /* Players.mm */,
+				6EFB7AB410FCDF9400C20033 /* Players.xib */,
+			);
+			path = Players;
+			sourceTree = "<group>";
+		};
+		6EFB7B6E10FDE5F300C20033 /* GrowingShadow */ = {
+			isa = PBXGroup;
+			children = (
+				6EFB7B6F10FDE5FC00C20033 /* GrowingShadow.xib */,
+				6EFB7B7110FDE60800C20033 /* GrowingShadow.h */,
+				6EFB7B7210FDE60800C20033 /* GrowingShadow.mm */,
+			);
+			path = GrowingShadow;
+			sourceTree = "<group>";
+		};
 		DD0C01501066874900BB3F9F /* ofxXmlSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,16 +933,6 @@
 			name = GTA;
 			sourceTree = "<group>";
 		};
-		DD26DD8810BBEC1600750B7C /* ParallelWorld */ = {
-			isa = PBXGroup;
-			children = (
-				DD26DD8A10BBEC3800750B7C /* ParallelWorld.h */,
-				DD26DD8B10BBEC3800750B7C /* ParallelWorld.mm */,
-				DD26DD8D10BBECC400750B7C /* ParallelWorld.xib */,
-			);
-			path = ParallelWorld;
-			sourceTree = "<group>";
-		};
 		DD26DEC510BC04A100750B7C /* DMXOutput */ = {
 			isa = PBXGroup;
 			children = (
@@ -955,7 +985,6 @@
 				DD4AB76810CD210300EA0F09 /* Tracking.h */,
 				DD4AB76910CD210300EA0F09 /* Tracking.mm */,
 				DD4AB76D10CD213700EA0F09 /* Tracking.xib */,
-				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
 			);
 			path = Tracking;
 			sourceTree = "<group>";
@@ -978,6 +1007,7 @@
 				DD5735B410CD2B5B00B788BB /* TrackerObject.mm */,
 			);
 			name = TrackerObject;
+			path = ../Tracking;
 			sourceTree = "<group>";
 		};
 		DD7C61E610D699BC00D5B056 /* shaders */ = {
@@ -1220,8 +1250,10 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
-				DD26DD8810BBEC1600750B7C /* ParallelWorld */,
+				6EFB7B6E10FDE5F300C20033 /* GrowingShadow */,
+				6EFB7AB010FCDF8500C20033 /* Players */,
 				6EFB775910FB86A200C20033 /* Lines */,
+				6EFB7A1610FCD27700C20033 /* Stregkode */,
 				6EF3001B10DD1C6F007A0A98 /* Ulykke */,
 				DD2F6BBA10D8FB0500996CD8 /* Strategi */,
 				DD204E6C10D63D5400BEF03F /* GTA */,
@@ -1271,6 +1303,7 @@
 		DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */ = {
 			isa = PBXGroup;
 			children = (
+				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
 				DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */,
 				DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */,
 				DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */,
@@ -1874,7 +1907,6 @@
 				DDC7728D10B5846F009CAFC7 /* _ExampleOutput.xib in Resources */,
 				DDC7728E10B5846F009CAFC7 /* MainMenu.xib in Resources */,
 				DDC7777410B70079009CAFC7 /* ProjectionSurfaces.xib in Resources */,
-				DD26DD8E10BBECC400750B7C /* ParallelWorld.xib in Resources */,
 				DD26DEC710BC04AA00750B7C /* DMXOutput.xib in Resources */,
 				DD4FE4F210C5307B00A11BE9 /* DanceSteps.xib in Resources */,
 				6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */,
@@ -1909,6 +1941,9 @@
 				6E842D9010DA7A1300F4FB4C /* Arkade.xib in Resources */,
 				6EF3001D10DD1C78007A0A98 /* Ulykke.xib in Resources */,
 				6EFB775E10FB86BE00C20033 /* Lines.xib in Resources */,
+				6EFB7A1810FCD2B300C20033 /* Stregkode.xib in Resources */,
+				6EFB7AB510FCDF9400C20033 /* Players.xib in Resources */,
+				6EFB7B7010FDE5FC00C20033 /* GrowingShadow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2004,7 +2039,6 @@
 				DDDF8F3810B7581400CF73FD /* Warp.mm in Sources */,
 				DDDF8F4710B758AB00CF73FD /* coordWarp.mm in Sources */,
 				6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */,
-				DD26DD8C10BBEC3800750B7C /* ParallelWorld.mm in Sources */,
 				DD26DECB10BC04C100750B7C /* DMXOutput.mm in Sources */,
 				DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */,
 				DD4FE4F110C5307B00A11BE9 /* DanceSteps.mm in Sources */,
@@ -2039,6 +2073,9 @@
 				6E842D8E10DA7A0900F4FB4C /* Arkade.mm in Sources */,
 				6EF3002110DD1C80007A0A98 /* Ulykke.mm in Sources */,
 				6EFB775C10FB86B400C20033 /* Lines.mm in Sources */,
+				6EFB7A1B10FCD2BC00C20033 /* Stregkode.mm in Sources */,
+				6EFB7AB310FCDF8C00C20033 /* Players.mm in Sources */,
+				6EFB7B7310FDE60800C20033 /* GrowingShadow.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
