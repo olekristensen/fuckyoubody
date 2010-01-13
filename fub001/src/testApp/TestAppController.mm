@@ -45,6 +45,7 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addHeader:@"Input"];
 	[pluginManagerController addPlugin:[[Cameras alloc] init]];
 	[pluginManagerController addPlugin:[[Lenses alloc] init]];
+	[pluginManagerController addPlugin:[[Midi alloc] init]];
 	
 	[pluginManagerController addHeader:@"Calculation"];
 	[pluginManagerController addPlugin:[[Tracking alloc] init]];

@@ -210,11 +210,11 @@ static BOOL camerasRespawning[3];
 	NSString * fileNameFromDefaults = [userDefaults stringForKey:[NSString stringWithFormat:@"camera.%i.movie.fileName",camNumber+1]];
 	BOOL foundFileNameFromDefaults = NO;
 	NSFileManager * filesystem = [NSFileManager defaultManager];
-	NSLog([NSString stringWithCString:ofToDataPath("recordedMovies/", true).c_str()]);
+	//NSLog([NSString stringWithCString:ofToDataPath("recordedMovies/", true).c_str()]);
 	NSError *error = nil;
 	NSURL *url = [NSURL URLWithString:[NSString stringWithCString:ofToDataPath("recordedMovies/", true).c_str()]];
 	NSArray * content = [filesystem contentsOfDirectoryAtURL:url includingPropertiesForKeys:[NSArray array] options:0 error:&error];
-	NSLog(@"Found %d files",[content count]);
+	//NSLog(@"Found %d files",[content count]);
 	numFiles = [content count];
 	NSURL * item;
 	int i=0;
@@ -230,14 +230,14 @@ static BOOL camerasRespawning[3];
 			NSString *fileName = nil;
 			[item getResourceValue:&fileName forKey:NSURLNameKey error:NULL];
 			
-			NSLog(fileName);
+			//NSLog(fileName);
 			[movieSelector addItemWithTitle:fileName];
 			[movies addObject:item];
 			if(loadMoviePlease == NO && live == NO){
 				loadMovieString = [NSString stringWithString:fileName];
 				loadMoviePlease = YES;
 			}
-			NSLog(fileNameFromDefaults);
+			//NSLog(fileNameFromDefaults);
 			if ([fileNameFromDefaults compare:loadMovieString]) {
 				NSLog(@"found");
 				foundFileNameFromDefaults = YES;

@@ -2,6 +2,7 @@
 
 #include "Cameras.h"
 #include "Lenses.h"
+#include "Midi.h"
 
 #include "Tracking.h"
 #include "ProjectionSurfaces.h"

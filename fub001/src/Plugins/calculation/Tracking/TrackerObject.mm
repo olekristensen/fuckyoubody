@@ -835,7 +835,7 @@
 	CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
 	
 	ofPoint inPoint = calibrator->coordWarp->inversetransform(pointX, pointY);
-	ofPoint returnPoint = opticalFlow->flowAtPoint(inPoint.x*320, inPoint.y*240);
+	ofPoint returnPoint = inPoint;//opticalFlow->flowAtPoint(inPoint.x*320, inPoint.y*240);
 	
 	returnPoint.x *= 1.0/320; 
 	returnPoint.y *= 1.0/240;

@@ -14,9 +14,7 @@
 }
 
 -(void) initPlugin{
-	NSLog(@"hmmmmmm");
-	s = [NSString stringWithString:@"hmmm"];
-	NSLog(s);
+	;
 }
 
 -(IBAction) pressButton:(id)sender{
