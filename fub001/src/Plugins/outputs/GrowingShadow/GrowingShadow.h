@@ -10,13 +10,18 @@
 
 @interface ShadowLineSegment : NSObject
 {
-	
+@public
+	bool locked;
+	float length;
+	float intendedRotation;
+	float rotation;	
 }
 @end
 
 
 @interface GrowingShadow : ofPlugin {
 	IBOutlet NSSlider * growthSpeedSlider;
+	NSMutableArray * lines;
 }
 
 -(IBAction) startGrow:(id)sender;

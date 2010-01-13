@@ -7,7 +7,7 @@
 #include "ProjectionSurfaces.h"
 #include "CameraCalibration.h"
 
-#include "_ExampleOutput.h"
+//#include "_ExampleOutput.h"
 #include "DanceSteps.h"
 #include "Lines.h"
 #include "Stregkode.h"
