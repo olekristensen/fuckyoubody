@@ -78,6 +78,38 @@ static BOOL camerasRespawning[3];
 
 	}
 
+	[[shutterSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
+	[[shutterSlider midi] setController: [[NSNumber alloc] initWithInt:10+(20*camNumber)]];
+	[[shutterSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
+	[[shutterSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Shutter", camNumber]];
+	
+	[[exposureSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
+	[[exposureSlider midi] setController: [[NSNumber alloc] initWithInt:11+(20*camNumber)]];
+	[[exposureSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
+	[[exposureSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Exposure", camNumber]];
+
+	[[gainSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
+	[[gainSlider midi] setController: [[NSNumber alloc] initWithInt:12+(20*camNumber)]];
+	[[gainSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
+	[[gainSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Gain", camNumber]];
+	
+	[[gammaSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
+	[[gammaSlider midi] setController: [[NSNumber alloc] initWithInt:13+(20*camNumber)]];
+	[[gammaSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
+	[[gammaSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Gamma", camNumber]];
+	
+	[[brightnessSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
+	[[brightnessSlider midi] setController: [[NSNumber alloc] initWithInt:14+(20*camNumber)]];
+	[[brightnessSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
+	[[brightnessSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Brightness", camNumber]];
+	
+/*	
+	IBOutlet NSSegmentedControl * sourceSelector;
+	IBOutlet NSPopUpButton * movieSelector;
+	IBOutlet NSButton * recordButton;
+*/	
+	
+	
 	[self updateMovieList];	
 	
 	saver = new ofxQtVideoSaver();

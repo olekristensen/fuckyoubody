@@ -28,6 +28,7 @@
 	IBOutlet NSPopUpButton	* midiInterface;
 	
 	CFTimeInterval			updateTimeInterval;
+	CFTimeInterval			midiTimeInterval;
 	
 	PYMIDIManager			* manager;
 	PYMIDIVirtualSource		* endpoint;
@@ -35,6 +36,8 @@
 	NSMutableArray			* boundControls;
 	
 	bool					midiInterfaceSelectionFound;
+	bool					updateView;
+
 	
 }
 
@@ -42,10 +45,6 @@
 
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;
-
--(void) redrawArrowColumn;
--(void) redrawValueColumn;
--(void) redrawScaledColumn;
 -(void) midiStatusBlink;
 -(void) midiStatusOn;
 -(void) midiStatusOff;

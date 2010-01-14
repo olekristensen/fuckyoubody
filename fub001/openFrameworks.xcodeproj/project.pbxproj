@@ -13,6 +13,7 @@
 		6E842D9010DA7A1300F4FB4C /* Arkade.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E842D8F10DA7A1300F4FB4C /* Arkade.xib */; };
 		6E9A2A5C10CA102F0003A1B8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
+		6EA7149210FFA89000DB0246 /* PluginUIButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7149110FFA89000DB0246 /* PluginUIButton.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB354F610CEC796008624B2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6EB354F510CEC796008624B2 /* icon.icns */; };
 		6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */; };
@@ -216,6 +217,8 @@
 		6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
+		6EA7149010FFA89000DB0246 /* PluginUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIButton.h; sourceTree = "<group>"; };
+		6EA7149110FFA89000DB0246 /* PluginUIButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIButton.mm; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EB354F510CEC796008624B2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = SOURCE_ROOT; };
@@ -728,6 +731,8 @@
 				7F0F49B610FD073B00E78D4B /* PluginUIMidiBinding.mm */,
 				7F15708810FE881E0013FB48 /* PluginUISegmentedControl.h */,
 				7F15708910FE881E0013FB48 /* PluginUISegmentedControl.mm */,
+				6EA7149010FFA89000DB0246 /* PluginUIButton.h */,
+				6EA7149110FFA89000DB0246 /* PluginUIButton.mm */,
 			);
 			name = PluginUI;
 			sourceTree = "<group>";
@@ -2087,6 +2092,7 @@
 				6EFB7AB310FCDF8C00C20033 /* Players.mm in Sources */,
 				6EFB7B7310FDE60800C20033 /* GrowingShadow.mm in Sources */,
 				7F15708A10FE881E0013FB48 /* PluginUISegmentedControl.mm in Sources */,
+				6EA7149210FFA89000DB0246 /* PluginUIButton.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
