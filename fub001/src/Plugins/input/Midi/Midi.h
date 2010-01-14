@@ -43,6 +43,13 @@
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;
 
+-(void) redrawArrowColumn;
+-(void) redrawValueColumn;
+-(void) redrawScaledColumn;
+-(void) midiStatusBlink;
+-(void) midiStatusOn;
+-(void) midiStatusOff;
+
 -(void) bindPluginUIControl:(NSControl*)control;
 
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;

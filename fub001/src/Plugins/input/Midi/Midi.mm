@@ -14,7 +14,7 @@
 -(void) initPlugin{
 	
 	pthread_mutex_init(&mutex, NULL);
-
+	
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
 	manager = [PYMIDIManager sharedInstance];
@@ -45,26 +45,97 @@
 	NSRect updateRect = NSZeroRect;
 	
 	pthread_mutex_lock(&mutex);
-
+	
 	for (theControl in boundControls){
 		[[theControl midi] update:timeInterval displayTime:outputTime];
-		if(timeInterval - [[theControl midi] lastTimeChanged] > ofRandom(0.02, 20)){
-			[[theControl midi] setSmoothingValue:[[NSNumber alloc] initWithInt:round(ofRandom(0, 1.0)*127)] withTimeInterval: timeInterval];
-		}
 		
-		// mark row for update
-		if([[theControl midi] hasChanged]){
-			updateRect = NSUnionRect(updateRect, [midiMappingsList rectOfRow:rowIndex]);
-			updateView = true;
-		}
-		
+		/** test code 
+		 if(timeInterval - [[theControl midi] lastTimeChanged] > ofRandom(0, 3)){
+		 [[theControl midi] setSmoothingValue:[[NSNumber alloc] initWithInt:round(ofRandom(0, 1.0)*127)] withTimeInterval: timeInterval];
+		 }
+		 
+		 // mark row for update
+		 if([[theControl midi] hasChanged]){
+		 updateRect = NSUnionRect(updateRect, [midiMappingsList rectOfRow:rowIndex]);
+		 updateView = true;
+		 }
+		 **/
 		rowIndex++;
 	}
-
+	
 	pthread_mutex_unlock(&mutex);
 
 	if(updateView){
+		//[self performSelector:@selector(redrawArrowColumn) withObject:nil afterDelay:0.5];
+		//[self performSelector:@selector(redrawValueColumn) withObject:nil afterDelay:0.5];
+		//[self performSelector:@selector(redrawScaledColumn) withObject:nil afterDelay:0.5];
 		//[midiMappingsList setNeedsDisplayInRect:updateRect];
+		[midiMappingsList reloadData];
+	}
+}
+
+BOOL isDataByte (Byte b)		{ return b < 0x80; }
+BOOL isStatusByte (Byte b)		{ return b >= 0x80 && b < 0xF8; }
+BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
+
+- (void)processMIDIPacketList:(MIDIPacketList*)packetList sender:(id)sender {
+	
+	MIDIPacket * packet = &packetList->packet[0];
+	
+	bool updateView = false;
+	
+	for (int i = 0; i < packetList->numPackets; i++) {
+		
+		for (int j = 0; j < packet->length; j+=3) {
+			
+			bool noteOn = false;
+			bool noteOff = false;
+			bool controlChange;
+			int channel = -1;
+			int number = -1;
+			int value = -1;
+			
+			if(packet->data[0+j] >= 144 && packet->data[0+j] <= 159){
+				noteOn = true;
+				channel = packet->data[0+j] - 143;
+				number = packet->data[1+j];
+				value = packet->data[2+j];
+			}
+			if(packet->data[0+j] >= 128 && packet->data[0+j] <= 143){
+				noteOff = true;
+				channel = packet->data[0+j] - 127;
+				number = packet->data[1+j];
+				value = 0; //packet->data[2+j];
+			}
+			if(packet->data[0+j] >= 176 && packet->data[0+j] <= 191){
+				controlChange = true;
+				channel = packet->data[0+j] - 175;
+				number = packet->data[1+j];
+				value = packet->data[2+j];
+			}
+			if([self isEnabled]){
+				[self midiStatusBlink];
+				
+				id theControl;
+				
+				pthread_mutex_lock(&mutex);
+				for (theControl in boundControls){
+					if ([[[theControl midi] channel] intValue] == channel) {
+						if(controlChange){
+							if ([[theControl midiController] intValue] == number) {
+								[[theControl midi] setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
+								updateView = true;
+							}
+						}
+					}
+				}
+				pthread_mutex_unlock(&mutex);
+			}
+			
+		}	
+		packet = MIDIPacketNext (packet);
+	}
+	if(updateView){
 		[midiMappingsList reloadData];
 	}
 }
@@ -88,6 +159,8 @@
 		if ([userDefaults stringForKey:@"midi.interface"] != nil) {
 			if([[endpointIterator displayName] isEqualToString:[userDefaults stringForKey:@"midi.interface"]]){
 				[midiInterface selectItem:[midiInterface lastItem]];
+				endpoint = endpointIterator;
+				[endpoint addReceiver:self];
 			}
 		}
 	}
@@ -110,6 +183,7 @@
 
 -(IBAction) selectMidiInterface:(id)sender{
 	endpoint = [[sender selectedItem] representedObject];
+	[endpoint addReceiver:self];
 	[userDefaults setValue:[sender titleOfSelectedItem] forKey:@"midi.interface"];
 }
 
@@ -133,8 +207,9 @@
 	theValue = [[NSString alloc] initWithString:@""];
 	
 	if([[[aTableColumn headerCell] stringValue] isEqualToString:@"➜"]){
-		if([[theControl midi] hasChanged]){
+		if(updateTimeInterval - [[theControl midi] lastTimeChanged] < 0.5){
 			theValue = [theValue stringByAppendingString:@"➜"];
+			[self performSelector:@selector(redrawArrowColumn) withObject:nil afterDelay:0.5];
 		}
 	} 
 	
@@ -143,21 +218,25 @@
 		theValue = [theValue stringByAppendingString:@"."];
 		theValue = [theValue stringByAppendingString:NSStringFromSelector([theControl action])];
 	} 
-
+	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Channel"]){
 		theValue = [[theControl midi] channel];
 	} 
-
-	 else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Controller"]){
+	
+	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Controller"]){
 		theValue = [[theControl midi] controller];
 	}
 	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Value"]){
 		theValue = [[theControl midi] value];
 	} 
-
+	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Actual"]){
-		theValue =  [[NSNumber alloc] initWithFloat: [theControl floatValue]];
+		theValue = [[theControl midi] stringValue];
+	}
+	
+	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Visual"]){
+		theValue = [[theControl midi] value];
 	}
 	
 	return theValue;
@@ -166,6 +245,33 @@
 - (int)numberOfRowsInTableView:(NSTableView *)aTableView
 {
     return [boundControls count];
+}
+
+-(void) redrawArrowColumn{
+	[midiMappingsList setNeedsDisplayInRect:[midiMappingsList rectOfColumn:0]];
+}
+
+-(void) redrawValueColumn{
+	[midiMappingsList setNeedsDisplayInRect:[midiMappingsList rectOfColumn:3]];
+}
+
+-(void) redrawScaledColumn{
+	[midiMappingsList setNeedsDisplayInRect:[midiMappingsList rectOfColumn:5]];
+}
+
+-(void) midiStatusBlink{
+	[self midiStatusOn];
+	//[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(midiStatusOff) object:nil];
+	[self performSelector:@selector(midiStatusOff) withObject:nil afterDelay:0.5];
+}
+
+-(void) midiStatusOn{
+	[[controller midiStatus] setState:NSOnState];
+}
+
+-(void) midiStatusOff{
+	NSLog(@"off");
+	[[controller midiStatus] setState:NSOffState];
 }
 
 -(void) bindPluginUIControl:(NSControl*)control {

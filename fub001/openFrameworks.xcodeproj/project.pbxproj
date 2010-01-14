@@ -38,6 +38,7 @@
 		6EFB7B7010FDE5FC00C20033 /* GrowingShadow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EFB7B6F10FDE5FC00C20033 /* GrowingShadow.xib */; };
 		6EFB7B7310FDE60800C20033 /* GrowingShadow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EFB7B7210FDE60800C20033 /* GrowingShadow.mm */; };
 		7F0F49B710FD073B00E78D4B /* PluginUIMidiBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F49B610FD073B00E78D4B /* PluginUIMidiBinding.mm */; };
+		7F15708A10FE881E0013FB48 /* PluginUISegmentedControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F15708910FE881E0013FB48 /* PluginUISegmentedControl.mm */; };
 		7F8133BF10FB8E5A00EE2A49 /* Midi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8133BE10FB8E5A00EE2A49 /* Midi.mm */; };
 		7F8133C310FB8ED100EE2A49 /* Midi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8133C210FB8ED100EE2A49 /* Midi.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
@@ -254,6 +255,8 @@
 		6EFBD22F10C691DF008D62C0 /* fuckYouBuddy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "fuckYouBuddy-Info.plist"; sourceTree = "<group>"; };
 		7F0F49B510FD073B00E78D4B /* PluginUIMidiBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIMidiBinding.h; sourceTree = "<group>"; };
 		7F0F49B610FD073B00E78D4B /* PluginUIMidiBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIMidiBinding.mm; sourceTree = "<group>"; };
+		7F15708810FE881E0013FB48 /* PluginUISegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUISegmentedControl.h; sourceTree = "<group>"; };
+		7F15708910FE881E0013FB48 /* PluginUISegmentedControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISegmentedControl.mm; sourceTree = "<group>"; };
 		7F8133BD10FB8E5A00EE2A49 /* Midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Midi.h; path = Midi/Midi.h; sourceTree = "<group>"; };
 		7F8133BE10FB8E5A00EE2A49 /* Midi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Midi.mm; path = Midi/Midi.mm; sourceTree = "<group>"; };
 		7F8133C210FB8ED100EE2A49 /* Midi.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Midi.xib; path = Midi/Midi.xib; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 				6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */,
 				7F0F49B510FD073B00E78D4B /* PluginUIMidiBinding.h */,
 				7F0F49B610FD073B00E78D4B /* PluginUIMidiBinding.mm */,
+				7F15708810FE881E0013FB48 /* PluginUISegmentedControl.h */,
+				7F15708910FE881E0013FB48 /* PluginUISegmentedControl.mm */,
 			);
 			name = PluginUI;
 			sourceTree = "<group>";
@@ -2081,6 +2086,7 @@
 				6EFB7A1B10FCD2BC00C20033 /* Stregkode.mm in Sources */,
 				6EFB7AB310FCDF8C00C20033 /* Players.mm in Sources */,
 				6EFB7B7310FDE60800C20033 /* GrowingShadow.mm in Sources */,
+				7F15708A10FE881E0013FB48 /* PluginUISegmentedControl.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
