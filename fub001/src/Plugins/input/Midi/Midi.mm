@@ -26,6 +26,7 @@
 	boundControls = [[[NSMutableArray alloc] initWithCapacity:2] retain];
 	
 	[midiMappingsList setDataSource:self];
+	[midiMappingsListForPrint setDataSource:self];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(midiSetupChanged) name:@"PYMIDISetupChanged" object:nil];
 	
@@ -243,8 +244,18 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
     return [boundControls count];
 }
 
+-(IBAction) printMidiMappingsList:(id)sender{
+	[midiMappingsListForPrint reloadData];
+
+	[[NSPrintInfo sharedPrintInfo] setHorizontalPagination:NSFitPagination];
+	[[NSPrintInfo sharedPrintInfo] setVerticalPagination:NSAutoPagination];
+	
+	[[NSPrintOperation printOperationWithView:midiMappingsListForPrint printInfo:[NSPrintInfo sharedPrintInfo]] 
+	 runOperation];
+
+}
+
 -(void) bindPluginUIControl:(NSControl*)control {
-	NSLog(@"[Midi bindPluginUIcontrol]");
 	pthread_mutex_lock(&mutex);
 	[boundControls removeObjectIdenticalTo:control];
 	[boundControls addObject:[control retain]];

@@ -98,7 +98,6 @@
 -(IBAction) addImage:(id)sender;
 -(IBAction) calibrate:(id)sender;
 -(IBAction) reset:(id)sender;
--(IBAction) printChessboard:(id)sender;
 
 -(void) drawImage:(IplImage*)image atLocationX:(float)x Y:(float)y withWidth:(float)width height: (float)height;
 

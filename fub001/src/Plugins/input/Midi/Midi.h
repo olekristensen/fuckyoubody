@@ -25,6 +25,8 @@
 	NSUserDefaults			* userDefaults;
 	
 	IBOutlet NSTableView	* midiMappingsList;
+	IBOutlet NSTableView	* midiMappingsListForPrint;
+	IBOutlet NSView			* printHeaderView;
 	IBOutlet NSPopUpButton	* midiInterface;
 	
 	CFTimeInterval			updateTimeInterval;
@@ -42,12 +44,10 @@
 }
 
 -(IBAction) selectMidiInterface:(id)sender;
+-(IBAction) printMidiMappingsList:(id)sender;
 
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;
--(void) midiStatusBlink;
--(void) midiStatusOn;
--(void) midiStatusOff;
 
 -(void) bindPluginUIControl:(NSControl*)control;
 

@@ -102,9 +102,15 @@ static BOOL camerasRespawning[3];
 	[[brightnessSlider midi] setController: [[NSNumber alloc] initWithInt:14+(20*camNumber)]];
 	[[brightnessSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
 	[[brightnessSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Brightness", camNumber]];
+
+	[[sourceSelector midi] setChannel: [[NSNumber alloc] initWithInt:1]];
+	[[sourceSelector midi] setController: [[NSNumber alloc] initWithInt:17+(20*camNumber)]];
+	[[sourceSelector midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:0]];
+	[[sourceSelector midi] setLabel: [NSString stringWithFormat:@"Camera %i Source", camNumber]];
+	
+	
 	
 /*	
-	IBOutlet NSSegmentedControl * sourceSelector;
 	IBOutlet NSPopUpButton * movieSelector;
 	IBOutlet NSButton * recordButton;
 */	
