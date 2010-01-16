@@ -10,6 +10,8 @@
 #include "Midi.h"
 
 @implementation Midi
+@synthesize boundControls;
+
 
 -(void) initPlugin{
 	
@@ -23,9 +25,8 @@
 	
 	updateView = false;
 	
-	boundControls = [[[NSMutableArray alloc] initWithCapacity:2] retain];
+	[self setBoundControls:[boundControlsController content]]; //[[[NSMutableArray alloc] initWithCapacity:2] retain];
 	
-	[midiMappingsList setDataSource:self];
 	[midiMappingsListForPrint setDataSource:self];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(midiSetupChanged) name:@"PYMIDISetupChanged" object:nil];
@@ -126,6 +127,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 						if(controlChange){
 							if ([[theControl midiController] intValue] == number) {
 								[[theControl midi] setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
+								[midiMappingsList setNeedsDisplayInRect:[midiMappingsList rectOfRow:rowIndex]];
 							}
 						}
 					}
@@ -260,7 +262,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	[boundControls removeObjectIdenticalTo:control];
 	[boundControls addObject:[control retain]];
 	pthread_mutex_unlock(&mutex);
-	[midiMappingsList reloadData];
+	//[midiMappingsList reloadData];
 }
 
 @end

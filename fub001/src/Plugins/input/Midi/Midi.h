@@ -35,13 +35,15 @@
 	PYMIDIManager			* manager;
 	PYMIDIVirtualSource		* endpoint;
 	
+	IBOutlet NSArrayController		* boundControlsController;
 	NSMutableArray			* boundControls;
 	
 	bool					midiInterfaceSelectionFound;
 	bool					updateView;
-
 	
 }
+
+@property (assign) NSMutableArray * boundControls;
 
 -(IBAction) selectMidiInterface:(id)sender;
 -(IBAction) printMidiMappingsList:(id)sender;
