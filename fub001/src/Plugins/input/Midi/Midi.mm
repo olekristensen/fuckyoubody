@@ -25,7 +25,9 @@
 	
 	updateView = false;
 	
-	[self setBoundControls:[boundControlsController content]]; //[[[NSMutableArray alloc] initWithCapacity:2] retain];
+	boundControls = [[[NSMutableArray alloc] initWithCapacity:2] retain];
+	
+	//[self setBoundControls:[boundControlsController content]]; //
 	
 	[midiMappingsListForPrint setDataSource:self];
 	
@@ -43,13 +45,13 @@
 	
 	updateTimeInterval = timeInterval;
 	
-	id theControl;
+	id theBinding;
 	int rowIndex = 0;
 	
 	pthread_mutex_lock(&mutex);
 	
-	for (theControl in boundControls){
-		[[theControl midi] update:timeInterval displayTime:outputTime];
+	for (theBinding in boundControls){
+		[theBinding update:timeInterval displayTime:outputTime];
 		/** test code 
 		 if(timeInterval - [[theControl midi] lastTimeChanged] > ofRandom(0, 3)){
 		 [[theControl midi] setSmoothingValue:[[NSNumber alloc] initWithInt:round(ofRandom(0, 1.0)*127)] withTimeInterval: timeInterval];
@@ -67,7 +69,7 @@
 	pthread_mutex_unlock(&mutex);
 
 	if(timeInterval - midiTimeInterval < 2) {
-		[midiMappingsList reloadData];
+		//[midiMappingsList reloadData];
 	}
 	
 	if(timeInterval - midiTimeInterval > 0.15) {
@@ -116,17 +118,17 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 			}
 			if([self isEnabled]){
 							
-				id theControl;
+				id theBinding;
 				
 				pthread_mutex_lock(&mutex);
 				
 				int rowIndex = 0;
 				
-				for (theControl in boundControls){
-					if ([[[theControl midi] channel] intValue] == channel) {
+				for (theBinding in boundControls){
+					if ([[theBinding channel] intValue] == channel) {
 						if(controlChange){
-							if ([[theControl midiController] intValue] == number) {
-								[[theControl midi] setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
+							if ([[theBinding controller] intValue] == number) {
+								[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
 								[midiMappingsList setNeedsDisplayInRect:[midiMappingsList rectOfRow:rowIndex]];
 							}
 						}
@@ -197,45 +199,45 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-    id theControl, theValue;
+    id theBinding, theValue;
 	
 	//NSLog([[aTableColumn headerCell] stringValue]);
 	
     NSParameterAssert(rowIndex >= 0 && rowIndex < [boundControls count]);
 	pthread_mutex_lock(&mutex);
-    theControl = [boundControls objectAtIndex:rowIndex];
+    theBinding = [boundControls objectAtIndex:rowIndex];
 	pthread_mutex_unlock(&mutex);
 	
 	theValue = [[NSString alloc] initWithString:@""];
 	
 	if([[[aTableColumn headerCell] stringValue] isEqualToString:@"➜"]){
-		if(updateTimeInterval - [[theControl midi] lastTimeChanged] < 0.20){
+		if(updateTimeInterval - [theBinding lastTimeChanged] < 0.20){
 			theValue = [theValue stringByAppendingString:@"➜"];
 		}
 	} 
 	
 	if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Element"]){
-		theValue = [[theControl midi] label];
+		theValue = [theBinding label];
 	} 
 	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Channel"]){
-		theValue = [[theControl midi] channel];
+		theValue = [theBinding channel];
 	} 
 	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Controller"]){
-		theValue = [[theControl midi] controller];
+		theValue = [theBinding controller];
 	}
 	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Value"]){
-		theValue = [[theControl midi] value];
+		theValue = [theBinding value];
 	} 
 	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Actual"]){
-		theValue = [[theControl midi] stringValue];
+		theValue = [theBinding stringValue];
 	}
 	
 	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Visual"]){
-		theValue = [[theControl midi] value];
+		theValue = [theBinding value];
 	}
 	
 	return theValue;
@@ -257,10 +259,10 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 }
 
--(void) bindPluginUIControl:(NSControl*)control {
+-(void) bindPluginUIControl:(PluginUIMidiBinding*)binding {
 	pthread_mutex_lock(&mutex);
-	[boundControls removeObjectIdenticalTo:control];
-	[boundControls addObject:[control retain]];
+	[boundControls removeObjectIdenticalTo:binding];
+	[boundControlsController addObject:[binding retain]];
 	pthread_mutex_unlock(&mutex);
 	//[midiMappingsList reloadData];
 }

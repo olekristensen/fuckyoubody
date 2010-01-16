@@ -50,8 +50,7 @@
 
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;
-
--(void) bindPluginUIControl:(NSControl*)control;
+-(void) bindPluginUIControl:(PluginUIMidiBinding*)binding;
 
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 
