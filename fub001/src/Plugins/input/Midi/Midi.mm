@@ -129,7 +129,8 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 						if(controlChange){
 							if ([[theBinding controller] intValue] == number) {
 								[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
-								[midiMappingsList setNeedsDisplayInRect:[midiMappingsList rectOfRow:rowIndex]];
+								// send notification på binding objektet til arraycontrolleren, da dets properties ikke trigger en update
+								
 							}
 						}
 					}
@@ -194,58 +195,6 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 -(void)midiSetupChanged {
 	[self buildMidiInterfacePopUp];
-}
-
-
--(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
-{
-    id theBinding, theValue;
-	
-	//NSLog([[aTableColumn headerCell] stringValue]);
-	
-    NSParameterAssert(rowIndex >= 0 && rowIndex < [boundControls count]);
-	pthread_mutex_lock(&mutex);
-    theBinding = [boundControls objectAtIndex:rowIndex];
-	pthread_mutex_unlock(&mutex);
-	
-	theValue = [[NSString alloc] initWithString:@""];
-	
-	if([[[aTableColumn headerCell] stringValue] isEqualToString:@"➜"]){
-		if(updateTimeInterval - [theBinding lastTimeChanged] < 0.20){
-			theValue = [theValue stringByAppendingString:@"➜"];
-		}
-	} 
-	
-	if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Element"]){
-		theValue = [theBinding label];
-	} 
-	
-	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Channel"]){
-		theValue = [theBinding channel];
-	} 
-	
-	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Controller"]){
-		theValue = [theBinding controller];
-	}
-	
-	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Value"]){
-		theValue = [theBinding value];
-	} 
-	
-	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Actual"]){
-		theValue = [theBinding stringValue];
-	}
-	
-	else if([[[aTableColumn headerCell] stringValue] isEqualToString:@"Visual"]){
-		theValue = [theBinding value];
-	}
-	
-	return theValue;
-}
-
-- (int)numberOfRowsInTableView:(NSTableView *)aTableView
-{
-    return [boundControls count];
 }
 
 -(IBAction) printMidiMappingsList:(id)sender{
