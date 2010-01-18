@@ -208,9 +208,20 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	[[NSPrintInfo sharedPrintInfo] setHorizontalPagination:NSFitPagination];
 	[[NSPrintInfo sharedPrintInfo] setVerticalPagination:NSAutoPagination];
 	
+
+		NSPrintOperation *op = [NSPrintOperation
+								printOperationWithView:midiMappingsListForPrint
+								printInfo:[NSPrintInfo sharedPrintInfo]];
+		[op runOperationModalForWindow:[[NSApplication sharedApplication] mainWindow]
+							  delegate:self
+						didRunSelector:nil
+						   contextInfo:NULL];
+
+	/**
+	
 	[[NSPrintOperation printOperationWithView:midiMappingsListForPrint printInfo:[NSPrintInfo sharedPrintInfo]] 
 	 runOperation];
-
+	 **/
 }
 
 -(void) bindPluginUIControl:(PluginUIMidiBinding*)binding {
