@@ -12,9 +12,13 @@
 {
 @public
 	bool locked;
-	float length;
+	float intendedLength;
 	float intendedRotation;
+	ofxVec2f * pos;
+	ofxVec2f * force;
+
 	float rotation;	
+	float length;
 }
 @end
 
