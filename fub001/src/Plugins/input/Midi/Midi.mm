@@ -122,6 +122,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 				
 				pthread_mutex_lock(&mutex);
 				
+				NSMutableIndexSet * changedIndexes = [[NSMutableIndexSet alloc] init];
 				int rowIndex = 0;
 				
 				for (theBinding in boundControls){
@@ -129,13 +130,20 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 						if(controlChange){
 							if ([[theBinding controller] intValue] == number) {
 								[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
-								// send notification på binding objektet til arraycontrolleren, da dets properties ikke trigger en update
-								
+								[changedIndexes addIndex:rowIndex];
+
 							}
 						}
 					}
 					rowIndex++;
 				}
+				
+				[boundControlsController willChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"value"];
+				[boundControlsController willChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"stringValue"];
+				
+				[boundControlsController didChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"value"];
+				[boundControlsController didChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"stringValue"];
+
 				pthread_mutex_unlock(&mutex);
 			}
 		}	
