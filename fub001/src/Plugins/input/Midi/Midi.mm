@@ -29,8 +29,6 @@
 	
 	//[self setBoundControls:[boundControlsController content]]; //
 	
-	[midiMappingsListForPrint setDataSource:self];
-	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(midiSetupChanged) name:@"PYMIDISetupChanged" object:nil];
 	
 	[self buildMidiInterfacePopUp];
@@ -45,6 +43,8 @@
 	
 	updateTimeInterval = timeInterval;
 	
+	NSMutableIndexSet * rowIndexesChanged = [[NSMutableIndexSet alloc] init];
+
 	id theBinding;
 	int rowIndex = 0;
 	
@@ -52,26 +52,18 @@
 	
 	for (theBinding in boundControls){
 		[theBinding update:timeInterval displayTime:outputTime];
-		/** test code 
-		 if(timeInterval - [[theControl midi] lastTimeChanged] > ofRandom(0, 3)){
-		 [[theControl midi] setSmoothingValue:[[NSNumber alloc] initWithInt:round(ofRandom(0, 1.0)*127)] withTimeInterval: timeInterval];
-		 }
-		 
-		 // mark row for update
-		 if([[theControl midi] hasChanged]){
-		 updateRect = NSUnionRect(updateRect, [midiMappingsList rectOfRow:rowIndex]);
-		 updateView = true;
-		 }
-		 **/
+		if([theBinding hasChanged]){
+			NSInteger row = [boundControls indexOfObject:theBinding];
+			if (row != NSNotFound) {								
+				[rowIndexesChanged addIndex:row];
+			}			
+		}
 		rowIndex++;
 	}
-	
 	pthread_mutex_unlock(&mutex);
 
-	if(timeInterval - midiTimeInterval < 2) {
-		//[midiMappingsList reloadData];
-	}
-	
+	[self performSelectorOnMainThread:@selector(_reloadRows:) withObject:rowIndexesChanged waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];	
+
 	if(timeInterval - midiTimeInterval > 0.15) {
 		[[controller midiStatus] setState:NSOffState];
 	}
@@ -84,6 +76,8 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 - (void)processMIDIPacketList:(MIDIPacketList*)packetList sender:(id)sender {
 	
 	midiTimeInterval = updateTimeInterval;
+	
+	NSMutableIndexSet * rowIndexesChanged = [[NSMutableIndexSet alloc] init];
 
 	MIDIPacket * packet = &packetList->packet[0];
 	
@@ -130,27 +124,31 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 						if(controlChange){
 							if ([[theBinding controller] intValue] == number) {
 								[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
-								[changedIndexes addIndex:rowIndex];
-
+								NSInteger row = [boundControls indexOfObject:theBinding];
+								if (row != NSNotFound) {								
+									[rowIndexesChanged addIndex:row];
+								}
 							}
 						}
 					}
 					rowIndex++;
 				}
 				
-				[boundControlsController willChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"value"];
-				[boundControlsController willChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"stringValue"];
-				
-				[boundControlsController didChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"value"];
-				[boundControlsController didChange:NSKeyValueChangeReplacement valuesAtIndexes:changedIndexes forKey:@"stringValue"];
-
 				pthread_mutex_unlock(&mutex);
 			}
 		}	
 		packet = MIDIPacketNext (packet);
 	}
-	
 	[[controller midiStatus] setState:NSOnState];
+	[self performSelectorOnMainThread:@selector(_reloadRows:) withObject:rowIndexesChanged waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
+	[rowIndexesChanged release];
+}
+
+- (void)_reloadRows:(id)dirtyRows {
+	pthread_mutex_lock(&mutex);
+	[midiMappingsList reloadDataForRowIndexes:dirtyRows columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(2, 6)]];
+	pthread_mutex_unlock(&mutex);
+
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -221,7 +219,6 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	[boundControls removeObjectIdenticalTo:binding];
 	[boundControlsController addObject:[binding retain]];
 	pthread_mutex_unlock(&mutex);
-	//[midiMappingsList reloadData];
 }
 
 @end
