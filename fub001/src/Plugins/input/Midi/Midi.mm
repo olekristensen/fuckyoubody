@@ -54,7 +54,7 @@
 		[theBinding update:timeInterval displayTime:outputTime];
 		if([theBinding hasChanged] || [theBinding activity]){
 			NSInteger row = [boundControls indexOfObject:theBinding];
-			if (row != NSNotFound) {								
+			if (row != NSNotFound) {
 				[rowIndexesChanged addIndex:row];
 			}			
 		}
