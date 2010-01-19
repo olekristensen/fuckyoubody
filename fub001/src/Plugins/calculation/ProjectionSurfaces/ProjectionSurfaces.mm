@@ -623,4 +623,45 @@
 	return [[self getCurrentProjector]->surfaces objectAtIndex:[surfacesButton indexOfSelectedItem]];	
 }
 
+-(ofxPoint2f) getFloorCoordinateOfProjector:(int)proj{
+	ofxVec2f pf11 = [self convertPoint:ofxPoint2f(0.15,1) fromProjection:"Front" toSurface:"Floor"];
+	ofxVec2f pf12 = [self convertPoint:ofxPoint2f(0.15,0) fromProjection:"Front" toSurface:"Floor"];
+	ofxVec2f pf21 = [self convertPoint:ofxPoint2f(0.45,1) fromProjection:"Front" toSurface:"Floor"];
+	ofxVec2f pf22 = [self convertPoint:ofxPoint2f(0.45,0) fromProjection:"Front" toSurface:"Floor"];
+	
+	
+	ofxVec2f pb11 = [self convertPoint:ofxPoint2f(0.55,1) fromProjection:"Back" toSurface:"Floor"];
+	ofxVec2f pb21 = [self convertPoint:ofxPoint2f(0.95,1) fromProjection:"Back" toSurface:"Floor"];
+	ofxVec2f pb12 = [self convertPoint:ofxPoint2f(0.55,0) fromProjection:"Back" toSurface:"Floor"];
+	ofxVec2f pb22 = [self convertPoint:ofxPoint2f(0.95,0) fromProjection:"Back" toSurface:"Floor"];
+	
+	//B i y = a+bx
+	float bf1 =((float)pf12.y-pf11.y)/(pf12.x-pf11.x);
+	float bf2 =((float)pf22.y-pf21.y)/(pf22.x-pf21.x);
+	
+	float bb1 =((float)pb12.y-pb11.y)/(pb12.x-pb11.x);
+	float bb2 =((float)pb22.y-pb21.y)/(pb22.x-pb21.x);
+	
+	//A i y = a+bx <=> a = y - bx
+	float af1 = pf11.y - bf1*pf11.x;
+	float af2 = pf21.y - bf2*pf21.x;
+	
+	float ab1 = pb11.y - bb1*pb11.x;
+	float ab2 = pb21.y - bb2*pb21.x;
+	
+	//intersection xi = - (a1 - a2) / (b1 - b2) yi = a1 + b1xi
+	ofxPoint2f iFront = ofxPoint2f(-(af1 - af2)/(bf1-bf2) , af1 + bf1*(-(af1 - af2)/(bf1-bf2)));
+	ofxPoint2f iBack = ofxPoint2f(-(ab1 - ab2)/(bb1-bb2) , ab1 + bb1*(-(ab1 - ab2)/(bb1-bb2)));
+	
+	if(proj == 0){
+		return iFront;
+	} else if (proj == 1){
+		return iBack;
+	}
+	
+}
+-(ofxVec2f) getFloorVectorBetweenProjectors{
+	return [self getFloorCoordinateOfProjector:0] - [self getFloorCoordinateOfProjector:1];
+}
+
 @end

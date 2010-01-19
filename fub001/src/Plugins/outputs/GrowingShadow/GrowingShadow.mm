@@ -1,160 +1,137 @@
 #import "GrowingShadow.h"
 #import "Tracking.h"
-
-@implementation ShadowLineSegment
-@end
+#import "Cameras.h"
 
 
 @implementation GrowingShadow
 
 -(void) initPlugin{
-	lines = [[NSMutableArray array] retain];
+	
+}
+
+-(void) setup{
+	shadow = new ofxCvGrayscaleImage();
+	shadow->allocate(ShadowSizeX,ShadowSizeY);
+	shadow->set(255);
+	shadowTemp = new ofxCvGrayscaleImage();
+	shadowTemp->allocate(ShadowSizeX,ShadowSizeY);
+	shadowTemp->set(255);
+	
+	newestShadowTemp = new ofxCvGrayscaleImage();
+	newestShadowTemp->allocate(ShadowSizeX,ShadowSizeY);
+	newestShadowTemp->set(255);	
+	
+	for(int i=0;i<BufferLength;i++){
+		ofxCvGrayscaleImage  img;
+		img.allocate(ShadowSizeX,ShadowSizeY);
+		img.set(0);
+		history.push_back(img);
+	}
+	
+	histPos = 0;
+	
+	scalePoint = new ofxVec2f;
+
+
 }
 
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	ShadowLineSegment * seg;
-	ofxVec2f pos = ofxVec2f(0,0);
-	ofxVec2f lastDir = ofxVec2f(1,0);
-	ofxVec2f lastPos = ofxVec2f();
-	float rot = 0;
 	
-	
-	if([lines count] > 0){
-		ShadowLineSegment * prevSeg = [lines lastObject];
-		ShadowLineSegment * nextSeg;
-		int i=0;
-		for(seg in lines){
-			i++;
-			if(i >= [lines count])
-				i = 0;		
-			
-			nextSeg = [lines objectAtIndex:i];
-			
-			
-			pos = *seg->pos;
-			seg->rotation = (*prevSeg->pos-pos).angleRad((pos-*nextSeg->pos));
-			seg->length = (pos-*prevSeg->pos).length();
-			
-			seg->force = new ofxVec2f();
-			
-			prevSeg = seg;
-		}		
+	if ([[GetPlugin(Cameras) getCameraWithId:1] isFrameNew]) {
+		histPos++;
+		if(histPos >= history.size())
+			histPos = 0;
 		
-		i=0;
-		prevSeg = [lines lastObject];
-		for(seg in lines){
-			i++;
-			if(i >= [lines count])
-				i = 0;
-			
-			nextSeg = [lines objectAtIndex:i];
-					
-			
-			ofxVec2f pdir = (*seg->pos - *prevSeg->pos).normalized();
-			ofxVec2f ndir = (*nextSeg->pos - *seg->pos).normalized();
-			
-//			ofxVec2f up = (ofxVec2f(-pdir.y, pdir.x) +  ofxVec2f(-ndir.y, ndir.x)).normalized();
-			ofxVec2f up = pdir.rotateRad(-HALF_PI + seg->rotation*0.5);
-			*seg->force += up * (seg->intendedRotation - seg->rotation)*00.005;
-			
-			*seg->force -= pdir * (seg->intendedLength - seg->length)*0.1;
-			
-			
-			prevSeg = seg;
-		}
+		newestShadowTemp->set(255);
 		
-		for(seg in lines){
-			if(!seg->locked){
-				*seg->vel *= 0.8;
-				*seg->vel += *seg->force * 1.0/ofGetFrameRate();
-				*seg->pos += *seg->vel;
+		Blob * b;
+		for(b in [tracker(1) blobs]){
+			CvPoint * pointArray = new CvPoint[ [b nPts] ];
+			
+			for( int u = 0; u < [b nPts]; u++){
+				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Back" toSurface:"Floor"];
+				pointArray[u].x = int(p.x*ShadowSizeX);
+				pointArray[u].y = int(p.y*ShadowSizeY);
+				//				cout<<pointArray[u].x<<"  "<<pointArray[u].y<<endl;
 			}
+			int nPts = [b nPts];
+			cvFillPoly(newestShadowTemp->getCvImage(),&pointArray , &nPts, 1, cvScalar(0, 0, 0, 255.0));			
+			newestShadowTemp->flagImageChanged();
 		}
+		
+		history[histPos] = *newestShadowTemp;	
+
+	}
+
+	
+	int pos = histPos - [delaySlider  intValue];
+	while(pos < 0){
+		pos += BufferLength;
 	}
 	
+	cvAddWeighted(shadow->getCvImage() ,[fadeSlider floatValue]/100.0, history[pos].getCvImage(),1, -0.45, shadowTemp->getCvImage());
+	*shadow = *shadowTemp;
 	
-	
-	if([growthSpeedSlider floatValue] != 0 && [lines count] > 0){
-		if(ofRandom(0, 30) < 1){
-						ShadowLineSegment * seg = [lines objectAtIndex:ofRandom(0, [lines count])];
-			//ShadowLineSegment * seg = [lines objectAtIndex:3];
-			seg->intendedLength += [growthSpeedSlider floatValue]/5000.0;
-		}
+	if([blurSlider intValue] > 0){
+		shadow->blur([blurSlider intValue]);
 	}
 	
+	if([thresholdSlider intValue] > 0){
+		shadow->threshold([thresholdSlider intValue]);
+	}
+	
+	shadow->flagImageChanged();
 	
 }
-
 -(IBAction) startGrow:(id)sender{
-	[lines removeAllObjects];
-	
-	if([tracker(0) numPersistentBlobs] > 0){
-		PersistentBlob * pblob = [[tracker(0) persistentBlobs] objectAtIndex:0];
-		Blob * blob = [[pblob blobs] objectAtIndex:0];
-		
-		ofxVec2f lastDir = ofxVec2f(1,0);
-		ofxVec2f lastPos = ofxVec2f();
-		for(int i=0;i<[blob nPts];i++){
-			ShadowLineSegment * seg = [[ShadowLineSegment alloc]init] ;
-			ofxVec2f pos = [blob pts][i];
-			seg->locked = false;
-			if(i == 0 || i == [blob nPts]-1){
-				seg->locked = true;				
+	ofPoint highestPoint = ofPoint(-1,-1);
+	Blob * b;
+	for(b in [tracker(1) blobs]){
+		for( int u = 0; u < [b nPts]; u++){
+			if(highestPoint.x == -1 || [b pts][u].y > highestPoint.y){
+				highestPoint = [b pts][u];
 			}
-			seg->vel = new ofxVec2f();
-			seg->pos = new ofxVec2f(pos);
-			[lines addObject:seg];
 		}
-	
-		ShadowLineSegment * prevSeg = [lines lastObject];
-		ShadowLineSegment * nextSeg, *seg;
-		int i=0;
-		for(seg in lines){
-			i++;
-			if(i >= [lines count])
-				i = 0;			
-			nextSeg = [lines objectAtIndex:i];
-			
-			
-			ofxVec2f pos = *seg->pos;
-			seg->intendedRotation = (*prevSeg->pos-pos).angleRad((pos-*nextSeg->pos));
-			seg->intendedLength = (pos-*prevSeg->pos).length();
-			
-			prevSeg = seg;
-		}				
-		cout<<"Num points: "<<[blob nPts]<<endl;		
 	}
+	if(highestPoint.y != -1){
+		*scalePoint = [GetPlugin(ProjectionSurfaces) convertPoint:(ofxPoint2f)highestPoint fromProjection:"Back" toSurface:"Floor"];
+	}
+	
+	cout<<"Scale point set: x="<<scalePoint->x<<"  y="<<scalePoint->y<<endl;
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	if([tracker(0) numPersistentBlobs] > 0){
-		PersistentBlob * pblob = [[tracker(0) persistentBlobs] objectAtIndex:0];
-		if([[pblob blobs] count] > 0){
-			Blob * blob = [[pblob blobs] objectAtIndex:0];
-			ofSetColor(255, 0, 0);
-			glBegin(GL_LINE_STRIP);
-			for(int i=0;i<[blob nPts];i++){
-				glVertex2f([blob pts][i].x, [blob pts][i].y);
-				
-			}
-			glEnd();
-		}
-	}
+	float a = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]).angle(ofxVec2f(1,0));
+	cout<<a<<endl;
+	//ofxVec2f v = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]);
 	
-	ShadowLineSegment * seg;
-	ofxVec2f pos = ofxVec2f(0,0);
-	float rot = 0;
-	ofSetColor(255, 255, 255);
-	glBegin(GL_LINE_LOOP);
-	for(seg in lines){
-		rot += seg->rotation;
-		//		pos += ofxVec2f(seg->length,0).rotateRad(rot);
-		pos = *seg->pos;
-		//cout<<pos.x<<"  "<<pos.y<<"   "<<seg->rotation<<endl;
-		glVertex2f(pos.x, pos.y);
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+	
+	glTranslated(scalePoint->x, scalePoint->y, 0);	
+	glRotatef(90-a,0,0,1);
+	
+	glScaled(1, [scaleSlider floatValue]/10.0, 0);
+
+	glRotatef(-(90-a),0,0,1);
+	glTranslated(-scalePoint->x, -scalePoint->y, 0);
+	
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE, GL_ONE);
+
+	float r = [distanceBlurAngleSlider floatValue];
+	glRotatef(-r, 0, 0, 1);
+	int n = [distanceBlurPassesSlider intValue];
+	ofSetColor(255.0/n, 255.0/n, 255.0/n,255.0);
+//	ofSetColor(255, 255, 255);
+	for(int i=0;i<n;i++){
+		glRotatef((2.0*r)/n, 0, 0, 1);
+		shadow->draw(0,0,1,1);
 	}
-	glEnd();
+	ofSetColor(255, 255, 255);
+	ofLine(scalePoint->x, scalePoint->y, [GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1].x, [GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1].y);
+	
+	glPopMatrix();
 }
 
 @end

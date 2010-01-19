@@ -69,6 +69,7 @@
 @property (readwrite) 	uint64_t camGUID;
 @property (readwrite) 	int camNumber;
 @property (assign, readwrite) NSButton * recordButton;
+@property (readonly)Libdc1394Grabber * videoGrabber;
 
 -(float) framerate;
 -(ofTexture*) getTexture;

@@ -96,7 +96,8 @@
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection fromSurface:(string)surface;
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection toSurface:(string)surface;
 
-
+-(ofxPoint2f) getFloorCoordinateOfProjector:(int)proj;
+-(ofxVec2f) getFloorVectorBetweenProjectors;
 
 -(float) getAspect;
 -(ofxPoint2f) convertMousePoint:(ofxPoint2f)p;

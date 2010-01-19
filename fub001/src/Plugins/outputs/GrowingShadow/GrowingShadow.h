@@ -5,28 +5,39 @@
 #import <Cocoa/Cocoa.h>
 #include "Plugin.h"
 #include "ofMain.h"
+#include "ofxOpenCv.h"
 #include "ofxVectorMath.h"
+#include "shaderBlur.h"
 
 
-@interface ShadowLineSegment : NSObject
-{
-@public
-	bool locked;
-	float intendedLength;
-	float intendedRotation;
-	ofxVec2f * pos;
-		ofxVec2f * vel;
-	ofxVec2f * force;
-
-	float rotation;	
-	float length;
-}
-@end
+#define  ShadowSizeX 800
+#define  ShadowSizeY 800
+#define  BufferLength 100
 
 
 @interface GrowingShadow : ofPlugin {
-	IBOutlet NSSlider * growthSpeedSlider;
-	NSMutableArray * lines;
+
+
+	ofxCvGrayscaleImage * shadow; //The one we draw
+	ofxCvGrayscaleImage * shadowTemp; //For effects
+
+	ofxCvGrayscaleImage * newestShadowTemp; //the one we create the current blob in
+	
+	vector<ofxCvGrayscaleImage> history;
+	int histPos;
+	
+	ofImage * gradient;
+	ofxVec2f * scalePoint;
+	
+	
+	IBOutlet NSSlider * fadeSlider;
+	IBOutlet NSSlider * blurSlider;
+		IBOutlet NSSlider * thresholdSlider;
+	IBOutlet NSSlider * delaySlider;
+	IBOutlet NSSlider * scaleSlider;
+	IBOutlet NSSlider * distanceBlurAngleSlider;
+	IBOutlet NSSlider * distanceBlurPassesSlider;
+
 }
 
 -(IBAction) startGrow:(id)sender;
