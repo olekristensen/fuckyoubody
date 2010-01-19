@@ -75,8 +75,13 @@ static BOOL camerasRespawning[3];
 		[movieSelector setEnabled:YES];
 		[recordButton setEnabled:NO];
 		[sourceSelector setSelectedSegment:1];
-
+	} else {
+		live = YES;
+		[movieSelector setEnabled:NO];
+		[recordButton setEnabled:YES];
+		[sourceSelector setSelectedSegment:0];
 	}
+
 
 	[[shutterSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
 	[[shutterSlider midi] setController: [[NSNumber alloc] initWithInt:10+(20*camNumber)]];
@@ -103,21 +108,20 @@ static BOOL camerasRespawning[3];
 	[[brightnessSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
 	[[brightnessSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Brightness", camNumber]];
 
+	[self updateMovieList];	
+
 	[[sourceSelector midi] setChannel: [[NSNumber alloc] initWithInt:1]];
 	[[sourceSelector midi] setController: [[NSNumber alloc] initWithInt:17+(20*camNumber)]];
 	[[sourceSelector midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:0]];
 	[[sourceSelector midi] setLabel: [NSString stringWithFormat:@"Camera %i Source", camNumber]];
+
 	
+	/*	
+	 IBOutlet NSPopUpButton * movieSelector;
+	 IBOutlet NSButton * recordButton;
+	 */	
 	
-	
-/*	
-	IBOutlet NSPopUpButton * movieSelector;
-	IBOutlet NSButton * recordButton;
-*/	
-	
-	
-	[self updateMovieList];	
-	
+
 	saver = new ofxQtVideoSaver();
 	saver->setCodecQualityLevel(OF_QT_SAVER_CODEC_QUALITY_NORMAL);
 	recording = NO;
@@ -330,6 +334,7 @@ static BOOL camerasRespawning[3];
 }
 
 -(IBAction) setSource:(id)sender{
+	NSLog(@"%s", __FUNCTION__);
 	switch ([sender selectedSegment]) {
 		case 0:
 			//Live
