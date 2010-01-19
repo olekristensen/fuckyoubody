@@ -41,7 +41,12 @@
 		7F0F49B710FD073B00E78D4B /* PluginUIMidiBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F49B610FD073B00E78D4B /* PluginUIMidiBinding.mm */; };
 		7F15708A10FE881E0013FB48 /* PluginUISegmentedControl.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F15708910FE881E0013FB48 /* PluginUISegmentedControl.mm */; };
 		7F58BFF51105D83E00E7AE15 /* PluginUIBWTransparentButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F58BFF41105D83E00E7AE15 /* PluginUIBWTransparentButton.mm */; };
-		7F58C12811062F4600E7AE15 /* ofxCvColorImageAlpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F58C12611062F4600E7AE15 /* ofxCvColorImageAlpha.cpp */; };
+		7F58C1471106307800E7AE15 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F58C1391106307800E7AE15 /* ofxCvColorImage.cpp */; };
+		7F58C1481106307800E7AE15 /* ofxCvColorImageAlpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F58C13B1106307800E7AE15 /* ofxCvColorImageAlpha.cpp */; };
+		7F58C1491106307800E7AE15 /* ofxCvFloatImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F58C13D1106307800E7AE15 /* ofxCvFloatImage.cpp */; };
+		7F58C14A1106307800E7AE15 /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F58C13F1106307800E7AE15 /* ofxCvGrayscaleImage.cpp */; };
+		7F58C14B1106307800E7AE15 /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F58C1421106307800E7AE15 /* ofxCvImage.cpp */; };
+		7F58C14C1106307800E7AE15 /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F58C1441106307800E7AE15 /* ofxCvShortImage.cpp */; };
 		7F8133BF10FB8E5A00EE2A49 /* Midi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8133BE10FB8E5A00EE2A49 /* Midi.mm */; };
 		7F8133C310FB8ED100EE2A49 /* Midi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8133C210FB8ED100EE2A49 /* Midi.xib */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
@@ -84,12 +89,7 @@
 		DD7C61ED10D699BC00D5B056 /* simpleBlurVertical.frag in Sources */ = {isa = PBXBuildFile; fileRef = DD7C61E910D699BC00D5B056 /* simpleBlurVertical.frag */; };
 		DD7C61EE10D699BC00D5B056 /* simpleBlurVertical.vert in Sources */ = {isa = PBXBuildFile; fileRef = DD7C61EA10D699BC00D5B056 /* simpleBlurVertical.vert */; };
 		DD7CC3F71063C47100D3736A /* libOpenCV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD7CC3D11063C47100D3736A /* libOpenCV.a */; };
-		DD7CC4041063C47100D3736A /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3E11063C47100D3736A /* ofxCvColorImage.cpp */; };
 		DD7CC4051063C47100D3736A /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3E41063C47100D3736A /* ofxCvContourFinder.cpp */; };
-		DD7CC4061063C47100D3736A /* ofxCvFloatImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3E61063C47100D3736A /* ofxCvFloatImage.cpp */; };
-		DD7CC4071063C47100D3736A /* ofxCvGrayscaleImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3E81063C47100D3736A /* ofxCvGrayscaleImage.cpp */; };
-		DD7CC4081063C47100D3736A /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3EA1063C47100D3736A /* ofxCvImage.cpp */; };
-		DD7CC4091063C47100D3736A /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC3ED1063C47100D3736A /* ofxCvShortImage.cpp */; };
 		DD7CC4BE1063CE9100D3736A /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD7CC4B81063CE9100D3736A /* ofxThread.cpp */; };
 		DD89999710C3ECC40051758B /* PluginOutputView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD89999610C3ECC40051758B /* PluginOutputView.mm */; };
 		DDA5AEA410CE8C56005B53C6 /* CameraCalibration.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDA5AEA210CE8C56005B53C6 /* CameraCalibration.mm */; };
@@ -264,8 +264,20 @@
 		7F15708910FE881E0013FB48 /* PluginUISegmentedControl.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISegmentedControl.mm; sourceTree = "<group>"; };
 		7F58BFF31105D83E00E7AE15 /* PluginUIBWTransparentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIBWTransparentButton.h; sourceTree = "<group>"; };
 		7F58BFF41105D83E00E7AE15 /* PluginUIBWTransparentButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIBWTransparentButton.mm; sourceTree = "<group>"; };
-		7F58C12611062F4600E7AE15 /* ofxCvColorImageAlpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvColorImageAlpha.cpp; sourceTree = "<group>"; };
-		7F58C12711062F4600E7AE15 /* ofxCvColorImageAlpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvColorImageAlpha.h; sourceTree = "<group>"; };
+		7F58C1391106307800E7AE15 /* ofxCvColorImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvColorImage.cpp; sourceTree = "<group>"; };
+		7F58C13A1106307800E7AE15 /* ofxCvColorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvColorImage.h; sourceTree = "<group>"; };
+		7F58C13B1106307800E7AE15 /* ofxCvColorImageAlpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvColorImageAlpha.cpp; sourceTree = "<group>"; };
+		7F58C13C1106307800E7AE15 /* ofxCvColorImageAlpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvColorImageAlpha.h; sourceTree = "<group>"; };
+		7F58C13D1106307800E7AE15 /* ofxCvFloatImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvFloatImage.cpp; sourceTree = "<group>"; };
+		7F58C13E1106307800E7AE15 /* ofxCvFloatImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvFloatImage.h; sourceTree = "<group>"; };
+		7F58C13F1106307800E7AE15 /* ofxCvGrayscaleImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvGrayscaleImage.cpp; sourceTree = "<group>"; };
+		7F58C1401106307800E7AE15 /* ofxCvGrayscaleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvGrayscaleImage.h; sourceTree = "<group>"; };
+		7F58C1411106307800E7AE15 /* ofxCvHaarFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvHaarFinder.h; sourceTree = "<group>"; };
+		7F58C1421106307800E7AE15 /* ofxCvImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvImage.cpp; sourceTree = "<group>"; };
+		7F58C1431106307800E7AE15 /* ofxCvImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvImage.h; sourceTree = "<group>"; };
+		7F58C1441106307800E7AE15 /* ofxCvShortImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvShortImage.cpp; sourceTree = "<group>"; };
+		7F58C1451106307800E7AE15 /* ofxCvShortImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvShortImage.h; sourceTree = "<group>"; };
+		7F58C1461106307800E7AE15 /* ofxOpenCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		7F8133BD10FB8E5A00EE2A49 /* Midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Midi.h; path = Midi/Midi.h; sourceTree = "<group>"; };
 		7F8133BE10FB8E5A00EE2A49 /* Midi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Midi.mm; path = Midi/Midi.mm; sourceTree = "<group>"; };
 		7F8133C210FB8ED100EE2A49 /* Midi.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Midi.xib; path = Midi/Midi.xib; sourceTree = "<group>"; };
@@ -355,21 +367,10 @@
 		DD7CC3CA1063C47100D3736A /* cxtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cxtypes.h; sourceTree = "<group>"; };
 		DD7CC3D11063C47100D3736A /* libOpenCV.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOpenCV.a; sourceTree = "<group>"; };
 		DD7CC3E01063C47100D3736A /* ofxCvBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvBlob.h; sourceTree = "<group>"; };
-		DD7CC3E11063C47100D3736A /* ofxCvColorImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvColorImage.cpp; sourceTree = "<group>"; };
-		DD7CC3E21063C47100D3736A /* ofxCvColorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvColorImage.h; sourceTree = "<group>"; };
 		DD7CC3E31063C47100D3736A /* ofxCvConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvConstants.h; sourceTree = "<group>"; };
 		DD7CC3E41063C47100D3736A /* ofxCvContourFinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvContourFinder.cpp; sourceTree = "<group>"; };
 		DD7CC3E51063C47100D3736A /* ofxCvContourFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvContourFinder.h; sourceTree = "<group>"; };
-		DD7CC3E61063C47100D3736A /* ofxCvFloatImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvFloatImage.cpp; sourceTree = "<group>"; };
-		DD7CC3E71063C47100D3736A /* ofxCvFloatImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvFloatImage.h; sourceTree = "<group>"; };
-		DD7CC3E81063C47100D3736A /* ofxCvGrayscaleImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvGrayscaleImage.cpp; sourceTree = "<group>"; };
-		DD7CC3E91063C47100D3736A /* ofxCvGrayscaleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvGrayscaleImage.h; sourceTree = "<group>"; };
-		DD7CC3EA1063C47100D3736A /* ofxCvImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvImage.cpp; sourceTree = "<group>"; };
-		DD7CC3EB1063C47100D3736A /* ofxCvImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvImage.h; sourceTree = "<group>"; };
 		DD7CC3EC1063C47100D3736A /* ofxCvMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvMain.h; sourceTree = "<group>"; };
-		DD7CC3ED1063C47100D3736A /* ofxCvShortImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvShortImage.cpp; sourceTree = "<group>"; };
-		DD7CC3EE1063C47100D3736A /* ofxCvShortImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvShortImage.h; sourceTree = "<group>"; };
-		DD7CC3EF1063C47100D3736A /* ofxOpenCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		DD7CC4B81063CE9100D3736A /* ofxThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxThread.cpp; sourceTree = "<group>"; };
 		DD7CC4B91063CE9100D3736A /* ofxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxThread.h; sourceTree = "<group>"; };
 		DD89999510C3ECC40051758B /* PluginOutputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginOutputView.h; path = PluginManager/PluginOutputView.h; sourceTree = "<group>"; };
@@ -844,6 +845,27 @@
 			path = GrowingShadow;
 			sourceTree = "<group>";
 		};
+		7F58C1381106307800E7AE15 /* ofxOpenCv+AlphaImage */ = {
+			isa = PBXGroup;
+			children = (
+				7F58C1391106307800E7AE15 /* ofxCvColorImage.cpp */,
+				7F58C13A1106307800E7AE15 /* ofxCvColorImage.h */,
+				7F58C13B1106307800E7AE15 /* ofxCvColorImageAlpha.cpp */,
+				7F58C13C1106307800E7AE15 /* ofxCvColorImageAlpha.h */,
+				7F58C13D1106307800E7AE15 /* ofxCvFloatImage.cpp */,
+				7F58C13E1106307800E7AE15 /* ofxCvFloatImage.h */,
+				7F58C13F1106307800E7AE15 /* ofxCvGrayscaleImage.cpp */,
+				7F58C1401106307800E7AE15 /* ofxCvGrayscaleImage.h */,
+				7F58C1411106307800E7AE15 /* ofxCvHaarFinder.h */,
+				7F58C1421106307800E7AE15 /* ofxCvImage.cpp */,
+				7F58C1431106307800E7AE15 /* ofxCvImage.h */,
+				7F58C1441106307800E7AE15 /* ofxCvShortImage.cpp */,
+				7F58C1451106307800E7AE15 /* ofxCvShortImage.h */,
+				7F58C1461106307800E7AE15 /* ofxOpenCv.h */,
+			);
+			path = "ofxOpenCv+AlphaImage";
+			sourceTree = "<group>";
+		};
 		7F8133BA10FB8E2A00EE2A49 /* Midi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1130,21 +1152,10 @@
 				DDB6B2DA107621C600D2722D /* ofxCvOpticalFlowLK.cpp */,
 				DDB6B2DB107621C600D2722D /* ofxCvOpticalFlowLK.h */,
 				DD7CC3E01063C47100D3736A /* ofxCvBlob.h */,
-				DD7CC3E11063C47100D3736A /* ofxCvColorImage.cpp */,
-				DD7CC3E21063C47100D3736A /* ofxCvColorImage.h */,
 				DD7CC3E31063C47100D3736A /* ofxCvConstants.h */,
 				DD7CC3E41063C47100D3736A /* ofxCvContourFinder.cpp */,
 				DD7CC3E51063C47100D3736A /* ofxCvContourFinder.h */,
-				DD7CC3E61063C47100D3736A /* ofxCvFloatImage.cpp */,
-				DD7CC3E71063C47100D3736A /* ofxCvFloatImage.h */,
-				DD7CC3E81063C47100D3736A /* ofxCvGrayscaleImage.cpp */,
-				DD7CC3E91063C47100D3736A /* ofxCvGrayscaleImage.h */,
-				DD7CC3EA1063C47100D3736A /* ofxCvImage.cpp */,
-				DD7CC3EB1063C47100D3736A /* ofxCvImage.h */,
 				DD7CC3EC1063C47100D3736A /* ofxCvMain.h */,
-				DD7CC3ED1063C47100D3736A /* ofxCvShortImage.cpp */,
-				DD7CC3EE1063C47100D3736A /* ofxCvShortImage.h */,
-				DD7CC3EF1063C47100D3736A /* ofxOpenCv.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1873,8 +1884,7 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				7F58C12611062F4600E7AE15 /* ofxCvColorImageAlpha.cpp */,
-				7F58C12711062F4600E7AE15 /* ofxCvColorImageAlpha.h */,
+				7F58C1381106307800E7AE15 /* ofxOpenCv+AlphaImage */,
 				DDC7727F10B5846F009CAFC7 /* Plugins */,
 				DDC7728610B5846F009CAFC7 /* testApp */,
 				DDA6211710B1618A009C8BDB /* ofxCocoaPlugins */,
@@ -2019,12 +2029,7 @@
 				DDB85167105E809300D1ED92 /* ofxVec2f.cpp in Sources */,
 				DDB85168105E809300D1ED92 /* ofxVec3f.cpp in Sources */,
 				DDB85169105E809300D1ED92 /* ofxVec4f.cpp in Sources */,
-				DD7CC4041063C47100D3736A /* ofxCvColorImage.cpp in Sources */,
 				DD7CC4051063C47100D3736A /* ofxCvContourFinder.cpp in Sources */,
-				DD7CC4061063C47100D3736A /* ofxCvFloatImage.cpp in Sources */,
-				DD7CC4071063C47100D3736A /* ofxCvGrayscaleImage.cpp in Sources */,
-				DD7CC4081063C47100D3736A /* ofxCvImage.cpp in Sources */,
-				DD7CC4091063C47100D3736A /* ofxCvShortImage.cpp in Sources */,
 				DD7CC4BE1063CE9100D3736A /* ofxThread.cpp in Sources */,
 				DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */,
 				DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */,
@@ -2104,7 +2109,12 @@
 				7F15708A10FE881E0013FB48 /* PluginUISegmentedControl.mm in Sources */,
 				6EA7149210FFA89000DB0246 /* PluginUIButton.mm in Sources */,
 				7F58BFF51105D83E00E7AE15 /* PluginUIBWTransparentButton.mm in Sources */,
-				7F58C12811062F4600E7AE15 /* ofxCvColorImageAlpha.cpp in Sources */,
+				7F58C1471106307800E7AE15 /* ofxCvColorImage.cpp in Sources */,
+				7F58C1481106307800E7AE15 /* ofxCvColorImageAlpha.cpp in Sources */,
+				7F58C1491106307800E7AE15 /* ofxCvFloatImage.cpp in Sources */,
+				7F58C14A1106307800E7AE15 /* ofxCvGrayscaleImage.cpp in Sources */,
+				7F58C14B1106307800E7AE15 /* ofxCvImage.cpp in Sources */,
+				7F58C14C1106307800E7AE15 /* ofxCvShortImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
