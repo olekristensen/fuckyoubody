@@ -196,8 +196,7 @@
 		valuesLoaded = NO;
 		pidCounter = 0;
 		setMaskCorner = -1;
-		
-		
+				
 	}
 	
 	return self;
@@ -206,7 +205,6 @@
 -(void) setup{
 	calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
 	valuesLoaded = YES;
-	
 	
 	grayImage = new ofxCvGrayscaleImage();
 	grayImageBlured = new ofxCvGrayscaleImage();		
@@ -221,7 +219,6 @@
 	threadGrayImage = new ofxCvGrayscaleImage();
 	threadFlowLastImage = new ofxCvGrayscaleImage();
 	threadFlowImage = new ofxCvGrayscaleImage();
-	
 	
 	grayImageBlured->allocate(cw,ch);
 	grayImage->allocate(cw,ch);
@@ -245,6 +242,12 @@
 	
 	opticalFlow->allocate(cw/2, ch/2);
 	opticalFlow->setCalcStep(5,5);
+	
+	[[learnBackgroundButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Grab Background", trackerNumber]];
+	[[learnBackgroundButton midi] setChannel: [[NSNumber alloc] initWithInt:2]];
+	[[learnBackgroundButton midi] setController: [[NSNumber alloc] initWithInt:10+(20*trackerNumber)]];
+	[[learnBackgroundButton midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:0]];
+	
 	
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	
@@ -525,6 +528,8 @@
 			 }
 			 */
 			if ([learnBackgroundButton state] == NSOnState){
+				
+				NSLog(@"Tracker %i Learn Background", trackerNumber);
 				/*		 if (bUseBgMask) {
 				 cvCopy(grayImageBlured.getCvImage(), grayBg.getCvImage(), grayBgMask.getCvImage());
 				 grayBg.flagImageChanged();
