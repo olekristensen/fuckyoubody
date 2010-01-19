@@ -12,7 +12,6 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="3"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -53,6 +52,7 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrameSize">{1260, 226}</string>
 								<reference key="NSSuperview" ref="635092164"/>
+								<reference key="NSWindow"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 							<object class="NSCustomView" id="244948088">
@@ -60,6 +60,7 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 226}, {1260, 226}}</string>
 								<reference key="NSSuperview" ref="635092164"/>
+								<reference key="NSWindow"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 							<object class="NSCustomView" id="192315281">
@@ -67,16 +68,19 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 452}, {1260, 226}}</string>
 								<reference key="NSSuperview" ref="635092164"/>
+								<reference key="NSWindow"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{20, 20}, {1260, 678}}</string>
+						<string key="NSFrame">{{20, 27}, {1260, 678}}</string>
 						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
 						<string key="NSClassName">PluginOpenGLControlView</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{1300, 718}</string>
+				<string key="NSFrameSize">{1300, 725}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<string key="NSClassName">ofPlugin</string>
 			</object>
 		</object>
@@ -215,7 +219,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
-					<string>{{63, 358}, {1300, 718}}</string>
+					<string>{{63, 351}, {1300, 725}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>

@@ -15,6 +15,7 @@
 	float intendedLength;
 	float intendedRotation;
 	ofxVec2f * pos;
+		ofxVec2f * vel;
 	ofxVec2f * force;
 
 	float rotation;	

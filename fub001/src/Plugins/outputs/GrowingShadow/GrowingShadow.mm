@@ -19,6 +19,7 @@
 	ofxVec2f lastPos = ofxVec2f();
 	float rot = 0;
 	
+	
 	if([lines count] > 0){
 		ShadowLineSegment * prevSeg = [lines lastObject];
 		ShadowLineSegment * nextSeg;
@@ -26,7 +27,7 @@
 		for(seg in lines){
 			i++;
 			if(i >= [lines count])
-				i = 0;
+				i = 0;		
 			
 			nextSeg = [lines objectAtIndex:i];
 			
@@ -35,48 +36,40 @@
 			seg->rotation = (*prevSeg->pos-pos).angleRad((pos-*nextSeg->pos));
 			seg->length = (pos-*prevSeg->pos).length();
 			
-			lastDir = (pos-*prevSeg->pos).normalized();
-			lastPos = pos;
-			
 			seg->force = new ofxVec2f();
 			
 			prevSeg = seg;
-
 		}		
 		
 		i=0;
 		prevSeg = [lines lastObject];
 		for(seg in lines){
-			if(seg->intendedRotation - seg->rotation != 0){
-				cout<<i<<"  "<<seg->intendedRotation<<"   "<<seg->rotation<<"   "<<360.0*(seg->intendedRotation - seg->rotation)/TWO_PI	<<endl;
-			}
-			if(seg->intendedLength - seg->length != 0){
-				cout<<i<<" rot  "<<seg->intendedLength<<"   "<<seg->length<<"   "<<360.0*(seg->intendedRotation - seg->rotation)/TWO_PI	<<endl;
-			}
-			
 			i++;
 			if(i >= [lines count])
 				i = 0;
 			
 			nextSeg = [lines objectAtIndex:i];
-			
-			
-			
+					
 			
 			ofxVec2f pdir = (*seg->pos - *prevSeg->pos).normalized();
 			ofxVec2f ndir = (*nextSeg->pos - *seg->pos).normalized();
 			
-			ofxVec2f up = (ofxVec2f(-pdir.y, pdir.x) +  ofxVec2f(-ndir.y, ndir.x)).normalized();
-			*seg->force += - up * (seg->intendedRotation - seg->rotation)*0.1;
+//			ofxVec2f up = (ofxVec2f(-pdir.y, pdir.x) +  ofxVec2f(-ndir.y, ndir.x)).normalized();
+			ofxVec2f up = pdir.rotateRad(-HALF_PI + seg->rotation*0.5);
+			*seg->force += up * (seg->intendedRotation - seg->rotation)*00.005;
 			
-			*seg->force += pdir * (seg->intendedLength - seg->length);
+			*seg->force -= pdir * (seg->intendedLength - seg->length)*0.1;
 			
 			
 			prevSeg = seg;
 		}
 		
 		for(seg in lines){
-			*seg->pos += *seg->force * 1.0/ofGetFrameRate();
+			if(!seg->locked){
+				*seg->vel *= 0.8;
+				*seg->vel += *seg->force * 1.0/ofGetFrameRate();
+				*seg->pos += *seg->vel;
+			}
 		}
 	}
 	
@@ -84,8 +77,8 @@
 	
 	if([growthSpeedSlider floatValue] != 0 && [lines count] > 0){
 		if(ofRandom(0, 30) < 1){
-			//			ShadowLineSegment * seg = [lines objectAtIndex:ofRandom(0, [lines count])];
-			ShadowLineSegment * seg = [lines objectAtIndex:3];
+						ShadowLineSegment * seg = [lines objectAtIndex:ofRandom(0, [lines count])];
+			//ShadowLineSegment * seg = [lines objectAtIndex:3];
 			seg->intendedLength += [growthSpeedSlider floatValue]/5000.0;
 		}
 	}
@@ -102,30 +95,15 @@
 		
 		ofxVec2f lastDir = ofxVec2f(1,0);
 		ofxVec2f lastPos = ofxVec2f();
-		for(int i=-1;i<[blob nPts];i++){
+		for(int i=0;i<[blob nPts];i++){
 			ShadowLineSegment * seg = [[ShadowLineSegment alloc]init] ;
-			ofxVec2f pos;
-			if(i==-1){
-				pos = [blob pts][[blob nPts]-1];
-			} else {
-				pos = [blob pts][i];				
-			}
-			
-			
+			ofxVec2f pos = [blob pts][i];
 			seg->locked = false;
-			seg->pos = new ofxVec2f(pos);
-			/*
-			if(i == 0){
-				seg->length = seg->intendedLength = 0;
-				seg->rotation = seg->intendedRotation = 0;
-			} else {
-				seg->length = seg->intendedLength =  (pos-lastPos).length();
-				seg->rotation = seg->intendedRotation = lastDir.angleRad((pos-lastPos));
+			if(i == 0 || i == [blob nPts]-1){
+				seg->locked = true;				
 			}
-			
-			lastDir = (pos-lastPos).normalized();
-			lastPos = pos;
-			*/
+			seg->vel = new ofxVec2f();
+			seg->pos = new ofxVec2f(pos);
 			[lines addObject:seg];
 		}
 	
@@ -135,8 +113,7 @@
 		for(seg in lines){
 			i++;
 			if(i >= [lines count])
-				i = 0;
-			
+				i = 0;			
 			nextSeg = [lines objectAtIndex:i];
 			
 			
@@ -145,12 +122,8 @@
 			seg->intendedLength = (pos-*prevSeg->pos).length();
 			
 			prevSeg = seg;
-
-		}		
-		
-		
-		cout<<"Num points: "<<[blob nPts]<<endl;
-		
+		}				
+		cout<<"Num points: "<<[blob nPts]<<endl;		
 	}
 }
 
