@@ -32,6 +32,9 @@
 	}
 	
 	
+	blur = new shaderBlur();
+	blur->setup(800, 600);
+
 }
 
 
@@ -137,19 +140,19 @@
 		
 		
 		
-				
-		 for(int i=0;i<5;i++){
-		 for(int u=0;u<3;u++){
-		 LedLamp * lamp = [GetPlugin(DMXOutput) getLamp:u y:i];
-		 [lamp setLamp:0 g:0 b:0 a:0];
-		 }
-		 }
-		 
-		 
-		 NSColor * c = [player2Color color];		
-		 
+		
+		for(int i=0;i<5;i++){
+			for(int u=0;u<3;u++){
+				LedLamp * lamp = [GetPlugin(DMXOutput) getLamp:u y:i];
+				[lamp setLamp:0 g:0 b:0 a:0];
+			}
+		}
+		
+		
+		NSColor * c = [player2Color color];		
+		
 		[GetPlugin(DMXOutput) makeNumber:area[1]/5000 r:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*190*1.0];
-		 
+		
 	}
 	
 	
@@ -158,38 +161,46 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ofEnableAlphaBlending();
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	//[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+
+	
+	
+	
+	blur->beginRender();
+	blur->setupRenderWindow();
+	
+	//glPushMatrix();
+	
+	
+	//	glTranslatef(0, +h*0.5, 0);       // shift origin up to upper-left corner.
+	
+	//	ofSetupScreen();
+	
+
+
+	
+	
+	
+	
 	
 	for(int i=0;i<2;i++){
 		if(i ==0){
-			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255);	
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255);	
 		} else {
-			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255);	
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255);	
 		}
-		images[i]->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect],1);
+		//images[i]->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect],1);
 		
 		if(i ==0){
-			ofSetColor([[player1LineColor color] redComponent]*255, [[player1LineColor color] greenComponent]*255, [[player1LineColor color] blueComponent]*255);	
+			ofSetColor([[player1LineColor color] redComponent]*255, [[player1LineColor color] greenComponent]*255, [[player1LineColor color] blueComponent]*255,255.0);	
 		} else {
-			ofSetColor([[player2LineColor color] redComponent]*255, [[player2LineColor color] greenComponent]*255, [[player2LineColor color] blueComponent]*255);	
+			ofSetColor([[player2LineColor color] redComponent]*255, [[player2LineColor color] greenComponent]*255, [[player2LineColor color] blueComponent]*255,255.0);	
 		}
 		
 		for(int u=0;u<contourFinder[i]->nBlobs;u++){
-		/*	texture->getTextureReference().bind();*/
-/*#ifndef TARGET_OPENGLES
-			glPushAttrib(GL_COLOR_BUFFER_BIT | GL_ENABLE_BIT);
-#endif
-			
-			glHint(GL_POLYGON_SMOOTH_HINT, GL_NICEST);
-			glEnable(GL_LINE_SMOOTH);
-			
-			//why do we need this?
-			glEnable(GL_BLEND);
-			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-			*/
-			glBegin(GL_POLYGON_SMOOTH);
-			glBegin(GL_QUAD_STRIP);
+			vector<ofPoint> points;
+			vector<ofxVec2f> hats;
 			ofxVec2f  hatSmoother;
+			ofPoint firstPoint1,firstPoint2;
 			for(int j=0;j<contourFinder[i]->blobs[u].nPts;j++){
 				ofxVec2f thisP = ofxVec2f(contourFinder[i]->blobs[u].pts[j].x/640.0, contourFinder[i]->blobs[u].pts[j].y/480.0);
 				ofxVec2f prevP;
@@ -208,20 +219,53 @@
 				if(j == 0){
 					hatSmoother = hat;
 				} else {
-					hatSmoother += hat * 0.1;
+					float a = hatSmoother.angle(hat);
+					hatSmoother.rotate(a*0.1);
 					hatSmoother.normalize();
 				}
-			//	glTexCoord2f(0.0f, 0.0f);  
-				glVertex2f(thisP.x+hatSmoother.x*[lineWidth floatValue]/100.0, thisP.y+hatSmoother.y*[lineWidth floatValue]/100.0);
-			//	glTexCoord2f(50, 0.0f);     
-				glVertex2f(thisP.x-hatSmoother.x*[lineWidth floatValue]/100.0, thisP.y-hatSmoother.y*[lineWidth floatValue]/100.0);
+				hats.push_back(hatSmoother);
+				hats.push_back(-hatSmoother);
+				//				hatSmoother *= (1+o)*(float)offsetSize/no;
+				
+				points.push_back(ofPoint(thisP.x+hatSmoother.x*[lineWidth floatValue]/100.0, thisP.y+hatSmoother.y*[lineWidth floatValue]/100.0));
+				//	glTexCoord2f(50, 0.0f);     
+				points.push_back(ofPoint(thisP.x-hatSmoother.x*[lineWidth floatValue]/100.0, thisP.y-hatSmoother.y*[lineWidth floatValue]/100.0));
+				
+				
+				
+				if(j == 0){
+					firstPoint1 = ofPoint(thisP.x+hatSmoother.x*[lineWidth floatValue]/100.0, thisP.y+hatSmoother.y*[lineWidth floatValue]/100.0);
+					firstPoint2 = ofPoint(thisP.x-hatSmoother.x*[lineWidth floatValue]/100.0, thisP.y-hatSmoother.y*[lineWidth floatValue]/100.0);
+				}
 			}
-			glEnd();
-			//texture->getTextureReference().unbind();
 			
+			//Draw it
+			
+			glBegin(GL_QUAD_STRIP);
+			for(int j=0;j<points.size();j++){
+				//	glTexCoord2f(0.0f, 0.0f);  
+			//	ofxVec2f hat = hats[j] * ((o)*(float)offsetSize/no);
+				glVertex2f(points[j].x, points[j].y);
+				
+			}
+			glVertex2f(firstPoint1.x, firstPoint1.y);
+			glVertex2f(firstPoint2.x, firstPoint2.y);
+			glEnd();			
 		}
 	}
 	
+	blur->endRender();
+	blur->blur(6, [outputBlurSlider floatValue]/100.0);
+	
+	glViewport(0,0,ofGetWidth(),ofGetHeight());	
+	ofSetupScreen();
+	glScaled(ofGetWidth(), ofGetHeight(), 1);
+	
+	
+	ofEnableAlphaBlending();
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+	
+	blur->draw(0, 0, 1, 1, true);
 	//glPopMatrix();
 }
 

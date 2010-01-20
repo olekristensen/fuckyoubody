@@ -14,6 +14,8 @@ void shaderBlur::setup(int fboW, int fboH){
 	
 	ofBackground(255,255,255);	
 	//ofSetVerticalSync(true);
+	w = fboW;
+	h = fboH;
 	
 	fbo1.allocate(fboW, fboH, true);
 	fbo2.allocate(fboW, fboH, true);
@@ -23,6 +25,39 @@ void shaderBlur::setup(int fboW, int fboH){
 
 	noPasses = 1;
 	blurDistance = 2.0;
+}
+
+void shaderBlur::setupRenderWindow(){
+
+	glViewport(0,0 , w, h);
+	
+	float halfFov, theTan, screenFov, as;
+	screenFov 		= 120.0f;
+	
+	float eyeX 		= (float)w / 2.0;
+	float eyeY 		= (float)h / 2.0;
+	halfFov 		= PI * screenFov / 360.0;
+	theTan 			= tanf(halfFov);
+	float dist 		= eyeY / theTan;
+	float nearDist 	= dist / 10.0;	// near / far clip plane
+	float farDist 	= dist * 10.0;
+	as 			= (float)w/(float)h;
+	
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(screenFov, as, nearDist, farDist);
+	
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(eyeX, eyeY, dist, eyeX, eyeY, 0.0, 0.0, 1.0, 0.0);
+	
+	glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.
+	glTranslatef(0, -h, 0);       // shift origin up to upper-left corner.
+	
+	ofBackground(0, 0, 0);
+	
+	glScalef(w, h, 1);
+	
 }
 
 //--------------------------------------------------------------
@@ -68,11 +103,7 @@ void shaderBlur::blur(int numPasses, float blurDist){
 			dst->swapIn();
 			//	dst->setupScreenForMe();
 			
-			int w, h;
-			
-			w = 800;
-			h = 600;	
-			
+	
 			glViewport(0, 0, w, h);
 			
 			float halfFov, theTan, screenFov, as;

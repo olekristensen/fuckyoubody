@@ -6,6 +6,8 @@
 #include "Plugin.h"
 #include "ofMain.h"
 #include "ofxVectorMath.h"
+#include "shaderBlur.h"
+
 
 @interface StrategiBlob : NSObject
 {
@@ -27,12 +29,18 @@
 	IBOutlet NSSlider * lineWidth;
 	IBOutlet NSSlider * fade;
 	IBOutlet NSButton * pause;
+	
+	IBOutlet NSSlider * outputBlurSlider;
+
 
 	ofxCvGrayscaleImage * images[2];
 	ofxCvContourFinder * contourFinder[2];
 	NSMutableArray * blobs;
 	float area[2];
 	ofImage * texture;
+	
+	shaderBlur * blur;
+
 
 }
 -(IBAction) restart:(id)sender;
