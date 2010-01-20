@@ -1,7 +1,6 @@
 
 #include "ofxCvGrayscaleImage.h"
 #include "ofxCvColorImage.h"
-#include "ofxCvColorImageAlpha.h"
 #include "ofxCvFloatImage.h"
 
 
@@ -193,26 +192,6 @@ void ofxCvFloatImage::operator = ( const ofxCvColorImage& _mom ) {
         }
         cvSetImageROI(cvGrayscaleImage, cvRect(roiX,roiY,width,height));
 		cvCvtColor( mom.getCvImage(), cvGrayscaleImage, CV_RGB2GRAY );
-        convertGrayToFloat(cvGrayscaleImage, cvImage);                
-        popROI();       //restore prevoius ROI
-        mom.popROI();   //restore prevoius ROI   
-        cvSetImageROI(cvGrayscaleImage, cvRect(roiX,roiY,width,height));
-        flagImageChanged();
-	} else {
-        ofLog(OF_LOG_ERROR, "in =, ROI mismatch");
-	}
-}
-
-//--------------------------------------------------------------------------------
-void ofxCvFloatImage::operator = ( const ofxCvColorImageAlpha& _mom ) {
-    // cast non-const,  no worries, we will reverse any chages
-    ofxCvColorImageAlpha& mom = const_cast<ofxCvColorImageAlpha&>(_mom); 
-	if( pushSetBothToTheirIntersectionROI(*this,mom) ) {
-        if( cvGrayscaleImage == NULL ) {
-            cvGrayscaleImage = cvCreateImage( cvSize(cvImage->width,cvImage->height), IPL_DEPTH_8U, 1 );
-        }
-        cvSetImageROI(cvGrayscaleImage, cvRect(roiX,roiY,width,height));
-		cvCvtColor( mom.getCvImage(), cvGrayscaleImage, CV_RGBA2GRAY );
         convertGrayToFloat(cvGrayscaleImage, cvImage);                
         popROI();       //restore prevoius ROI
         mom.popROI();   //restore prevoius ROI   

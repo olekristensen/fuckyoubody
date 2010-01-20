@@ -53,7 +53,6 @@ class ofxCvGrayscaleImage : public ofxCvImage {
     virtual void  operator = ( unsigned char* _pixels );
     virtual void  operator = ( const ofxCvGrayscaleImage& mom );
     virtual void  operator = ( const ofxCvColorImage& mom );
-	virtual void  operator = ( const ofxCvColorImageAlpha& mom );
     virtual void  operator = ( const ofxCvFloatImage& mom );
     virtual void  operator = ( const IplImage* mom );    
 
@@ -120,6 +119,7 @@ class ofxCvGrayscaleImage : public ofxCvImage {
     // Other Image Operations
     //
     // virtual int  countNonZeroInRegion( int x, int y, int w, int h );        //in base class
+    
     
     
     //---------------------------------------------

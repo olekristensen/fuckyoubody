@@ -2,7 +2,6 @@
 
 #include "ofxCvGrayscaleImage.h"
 #include "ofxCvColorImage.h"
-#include "ofxCvColorImageAlpha.h"
 #include "ofxCvFloatImage.h"
 
 
@@ -145,20 +144,6 @@ void ofxCvColorImage::operator = ( const ofxCvColorImage& _mom ) {
 }
 
 //--------------------------------------------------------------------------------
-void ofxCvColorImage::operator = ( const ofxCvColorImageAlpha& _mom ) {
-    // cast non-const,  no worries, we will reverse any chages
-    ofxCvColorImageAlpha& mom = const_cast<ofxCvColorImageAlpha&>(_mom);
-	if( pushSetBothToTheirIntersectionROI(*this,mom) ) {
-		cvCvtColor( mom.getCvImage(), cvImage, CV_RGBA2RGB );
-        popROI();       //restore prevoius ROI
-        mom.popROI();   //restore prevoius ROI         
-        flagImageChanged();
-	} else {
-        ofLog(OF_LOG_ERROR, "in =, ROI mismatch");
-	}
-}
-
-//--------------------------------------------------------------------------------
 void ofxCvColorImage::operator = ( const ofxCvFloatImage& _mom ) {
     // cast non-const,  no worries, we will reverse any chages
     ofxCvFloatImage& mom = const_cast<ofxCvFloatImage&>(_mom); 
@@ -219,14 +204,7 @@ void ofxCvColorImage::convertToGrayscalePlanarImages(ofxCvGrayscaleImage& red, o
         green.width == width && green.height == height &&
         blue.width == width && blue.height == height )
     {
-		
-		cvCvtPixToPlane(cvImage, NULL, red.getCvImage(), green.getCvImage(), blue.getCvImage());
-
-		// this is needed to update the texure of the grayscale images:
-		red.flagImageChanged();
-		green.flagImageChanged();
-		blue.flagImageChanged();
-		
+        cvCvtPixToPlane(cvImage, red.getCvImage(), green.getCvImage(), blue.getCvImage(), NULL);
 	} else {
         ofLog(OF_LOG_ERROR, "in convertToGrayscalePlanarImages, images are different sizes");
 	}     

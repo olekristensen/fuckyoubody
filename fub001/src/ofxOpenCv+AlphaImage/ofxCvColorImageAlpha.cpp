@@ -60,6 +60,14 @@ void ofxCvColorImageAlpha::set(int valueR, int valueG, int valueB){
     flagImageChanged();
 }
 
+
+//--------------------------------------------------------------------------------
+void ofxCvColorImageAlpha::set(int valueR, int valueG, int valueB, int valueA){
+    cvSet(cvImage, cvScalar(valueR, valueG, valueB,valueA));
+    flagImageChanged();
+}
+
+
 //--------------------------------------------------------------------------------
 void ofxCvColorImageAlpha::operator -= ( float value ) {
 	cvSubS( cvImage, cvScalar(value, value, value), cvImageTemp );

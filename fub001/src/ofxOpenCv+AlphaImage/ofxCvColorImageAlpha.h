@@ -45,6 +45,8 @@ class ofxCvColorImageAlpha : public ofxCvImage {
     //
     virtual void  set( float value );
     virtual void  set( int valueR, int valueG, int valueB);
+	virtual void  set( int valueR, int valueG, int valueB, int valueA);
+
     virtual void  operator -= ( float value );
     virtual void  operator += ( float value ); 
         

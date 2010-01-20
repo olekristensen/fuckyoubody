@@ -1,7 +1,6 @@
 
 #include "ofxCvGrayscaleImage.h"
 #include "ofxCvColorImage.h"
-#include "ofxCvColorImageAlpha.h"
 #include "ofxCvFloatImage.h"
 
 
@@ -97,19 +96,6 @@ void ofxCvGrayscaleImage::operator = ( const ofxCvColorImage& _mom ) {
 	}
 }
 
-//--------------------------------------------------------------------------------
-void ofxCvGrayscaleImage::operator = ( const ofxCvColorImageAlpha& _mom ) {
-    // cast non-const,  no worries, we will reverse any chages
-    ofxCvColorImageAlpha& mom = const_cast<ofxCvColorImageAlpha&>(_mom); 
-	if( pushSetBothToTheirIntersectionROI(*this,mom) ) {
-		cvCvtColor( mom.getCvImage(), cvImage, CV_RGBA2GRAY );
-        popROI();       //restore prevoius ROI
-        mom.popROI();   //restore prevoius ROI         
-        flagImageChanged();
-	} else {
-        ofLog(OF_LOG_ERROR, "in =, ROI mismatch");
-	}
-}
 //--------------------------------------------------------------------------------
 void ofxCvGrayscaleImage::operator = ( const ofxCvFloatImage& _mom ) {
     // cast non-const,  no worries, we will reverse any chages
@@ -285,3 +271,4 @@ void ofxCvGrayscaleImage::scaleIntoMe( ofxCvImage& mom, int interpolationMethod 
         ofLog(OF_LOG_ERROR, "in scaleIntoMe: mom image type has to match");
     }
 }
+

@@ -2,7 +2,6 @@
 #include "ofxCvImage.h"
 #include "ofxCvGrayscaleImage.h"
 #include "ofxCvColorImage.h"
-#include "ofxCvColorImageAlpha.h"
 #include "ofxCvFloatImage.h"
 
 
@@ -497,15 +496,6 @@ void ofxCvImage::invert(){
 
 
 
-//--------------------------------------------------------------------------------
-void ofxCvImage::adaptiveThreshold( int val, int neighbor) {
-   cvAdaptiveThreshold( cvImage, cvImageTemp, val,
-                                  CV_ADAPTIVE_THRESH_MEAN_C,
-                                  CV_THRESH_BINARY,
-                                  neighbor,
-                                  0);
-   swapTemp();
-}
 
 // Image Transformation Operations
 

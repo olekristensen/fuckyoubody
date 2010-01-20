@@ -10,19 +10,19 @@
 }
 
 -(void) setup{
-	shadow = new ofxCvGrayscaleImage();
+	shadow = new ofxCvColorImageAlpha();
 	shadow->allocate(ShadowSizeX,ShadowSizeY);
-	shadow->set(255);
-	shadowTemp = new ofxCvGrayscaleImage();
+	shadow->set(0,0,0,0);
+	shadowTemp = new ofxCvColorImageAlpha();
 	shadowTemp->allocate(ShadowSizeX,ShadowSizeY);
-	shadowTemp->set(255);
+	shadowTemp->set(0,0,0,0);
 	
-	newestShadowTemp = new ofxCvGrayscaleImage();
+	newestShadowTemp = new ofxCvColorImageAlpha();
 	newestShadowTemp->allocate(ShadowSizeX,ShadowSizeY);
-	newestShadowTemp->set(255);	
+	newestShadowTemp->set(0,0,0,0);	
 	
 	for(int i=0;i<BufferLength;i++){
-		ofxCvGrayscaleImage  img;
+		ofxCvColorImageAlpha  img;
 		img.allocate(ShadowSizeX,ShadowSizeY);
 		img.set(0);
 		history.push_back(img);
@@ -43,20 +43,31 @@
 		if(histPos >= history.size())
 			histPos = 0;
 		
-		newestShadowTemp->set(255);
+		newestShadowTemp->set(0,0,0,0);
 		
 		Blob * b;
 		for(b in [tracker(1) blobs]){
 			CvPoint * pointArray = new CvPoint[ [b nPts] ];
 			
 			for( int u = 0; u < [b nPts]; u++){
+				float pointPercent = (float)u/[b nPts];
 				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Back" toSurface:"Floor"];
-				pointArray[u].x = int(p.x*ShadowSizeX);
-				pointArray[u].y = int(p.y*ShadowSizeY);
+
+				ofxVec2f blobP;
+				blobP.x = int(p.x*ShadowSizeX);
+				blobP.y = int(p.y*ShadowSizeY);				
+				
+				float c = -pointPercent*TWO_PI+PI;
+				ofxVec2f lemmingP = ofxVec2f((cos(c)*0.02+[coordinateX floatValue])*ShadowSizeX,(sin(c)*0.02+[coordinateY floatValue])*ShadowSizeY);
+				float percent = [morphSlider floatValue]/100.0;
+				
+				ofxVec2f point = (1.0-percent)*blobP + percent*lemmingP;
+				pointArray[u].x  = point.x;
+				pointArray[u].y  = point.y;
 				//				cout<<pointArray[u].x<<"  "<<pointArray[u].y<<endl;
 			}
 			int nPts = [b nPts];
-			cvFillPoly(newestShadowTemp->getCvImage(),&pointArray , &nPts, 1, cvScalar(0, 0, 0, 255.0));			
+			cvFillPoly(newestShadowTemp->getCvImage(),&pointArray , &nPts, 1, cvScalar(255, 255, 255, 255.0));			
 			newestShadowTemp->flagImageChanged();
 		}
 		
@@ -70,15 +81,19 @@
 		pos += BufferLength;
 	}
 	
-	cvAddWeighted(shadow->getCvImage() ,[fadeSlider floatValue]/100.0, history[pos].getCvImage(),1, -0.45, shadowTemp->getCvImage());
-	*shadow = *shadowTemp;
+//	cvAddWeighted(shadow->getCvImage() ,[fadeSlider floatValue]/100.0, history[pos].getCvImage(),1, -0.35, shadowTemp->getCvImage());¨
+	//*shadow = *shadowTemp;
+	*shadow =  history[pos];
 	
 	if([blurSlider intValue] > 0){
 		shadow->blur([blurSlider intValue]);
 	}
 	
 	if([thresholdSlider intValue] > 0){
-		shadow->threshold([thresholdSlider intValue]);
+		cvThreshold( shadow->getCvImage(), shadowTemp->getCvImage(), [thresholdSlider intValue], 255, CV_THRESH_BINARY );		
+		*shadow = *shadowTemp;
+		
+	//	shadow->threshold([thresholdSlider intValue]);
 	}
 	
 	shadow->flagImageChanged();
@@ -103,10 +118,12 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	float a = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]).angle(ofxVec2f(1,0));
-	cout<<a<<endl;
 	//ofxVec2f v = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]);
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+	float v = [invertSlider floatValue]*2.5;
+	ofSetColor(v, v, v);
+	ofRect(0, 0, 1, 1);
 	
 	glTranslated(scalePoint->x, scalePoint->y, 0);	
 	glRotatef(90-a,0,0,1);
@@ -116,14 +133,15 @@
 	glRotatef(-(90-a),0,0,1);
 	glTranslated(-scalePoint->x, -scalePoint->y, 0);
 	
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_ONE, GL_ONE);
-
+	ofEnableAlphaBlending();
 	float r = [distanceBlurAngleSlider floatValue];
 	glRotatef(-r, 0, 0, 1);
 	int n = [distanceBlurPassesSlider intValue];
-	ofSetColor(255.0/n, 255.0/n, 255.0/n,255.0);
-//	ofSetColor(255, 255, 255);
+//	ofSetColor(255.0/n, 255.0/n, 255.0/n,255.0);
+//	ofSetColor(255, 255, 255, 255.0/n);
+	v = 255-v;
+	ofSetColor(v, v, v,2*255.0/n);
+
 	for(int i=0;i<n;i++){
 		glRotatef((2.0*r)/n, 0, 0, 1);
 		shadow->draw(0,0,1,1);

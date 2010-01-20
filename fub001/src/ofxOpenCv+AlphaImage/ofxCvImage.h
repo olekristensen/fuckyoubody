@@ -18,7 +18,6 @@
 
 class ofxCvGrayscaleImage;
 class ofxCvColorImage;
-class ofxCvColorImageAlpha;
 class ofxCvFloatImage;
 
 
@@ -64,7 +63,6 @@ class ofxCvImage : public ofBaseDraws, public ofBaseHasTexture, public ofBaseHas
     virtual void  setFromPixels( unsigned char* _pixels, int w, int h ) = 0;
     virtual void  operator = ( const ofxCvGrayscaleImage& mom ) = 0;
     virtual void  operator = ( const ofxCvColorImage& mom ) = 0;
-	virtual void  operator = ( const ofxCvColorImageAlpha& mom ) = 0;
     virtual void  operator = ( const ofxCvFloatImage& mom ) = 0;
     virtual void  operator = ( const IplImage* mom );
     
@@ -87,8 +85,6 @@ class ofxCvImage : public ofBaseDraws, public ofBaseHasTexture, public ofBaseHas
     virtual void setAnchorPercent( float xPct, float yPct );
     virtual void setAnchorPoint( int x, int y );
     virtual void resetAnchor();
-	
-	
     
     
     // Image Filter Operations
@@ -100,10 +96,6 @@ class ofxCvImage : public ofBaseDraws, public ofBaseHasTexture, public ofBaseHas
     virtual void  invert();
     virtual void  contrastStretch() = 0;
     virtual void  convertToRange(float min, float max) = 0;
-	
-	// AdaptiveThreshold
-    //
-	virtual void adaptiveThreshold( int val, int neighbor);
 
 
     // Image Transformation Operations

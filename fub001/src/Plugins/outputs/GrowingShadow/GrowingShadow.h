@@ -16,14 +16,14 @@
 
 
 @interface GrowingShadow : ofPlugin {
-
-
-	ofxCvGrayscaleImage * shadow; //The one we draw
-	ofxCvGrayscaleImage * shadowTemp; //For effects
-
-	ofxCvGrayscaleImage * newestShadowTemp; //the one we create the current blob in
 	
-	vector<ofxCvGrayscaleImage> history;
+	
+	ofxCvColorImageAlpha * shadow; //The one we draw
+	ofxCvColorImageAlpha * shadowTemp; //For effects
+	
+	ofxCvColorImageAlpha * newestShadowTemp; //the one we create the current blob in
+	
+	vector<ofxCvColorImageAlpha> history;
 	int histPos;
 	
 	ofImage * gradient;
@@ -32,12 +32,17 @@
 	
 	IBOutlet NSSlider * fadeSlider;
 	IBOutlet NSSlider * blurSlider;
-		IBOutlet NSSlider * thresholdSlider;
+	IBOutlet NSSlider * thresholdSlider;
 	IBOutlet NSSlider * delaySlider;
 	IBOutlet NSSlider * scaleSlider;
 	IBOutlet NSSlider * distanceBlurAngleSlider;
 	IBOutlet NSSlider * distanceBlurPassesSlider;
-
+	IBOutlet NSSlider * invertSlider;
+	IBOutlet NSSlider * morphSlider;
+	
+	IBOutlet NSTextField * coordinateX;
+		IBOutlet NSTextField * coordinateY;
+	
 }
 
 -(IBAction) startGrow:(id)sender;

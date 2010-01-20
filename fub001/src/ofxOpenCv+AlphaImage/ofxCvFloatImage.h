@@ -64,7 +64,6 @@ class ofxCvFloatImage : public ofxCvImage {
     virtual void  operator = ( float* _pixels );  //no scaling
     virtual void  operator = ( const ofxCvGrayscaleImage& mom );
     virtual void  operator = ( const ofxCvColorImage& mom );
-	virtual void  operator = ( const ofxCvColorImageAlpha& mom );
     virtual void  operator = ( const ofxCvFloatImage& mom );
     virtual void  operator = ( const IplImage* mom );     
     
