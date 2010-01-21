@@ -86,4 +86,26 @@
 	}
 }
 
+-(void) mouseUpPoint:(NSPoint)theEvent{
+	for(int i=0;i<3;i++){
+		[trackerObj[i] setMouseEvent:NO];
+	}			
+}
+
+-(void) mouseDownPoint:(NSPoint)theEvent{
+	for(int i=0;i<3;i++){
+		[trackerObj[i] setMouseEvent:YES];
+		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];
+	}			
+	
+}
+
+-(void) mouseDraggedPoint:(NSPoint)theEvent{
+	for(int i=0;i<3;i++){
+		[trackerObj[i] setMouseEvent:YES];
+		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];
+	}			
+	
+}
+
 @end

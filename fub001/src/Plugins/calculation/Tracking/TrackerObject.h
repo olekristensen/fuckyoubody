@@ -58,6 +58,8 @@
 -(void) warp;
 
 -(id)initWithBlob:(ofxCvBlob*)_blob;
+-(id)initWithMouse:(ofPoint*)point;
+
 -(vector <ofPoint>)pts;
 -(int)nPts;
 -(ofPoint)centroid;
@@ -133,6 +135,10 @@
 	BOOL valuesLoaded;
 	int preset;
 	int setMaskCorner;
+	
+	//Mouse
+	BOOL mouseEvent;
+	ofPoint * mousePosition;
 
 }
 @property (assign, readonly) NSView * settingsView;
@@ -143,7 +149,8 @@
 @property (assign, readwrite) NSButton * learnBackgroundButton;
 @property (assign, readonly) CameraCalibrationObject* calibrator;
 @property (assign, readwrite) ProjectorObject * projector;
-
+@property (readwrite) BOOL mouseEvent;
+@property (readwrite) ofPoint * mousePosition;
 
 -(IBAction) setBlurSliderValue:(id)sender;
 -(IBAction) setThresholdSliderValue:(id)sender;

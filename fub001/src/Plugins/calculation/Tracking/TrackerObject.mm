@@ -67,6 +67,30 @@
 @implementation Blob
 @synthesize cameraId, originalblob, floorblob;
 
+-(id)initWithMouse:(ofPoint*)point{
+	if([super init]){
+		blob = new ofxCvBlob();
+		floorblob = new ofxCvBlob();
+		
+		originalblob = new ofxCvBlob();
+//		originalblob->area = blob->area = _blob->area;
+  //      originalblob->length = blob->length = _blob->length ;
+ //       originalblob->boundingRect = blob->boundingRect = _blob->boundingRect;
+        originalblob->centroid = blob->centroid = *point;
+//        originalblob->hole = blob->hole = _blob->hole;
+		
+		floorblob->nPts = originalblob->nPts = blob->nPts = 30;
+		for(int i=0;i<30;i++){
+			float a = TWO_PI*i/30.0;
+			blob->pts.push_back(ofPoint(cos(a)*0.1+point->x, sin(a)*0.1+point->y)); 
+		}
+		floorblob->pts =  originalblob->pts = blob->pts ;
+		
+	
+	} 
+	return self;
+}
+
 -(id)initWithBlob:(ofxCvBlob*)_blob{
 	if([super init]){
 		blob = new ofxCvBlob();
@@ -82,13 +106,6 @@
 		floorblob->nPts = originalblob->nPts = blob->nPts = _blob->nPts;
 		floorblob->pts =  originalblob->pts = blob->pts = _blob->pts; 
 		
-		
-		
-		for(int i=0;i<_blob->pts.size();i++){
-			if(_blob->pts[i].x != originalblob->pts[i].x || _blob->pts[i].y != originalblob->pts[i].y){
-				//	cout<<_blob->pts[i].x<<" != "<<originalblob->pts[i].x<<" || "<<_blob->pts[i].y<<" != "<<originalblob->pts[i].y<<endl;
-			}
-		}
 	} 
 	return self;
 }
@@ -170,7 +187,7 @@
 //--------------------
 
 @implementation TrackerObject
-@synthesize settingsView, controller, blobs, persistentBlobs, opticalFlow,learnBackgroundButton,calibrator,projector;
+@synthesize settingsView, controller, blobs, persistentBlobs, opticalFlow,learnBackgroundButton,calibrator,projector, mouseEvent, mousePosition;
 
 -(id) initWithId:(int)num{
 	if([super init]){
@@ -196,7 +213,9 @@
 		valuesLoaded = NO;
 		pidCounter = 0;
 		setMaskCorner = -1;
-				
+		
+		mouseEvent = NO;
+		
 	}
 	
 	return self;
@@ -253,7 +272,7 @@
 	
 	[thread start];
 	
-
+	
 }
 
 - (BOOL) loadNibFile {	
@@ -280,13 +299,13 @@
 		
 		CameraCalibrationObject* calibrator = ((CameraCalibrationObject*)[[GetPlugin(CameraCalibration) cameraCalibrations] objectAtIndex:trackerNumber]);
 		
-	/*	[calibrator applyWarp];
-		for(int i=0;i<640;i++){
-			ofLine(i/640.0, 0, i/640.0, 1);
-		}
-		
-		glPopMatrix();
-	*/	
+		/*	[calibrator applyWarp];
+		 for(int i=0;i<640;i++){
+		 ofLine(i/640.0, 0, i/640.0, 1);
+		 }
+		 
+		 glPopMatrix();
+		 */	
 		if ([opticalFlowActiveButton state] == NSOnState){
 			glPushMatrix();{
 				
@@ -305,7 +324,7 @@
 			}glPopMatrix();
 		}
 	}
-
+	
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -330,7 +349,7 @@
 	grayImage->draw(w*3,0,w,h);
 	
 	
-//	contourFinder->draw(w*3,0,w,h);
+	//	contourFinder->draw(w*3,0,w,h);
 	
 	PersistentBlob * blob;
 	
@@ -464,7 +483,7 @@
 	}
 	
 	
-	if ([GetPlugin(Cameras) isFrameNew:trackerNumber] && ( [opticalFlowActiveButton state] == NSOnState || [activeButton state] == NSOnState)) {
+	if (([GetPlugin(Cameras) isFrameNew:trackerNumber] && ( [opticalFlowActiveButton state] == NSOnState || [activeButton state] == NSOnState)) || mouseEvent) {
 		
 		pthread_mutex_lock(&drawingMutex);
 		
@@ -480,11 +499,11 @@
 			maskPoints[i] = ofPoint(640.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, i]] floatValue], 480.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.y", trackerNumber,preset, i]] floatValue]);
 		}
 		
-		 int nPoints = 4;
-		 CvPoint _cp[4]= {{0,0}, {640,0},{maskPoints[1].x,maskPoints[1].y},{maskPoints[0].x,maskPoints[0].y}};			
-		 CvPoint* cp = _cp; 
-		 cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0,0,0,10));
-
+		int nPoints = 4;
+		CvPoint _cp[4]= {{0,0}, {640,0},{maskPoints[1].x,maskPoints[1].y},{maskPoints[0].x,maskPoints[0].y}};			
+		CvPoint* cp = _cp; 
+		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0,0,0,10));
+		
 		CvPoint _cp2[4] = {{640,0}, {640,480},{maskPoints[2].x,maskPoints[2].y},{maskPoints[1].x,maskPoints[1].y}};			
 		cp = _cp2; 
 		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
@@ -497,11 +516,11 @@
 		cp = _cp4; 
 		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
 		grayImage->flagImageChanged();
-		 
 		
-	//	[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, setMaskCorner]];
 		
-
+		//	[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, setMaskCorner]];
+		
+		
 		
 		
 		
@@ -587,16 +606,26 @@
 			
 			
 			[blobs removeAllObjects];
-			for(int i=0;i<contourFinder->nBlobs;i++){
-				ofxCvBlob * blob = &contourFinder->blobs[i];
-				Blob * blobObj = [[Blob alloc] initWithBlob:blob] ;
-				[blobObj setCameraId:trackerNumber];
-				[blobObj lensCorrect];
-				[blobObj normalize:cw height:ch];
-				
-				[blobObj warp];
-				[blobs addObject:blobObj];
-				
+			if(!mouseEvent){
+				for(int i=0;i<contourFinder->nBlobs;i++){
+					ofxCvBlob * blob = &contourFinder->blobs[i];
+					Blob * blobObj = [[Blob alloc] initWithBlob:blob] ;
+					[blobObj setCameraId:trackerNumber];
+					[blobObj lensCorrect];
+					[blobObj normalize:cw height:ch];
+					
+					[blobObj warp];
+					[blobs addObject:blobObj];
+					
+				}
+			} else {
+					Blob * blobObj = [[Blob alloc] initWithMouse:mousePosition] ;
+					[blobObj setCameraId:trackerNumber];
+				//	[blobObj normalize:cw height:ch];
+					
+//					[blobObj warp];
+					[blobs addObject:blobObj];
+					
 			}
 			
 			[blobCounter2 setIntValue:contourFinder->blobs.size()];
@@ -753,12 +782,12 @@
 			contourFinder->findContours(*threadGrayDiff, 20, (cw*ch)/30, 10, false, true);	
 			threadUpdateContour = false;			
 			
-		/*	int l = -1;
-			if(contourFinder->nBlobs > 0){
-			for(int i=0;i<contourFinder->blobs[0]->
-				
-				}
-			*/
+			/*	int l = -1;
+			 if(contourFinder->nBlobs > 0){
+			 for(int i=0;i<contourFinder->blobs[0]->
+			 
+			 }
+			 */
 		}
 		
 		if(threadUpdateOpticalFlow){

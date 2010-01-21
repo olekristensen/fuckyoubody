@@ -19,4 +19,7 @@
 
 -(TrackerObject*) trackerNumber:(int)n;
 
+-(void) mouseUpPoint:(NSPoint)theEvent;
+-(void) mouseDownPoint:(NSPoint)theEvent;
+-(void) mouseDraggedPoint:(NSPoint)theEvent;
 @end
