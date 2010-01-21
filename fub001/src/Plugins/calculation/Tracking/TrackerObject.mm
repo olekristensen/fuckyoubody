@@ -73,11 +73,11 @@
 		floorblob = new ofxCvBlob();
 		
 		originalblob = new ofxCvBlob();
-//		originalblob->area = blob->area = _blob->area;
-  //      originalblob->length = blob->length = _blob->length ;
- //       originalblob->boundingRect = blob->boundingRect = _blob->boundingRect;
+		//		originalblob->area = blob->area = _blob->area;
+		//      originalblob->length = blob->length = _blob->length ;
+		//       originalblob->boundingRect = blob->boundingRect = _blob->boundingRect;
         originalblob->centroid = blob->centroid = *point;
-//        originalblob->hole = blob->hole = _blob->hole;
+		//        originalblob->hole = blob->hole = _blob->hole;
 		
 		floorblob->nPts = originalblob->nPts = blob->nPts = 30;
 		for(int i=0;i<30;i++){
@@ -86,9 +86,22 @@
 		}
 		floorblob->pts =  originalblob->pts = blob->pts ;
 		
-	
+		
 	} 
 	return self;
+}
+
+
+-(ofxPoint2f) getLowestPoint{
+	ofxPoint2f low;
+	for(int u=0;u< [self nPts];u++){
+		if([self pts][u].y > low.y){
+			low = [self pts][u];
+		}
+	}
+	
+	return low;
+	
 }
 
 -(id)initWithBlob:(ofxCvBlob*)_blob{
@@ -619,13 +632,13 @@
 					
 				}
 			} else {
-					Blob * blobObj = [[Blob alloc] initWithMouse:mousePosition] ;
-					[blobObj setCameraId:trackerNumber];
+				Blob * blobObj = [[Blob alloc] initWithMouse:mousePosition] ;
+				[blobObj setCameraId:trackerNumber];
 				//	[blobObj normalize:cw height:ch];
-					
-//					[blobObj warp];
-					[blobs addObject:blobObj];
-					
+				
+				//					[blobObj warp];
+				[blobs addObject:blobObj];
+				
 			}
 			
 			[blobCounter2 setIntValue:contourFinder->blobs.size()];

@@ -68,6 +68,9 @@
 -(ofRectangle) boundingRect;
 -(BOOL) hole;
 
+-(ofxPoint2f) getLowestPoint;
+
+
 
 @end
 
