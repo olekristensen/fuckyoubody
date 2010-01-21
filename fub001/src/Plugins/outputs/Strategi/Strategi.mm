@@ -27,13 +27,13 @@
 		contourFinder[i] = new ofxCvContourFinder();
 		
 		images[i] = new ofxCvGrayscaleImage();
-		images[i]->allocate(640, 480);
+		images[i]->allocate(StrategiW, StrategiH);
 		images[i]->set(0);
 	}
 	
 	
 	blur = new shaderBlur();
-	blur->setup(800, 600);
+	blur->setup(StrategiW, StrategiH);
 
 }
 
@@ -97,9 +97,9 @@
 				CvPoint * pointArray = new CvPoint[ [b nPts] ];
 				
 				for( int u = 0; u < [b nPts]; u++){
-					ofxPoint2f p = [b pts][u];//[GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-					pointArray[u].x = int(p.x*640);
-					pointArray[u].y = int(p.y*480);
+					ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Front" toSurface:"Floor"];
+					pointArray[u].x = int(p.x*StrategiW);
+					pointArray[u].y = int(p.y*StrategiH);
 					//				cout<<pointArray[u].x<<"  "<<pointArray[u].y<<endl;
 				}
 				int nPts = [b nPts];
@@ -119,7 +119,10 @@
 		
 		if(flagChanged){
 			for(int u=0;u<2;u++){
-				contourFinder[u]->findContours(*images[u], 20, (640*480)/1, 10, false, true);	
+				ofxCvGrayscaleImage smallerImage;
+				smallerImage.allocate(StrategiBlobW, StrategiBlobH);
+				smallerImage.scaleIntoMe(*images[u], CV_INTER_NN);
+				contourFinder[u]->findContours(smallerImage, 20, (StrategiBlobW*StrategiBlobH)/1, 10, false, true);	
 				area[u] = 0;
 				for(int j=0;j<contourFinder[u]->nBlobs;j++){
 					area[u] += contourFinder[u]->blobs[j].area;
@@ -132,7 +135,7 @@
 		if([fade floatValue]){
 			for(int i=0;i<2;i++){
 				ofxCvGrayscaleImage g;
-				g.allocate(640, 480);
+				g.allocate(StrategiW, StrategiH);
 				g.set(255*[fade floatValue]/100.0);
 				*images[i] -= g;
 			}
@@ -183,13 +186,7 @@
 	
 	
 	for(int i=0;i<2;i++){
-		if(i ==0){
-			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255);	
-		} else {
-			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255);	
-		}
-		//images[i]->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect],1);
-		
+
 		if(i ==0){
 			ofSetColor([[player1LineColor color] redComponent]*255, [[player1LineColor color] greenComponent]*255, [[player1LineColor color] blueComponent]*255,255.0);	
 		} else {
@@ -202,16 +199,16 @@
 			ofxVec2f  hatSmoother;
 			ofPoint firstPoint1,firstPoint2;
 			for(int j=0;j<contourFinder[i]->blobs[u].nPts;j++){
-				ofxVec2f thisP = ofxVec2f(contourFinder[i]->blobs[u].pts[j].x/640.0, contourFinder[i]->blobs[u].pts[j].y/480.0);
+				ofxVec2f thisP = ofxVec2f(contourFinder[i]->blobs[u].pts[j].x/StrategiBlobW, contourFinder[i]->blobs[u].pts[j].y/StrategiBlobH);
 				ofxVec2f prevP;
 				if(j == 0){
-					prevP = ofxVec2f(contourFinder[i]->blobs[u].pts[contourFinder[i]->blobs[u].nPts-1].x/640.0, contourFinder[i]->blobs[u].pts[contourFinder[i]->blobs[u].nPts-1].y/480.0);					
+					prevP = ofxVec2f(contourFinder[i]->blobs[u].pts[contourFinder[i]->blobs[u].nPts-1].x/StrategiBlobW, contourFinder[i]->blobs[u].pts[contourFinder[i]->blobs[u].nPts-1].y/StrategiBlobH);					
 				}
 				else if(j == contourFinder[i]->blobs[u].nPts){
-					prevP = ofxVec2f(contourFinder[i]->blobs[u].pts[0].x/640.0, contourFinder[i]->blobs[u].pts[0].y/480.0);					
+					prevP = ofxVec2f(contourFinder[i]->blobs[u].pts[0].x/StrategiBlobW, contourFinder[i]->blobs[u].pts[0].y/StrategiBlobH);					
 				}
 				else{
-					prevP = ofxVec2f(contourFinder[i]->blobs[u].pts[j-1].x/640.0, contourFinder[i]->blobs[u].pts[j-1].y/480.0);					
+					prevP = ofxVec2f(contourFinder[i]->blobs[u].pts[j-1].x/StrategiBlobW, contourFinder[i]->blobs[u].pts[j-1].y/StrategiBlobH);					
 				}				
 				ofxVec2f diff = thisP - prevP;
 				diff.normalize();
@@ -260,13 +257,49 @@
 	glViewport(0,0,ofGetWidth(),ofGetHeight());	
 	ofSetupScreen();
 	glScaled(ofGetWidth(), ofGetHeight(), 1);
-	
-	
 	ofEnableAlphaBlending();
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	
+
+
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	blur->draw(0, 0, 1, 1, true);
-	//glPopMatrix();
+	glPopMatrix();
+	
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+	blur->draw(0, 0, 1, 1, true);
+	glPopMatrix();
+
+
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+
+	for(int i=0;i<2;i++){
+		if(i ==0){
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255);	
+		} else {
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255);	
+		}	
+		images[i]->draw(0, 0, 1,1);
+	}
+	glPopMatrix();
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
+	
+	
+	for(int i=0;i<2;i++){
+		if(i ==0){
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255);	
+		} else {
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255);	
+		}	
+		images[i]->draw(0, 0, 1,1);
+	}
+	
+	
+	glPopMatrix();
+	glPopMatrix();
+	glPopMatrix();
+
 }
 
 -(IBAction) restart:(id)sender{

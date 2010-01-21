@@ -130,7 +130,7 @@
 	
 	ofEnableAlphaBlending();
 	
-	ofSetColor(255, 255, 255, 255.0*frontA);
+	ofSetColor(255.0*frontA, 255.0*frontA, 255.0*frontA, 255);
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	glBegin(GL_QUAD_STRIP);
 	glVertex2f(leftP[0].x, leftP[0].y);
@@ -141,7 +141,7 @@
 	glEnd();
 	glPopMatrix();
 	
-	ofSetColor(255, 255, 255, 255.0*backA);
+	ofSetColor(255.0*backA, 255.0*backA, 255.0*backA, 255);
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	glBegin(GL_QUAD_STRIP);
 	glVertex2f(leftP[0].x, leftP[0].y);

@@ -254,7 +254,18 @@
 	 [self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0];
 	 }
 	 } glPopMatrix();*/
+	ofSetColor(255, 255, 255);
+	ofRect(0, 0, 0.001, 0.001);
+	ofRect(0.5, 0, -0.001, 0.001);
 	
+	ofRect(0.5, 0, 0.001, 0.001);
+	ofRect(1, 0, -0.001, 0.001);
+
+	ofRect(0, 1, 0.001, -0.001);
+	ofRect(0.5, 1, -0.001, -0.001);
+	
+	ofRect(0.5, 1, 0.001, -0.001);
+	ofRect(1, 1, -0.001, -0.001);
 }
 
 -(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize simple:(BOOL)simple{

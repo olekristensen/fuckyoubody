@@ -8,6 +8,11 @@
 #include "ofxVectorMath.h"
 #include "shaderBlur.h"
 
+#define StrategiW 600
+#define StrategiH 600
+
+#define StrategiBlobW 500
+#define StrategiBlobH 500
 
 @interface StrategiBlob : NSObject
 {
