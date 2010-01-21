@@ -22,6 +22,7 @@
 		6E842D8E10DA7A0900F4FB4C /* Arkade.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6E842D8D10DA7A0900F4FB4C /* Arkade.mm */; };
 		6E842D9010DA7A1300F4FB4C /* Arkade.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E842D8F10DA7A1300F4FB4C /* Arkade.xib */; };
 		6E9A2A5C10CA102F0003A1B8 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */; };
+		6EA228BA1108DDAE0067C608 /* Bomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EA228B91108DDAD0067C608 /* Bomb.png */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EA7149210FFA89000DB0246 /* PluginUIButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7149110FFA89000DB0246 /* PluginUIButton.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
@@ -242,6 +243,7 @@
 		6E842D8D10DA7A0900F4FB4C /* Arkade.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Arkade.mm; sourceTree = "<group>"; };
 		6E842D8F10DA7A1300F4FB4C /* Arkade.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Arkade.xib; sourceTree = "<group>"; };
 		6E9A2A5B10CA102F0003A1B8 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		6EA228B91108DDAD0067C608 /* Bomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bomb.png; sourceTree = "<group>"; };
 		6EA4026510BC115E006FBAAB /* SharedContextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedContextLayer.h; path = PluginManager/SharedContextLayer.h; sourceTree = "<group>"; };
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
 		6EA7149010FFA89000DB0246 /* PluginUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIButton.h; sourceTree = "<group>"; };
@@ -795,6 +797,7 @@
 		6ECEB54910C5D6C900B659F0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6EA228B91108DDAD0067C608 /* Bomb.png */,
 				6EB354F510CEC796008624B2 /* icon.icns */,
 				DDA5AF2B10CEBE2B005B53C6 /* AvailableProxy.tiff */,
 				DDA5AF2C10CEBE2B005B53C6 /* chessboard.pages */,
@@ -1973,6 +1976,7 @@
 				6EFB7A1810FCD2B300C20033 /* Stregkode.xib in Resources */,
 				6EFB7AB510FCDF9400C20033 /* Players.xib in Resources */,
 				6EFB7B7010FDE5FC00C20033 /* GrowingShadow.xib in Resources */,
+				6EA228BA1108DDAE0067C608 /* Bomb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

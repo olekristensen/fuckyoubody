@@ -41,7 +41,7 @@
 	IBOutlet NSSlider * morphSlider;
 	
 	IBOutlet NSTextField * coordinateX;
-		IBOutlet NSTextField * coordinateY;
+	IBOutlet NSTextField * coordinateY;
 	
 }
 

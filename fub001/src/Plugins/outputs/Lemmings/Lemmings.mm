@@ -15,67 +15,18 @@
 }
 
 -(void) initPlugin{
-	lemmingList = [[NSMutableArray array] retain];
+	screenLemmings = [[NSMutableArray array] retain];
+	floorLemmings = [[NSMutableArray array] retain];
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	pthread_mutex_init(&mutex, NULL);
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	
+
+	/**
 	[numberLemmingsControl setIntValue:[lemmingList count]];
 	
 	if(ofGetFrameRate() > 2){
-		/*	PersistentBlob * blob;
-		 
-		 for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
-		 BOOL lineFound = NO;
-		 
-		 Blob * b;
-		 BOOL anyBlobs = NO;
-		 for(b in [blob blobs]){
-		 anyBlobs = YES;
-		 Lemming * lemming;
-		 
-		 CvPoint2D32f * pointArray = new CvPoint2D32f[ [b nPts] ];
-		 
-		 for( int i = 0; i < [b nPts]; i++){
-		 ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-		 pointArray[i].x = p.x;
-		 pointArray[i].y = p.y;
-		 }
-		 
-		 CvMat pointMat = cvMat( 1, [b pts].size(), CV_32FC2, pointArray);
-		 
-		 for(lemming in lemmingList){
-		 
-		 double dist = cvPointPolygonTest(&pointMat, cvPoint2D32f([lemming position]->x, [lemming position]->y), 0);
-		 
-		 if( dist >= 0 ){
-		 int shortestI = -1;
-		 float shortestDist;
-		 for( int i = 0; i < [b nPts] ; i+=5){
-		 ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-		 float dist = ((ofxPoint2f*) [lemming position])->distanceSquared(p);
-		 if(shortestI == -1 || dist < shortestDist){
-		 shortestI = i;
-		 shortestDist = dist;
-		 }
-		 }
-		 
-		 if(shortestI != -1){
-		 ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][shortestI] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-		 [lemming setDestination:new ofxVec2f(p)];
-		 [lemming setLagFactor:0.33];
-		 }
-		 } else {
-		 [lemming setDestination:new ofxVec2f(*[lemming position] + ofxVec2f(ofRandom(0.0,0.002),ofRandom(0.0,0.004)))];
-		 }
-		 
-		 }
-		 
-		 free(pointArray);
-		 }
-		 }*/
 		
 		Lemming * lemming;
 		
@@ -180,7 +131,7 @@
 				[lemming vel]->x *= -0.9;
 				[lemming position]->x = 0.00001;
 			}
-			if([lemming position]->y < 0 ){
+			if([lemming position]->y < -0.0 ){
 				[lemming vel]->y *= -0.9;
 				[lemming position]->y = 0.00001;				
 			}
@@ -313,6 +264,11 @@
 -(IBAction) removeOldestLemming:(id)sender{
 	lemmingDiff--;
 }
+
+-(IBAction) resetLemmings:(id)sender{
+	;
+}
+
 
 @end
 
