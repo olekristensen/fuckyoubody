@@ -202,6 +202,21 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	[self buildMidiInterfacePopUp];
 }
 
+-(void)sendValue:(int)midiValue forController:(int)midiController onChannel:(int)midiChannel{
+
+	/**
+	if (endpoint) {
+
+	}
+	[myEndpoint addSender:self];
+	
+	[myEndpoint processMIDIPacketList:myPacketList sender:self];
+	
+	[myEndpoint removeSender:self];
+
+	 **/
+}
+
 -(IBAction) printMidiMappingsList:(id)sender{
 	[midiMappingsListForPrint reloadData];
 

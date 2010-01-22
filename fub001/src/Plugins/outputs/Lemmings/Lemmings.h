@@ -23,16 +23,20 @@
 	NSUserDefaults	*userDefaults;
 
 	ofImage			*coinImage;
+	ofPoint			*screenDoorPos;
 		
 	IBOutlet NSSegmentedControl * cameraControl;
-	IBOutlet NSTextField * numberLemmingsControl;
 	IBOutlet NSButton * trackingActive;
-	
+
+	int numberLemmings;
+	float lastLemmingInterval;
 	
 	// screen world
 	
 	NSMutableArray	* screenLemmings;
 	NSMutableArray	* screenColliders;
+
+	IBOutlet NSSlider * screenElementsAlpha;		//	0 ... 1 black ... white
 
 	IBOutlet NSSlider * screenEntranceDoor;			//	0 ... 1 closed ... open
 	IBOutlet NSSlider * screenLemmingsAddRate;		//	0 ... 1 none ... fast
@@ -42,7 +46,7 @@
 	IBOutlet NSButton * screenSeeSawTracking;		//	BOOL
 	IBOutlet NSSlider * screenSeeSawDamping;		//	0 ... 1
 
-	IBOutlet NSButton * screenFloor;			//	BOOL
+	IBOutlet NSButton * screenFloor;				//	BOOL
 
 	// floor world
 	
@@ -77,7 +81,8 @@
 -(IBAction) addScreenLemming:(id)sender;
 -(IBAction) resetLemmings:(id)sender;
 -(IBAction) killAllLemmings:(id)sender;
--(void) makeLemmingFromShadowAtX:(float)xPosition Y: (float)yPosition;
+-(void) updateLemmingArray:(NSMutableArray*) theLemmingArray;
+-(void) makeFloorLemmingFromShadowAtX:(float)xPosition Y: (float)yPosition;
 
 @end
 
@@ -105,5 +110,6 @@
 @property (assign) BOOL	dying;
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
+
 
 @end
