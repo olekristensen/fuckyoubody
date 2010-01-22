@@ -9,12 +9,19 @@
 
 @interface Arkade : ofPlugin {
 	IBOutlet NSButton * floorSquaresButton;
+		IBOutlet NSButton * leaveCookiesButton;
+		IBOutlet NSButton * pacmanButton;
+		IBOutlet NSSlider * pacmanSpeedSlider;
+	
 	float floorSquaresOpacity[ FLOORGRIDSIZE * FLOORGRIDSIZE ];
 	
 	vector<ofxPoint2f> cookies;
 	
 	ofxPoint2f * pacmanPosition;
 	ofxVec2f * pacmanDir;
+	float pacmanMouthValue;
+	int pacmanMouthDir;
+	
 }
 
 -(int) getIatX:(float)x Y:(float)y;
