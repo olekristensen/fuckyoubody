@@ -25,7 +25,7 @@
 	IBOutlet NSSlider * speedSlider;
 	IBOutlet NSSlider * flashSpeedSlider;
 
-	ofSoundPlayer * sound[4];
+	ofSoundPlayer * sound;
 	NSMutableArray * players;
 	
 	float percent;
@@ -35,6 +35,7 @@
 @property (readwrite) float percent;
 @property (readwrite) bool going;
 @property (assign, readwrite) NSMutableArray * players;
+@property (readonly) ofSoundPlayer * sound;
 
 -(IBAction) go:(id)sender;
 

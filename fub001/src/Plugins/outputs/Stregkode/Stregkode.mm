@@ -18,16 +18,14 @@
 
 
 @implementation Stregkode
-@synthesize percent, going, players;
+@synthesize percent, going, players, sound;
 
 -(void) initPlugin{
 	players = [[NSMutableArray array]retain];
 	going = false;
 	
-	for(int i=0;i<4;i++){
-		sound[i] = new ofSoundPlayer();
-		sound[i]->loadSound("stregkode.aif");
-	}
+		sound = new ofSoundPlayer();
+		sound->loadSound("stregkode.aif");
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -57,7 +55,8 @@
 					newp->whiteAdd = 255.0f;
 					[players addObject:newp];
 					cout<<"Add "<<newp->pid<<"  "<<num<<endl;
-					sound[MIN(num,3)]->play();
+					sound->setPan(0.5);
+					sound->play();
 					
 					num ++;
 					num = MIN(num,3);
