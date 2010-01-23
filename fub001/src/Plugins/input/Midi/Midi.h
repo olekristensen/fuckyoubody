@@ -34,6 +34,7 @@
 	
 	PYMIDIManager			* manager;
 	PYMIDIVirtualSource		* endpoint;
+	PYMIDIVirtualDestination* sendEndpoint;
 	
 	IBOutlet NSArrayController		* boundControlsController;
 	NSMutableArray			* boundControls;
@@ -49,7 +50,7 @@
 -(IBAction) printMidiMappingsList:(id)sender;
 -(IBAction) sendGo:(id)sender;
 
--(void)sendValue:(int)midiValue forController:(int)midiController onChannel:(int)midiChannel;
+-(void)sendValue:(int)midiValue forNote:(int)midiNote onChannel:(int)midiChannel;
 
 
 -(void) buildMidiInterfacePopUp;

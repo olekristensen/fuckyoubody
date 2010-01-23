@@ -2,7 +2,7 @@
 #include "Tracking.h"
 #include "Arkade.h"
 #include "Stregkode.h"
-
+#include "lineIntersection.h"
 
 
 @implementation Arkade
@@ -17,6 +17,17 @@
 -(void) setup{
 	pongWallSound = new ofSoundPlayer();
 	pongWallSound->loadSound("pongWallSound.aif");
+	
+	personFilterX = new Filter();	
+	personFilterX->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
+	personFilterX->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
+	
+	personFilterY = new Filter();	
+	personFilterY->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
+	personFilterY->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
+
+	
+	personPosition = new ofxPoint2f(0,0);
 	
 	[self reset:self];
 }
@@ -35,14 +46,45 @@
 	
 	pacmanEntering = true;
 	
+	redChoisePosition = new ofxPoint2f(-1,-1);
+	blueChoisePosition = new ofxPoint2f(-1,-1);
+	choisesSize = 0;
+	makeChoises = false;
+	
+	terminatorMode = false;
+	blueScaleFactor = 1.0;
+	
 	[pacmanButton setState:NSOffState];
 	[ballUpdateButton setState:NSOffState];
 	[ballDrawButton setState:NSOffState];
+	[leaveCookiesButton setState:NSOffState];
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	if(ofGetFrameRate() > 10){
+		//
+		//General person position
+		//
+		PersistentBlob * pblob;
+		TrackerObject* t = tracker(0);
+		
+		for(pblob in [t persistentBlobs]){
+			Blob * b;
+			for(b in [pblob blobs]){
+				ofxPoint2f p = [b getLowestPoint];
+				p = ([GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"]);
+				personPosition->x = personFilterX->filter(p.x);
+				personPosition->y = personFilterY->filter(p.y);
+				personPosition->x = personFilterX->filter(p.x);
+				personPosition->y = personFilterY->filter(p.y);
+
+				break;
+			}
+			break;
+		}
+		
+		
 		//
 		//Floor squares
 		//
@@ -300,6 +342,33 @@
 				}
 			}
 		}
+		
+		
+		//
+		//Choises
+		//
+		if(makeChoises){
+			if(choisesSize == 0){
+				blueChoisePosition = new ofxPoint2f(*personPosition*FLOORGRIDSIZE - ofxPoint2f(1,0));
+				redChoisePosition = new ofxPoint2f(*personPosition*FLOORGRIDSIZE + ofxPoint2f(0,1));
+			}
+			choisesSize += 0.1;
+			choisesSize = ofClamp(choisesSize, 0, 1);		
+		}
+		
+		
+		//
+		//Terminator
+		//
+		if(terminatorMode){
+			makeChoises = false;
+			choisesSize -= 0.1;
+			
+			lightRotation += [terminatorLightSpeedSlider floatValue]/10.0;
+			if(lightRotation > 360)
+				lightRotation -= 360;
+		}
+		
 	}
 }
 
@@ -334,6 +403,30 @@
 		}
 	}
 	//}
+	
+	
+	//
+	//Choises
+	//
+	if(choisesSize > 0){
+		ofSetColor(255, 0, 0);
+		ofxPoint2f p;
+		p.x = floor(redChoisePosition->x)/(float)FLOORGRIDSIZE;
+		p.y = floor(redChoisePosition->y)/(float)FLOORGRIDSIZE;
+		ofRect(p.x+0.5*w*(1-choisesSize),p.y+0.5*w*(1-choisesSize),w*(choisesSize) , w*(choisesSize));
+		
+		ofSetColor(0, 0, 255);		
+		p.x = floor(blueChoisePosition->x)/(float)FLOORGRIDSIZE;
+		p.y = floor(blueChoisePosition->y)/(float)FLOORGRIDSIZE;
+		ofRect(
+			   ofClamp(p.x+0.5*w*(1-choisesSize*blueScaleFactor),0,1),
+			   ofClamp(p.y+0.5*w*(1-choisesSize*blueScaleFactor), 0, 1),
+			   ofClamp(w*(choisesSize*blueScaleFactor), 0 , 1) , 
+			   ofClamp(w*(choisesSize*blueScaleFactor), 0,1) );
+		
+	}
+	
+	
 	
 	//
 	//Ball
@@ -371,11 +464,131 @@
 		
 		//ofEllipse(pacmanPosition->x, pacmanPosition->y, 0.08, 0.08);
 	}
+	
 	glPopMatrix();
+	
+	
+	//
+	//Terminator mode
+	//
+	ofEnableAlphaBlending();
+	if(terminatorMode){
+		ofxPoint2f center = *personPosition;
+		ofxVec2f dir = ofxVec2f(1,0);
+		ofxVec2f hat = ofxVec2f(0,1);
+		dir.rotate(lightRotation);
+		hat.rotate(lightRotation);
+		
+		float v = 0.25;
+		
+		ofxPoint2f points[4];
+
+		points[0] = center+dir+hat*v;
+		points[1] = center+dir-hat*v;
+		
+		points[2] = center-dir+hat*v;
+		points[3] = center-dir-hat*v;
+		
+		
+		for(int i=0;i<4;i++){
+			//Find intersection with border
+			double x,y;
+			if(lineSegmentIntersection(points[i].x, points[i].y, center.x, center.y, 0, 0, 1, 0, &x, &y)){
+				points[i].x = x;
+				points[i].y = y;
+			}
+			if(lineSegmentIntersection(points[i].x, points[i].y, center.x, center.y, 1, 0, 1, 1, &x, &y)){
+				points[i].x = x;
+				points[i].y = y;
+			}
+			if(lineSegmentIntersection(points[i].x, points[i].y, center.x, center.y, 1, 1, 0, 1, &x, &y)){
+				points[i].x = x;
+				points[i].y = y;
+			}
+			if(lineSegmentIntersection(points[i].x, points[i].y, center.x, center.y, 0, 1, 0, 0, &x, &y)){
+				points[i].x = x;
+				points[i].y = y;
+			}
+		}
+		
+		ofxPoint2f cornerPoint[2];
+		cornerPoint[0] = points[0];
+		cornerPoint[1] = points[2];
+		
+		for(int i=0;i<2;i++){
+			if(fabs(points[i*2].x - points[i*2+1].x) > 0.005 && fabs(points[i*2].y - points[i*2+1].y) > 0.005){
+				if(points[i*2].x > 0.5){
+					cornerPoint[i].x = 1;
+				} else {
+					cornerPoint[i].x = 0;	
+				}
+				if(points[i*2].y > 0.5){
+					cornerPoint[i].y = 1;
+				} else {
+					cornerPoint[i].y = 0;	
+				}
+			}
+		}
+		
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+
+		
+		ofSetColor(0, 0, 255,[terminatorLightFadeSlider floatValue]*2.5);
+		glBegin(GL_POLYGON);
+		glVertex2f(center.x, center.y);
+		glVertex2f(points[0].x, points[0].y);
+		glVertex2f(cornerPoint[0].x, cornerPoint[0].y);
+		glVertex2f(points[1].x, points[1].y);
+		glEnd();
+		
+		glBegin(GL_POLYGON);
+		glVertex2f(center.x, center.y);
+		glVertex2f(points[2].x, points[2].y);
+		glVertex2f(cornerPoint[1].x, cornerPoint[1].y);
+		glVertex2f(points[3].x, points[3].y);
+		glEnd();		
+		
+		glPopMatrix();
+		
+		
+		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];		
+		ofSetColor(0, 0, 255,[terminatorLightFadeSlider floatValue]*2.5);
+		glBegin(GL_POLYGON);
+		glVertex2f(center.x, center.y);
+		glVertex2f(points[0].x, points[0].y);
+		glVertex2f(cornerPoint[0].x, cornerPoint[0].y);
+		glVertex2f(points[1].x, points[1].y);
+		glEnd();
+		
+		glBegin(GL_POLYGON);
+		glVertex2f(center.x, center.y);
+		glVertex2f(points[2].x, points[2].y);
+		glVertex2f(cornerPoint[1].x, cornerPoint[1].y);
+		glVertex2f(points[3].x, points[3].y);
+		glEnd();		
+		
+		glPopMatrix();
+	}
+	
+	
+	
 }
 
 -(int) getIatX:(float)x Y:(float)y{
 	float w = 1.0/FLOORGRIDSIZE;
 	return ofClamp(floor(x*FLOORGRIDSIZE) + floor(y*FLOORGRIDSIZE)*FLOORGRIDSIZE,0, FLOORGRIDSIZE*FLOORGRIDSIZE-1);
 }
+
+
+
+-(IBAction) makeChoises:(id)sender{
+	makeChoises = true;
+}
+
+
+
+-(IBAction) activateTerminator:(id)sender{
+	terminatorMode = true;	
+}
+
 @end

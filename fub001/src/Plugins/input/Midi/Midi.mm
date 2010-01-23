@@ -23,6 +23,9 @@
 	endpoint = new PYMIDIRealEndpoint;
 	[endpoint retain];
 	
+	sendEndpoint = new PYMIDIRealEndpoint;
+//	[sendEndpoint retain];
+	
 	updateView = false;
 	
 	boundControls = [[[NSMutableArray alloc] initWithCapacity:2] retain];
@@ -111,6 +114,8 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 				number = packet->data[1+j];
 				value = packet->data[2+j];
 			}
+			
+			cout<<channel<<"  "<<number<<"  "<<value<<endl;
 			if([self isEnabled]){
 							
 				id theBinding;
@@ -175,6 +180,15 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 		}
 	}
 	
+	for (endpointIterator in [manager realDestinations]) {
+		if ([userDefaults stringForKey:@"midi.interface"] != nil) {
+			if([[endpointIterator displayName] isEqualToString:[userDefaults stringForKey:@"midi.interface"]]){
+				sendEndpoint = endpointIterator;
+			}
+		}
+	}
+	
+	
 	if([midiInterface numberOfItems] == 0){
 		[midiInterface addItemWithTitle:@"No midi interfaces found"];
 		[midiInterface selectItem:[midiInterface lastItem]];
@@ -193,6 +207,17 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 -(IBAction) selectMidiInterface:(id)sender{
 	endpoint = [[sender selectedItem] representedObject];
+	
+	id endpointIterator;
+	for (endpointIterator in [manager realDestinations]) {
+		if ([userDefaults stringForKey:@"midi.interface"] != nil) {
+			if([[endpointIterator displayName] isEqualToString:[endpoint displayName]]){
+				sendEndpoint = endpointIterator;
+			}
+		}
+	}
+	
+	
 	[endpoint addReceiver:self];
 	[userDefaults setValue:[sender titleOfSelectedItem] forKey:@"midi.interface"];
 }
@@ -202,24 +227,29 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	[self buildMidiInterfacePopUp];
 }
 
--(void)sendValue:(int)midiValue forController:(int)midiController onChannel:(int)midiChannel{
+-(void)sendValue:(int)midiValue forNote:(int)midiNote onChannel:(int)midiChannel{
 
 	Byte packetbuffer[128];
-	MIDIPacketList *packetlist = (MIDIPacketList*)packetbuffer;
-	MIDIPacket     *packet     = ::MIDIPacketListInit(packetlist);
-	Byte mdata[3] = {(175+midiChannel), midiController, midiValue};
-	packet = MIDIPacketListAdd(packetlist, sizeof(packetbuffer),
+	MIDIPacketList packetlist;
+	MIDIPacket     *packet     = MIDIPacketListInit(&packetlist);
+	Byte mdata[3] = {(143+midiChannel), midiNote, midiValue};
+//	 Byte mdata[3] = {0x90, 60, 90};
+	packet = MIDIPacketListAdd(&packetlist, sizeof(packetlist),
 								 packet, 0, 3, mdata);
 	
 	if (endpoint) {
-		[endpoint addSender:self];
-		[endpoint processMIDIPacketList:packetlist sender:self];
-		[endpoint removeSender:self];
+//		[endpoint removeReceiver:self];
+		[sendEndpoint addSender:self];
+		[sendEndpoint processMIDIPacketList:&packetlist sender:self];
+		[sendEndpoint removeSender:self];
+//		[endpoint addReceiver:self];
 	}
+	
+
 }
 
 -(IBAction) sendGo:(id)sender{
-	[self sendValue:1 forController:1 onChannel:1];
+	[self sendValue:1 forNote:1 onChannel:1];
 }
 
 -(IBAction) printMidiMappingsList:(id)sender{
