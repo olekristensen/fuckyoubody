@@ -12,6 +12,8 @@
 
 @implementation Lemmings
 
+@synthesize numberLemmings;
+
 -(void) awakeFromNib{
 	[super awakeFromNib];
 }
@@ -26,35 +28,61 @@
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
-	numberLemmings = [screenLemmings count] + [floorLemmings count];
+	// add lemmings from door
 	
 	if ([screenEntranceDoor floatValue] > 0.65) {
-		
 		float lemmingInterval = fmodf(timeInterval, 1/([screenLemmingsAddRate floatValue]/60));
 		if(lemmingInterval - lastLemmingInterval < 0.0){
 			[screenLemmings addObject:[[[Lemming alloc]initWithX: screenDoorPos->x Y:screenDoorPos->y spawnTime:timeInterval]autorelease]];
 		}
 		lastLemmingInterval = lemmingInterval;
-		
 	}
+	
+	Lemming * lemming;
+	
+	// add screen gravity
+	for(lemming in screenLemmings){
+		*[lemming totalforce] += ofxPoint2f(0,[screenGravity floatValue]*(ofGetFrameRate()/60.0)/50.0);
+	}
+	
+	//Add random force to lemmings on screen
+	for(lemming in screenLemmings){
+		*[lemming totalforce]  += ofxVec2f(ofRandom(-1, 1), ofRandom(-1, 1))*0.01;
+	}
+	
+	
+	//add motion from humans on the floor
+	for (lemming in floorLemmings) {
+		ofxPoint2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertToProjection:*[lemming position] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+		ofxVec2f p = [tracker([cameraControl selectedSegment]) flowAtX:lemmingPosition.x Y:lemmingPosition.y];
+		if (p.length() > [motionTreshold floatValue]* 0.01) {
+			*[lemming totalforce] -= p * [motionMultiplier floatValue];
+			[lemming setRadius: [lemming radius] + 0.0025 ];
+		}
+	}
+	
 	
 	
 	[self updateLemmingArray:screenLemmings];
 	[self updateLemmingArray:floorLemmings];
-
+	
+	//finally count the lemmings
+	[self setValue:[[NSNumber alloc] initWithInt:([screenLemmings count] + [floorLemmings count])] forKey:@"numberLemmings"];
+	
+	cout << numberLemmings << endl;
+	
 }
 
 -(void) updateLemmingArray:(NSMutableArray*) theLemmingArray{
-
+	
 	Lemming * lemming;
-
+	
 	//Kill lemmings that have died
 	for(lemming in theLemmingArray){
 		if ([lemming dying]) {
 			[theLemmingArray removeObject:lemming];
 		}
 	}
-	
 	
 	int i=0;
 #pragma omp parallel for
@@ -65,35 +93,25 @@
 			Lemming * anotherLemming = [theLemmingArray objectAtIndex:u];
 			ofxPoint2f l1 = *[lemming position];
 			ofxPoint2f l2 = *[anotherLemming position];
-			double distSq =	l1.distanceSquared(l2);
-			if(distSq < RADIUS_SQUARED*1.1 ){
-				ofxVec2f diff = *[lemming position] - *[anotherLemming position];
-				diff.normalize();
-				
-				pthread_mutex_lock(&mutex);
-				double iDist = ((double)RADIUS_SQUARED*1.1 - (double)distSq)/(double)(RADIUS_SQUARED*1.1); 
-				diff *= MIN(iDist*3, 0.02);
-				*[lemming totalforce] += diff;
-				*[anotherLemming totalforce] -= diff;				
-				pthread_mutex_unlock(&mutex);
+			
+			if(fabs(l1.x - l2.x) < 0.1){
+				if(fabs(l1.y - l2.y) < 0.1){
+					double distSq =	l1.distanceSquared(l2);
+					if(distSq < RADIUS_SQUARED*1.02 ){
+						ofxVec2f diff = *[lemming position] - *[anotherLemming position];
+						diff.normalize();
+						
+						pthread_mutex_lock(&mutex);
+						double iDist = ((double)RADIUS_SQUARED*1.1 - (double)distSq)/(double)(RADIUS_SQUARED*1.1); 
+						diff *= MIN(iDist*3, 0.02);
+						*[lemming totalforce] += diff;
+						*[anotherLemming totalforce] -= diff;				
+						pthread_mutex_unlock(&mutex);
+					}
+				}
 			}
 		}
 		i++;
-	}
-	
-	//Add random force
-	for(lemming in theLemmingArray){
-		//			*[lemming totalforce]  += ofxVec2f(ofRandom(-1, 1), ofRandom(-1, 1))*0.01;
-		//				*[lemming totalforce]  += ofxVec2f(0,-1)*0.01;
-	}
-	
-	for (lemming in theLemmingArray) {
-		ofxPoint2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertToProjection:*[lemming position] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-		ofxVec2f p = [tracker([cameraControl selectedSegment]) flowAtX:lemmingPosition.x Y:lemmingPosition.y];
-		if (p.length() > [motionTreshold floatValue]* 0.01) {
-			*[lemming totalforce] -= p * [motionMultiplier floatValue];
-			[lemming setRadius: [lemming radius] + 0.0025 ];
-		}
 	}
 	
 	for (lemming in theLemmingArray) {
@@ -121,7 +139,7 @@
 	
 	//	id debugLemming = [theLemmingArray objectAtIndex:0];
 	//cout<<"før: "<<[debugLemming position]->x<<"  "<<[debugLemming position]->y<<"  "<<[debugLemming totalforce]->x<<"  "<<[debugLemming totalforce]->y<<endl;
-
+	
 	
 	//Move the lemming
 	for(lemming in theLemmingArray){
@@ -169,59 +187,59 @@
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	/**
-	glPushMatrix();{
-		
-		ofScale(ofGetWidth(), ofGetHeight(), 1);
-		
-		ofEnableAlphaBlending();
-		ofSetColor(255, 255, 255,127);
-		ofFill();
-		Lemming * lemming;
-		for(lemming in lemmingList){
-			[lemming draw:timeInterval displayTime:timeStamp];
-		}
-		
-		ofNoFill();
-		PersistentBlob * blob;
-		
-		for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
-			int i=blob->pid%5;
-			switch (i) {
-				case 0:
-					ofSetColor(255, 0, 0,255);
-					break;
-				case 1:
-					ofSetColor(0, 255, 0,255);
-					break;
-				case 2:
-					ofSetColor(0, 0, 255,255);
-					break;
-				case 3:
-					ofSetColor(255, 255, 0,255);
-					break;
-				case 4:
-					ofSetColor(0, 255, 255,255);
-					break;
-				case 5:
-					ofSetColor(255, 0, 255,255);
-					break;
-					
-				default:
-					ofSetColor(255, 255, 255,255);
-					break;
-			}
-			Blob * b;
-			for(b in [blob blobs]){
-				glBegin(GL_LINE_STRIP);
-				for(int i=0;i<[b nPts];i++){
-					ofxPoint2f p =[GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
-					glVertex2f(p.x, p.y);
-				}
-				glEnd();
-			}
-		}	
-	}glPopMatrix();
-	**/
+	 glPushMatrix();{
+	 
+	 ofScale(ofGetWidth(), ofGetHeight(), 1);
+	 
+	 ofEnableAlphaBlending();
+	 ofSetColor(255, 255, 255,127);
+	 ofFill();
+	 Lemming * lemming;
+	 for(lemming in lemmingList){
+	 [lemming draw:timeInterval displayTime:timeStamp];
+	 }
+	 
+	 ofNoFill();
+	 PersistentBlob * blob;
+	 
+	 for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
+	 int i=blob->pid%5;
+	 switch (i) {
+	 case 0:
+	 ofSetColor(255, 0, 0,255);
+	 break;
+	 case 1:
+	 ofSetColor(0, 255, 0,255);
+	 break;
+	 case 2:
+	 ofSetColor(0, 0, 255,255);
+	 break;
+	 case 3:
+	 ofSetColor(255, 255, 0,255);
+	 break;
+	 case 4:
+	 ofSetColor(0, 255, 255,255);
+	 break;
+	 case 5:
+	 ofSetColor(255, 0, 255,255);
+	 break;
+	 
+	 default:
+	 ofSetColor(255, 255, 255,255);
+	 break;
+	 }
+	 Blob * b;
+	 for(b in [blob blobs]){
+	 glBegin(GL_LINE_STRIP);
+	 for(int i=0;i<[b nPts];i++){
+	 ofxPoint2f p =[GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
+	 glVertex2f(p.x, p.y);
+	 }
+	 glEnd();
+	 }
+	 }	
+	 }glPopMatrix();
+	 **/
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{

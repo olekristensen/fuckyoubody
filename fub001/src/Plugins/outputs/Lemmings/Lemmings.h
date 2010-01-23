@@ -77,6 +77,8 @@
 	
 }
 
+@property (readonly) int numberLemmings;
+
 -(IBAction) addFloorLemming:(id)sender;
 -(IBAction) addScreenLemming:(id)sender;
 -(IBAction) resetLemmings:(id)sender;
