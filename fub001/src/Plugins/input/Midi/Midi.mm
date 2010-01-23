@@ -204,17 +204,22 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 -(void)sendValue:(int)midiValue forController:(int)midiController onChannel:(int)midiChannel{
 
-	/**
+	Byte packetbuffer[128];
+	MIDIPacketList *packetlist = (MIDIPacketList*)packetbuffer;
+	MIDIPacket     *packet     = ::MIDIPacketListInit(packetlist);
+	Byte mdata[3] = {(175+midiChannel), midiController, midiValue};
+	packet = MIDIPacketListAdd(packetlist, sizeof(packetbuffer),
+								 packet, 0, 3, mdata);
+	
 	if (endpoint) {
-
+		[endpoint addSender:self];
+		[endpoint processMIDIPacketList:packetlist sender:self];
+		[endpoint removeSender:self];
 	}
-	[myEndpoint addSender:self];
-	
-	[myEndpoint processMIDIPacketList:myPacketList sender:self];
-	
-	[myEndpoint removeSender:self];
+}
 
-	 **/
+-(IBAction) sendGo:(id)sender{
+	[self sendValue:1 forController:1 onChannel:1];
 }
 
 -(IBAction) printMidiMappingsList:(id)sender{

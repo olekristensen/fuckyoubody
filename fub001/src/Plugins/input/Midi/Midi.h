@@ -47,6 +47,10 @@
 
 -(IBAction) selectMidiInterface:(id)sender;
 -(IBAction) printMidiMappingsList:(id)sender;
+-(IBAction) sendGo:(id)sender;
+
+-(void)sendValue:(int)midiValue forController:(int)midiController onChannel:(int)midiChannel;
+
 
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;

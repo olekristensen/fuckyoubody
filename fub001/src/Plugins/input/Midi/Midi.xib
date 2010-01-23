@@ -171,6 +171,26 @@
 									<int key="NSPeriodicInterval">75</int>
 								</object>
 							</object>
+							<object class="NSButton" id="806602560">
+								<reference key="NSNextResponder" ref="546579326"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{167, 12}, {56, 25}}</string>
+								<reference key="NSSuperview" ref="546579326"/>
+								<bool key="NSEnabled">YES</bool>
+								<object class="NSButtonCell" key="NSCell" id="46000618">
+									<int key="NSCellFlags">-2080244224</int>
+									<int key="NSCellFlags2">134217728</int>
+									<string key="NSContents">GO</string>
+									<reference key="NSSupport" ref="271477168"/>
+									<reference key="NSControlView" ref="806602560"/>
+									<int key="NSButtonFlags">-2038152961</int>
+									<int key="NSButtonFlags2">163</int>
+									<string key="NSAlternateContents"/>
+									<string key="NSKeyEquivalent"/>
+									<int key="NSPeriodicDelay">400</int>
+									<int key="NSPeriodicInterval">75</int>
+								</object>
+							</object>
 						</object>
 						<string key="NSFrameSize">{854, 46}</string>
 						<reference key="NSSuperview" ref="1005"/>
@@ -1438,6 +1458,14 @@
 					</object>
 					<int key="connectionID">402</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">sendGo:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="806602560"/>
+					</object>
+					<int key="connectionID">405</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1499,6 +1527,7 @@
 							<reference ref="824362119"/>
 							<reference ref="165159750"/>
 							<reference ref="983226771"/>
+							<reference ref="806602560"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1882,6 +1911,20 @@
 						<reference key="parent" ref="0"/>
 						<string key="objectName">boundControls Controller</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">403</int>
+						<reference key="object" ref="806602560"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="46000618"/>
+						</object>
+						<reference key="parent" ref="546579326"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">404</int>
+						<reference key="object" ref="46000618"/>
+						<reference key="parent" ref="806602560"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1939,13 +1982,15 @@
 					<string>39.IBEditorWindowLastContentRect</string>
 					<string>39.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
+					<string>403.IBPluginDependency</string>
+					<string>404.IBPluginDependency</string>
 					<string>43.IBPluginDependency</string>
 					<string>75.IBPluginDependency</string>
 					<string>76.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{427, 177}, {854, 591}}</string>
+					<string>{{634, 220}, {854, 591}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -1996,6 +2041,8 @@
 					<string>{{337, 71}, {327, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2017,7 +2064,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">402</int>
+			<int key="maxID">405</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2031,9 +2078,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>printMidiMappingsList:</string>
 							<string>selectMidiInterface:</string>
+							<string>sendGo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
