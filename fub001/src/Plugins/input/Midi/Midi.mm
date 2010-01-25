@@ -39,7 +39,7 @@
 }
 
 -(void) setup{
-	;
+	
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -152,7 +152,9 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 }
 
 - (void)_reloadRows:(id)dirtyRows {
+	pthread_mutex_lock(&mutex);
 	[midiMappingsList reloadDataForRowIndexes:dirtyRows columnIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, 7)]];
+	pthread_mutex_unlock(&mutex);
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
