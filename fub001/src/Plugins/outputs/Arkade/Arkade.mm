@@ -3,7 +3,7 @@
 #include "Arkade.h"
 #include "Stregkode.h"
 #include "lineIntersection.h"
-
+#include "Midi.h"
 
 @implementation Arkade
 
@@ -25,14 +25,20 @@
 	personFilterY = new Filter();	
 	personFilterY->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
 	personFilterY->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
-
+	
 	
 	personPosition = new ofxPoint2f(0,0);
 	
 	[self reset:self];
+	
+	
+	blur = new shaderBlur();
+	blur->setup(800, 800);
 }
 
 -(IBAction) reset:(id)sender{
+	cookiesRemoveFactor = 0;
+	
 	ballPosition = new ofxPoint2f(0.2,0.2);
 	ballDir = new ofxVec2f(00,1);
 	
@@ -53,7 +59,13 @@
 	
 	terminatorMode = false;
 	blueScaleFactor = 1.0;
+	blobLightFactor = 0;
 	
+	pacmanDieFactor = 0;
+	
+	cookies.clear();
+	
+	[floorSquaresButton setState:NSOnState];
 	[pacmanButton setState:NSOffState];
 	[ballUpdateButton setState:NSOffState];
 	[ballDrawButton setState:NSOffState];
@@ -78,7 +90,7 @@
 				personPosition->y = personFilterY->filter(p.y);
 				personPosition->x = personFilterX->filter(p.x);
 				personPosition->y = personFilterY->filter(p.y);
-
+				
 				break;
 			}
 			break;
@@ -287,7 +299,20 @@
 		//
 		//Pacman
 		//
-		if((cookies.size() > 0 && [pacmanButton state] == NSOnState) || [ballUpdateButton state] == NSOnState){
+		/*if(pacmanDieFactor > 0){
+			pacmanMouthValue += pacmanMouthDir*0.02*(1+pacmanDieFactor);
+			if(pacmanMouthValue > 0.3)
+				pacmanMouthDir = -1;
+			else if(pacmanMouthValue < 0){
+				pacmanMouthValue = 0;
+				pacmanMouthDir = 1;
+			}
+			
+			pacmanDir->rotate(pacmanDieFactor*30.0 * 60.0/ofGetFrameRate());
+			
+			
+		} else */
+		if((cookies.size() > 0 && [pacmanButton state] == NSOnState) || [ballUpdateButton state] == NSOnState || terminatorMode){
 			int nearestCookie = -1;
 			for(int i=0;i<cookies.size();i++){
 				if(nearestCookie == -1 || cookies[i].distance(*pacmanPosition) < cookies[nearestCookie].distance(*pacmanPosition)){
@@ -295,21 +320,22 @@
 				} else if( cookies[i].distance(*pacmanPosition) == cookies[nearestCookie].distance(*pacmanPosition)){
 					float a1 = ((ofxVec2f)(cookies[i] - *pacmanPosition)).angle(*pacmanDir);
 					float a2 = ((ofxVec2f)(cookies[nearestCookie] - *pacmanPosition)).angle(*pacmanDir);
-					cout<<"Choose "<<a1<<"  "<<a2<<endl;
 					if(fabs(a1) > fabs(a2)){
 						nearestCookie = i;
 					}
 				}
 			}
 			
-			if(nearestCookie != -1 || [ballUpdateButton state] == NSOnState){
-				float a;
-				
-				if([ballUpdateButton state] != NSOnState){
+			if(nearestCookie != -1 || [ballUpdateButton state] == NSOnState || terminatorMode){
+				float a;	
+				if(terminatorMode){
+					a = ((ofxVec2f)(*pacmanPosition-ofxVec2f(-1,0.5))).angle(-*pacmanDir);						
+				} else if([ballUpdateButton state] != NSOnState){
 					a = ((ofxVec2f)(*pacmanPosition-cookies[nearestCookie])).angle(-*pacmanDir);	
 				} else {
 					a = ((ofxVec2f)(*pacmanPosition-*ballPosition)).angle(-*pacmanDir);	
 					if(pacmanPosition->distance(*ballPosition) < 0.02){
+						[GetPlugin(Midi) sendGo:self];
 						[ballUpdateButton setState:NSOffState];
 						[ballDrawButton setState:NSOffState];
 					}
@@ -322,7 +348,7 @@
 					if(pacmanPosition->x > 0)
 						pacmanEntering = false;
 					
-					if(!pacmanEntering){
+					if(!pacmanEntering && !terminatorMode){
 						pacmanPosition->x = ofClamp(pacmanPosition->x, 0, 1);
 						pacmanPosition->y = ofClamp(pacmanPosition->y, 0, 1);
 					}
@@ -367,6 +393,18 @@
 			lightRotation += [terminatorLightSpeedSlider floatValue]/10.0;
 			if(lightRotation > 360)
 				lightRotation -= 360;
+			
+			blobLightFactor -= [terminatorBlobLightSpeedSlider floatValue]/200.0;
+			if(blobLightFactor < 0){
+				blobLightFactor = 1.0;
+			}
+			
+			cookiesRemoveFactor = ofClamp(cookiesRemoveFactor+0.1, 0, 1);
+			pacmanDieFactor = ofClamp(pacmanDieFactor+0.002, 0, 1);
+			
+			if(personPosition->distance(*pacmanPosition) < 0.05 || pacmanPosition->x < -0.1){
+				[pacmanButton setState:NSOffState];
+			}
 		}
 		
 	}
@@ -374,7 +412,6 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	ofSetColor(255, 255, 255,255);
 	ofFill();
 	
@@ -382,11 +419,39 @@
 	//
 	//Cookies
 	//
-	for(int c=0;c<cookies.size();c++){
-		ofSetColor(155, 0, 255);
-		ofEllipse(cookies[c].x, cookies[c].y, 0.03, 0.03);
+	if(cookiesRemoveFactor < 1){
+		ofSetColor(155.0*(1-cookiesRemoveFactor), 0*(1-cookiesRemoveFactor), 255.0*(1-cookiesRemoveFactor));
+		
+		
+		blur->beginRender();
+		blur->setupRenderWindow();
+		
+		for(int c=0;c<cookies.size();c++){	
+			ofEllipse(cookies[c].x, cookies[c].y, 0.03, 0.03);		
+		}
+		
+		blur->endRender();
+		blur->blur(6, cookiesRemoveFactor*3.0);
+		
+		glViewport(0,0,ofGetWidth(),ofGetHeight());	
+		ofSetupScreen();
+		glScaled(ofGetWidth(), ofGetHeight(), 1);
+		ofEnableAlphaBlending();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);		
+		
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+		
+		blur->draw(0, 0, 1, 1, true);
+		
+		glPopMatrix();
+		
 	}
 	
+	
+	
+	
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	
 	//
 	//White floor square
@@ -440,7 +505,16 @@
 	//Pacman
 	//
 	if([pacmanButton state] == NSOnState){
-		ofSetColor(255, 255, 0);
+	/*	float r = MAX(255-4.0*pacmanDieFactor*255.0 ,0);
+		float g = MIN(MAX(2*255-2.0*pacmanDieFactor*255.0 ,0), 255);
+		float b = MIN(255.0*pacmanDieFactor*2, 255)   -    MAX(pacmanDieFactor*2-1, 0)*255.0;
+	*/	
+		
+		float r = 255;
+		float g = 255;
+		float b = 0;
+		
+		ofSetColor(r, g, b);
 		int k = 0;
 		float circlePtsScaled[OF_MAX_CIRCLE_PTS*2];
 		int numCirclePts = 100;
@@ -462,6 +536,10 @@
 		
 		glPopMatrix();
 		
+		ofEnableAlphaBlending();
+		ofSetColor(0, 0, 0, 255);
+		ofRect(0, 0, -2, 1);
+		
 		//ofEllipse(pacmanPosition->x, pacmanPosition->y, 0.08, 0.08);
 	}
 	
@@ -482,7 +560,7 @@
 		float v = 0.25;
 		
 		ofxPoint2f points[4];
-
+		
 		points[0] = center+dir+hat*v;
 		points[1] = center+dir-hat*v;
 		
@@ -531,7 +609,7 @@
 		}
 		
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-
+		
 		
 		ofSetColor(0, 0, 255,[terminatorLightFadeSlider floatValue]*2.5);
 		glBegin(GL_POLYGON);
@@ -546,7 +624,7 @@
 		glVertex2f(points[2].x, points[2].y);
 		glVertex2f(cornerPoint[1].x, cornerPoint[1].y);
 		glVertex2f(points[3].x, points[3].y);
-		glEnd();		
+		glEnd();	
 		
 		glPopMatrix();
 		
@@ -568,6 +646,46 @@
 		glEnd();		
 		
 		glPopMatrix();
+		
+		
+		ofEnableAlphaBlending();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		
+		blur->beginRender();
+		blur->setupRenderWindow();
+		
+		//Blob light
+		PersistentBlob * pblob;
+		for(pblob in [tracker(0) persistentBlobs]){
+			Blob * blob;
+			for(blob in [pblob blobs]){
+				ofSetColor(255, 255, 255, 2.5*blobLightFactor*[terminatorBlobLightFadeSlider floatValue]);
+				ofBeginShape();
+				for(int i=0;i<[blob nPts];i++){
+					ofVertex([blob pts][i].x, [blob pts][i].y);
+				}
+				ofEndShape(true);
+				
+				
+			}
+		}  
+		
+		
+		blur->endRender();
+		blur->blur(6, (1-blobLightFactor)*0.5 + [terminatorBlobLightBlurSlider floatValue]/100.0);
+		
+		glViewport(0,0,ofGetWidth(),ofGetHeight());	
+		ofSetupScreen();
+		glScaled(ofGetWidth(), ofGetHeight(), 1);
+		ofEnableAlphaBlending();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);		
+		
+		
+		blur->draw(0, 0, 1, 1, true);
+		
+		glPopMatrix();
+		
+		
 	}
 	
 	

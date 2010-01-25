@@ -52,7 +52,6 @@
 
 -(void)sendValue:(int)midiValue forNote:(int)midiNote onChannel:(int)midiChannel;
 
-
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;
 -(void) bindPluginUIControl:(PluginUIMidiBinding*)binding;

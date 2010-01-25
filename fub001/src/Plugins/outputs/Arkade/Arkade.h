@@ -7,27 +7,37 @@
 #include "ofMain.h"
 #define FLOORGRIDSIZE 8
 #include "Filter.h"
+#include "shaderBlur.h"
 
 @interface Arkade : ofPlugin {
 	IBOutlet NSButton * floorSquaresButton;
-		IBOutlet NSButton * leaveCookiesButton;
-		IBOutlet NSButton * pacmanButton;
-		IBOutlet NSSlider * pacmanSpeedSlider;
-
+	IBOutlet NSButton * leaveCookiesButton;
+	IBOutlet NSButton * pacmanButton;
+	IBOutlet NSSlider * pacmanSpeedSlider;
 	
 	IBOutlet NSButton * ballUpdateButton;
 	IBOutlet NSButton * ballDrawButton;
 	IBOutlet NSSlider * ballSpeedSlider;
 	IBOutlet NSSlider * ballSizeSlider;
-
+	
 	IBOutlet NSSlider * terminatorLightFadeSlider;
 	IBOutlet NSSlider * terminatorLightSpeedSlider;
-	
-	float floorSquaresOpacity[ FLOORGRIDSIZE * FLOORGRIDSIZE ];
-	
-	vector<ofxPoint2f> cookies;
+	IBOutlet NSSlider * terminatorBlobLightSpeedSlider;	
+	IBOutlet NSSlider * terminatorBlobLightFadeSlider;	
+	IBOutlet NSSlider * terminatorBlobLightBlurSlider;	
+
 	ofxPoint2f * personPosition;
+
 	Filter * personFilterX, * personFilterY;
+	
+	shaderBlur * blur;
+	
+	
+	//Floor squares
+	float floorSquaresOpacity[ FLOORGRIDSIZE * FLOORGRIDSIZE ];
+	vector<ofxPoint2f> cookies;
+	float cookiesRemoveFactor;
+
 
 	
 	//Ball
@@ -42,6 +52,7 @@
 	int pacmanMouthDir;
 	bool pacmanEntering;
 	ofSoundPlayer * pongWallSound;
+	float pacmanDieFactor;
 	
 	//Choises
 	ofxPoint2f * redChoisePosition;
@@ -53,6 +64,7 @@
 	bool terminatorMode;
 	float blueScaleFactor;
 	float lightRotation;
+	float blobLightFactor;
 	
 	
 }

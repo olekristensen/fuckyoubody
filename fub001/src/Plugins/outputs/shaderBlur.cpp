@@ -91,7 +91,7 @@ void shaderBlur::blur(int numPasses, float blurDist){
 	src = &fbo1;
 	dst = &fbo2;
 	
-	if( 1 ){
+	if( blurDist > 0 ){
 		
 		for(int i = 0; i < noPasses; i++){
 			float blurPer =  blurDistance * ofMap(i, 0, noPasses, 1.0/noPasses, 1.0);
