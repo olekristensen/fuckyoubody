@@ -25,6 +25,9 @@
 	IBOutlet NSSlider * terminatorBlobLightSpeedSlider;	
 	IBOutlet NSSlider * terminatorBlobLightFadeSlider;	
 	IBOutlet NSSlider * terminatorBlobLightBlurSlider;	
+	
+	IBOutlet NSSlider * wallBuildSlider;	
+
 
 	ofxPoint2f * personPosition;
 

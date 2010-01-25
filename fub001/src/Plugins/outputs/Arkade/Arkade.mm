@@ -336,6 +336,7 @@
 					a = ((ofxVec2f)(*pacmanPosition-*ballPosition)).angle(-*pacmanDir);	
 					if(pacmanPosition->distance(*ballPosition) < 0.02){
 						[GetPlugin(Midi) sendGo:self];
+						
 						[ballUpdateButton setState:NSOffState];
 						[ballDrawButton setState:NSOffState];
 					}
