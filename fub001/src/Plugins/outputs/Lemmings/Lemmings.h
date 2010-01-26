@@ -14,14 +14,18 @@
 #include "ofMain.h"
 
 
-#define RADIUS 0.01
-#define RADIUS_SQUARED 0.001
+#define RADIUS 0.05
+#define DEATH_DURATION 0.5
+#define SPLAT_DURATION 0.5
+#define RADIUS_SQUARED 0.0025
 
 
 @interface Lemmings : ofPlugin {
 
 	NSUserDefaults	*userDefaults;
 
+	bool			doReset;
+	
 	ofImage			*coinImage;
 	ofPoint			*screenDoorPos;
 		
@@ -41,7 +45,7 @@
 	IBOutlet NSSlider * screenEntranceDoor;			//	0 ... 1 closed ... open
 	IBOutlet NSSlider * screenLemmingsAddRate;		//	0 ... 1 none ... fast
 	
-	IBOutlet NSSlider * screenGravity;				// -1 ... 1
+	IBOutlet NSSlider * screenGravity;				// -1 ... 2
 
 	IBOutlet NSButton * screenSeeSawTracking;		//	BOOL
 	IBOutlet NSSlider * screenSeeSawDamping;		//	0 ... 1
@@ -78,25 +82,30 @@
 }
 
 @property (readonly) int numberLemmings;
+@property (readonly) float screenGravityAsFloat;
+
 
 -(IBAction) addFloorLemming:(id)sender;
 -(IBAction) addScreenLemming:(id)sender;
 -(IBAction) resetLemmings:(id)sender;
 -(IBAction) killAllLemmings:(id)sender;
--(void) updateLemmingArray:(NSMutableArray*) theLemmingArray;
+-(void) updateLemmingArray:(NSMutableArray*) theLemmingArray timeInterval:(CFTimeInterval)timeInterval;
 -(void) makeFloorLemmingFromShadowAtX:(float)xPosition Y: (float)yPosition;
+-(void) reset;
+-(float) getScreenGravityAsFloat;
 
 @end
 
 @interface Lemming : NSObject {
 
 	float			radius;
+	float			scaleFactor;
 	ofxVec2f		*position;
 	ofxVec2f		*vel;
 	ofxVec2f		*totalforce;
 	double			spawnTime;
-	BOOL			dying;
 	double			deathTime;
+	double			splatTime;
 	NSMutableArray * lemmingList;
 
 }
@@ -104,12 +113,14 @@
 -(id) initWithX:(float)xPosition Y:(float)yPosition spawnTime:(CFTimeInterval)timeInterval;
 
 @property (readwrite) float radius;
+@property (readwrite) float scaleFactor;
 @property (assign, readwrite) ofxVec2f *position;
 @property (assign, readwrite) ofxVec2f *totalforce;
 @property (assign, readwrite) ofxVec2f *vel;
 @property (readwrite) double spawnTime;
+@property (readwrite) double deathTime;
+@property (readwrite) double splatTime;
 @property (assign) NSMutableArray * lemmingList;
-@property (assign) BOOL	dying;
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
 
