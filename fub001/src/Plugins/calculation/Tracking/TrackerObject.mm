@@ -280,11 +280,9 @@
 	[[learnBackgroundButton midi] setController: [[NSNumber alloc] initWithInt:10+(20*trackerNumber)]];
 	[[learnBackgroundButton midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:0]];
 	
-	
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	
 	[thread start];
-	
 	
 }
 
@@ -810,7 +808,7 @@
 		
 		pthread_mutex_unlock(&mutex);
 		
-		[NSThread sleepForTimeInterval:0.01];
+		[NSThread sleepForTimeInterval:0.03];
 	}
 	
 }

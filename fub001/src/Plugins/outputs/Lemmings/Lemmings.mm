@@ -75,7 +75,7 @@
 		for(int i = 0;i < [screenLemmings count];i++){
 			lemming = [screenLemmings objectAtIndex:i];
 			if ([lemming splatTime] < 0) {
-				if([lemming position]->y + RADIUS > 0.9999){
+				if([lemming position]->y + (RADIUS*0.5) > 0.9999){
 					NSLog(@"lemming");
 					ofxPoint2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertToProjection:*[lemming position] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"]];
 					lemmingPosition = [GetPlugin(ProjectionSurfaces) convertFromProjection:lemmingPosition surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
@@ -145,10 +145,10 @@
 				[lemming vel]->x *= -0.9;
 				[lemming position]->x = [GetPlugin(ProjectionSurfaces) getAspect] - (0.00001 + RADIUS);				
 			}
-			if([lemming position]->y + RADIUS > 1){
+			if([lemming position]->y + (RADIUS*0.5) > 1){
 				[lemming collision:timeInterval];
 				[lemming vel]->y *= -0.9;
-				[lemming position]->y = 0.99999 - RADIUS;								
+				[lemming position]->y = 0.99999 - (RADIUS*0.5);								
 		}
 	}
 	

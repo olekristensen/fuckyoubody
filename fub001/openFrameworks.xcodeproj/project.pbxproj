@@ -1056,6 +1056,7 @@
 		DD4AB76710CD20E900EA0F09 /* Tracking */ = {
 			isa = PBXGroup;
 			children = (
+				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
 				DD4AB76810CD210300EA0F09 /* Tracking.h */,
 				DD4AB76910CD210300EA0F09 /* Tracking.mm */,
 				DD4AB76D10CD213700EA0F09 /* Tracking.xib */,
@@ -1081,7 +1082,6 @@
 				DD5735B410CD2B5B00B788BB /* TrackerObject.mm */,
 			);
 			name = TrackerObject;
-			path = ../Tracking;
 			sourceTree = "<group>";
 		};
 		DD7C61E610D699BC00D5B056 /* shaders */ = {
@@ -1337,7 +1337,6 @@
 		DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */ = {
 			isa = PBXGroup;
 			children = (
-				DD5735AF10CD2B2D00B788BB /* TrackerObject */,
 				DDC7777010B70079009CAFC7 /* ProjectionSurfaces.h */,
 				DDC7777110B70079009CAFC7 /* ProjectionSurfaces.mm */,
 				DDC7777210B70079009CAFC7 /* ProjectionSurfaces.xib */,
