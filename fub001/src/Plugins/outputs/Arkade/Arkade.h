@@ -8,8 +8,13 @@
 #define FLOORGRIDSIZE 8
 #include "Filter.h"
 #include "shaderBlur.h"
+#define WallScaling 0.5
+
+
+
 
 @interface Arkade : ofPlugin {
+	@public
 	IBOutlet NSButton * floorSquaresButton;
 	IBOutlet NSButton * leaveCookiesButton;
 	IBOutlet NSButton * pacmanButton;
@@ -27,7 +32,11 @@
 	IBOutlet NSSlider * terminatorBlobLightBlurSlider;	
 	
 	IBOutlet NSSlider * wallBuildSlider;	
-
+	IBOutlet NSSlider * wallLockSlider;	
+	
+	IBOutlet NSSlider * gardenFadeSlider;	
+	IBOutlet NSSlider * spaceFadeSlider;	
+	IBOutlet NSSlider * spaceSpeedSlider;	
 
 	ofxPoint2f * personPosition;
 
@@ -69,13 +78,94 @@
 	float lightRotation;
 	float blobLightFactor;
 	
+	//Wall
+	vector<ofxPoint2f> wallPoints;
+	vector<ofxPoint2f> wallPointsTemp;
+
+	vector<ofxPoint2f> outerWall;
+	vector<
+	ofxPoint2f> innerWall;
+	float resolution;
+	
+	//Rockets
+	NSMutableArray * aliens;
+	NSMutableArray * rockets;
+	ofxPoint2f * spaceInvadersPosition;
+	int spaceInvadersDir;
+	int spaceInvadersYDir;
+
+	ofImage * images[6];
 	
 }
 
 -(IBAction) reset:(id)sender;
 -(IBAction) makeChoises:(id)sender;
 -(IBAction) activateTerminator:(id)sender;
+-(IBAction) deactivateTerminator:(id)sender;
+-(IBAction) generateWall:(id)sender;
+-(IBAction) spawnRocket:(id)sender;
+-(IBAction) resetSpaceinvaders:(id)sender;
+
+-(void) findInnerPointsWithD:(ofxVec2f)d lastPoint:(ofxPoint2f)lastPoint lastPointDir:(ofxVec2f)lastPointDir;
+
+-(BOOL) walkDirection:(ofxVec2f)dir fromPosition:(ofxPoint2f)pos;
+-(void) calculateOuterWall;
+-(BOOL) wallPointExist:(ofxPoint2f)p;
+-(ofxPoint2f) wallPoint:(ofxPoint2f)p;
+-(ofxPoint2f) pointFromDir:(ofxVec2f) dir position:(ofxPoint2f)pos;
 
 -(int) getIatX:(float)x Y:(float)y;
+
+@end
+
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+@interface Alien : NSObject
+{
+	@public
+	ofxPoint2f * position;
+	int type;
+	
+	ofImage ** images;
+}
+
+-(void)draw;
+
+
+@end
+
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+@interface Rocket : NSObject
+{
+	ofxVec2f * wallPosition;
+	ofxVec2f * wallVel;
+	
+	ofxVec2f * floorPosition;
+	ofxVec2f * floorVel;
+	
+	ofxVec2f * totalForce;
+	BOOL onWall;
+	
+	Arkade * arkade;
+	
+	int age;
+	int explodeAge;
+	bool dead;
+	
+	ofxVec2f * wallRotation;
+}
+
+-(id) initAtPosition:(ofxVec2f)position arkade:(Arkade*)ark;
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
+-(void) drawRocket;
 
 @end

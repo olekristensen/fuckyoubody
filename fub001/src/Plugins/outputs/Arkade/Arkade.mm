@@ -5,7 +5,206 @@
 #include "lineIntersection.h"
 #include "Midi.h"
 
+
+double Angle2D(double x1, double y1, double x2, double y2)
+{
+	double dtheta,theta1,theta2;
+	
+	theta1 = atan2(y1,x1);
+	theta2 = atan2(y2,x2);
+	dtheta = theta2 - theta1;
+	while (dtheta > PI)
+		dtheta -= TWO_PI;
+	while (dtheta < -PI)
+		dtheta += TWO_PI;
+	
+	return(dtheta);
+}
+
+bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
+{
+	int i;
+	double angle=0;
+	ofPoint p1,p2;
+	int n= polygon.size();
+	
+	for (i=0;i<polygon.size();i++) {
+		p1.x = polygon[i].x - p.x;
+		p1.y = polygon[i].y - p.y;
+		p2.x = polygon[(i+1)%n].x - p.x;
+		p2.y = polygon[(i+1)%n].y - p.y;
+		angle += Angle2D(p1.x,p1.y,p2.x,p2.y);
+	}
+	
+	if (ABS(angle) < PI)
+		return(FALSE);
+	else
+		return(TRUE);
+}
+
+@implementation Alien
+
+-(void) draw{
+//	cout<<(int(ofGetElapsedTimeMillis()/1000.0) % 100)<<endl;
+	if((int(ofGetElapsedTimeMillis()/1000.0) % 100) % 2 == 0){
+		images[type*2]->draw(position->x, position->y+0.1, 0.1, 0.1);
+	} else {
+		images[type*2+1]->draw(position->x, position->y+0.1, 0.1, 0.1);
+	}
+}
+
+@end
+
+
+@implementation Rocket
+
+-(id) initAtPosition:(ofxVec2f)position arkade:(Arkade*)ark{
+	if([super init]){
+		wallPosition = new ofxVec2f(position);
+		wallVel = new ofxVec2f(0,1);
+		onWall = YES;
+		arkade = ark;
+		age = 0;
+		explodeAge = ofRandom(10, 100);
+		wallRotation = new ofxVec2f(ofRandom(-0.1, 0.1), 0);
+		dead = false;
+	}
+	
+	return self;
+}
+
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	if(!dead){
+		totalForce = new ofxVec2f();
+		age ++;
+		if(onWall){
+			*wallVel += *wallRotation;
+
+			*wallPosition += 1.0/ofGetFrameRate() * *wallVel * 1.0/WallScaling;
+			
+			if(wallPosition->y > [GetPlugin(ProjectionSurfaces) getAspectOnProjection:"Front" surface:"Floor"]){
+				onWall = NO;
+				
+				ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertPoint:*wallPosition toProjection:"Front" fromSurface:"Backwall"];
+				p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
+				floorPosition = new ofxVec2f(p);
+				
+				ofxVec2f bottom1 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
+				ofxVec2f bottom2 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(1,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
+				
+				ofxVec2f bottom = bottom2-bottom1;
+				
+				ofxVec2f hat = ofxVec2f(-bottom.y, bottom.x).normalized();
+				
+				floorVel = new ofxVec2f(hat * wallVel->length());
+				
+				floorVel->rotate(-wallVel->angle(ofxVec2f(0,1)));
+			}
+		} else {
+			
+			*totalForce += (ofxVec2f(0.5,0.5) - *floorPosition).normalized() * 0.03;
+			if(age < explodeAge){
+				for(int i=0;i<arkade->outerWall.size();i++){
+					float distConstant = ofRandom(0.14, 0.25);
+					float dist = arkade->outerWall[i].distance(*floorPosition);
+					if(dist < distConstant){
+						*totalForce += (ofxVec2f(arkade->outerWall[i] - *floorPosition)).normalized() * (dist - distConstant)*0.5;
+						
+					}
+				}
+			}
+			
+			*floorVel *= 0.998;
+			*floorVel += *totalForce;
+			
+			
+			
+			
+			*floorPosition += 1.0/ofGetFrameRate() * *floorVel;
+			
+			
+			for(int i=0;i<arkade->outerWall.size();i++){
+				float distConstant = 0.05;
+				float dist = arkade->outerWall[i].distance(*floorPosition);
+				if(dist < distConstant){
+					for(int j=0;j<arkade->wallPoints.size();j++){
+						if(arkade->wallPoints[j].distance(arkade->outerWall[i]) < 0.03){
+							arkade->wallPoints.erase(arkade->wallPoints.begin()+j);
+						}
+					}
+					dead = true;
+				}
+			}
+			/*
+			 if(InsidePolygon(arkade->outerWall, *floorPosition)){
+			 
+			 }*/
+		}
+	}
+}
+
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	if(!dead){
+		if(onWall){
+			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
+			
+			glPushMatrix();
+			glTranslated(wallPosition->x, wallPosition->y, 0);
+			glRotated(ofxVec2f(1,0).angle(*wallVel), 0, 0, 1);
+			ofSetColor(255, 255, 200, 255);
+			glScaled(1.0/WallScaling, 1.0/WallScaling, 1);	
+			[self drawRocket];
+			
+			
+			glPopMatrix();
+			glPopMatrix();
+
+		}	else {
+			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+			glPushMatrix();
+			glTranslated(floorPosition->x, floorPosition->y, 0);
+			glRotated(ofxVec2f(1,0).angle(*floorVel), 0, 0, 1);
+			[self drawRocket];
+			
+			glPopMatrix();
+			glPopMatrix();
+			
+			
+			[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
+			glPushMatrix();
+			glTranslated(floorPosition->x, floorPosition->y, 0);
+			glRotated(ofxVec2f(1,0).angle(*floorVel), 0, 0, 1);
+			
+			
+			[self drawRocket];
+			
+			glPopMatrix();
+			glPopMatrix();
+		}	
+
+	}
+}
+
+-(void) drawRocket{
+	glScaled(0.5, 0.5, 1);
+	ofSetColor(255, 255, 200, 255);
+	ofRect(-0.05, -0.02, 0.1, 0.04);
+	ofTriangle(0.05, -0.02, 0.07, 0, 0.05, 0.02);
+	
+	int red = ofRandom(100, 255);
+	ofSetColor(red, ofRandom(0, red), 0);
+	ofRect(-0.05, 0.02, ofRandom(-0.04, -0.06), -0.04);
+}
+
+
+
+@end
+
+
+
 @implementation Arkade
+
+
 
 -(void) initPlugin{
 	for(int i=0;i<FLOORGRIDSIZE*FLOORGRIDSIZE;i++){
@@ -31,9 +230,56 @@
 	
 	[self reset:self];
 	
+	aliens = [[NSMutableArray array] retain];
+	images[0] = new ofImage();
+	images[0]->loadImage("spaceinvaders/space-11.png");
+	images[1] = new ofImage();
+	images[1]->loadImage("spaceinvaders/space-12.png");
+	images[2] = new ofImage();
+	images[2]->loadImage("spaceinvaders/space-21.png");
+	images[3] = new ofImage();
+	images[3]->loadImage("spaceinvaders/space-22.png");
+	images[4] = new ofImage();
+	images[4]->loadImage("spaceinvaders/space-31.png");
+	images[5] = new ofImage();
+	images[5]->loadImage("spaceinvaders/space-32.png");
+	
+	for(int i=0;i<8;i++){
+		Alien * newAlien = [[Alien alloc] init];
+		newAlien->images = images;
+		newAlien->position = new ofxPoint2f(i/8.0,0);
+		newAlien->type = 1;
+		[aliens addObject:newAlien];
+	}	
+	for(int i=0;i<8;i++){
+		Alien * newAlien = [[Alien alloc] init];
+		newAlien->images = images;
+		newAlien->position = new ofxPoint2f(i/8.0,1/8.0);
+		newAlien->type = 0;
+		[aliens addObject:newAlien];
+	}	
+	
+	for(int i=0;i<8;i++){
+		Alien * newAlien = [[Alien alloc] init];
+		newAlien->images = images;
+		newAlien->position = new ofxPoint2f(i/8.0,2/8.0);
+		newAlien->type = 2;
+		[aliens addObject:newAlien];
+	}	
+	for(int i=0;i<8;i++){
+		Alien * newAlien = [[Alien alloc] init];
+		newAlien->images = images;
+		newAlien->position = new ofxPoint2f(i/8.0,3/8.0);
+		newAlien->type = 2;
+		[aliens addObject:newAlien];
+	}	
+	
+	rockets = [[NSMutableArray array] retain];
 	
 	blur = new shaderBlur();
 	blur->setup(800, 800);
+	
+	
 }
 
 -(IBAction) reset:(id)sender{
@@ -64,12 +310,21 @@
 	pacmanDieFactor = 0;
 	
 	cookies.clear();
+	spaceInvadersPosition = new ofxPoint2f(0,0);
+	wallPoints.clear();
 	
 	[floorSquaresButton setState:NSOnState];
 	[pacmanButton setState:NSOffState];
 	[ballUpdateButton setState:NSOffState];
 	[ballDrawButton setState:NSOffState];
 	[leaveCookiesButton setState:NSOffState];
+	
+	[wallBuildSlider setFloatValue:0];
+	[wallLockSlider setFloatValue:0];
+	resolution = 0.5;
+	
+	[self resetSpaceinvaders:self];
+	[self generateWall:self];
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -300,18 +555,18 @@
 		//Pacman
 		//
 		/*if(pacmanDieFactor > 0){
-			pacmanMouthValue += pacmanMouthDir*0.02*(1+pacmanDieFactor);
-			if(pacmanMouthValue > 0.3)
-				pacmanMouthDir = -1;
-			else if(pacmanMouthValue < 0){
-				pacmanMouthValue = 0;
-				pacmanMouthDir = 1;
-			}
-			
-			pacmanDir->rotate(pacmanDieFactor*30.0 * 60.0/ofGetFrameRate());
-			
-			
-		} else */
+		 pacmanMouthValue += pacmanMouthDir*0.02*(1+pacmanDieFactor);
+		 if(pacmanMouthValue > 0.3)
+		 pacmanMouthDir = -1;
+		 else if(pacmanMouthValue < 0){
+		 pacmanMouthValue = 0;
+		 pacmanMouthDir = 1;
+		 }
+		 
+		 pacmanDir->rotate(pacmanDieFactor*30.0 * 60.0/ofGetFrameRate());
+		 
+		 
+		 } else */
 		if((cookies.size() > 0 && [pacmanButton state] == NSOnState) || [ballUpdateButton state] == NSOnState || terminatorMode){
 			int nearestCookie = -1;
 			for(int i=0;i<cookies.size();i++){
@@ -408,6 +663,45 @@
 			}
 		}
 		
+		
+		//
+		//WALL
+		//
+		
+		for(int i=0;i<wallPoints.size();i++){
+			if(wallPoints[i].distance(*personPosition) < 0.05){
+				wallPoints.erase(wallPoints.begin()+i);
+			}
+		}
+		
+		//
+		//Rockets
+		//
+		Rocket * r;
+		for(r in rockets){
+			[r update:timeInterval displayTime:outputTime];
+		}
+		
+		
+		//
+		//Space invaders
+		//
+		if([spaceSpeedSlider floatValue] > 0){
+			*spaceInvadersPosition += ofxPoint2f(spaceInvadersDir,0)*[spaceSpeedSlider floatValue]/100.0 * 60.0/ofGetFrameRate();
+			if(spaceInvadersPosition->x > 3){
+				spaceInvadersPosition->y += spaceInvadersYDir;
+				spaceInvadersDir = -1;
+			} else if(spaceInvadersPosition->x < 0){
+				spaceInvadersDir = 1;
+				spaceInvadersPosition->y += spaceInvadersYDir;
+			}
+			
+			if(spaceInvadersPosition->y > 1){
+				spaceInvadersYDir = -1;
+			} else if(spaceInvadersPosition->y < 0){
+				spaceInvadersYDir = 1;
+			}
+		}
 	}
 }
 
@@ -506,10 +800,10 @@
 	//Pacman
 	//
 	if([pacmanButton state] == NSOnState){
-	/*	float r = MAX(255-4.0*pacmanDieFactor*255.0 ,0);
-		float g = MIN(MAX(2*255-2.0*pacmanDieFactor*255.0 ,0), 255);
-		float b = MIN(255.0*pacmanDieFactor*2, 255)   -    MAX(pacmanDieFactor*2-1, 0)*255.0;
-	*/	
+		/*	float r = MAX(255-4.0*pacmanDieFactor*255.0 ,0);
+		 float g = MIN(MAX(2*255-2.0*pacmanDieFactor*255.0 ,0), 255);
+		 float b = MIN(255.0*pacmanDieFactor*2, 255)   -    MAX(pacmanDieFactor*2-1, 0)*255.0;
+		 */	
 		
 		float r = 255;
 		float g = 255;
@@ -545,6 +839,134 @@
 	}
 	
 	glPopMatrix();
+	
+	
+	
+	//
+	//Wall
+	//
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+	float sides[4];
+	for(int i=0;i<4;i++){
+		sides[i] = ofClamp(4.0*[wallBuildSlider floatValue]/100.0 - i, 0 , 1);
+		sides[i] = sides[i] * (FLOORGRIDSIZE-1);
+	}
+	float sidesLock[4];
+	for(int i=0;i<4;i++){
+		sidesLock[i] = ofClamp(4.0*[wallLockSlider floatValue]/100.0 - i, 0 , 1);
+		sidesLock[i] = sidesLock[i] * (FLOORGRIDSIZE-1);
+	}
+	
+	ofDisableAlphaBlending();
+	for(int u=0;u<4;u++){
+		for(int i=0;i<FLOORGRIDSIZE-1;i++){
+			float s = ofClamp(sides[u]-i, 0,1);				
+			float c = ofClamp(sidesLock[u]-i, 0,1);				
+			ofSetColor(255, 255*c, 255*c,255);
+			float x,y;
+			switch (u) {
+				case 0:
+					x = 0;
+					y = (float)(FLOORGRIDSIZE-1- i)*w;
+					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));					
+					break;
+				case 1:
+					x = (float)(i)*w;
+					y = 0;
+					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+					
+					break;
+				case 2:
+					x = 1-w;
+					y = (float)(i)*w;
+					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+					
+					break;
+				case 3:
+					x = (float)(FLOORGRIDSIZE-1-i)*w;
+					y = 1-w;
+					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+					break;
+			}
+			
+		}
+		
+	}
+	
+	//
+	//Garden
+	//
+	ofEnableAlphaBlending();
+	
+	[self calculateOuterWall];
+	ofSetColor(0, 0, 120, 255*[gardenFadeSlider floatValue]*0.01);
+	ofBeginShape();
+	
+	for(int i=innerWall.size()-1;i>=0;i--){
+		ofVertex(innerWall[i].x, innerWall[i].y);
+	}
+	ofEndShape();
+	/*	ofSetColor(255, 0, 0);
+	 for(int i=0;i<wallPoints.size();i++){
+	 ofCircle(wallPoints[i].x, wallPoints[i].y, 0.01);
+	 }
+	 */	
+
+	//	ofSetColor(255, 255, 0, 100);
+	//	glBegin(GL_LINE_STRIP);
+	//	for(int i=0;i<outerWall.size();i++){
+	//		glVertex2f(outerWall[i].x, outerWall[i].y);
+	//	}
+	//	glEnd();
+	//	
+	//	ofSetColor(255, 0, 255, 100);
+	//	glBegin(GL_LINE_STRIP);
+	//	for(int i=0;i<innerWall.size();i++){
+	//		glVertex2f(innerWall[i].x, innerWall[i].y);
+	//	}
+	//	glEnd();
+	//	
+	
+	ofSetColor(255, 255, 255,255);
+	
+	if(outerWall.size() > 0){
+		ofBeginShape();
+		for(int i=0;i<outerWall.size();i++){
+			ofVertex(outerWall[i].x, outerWall[i].y);
+		}
+		ofVertex(outerWall[0].x, outerWall[0].y);
+		for(int i=innerWall.size()-1;i>=0;i--){
+			ofVertex(innerWall[i].x, innerWall[i].y);
+		}
+		ofVertex(innerWall[innerWall.size()-1].x, innerWall[innerWall.size()-1].y);
+		
+		ofEndShape(true);	
+	}
+	glPopMatrix();
+	
+	
+	//
+	//Rockets
+	//
+	Rocket * r;
+	for(int i=0;i<[rockets count]; i++){
+		r = [rockets objectAtIndex:i];
+		[r draw:timeInterval displayTime:outputTime];
+	}
+	
+	
+	//
+	//Aliens
+	//
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
+	ofSetColor(255, 255, 255, 255);
+	glTranslated((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0, 0);
+	Alien *alien;
+	for(alien in aliens){
+		[alien draw];
+	}
+	glPopMatrix();	
+	
 	
 	
 	//
@@ -665,9 +1087,7 @@
 				for(int i=0;i<[blob nPts];i++){
 					ofVertex([blob pts][i].x, [blob pts][i].y);
 				}
-				ofEndShape(true);
-				
-				
+				ofEndShape(true);				
 			}
 		}  
 		
@@ -685,9 +1105,14 @@
 		blur->draw(0, 0, 1, 1, true);
 		
 		glPopMatrix();
-		
+		glPopMatrix();
+		glPopMatrix();
 		
 	}
+	
+	
+	
+	
 	
 	
 	
@@ -708,6 +1133,252 @@
 
 -(IBAction) activateTerminator:(id)sender{
 	terminatorMode = true;	
+}
+-(IBAction) deactivateTerminator:(id)sender{
+	terminatorMode = false;		
+}
+
+-(IBAction) generateWall:(id)sender{
+	wallPoints.clear();
+	for(float y =0;y<=	FLOORGRIDSIZE;y+=resolution){		
+		for(float x =0;x<=	FLOORGRIDSIZE;x+=resolution){
+			
+			wallPoints.push_back(ofxPoint2f(x/(float)FLOORGRIDSIZE,y/(float)FLOORGRIDSIZE));
+		}
+	}
+}
+
+-(void) calculateOuterWall{
+	outerWall.clear();
+	wallPointsTemp.clear();
+	innerWall.clear();
+	
+	ofxPoint2f point = ofxPoint2f(0.5,0.5);
+	point *= FLOORGRIDSIZE * 1.0/resolution;
+
+	ofxVec2f dir = ofxVec2f(1,0);
+	
+	bool yep = true;
+	while(yep){
+		if([self wallPointExist:point-ofxPoint2f(1,0)]){
+			point.x -= 1;
+			
+		} else {
+			yep = false;
+			break;
+		}
+	}
+	
+	
+	//cout<<"Start point "<<point.x<<","<<point.y<<endl;
+	
+	outerWall.push_back([self wallPoint:point]);
+	[self walkDirection:dir fromPosition:point];
+	
+	if(outerWall.size() > 1){
+		ofxVec2f d = outerWall.back() - outerWall.front();
+		
+		ofxPoint2f lastPoint = outerWall.back()*(FLOORGRIDSIZE * 1.0/resolution);
+		ofxVec2f lastPointDir =  -(outerWall.at(outerWall.size()-2)*(FLOORGRIDSIZE * 1.0/resolution) - lastPoint);
+		[self findInnerPointsWithD:d lastPoint:lastPoint lastPointDir:lastPointDir];
+		
+	}
+	
+	
+	
+	/*	bool looped = false;
+	 int n= 0;
+	 while(!looped && n < 400){
+	 
+	 n++;
+	 }
+	 */	
+	
+	
+	
+	
+	
+	
+	
+}
+
+-(BOOL) walkDirection:(ofxVec2f)dir fromPosition:(ofxPoint2f)pos{
+	
+	for(int a=-135;a<=135;a+=45){
+		ofxVec2f d = dir.rotated(a);
+		ofxPoint2f p = [self pointFromDir:d position:pos];
+		//cout<<" -    "<<p.x<<","<<p.y<<","<<a<<","<<d.x<<","<<d.y<<"    ";
+		
+		if([self wallPointExist:p]){
+			if(outerWall[0].distance(p / (FLOORGRIDSIZE * 1.0/resolution)) < 0.01){
+				return YES;
+			}
+			for(int u=0;u<wallPointsTemp.size();u++){
+				if(wallPointsTemp[u].distance(p) < 0.1){
+					return NO;
+				}
+			}
+			wallPointsTemp.push_back(p);
+			if([self walkDirection:d fromPosition:p]){
+				wallPointsTemp.pop_back();
+				
+				if(wallPointsTemp.size()>0){
+					ofxPoint2f lastPoint = wallPointsTemp.back();
+					ofxVec2f lastPointDir =  wallPointsTemp[wallPointsTemp.size()-2] - lastPoint;
+					[self findInnerPointsWithD:d lastPoint:lastPoint lastPointDir:lastPointDir];
+				}
+				
+				outerWall.push_back(p / (FLOORGRIDSIZE * 1.0/resolution));
+				return TRUE;
+				
+				/*point = p;
+				 
+				 
+				 if(!looped){
+				 outerWall.push_back(point / (FLOORGRIDSIZE * 1.0/resolution));
+				 //cout<<endl<<"Add point "<<point.x<<","<<point.y<<"  angle: "<<a<<endl;
+				 dir.rotate(a);
+				 }
+				 break;*/
+			} else {
+				for(int i=0;i<wallPoints.size();i++){
+					if(wallPoints[i].distance(p / (FLOORGRIDSIZE * 1.0/resolution)) < 0.05){
+						wallPoints.erase(wallPoints.begin()+i);
+					}
+				}
+				
+				wallPointsTemp.pop_back();
+			}
+		}
+	}
+	
+	return NO;
+}
+
+-(void) findInnerPointsWithD:(ofxVec2f)d lastPoint:(ofxPoint2f)lastPoint lastPointDir:(ofxVec2f)lastPointDir{
+	
+	
+	ofxVec2f startDir = lastPointDir.normalized();
+	ofxVec2f endDir = d.normalized();
+	
+	startDir.rotate(-45);
+	endDir.rotate(45);
+	
+	if(fabs(startDir.x) > 0.1 && fabs(startDir.y) > 0.1){
+		startDir.rotate(-45);
+	}
+	if(fabs(endDir.x) > 0.1 && fabs(endDir.y) > 0.1){
+		endDir.rotate(45);
+	}
+	
+	endDir.x = round(endDir.x);
+	endDir.y = round(endDir.y);
+	startDir.x = round(startDir.x);
+	startDir.y = round(startDir.y);
+	
+	/*ofSetColor(0, 255, 0);
+	 ofLine(lastPoint.x / (FLOORGRIDSIZE * 1.0/resolution), lastPoint.y / (FLOORGRIDSIZE * 1.0/resolution), 
+	 lastPoint.x / (FLOORGRIDSIZE * 1.0/resolution) + startDir.x*0.05 , lastPoint.y / (FLOORGRIDSIZE * 1.0/resolution)+ startDir.y*0.05);
+	 
+	 ofSetColor(0, 0, 255);
+	 ofLine(lastPoint.x / (FLOORGRIDSIZE * 1.0/resolution), lastPoint.y / (FLOORGRIDSIZE * 1.0/resolution), 
+	 lastPoint.x / (FLOORGRIDSIZE * 1.0/resolution) + endDir.x*0.04 , lastPoint.y / (FLOORGRIDSIZE * 1.0/resolution)+ endDir.y*0.04);
+	 
+	 */	
+	
+	int angleBetweenDirs = endDir.angle(startDir);
+	if(angleBetweenDirs >= 0){
+		for(int an= -angleBetweenDirs; an<=0; an+=90){
+			ofxPoint2f checkPoint = [self pointFromDir:startDir.rotated(an) position:lastPoint];
+			BOOL pointAdded = NO;
+			
+			
+			for(int u=0;u<outerWall.size();u++){
+				if(outerWall[u].distance(checkPoint / (FLOORGRIDSIZE * 1.0/resolution)) < 0.01){
+					pointAdded = YES;
+				}
+			}
+			for(int u=0;u<wallPointsTemp.size();u++){
+				if(wallPointsTemp[u].distance(checkPoint) < 0.1){
+					pointAdded = YES;
+				}
+			}
+			
+			if(!pointAdded){
+				/*
+				 ofSetColor(255, 255, 0);
+				 ofCircle(checkPoint.x/ (FLOORGRIDSIZE * 1.0/resolution), checkPoint.y/ (FLOORGRIDSIZE * 1.0/resolution), 0.01);
+				 
+				 ofSetColor(0, 255, 255,200);
+				 ofLine(lastPoint.x / (FLOORGRIDSIZE * 1.0/resolution), lastPoint.y / (FLOORGRIDSIZE * 1.0/resolution), 
+				 lastPoint.x / (FLOORGRIDSIZE * 1.0/resolution) + startDir.rotated(an).x*0.03 , lastPoint.y / (FLOORGRIDSIZE * 1.0/resolution)+ startDir.rotated(an).y*0.03);
+				 */
+				if([self wallPointExist:checkPoint]){
+					for(int u=0;u<innerWall.size();u++){
+						if(innerWall[u].distance(checkPoint) < 0.1){
+							pointAdded = YES;
+							break;
+						}
+					}
+					
+					if(!pointAdded){
+						//innerWall.push_back(checkPoint / (FLOORGRIDSIZE * 1.0/resolution));
+						innerWall.insert(innerWall.begin(), checkPoint / (FLOORGRIDSIZE * 1.0/resolution));
+					}
+					
+				}
+			}
+		}	
+	}	
+}
+
+-(BOOL) wallPointExist:(ofxPoint2f)p{
+	BOOL r = NO;
+	for(int i=0;i<wallPoints.size();i++){
+		if(fabs(wallPoints[i].x * FLOORGRIDSIZE * 1.0/resolution - p.x) < 0.01 && fabs(wallPoints[i].y * FLOORGRIDSIZE * 1.0/resolution - p.y) < 0.01){
+			r = YES;
+			break;
+		}
+	}
+	return r;
+}
+
+-(ofxPoint2f) wallPoint:(ofxPoint2f)p{
+	ofxPoint2f r;
+	for(int i=0;i<wallPoints.size();i++){
+		if(fabs(wallPoints[i].x * FLOORGRIDSIZE * 1.0/resolution - p.x) < 0.01 && fabs(wallPoints[i].y * FLOORGRIDSIZE * 1.0/resolution - p.y) < 0.01){
+			r = wallPoints[i];
+			break;
+		}
+	}
+	return r;
+	
+}
+-(ofxPoint2f) pointFromDir:(ofxVec2f) dir position:(ofxPoint2f)pos{
+	if(dir.x > 0.1)
+		dir.x = 1;
+	if(dir.y > 0.1)
+		dir.y = 1;
+	
+	if(dir.x < -0.1)
+		dir.x = -1;
+	if(dir.y < -0.1)
+		dir.y = -1;
+	
+	return pos+dir;
+}
+
+-(IBAction) spawnRocket:(id)sender{
+	ofxPoint2f p = 	ofxPoint2f((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0) + *((Alien*)[aliens objectAtIndex:int(ofRandom(0, [aliens count]-2))])->position + ofxPoint2f(0,0.1);
+
+	Rocket * newRocket = [[Rocket alloc] initAtPosition:p arkade:self];
+	[rockets addObject:newRocket];
+}
+
+-(IBAction) resetSpaceinvaders:(id)sender{
+	spaceInvadersPosition = new ofxPoint2f(0,0);	
+		spaceInvadersDir = 1;
+	spaceInvadersYDir = 1;
 }
 
 @end

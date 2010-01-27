@@ -31,11 +31,13 @@
 	float lastUndoX, lastUndoY;
 	
 	ofxPoint2f * corners[4];
+	
+	id projector;
 }
 -(void) recalculate;
 -(void) setCornerObject:(NSArray*)obj;
 -(void) setCorner:(int) n x:(float)x y:(float) y projector:(int)projector surface:(int)surface storeUndo:(BOOL)undo;
--(id) initWithName:(NSString*)n;
+-(id) initWithName:(NSString*)n projector:(id)proj;
 
 @end
 
@@ -47,6 +49,7 @@
 	float height;
 }
 @property (retain, readwrite) 	NSMutableArray * surfaces;
+@property (readwrite) string * name;
 
 -(id) initWithName:(NSString*)n;
 @end
@@ -93,8 +96,12 @@
 -(ofxPoint2f) convertFromProjection:(ofxPoint2f)p;
 -(ofxPoint2f) convertToProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface;
 -(ofxPoint2f) convertFromProjection:(ofxPoint2f)p surface:(ProjectionSurfacesObject*)surface;
+
+//New ones
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection fromSurface:(string)surface;
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection toSurface:(string)surface;
+-(float) getAspectOnProjection:(string)projection surface:(string)surface;
+
 
 -(ofxPoint2f) getFloorCoordinateOfProjector:(int)proj;
 -(ofxVec2f) getFloorVectorBetweenProjectors;

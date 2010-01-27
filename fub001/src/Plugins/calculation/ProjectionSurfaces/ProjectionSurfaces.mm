@@ -9,20 +9,21 @@
 
 
 @implementation ProjectorObject
-@synthesize surfaces;
+@synthesize surfaces, name;
 
--(id) initWithName:(NSString*)n{
-	if([super init]){
+-(id) initWithName:(NSString*)n {
+if([super init]){
 		name =  new string([n cString]); 
 		width = 1024;
 		height = 768;
+
 		return self;
 	}
 }
 @end
 
 @implementation ProjectionSurfacesObject
--(id) initWithName:(NSString*)n{
+-(id) initWithName:(NSString*)n projector:(id)proj{
 	if([super init]){
 		name =  new string([n cString]); 
 		corners[0] = new ofxPoint2f(0,0);
@@ -32,6 +33,7 @@
 		aspect = 1;
 		warp = new Warp();
 		coordWarp = new  coordWarping;
+			projector = proj;
 		[self recalculate];
 		return self;
 	}
@@ -109,8 +111,8 @@
 		NSLog(@"Init projectionsurfaces");
 		
 		NSMutableArray * array = [NSMutableArray array];
-		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Floor"]];
-		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Backwall"]];
+		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Floor" projector:projector]];
+		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Backwall" projector:projector]];
 		
 		[projector setSurfaces:array];
 		//projector->surfaces = array;
@@ -456,10 +458,18 @@
 -(void) applyProjection:(ProjectionSurfacesObject*) obj width:(float) _w height:(float) _h{
 	//	cout<<_w<<"  "<<_h<<endl;
 	glPushMatrix();
+	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Front") == 0){
+		glViewport(0, 0, 1024, 768);
+	} else {
+		glViewport(1024, 0, 1024, 768);
+	}
+
 	float setW = 1.0/ (obj->aspect);
 	float setH = 1.0;
-	
-	glScaled(_w, _h, 1.0);
+	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Front") != 0){
+		glTranslated(-_w, 0, 0);
+	}
+	glScaled(_w*2, _h, 1.0);
 	obj->warp->MatrixMultiply();
 	glScaled(setW, setH, 1.0);
 	
@@ -559,6 +569,11 @@
 	if(lastAppliedSurface != nil){
 		return lastAppliedSurface->aspect; 
 	}
+}
+
+
+-(float) getAspectOnProjection:(string)projection surface:(string)surface{
+	return [self getProjectionSurfaceByName:projection surface:surface]->aspect;
 }
 
 -(void) controlMousePressed:(float)x y:(float)y button:(int)button{
