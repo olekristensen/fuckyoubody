@@ -12,6 +12,7 @@
 #import <Cocoa/Cocoa.h>
 #include "Plugin.h"
 #include "ofMain.h"
+#include "Filter.h"
 
 
 #define RADIUS 0.05
@@ -25,6 +26,14 @@
 	NSUserDefaults	*userDefaults;
 
 	bool			doReset;
+
+	float			screenTrackingLeft;
+	float			screenTrackingRight;
+	float			screenTrackingDistance;
+	
+	Filter *		screenTrackingLeftFilter;
+	Filter *		screenTrackingRightFilter;
+	Filter *		screenTrackingDistanceFilter;
 	
 	ofImage			*coinImage;
 	ofPoint			*screenDoorPos;
@@ -38,7 +47,7 @@
 	// screen world
 	
 	NSMutableArray	* screenLemmings;
-	NSMutableArray	* screenColliders;
+	NSMutableArray	* screenElements;
 
 	IBOutlet NSSlider * screenElementsAlpha;		//	0 ... 1 black ... white
 
@@ -46,10 +55,11 @@
 	IBOutlet NSSlider * screenLemmingsAddRate;		//	0 ... 1 none ... fast
 	
 	IBOutlet NSSlider * screenGravity;				// -1 ... 2
+	IBOutlet NSSlider * screenSplatVelocity;		//	0 ... 1
 
-	IBOutlet NSButton * screenSeeSawTracking;		//	BOOL
-	IBOutlet NSSlider * screenSeeSawDamping;		//	0 ... 1
-
+	IBOutlet NSSlider * screenSpotSize;				//	0 ... 1
+	IBOutlet NSSlider * screenSpotAlpha;			//	0 ... 1
+	
 	IBOutlet NSButton * screenFloor;				//	BOOL
 
 	// floor world
@@ -93,6 +103,7 @@
 -(void) makeFloorLemmingFromShadowAtX:(float)xPosition Y: (float)yPosition;
 -(void) reset;
 -(float) getScreenGravityAsFloat;
+-(float) getScreenSplatVelocityAsFloat;
 
 @end
 
@@ -124,5 +135,22 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
 
+@end
+
+@interface ScreenElement : NSObject {
+	
+	float			size;
+	ofxVec2f		*position;
+	bool			active;
+
+}
+
+-(id) initWithX:(float)xPosition Y:(float)yPosition size:(float)aSize;
+
+@property (readwrite) float size;
+@property (assign, readwrite) ofxVec2f *position;
+@property (readwrite) bool active;
+
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
 
 @end
