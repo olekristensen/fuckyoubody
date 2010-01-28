@@ -45,7 +45,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 @implementation Alien
 
 -(void) draw{
-//	cout<<(int(ofGetElapsedTimeMillis()/1000.0) % 100)<<endl;
+	//	cout<<(int(ofGetElapsedTimeMillis()/1000.0) % 100)<<endl;
 	if((int(ofGetElapsedTimeMillis()/1000.0) % 100) % 2 == 0){
 		images[type*2]->draw(position->x, position->y+0.1, 0.1, 0.1);
 	} else {
@@ -79,18 +79,18 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		age ++;
 		if(onWall){
 			*wallVel += *wallRotation;
-
+			
 			*wallPosition += 1.0/ofGetFrameRate() * *wallVel * 1.0/WallScaling;
 			
-			if(wallPosition->y > [GetPlugin(ProjectionSurfaces) getAspectOnProjection:"Front" surface:"Floor"]){
+			if(wallPosition->y > [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]){
 				onWall = NO;
 				
 				ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertPoint:*wallPosition toProjection:"Front" fromSurface:"Backwall"];
 				p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
 				floorPosition = new ofxVec2f(p);
 				
-				ofxVec2f bottom1 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
-				ofxVec2f bottom2 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(1,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
+				ofxVec2f bottom1 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
+				ofxVec2f bottom2 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
 				
 				ofxVec2f bottom = bottom2-bottom1;
 				
@@ -124,13 +124,16 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			
 			
 			for(int i=0;i<arkade->outerWall.size();i++){
-				float distConstant = 0.05;
+				float distConstant = 0.07;
 				float dist = arkade->outerWall[i].distance(*floorPosition);
 				if(dist < distConstant){
-					for(int j=0;j<arkade->wallPoints.size();j++){
-						if(arkade->wallPoints[j].distance(arkade->outerWall[i]) < 0.03){
-							arkade->wallPoints.erase(arkade->wallPoints.begin()+j);
+					if(ofRandom(0, 1) < 0.3){
+						for(int j=0;j<arkade->wallPoints.size();j++){
+							if(arkade->wallPoints[j].distance(arkade->outerWall[i]) < 0.03){
+								arkade->wallPoints.erase(arkade->wallPoints.begin()+j);
+							}
 						}
+						[arkade calculateOuterWall];
 					}
 					dead = true;
 				}
@@ -146,42 +149,42 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if(!dead){
 		if(onWall){
-			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
+			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
+				
+				glPushMatrix();{
+					glTranslated(wallPosition->x, wallPosition->y, 0);
+					glRotated(ofxVec2f(1,0).angle(*wallVel), 0, 0, 1);
+					ofSetColor(255, 255, 200, 255);
+					glScaled(1.0/WallScaling, 1.0/WallScaling, 1);	
+					[self drawRocket];
+					
+					
+				} glPopMatrix();
+			} glPopMatrix();
 			
-			glPushMatrix();
-			glTranslated(wallPosition->x, wallPosition->y, 0);
-			glRotated(ofxVec2f(1,0).angle(*wallVel), 0, 0, 1);
-			ofSetColor(255, 255, 200, 255);
-			glScaled(1.0/WallScaling, 1.0/WallScaling, 1);	
-			[self drawRocket];
-			
-			
-			glPopMatrix();
-			glPopMatrix();
-
 		}	else {
-			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-			glPushMatrix();
-			glTranslated(floorPosition->x, floorPosition->y, 0);
-			glRotated(ofxVec2f(1,0).angle(*floorVel), 0, 0, 1);
-			[self drawRocket];
-			
-			glPopMatrix();
-			glPopMatrix();
-			
-			
-			[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
-			glPushMatrix();
-			glTranslated(floorPosition->x, floorPosition->y, 0);
-			glRotated(ofxVec2f(1,0).angle(*floorVel), 0, 0, 1);
+			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+				glPushMatrix();{
+					glTranslated(floorPosition->x, floorPosition->y, 0);
+					glRotated(ofxVec2f(1,0).angle(*floorVel), 0, 0, 1);
+					[self drawRocket];
+					
+				} glPopMatrix();
+			} glPopMatrix();
 			
 			
-			[self drawRocket];
-			
-			glPopMatrix();
-			glPopMatrix();
+			[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+				glPushMatrix();{
+					glTranslated(floorPosition->x, floorPosition->y, 0);
+					glRotated(ofxVec2f(1,0).angle(*floorVel), 0, 0, 1);
+					
+					
+					[self drawRocket];
+					
+				}glPopMatrix();
+			}glPopMatrix();
 		}	
-
+		
 	}
 }
 
@@ -321,10 +324,20 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	
 	[wallBuildSlider setFloatValue:0];
 	[wallLockSlider setFloatValue:0];
-	resolution = 0.5;
+	resolution = 1.0;
+	
+	[spaceFadeSlider setFloatValue:0];
+	[spaceAlienFadeSlider setFloatValue:0];
+	[spaceAutoLaunchSpeedSlider setFloatValue:0];
+	[gardenFadeSlider setFloatValue:0];
+	
+	[spaceAlienFadeOutSlider setFloatValue:0];
 	
 	[self resetSpaceinvaders:self];
 	[self generateWall:self];
+	
+	[self calculateOuterWall];
+	
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -658,7 +671,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			cookiesRemoveFactor = ofClamp(cookiesRemoveFactor+0.1, 0, 1);
 			pacmanDieFactor = ofClamp(pacmanDieFactor+0.002, 0, 1);
 			
-			if(personPosition->distance(*pacmanPosition) < 0.05 || pacmanPosition->x < -0.1){
+			if(personPosition->distance(*pacmanPosition) < 0.02 || pacmanPosition->x < -0.1){
 				[pacmanButton setState:NSOffState];
 			}
 		}
@@ -668,11 +681,11 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		//WALL
 		//
 		
-		for(int i=0;i<wallPoints.size();i++){
-			if(wallPoints[i].distance(*personPosition) < 0.05){
-				wallPoints.erase(wallPoints.begin()+i);
-			}
-		}
+		/*for(int i=0;i<wallPoints.size();i++){
+		 if(wallPoints[i].distance(*personPosition) < 0.05){
+		 wallPoints.erase(wallPoints.begin()+i);
+		 }
+		 }*/
 		
 		//
 		//Rockets
@@ -686,6 +699,13 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		//
 		//Space invaders
 		//
+		timeSinceLastLaunch += 60.0/ofGetFrameRate();
+		if([spaceAutoLaunchSpeedSlider floatValue] > 0){
+			if(100.0-[spaceAutoLaunchSpeedSlider floatValue] < timeSinceLastLaunch){
+				[self spawnRocket:self];
+			}
+		}
+		
 		if([spaceSpeedSlider floatValue] > 0){
 			*spaceInvadersPosition += ofxPoint2f(spaceInvadersDir,0)*[spaceSpeedSlider floatValue]/100.0 * 60.0/ofGetFrameRate();
 			if(spaceInvadersPosition->x > 3){
@@ -709,6 +729,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	
 	ofSetColor(255, 255, 255,255);
 	ofFill();
+	float w = 1.0/FLOORGRIDSIZE;
 	
 	
 	//
@@ -734,11 +755,11 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		ofEnableAlphaBlending();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);		
 		
-		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-		
-		blur->draw(0, 0, 1, 1, true);
-		
-		glPopMatrix();
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+			
+			blur->draw(0, 0, 1, 1, true);
+			
+		} glPopMatrix();
 		
 	}
 	
@@ -746,204 +767,184 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	
 	
 	
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-	
-	//
-	//White floor square
-	//
-	ofSetColor(255, 255, 255,255);
-	//	if([floorSquaresButton state] == NSOnState){
-	int i=0;
-	float w = 1.0/FLOORGRIDSIZE;
-	for(float y=0;y<1;y+=w){
-		for(float x=0;x<1;x+=w){				
-			float s = floorSquaresOpacity[i];				
-			ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
-			i++;
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+		
+		//
+		//White floor square
+		//
+		ofSetColor(255, 255, 255,255);
+		//	if([floorSquaresButton state] == NSOnState){
+		int i=0;
+		for(float y=0;y<1;y+=w){
+			for(float x=0;x<1;x+=w){				
+				float s = floorSquaresOpacity[i];				
+				ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+				i++;
+			}
 		}
-	}
-	//}
-	
-	
-	//
-	//Choises
-	//
-	if(choisesSize > 0){
-		ofSetColor(255, 0, 0);
-		ofxPoint2f p;
-		p.x = floor(redChoisePosition->x)/(float)FLOORGRIDSIZE;
-		p.y = floor(redChoisePosition->y)/(float)FLOORGRIDSIZE;
-		ofRect(p.x+0.5*w*(1-choisesSize),p.y+0.5*w*(1-choisesSize),w*(choisesSize) , w*(choisesSize));
+		//}
 		
-		ofSetColor(0, 0, 255);		
-		p.x = floor(blueChoisePosition->x)/(float)FLOORGRIDSIZE;
-		p.y = floor(blueChoisePosition->y)/(float)FLOORGRIDSIZE;
-		ofRect(
-			   ofClamp(p.x+0.5*w*(1-choisesSize*blueScaleFactor),0,1),
-			   ofClamp(p.y+0.5*w*(1-choisesSize*blueScaleFactor), 0, 1),
-			   ofClamp(w*(choisesSize*blueScaleFactor), 0 , 1) , 
-			   ofClamp(w*(choisesSize*blueScaleFactor), 0,1) );
 		
-	}
-	
-	
-	
-	//
-	//Ball
-	//
-	if([ballDrawButton state] == NSOnState){
-		ofSetColor(255, 255, 255);
-		ofCircle(ballPosition->x, ballPosition->y, 0.05*[ballSizeSlider floatValue]/100.0);
-	}
-	
-	//
-	//Pacman
-	//
-	if([pacmanButton state] == NSOnState){
-		/*	float r = MAX(255-4.0*pacmanDieFactor*255.0 ,0);
-		 float g = MIN(MAX(2*255-2.0*pacmanDieFactor*255.0 ,0), 255);
-		 float b = MIN(255.0*pacmanDieFactor*2, 255)   -    MAX(pacmanDieFactor*2-1, 0)*255.0;
-		 */	
-		
-		float r = 255;
-		float g = 255;
-		float b = 0;
-		
-		ofSetColor(r, g, b);
-		int k = 0;
-		float circlePtsScaled[OF_MAX_CIRCLE_PTS*2];
-		int numCirclePts = 100;
-		int start = pacmanMouthValue*numCirclePts/2.0;
-		int stop = numCirclePts-start;
-		
-		glPushMatrix();
-		glTranslated(pacmanPosition->x ,  pacmanPosition->y, 0);
-		glRotated(-pacmanDir->angle(ofxVec2f(1,0)), 0, 0, 1);
-		glBegin(GL_TRIANGLE_FAN);
-		glVertex2f(0 , 0);
-		
-		for(int i = start; i < stop; i++){
-			float a = TWO_PI*(float)i/numCirclePts;
-			glVertex2f(cos(a) * 0.08  * 0.5,sin(a) * 0.08 * 0.5);
+		//
+		//Choises
+		//
+		if(choisesSize > 0){
+			ofSetColor(255, 0, 0);
+			ofxPoint2f p;
+			p.x = floor(redChoisePosition->x)/(float)FLOORGRIDSIZE;
+			p.y = floor(redChoisePosition->y)/(float)FLOORGRIDSIZE;
+			ofRect(p.x+0.5*w*(1-choisesSize),p.y+0.5*w*(1-choisesSize),w*(choisesSize) , w*(choisesSize));
+			
+			ofSetColor(0, 0, 255);		
+			p.x = floor(blueChoisePosition->x)/(float)FLOORGRIDSIZE;
+			p.y = floor(blueChoisePosition->y)/(float)FLOORGRIDSIZE;
+			ofRect(
+				   ofClamp(p.x+0.5*w*(1-choisesSize*blueScaleFactor),0,1),
+				   ofClamp(p.y+0.5*w*(1-choisesSize*blueScaleFactor), 0, 1),
+				   ofClamp(w*(choisesSize*blueScaleFactor), 0 , 1) , 
+				   ofClamp(w*(choisesSize*blueScaleFactor), 0,1) );
+			
 		}
 		
-		glEnd();
 		
-		glPopMatrix();
 		
-		ofEnableAlphaBlending();
-		ofSetColor(0, 0, 0, 255);
-		ofRect(0, 0, -2, 1);
+		//
+		//Ball
+		//
+		if([ballDrawButton state] == NSOnState){
+			ofSetColor(255, 255, 255);
+			ofCircle(ballPosition->x, ballPosition->y, 0.05*[ballSizeSlider floatValue]/100.0);
+		}
 		
-		//ofEllipse(pacmanPosition->x, pacmanPosition->y, 0.08, 0.08);
-	}
-	
-	glPopMatrix();
+		//
+		//Pacman
+		//
+		if([pacmanButton state] == NSOnState){
+			/*	float r = MAX(255-4.0*pacmanDieFactor*255.0 ,0);
+			 float g = MIN(MAX(2*255-2.0*pacmanDieFactor*255.0 ,0), 255);
+			 float b = MIN(255.0*pacmanDieFactor*2, 255)   -    MAX(pacmanDieFactor*2-1, 0)*255.0;
+			 */	
+			
+			float r = 255;
+			float g = 255;
+			float b = 0;
+			
+			ofSetColor(r, g, b);
+			int k = 0;
+			float circlePtsScaled[OF_MAX_CIRCLE_PTS*2];
+			int numCirclePts = 100;
+			int start = pacmanMouthValue*numCirclePts/2.0;
+			int stop = numCirclePts-start;
+			
+			glPushMatrix();{
+				glTranslated(pacmanPosition->x ,  pacmanPosition->y, 0);
+				glRotated(-pacmanDir->angle(ofxVec2f(1,0)), 0, 0, 1);
+				glBegin(GL_TRIANGLE_FAN);
+				glVertex2f(0 , 0);
+				
+				for(int i = start; i < stop; i++){
+					float a = TWO_PI*(float)i/numCirclePts;
+					glVertex2f(cos(a) * 0.08  * 0.5,sin(a) * 0.08 * 0.5);
+				}
+				
+				glEnd();
+				
+			}glPopMatrix();
+			
+			ofEnableAlphaBlending();
+			ofSetColor(0, 0, 0, 255);
+			ofRect(0, 0, -2, 1);
+			
+			//ofEllipse(pacmanPosition->x, pacmanPosition->y, 0.08, 0.08);
+		}
+		
+	}glPopMatrix();
 	
 	
 	
 	//
 	//Wall
 	//
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-	float sides[4];
-	for(int i=0;i<4;i++){
-		sides[i] = ofClamp(4.0*[wallBuildSlider floatValue]/100.0 - i, 0 , 1);
-		sides[i] = sides[i] * (FLOORGRIDSIZE-1);
-	}
-	float sidesLock[4];
-	for(int i=0;i<4;i++){
-		sidesLock[i] = ofClamp(4.0*[wallLockSlider floatValue]/100.0 - i, 0 , 1);
-		sidesLock[i] = sidesLock[i] * (FLOORGRIDSIZE-1);
-	}
-	
-	ofDisableAlphaBlending();
-	for(int u=0;u<4;u++){
-		for(int i=0;i<FLOORGRIDSIZE-1;i++){
-			float s = ofClamp(sides[u]-i, 0,1);				
-			float c = ofClamp(sidesLock[u]-i, 0,1);				
-			ofSetColor(255, 255*c, 255*c,255);
-			float x,y;
-			switch (u) {
-				case 0:
-					x = 0;
-					y = (float)(FLOORGRIDSIZE-1- i)*w;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));					
-					break;
-				case 1:
-					x = (float)(i)*w;
-					y = 0;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
-					
-					break;
-				case 2:
-					x = 1-w;
-					y = (float)(i)*w;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
-					
-					break;
-				case 3:
-					x = (float)(FLOORGRIDSIZE-1-i)*w;
-					y = 1-w;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
-					break;
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+		float sides[4];
+		for(int i=0;i<4;i++){
+			sides[i] = ofClamp(4.0*[wallBuildSlider floatValue]/100.0 - i, 0 , 1);
+			sides[i] = sides[i] * (FLOORGRIDSIZE-1);
+		}
+		float sidesLock[4];
+		for(int i=0;i<4;i++){
+			sidesLock[i] = ofClamp(4.0*[wallLockSlider floatValue]/100.0 - i, 0 , 1);
+			sidesLock[i] = sidesLock[i] * (FLOORGRIDSIZE-1);
+		}
+		
+		ofDisableAlphaBlending();
+		for(int u=0;u<4;u++){
+			for(int i=0;i<FLOORGRIDSIZE-1;i++){
+				float s = ofClamp(sides[u]-i, 0,1);				
+				float c = ofClamp(sidesLock[u]-i, 0,1);				
+				ofSetColor(255, 255*c, 255*c,255);
+				float x,y;
+				switch (u) {
+					case 0:
+						x = 0;
+						y = (float)(FLOORGRIDSIZE-1- i)*w;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));					
+						break;
+					case 1:
+						x = (float)(i)*w;
+						y = 0;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+						
+						break;
+					case 2:
+						x = 1-w;
+						y = (float)(i)*w;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+						
+						break;
+					case 3:
+						x = (float)(FLOORGRIDSIZE-1-i)*w;
+						y = 1-w;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+						break;
+				}
+				
 			}
 			
 		}
 		
+		//
+		//Garden
+		//
+		if([gardenFadeSlider floatValue] > 0){
+			ofEnableAlphaBlending();
+			
+			ofSetColor(0, 0, 120, 255*[gardenFadeSlider floatValue]*0.01);
+			ofBeginShape();
+			
+			for(int i=innerWall.size()-1;i>=0;i--){
+				ofVertex(innerWall[i].x, innerWall[i].y);
+			}
+			ofEndShape();
+			
+			
+			ofSetColor(255, 255, 255,255*[spaceFadeSlider floatValue]/100.0);
+			
+			if(outerWall.size() > 0){
+				ofBeginShape();
+				for(int i=0;i<outerWall.size();i++){
+					ofVertex(outerWall[i].x, outerWall[i].y);
+				}
+				ofVertex(outerWall[0].x, outerWall[0].y);
+				for(int i=innerWall.size()-1;i>=0;i--){
+					ofVertex(innerWall[i].x, innerWall[i].y);
+				}
+				ofVertex(innerWall[innerWall.size()-1].x, innerWall[innerWall.size()-1].y);
+				
+				ofEndShape(true);	
+			}
+		}glPopMatrix();
 	}
-	
-	//
-	//Garden
-	//
-	ofEnableAlphaBlending();
-	
-	[self calculateOuterWall];
-	ofSetColor(0, 0, 120, 255*[gardenFadeSlider floatValue]*0.01);
-	ofBeginShape();
-	
-	for(int i=innerWall.size()-1;i>=0;i--){
-		ofVertex(innerWall[i].x, innerWall[i].y);
-	}
-	ofEndShape();
-	/*	ofSetColor(255, 0, 0);
-	 for(int i=0;i<wallPoints.size();i++){
-	 ofCircle(wallPoints[i].x, wallPoints[i].y, 0.01);
-	 }
-	 */	
-
-	//	ofSetColor(255, 255, 0, 100);
-	//	glBegin(GL_LINE_STRIP);
-	//	for(int i=0;i<outerWall.size();i++){
-	//		glVertex2f(outerWall[i].x, outerWall[i].y);
-	//	}
-	//	glEnd();
-	//	
-	//	ofSetColor(255, 0, 255, 100);
-	//	glBegin(GL_LINE_STRIP);
-	//	for(int i=0;i<innerWall.size();i++){
-	//		glVertex2f(innerWall[i].x, innerWall[i].y);
-	//	}
-	//	glEnd();
-	//	
-	
-	ofSetColor(255, 255, 255,255);
-	
-	if(outerWall.size() > 0){
-		ofBeginShape();
-		for(int i=0;i<outerWall.size();i++){
-			ofVertex(outerWall[i].x, outerWall[i].y);
-		}
-		ofVertex(outerWall[0].x, outerWall[0].y);
-		for(int i=innerWall.size()-1;i>=0;i--){
-			ofVertex(innerWall[i].x, innerWall[i].y);
-		}
-		ofVertex(innerWall[innerWall.size()-1].x, innerWall[innerWall.size()-1].y);
-		
-		ofEndShape(true);	
-	}
-	glPopMatrix();
-	
 	
 	//
 	//Rockets
@@ -958,15 +959,20 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	//
 	//Aliens
 	//
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
-	ofSetColor(255, 255, 255, 255);
-	glTranslated((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0, 0);
-	Alien *alien;
-	for(alien in aliens){
-		[alien draw];
+	if([spaceAlienFadeSlider floatValue] > 0){
+		ofEnableAlphaBlending();
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
+			float r;
+			r = ofRandom(1-[spaceAlienFadeOutSlider floatValue]/100.0, 1 );
+			
+			ofSetColor(255, 255, 255, 255*([spaceAlienFadeSlider floatValue]/100.0) * r);
+			glTranslated((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0, 0);
+			Alien *alien;
+			for(alien in aliens){
+				[alien draw];
+			}
+		}glPopMatrix();	
 	}
-	glPopMatrix();	
-	
 	
 	
 	//
@@ -1031,44 +1037,44 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			}
 		}
 		
-		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+			
+			
+			ofSetColor(0, 0, 255,[terminatorLightFadeSlider floatValue]*2.5);
+			glBegin(GL_POLYGON);
+			glVertex2f(center.x, center.y);
+			glVertex2f(points[0].x, points[0].y);
+			glVertex2f(cornerPoint[0].x, cornerPoint[0].y);
+			glVertex2f(points[1].x, points[1].y);
+			glEnd();
+			
+			glBegin(GL_POLYGON);
+			glVertex2f(center.x, center.y);
+			glVertex2f(points[2].x, points[2].y);
+			glVertex2f(cornerPoint[1].x, cornerPoint[1].y);
+			glVertex2f(points[3].x, points[3].y);
+			glEnd();	
+			
+		}glPopMatrix();
 		
 		
-		ofSetColor(0, 0, 255,[terminatorLightFadeSlider floatValue]*2.5);
-		glBegin(GL_POLYGON);
-		glVertex2f(center.x, center.y);
-		glVertex2f(points[0].x, points[0].y);
-		glVertex2f(cornerPoint[0].x, cornerPoint[0].y);
-		glVertex2f(points[1].x, points[1].y);
-		glEnd();
-		
-		glBegin(GL_POLYGON);
-		glVertex2f(center.x, center.y);
-		glVertex2f(points[2].x, points[2].y);
-		glVertex2f(cornerPoint[1].x, cornerPoint[1].y);
-		glVertex2f(points[3].x, points[3].y);
-		glEnd();	
-		
-		glPopMatrix();
-		
-		
-		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];		
-		ofSetColor(0, 0, 255,[terminatorLightFadeSlider floatValue]*2.5);
-		glBegin(GL_POLYGON);
-		glVertex2f(center.x, center.y);
-		glVertex2f(points[0].x, points[0].y);
-		glVertex2f(cornerPoint[0].x, cornerPoint[0].y);
-		glVertex2f(points[1].x, points[1].y);
-		glEnd();
-		
-		glBegin(GL_POLYGON);
-		glVertex2f(center.x, center.y);
-		glVertex2f(points[2].x, points[2].y);
-		glVertex2f(cornerPoint[1].x, cornerPoint[1].y);
-		glVertex2f(points[3].x, points[3].y);
-		glEnd();		
-		
-		glPopMatrix();
+		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+			ofSetColor(0, 0, 255,[terminatorLightFadeSlider floatValue]*2.5);
+			glBegin(GL_POLYGON);
+			glVertex2f(center.x, center.y);
+			glVertex2f(points[0].x, points[0].y);
+			glVertex2f(cornerPoint[0].x, cornerPoint[0].y);
+			glVertex2f(points[1].x, points[1].y);
+			glEnd();
+			
+			glBegin(GL_POLYGON);
+			glVertex2f(center.x, center.y);
+			glVertex2f(points[2].x, points[2].y);
+			glVertex2f(cornerPoint[1].x, cornerPoint[1].y);
+			glVertex2f(points[3].x, points[3].y);
+			glEnd();		
+			
+		}glPopMatrix();
 		
 		
 		ofEnableAlphaBlending();
@@ -1104,9 +1110,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		
 		blur->draw(0, 0, 1, 1, true);
 		
-		glPopMatrix();
-		glPopMatrix();
-		glPopMatrix();
+		
 		
 	}
 	
@@ -1146,6 +1150,9 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			wallPoints.push_back(ofxPoint2f(x/(float)FLOORGRIDSIZE,y/(float)FLOORGRIDSIZE));
 		}
 	}
+	
+	[self calculateOuterWall];
+	
 }
 
 -(void) calculateOuterWall{
@@ -1155,14 +1162,13 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	
 	ofxPoint2f point = ofxPoint2f(0.5,0.5);
 	point *= FLOORGRIDSIZE * 1.0/resolution;
-
+	
 	ofxVec2f dir = ofxVec2f(1,0);
 	
 	bool yep = true;
 	while(yep){
 		if([self wallPointExist:point-ofxPoint2f(1,0)]){
-			point.x -= 1;
-			
+			point.x -= 1;			
 		} else {
 			yep = false;
 			break;
@@ -1242,7 +1248,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				 break;*/
 			} else {
 				for(int i=0;i<wallPoints.size();i++){
-					if(wallPoints[i].distance(p / (FLOORGRIDSIZE * 1.0/resolution)) < 0.05){
+					if(wallPoints[i].distance(p / (FLOORGRIDSIZE * 1.0/resolution)) < 0.01){
 						wallPoints.erase(wallPoints.begin()+i);
 					}
 				}
@@ -1370,15 +1376,20 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 
 -(IBAction) spawnRocket:(id)sender{
 	ofxPoint2f p = 	ofxPoint2f((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0) + *((Alien*)[aliens objectAtIndex:int(ofRandom(0, [aliens count]-2))])->position + ofxPoint2f(0,0.1);
-
+	
 	Rocket * newRocket = [[Rocket alloc] initAtPosition:p arkade:self];
 	[rockets addObject:newRocket];
+	timeSinceLastLaunch = 0;
 }
 
 -(IBAction) resetSpaceinvaders:(id)sender{
 	spaceInvadersPosition = new ofxPoint2f(0,0);	
-		spaceInvadersDir = 1;
+	spaceInvadersDir = 1;
 	spaceInvadersYDir = 1;
+	timeSinceLastLaunch = 0;
+	[rockets removeAllObjects];
+	[self calculateOuterWall];
+	
 }
 
 @end

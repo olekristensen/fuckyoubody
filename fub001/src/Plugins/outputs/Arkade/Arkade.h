@@ -37,6 +37,9 @@
 	IBOutlet NSSlider * gardenFadeSlider;	
 	IBOutlet NSSlider * spaceFadeSlider;	
 	IBOutlet NSSlider * spaceSpeedSlider;	
+	IBOutlet NSSlider * spaceAutoLaunchSpeedSlider;	
+	IBOutlet NSSlider * spaceAlienFadeSlider;	
+	IBOutlet NSSlider * spaceAlienFadeOutSlider;	
 
 	ofxPoint2f * personPosition;
 
@@ -93,6 +96,7 @@
 	ofxPoint2f * spaceInvadersPosition;
 	int spaceInvadersDir;
 	int spaceInvadersYDir;
+	float timeSinceLastLaunch;
 
 	ofImage * images[6];
 	

@@ -100,7 +100,7 @@
 //New ones
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection fromSurface:(string)surface;
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection toSurface:(string)surface;
--(float) getAspectOnProjection:(string)projection surface:(string)surface;
+-(float) getAspectForProjection:(string)projection surface:(string)surface;
 
 
 -(ofxPoint2f) getFloorCoordinateOfProjector:(int)proj;
