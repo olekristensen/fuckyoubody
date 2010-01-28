@@ -12,11 +12,11 @@
 @synthesize surfaces, name;
 
 -(id) initWithName:(NSString*)n {
-if([super init]){
+	if([super init]){
 		name =  new string([n cString]); 
 		width = 1024;
 		height = 768;
-
+		
 		return self;
 	}
 }
@@ -33,7 +33,7 @@ if([super init]){
 		aspect = 1;
 		warp = new Warp();
 		coordWarp = new  coordWarping;
-			projector = proj;
+		projector = proj;
 		[self recalculate];
 		return self;
 	}
@@ -180,7 +180,7 @@ if([super init]){
 	ofEnableAlphaBlending();
 	glPushMatrix();
 	
-	float projWidth = [self getCurrentProjector]->width;
+	float projWidth = [self getCurrentProjector]->width*2;
 	float projHeight = [self getCurrentProjector]->height;	
 	float aspect =(float)  projHeight/projWidth;
 	float viewAspect = (float)h / w;
@@ -197,6 +197,7 @@ if([super init]){
 	ofSetColor(255, 255, 255, 30);
 	ofRect(0, 0, 1, aspect);
 	ofSetColor(255, 255, 255, 70);
+	ofLine(0.5, 0, 0.5, aspect);
 	ofNoFill();
 	ofRect(0, 0, 1, aspect);
 	ofFill();
@@ -207,6 +208,9 @@ if([super init]){
 	[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
 	glPopMatrix();
 	
+	glScaled(2.0, 1, 1);
+	cout<<[projectorsButton indexOfSelectedItem] <<endl;
+	glTranslated([projectorsButton indexOfSelectedItem] * -0.5, 0, 0);
 	//Draw current projectorsurface
 	for(int i=0;i<4;i++){
 		
@@ -228,22 +232,24 @@ if([super init]){
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	ProjectorObject * proj;
-	string s =  *[self getCurrentSurface]->name;
-	int i=0;
-	for(proj in projectors){
-		ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:*proj->name surface:s];
-		BOOL simple = YES;
-		if([projectorsButton indexOfSelectedItem] == i){
-			simple = NO;
-		}
-		ofSetColor(255, 255, 255);
-		[self apply:*proj->name surface:s];
-		if([showGrid state] == NSOnState){
+	if([showGrid state] == NSOnState){
+		
+		ProjectorObject * proj;
+		string s =  *[self getCurrentSurface]->name;
+		int i=0;
+		for(proj in projectors){
+			ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:*proj->name surface:s];
+			BOOL simple = YES;
+			if([projectorsButton indexOfSelectedItem] == i){
+				simple = NO;
+			}
+			ofSetColor(255, 255, 255);
+			[self apply:*proj->name surface:s];
 			[self drawGrid:s aspect:surf->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0 simple:simple];
+			
+			glPopMatrix();
+			i++;
 		}
-		glPopMatrix();
-		i++;
 	}
 	
 	/*
@@ -262,7 +268,7 @@ if([super init]){
 	
 	ofRect(0.5, 0, 0.001, 0.001);
 	ofRect(1, 0, -0.001, 0.001);
-
+	
 	ofRect(0, 1, 0.001, -0.001);
 	ofRect(0.5, 1, -0.001, -0.001);
 	
@@ -457,13 +463,14 @@ if([super init]){
 
 -(void) applyProjection:(ProjectionSurfacesObject*) obj width:(float) _w height:(float) _h{
 	//	cout<<_w<<"  "<<_h<<endl;
+
 	glPushMatrix();
 	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Front") == 0){
-		glViewport(0, 0, 1024, 768);
+		glViewport(0, 0, ofGetWidth()/2.0, ofGetHeight());
 	} else {
-		glViewport(1024, 0, 1024, 768);
+		glViewport(ofGetWidth()/2.0, 0, ofGetWidth()/2.0, ofGetHeight());
 	}
-
+	
 	float setW = 1.0/ (obj->aspect);
 	float setH = 1.0;
 	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Front") != 0){
