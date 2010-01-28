@@ -13,6 +13,7 @@
 #include "Plugin.h"
 #include "ofMain.h"
 #include "Filter.h"
+#include "Players.h"
 
 
 #define RADIUS 0.05
@@ -29,11 +30,11 @@
 
 	float			screenTrackingLeft;
 	float			screenTrackingRight;
-	float			screenTrackingDistance;
+	float			screenTrackingHeight;
 	
 	Filter *		screenTrackingLeftFilter;
 	Filter *		screenTrackingRightFilter;
-	Filter *		screenTrackingDistanceFilter;
+	Filter *		screenTrackingHeightFilter;
 	
 	ofImage			*coinImage;
 	ofPoint			*screenDoorPos;
@@ -45,6 +46,8 @@
 	float lastLemmingInterval;
 	
 	// screen world
+
+	ofxPoint2f		* screenPosition;
 	
 	NSMutableArray	* screenLemmings;
 	NSMutableArray	* screenElements;
@@ -57,9 +60,8 @@
 	IBOutlet NSSlider * screenGravity;				// -1 ... 2
 	IBOutlet NSSlider * screenSplatVelocity;		//	0 ... 1
 
-	IBOutlet NSSlider * screenSpotSize;				//	0 ... 1
-	IBOutlet NSSlider * screenSpotAlpha;			//	0 ... 1
-	
+	IBOutlet NSSlider * screenLemmingsBrightness;	//	0 ... 1 black ... white
+
 	IBOutlet NSButton * screenFloor;				//	BOOL
 
 	// floor world
@@ -104,6 +106,7 @@
 -(void) reset;
 -(float) getScreenGravityAsFloat;
 -(float) getScreenSplatVelocityAsFloat;
+-(float) getScreenElementsAlphaAsFloat;
 
 @end
 
@@ -117,6 +120,7 @@
 	double			spawnTime;
 	double			deathTime;
 	double			splatTime;
+	bool			blessed;
 	NSMutableArray * lemmingList;
 
 }
@@ -131,6 +135,7 @@
 @property (readwrite) double spawnTime;
 @property (readwrite) double deathTime;
 @property (readwrite) double splatTime;
+@property (readwrite) bool blessed;
 @property (assign) NSMutableArray * lemmingList;
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;

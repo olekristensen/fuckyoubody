@@ -87,7 +87,6 @@
 		if(link->timeSinceLastConfirm < 20000000 || !timeout){
 			okLinkFound  = true;			
 		} 
-		
 	}
 	if(!okLinkFound){
 		if(timeout){
@@ -105,8 +104,7 @@
 	//ofLine(frontLeft, 0, frontLeft, 1);
 	
 	//ofLine(backLeft, 0, backLeft, 1);
-	
-	
+		
 	//Calculate floor points from projections
 	ofxVec2f frontLeftP[2], frontRightP[2];
 	ofxVec2f backLeftP[2], backRightP[2];

@@ -76,7 +76,7 @@
 		//		originalblob->area = blob->area = _blob->area;
 		//      originalblob->length = blob->length = _blob->length ;
 		//       originalblob->boundingRect = blob->boundingRect = _blob->boundingRect;
-        originalblob->centroid = blob->centroid = *point;
+        floorblob->centroid = originalblob->centroid = blob->centroid = *point;
 		//        originalblob->hole = blob->hole = _blob->hole;
 		
 		floorblob->nPts = originalblob->nPts = blob->nPts = 30;
