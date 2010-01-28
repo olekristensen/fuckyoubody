@@ -574,18 +574,10 @@
 	}
 }
 
-<<<<<<< .mine
 -(float) getAspectForProjection:(string) projection surface:(string) surface{
 	return [self getProjectionSurfaceByName:projection surface:surface]->aspect;
 }
 
-=======
-
--(float) getAspectOnProjection:(string)projection surface:(string)surface{
-	return [self getProjectionSurfaceByName:projection surface:surface]->aspect;
-}
-
->>>>>>> .r189
 -(void) controlMousePressed:(float)x y:(float)y button:(int)button{
 	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
 	
