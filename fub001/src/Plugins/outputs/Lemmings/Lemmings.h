@@ -38,7 +38,12 @@
 	
 	ofImage			*coinImage;
 	ofPoint			*screenDoorPos;
-		
+	
+	ofxVec2f		* screenBottomOnFloorLeft;
+	ofxVec2f		* screenBottomOnFloorRight;
+	ofxVec2f		* screenBottomOnFloor;
+	ofxVec2f		* screenBottomOnFloorHat;
+	
 	IBOutlet NSSegmentedControl * cameraControl;
 	IBOutlet NSButton * trackingActive;
 

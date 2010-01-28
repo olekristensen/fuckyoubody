@@ -54,6 +54,12 @@
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
+	
+	screenBottomOnFloorLeft = new ofxVec2f([GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"]);
+	screenBottomOnFloorRight = new ofxVec2f([GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"]);
+	screenBottomOnFloor = new ofxVec2f(*screenBottomOnFloorRight - *screenBottomOnFloorLeft);
+	screenBottomOnFloorHat = new ofxVec2f(ofxVec2f(-screenBottomOnFloor->y, screenBottomOnFloor->x).normalized());
+	
 #pragma mark reset
 	
 	if(doReset){
@@ -102,7 +108,7 @@
 		}
 	}
 	
-#pragma mark activate elements from tracker
+#pragma mark make screen box from blobs
 	
 	float left = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"];
 	float right = 0;
@@ -199,6 +205,7 @@
 		}
 		
 #pragma mark bless with dancer box
+		
 		if([lemming vel]->y >= 0 ){
 			if([lemming position]->y+(RADIUS*0.5*[lemming scaleFactor]) > screenTrackingHeight){
 				if([lemming position]->y+(RADIUS*0.5*[lemming scaleFactor]) < screenTrackingHeight+0.03 ){
@@ -213,10 +220,7 @@
 				}
 			}
 		}
-		
-		
-		
-		
+
 #pragma mark add screen gravity
 		if([lemming blessed]){
 			*[lemming totalforce] += ofxPoint2f(0,[screenGravity floatValue]/150.0);
@@ -234,16 +238,22 @@
 			lemming = [screenLemmings objectAtIndex:i];
 			if ([lemming splatTime] < 0) {
 				if([lemming position]->y + (RADIUS*0.5) > 0.9999){
-					ofxPoint2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertToProjection:*[lemming position] surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"]];
-					lemmingPosition = [GetPlugin(ProjectionSurfaces) convertFromProjection:lemmingPosition surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+
+					ofxVec2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertPoint:*[lemming position] toProjection:"Front" fromSurface:"Backwall"];
+					lemmingPosition= [GetPlugin(ProjectionSurfaces) convertPoint:lemmingPosition fromProjection:"Front" toSurface:"Floor"];
+
 					[lemming position]->x = lemmingPosition.x;
-					[lemming position]->y = lemmingPosition.y-0.001;
+					[lemming position]->y = lemmingPosition.y-0.001;	
+					
+					[lemming vel]->y *= -1.0;
+					ofxVec2f wallVel = ofxVec2f(*[lemming vel]);
+					
+					[lemming setVel:new ofxVec2f(*screenBottomOnFloorHat * wallVel.length())];
+					[lemming vel]->rotate(-wallVel.angle(ofxVec2f(0,1)));
 					[lemming setRadius:[lemming radius]*0.5];
 					[lemming setScaleFactor:0.5];
 					*[lemming vel] *= 0.35;
-					[lemming vel]->y *= -1.0;
 					[lemming setBlessed:NO];
-					
 					[floorLemmings addObject:lemming];
 					[screenLemmings removeObjectAtIndex:i];
 				}		
@@ -479,24 +489,7 @@
 	ofEnableAlphaBlending();
 	
 	NSColor * playerColor = [GetPlugin(Players) playerColor:1];
-	
-	ofxPoint2f * screenTrackingOnFloorTopLeft;
-	ofxPoint2f * screenTrackingOnFloorBottomRight;
-
-	screenTrackingOnFloorTopLeft = new ofxPoint2f([GetPlugin(ProjectionSurfaces) 
-												   convertPoint:ofxPoint2f(screenTrackingLeft, 1.0) 
-												   toProjection:"Front" fromSurface:"Backwall"]);
-	screenTrackingOnFloorTopLeft = new ofxPoint2f([GetPlugin(ProjectionSurfaces) 
-												   convertPoint:*screenTrackingOnFloorTopLeft 
-												   fromProjection:"Front" toSurface:"Floor"]);
-
-	screenTrackingOnFloorBottomRight = new ofxPoint2f([GetPlugin(ProjectionSurfaces) 
-													   convertPoint:ofxPoint2f(screenTrackingRight, 1.0+(screenTrackingHeight*0.4)) 
-													   toProjection:"Front" fromSurface:"Backwall"]);
-	screenTrackingOnFloorBottomRight = new ofxPoint2f([GetPlugin(ProjectionSurfaces) 
-													   convertPoint:*screenTrackingOnFloorBottomRight 
-													   fromProjection:"Front" toSurface:"Floor"]);
-	
+		
 	Lemming * lemming;
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
@@ -504,27 +497,29 @@
 	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
 	ofRect(0, 0, 1, 1);
 	
+	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
+	
+	glPushMatrix();{
+		glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
+		glRotatef(-screenBottomOnFloorHat->angle(ofxVec2f(0,1)), 0,0,1);
+		
+		glScaled(screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
+				 screenBottomOnFloor->length(),
+				 0);
+		
+		ofRect(screenTrackingLeft, 
+			   0, 
+			   screenTrackingRight- screenTrackingLeft, 
+			   screenTrackingHeight);
+
+	}glPopMatrix();
+	
 	glPopMatrix();
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	
 	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
 	ofRect(0, 0, 1, 1);
-	
-	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
-	ofRect(screenTrackingOnFloorTopLeft->x, 
-		   screenTrackingOnFloorTopLeft->y, 
-		   screenTrackingOnFloorBottomRight->x - screenTrackingOnFloorTopLeft->x, 
-		   screenTrackingOnFloorBottomRight->y);
-
-	
-	// TODO (skal i pages)
-	
-	/* farver på spillere skal gemmes - hvem er hvem? der skal også navne på i indtastningsfelter
-	 * midi skal tage drawAlpha og maskAlpha til plugins
-	 * midi skal tage enable/disable update på ctrl 1
-	 */
-	
 	
 	glPopMatrix();
 	
@@ -707,7 +702,7 @@
 		}glPopMatrix();
 		//ofCircle(position->x, position->y, radius);
 	}
-		
+	
 }
 
 -(void) collision:(CFTimeInterval)timeInterval{
