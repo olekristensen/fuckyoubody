@@ -469,7 +469,7 @@ void ofxCvImage::erode() {
 //--------------------------------------------------------------------------------
 void ofxCvImage::blur( int value ) {
     if( value % 2 == 0 ) {
-        ofLog(OF_LOG_NOTICE, "in blur, value not odd -> will add 1 to cover your back");
+        ofLog(OF_LOG_VERBOSE, "in blur, value not odd -> will add 1 to cover your back");
         value++;
     }
 	cvSmooth( cvImage, cvImageTemp, CV_BLUR , value);
@@ -480,7 +480,7 @@ void ofxCvImage::blur( int value ) {
 //--------------------------------------------------------------------------------
 void ofxCvImage::blurGaussian( int value ) {
     if( value % 2 == 0 ) {
-        ofLog(OF_LOG_NOTICE, "in blurGaussian, value not odd -> will add 1 to cover your back");
+        ofLog(OF_LOG_VERBOSE, "in blurGaussian, value not odd -> will add 1 to cover your back");
         value++;
     }
 	cvSmooth( cvImage, cvImageTemp, CV_GAUSSIAN ,value );

@@ -41,6 +41,7 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	ofEnableAlphaBlending();
 	for(int i=0;i<4;i++){
 		[players[i] draw];
 	}

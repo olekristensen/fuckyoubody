@@ -16,6 +16,8 @@
 	if([super init]){
 		playerNumber = n;
 		addNewBlob = NO;
+		userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+		pointArray = new CvPoint[ 1024 ];
 	}
 	return self;
 }
@@ -35,48 +37,99 @@
 	   options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
 										   forKey:@"NSContinuouslyUpdatesValue"]];
 	
-	[color  bind:@"red"
-		toObject:[NSUserDefaultsController sharedUserDefaultsController]
-	 withKeyPath:[NSString stringWithFormat:@"values.player.%i.red", playerNumber+1]
-		 options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
-											 forKey:@"NSContinuouslyUpdatesValue"]];
+	[blobRedSlider bind:@"value"
+			   toObject:blobcolor
+			withKeyPath:[NSString stringWithFormat:@"red", playerNumber+1]
+				options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+													forKey:@"NSContinuouslyUpdatesValue"]];
+	[blobGreenSlider bind:@"value"
+				 toObject:blobcolor
+			  withKeyPath:[NSString stringWithFormat:@"green", playerNumber+1]
+				  options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+													  forKey:@"NSContinuouslyUpdatesValue"]];
+	[blobBlueSlider bind:@"value"
+				toObject:blobcolor
+			 withKeyPath:[NSString stringWithFormat:@"blue", playerNumber+1]
+				 options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+													 forKey:@"NSContinuouslyUpdatesValue"]];
 	
 	
-	[[addTopButton midi] setChannel: [[NSNumber alloc] initWithInt:4]];
-	[[addTopButton midi] setController: [[NSNumber alloc] initWithInt:12+(20*playerNumber)]];
-	[[addTopButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj top blob", playerNumber]];
+	NSColor * c = [NSColor colorWithCalibratedRed:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.red",playerNumber+1]] green:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.green",playerNumber+1]] blue:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.blue",playerNumber+1]] alpha:1.0];
+	[color setColor:c];
+	int i=12;
+	[[addTopButton midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[addTopButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj top blob", playerNumber+1]];
 	
-	[[addRightButton midi] setChannel: [[NSNumber alloc] initWithInt:4]];
-	[[addRightButton midi] setController: [[NSNumber alloc] initWithInt:13+(20*playerNumber)]];
-	[[addRightButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj højre blob", playerNumber]];
+	[[addRightButton midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[addRightButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj højre blob", playerNumber+1]];
 	
-	[[addBottomButton midi] setChannel: [[NSNumber alloc] initWithInt:4]];
-	[[addBottomButton midi] setController: [[NSNumber alloc] initWithInt:14+(20*playerNumber)]];
-	[[addBottomButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj bund blob", playerNumber]];
+	[[addBottomButton midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[addBottomButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj bund blob", playerNumber+1]];
 	
-	[[addLeftButton midi] setChannel: [[NSNumber alloc] initWithInt:4]];
-	[[addLeftButton midi] setController: [[NSNumber alloc] initWithInt:15+(20*playerNumber)]];
-	[[addLeftButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj venstre blob", playerNumber]];
+	[[addLeftButton midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[addLeftButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj venstre blob", playerNumber+1]];
 	
-	[[resetBlobButton midi] setChannel: [[NSNumber alloc] initWithInt:4]];
-	[[resetBlobButton midi] setController: [[NSNumber alloc] initWithInt:16+(20*playerNumber)]];
-	[[resetBlobButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Reset blob", playerNumber]];
+	[[resetBlobButton midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[resetBlobButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Reset blob", playerNumber+1]];
 	
+	[[colorBalanceSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[colorBalanceSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob color balance", playerNumber+1]];
+
+	[[blobBlurSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[blobBlurSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob blur", playerNumber+1]];
+
+	[[blobRedSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[blobRedSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob red", playerNumber+1]];
+
+	[[blobGreenSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[blobGreenSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob green", playerNumber+1]];
+	
+	[[blobBlueSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[blobBlueSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob blue", playerNumber+1]];
+
+	[[blobAlphaSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[blobAlphaSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob alpha", playerNumber+1
+									   
+									   ]];
+
 	
 	return YES;
 }
 
 
 -(void) setup{
+	light = new ofxCvColorImageAlpha();
+	light->allocate(800,800);
+	light->set(0,0,0,0);
+	lightTemp = new ofxCvColorImageAlpha();
+	lightTemp->allocate(800,800);
+	lightTemp->set(0,0,0,0);
+	lightTemp2 = new ofxCvColorImageAlpha();
+	lightTemp2->allocate(800,800);
+	lightTemp2->set(0,0,0,0);
+	
+	blur = new shaderBlur();
+	blur->setup(800, 800);
 	
 }
 -(void) draw{
+	//glViewport(0, 0, ofGetWidth()/2.0, ofGetHeight());
+	if(pblobs.size() > 0 && [blobAlphaSlider floatValue] > 0){
+		NSColor * c = [[blobcolor color] blendedColorWithFraction:(1-[colorBalanceSlider floatValue]/100.0) ofColor:[color color] ];
+		
+		ofSetColor([c redComponent]*255.0, [c greenComponent]*255.0, [c blueComponent]*255.0,[c alphaComponent]*255.0* [blobAlphaSlider floatValue]);
+		light->draw(0, 0,1,1);
+	}
+	
 	
 }
+
+
+
 -(void) update{
 	PersistentBlob * pblob;
 	
-
+	
 	for(int i=0;i<pblobs.size();i++){
 		BOOL pblobFound = NO;
 		for(pblob in [tracker(0) persistentBlobs]){
@@ -86,15 +139,109 @@
 		
 		if(!pblobFound){
 			pblobs.erase(pblobs.begin()+i);
-		//	[numberPBlobs setIntValue:pblob.size()];
+			[numberPBlobs setIntValue:pblobs.size()];
 		}
 	}
 	
 	if(addNewBlob){
 		
+		int bestPblob = -1;
+		ofxPoint2f bestPoint;
+		
+		for(pblob in [tracker(0) persistentBlobs]){
+			BOOL pblobFound = NO;
+			for(int i=0;i<pblobs.size();i++){
+				if(pblobs[i] == pblob->pid){
+					pblobFound = YES;
+					break;
+				}
+			}
+			
+			if(!pblobFound){
+				if(addRule->x > 0 || bestPblob == -1){
+					if([pblob getLowestPoint].x > bestPoint.x){
+						bestPblob = pblob->pid;
+						bestPoint = [pblob getLowestPoint];
+					}
+				}
+				if(addRule->x < 0 || bestPblob == -1){
+					if([pblob getLowestPoint].x < bestPoint.x){
+						bestPblob = pblob->pid;
+						bestPoint = [pblob getLowestPoint];
+					}
+				}
+				if(addRule->y > 0 || bestPblob == -1){
+					if([pblob getLowestPoint].y > bestPoint.y){
+						bestPblob = pblob->pid;
+						bestPoint = [pblob getLowestPoint];
+					}
+				}
+				if(addRule->y < 0 || bestPblob == -1){
+					if([pblob getLowestPoint].y < bestPoint.y){
+						bestPblob = pblob->pid;
+						bestPoint = [pblob getLowestPoint];
+					}
+				}
+			}
+			
+		}
+		
+		if(bestPblob != -1){
+			pblobs.push_back(bestPblob);
+		}
+		[numberPBlobs setIntValue:pblobs.size()];
 		
 		addNewBlob = NO;
 	}
+	
+	
+	if(pblobs.size() > 0 && [blobAlphaSlider floatValue] > 0){
+		lightTemp->set(0,0,0,0);
+		lightTemp2->set(0,0,0,0);
+		
+		PersistentBlob * pb;
+		int t = 0;
+		for(pb in [tracker(0) persistentBlobs]){
+			BOOL found = NO;
+			for(int i=0;i<pblobs.size();i++){
+				if(pb->pid == pblobs[i])
+					found = YES;
+			}
+			
+			if(found){
+				Blob * b;
+				for(b in [pb blobs]){	
+					
+					
+					for( int u = 0; u < [b nPts]; u++){
+						
+						float pointPercent = (float)u/[b nPts];
+						ofxPoint2f p = [b pts][u];
+						
+						ofxVec2f blobP;
+						blobP.x = int(p.x*800);
+						blobP.y = int(p.y*800);				
+						
+						
+						ofxVec2f point = blobP;
+						pointArray[u].x  = point.x;
+						pointArray[u].y  = point.y;
+						
+						//				cout<<pointArray[u].x<<"  "<<pointArray[u].y<<endl;
+					}
+					int nPts = [b nPts];					
+					cvFillPoly(lightTemp->getCvImage(),&pointArray , &nPts, 1, cvScalar(255, 255, 255, 255.0));			
+					lightTemp->flagImageChanged();
+					
+				}			
+				
+				
+			}
+		}
+		light = lightTemp;			
+		light->blur([blobBlurSlider floatValue]/20.0);
+		light->flagImageChanged();
+	} 
 }
 
 
@@ -117,8 +264,11 @@
 }
 -(IBAction) resetBlobButton:(id)sender{
 	pblobs.clear();
-//	[numberPBlobs setIntValue:pblob.size()];
+	[numberPBlobs setIntValue:pblobs.size()];
 }
-
-
+-(IBAction) setColorWell:(id)sender{
+	[userDefaults setFloat:[[sender color] redComponent] forKey:[NSString stringWithFormat:@"player.%i.color.red",playerNumber+1]];
+	[userDefaults setFloat:[[sender color] greenComponent] forKey:[NSString stringWithFormat:@"player.%i.color.green",playerNumber+1]];
+	[userDefaults setFloat:[[sender color] blueComponent] forKey:[NSString stringWithFormat:@"player.%i.color.blue",playerNumber+1]];
+}
 @end
