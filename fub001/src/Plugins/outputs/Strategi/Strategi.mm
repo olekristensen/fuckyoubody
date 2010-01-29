@@ -143,7 +143,7 @@
 		
 		
 		
-		
+	/*	
 		for(int i=0;i<5;i++){
 			for(int u=0;u<3;u++){
 				LedLamp * lamp = [GetPlugin(DMXOutput) getLamp:u y:i];
@@ -155,7 +155,7 @@
 		NSColor * c = [player2Color color];		
 		
 		[GetPlugin(DMXOutput) makeNumber:area[1]/5000 r:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*190*1.0];
-		
+	*/	
 	}
 	
 	

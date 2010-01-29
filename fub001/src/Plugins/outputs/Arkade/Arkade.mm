@@ -82,15 +82,15 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			
 			*wallPosition += 1.0/ofGetFrameRate() * *wallVel * 1.0/WallScaling;
 			
-			if(wallPosition->y > [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]){
+			if(wallPosition->y > 1){
 				onWall = NO;
 				
 				ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertPoint:*wallPosition toProjection:"Front" fromSurface:"Backwall"];
 				p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
 				floorPosition = new ofxVec2f(p);
 				
-				ofxVec2f bottom1 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
-				ofxVec2f bottom2 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
+				ofxVec2f bottom1 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
+				ofxVec2f bottom2 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
 				
 				ofxVec2f bottom = bottom2-bottom1;
 				
