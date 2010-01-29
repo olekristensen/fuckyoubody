@@ -55,6 +55,7 @@
 		7F58BFF51105D83E00E7AE15 /* PluginUIBWTransparentButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F58BFF41105D83E00E7AE15 /* PluginUIBWTransparentButton.mm */; };
 		7F8133BF10FB8E5A00EE2A49 /* Midi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8133BE10FB8E5A00EE2A49 /* Midi.mm */; };
 		7F8133C310FB8ED100EE2A49 /* Midi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8133C210FB8ED100EE2A49 /* Midi.xib */; };
+		7FB725E41112139F00EE215F /* PluginUIColorWell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FB725E31112139F00EE215F /* PluginUIColorWell.mm */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -297,6 +298,8 @@
 		7F8133BD10FB8E5A00EE2A49 /* Midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Midi.h; path = Midi/Midi.h; sourceTree = "<group>"; };
 		7F8133BE10FB8E5A00EE2A49 /* Midi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Midi.mm; path = Midi/Midi.mm; sourceTree = "<group>"; };
 		7F8133C210FB8ED100EE2A49 /* Midi.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Midi.xib; path = Midi/Midi.xib; sourceTree = "<group>"; };
+		7FB725E21112139F00EE215F /* PluginUIColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginUIColorWell.h; path = libs/of_preRelease_v0.06_xcode_FAT/myAddons/ofxCocoaPlugins/src/PluginUIColorWell.h; sourceTree = DEVELOPER_DIR; };
+		7FB725E31112139F00EE215F /* PluginUIColorWell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PluginUIColorWell.mm; path = libs/of_preRelease_v0.06_xcode_FAT/myAddons/ofxCocoaPlugins/src/PluginUIColorWell.mm; sourceTree = DEVELOPER_DIR; };
 		7FDA1BB010FCD33600087BD2 /* org.recoil-performance.fuckYouBuddy.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "org.recoil-performance.fuckYouBuddy.plist"; path = "/Users/ole/Library/Preferences/org.recoil-performance.fuckYouBuddy.plist"; sourceTree = "<absolute>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -780,6 +783,8 @@
 				6EA7149110FFA89000DB0246 /* PluginUIButton.mm */,
 				7F58BFF31105D83E00E7AE15 /* PluginUIBWTransparentButton.h */,
 				7F58BFF41105D83E00E7AE15 /* PluginUIBWTransparentButton.mm */,
+				7FB725E21112139F00EE215F /* PluginUIColorWell.h */,
+				7FB725E31112139F00EE215F /* PluginUIColorWell.mm */,
 			);
 			name = PluginUI;
 			sourceTree = "<group>";
@@ -2120,6 +2125,7 @@
 				6E1FD58511070EE50099166B /* ofxCvOpticalFlowBM.cpp in Sources */,
 				6E1FD58611070EE50099166B /* ofxCvOpticalFlowLK.cpp in Sources */,
 				6EA1D1C7110B443200DBB77A /* lineIntersection.c in Sources */,
+				7FB725E41112139F00EE215F /* PluginUIColorWell.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

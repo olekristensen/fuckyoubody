@@ -26,6 +26,9 @@
 	screenDoorPos = new ofPoint(0.35,0.05);
 	[screenFloor setState:NSOnState];
 	doReset = false;
+	screenBottomIntersection = new ofxVec2f();
+	blobCentroid = new ofxVec2f();
+
 	pthread_mutex_init(&mutex, NULL);
 }
 
@@ -117,32 +120,56 @@
 	
 	if([trackingActive state] == NSOnState){
 		
-		PersistentBlob * nearestBlob;
 		float shortestDist = -1;
 		
 		PersistentBlob * blob;
 		
-		screenPosition = &[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]/2.0, 1.0) toProjection:"Front" fromSurface:"Backwall"];
-		screenPosition = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*screenPosition fromProjection:"Front" toSurface:"Floor"]);
+		/**
+		 screenPosition = &[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]/2.0, 1.0) toProjection:"Front" fromSurface:"Backwall"];
+		 screenPosition = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*screenPosition fromProjection:"Front" toSurface:"Floor"]);
+		 **/
 		
 		for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 			
-			ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*blob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+			ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"];
 			
-			if(c.distance(*screenPosition) < 0.4 ){
+			ofxVec2f pf11 = *screenBottomOnFloorLeft;
+			ofxVec2f pf12 = *screenBottomOnFloorRight;
+			ofxVec2f pf21 = c;
+			ofxVec2f pf22 = c+*screenBottomOnFloorHat;
+			
+			//B i y = a+bx
+			float bf1 =((float)pf12.y-pf11.y)/(pf12.x-pf11.x);
+			float bf2 =((float)pf22.y-pf21.y)/(pf22.x-pf21.x);
+			
+			//A i y = a+bx <=> a = y - bx
+			float af1 = pf11.y - bf1*pf11.x;
+			float af2 = pf21.y - bf2*pf21.x;
+			
+			//intersection xi = - (a1 - a2) / (b1 - b2) yi = a1 + b1xi
+			ofxPoint2f cIntesectsScreenBottom = ofxPoint2f(-(af1 - af2)/(bf1-bf2) , af1 + bf1*(-(af1 - af2)/(bf1-bf2)));
+			
+			screenBottomIntersection = new ofxVec2f(cIntesectsScreenBottom);
+			blobCentroid = new ofxVec2f(c);
+			
+			if(c.distance(cIntesectsScreenBottom) < 0.4){
 				
-				ofxPoint2f * cOnScreen =  new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:c fromProjection:"Front" toSurface:"Backwall"]);
-				
-				if (cOnScreen->x < left) {
-					left = fmaxf(cOnScreen->x-0.1,0.0);
-				}
-				
-				if (cOnScreen->x > right) {
-					right = fminf(cOnScreen->x+0.1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]);
-				}
-				
-				if (cOnScreen->y < height) {
-					height = fminf(cOnScreen->y-0.1,1.0);
+				ofxPoint2f * cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:cIntesectsScreenBottom toProjection:"Front" fromSurface:"Floor"]);
+				cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*cIntesectsScreenBottomOnScreen fromProjection:"Front" toSurface:"Backwall"]);
+								
+				if (cIntesectsScreenBottomOnScreen->x > 0.0 && cIntesectsScreenBottomOnScreen->x < [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] ) {
+					
+					if (cIntesectsScreenBottomOnScreen->x < left) {
+						left = fmaxf(cIntesectsScreenBottomOnScreen->x-0.1,0.0);
+					}
+					
+					if (cIntesectsScreenBottomOnScreen->x > right) {
+						right = fminf(cIntesectsScreenBottomOnScreen->x+0.1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]);
+					}
+					
+					if (c.distance(cIntesectsScreenBottom)*(1.0/0.4) < height) {
+						height = fminf((c.distance(cIntesectsScreenBottom)*(1.0/0.4))+0.1,1.0);
+					}
 				}
 			}
 		}
@@ -220,7 +247,7 @@
 				}
 			}
 		}
-
+		
 #pragma mark add screen gravity
 		if([lemming blessed]){
 			*[lemming totalforce] += ofxPoint2f(0,[screenGravity floatValue]/150.0);
@@ -238,10 +265,10 @@
 			lemming = [screenLemmings objectAtIndex:i];
 			if ([lemming splatTime] < 0) {
 				if([lemming position]->y + (RADIUS*0.5) > 0.9999){
-
+					
 					ofxVec2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertPoint:*[lemming position] toProjection:"Front" fromSurface:"Backwall"];
 					lemmingPosition= [GetPlugin(ProjectionSurfaces) convertPoint:lemmingPosition fromProjection:"Front" toSurface:"Floor"];
-
+					
 					[lemming position]->x = lemmingPosition.x;
 					[lemming position]->y = lemmingPosition.y-0.001;	
 					
@@ -489,7 +516,7 @@
 	ofEnableAlphaBlending();
 	
 	NSColor * playerColor = [GetPlugin(Players) playerColor:1];
-		
+	
 	Lemming * lemming;
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
@@ -498,20 +525,19 @@
 	ofRect(0, 0, 1, 1);
 	
 	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
-	
 	glPushMatrix();{
 		glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
 		glRotatef(-screenBottomOnFloorHat->angle(ofxVec2f(0,1)), 0,0,1);
 		
 		glScaled(screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
-				 screenBottomOnFloor->length(),
+				 screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
 				 0);
 		
 		ofRect(screenTrackingLeft, 
 			   0, 
 			   screenTrackingRight- screenTrackingLeft, 
 			   screenTrackingHeight);
-
+		
 	}glPopMatrix();
 	
 	glPopMatrix();
@@ -520,6 +546,22 @@
 	
 	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
 	ofRect(0, 0, 1, 1);
+	
+	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
+	glPushMatrix();{
+		glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
+		glRotatef(-screenBottomOnFloorHat->angle(ofxVec2f(0,1)), 0,0,1);
+		
+		glScaled(screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
+				 screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
+				 0);
+		
+		ofRect(screenTrackingLeft, 
+			   0, 
+			   screenTrackingRight- screenTrackingLeft, 
+			   screenTrackingHeight);
+		
+	}glPopMatrix();
 	
 	glPopMatrix();
 	
@@ -532,7 +574,17 @@
 	for(lemming in floorLemmings){
 		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
 	}
-	
+
+	/* normal between dancer and screen
+	 
+	 ofPushStyle();{
+		ofSetColor(255, 0,0);
+		ofNoFill();
+		ofSetLineWidth(1);
+		ofLine(screenBottomIntersection->x, screenBottomIntersection->y, blobCentroid->x, blobCentroid->y);
+	}ofPopStyle();
+	//*/
+	 
 	glPopMatrix();
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];

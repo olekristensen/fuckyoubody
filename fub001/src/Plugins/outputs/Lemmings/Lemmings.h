@@ -27,6 +27,8 @@
 	NSUserDefaults	*userDefaults;
 
 	bool			doReset;
+	
+	IBOutlet PluginUIColorWell * testColor;
 
 	float			screenTrackingLeft;
 	float			screenTrackingRight;
@@ -43,7 +45,10 @@
 	ofxVec2f		* screenBottomOnFloorRight;
 	ofxVec2f		* screenBottomOnFloor;
 	ofxVec2f		* screenBottomOnFloorHat;
-	
+
+	ofxVec2f		* screenBottomIntersection;
+	ofxVec2f		* blobCentroid;
+
 	IBOutlet NSSegmentedControl * cameraControl;
 	IBOutlet NSButton * trackingActive;
 
