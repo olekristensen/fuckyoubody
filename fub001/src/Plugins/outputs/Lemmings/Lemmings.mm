@@ -515,7 +515,9 @@
 	ofFill();
 	ofEnableAlphaBlending();
 	
-	NSColor * playerColor = [GetPlugin(Players) playerColor:1];
+	NSColor * playerColor = [NSColor orangeColor];// [GetPlugin(Players) playerColor:0];
+	
+	
 	
 	Lemming * lemming;
 	
@@ -724,7 +726,7 @@
 	 
 	 }*/
 	
-	NSColor * playerColor = [GetPlugin(Players) playerColor:1];
+	NSColor * playerColor = [NSColor orangeColor];// [GetPlugin(Players) playerColor:1];
 	
 	radius -= (radius - (RADIUS*scaleFactor)) *0.01;
 	if(splatTime > 0){

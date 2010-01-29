@@ -24,7 +24,7 @@
 	[endpoint retain];
 	
 	sendEndpoint = new PYMIDIRealEndpoint;
-//	[sendEndpoint retain];
+	//	[sendEndpoint retain];
 	
 	updateView = false;
 	
@@ -42,12 +42,55 @@
 	
 }
 
+-(void) showConflictSheet{
+	
+	NSBeginCriticalAlertSheet(NSLocalizedString(@"MIDI Controller Conflict", @"Title of alert panel which comes up when user chooses Quit"),
+					  NSLocalizedString(@"Continue", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
+					  NSLocalizedString(@"Quit", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
+					  NSLocalizedString(@"Show conflicts", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
+					  [NSApp mainWindow],
+					  self,
+					  @selector(willEndCloseConflictSheet:returnCode:contextInfo:),
+					  @selector(didEndCloseConflictSheet:returnCode:contextInfo:),
+					  nil,
+					  NSLocalizedString(@"Some of the midi controllers are conflicting, they are highlighted in red in the list of midiControllers.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents.")
+					  );
+}
+
+- (void)willEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+	if (returnCode == NSAlertDefaultReturn) {       /* "Continue" */
+		// do nothing
+	} 
+	if (returnCode == NSAlertAlternateReturn) {     /* "Quit" */
+		[[[NSApplication sharedApplication] delegate] setNoQuestionsAsked:YES];
+		[[NSApplication sharedApplication] terminate:self];
+	}
+
+	if (returnCode == NSAlertOtherReturn) {			/* "Show conflicts" */
+		[globalController changeView:3];
+	}       
+}
+
+- (void)didEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+	if (returnCode == NSAlertDefaultReturn) {       /* "Continue" */
+		// do nothing
+	} 
+	if (returnCode == NSAlertAlternateReturn) {     /* "Quit" */
+		[[[NSApplication sharedApplication] delegate] setNoQuestionsAsked:YES];
+		[[NSApplication sharedApplication] terminate:self];
+	}
+	
+	if (returnCode == NSAlertOtherReturn) {			/* "Show conflicts" */
+		[globalController changeView:3];
+	}       
+}
+
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	updateTimeInterval = timeInterval;
 	
 	NSMutableIndexSet * rowIndexesChanged = [[NSMutableIndexSet alloc] init];
-
+	
 	id theBinding;
 	int rowIndex = 0;
 	
@@ -63,11 +106,11 @@
 		}
 		rowIndex++;
 	}
-
+	
 	[self performSelectorOnMainThread:@selector(_reloadRows:) withObject:rowIndexesChanged waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];	
-
+	
 	pthread_mutex_unlock(&mutex);
-
+	
 	if(timeInterval - midiTimeInterval > 0.15) {
 		[[controller midiStatus] setState:NSOffState];
 	}
@@ -82,7 +125,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	midiTimeInterval = updateTimeInterval;
 	
 	NSMutableIndexSet * rowIndexesChanged = [[NSMutableIndexSet alloc] init];
-
+	
 	MIDIPacket * packet = &packetList->packet[0];
 	
 	for (int i = 0; i < packetList->numPackets; i++) {
@@ -115,9 +158,8 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 				value = packet->data[2+j];
 			}
 			
-			cout<<channel<<"  "<<number<<"  "<<value<<endl;
 			if([self isEnabled]){
-							
+				
 				id theBinding;
 				
 				pthread_mutex_lock(&mutex);
@@ -141,7 +183,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 				}
 				
 				[self performSelectorOnMainThread:@selector(_reloadRows:) withObject:rowIndexesChanged waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
-
+				
 				pthread_mutex_unlock(&mutex);
 			}
 		}	
@@ -158,7 +200,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
-
+	
 }
 
 -(void) buildMidiInterfacePopUp{
@@ -219,7 +261,6 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 		}
 	}
 	
-	
 	[endpoint addReceiver:self];
 	[userDefaults setValue:[sender titleOfSelectedItem] forKey:@"midi.interface"];
 }
@@ -230,24 +271,21 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 }
 
 -(void)sendValue:(int)midiValue forNote:(int)midiNote onChannel:(int)midiChannel{
-
+	
 	Byte packetbuffer[128];
 	MIDIPacketList packetlist;
 	MIDIPacket     *packet     = MIDIPacketListInit(&packetlist);
 	Byte mdata[3] = {(143+midiChannel), midiNote, midiValue};
-//	 Byte mdata[3] = {0x90, 60, 90};
 	packet = MIDIPacketListAdd(&packetlist, sizeof(packetlist),
-								 packet, 0, 3, mdata);
+							   packet, 0, 3, mdata);
 	
 	if (endpoint) {
-//		[endpoint removeReceiver:self];
 		[sendEndpoint addSender:self];
 		[sendEndpoint processMIDIPacketList:&packetlist sender:self];
 		[sendEndpoint removeSender:self];
-//		[endpoint addReceiver:self];
 	}
 	
-
+	
 }
 
 -(IBAction) sendGo:(id)sender{
@@ -256,30 +294,48 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 -(IBAction) printMidiMappingsList:(id)sender{
 	[midiMappingsListForPrint reloadData];
-
+	
 	[[NSPrintInfo sharedPrintInfo] setHorizontalPagination:NSFitPagination];
 	[[NSPrintInfo sharedPrintInfo] setVerticalPagination:NSAutoPagination];
 	
-
-		NSPrintOperation *op = [NSPrintOperation
-								printOperationWithView:midiMappingsListForPrint
-								printInfo:[NSPrintInfo sharedPrintInfo]];
-		[op runOperationModalForWindow:[[NSApplication sharedApplication] mainWindow]
-							  delegate:self
-						didRunSelector:nil
-						   contextInfo:NULL];
-
-	/**
 	
-	[[NSPrintOperation printOperationWithView:midiMappingsListForPrint printInfo:[NSPrintInfo sharedPrintInfo]] 
+	NSPrintOperation *op = [NSPrintOperation
+							printOperationWithView:midiMappingsListForPrint
+							printInfo:[NSPrintInfo sharedPrintInfo]];
+	[op runOperationModalForWindow:[[NSApplication sharedApplication] mainWindow]
+						  delegate:self
+					didRunSelector:nil
+					   contextInfo:NULL];
+	
+	/**
+	 
+	 [[NSPrintOperation printOperationWithView:midiMappingsListForPrint printInfo:[NSPrintInfo sharedPrintInfo]] 
 	 runOperation];
 	 **/
 }
 
 -(void) bindPluginUIControl:(PluginUIMidiBinding*)binding {
 	pthread_mutex_lock(&mutex);
+	
 	[boundControls removeObjectIdenticalTo:binding];
+	
+	id theBinding;
+	for (theBinding in boundControls){
+		if ([[theBinding channel] intValue] == [[binding channel] intValue]) {
+			if ([[theBinding controller] intValue] == [[binding controller] intValue]) {
+				[theBinding setConflict:YES];
+				[binding setConflict:YES];
+				NSLog(@"theere is a conflict bewteeen: %i %i   and    %i %i", [[theBinding channel] intValue], [[theBinding controller] intValue], [[binding channel] intValue], [[binding controller] intValue] );
+				
+				showMidiConflictAlert = YES;
+				[NSObject cancelPreviousPerformRequestsWithTarget:self];
+				[self performSelector:@selector(showConflictSheet) withObject:nil afterDelay:1.0];
+			}
+		}
+	}
+	
 	[boundControlsController addObject:[binding retain]];
+	
 	pthread_mutex_unlock(&mutex);
 }
 

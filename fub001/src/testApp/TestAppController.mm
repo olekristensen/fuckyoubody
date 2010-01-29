@@ -43,29 +43,29 @@ extern ofAppBaseWindow * window;
 
 -(void) setupPlugins{
 	[pluginManagerController addHeader:@"Input"];
-	[pluginManagerController addPlugin:[[Cameras alloc] init]];
+	[pluginManagerController addPlugin:[[Cameras alloc] initWithMidiChannel:1]];
 	[pluginManagerController addPlugin:[[Lenses alloc] init]];
 	[pluginManagerController addPlugin:[[Midi alloc] init]];
 	
 	[pluginManagerController addHeader:@"Calculation"];
-	[pluginManagerController addPlugin:[[Tracking alloc] init]];
+	[pluginManagerController addPlugin:[[Tracking alloc] initWithMidiChannel:1]];
 	[pluginManagerController addPlugin:[[ProjectionSurfaces alloc] init]];
 	[pluginManagerController addPlugin:[[CameraCalibration alloc] init]];
 	
 	[pluginManagerController addHeader:@"Output"];
 //	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
-	[pluginManagerController addPlugin:[[Players alloc] init]];
+	[pluginManagerController addPlugin:[[Players alloc] initWithMidiChannel:2]];
 
-	[pluginManagerController addPlugin:[[DanceSteps alloc] init]];
+	[pluginManagerController addPlugin:[[DanceSteps alloc] initWithMidiChannel:3]];
 	//[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
-	[pluginManagerController addPlugin:[[Lines alloc] init]];
-	[pluginManagerController addPlugin:[[Stregkode alloc] init]];
-	[pluginManagerController addPlugin:[[Lemmings alloc] init]];
-	[pluginManagerController addPlugin:[[GTA alloc] init]];
-	[pluginManagerController addPlugin:[[Strategi alloc] init]];
-	[pluginManagerController addPlugin:[[Arkade alloc] init]];
-	[pluginManagerController addPlugin:[[Ulykke alloc] init]];
-	[pluginManagerController addPlugin:[[GrowingShadow alloc] init]];
+	[pluginManagerController addPlugin:[[Lines alloc] initWithMidiChannel:4]];
+	[pluginManagerController addPlugin:[[Stregkode alloc] initWithMidiChannel:5]];
+	[pluginManagerController addPlugin:[[Lemmings alloc] initWithMidiChannel:6]];
+	[pluginManagerController addPlugin:[[GTA alloc] initWithMidiChannel:7]];
+	[pluginManagerController addPlugin:[[Strategi alloc] initWithMidiChannel:8]];
+	[pluginManagerController addPlugin:[[Arkade alloc] initWithMidiChannel:9]];
+	[pluginManagerController addPlugin:[[Ulykke alloc] initWithMidiChannel:10]];
+	[pluginManagerController addPlugin:[[GrowingShadow alloc] initWithMidiChannel:11]];
 	
 	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
 	

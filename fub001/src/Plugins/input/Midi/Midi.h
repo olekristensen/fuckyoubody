@@ -41,6 +41,7 @@
 	
 	bool					midiInterfaceSelectionFound;
 	bool					updateView;
+	bool					showMidiConflictAlert;
 	
 }
 
@@ -55,6 +56,11 @@
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;
 -(void) bindPluginUIControl:(PluginUIMidiBinding*)binding;
+
+-(void) showConflictSheet;
+- (void)willEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+- (void)didEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
+
 
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
 

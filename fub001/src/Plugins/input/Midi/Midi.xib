@@ -21,8 +21,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="188"/>
 			<integer value="178"/>
-			<integer value="43"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1006,6 +1006,7 @@
 					<string>activityColor</string>
 					<string>activityString</string>
 					<string>rowColor</string>
+					<string>rpw</string>
 				</object>
 				<string key="NSObjectClassName">PluginUIMidiBinding</string>
 				<object class="_NSManagedProxy" key="_NSManagedProxy">
@@ -1465,6 +1466,86 @@
 						<reference key="destination" ref="806602560"/>
 					</object>
 					<int key="connectionID">405</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">textColor: arrangedObjects.rowColor</string>
+						<reference key="source" ref="478748008"/>
+						<reference key="destination" ref="493382639"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="478748008"/>
+							<reference key="NSDestination" ref="493382639"/>
+							<string key="NSLabel">textColor: arrangedObjects.rowColor</string>
+							<string key="NSBinding">textColor</string>
+							<string key="NSKeyPath">arrangedObjects.rowColor</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">407</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">textColor: arrangedObjects.rowColor</string>
+						<reference key="source" ref="289179446"/>
+						<reference key="destination" ref="493382639"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="289179446"/>
+							<reference key="NSDestination" ref="493382639"/>
+							<string key="NSLabel">textColor: arrangedObjects.rowColor</string>
+							<string key="NSBinding">textColor</string>
+							<string key="NSKeyPath">arrangedObjects.rowColor</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">409</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">textColor: arrangedObjects.rowColor</string>
+						<reference key="source" ref="333270368"/>
+						<reference key="destination" ref="493382639"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="333270368"/>
+							<reference key="NSDestination" ref="493382639"/>
+							<string key="NSLabel">textColor: arrangedObjects.rowColor</string>
+							<string key="NSBinding">textColor</string>
+							<string key="NSKeyPath">arrangedObjects.rowColor</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">411</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">textColor: arrangedObjects.rowColor</string>
+						<reference key="source" ref="777152120"/>
+						<reference key="destination" ref="493382639"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="777152120"/>
+							<reference key="NSDestination" ref="493382639"/>
+							<string key="NSLabel">textColor: arrangedObjects.rowColor</string>
+							<string key="NSBinding">textColor</string>
+							<string key="NSKeyPath">arrangedObjects.rowColor</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">414</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">textColor: arrangedObjects.rowColor</string>
+						<reference key="source" ref="471617993"/>
+						<reference key="destination" ref="493382639"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="471617993"/>
+							<reference key="NSDestination" ref="493382639"/>
+							<string key="NSLabel">textColor: arrangedObjects.rowColor</string>
+							<string key="NSBinding">textColor</string>
+							<string key="NSKeyPath">arrangedObjects.rowColor</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">416</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1990,7 +2071,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{634, 220}, {854, 591}}</string>
+					<string>{{622, 231}, {854, 591}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -2064,7 +2145,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">405</int>
+			<int key="maxID">416</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
