@@ -63,11 +63,13 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addPlugin:[[Lemmings alloc] initWithMidiChannel:6]];
 	[pluginManagerController addPlugin:[[GTA alloc] initWithMidiChannel:7]];
 	[pluginManagerController addPlugin:[[Strategi alloc] initWithMidiChannel:8]];
-	[pluginManagerController addPlugin:[[Arkade alloc] initWithMidiChannel:9]];
+	[pluginManagerController addPlugin:[[GrowingShadow alloc] initWithMidiChannel:9]];
+
 	[pluginManagerController addPlugin:[[Ulykke alloc] initWithMidiChannel:10]];
-	[pluginManagerController addPlugin:[[GrowingShadow alloc] initWithMidiChannel:11]];
+	[pluginManagerController addPlugin:[[Arkade alloc] initWithMidiChannel:11]];
+	[pluginManagerController addPlugin:[[Jail alloc] initWithMidiChannel:12]];
 	
-	[pluginManagerController addPlugin:[[DMXOutput alloc] init]];
+	[pluginManagerController addPlugin:[[DMXOutput alloc] initWithMidiChannel:16]];
 	
 	//	[pluginManagerController addPlugin:[[_ExampleOutputAgain alloc] init]];
 	

@@ -31,6 +31,10 @@
 @property (assign, readonly) NSMutableArray * cameraCalibrations;
 -(ofxPoint2f) convertMousePoint:(ofxPoint2f)p;
 -(IBAction) reset:(id)sender;
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p fromCamera:(int)cam;
+-(ofxPoint2f) convertPoint:(ofxPoint2f)p toCamera:(int)cam;;
+-(void) applyWarpOnCam:(int)cam;
+
 @end
 
 
@@ -56,6 +60,8 @@
 -(void) recalculate;
 -(void) applyWarp;
 -(void) reset;
+
+
 
 @end
 

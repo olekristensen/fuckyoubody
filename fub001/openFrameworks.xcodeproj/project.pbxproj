@@ -38,6 +38,8 @@
 		6ED67BA91112E6C600597E63 /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED67BA81112E6C600597E63 /* Player.mm */; };
 		6ED67BB61112E92100597E63 /* Player.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED67BB51112E92100597E63 /* Player.xib */; };
 		6ED67C661112F86E00597E63 /* PluginUIColorWell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED67C651112F86E00597E63 /* PluginUIColorWell.mm */; };
+		6ED67ED71113385A00597E63 /* Jail.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED67ED61113385A00597E63 /* Jail.mm */; };
+		6ED67ED91113386800597E63 /* Jail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED67ED81113386800597E63 /* Jail.xib */; };
 		6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF10B610CE96350011C596 /* CameraCalibration.xib */; };
 		6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */; };
 		6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */; };
@@ -273,6 +275,9 @@
 		6ED67BB51112E92100597E63 /* Player.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Player.xib; sourceTree = "<group>"; };
 		6ED67C641112F86E00597E63 /* PluginUIColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIColorWell.h; sourceTree = "<group>"; };
 		6ED67C651112F86E00597E63 /* PluginUIColorWell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIColorWell.mm; sourceTree = "<group>"; };
+		6ED67ED51113385A00597E63 /* Jail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Jail.h; sourceTree = "<group>"; };
+		6ED67ED61113385A00597E63 /* Jail.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Jail.mm; sourceTree = "<group>"; };
+		6ED67ED81113386800597E63 /* Jail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Jail.xib; sourceTree = "<group>"; };
 		6EEF10B610CE96350011C596 /* CameraCalibration.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraCalibration.xib; sourceTree = "<group>"; };
 		6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoLight.png; sourceTree = "<group>"; };
 		6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoDark.png; sourceTree = "<group>"; };
@@ -834,6 +839,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		6ED67ED41113385300597E63 /* Jail */ = {
+			isa = PBXGroup;
+			children = (
+				6ED67ED51113385A00597E63 /* Jail.h */,
+				6ED67ED61113385A00597E63 /* Jail.mm */,
+				6ED67ED81113386800597E63 /* Jail.xib */,
+			);
+			path = Jail;
+			sourceTree = "<group>";
+		};
 		6EF3001B10DD1C6F007A0A98 /* Ulykke */ = {
 			isa = PBXGroup;
 			children = (
@@ -1309,6 +1324,7 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				6ED67ED41113385300597E63 /* Jail */,
 				6EFB7B6E10FDE5F300C20033 /* GrowingShadow */,
 				6EFB7AB010FCDF8500C20033 /* Players */,
 				6EFB775910FB86A200C20033 /* Lines */,
@@ -1995,6 +2011,7 @@
 				6EFB7B7010FDE5FC00C20033 /* GrowingShadow.xib in Resources */,
 				6EA228BA1108DDAE0067C608 /* Bomb.png in Resources */,
 				6ED67BB61112E92100597E63 /* Player.xib in Resources */,
+				6ED67ED91113386800597E63 /* Jail.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2136,6 +2153,7 @@
 				6EA1D1C7110B443200DBB77A /* lineIntersection.c in Sources */,
 				6ED67BA91112E6C600597E63 /* Player.mm in Sources */,
 				6ED67C661112F86E00597E63 /* PluginUIColorWell.mm in Sources */,
+				6ED67ED71113385A00597E63 /* Jail.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -520,7 +520,7 @@
 	
 	
 	Lemming * lemming;
-	
+		 
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	
 	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);

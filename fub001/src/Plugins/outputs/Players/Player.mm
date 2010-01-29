@@ -8,6 +8,7 @@
 
 #import "Player.h"
 #include "Tracking.h"
+#include "CameraCalibration.h"
 
 @implementation Player
 @synthesize settingsView;
@@ -116,9 +117,12 @@
 	//glViewport(0, 0, ofGetWidth()/2.0, ofGetHeight());
 	if(pblobs.size() > 0 && [blobAlphaSlider floatValue] > 0){
 		NSColor * c = [[blobcolor color] blendedColorWithFraction:(1-[colorBalanceSlider floatValue]/100.0) ofColor:[color color] ];
-		
+
+		[GetPlugin(CameraCalibration) applyWarpOnCam:[trackingPosition selectedSegment]];
 		ofSetColor([c redComponent]*255.0, [c greenComponent]*255.0, [c blueComponent]*255.0,[c alphaComponent]*255.0* [blobAlphaSlider floatValue]);
 		light->draw(0, 0,1,1);
+		
+		glPopMatrix();
 	}
 	
 	
@@ -148,7 +152,7 @@
 		int bestPblob = -1;
 		ofxPoint2f bestPoint;
 		
-		for(pblob in [tracker(0) persistentBlobs]){
+		for(pblob in [tracker([trackingPosition selectedSegment]) persistentBlobs]){
 			BOOL pblobFound = NO;
 			for(int i=0;i<pblobs.size();i++){
 				if(pblobs[i] == pblob->pid){
@@ -201,7 +205,7 @@
 		
 		PersistentBlob * pb;
 		int t = 0;
-		for(pb in [tracker(0) persistentBlobs]){
+		for(pb in [tracker([trackingPosition selectedSegment]) persistentBlobs]){
 			BOOL found = NO;
 			for(int i=0;i<pblobs.size();i++){
 				if(pb->pid == pblobs[i])
@@ -210,13 +214,12 @@
 			
 			if(found){
 				Blob * b;
-				for(b in [pb blobs]){	
-					
+				for(b in [pb blobs]){						
 					
 					for( int u = 0; u < [b nPts]; u++){
 						
 						float pointPercent = (float)u/[b nPts];
-						ofxPoint2f p = [b pts][u];
+						ofxPoint2f p = [GetPlugin(CameraCalibration) convertPoint:[b pts][u] toCamera:[trackingPosition selectedSegment]]  ;
 						
 						ofxVec2f blobP;
 						blobP.x = int(p.x*800);

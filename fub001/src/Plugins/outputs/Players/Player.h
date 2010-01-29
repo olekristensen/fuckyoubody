@@ -36,7 +36,8 @@
 	IBOutlet PluginUIButton * blobAlphaSlider;
 
 	IBOutlet PluginUIButton * scoreSlider;
-
+	IBOutlet NSSegmentedControl * trackingPosition;
+	
 	ofxVec2f * addRule;
 	BOOL addNewBlob;
 	
