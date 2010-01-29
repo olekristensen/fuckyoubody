@@ -6,18 +6,16 @@
 #include "Plugin.h"
 #include "ofMain.h"
 #include "ofxVectorMath.h"
-
+#include "Player.h"
 
 @interface Players : ofPlugin {
-	IBOutlet NSColorWell * player1color;
-	IBOutlet NSColorWell * player2color;
-	IBOutlet NSColorWell * player3color;
-	IBOutlet NSColorWell * player4color;
+	Player * players[4];
+		
+	IBOutlet NSView * player1View;
+		IBOutlet NSView * player2View;
+		IBOutlet NSView * player3View;
+		IBOutlet NSView * player4View;
 }
-@property (assign,readonly) NSColorWell * player1color;
-@property (assign,readonly) NSColorWell * player2color;
-@property (assign,readonly) NSColorWell * player3color;
-@property (assign,readonly) NSColorWell * player4color;
 
 -(NSColor*) playerColor:(int)player;
 

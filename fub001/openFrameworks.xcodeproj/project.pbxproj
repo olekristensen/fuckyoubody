@@ -35,6 +35,9 @@
 		6EBB472810C80BEA004F9A03 /* Lenses.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EBB472710C80BEA004F9A03 /* Lenses.xib */; };
 		6EC1A4C010C6A83600738AA9 /* PluginUISlider.mm in Resources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
 		6EC1A62E10C6B8A400738AA9 /* PluginUISlider.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */; };
+		6ED67BA91112E6C600597E63 /* Player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED67BA81112E6C600597E63 /* Player.mm */; };
+		6ED67BB61112E92100597E63 /* Player.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ED67BB51112E92100597E63 /* Player.xib */; };
+		6ED67C661112F86E00597E63 /* PluginUIColorWell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ED67C651112F86E00597E63 /* PluginUIColorWell.mm */; };
 		6EEF10B710CE96350011C596 /* CameraCalibration.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF10B610CE96350011C596 /* CameraCalibration.xib */; };
 		6EEF127B10CEC4BD0011C596 /* recoilLogoLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */; };
 		6EEF127F10CEC4D90011C596 /* recoilLogoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */; };
@@ -55,7 +58,6 @@
 		7F58BFF51105D83E00E7AE15 /* PluginUIBWTransparentButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F58BFF41105D83E00E7AE15 /* PluginUIBWTransparentButton.mm */; };
 		7F8133BF10FB8E5A00EE2A49 /* Midi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7F8133BE10FB8E5A00EE2A49 /* Midi.mm */; };
 		7F8133C310FB8ED100EE2A49 /* Midi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F8133C210FB8ED100EE2A49 /* Midi.xib */; };
-		7FB725E41112139F00EE215F /* PluginUIColorWell.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7FB725E31112139F00EE215F /* PluginUIColorWell.mm */; };
 		DD0C01671066874900BB3F9F /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015B1066874900BB3F9F /* tinyxml.cpp */; };
 		DD0C01681066874900BB3F9F /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015D1066874900BB3F9F /* tinyxmlerror.cpp */; };
 		DD0C01691066874900BB3F9F /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD0C015E1066874900BB3F9F /* tinyxmlparser.cpp */; };
@@ -266,6 +268,11 @@
 		6EC1A4BE10C6A83600738AA9 /* PluginUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUISlider.h; sourceTree = "<group>"; };
 		6EC1A4BF10C6A83600738AA9 /* PluginUISlider.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUISlider.mm; sourceTree = "<group>"; };
 		6EC1A4C310C6A8C000738AA9 /* PluginUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUI.h; sourceTree = "<group>"; };
+		6ED67BA71112E6C600597E63 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		6ED67BA81112E6C600597E63 /* Player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Player.mm; sourceTree = "<group>"; };
+		6ED67BB51112E92100597E63 /* Player.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Player.xib; sourceTree = "<group>"; };
+		6ED67C641112F86E00597E63 /* PluginUIColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIColorWell.h; sourceTree = "<group>"; };
+		6ED67C651112F86E00597E63 /* PluginUIColorWell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIColorWell.mm; sourceTree = "<group>"; };
 		6EEF10B610CE96350011C596 /* CameraCalibration.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraCalibration.xib; sourceTree = "<group>"; };
 		6EEF127A10CEC4BD0011C596 /* recoilLogoLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoLight.png; sourceTree = "<group>"; };
 		6EEF127E10CEC4D90011C596 /* recoilLogoDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoDark.png; sourceTree = "<group>"; };
@@ -298,8 +305,6 @@
 		7F8133BD10FB8E5A00EE2A49 /* Midi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Midi.h; path = Midi/Midi.h; sourceTree = "<group>"; };
 		7F8133BE10FB8E5A00EE2A49 /* Midi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = Midi.mm; path = Midi/Midi.mm; sourceTree = "<group>"; };
 		7F8133C210FB8ED100EE2A49 /* Midi.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Midi.xib; path = Midi/Midi.xib; sourceTree = "<group>"; };
-		7FB725E21112139F00EE215F /* PluginUIColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PluginUIColorWell.h; path = libs/of_preRelease_v0.06_xcode_FAT/myAddons/ofxCocoaPlugins/src/PluginUIColorWell.h; sourceTree = DEVELOPER_DIR; };
-		7FB725E31112139F00EE215F /* PluginUIColorWell.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PluginUIColorWell.mm; path = libs/of_preRelease_v0.06_xcode_FAT/myAddons/ofxCocoaPlugins/src/PluginUIColorWell.mm; sourceTree = DEVELOPER_DIR; };
 		7FDA1BB010FCD33600087BD2 /* org.recoil-performance.fuckYouBuddy.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "org.recoil-performance.fuckYouBuddy.plist"; path = "/Users/ole/Library/Preferences/org.recoil-performance.fuckYouBuddy.plist"; sourceTree = "<absolute>"; };
 		DD0C01591066874900BB3F9F /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		DD0C015B1066874900BB3F9F /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -783,8 +788,8 @@
 				6EA7149110FFA89000DB0246 /* PluginUIButton.mm */,
 				7F58BFF31105D83E00E7AE15 /* PluginUIBWTransparentButton.h */,
 				7F58BFF41105D83E00E7AE15 /* PluginUIBWTransparentButton.mm */,
-				7FB725E21112139F00EE215F /* PluginUIColorWell.h */,
-				7FB725E31112139F00EE215F /* PluginUIColorWell.mm */,
+				6ED67C641112F86E00597E63 /* PluginUIColorWell.h */,
+				6ED67C651112F86E00597E63 /* PluginUIColorWell.mm */,
 			);
 			name = PluginUI;
 			sourceTree = "<group>";
@@ -875,6 +880,9 @@
 				6EFB7AB110FCDF8C00C20033 /* Players.h */,
 				6EFB7AB210FCDF8C00C20033 /* Players.mm */,
 				6EFB7AB410FCDF9400C20033 /* Players.xib */,
+				6ED67BA71112E6C600597E63 /* Player.h */,
+				6ED67BA81112E6C600597E63 /* Player.mm */,
+				6ED67BB51112E92100597E63 /* Player.xib */,
 			);
 			path = Players;
 			sourceTree = "<group>";
@@ -1986,6 +1994,7 @@
 				6EFB7AB510FCDF9400C20033 /* Players.xib in Resources */,
 				6EFB7B7010FDE5FC00C20033 /* GrowingShadow.xib in Resources */,
 				6EA228BA1108DDAE0067C608 /* Bomb.png in Resources */,
+				6ED67BB61112E92100597E63 /* Player.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2125,7 +2134,8 @@
 				6E1FD58511070EE50099166B /* ofxCvOpticalFlowBM.cpp in Sources */,
 				6E1FD58611070EE50099166B /* ofxCvOpticalFlowLK.cpp in Sources */,
 				6EA1D1C7110B443200DBB77A /* lineIntersection.c in Sources */,
-				7FB725E41112139F00EE215F /* PluginUIColorWell.mm in Sources */,
+				6ED67BA91112E6C600597E63 /* Player.mm in Sources */,
+				6ED67C661112F86E00597E63 /* PluginUIColorWell.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
