@@ -27,6 +27,8 @@
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EA7149210FFA89000DB0246 /* PluginUIButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7149110FFA89000DB0246 /* PluginUIButton.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
+		6EB34C4E1115C164009A3B71 /* HardwareBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB34C4C1115C164009A3B71 /* HardwareBox.mm */; };
+		6EB34C4F1115C164009A3B71 /* HardwareBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EB34C4D1115C164009A3B71 /* HardwareBox.xib */; };
 		6EB354F610CEC796008624B2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6EB354F510CEC796008624B2 /* icon.icns */; };
 		6EB3570910CF1EF1008624B2 /* recoilLogoForCalibration.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */; };
 		6EB7260810C6EF4800347368 /* PluginUIValueTextField.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB7260710C6EF4800347368 /* PluginUIValueTextField.mm */; };
@@ -258,6 +260,9 @@
 		6EA7149110FFA89000DB0246 /* PluginUIButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIButton.mm; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
+		6EB34C4B1115C164009A3B71 /* HardwareBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareBox.h; sourceTree = "<group>"; };
+		6EB34C4C1115C164009A3B71 /* HardwareBox.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HardwareBox.mm; sourceTree = "<group>"; };
+		6EB34C4D1115C164009A3B71 /* HardwareBox.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HardwareBox.xib; sourceTree = "<group>"; };
 		6EB354F510CEC796008624B2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = bin/data/icon.icns; sourceTree = SOURCE_ROOT; };
 		6EB3570810CF1EF1008624B2 /* recoilLogoForCalibration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recoilLogoForCalibration.png; sourceTree = "<group>"; };
 		6EB7260610C6EF4800347368 /* PluginUIValueTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIValueTextField.h; sourceTree = "<group>"; };
@@ -762,6 +767,16 @@
 				6E842D8F10DA7A1300F4FB4C /* Arkade.xib */,
 			);
 			path = Arkade;
+			sourceTree = "<group>";
+		};
+		6EB34C4A1115C164009A3B71 /* HardwareBox */ = {
+			isa = PBXGroup;
+			children = (
+				6EB34C4B1115C164009A3B71 /* HardwareBox.h */,
+				6EB34C4C1115C164009A3B71 /* HardwareBox.mm */,
+				6EB34C4D1115C164009A3B71 /* HardwareBox.xib */,
+			);
+			path = HardwareBox;
 			sourceTree = "<group>";
 		};
 		6EBB46FB10C80317004F9A03 /* Lenses */ = {
@@ -1324,6 +1339,7 @@
 		DDC7728010B5846F009CAFC7 /* outputs */ = {
 			isa = PBXGroup;
 			children = (
+				6EB34C4A1115C164009A3B71 /* HardwareBox */,
 				6ED67ED41113385300597E63 /* Jail */,
 				6EFB7B6E10FDE5F300C20033 /* GrowingShadow */,
 				6EFB7AB010FCDF8500C20033 /* Players */,
@@ -2012,6 +2028,7 @@
 				6EA228BA1108DDAE0067C608 /* Bomb.png in Resources */,
 				6ED67BB61112E92100597E63 /* Player.xib in Resources */,
 				6ED67ED91113386800597E63 /* Jail.xib in Resources */,
+				6EB34C4F1115C164009A3B71 /* HardwareBox.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2154,6 +2171,7 @@
 				6ED67BA91112E6C600597E63 /* Player.mm in Sources */,
 				6ED67C661112F86E00597E63 /* PluginUIColorWell.mm in Sources */,
 				6ED67ED71113385A00597E63 /* Jail.mm in Sources */,
+				6EB34C4E1115C164009A3B71 /* HardwareBox.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

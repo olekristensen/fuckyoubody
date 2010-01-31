@@ -39,7 +39,24 @@
 }
 
 -(void) setup{
+	[midiMappingsList setDoubleAction:@selector(showSelectedControl:)];
+}
+
+- (IBAction)showSelectedControl:(id)sender {
 	
+
+	NSInteger theRow = [boundControlsController selectionIndex];
+	
+    if ( theRow != NSNotFound ) { 
+		
+        PluginUIMidiBinding* selectedBinding =
+		(PluginUIMidiBinding*) [[boundControlsController arrangedObjects]
+								  objectAtIndex: theRow];
+		
+        [selectedBinding bringIntoView];
+		
+    }
+  
 }
 
 -(void) showConflictSheet{
@@ -67,7 +84,7 @@
 	}
 
 	if (returnCode == NSAlertOtherReturn) {			/* "Show conflicts" */
-		[globalController changeView:3];
+		[globalController changeView:[[globalController viewItems] indexOfObject:self]];
 	}       
 }
 
@@ -81,7 +98,7 @@
 	}
 	
 	if (returnCode == NSAlertOtherReturn) {			/* "Show conflicts" */
-		[globalController changeView:3];
+		[globalController changeView:[[globalController viewItems] indexOfObject:self]];
 	}       
 }
 

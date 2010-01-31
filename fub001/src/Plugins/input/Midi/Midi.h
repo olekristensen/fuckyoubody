@@ -58,6 +58,7 @@
 -(void) bindPluginUIControl:(PluginUIMidiBinding*)binding;
 
 -(void) showConflictSheet;
+- (IBAction)showSelectedControl:(id)sender;
 - (void)willEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (void)didEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 
