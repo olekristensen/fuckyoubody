@@ -243,9 +243,6 @@
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	scale = 0.5;
-	
-	//[self getProjectionSurfaceByName:"Front" surface:"Floor"]->warp->convertPoint(ofxPoint2f(0,0));
-	[self getProjectionSurfaceByName:"Front" surface:"Floor"]->coordWarp->transform2(0.5,0.5);
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{

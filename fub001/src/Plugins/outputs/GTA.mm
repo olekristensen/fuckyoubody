@@ -324,7 +324,7 @@
 		ofEnableAlphaBlending();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 
-		blur->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1, true);
+		blur->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect]*2, 1, true);
 		glPopMatrix();
 	}
 	

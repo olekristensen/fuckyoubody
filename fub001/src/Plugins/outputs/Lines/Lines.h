@@ -10,18 +10,19 @@
 
 @interface LineObject : NSObject
 {
-	float frontLeft, frontRight, backLeft, backRight;
+	ofxPoint2f * frontLeft, *frontRight, *backLeft, *backRight;
 	Filter * leftFrontFilter, *rightFrontFilter;
 	Filter * leftBackFilter, *rightBackFilter;
 		float width;
 	NSMutableArray * links;
+	
 
 }
 @property (assign, readwrite) NSMutableArray * links;
 
 -(void)drawWithBalance:(float)balance fromtAlpha:(float)frontA backAlpha:(float)backA width:(float)w timeout:(bool)timeout;
--(void)setFrontLeft:(float)frontLeft frontRight:(float)frontRight;
--(void)setBackLeft:(float)backLeft backRight:(float)backtRight;
+-(void)setFrontLeft:(ofxPoint2f)frontLeft frontRight:(ofxPoint2f)frontRight;
+-(void)setBackLeft:(ofxPoint2f)backLeft backRight:(ofxPoint2f)backtRight;
 
 
 @end
