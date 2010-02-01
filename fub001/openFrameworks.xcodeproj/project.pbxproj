@@ -1031,6 +1031,7 @@
 				DDDF8F4610B758AB00CF73FD /* coordWarp.mm */,
 			);
 			name = utils;
+			path = calculation;
 			sourceTree = "<group>";
 		};
 		DD204E6C10D63D5400BEF03F /* GTA */ = {
@@ -1328,6 +1329,7 @@
 		DDC7727F10B5846F009CAFC7 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				DD204E6B10D63D3500BEF03F /* utils */,
 				DD17DFCB10C6994D008B3E0A /* input */,
 				DDC7776E10B70079009CAFC7 /* calculation */,
 				DDC7728010B5846F009CAFC7 /* outputs */,
@@ -1371,7 +1373,6 @@
 		DDC7776E10B70079009CAFC7 /* calculation */ = {
 			isa = PBXGroup;
 			children = (
-				DD204E6B10D63D3500BEF03F /* utils */,
 				DDA5AE8E10CE8850005B53C6 /* CameraCalibration */,
 				DD4AB76710CD20E900EA0F09 /* Tracking */,
 				DDC7776F10B70079009CAFC7 /* ProjectionSurfaces */,

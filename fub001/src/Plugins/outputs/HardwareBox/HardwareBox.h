@@ -60,4 +60,6 @@
 
 -(IBAction) turnProjectorOn:(id)sender;
 -(IBAction) turnProjectorOff:(id)sender;
+
+-(void) setDmxValue:(int)val onChannel:(int)channel;
 @end

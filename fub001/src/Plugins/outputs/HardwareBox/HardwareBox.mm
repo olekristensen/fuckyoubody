@@ -33,6 +33,12 @@
 	xbeeRSSI = 0;
 	laserOn = false;
 	
+	startDmxChannel = 0;
+	stopDmxChannel = 1;
+	for(int i=0;i<100;i++){
+		dmxValues[i] = 0;
+	}
+	
 	timeSinceLastProjUpdate = 0;
 }
 
@@ -257,7 +263,15 @@
 						serialBuffer->push_back(5);					
 						timeSinceLastProjUpdate = 0;
 					} else {
-						
+		
+						serialBuffer->push_back(255);
+						serialBuffer->push_back(2);
+						serialBuffer->push_back(startDmxChannel);
+						serialBuffer->push_back(stopDmxChannel);
+						for(int i=startDmxChannel;i<= stopDmxChannel;i++){
+							serialBuffer->push_back(dmxValues[i]);
+						}
+												
 						serialBuffer->push_back(255);
 						serialBuffer->push_back(1);
 					}
@@ -323,5 +337,10 @@
 	}
 	pthread_mutex_unlock(&mutex);		
 }
-
+-(void) setDmxValue:(int)val onChannel:(int)channel{
+	if(channel > stopDmxChannel)
+		stopDmxChannel = channel;
+	
+	dmxValues[channel] = ofClamp(val, 0,253);
+}
 @end

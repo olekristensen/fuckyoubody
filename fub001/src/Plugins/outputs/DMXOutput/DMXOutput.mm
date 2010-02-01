@@ -7,7 +7,7 @@
 //
 
 #import "DMXOutput.h"
-
+#include "HardwareBox.h"
 
 
 @implementation Lamp
@@ -387,7 +387,7 @@
 	
 	
 	
-	
+	master = 255;
 	diodeboxes = [[NSMutableArray array] retain];
 	for(int i=0;i<4;i++){
 		DiodeBox * box = [[DiodeBox alloc] initWithStartaddress:1+i*15];
@@ -582,13 +582,24 @@
 					NSColor * c = [[noiseColor1 color] blendedColorWithFraction:ofRandom(0, 1) ofColor:[noiseColor2 color]];
 					c = [c colorWithAlphaComponent:[noiseAlpha floatValue]/[noiseAlpha maxValue]];
 					[box addColor:c onLamp:ofPoint(x,y) withBlending:[noiseBlending selectedSegment]];
-
+					
 				}
 			}
 		}
 		
 		
 		
+		
+		for(int y=0;y<5;y++){
+			for(int x=0;x<3;x++){
+				LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
+				[GetPlugin(HardwareBox) setDmxValue:lamp->r onChannel:lamp->channel];
+				[GetPlugin(HardwareBox) setDmxValue:lamp->g onChannel:lamp->channel+1];
+				[GetPlugin(HardwareBox) setDmxValue:lamp->b onChannel:lamp->channel+2];
+				[GetPlugin(HardwareBox) setDmxValue:master onChannel:lamp->channel+3];
+				
+			}
+		}
 		
 		n++;
 		

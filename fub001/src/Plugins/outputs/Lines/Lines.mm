@@ -149,6 +149,7 @@
 	
 	glEnd();
 	glPopMatrix();
+		glViewport(0, 0, ofGetWidth(), ofGetHeight());
 	
 }
 
@@ -289,8 +290,10 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-
-
+	glViewport(0, 0, ofGetWidth(), ofGetHeight());
+	
+	
+	//cout<<ofGetWidth()<<endl;
 	LineObject * line;
 	float gamma = 3.5;
 	bool t = false;
@@ -319,6 +322,10 @@
 	ofxVec2f pb12 = [GetPlugin(ProjectionSurfaces) convertPoint:ofxPoint2f(0.55,0) fromProjection:"Back" toSurface:"Floor"];
 	ofxVec2f pb22 = [GetPlugin(ProjectionSurfaces) convertPoint:ofxPoint2f(0.95,0) fromProjection:"Back" toSurface:"Floor"];
 	
+	ofSetColor(255, 0, 255);
+//	ofLine(0.15, 1, 0.15, 0);
+	ofLine(pf11.x, pf11.y, pf12.x, pf12.y);
+	
 	//B i y = a+bx
 	float bf1 =((float)pf12.y-pf11.y)/(pf12.x-pf11.x);
 	float bf2 =((float)pf22.y-pf21.y)/(pf22.x-pf21.x);
@@ -344,7 +351,7 @@
 	glVertex2f(iBack.x, iBack.y);
 	glEnd();
 	glPopMatrix();
-
+	glViewport(0, 0, ofGetWidth(), ofGetHeight());
 	ofSetColor(255, 120, 0);
 }
 

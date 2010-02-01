@@ -20,7 +20,8 @@ public:
 
 	float*					MatrixCalculate();
 	void					MatrixMultiply();
-
+	
+	ofxPoint2f				convertPoint(ofxPoint2f point);
 	ofxPoint2f			corners[4];
 
 private:

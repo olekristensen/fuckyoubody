@@ -187,9 +187,12 @@
 	
 	glTranslated(w/2.0, h/2.0, 0);
 	glTranslated(position->x, position->y, 0);
+	float scaleC; 
 	if(viewAspect > aspect){
+		scaleC = w;
 		glScaled(w, w, 1.0);
 	} else {
+		scaleC = h/aspect;
 		glScaled(h/aspect, h/aspect, 1.0);	
 	}
 	glScaled(scale, scale, 1);
@@ -202,20 +205,30 @@
 	ofRect(0, 0, 1, aspect);
 	ofFill();
 	
+	if([projectorsButton indexOfSelectedItem] == 0)
+		glTranslated(1.0*(1-scale), 0, 0);
+	else 
+		glTranslated(-1.0*(1-scale), 0, 0);		
+	
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	ofSetColor(255, 255, 255, 255);
+	
 	[self applyProjection:surface width:1.0 height:aspect];	
+	
 	[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
 	glPopMatrix();
 	
 	glScaled(2.0, 1, 1);
-	cout<<[projectorsButton indexOfSelectedItem] <<endl;
 	glTranslated([projectorsButton indexOfSelectedItem] * -0.5, 0, 0);
 	//Draw current projectorsurface
 	for(int i=0;i<4;i++){
 		
 		ofFill();
-		ofSetColor(64, 128,220,70);
+		if(selectedCorner == i){
+			ofSetColor(220, 128,220,70);
+		} else {
+			ofSetColor(64, 128,220,70);			
+		}
 		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
 		ofNoFill();
 		ofSetColor(0, 0,0,192);
@@ -229,6 +242,10 @@
 	glPopMatrix();}
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	scale = 0.5;
+	
+	//[self getProjectionSurfaceByName:"Front" surface:"Floor"]->warp->convertPoint(ofxPoint2f(0,0));
+	[self getProjectionSurfaceByName:"Front" surface:"Floor"]->coordWarp->transform2(0.5,0.5);
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -463,7 +480,7 @@
 
 -(void) applyProjection:(ProjectionSurfacesObject*) obj width:(float) _w height:(float) _h{
 	//	cout<<_w<<"  "<<_h<<endl;
-
+	
 	glPushMatrix();
 	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Front") == 0){
 		glViewport(0, 0, ofGetWidth()/2.0, ofGetHeight());

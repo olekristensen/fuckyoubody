@@ -216,7 +216,9 @@ static BOOL camerasRespawning[3];
 	 videoGrabber->stopThread();
 	 videoGrabber->unlock();
 	 ofSleepMillis(2000);	*/
-	videoGrabber->close();
+	if (videoGrabber) {
+		videoGrabber->close();
+	}
 	camInited = false;
 	delete videoGrabber;
 }
