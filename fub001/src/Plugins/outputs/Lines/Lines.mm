@@ -71,7 +71,7 @@
 -(void) setBackLeft:(ofxPoint2f)l backRight:(ofxPoint2f)r{
 	backLeft->y = l.y;
 	backRight->y = r.y;
-
+	
 	
 	backLeft->x = leftBackFilter->filter(l.x);			
 	backRight->x = rightBackFilter->filter(r.x);			
@@ -111,100 +111,120 @@
 		 width = w;			*/
 	}
 	
-	//cout<<width<<"   "<<okLinkFound<<endl;
-	//ofLine(frontLeft, 0, frontLeft, 1);
-	
-	//ofLine(backLeft, 0, backLeft, 1);
-	
-	//Calculate floor points from projections
-	ofxVec2f frontLeftP[2], frontRightP[2];
-	ofxVec2f backLeftP[2], backRightP[2];
-	ofxVec2f leftP[2], rightP[2];
-	
-	//TODO: This could use some automatic on the finding on points .. If they are to far from floor it fucks up!
-	frontLeftP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontLeft->y) fromProjection:"Front" toSurface:"Floor"];
-	frontLeftP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontLeft->y+0.1) fromProjection:"Front" toSurface:"Floor"];
-	frontRightP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontRight->x-(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontRight->y) fromProjection:"Front" toSurface:"Floor"];
-	frontRightP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontRight->x-(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontRight->y+0.1) fromProjection:"Front" toSurface:"Floor"];
-	
-	backLeftP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backLeft->x+(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y) fromProjection:"Back" toSurface:"Floor"];
-	backLeftP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backLeft->x+(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y+0.1) fromProjection:"Back" toSurface:"Floor"];
-	backRightP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backRight->x-(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y) fromProjection:"Back" toSurface:"Floor"];
-	backRightP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backRight->x-(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y+0.1) fromProjection:"Back" toSurface:"Floor"];
-	
-	leftP[0] = (1.0-balance)*frontLeftP[0] + (balance)*backLeftP[1];
-	leftP[1] = (1.0-balance)*frontLeftP[1] + (balance)*backLeftP[0];
-	rightP[0] = (1.0-balance)*frontRightP[0] + (balance)*backRightP[1];
-	rightP[1] = (1.0-balance)*frontRightP[1] + (balance)*backRightP[0];
-	
-	ofxPoint2f frontPoints[4];
-	for(int i=0;i<2;i++){
-		frontPoints[i] = [GetPlugin(ProjectionSurfaces) convertPoint:leftP[i] toProjection:"Front" fromSurface:"Floor"];
-	}
-	for(int i=0;i<2;i++){
-		frontPoints[i+2] = [GetPlugin(ProjectionSurfaces) convertPoint:rightP[i] toProjection:"Front" fromSurface:"Floor"];
-	}
-	
-	ofxPoint2f backPoints[4];
-	for(int i=0;i<2;i++){
-		backPoints[i] = [GetPlugin(ProjectionSurfaces) convertPoint:leftP[i] toProjection:"Back" fromSurface:"Floor"];
-	}
-	for(int i=0;i<2;i++){
-		backPoints[i+2] = [GetPlugin(ProjectionSurfaces) convertPoint:rightP[i] toProjection:"Back" fromSurface:"Floor"];
-	}
-	
-	frontPoints[0].y -= 1;
-	frontPoints[2].y -= 1;
-	frontPoints[1].y += 1;
-	frontPoints[3].y += 1;
-	
-	backPoints[0].y -= 1;
-	backPoints[2].y -= 1;
-	backPoints[1].y += 1;
-	backPoints[3].y += 1;
-	
-	ofEnableAlphaBlending();
-	ofFill();
-	
-	
-	ofxVec2f dir1 = (leftP[1] - leftP[0]).normalized();
-	ofxVec2f dir2 = (rightP[1] - rightP[0]).normalized();
-	
-	ofSetColor(255.0*frontA, 255.0*frontA, 255.0*frontA, 255);
-	/*	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-	 glBegin(GL_QUAD_STRIP);	
-	 glVertex2f(leftP[0].x-dir1.x, leftP[0].y-dir1.y);
-	 glVertex2f(leftP[1].x, leftP[1].y);
-	 glVertex2f(rightP[0].x, rightP[0].y);
-	 glVertex2f(rightP[1].x, rightP[1].y);
-	 
-	 glEnd();
-	 glPopMatrix();*/
-	
-	glBegin(GL_QUAD_STRIP);
-	for(int i=0;i<4;i++){
-		glVertex2f(frontPoints[i].x, frontPoints[i].y);
-	}
-	glEnd();
-	
-	ofSetColor(255.0*backA, 255.0*backA, 255.0*backA, 255);
-	/*[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
-	glBegin(GL_QUAD_STRIP);
-	glVertex2f(leftP[0].x, leftP[0].y);
-	glVertex2f(leftP[1].x, leftP[1].y);
-	glVertex2f(rightP[0].x, rightP[0].y);
-	glVertex2f(rightP[1].x, rightP[1].y);
-	
-	glEnd();
-	glPopMatrix();*/
-	glBegin(GL_QUAD_STRIP);
-	for(int i=0;i<4;i++){
-		glVertex2f(backPoints[i].x, backPoints[i].y);
-	}
-	glEnd();
-	
-	glViewport(0, 0, ofGetWidth(), ofGetHeight());
-	
+	if(balance == 0){
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Projector"];
+		glBegin(GL_POLYGON);
+		glVertex2f(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,0);
+		glVertex2f(frontRight->x-(1.0-width)*(frontRight->x-frontLeft->x)*0.5,0);
+		glVertex2f(frontRight->x-(1.0-width)*(frontRight->x-frontLeft->x)*0.5,1);
+		glVertex2f(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,1);
+		glEnd();
+		glPopMatrix();
+	} else if(balance == 1){
+		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Projector"];
+		glBegin(GL_POLYGON);
+		glVertex2f(backLeft->x+(1.0-width)*(backRight->x-backLeft->x)*0.5,0);
+		glVertex2f(backRight->x-(1.0-width)*(backRight->x-backLeft->x)*0.5,0);
+		glVertex2f(backRight->x-(1.0-width)*(backRight->x-backLeft->x)*0.5,1);
+		glVertex2f(backLeft->x+(1.0-width)*(backRight->x-backLeft->x)*0.5,1);
+		glEnd();
+		glPopMatrix();
+	} else {
+		
+		//cout<<width<<"   "<<okLinkFound<<endl;
+		//ofLine(frontLeft, 0, frontLeft, 1);
+		
+		//ofLine(backLeft, 0, backLeft, 1);
+		
+		//Calculate floor points from projections
+		ofxVec2f frontLeftP[2], frontRightP[2];
+		ofxVec2f backLeftP[2], backRightP[2];
+		ofxVec2f leftP[2], rightP[2];
+		
+		//TODO: This could use some automatic on the finding on points .. If they are to far from floor it fucks up!
+		frontLeftP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontLeft->y) fromProjection:"Front" toSurface:"Floor"];
+		frontLeftP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontLeft->y+0.1) fromProjection:"Front" toSurface:"Floor"];
+		frontRightP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontRight->x-(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontRight->y) fromProjection:"Front" toSurface:"Floor"];
+		frontRightP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(frontRight->x-(1.0-width)*(frontRight->x-frontLeft->x)*0.5,frontRight->y+0.1) fromProjection:"Front" toSurface:"Floor"];
+		
+		backLeftP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backLeft->x+(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y) fromProjection:"Back" toSurface:"Floor"];
+		backLeftP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backLeft->x+(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y+0.1) fromProjection:"Back" toSurface:"Floor"];
+		backRightP[0] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backRight->x-(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y) fromProjection:"Back" toSurface:"Floor"];
+		backRightP[1] = [GetPlugin(ProjectionSurfaces) convertPoint:ofPoint(backRight->x-(1.0-width)*(backRight->x-backLeft->x)*0.5,backLeft->y+0.1) fromProjection:"Back" toSurface:"Floor"];
+		
+		leftP[0] = (1.0-balance)*frontLeftP[0] + (balance)*backLeftP[1];
+		leftP[1] = (1.0-balance)*frontLeftP[1] + (balance)*backLeftP[0];
+		rightP[0] = (1.0-balance)*frontRightP[0] + (balance)*backRightP[1];
+		rightP[1] = (1.0-balance)*frontRightP[1] + (balance)*backRightP[0];
+		
+		ofxPoint2f frontPoints[4];
+		for(int i=0;i<2;i++){
+			frontPoints[i] = [GetPlugin(ProjectionSurfaces) convertPoint:leftP[i] toProjection:"Front" fromSurface:"Floor"];
+		}
+		for(int i=0;i<2;i++){
+			frontPoints[i+2] = [GetPlugin(ProjectionSurfaces) convertPoint:rightP[i] toProjection:"Front" fromSurface:"Floor"];
+		}
+		
+		ofxPoint2f backPoints[4];
+		for(int i=0;i<2;i++){
+			backPoints[i] = [GetPlugin(ProjectionSurfaces) convertPoint:leftP[i] toProjection:"Back" fromSurface:"Floor"];
+		}
+		for(int i=0;i<2;i++){
+			backPoints[i+2] = [GetPlugin(ProjectionSurfaces) convertPoint:rightP[i] toProjection:"Back" fromSurface:"Floor"];
+		}
+		
+		frontPoints[0].y -= 1;
+		frontPoints[2].y -= 1;
+		frontPoints[1].y += 1;
+		frontPoints[3].y += 1;
+		
+		backPoints[0].y -= 1;
+		backPoints[2].y -= 1;
+		backPoints[1].y += 1;
+		backPoints[3].y += 1;
+		
+		ofEnableAlphaBlending();
+		ofFill();
+		
+		
+		ofxVec2f dir1 = (leftP[1] - leftP[0]).normalized();
+		ofxVec2f dir2 = (rightP[1] - rightP[0]).normalized();
+		
+		ofSetColor(255.0*frontA, 255.0*frontA, 255.0*frontA, 255);
+		/*	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+		 glBegin(GL_QUAD_STRIP);	
+		 glVertex2f(leftP[0].x-dir1.x, leftP[0].y-dir1.y);
+		 glVertex2f(leftP[1].x, leftP[1].y);
+		 glVertex2f(rightP[0].x, rightP[0].y);
+		 glVertex2f(rightP[1].x, rightP[1].y);
+		 
+		 glEnd();
+		 glPopMatrix();*/
+		
+		glBegin(GL_QUAD_STRIP);
+		for(int i=0;i<4;i++){
+			glVertex2f(frontPoints[i].x, frontPoints[i].y);
+		}
+		glEnd();
+		
+		ofSetColor(255.0*backA, 255.0*backA, 255.0*backA, 255);
+		/*[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
+		 glBegin(GL_QUAD_STRIP);
+		 glVertex2f(leftP[0].x, leftP[0].y);
+		 glVertex2f(leftP[1].x, leftP[1].y);
+		 glVertex2f(rightP[0].x, rightP[0].y);
+		 glVertex2f(rightP[1].x, rightP[1].y);
+		 
+		 glEnd();
+		 glPopMatrix();*/
+		glBegin(GL_QUAD_STRIP);
+		for(int i=0;i<4;i++){
+			glVertex2f(backPoints[i].x, backPoints[i].y);
+		}
+		glEnd();
+		
+		glViewport(0, 0, ofGetWidth(), ofGetHeight());
+	}	
 }
 
 @end
@@ -258,16 +278,19 @@
 			for(b in [pblob blobs]){
 				if(strcmp([[t calibrator] projector]->name->c_str(), "Front") == 0){
 					for(int i=0;i<[b nPts];i++){
-						if(frontLeft->x == -1 || [b pts][i].x < frontLeft->x){
-							*frontLeft = [b pts][i];
+						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
+						if(frontLeft->x == -1 || p.x < frontLeft->x){
+							*frontLeft = p;
 						}
-						if(frontRight->x == -1 || [b pts][i].x > frontRight->x){
-							*frontRight = [b pts][i];
+						if(frontRight->x == -1 || p.x > frontRight->x){
+							*frontRight = p;
 						}
 					}
 				} else {				
 					for(int i=0;i<[b nPts];i++){
-						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Back" toSurface:"Floor"];
+						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
+
+						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Back" toSurface:"Floor"];
 						ofxPoint2f frontP = [GetPlugin(ProjectionSurfaces) convertPoint:floorP toProjection:"Front" fromSurface:"Floor"];
 						if(frontLeft->x == -1 || frontP.x < frontLeft->x){
 							*frontLeft = frontP;
@@ -280,16 +303,20 @@
 				
 				if(strcmp([[t calibrator] projector]->name->c_str(), "Back") == 0){
 					for(int i=0;i<[b nPts];i++){
-						if(backLeft->x == -1 || [b pts][i].x > backLeft->x){
-							*backLeft = [b pts][i];
+						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Back" toSurface:"Projector"];
+
+						if(backLeft->x == -1 || p.x > backLeft->x){
+							*backLeft = p;
 						}
-						if(backRight->x == -1 || [b pts][i].x < backRight->x){
-							*backRight = [b pts][i];
+						if(backRight->x == -1 || p.x < backRight->x){
+							*backRight = p;
 						}
 					}
 				} else {				
 					for(int i=0;i<[b nPts];i++){
-						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Floor"];
+						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
+
+						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:5p fromProjection:"Front" toSurface:"Floor"];
 						ofxPoint2f backP = [GetPlugin(ProjectionSurfaces) convertPoint:floorP toProjection:"Back" fromSurface:"Floor"];
 						if(backLeft->x == -1 || backP.x > backLeft->x){
 							*backLeft = backP;
@@ -361,6 +388,7 @@
 }
 
 -(void) drawDiagonal{
+	
 	
 	
 	

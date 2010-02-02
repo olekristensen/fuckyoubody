@@ -117,6 +117,7 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	ofFill();
 	float a = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]).angle(ofxVec2f(1,0));
 	//ofxVec2f v = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]);
 	

@@ -113,7 +113,8 @@
 		NSMutableArray * array = [NSMutableArray array];
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Floor" projector:projector]];
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Backwall" projector:projector]];
-		
+		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Projector" projector:projector]];
+
 		[projector setSurfaces:array];
 		//projector->surfaces = array;
 		[projectorsButton addItemWithTitle:[NSString stringWithCString:projector->name->c_str()]];
