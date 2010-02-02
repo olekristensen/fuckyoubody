@@ -10,233 +10,177 @@
 #include "HardwareBox.h"
 
 
-@implementation Lamp
-
--(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
+@implementation DMXEffectColumn
+@synthesize backgroundColorR, settingsView, number;
+- (BOOL) loadNibFile {	
+	if (![NSBundle loadNibNamed:@"DMXColumn"  owner:self]){
+		NSLog(@"Warning! Could not load the nib for dmx ");
+		return NO;
+	}
+	return YES;
 }
 
-@end
-
-
-@implementation LedLamp
--(id) init{
-	if([super init]){
-		r = 0;
-		g = 100;
-		b = 100;
-		a = 0;
-		sentR = -1;
-		sentG = -1;
-		sentB = -1;
-		sentA = -1;
-		return self;
+-(void)addColorForLamp:(ofPoint)lamp box:(DiodeBox*)box{
+	//Background
+	[box addColor:[backgroundColor color] onLamp:lamp withBlending:0];
+	
+	//Number	
+	int tal = [generalNumberValue intValue];	
+	bool flags[15];
+	[self makeNumber:tal intoArray:flags];	
+	NSColor * c;
+	if(!flags[ (int)(lamp.x+lamp.y*3) ]){
+		c = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0];
+	} else {
+		c = [generalNumberColor color];
 	}
+	[box addColor:c onLamp:lamp withBlending:[generalNumberBlendmode selectedSegment]];
 	
 	
-}
--(void) setLamp:(float)_r g:(float)_g b:(float)_b a:(float)_a{
-	r = _r;
-	g = _g;
-	b = _b;
-	a = _a;
-}
-
--(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
-	bool ret = true;
-	if(channel > 0){					
-		//		pthread_mutex_lock(&mutex);
-		
-		if(a > 254){
-			a = 254;
-		}
-		if(r > 254){
-			r = 254;
-		}				
-		if(g > 254){
-			g = 254;
-		}
-		if(b > 254){
-			b = 254;
-		}
-		
-		int n;
-		
-		if(r != sentR ){
-			sentR = r;
-			serialBuffer->push_back((unsigned char)255);
-			serialBuffer->push_back((unsigned char)channel);
-			serialBuffer->push_back((unsigned char)r);
-			ret = false;
-		}
-		if(g != sentG ){
-			sentG = g;
-			serialBuffer->push_back((unsigned char)255);
-			serialBuffer->push_back((unsigned char)channel+1);
-			serialBuffer->push_back((unsigned char)g);
-			ret = false;
-		}
-		if(b != sentB){
-			sentB = b;
-			serialBuffer->push_back((unsigned char)255);
-			serialBuffer->push_back((unsigned char)channel+2);
-			serialBuffer->push_back((unsigned char)b);
-			ret = false;
-		}
-		if(a != sentA){
-			sentA = a;
-			serialBuffer->push_back((unsigned char)255);
-			serialBuffer->push_back((unsigned char)channel+3);
-			serialBuffer->push_back((unsigned char)a);
-			
-			ret = false;
-		}
-		//		pthread_mutex_unlock(&mutex);
-		
-	}
-	return ret;
+	//Random noise
+	c = [[noiseColor1 color] blendedColorWithFraction:ofRandom(0, 1) ofColor:[noiseColor2 color]];
+	//c = [c colorWithAlphaComponent:[noiseAlpha floatValue]/[noiseAlpha maxValue]];
+	[box addColor:c onLamp:lamp withBlending:[noiseBlendMode selectedSegment]];
+	
+	
+	
+	
+	
+	
+	
 }
 
--(NSColor*) getColor{
-	return [NSColor colorWithCalibratedRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0];
-}
-
-
-
-@end
-
-@implementation NormalLamp
--(id)init{
-	if ([super init]) {
-		sentValue = -1;
-		value = 0;
+-(void) makeNumber:(int)n intoArray:(bool*) array{
+	
+	if(n == 0){
+		int a[15] = { 
+			1 , 1 , 1 ,
+			1 , 0 , 1 ,
+			1 , 0 , 1 ,
+			1 , 0 , 1 ,
+			1 , 1 , 1 };		
 		
-		return self;
-	}
-}
-
--(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex{
-	bool ret = true;
-	if(channel > 0){					
-		//	pthread_mutex_lock(&mutex);
-		
-		if(value > 254){
-			value = 254;
-		}
-		
-		
-		int n;
-		
-		//	if(value != sentValue ){
-		//		cout<<channel<<"  "<<value<<endl;
-		sentValue = value;
-		
-		serialBuffer->push_back((unsigned char)255);
-		serialBuffer->push_back((unsigned char)channel);
-		serialBuffer->push_back((unsigned char)value);
-		ret = false;
-		//	pthread_mutex_unlock(&mutex);
-		
-		//	}
-		
-	}
-	return ret;
-}
-
-
-
--(void) setLamp:(float)_v{
-	value = _v;
-}
-
-@end
-
-
-@implementation DiodeBox
-@synthesize lamps;
-
--(id) initWithStartaddress:(int) address{
-	if([super init]){
-		startAddress = address;
-		
-		LedLamp * l[15];
-		
-		int x=0,y=0;
 		for(int i=0;i<15;i++){
-			
-			l[i] = [[LedLamp alloc] init];
-			l[i]->channel = address + i*4;
-			l[i]->pos = new ofxPoint2f(x,y);
-			l[i]->r = 255;
-			l[i]->g = 255;
-			l[i]->b = 255;
-			l[i]->a = 255;
-			x++;
-			if(x >= 3){
-				x = 0;
-				y++;
-			}
-			
-		}
-		lamps = [[NSArray arrayWithObjects:l count:15] retain];
+			array[i] = a[i];
+		}		
+	}
+	if(n == 1){
+		int a[15] = { 
+			0 , 0 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 };		
 		
-	} 
-	return self;
-}
-
--(void) addColor:(NSColor*)color onLamp:(ofPoint)p withBlending:(int)blending{
-	LedLamp * lamp = [self getLampAtPoint:p];
-	float curColors[3];
-	curColors[0] = lamp->r/255.0;
-	curColors[1] = lamp->g/255.0;
-	curColors[2] = lamp->b/255.0;
-	
-	
-	float newColors[4];
-	newColors[0] = [color redComponent];
-	newColors[1] = [color greenComponent];
-	newColors[2] = [color blueComponent];
-	newColors[3] = [color alphaComponent];	
-	
-	switch (blending) {
-		case BLENDING_OVER:
-			for(int i=0;i<3;i++){
-				curColors[i] = newColors[i] * newColors[3] + curColors[i] * (1-newColors[3]);
-			}	
-			break;
-		case BLENDING_ADD:
-			for(int i=0;i<3;i++){
-				curColors[i] += newColors[i] * newColors[3];
-			}	
-			break;
-			
-		case BLENDING_HIGHEST:
-			for(int i=0;i<3;i++){
-				curColors[i] = MAX(newColors[i] * newColors[3], curColors[i]);
-			}	
-			break;
-		default:
-			break;
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 2){
+		int a[15] = { 
+			1 , 1 , 1 ,
+			0 , 0 , 1 ,
+			1 , 1 , 1 ,
+			1 , 0 , 0 ,
+			1 , 1 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 3){
+		int a[15] = { 
+			1 , 1 , 1 ,
+			0 , 0 , 1 ,
+			1 , 1 , 1 ,
+			0 , 0 , 1 ,
+			1 , 1 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 4){
+		int a[15] = { 
+			1 , 0 , 1 ,
+			1 , 0 , 1 ,
+			1 , 1 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 5){
+		int a[15] = { 
+			1 , 1 , 1 ,
+			1 , 0 , 0 ,
+			1 , 1 , 1 ,
+			0 , 0 , 1 ,
+			1 , 1 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 6){
+		int a[15] = { 
+			1 , 0 , 0 ,
+			1 , 0 , 0 ,
+			1 , 1 , 1 ,
+			1 , 0 , 1 ,
+			1 , 1 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 7){
+		int a[15] = { 
+			1 , 1 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 8){
+		int a[15] = { 
+			1 , 1 , 1 ,
+			1 , 0 , 1 ,
+			1 , 1 , 1 ,
+			1 , 0 , 1 ,
+			1 , 1 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
+	}
+	if(n == 9){
+		int a[15] = { 
+			1 , 1 , 1 ,
+			1 , 0 , 1 ,
+			1 , 1 , 1 ,
+			0 , 0 , 1 ,
+			0 , 0 , 1 };		
+		
+		for(int i=0;i<15;i++){
+			array[i] = a[i];
+		}		
 	}
 	
-	lamp->r = curColors[0]*255.0;
-	lamp->g = curColors[1]*255.0;
-	lamp->b = curColors[2]*255.0;
+	//	pthread_mutex_unlock(&mutex);
+	
+	
 }
 
--(LedLamp*) getLampAtPoint:(ofPoint)point{
-	return [lamps objectAtIndex:int(point.x+point.y*3)];
-}
-
--(void) reset{
-	LedLamp * lamp;
-	for(lamp in lamps){
-		lamp->r = 0;
-		lamp->g = 0;
-		lamp->b = 0;
-	}
-}
 
 @end
+
 
 
 @implementation DMXOutput
@@ -389,79 +333,48 @@
 	
 	master = 255;
 	diodeboxes = [[NSMutableArray array] retain];
+	int address = 1;
 	for(int i=0;i<4;i++){
-		DiodeBox * box = [[DiodeBox alloc] initWithStartaddress:1+i*15];
+		DiodeBox * box = [[DiodeBox alloc] initWithStartaddress:address];
 		[diodeboxes addObject:box];
+		address +=62;
 	}
 	
-	/*		int dir = -1;
-	 int x = 2;
-	 int y = 4;
-	 int c = 25;
-	 for (int i=0; i<15; i++) {
-	 LedLamp * lamp = [[LedLamp alloc] init];
-	 lamp->pos = new ofxPoint2f(x,y);
-	 lamp->channel = c;
-	 c += 4;
-	 
-	 x += dir;
-	 
-	 if(x < 0){
-	 x = 0;
-	 y--;
-	 dir *= -1;
-	 }
-	 
-	 if(x > 2){
-	 x = 2;
-	 y--;
-	 dir *= -1;	
-	 }
-	 [lamps addObject:lamp];
-	 }
-	 
-	 for(int i=19;i<25;i++){
-	 
-	 if (i != 23) {
-	 NormalLamp * lamp = [[NormalLamp alloc] init];
-	 lamp->channel = i;
-	 lamp->value = 254/2.0;
-	 [lamps addObject:lamp];
-	 }
-	 
-	 }
-	 
-	 NormalLamp *  lamp2 = [[NormalLamp alloc] init];
-	 lamp2->channel = 6;
-	 lamp2->value = 120;
-	 [lamps addObject:lamp2];
-	 
-	 NormalLamp *  lamp3 = [[NormalLamp alloc] init];
-	 lamp3->channel = 3;
-	 lamp3->value = 120;
-	 [lamps addObject:lamp3];
-	 
-	 NormalLamp *  lamp4 = [[NormalLamp alloc] init];
-	 lamp4->channel = 4;
-	 lamp4->value = 120;
-	 [lamps addObject:lamp4];
-	 
-	 NormalLamp * lamp5 = [[NormalLamp alloc] init];
-	 lamp5->channel = 23;
-	 lamp5->value = 254/2.0;
-	 [lamps addObject:lamp5];
-	 
-	 
-	 ok = connected = serial->setup("/dev/tty.usbserial-A6008iyw", 115200);
-	 cout<<"Connected: "<<connected<<endl;
-	 master = 254;
-	 sentMaster = -1;
-	 pthread_mutex_init(&mutex, NULL);
-	 serialBuffer = new vector<unsigned char>;
-	 
-	 color = [NSColor blueColor];
-	 shownNumber = -1;
-	 [thread start];*/
+	
+	DiodeBox * box;
+	int n= 0;
+	for(box in diodeboxes){
+		[box reset];
+		
+		for(int y=0;y<5;y++){
+			for(int x=0;x<3;x++){
+				LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
+				cout<<"Lamp startup : "<<lamp->g<<endl;			
+			}
+		}
+	}
+	
+	
+	
+	for(int i=0;i<5;i++){
+		columns[i] = [[DMXEffectColumn alloc] init];	
+		[columns[i] loadNibFile];
+		[columns[i] setNumber:i];
+		NSView * dest;
+		
+		if(i == 0) dest = column0; 		
+		if(i == 1) dest = column1; 
+		if(i == 2) dest = column2; 
+		if(i == 3) dest = column3; 		
+		if(i == 4) dest = column4; 
+		
+		
+		[[columns[i] settingsView] setFrame:[dest bounds]];
+		[dest addSubview:[columns[i] settingsView]];
+		
+	}
+	
+	
 	
 }
 
@@ -489,24 +402,6 @@
 						ofFill();
 						ofSetColor(lamp->r, lamp->g, lamp->b, lamp->a);
 						ofCircle(lamp->pos->x*50.0, lamp->pos->y*50.0, 20);
-						/*	
-						 
-						 for(int x=4;x<19;x+= 5){
-						 for(int a=0;a<360;a+=70*(20-x)/20.0){								
-						 glPushMatrix();{
-						 glRotated(a, 0, 0, 1);
-						 glTranslated(x, 0, 0);
-						 ofSetColor(255, 0, 0, lamp->r);
-						 ofCircle(0, -2, 1);
-						 ofSetColor(0, 255, 0, lamp->g);
-						 ofCircle(0, 2, 1);
-						 ofSetColor(0, 0, 255, lamp->b);
-						 ofCircle(-2, 0, 1);
-						 
-						 
-						 }glPopMatrix();
-						 }
-						 }*/
 						
 						ofNoFill();
 						ofSetColor(0, 0, 0, 200);
@@ -530,62 +425,38 @@
 		[box reset];
 		
 		
-		//Background
-		for(int x=0;x<3;x++){
-			for(int y=0;y<5;y++){
-				[box addColor:[backgroundColor color] onLamp:ofPoint(x,y) withBlending:0];
+		
+		
+		/*//Background
+		 for(int x=0;x<3;x++){
+		 for(int y=0;y<5;y++){
+		 [box addColor:[backgroundColor color] onLamp:ofPoint(x,y) withBlending:0];
+		 }
+		 }*/
+		int num = 0;
+		for(int y=0;y<5;y++){
+			for(int x=0;x<3;x++){
+				NSColor * c;
+				[columns[n] addColorForLamp:ofPoint(x,y) box:box];
+				num++;
 			}
 		}
 		
-		//Number
-		if([generalNumberAlpha floatValue] > 0){
-			int number;
-			switch (n) {
-				case 0:
-					number = [generalNumber1 intValue];
-					break;
-				case 1:
-					number = [generalNumber2 intValue];
-					break;
-				case 2:
-					number = [generalNumber3 intValue];
-					break;
-				case 3:
-					number = [generalNumber4 intValue];
-					break;
-				default:
-					break;
-			}
-			
-			bool flags[15];
-			[self makeNumber:number intoArray:flags];
-			
-			int num = 0;
-			for(int y=0;y<5;y++){
-				for(int x=0;x<3;x++){
-					NSColor * c;
-					if(!flags[num]){
-						c = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0];
-					} else {
-						c = [NSColor colorWithCalibratedRed:0.5 green:0 blue:0 alpha:[generalNumberAlpha floatValue]/[generalNumberAlpha maxValue]];	
-					}
-					[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];
-					num++;
-				}
+		num = 0;
+		for(int y=0;y<5;y++){
+			for(int x=0;x<3;x++){
+				NSColor * c;
+				[columns[4] addColorForLamp:ofPoint(x,y) box:box];
+				num++;
 			}
 		}
 		
-		//Random noise
-		if([noiseAlpha floatValue] > 0){
-			for(int y=0;y<5;y++){
-				for(int x=0;x<3;x++){
-					NSColor * c = [[noiseColor1 color] blendedColorWithFraction:ofRandom(0, 1) ofColor:[noiseColor2 color]];
-					c = [c colorWithAlphaComponent:[noiseAlpha floatValue]/[noiseAlpha maxValue]];
-					[box addColor:c onLamp:ofPoint(x,y) withBlending:[noiseBlending selectedSegment]];
-					
-				}
-			}
-		}
+		
+		
+		
+		
+		
+
 		
 		
 		
@@ -593,6 +464,7 @@
 		for(int y=0;y<5;y++){
 			for(int x=0;x<3;x++){
 				LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
+				//				cout<<"Lamp : "<<lamp->g<<" channel : "<<lamp->channel+1<<endl;			
 				[GetPlugin(HardwareBox) setDmxValue:lamp->r onChannel:lamp->channel];
 				[GetPlugin(HardwareBox) setDmxValue:lamp->g onChannel:lamp->channel+1];
 				[GetPlugin(HardwareBox) setDmxValue:lamp->b onChannel:lamp->channel+2];
@@ -600,6 +472,9 @@
 				
 			}
 		}
+		
+		//[GetPlugin(HardwareBox) setDmxValue:255 onChannel:1];
+		
 		
 		n++;
 		

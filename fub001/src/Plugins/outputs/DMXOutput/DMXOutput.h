@@ -6,63 +6,35 @@
 #include "Plugin.h"
 #include "ofMain.h"
 #include "ofxVectorMath.h"
+#include "DMXLamps.h"
 
-#define BLENDING_OVER 0
-#define BLENDING_ADD 1
-#define BLENDING_HIGHEST 2
-
-@interface Lamp : NSObject
+@interface DMXEffectColumn : NSObject
 {
-	@public
-	ofxPoint2f * pos;
-	int channel;
-}
-
--(bool) updateDmx:(vector<unsigned char> *) serialBuffer mutex:(pthread_mutex_t)mutex;
-
-@end
-
-
-@interface LedLamp : Lamp
-{
-@public
-	int r, g, b, a;
-	int sentR, sentG, sentB, sentA;
+	IBOutlet PluginUIColorWell * backgroundColor;
+	IBOutlet NSSlider * backgroundColorR;
+	IBOutlet NSSlider * backgroundColorG;
+	IBOutlet NSSlider * backgroundColorB;
+	IBOutlet NSSlider * backgroundColorA;
 	
-	bool isOldAndSucks;
-	
-	
+	IBOutlet PluginUIColorWell * generalNumberColor;
+	IBOutlet NSSlider * generalNumberValue;	
+	IBOutlet NSSegmentedControl * generalNumberBlendmode;
+
+	//Noise
+	IBOutlet PluginUIColorWell * noiseColor1;	
+	IBOutlet PluginUIColorWell * noiseColor2;	
+	IBOutlet NSSegmentedControl * noiseBlendMode;
+
+	IBOutlet NSView * settingsView;
+	int number;
 }
+@property (assign,readwrite) NSSlider * backgroundColorR;
+@property (assign,readwrite) NSView * settingsView;
+@property (assign, readwrite) int number;
 
--(void) setLamp:(float)_r g:(float)_g b:(float)_b a:(float)_a;
--(NSColor*) getColor;
+-(BOOL) loadNibFile;
+-(void)addColorForLamp:(ofPoint)lamp box:(DiodeBox*)box;
 @end
-
-
-
-@interface NormalLamp : Lamp
-{
-@public
-	int value;
-	int sentValue;	
-}
--(void) setLamp:(float)_v;
-@end
-
-@interface DiodeBox : NSObject
-{
-	NSArray * lamps;
-	int startAddress;
-	
-}
-@property (assign, readwrite) NSArray * lamps;
-
--(id) initWithStartaddress:(int) address;
--(void) addColor:(NSColor*)color onLamp:(ofPoint)lamp withBlending:(int)blending;
--(LedLamp*) getLampAtPoint:(ofPoint)point;
--(void) reset;
-@end
-
 
 
 
@@ -74,6 +46,14 @@
 	bool connected;
 	
 	pthread_mutex_t mutex;
+	
+	IBOutlet NSView * column0;
+	IBOutlet NSView * column1;
+	IBOutlet NSView * column2;
+	IBOutlet NSView * column3;
+	IBOutlet NSView * column4;
+	
+	DMXEffectColumn * columns[5];
 	
 	IBOutlet NSColorWell * backgroundColor;
 	IBOutlet NSSlider * backgroundRedColor;

@@ -1,5 +1,4 @@
 #include "coordWarp.h"
-
 //---------------------------
 coordWarping::coordWarping(){
 	translate = cvCreateMat(3,3,CV_32FC1);
@@ -26,6 +25,8 @@ void coordWarping::calculateMatrix(ofxPoint2f src[4], ofxPoint2f dst[4]){
 	
 	cvWarpPerspectiveQMatrix(cvsrc, cvdst, translate);  // calculate homography
 	cvWarpPerspectiveQMatrix(cvdst, cvsrc, itranslate);  // calculate homography
+	
+	
 	
 }
 

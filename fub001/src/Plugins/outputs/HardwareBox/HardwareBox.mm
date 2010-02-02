@@ -33,7 +33,7 @@
 	xbeeRSSI = 0;
 	laserOn = false;
 	
-	startDmxChannel = 0;
+	startDmxChannel = 1;
 	stopDmxChannel = 1;
 	for(int i=0;i<100;i++){
 		dmxValues[i] = 0;
@@ -198,16 +198,16 @@
 						projector2state = (int)buffer[1];
 						
 						/*for(int i=2;i<2+7*6;i++){
-							cout<<i<<":  "<<(char)buffer[i]<<"  /   "<<(int)buffer[i]<<endl;
-						}
-						
-						for(int i=0;i<6;i++){
-							projTemps[i] = 0;
-							projTemps[i] += 10*((int)buffer[3+7*i]-48);
-							projTemps[i] += (int)buffer[4+7*i]-48;						
-							projTemps[i] += ((int)buffer[6+7*i]-48)/10.0;		
-							cout<<"Temp "<<i<<"  "<<projTemps[i]<<endl;
-						}*/
+						 cout<<i<<":  "<<(char)buffer[i]<<"  /   "<<(int)buffer[i]<<endl;
+						 }
+						 
+						 for(int i=0;i<6;i++){
+						 projTemps[i] = 0;
+						 projTemps[i] += 10*((int)buffer[3+7*i]-48);
+						 projTemps[i] += (int)buffer[4+7*i]-48;						
+						 projTemps[i] += ((int)buffer[6+7*i]-48)/10.0;		
+						 cout<<"Temp "<<i<<"  "<<projTemps[i]<<endl;
+						 }*/
 						break;
 						
 					default:
@@ -230,6 +230,8 @@
 					
 					for(int i=0;i<n;i++){
 						bytes[i] = serialBuffer->at(0);
+				//		cout<<(int)bytes[i]<<endl;
+						
 						if(bytes[i] == 255 && inCommandProcess){
 							//Begin of new commando
 							n = i;
@@ -263,7 +265,7 @@
 						serialBuffer->push_back(5);					
 						timeSinceLastProjUpdate = 0;
 					} else {
-		
+						
 						serialBuffer->push_back(255);
 						serialBuffer->push_back(2);
 						serialBuffer->push_back(startDmxChannel);
@@ -271,7 +273,7 @@
 						for(int i=startDmxChannel;i<= stopDmxChannel;i++){
 							serialBuffer->push_back(dmxValues[i]);
 						}
-												
+						
 						serialBuffer->push_back(255);
 						serialBuffer->push_back(1);
 					}
@@ -338,9 +340,26 @@
 	pthread_mutex_unlock(&mutex);		
 }
 -(void) setDmxValue:(int)val onChannel:(int)channel{
-	if(channel > stopDmxChannel)
-		stopDmxChannel = channel;
 	
-	dmxValues[channel] = ofClamp(val, 0,253);
+	//if(channel < 40){
+		if(channel > stopDmxChannel)
+			stopDmxChannel = channel;
+		
+		dmxValues[channel] = ofClamp(val, 0,252);
+//	dmxValues[channel] = 252;
+	
+/*	if(channel % 4 == 1){
+		dmxValues[channel] = 252;
+	} else if(channel % 4 == 0){
+		dmxValues[channel] = 252;
+	}else if(channel % 4 == 2){
+		dmxValues[channel] = 252;
+		cout<<ofClamp(val, 0,251)<<"   "<<val<<endl;
+	} else if(channel % 4 == 3){
+		dmxValues[channel] = ofClamp(val, 0,251);
+		
+	}*/
+	
+	//}
 }
 @end

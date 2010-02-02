@@ -304,7 +304,7 @@
 		
 		int xNumberCentered = xNumber;
 		
-		if (fmod(xNumber,2) == 1) {
+		if (xNumber%2 == 1) {
 			xNumberCentered--;
 		}
 		for(int i=0;i<=xNumberCentered;i++){

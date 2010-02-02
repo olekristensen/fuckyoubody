@@ -30,6 +30,7 @@ public:
 	
 	CvMat *translate;
 	CvMat *itranslate;
+	
 protected:
 	
 	CvPoint2D32f cvsrc[4];
