@@ -44,34 +44,34 @@
 
 - (IBAction)showSelectedControl:(id)sender {
 	
-
+	
 	NSInteger theRow = [boundControlsController selectionIndex];
 	
     if ( theRow != NSNotFound ) { 
 		
         PluginUIMidiBinding* selectedBinding =
 		(PluginUIMidiBinding*) [[boundControlsController arrangedObjects]
-								  objectAtIndex: theRow];
+								objectAtIndex: theRow];
 		
         [selectedBinding bringIntoView];
 		
     }
-  
+	
 }
 
 -(void) showConflictSheet{
 	
 	NSBeginCriticalAlertSheet(NSLocalizedString(@"MIDI Controller Conflict", @"Title of alert panel which comes up when user chooses Quit"),
-					  NSLocalizedString(@"Continue", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
-					  NSLocalizedString(@"Quit", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
-					  NSLocalizedString(@"Show conflicts", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
-					  [NSApp mainWindow],
-					  self,
-					  @selector(willEndCloseConflictSheet:returnCode:contextInfo:),
-					  @selector(didEndCloseConflictSheet:returnCode:contextInfo:),
-					  nil,
-					  NSLocalizedString(@"Some of the midi controllers are conflicting, they are highlighted in red in the list of midiControllers.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents.")
-					  );
+							  NSLocalizedString(@"Continue", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
+							  NSLocalizedString(@"Quit", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
+							  NSLocalizedString(@"Show conflicts", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
+							  [NSApp mainWindow],
+							  self,
+							  @selector(willEndCloseConflictSheet:returnCode:contextInfo:),
+							  @selector(didEndCloseConflictSheet:returnCode:contextInfo:),
+							  nil,
+							  NSLocalizedString(@"Some of the midi controllers are conflicting, they are highlighted in red in the list of midiControllers.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents.")
+							  );
 }
 
 - (void)willEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
@@ -82,7 +82,7 @@
 		[[[NSApplication sharedApplication] delegate] setNoQuestionsAsked:YES];
 		[[NSApplication sharedApplication] terminate:self];
 	}
-
+	
 	if (returnCode == NSAlertOtherReturn) {			/* "Show conflicts" */
 		[globalController changeView:[[globalController viewItems] indexOfObject:self]];
 	}       
@@ -177,31 +177,61 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 			
 			if([self isEnabled]){
 				
-				id theBinding;
 				
-				pthread_mutex_lock(&mutex);
-				
-				NSMutableIndexSet * changedIndexes = [[NSMutableIndexSet alloc] init];
-				int rowIndex = 0;
-				
-				for (theBinding in boundControls){
-					if ([[theBinding channel] intValue] == channel) {
-						if(controlChange){
-							if ([[theBinding controller] intValue] == number) {
-								[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
-								NSInteger row = [boundControls indexOfObject:theBinding];
-								if (row != NSNotFound) {								
-									[rowIndexesChanged addIndex:row];
-								}
+				// handle plugin activation/deactivation
+				if (number == 1) {
+					
+					ofPlugin * p;
+					
+					for (p in [globalController viewItems]) {
+						if ([p midiChannel] == channel) {
+							if (value == 0) {
+								[p setEnabled:[[NSNumber alloc] initWithInt:0]];
+							} else {
+								[p setEnabled:[[NSNumber alloc] initWithInt:1]];
 							}
 						}
 					}
-					rowIndex++;
+					
+				} else if (number == 2) {
+					
+					ofPlugin * p;
+					
+					for (p in [globalController viewItems]) {
+						if ([p midiChannel] == channel) {
+							[p setAlpha:[[NSNumber alloc] initWithFloat:(value/127.0)]];
+						}
+					}
+					
+				} else {
+					
+					id theBinding;
+					
+					pthread_mutex_lock(&mutex);
+					
+					NSMutableIndexSet * changedIndexes = [[NSMutableIndexSet alloc] init];
+					int rowIndex = 0;
+					
+					for (theBinding in boundControls){
+						if ([[theBinding channel] intValue] == channel) {
+							if(controlChange){
+								if ([[theBinding controller] intValue] == number) {
+									[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
+									NSInteger row = [boundControls indexOfObject:theBinding];
+									if (row != NSNotFound) {								
+										[rowIndexesChanged addIndex:row];
+									}
+								}
+							}
+						}
+						rowIndex++;
+					}
+					
+					[self performSelectorOnMainThread:@selector(_reloadRows:) withObject:rowIndexesChanged waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
+					
+					pthread_mutex_unlock(&mutex);
 				}
 				
-				[self performSelectorOnMainThread:@selector(_reloadRows:) withObject:rowIndexesChanged waitUntilDone:NO modes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
-				
-				pthread_mutex_unlock(&mutex);
 			}
 		}	
 		packet = MIDIPacketNext (packet);
