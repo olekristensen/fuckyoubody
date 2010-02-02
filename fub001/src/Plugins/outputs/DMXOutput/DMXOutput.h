@@ -19,12 +19,18 @@
 	IBOutlet PluginUIColorWell * generalNumberColor;
 	IBOutlet NSSlider * generalNumberValue;	
 	IBOutlet NSSegmentedControl * generalNumberBlendmode;
+	IBOutlet NSSlider * generalNumberColorR;
+	IBOutlet NSSlider * generalNumberColorG;
+	IBOutlet NSSlider * generalNumberColorB;
+	IBOutlet NSSlider * generalNumberColorA;
 
 	//Noise
 	IBOutlet PluginUIColorWell * noiseColor1;	
 	IBOutlet PluginUIColorWell * noiseColor2;	
 	IBOutlet NSSegmentedControl * noiseBlendMode;
-
+	
+	IBOutlet NSButton * patchButton;
+	
 	IBOutlet NSView * settingsView;
 	int number;
 }

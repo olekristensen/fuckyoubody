@@ -43,9 +43,12 @@
 	[box addColor:c onLamp:lamp withBlending:[noiseBlendMode selectedSegment]];
 	
 	
-	
-	
-	
+/*	if(lamp.x == 0 && lamp.y == 0){
+		if([patchButton state] == NSOnState){
+			[box addColor:[NSColor whiteColor] onLamp:lamp withBlending:0];	
+		}
+	}
+*/	
 	
 	
 }

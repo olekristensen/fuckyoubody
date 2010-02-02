@@ -764,7 +764,23 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	}
 	
 	
-	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+		
+		//
+		//White floor square
+		//
+		ofSetColor(255, 255, 255,255);
+		//	if([floorSquaresButton state] == NSOnState){
+		int i=0;
+		for(float y=0;y<1;y+=w){
+			for(float x=0;x<1;x+=w){				
+				float s = floorSquaresOpacity[i];				
+				ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+				i++;
+			}
+		}
+		
+	}glPopMatrix();
 	
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
@@ -782,6 +798,8 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				i++;
 			}
 		}
+		
+		//	glPopMatrix();
 		//}
 		
 		
@@ -805,20 +823,30 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				   ofClamp(w*(choisesSize*blueScaleFactor), 0,1) );
 			
 		}
+		glPopMatrix();
 		
 		
 		
 		//
 		//Ball
 		//
-		if([ballDrawButton state] == NSOnState){
-			ofSetColor(255, 255, 255);
-			ofCircle(ballPosition->x, ballPosition->y, 0.05*[ballSizeSlider floatValue]/100.0);
-		}
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+			if([ballDrawButton state] == NSOnState){
+				ofSetColor(255, 255, 255);
+				ofCircle(ballPosition->x, ballPosition->y, 0.05*[ballSizeSlider floatValue]/100.0);
+			}
+		}glPopMatrix();
+		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+			if([ballDrawButton state] == NSOnState){
+				ofSetColor(255, 255, 255);
+				ofCircle(ballPosition->x, ballPosition->y, 0.05*[ballSizeSlider floatValue]/100.0);
+			}
+		}glPopMatrix();
 		
 		//
 		//Pacman
 		//
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 		if([pacmanButton state] == NSOnState){
 			/*	float r = MAX(255-4.0*pacmanDieFactor*255.0 ,0);
 			 float g = MIN(MAX(2*255-2.0*pacmanDieFactor*255.0 ,0), 255);
