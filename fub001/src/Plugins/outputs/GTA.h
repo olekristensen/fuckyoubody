@@ -26,6 +26,8 @@
 
 
 @interface GTA : ofPlugin {
+	IBOutlet NSSlider * wallAlphaControl;
+
 	IBOutlet NSSlider * wallSpeedControl;
 	IBOutlet NSSlider * wallSizeControl;
 	IBOutlet NSSlider * wallZScaleControl;
@@ -33,8 +35,17 @@
 	IBOutlet NSSlider * wallCamXControl;
 	IBOutlet NSSlider * wallBlurControl;
 	IBOutlet NSSlider * wallNoiseControl;
+	IBOutlet NSSlider * wallZAlphaControl;
+	IBOutlet NSSlider * wallStreetSizeControl;
+	
+	IBOutlet NSSlider * floorSpeedControl;
+	IBOutlet NSSlider * floorXControl;
 
+	IBOutlet NSSlider * freakOutControl;
+
+	
 	IBOutlet NSButton * floorActiveControl;
+	IBOutlet NSButton * floorToothControl;
 
 	float camXPos;
 	float zscale;
@@ -46,10 +57,16 @@
 	
 	ofxShader * shaderH;
 	ofxShader *  shaderV;
+	
+	float floorPos;
+	float hajPos;
+	
+	int numLayers;
+	int numPerLayer;
 
 
 }
 
 -(void) generateObjects;
-
+-(IBAction) reset:(id)sender;
 @end

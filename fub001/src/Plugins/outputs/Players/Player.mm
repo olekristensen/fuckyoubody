@@ -273,7 +273,7 @@
 	[userDefaults setFloat:[[sender color] blueComponent] forKey:[NSString stringWithFormat:@"player.%i.color.blue",playerNumber+1]];
 }
 
--(NSColor*) color{
+-(NSColor*) projectorColor{
 	return [color color];
 }
 @end

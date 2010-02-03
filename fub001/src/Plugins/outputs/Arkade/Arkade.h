@@ -120,6 +120,8 @@
 
 -(int) getIatX:(float)x Y:(float)y;
 
+-(void) draw:(int)side;
+
 @end
 
 

@@ -84,7 +84,7 @@
 				[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * step * 60.0/ofGetFrameRate();
 				//float moveX = 0.003* [wallSpeedControl floatValue]/100.0 * 60.0/ofGetFrameRate();
 				
-				while([obj pos]->z > 455){
+				while([obj pos]->z + [obj offset]->z > 455){
 					[obj pos]->z -= 1000;
 					//				[obj setOffset:new ofxPoint3f(0,0,0)];
 				}
@@ -92,6 +92,16 @@
 			//}
 		}	
 	}	
+	if([floorActiveControl state] == NSOnState){
+		floorPos += [floorSpeedControl floatValue]/100.0;
+		if(floorPos > 2)
+			floorPos = -1;
+	}
+	if([floorToothControl state] == NSOnState){
+		hajPos += [floorSpeedControl floatValue]/100.0;
+	} else {
+		hajPos = -1;
+	}
 }
 
 -(void) drawFBO:(float)alph{
@@ -110,29 +120,9 @@
 	glHint (GL_FOG_HINT, GL_NICEST); // set the fog to look the 
 	
 	WallObject * obj;
-	/*	NSArray * inverseSortedArray = [wallObjects sortedArrayUsingSelector:@selector(inversecompare:)];
-	 float lastZ = 0;
-	 for(obj in inverseSortedArray){
-	 //	blur->blur(10, 0.5);
-	 
-	 shaders.push_back(blur->fbo1);
-	 }*/	
-	//	ofSetupScreen();	
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	//	glScaled(ofGetWidth(), ofGetHeight(), [wallZScaleControl floatValue]/20.0);
-	
+
 	glPushMatrix();
-	/*		if([obj pos]->z < 0 || 1){
-	 ofSetupScreen();	
-	 blur->blur(1, 1);
-	 ofSetupScreen();	
-	 ofEnableAlphaBlending();
-	 glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	 glScaled(ofGetWidth(), ofGetHeight(), [wallZScaleControl floatValue]/20.0);
-	 
-	 }
-	 */
-	//	glTranslatef(0, +0.1, 0);
+
 	glScaled(800, 600, 1);
 	glTranslated(camXPos, 0, 0);	
 	float b = [wallNoiseControl floatValue]/100.0;
@@ -145,15 +135,30 @@
 		//	blur->endRender();
 		glScaled(1, 0.5, 1);
 		
-		float a = 300.0-3.0*fabs((float)[obj pos]->z)* zscale/100.0;
+		glRotated(30*[freakOutControl floatValue]/100.0, 0.3, 0.1, 0.5);
+		
+/*		float a = 300.0-3.0*fabs((float)[obj pos]->z)* zscale/100.0;
 		if([obj pos]->z > 0){
 			a = 255;	
 		}
-		a = 255;	
-		ofxPoint3f position = *[obj pos] + *[obj offset]*zscale/100.0;
+		a = 255;	*/
 		
-		glScaled(1, 1, zscale/100.0);
-		ofSetColor(alph*255, alph*255, alph*255, 255);
+		ofxPoint3f position = *[obj pos];
+
+		position.x += [obj offset]->x * [wallStreetSizeControl floatValue]/100.0;
+		position.y += [obj offset]->y * [wallStreetSizeControl floatValue]/100.0;
+		
+		if(i > numPerLayer*numLayers-numPerLayer){
+			position.z += [obj offset]->z * zscale/100.0;
+			position.z *= zscale/100.0;
+		} else {
+			position += *[obj offset];	
+		}
+		
+		float zAlphaEffect = 1 + position.z/10.0 - 0.1;
+		zAlphaEffect = [wallZAlphaControl floatValue]/100.0 * zAlphaEffect + (1-[wallZAlphaControl floatValue]/100.0);
+		
+		ofSetColor([wallAlphaControl floatValue]/100.0* alph*255*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*255*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*255*zAlphaEffect, 255);
 
 		glBegin(GL_POLYGON);{
 			glTranslated(0, 0, position.z);
@@ -180,87 +185,7 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	/*glClear(GL_ACCUM_BUFFER_BIT);
-	 int i, j;
-	 int min, max;
-	 int count;
-	 GLfloat scale, dx, dy;
-	 GLdouble FRUSTDIM = 100.f;
-	 GLdouble FRUSTNEAR = 320.f;
-	 GLdouble FRUSTFAR = 660.f;
-	 scale = 0.01;
-	 float focus = 1000;
-	 
-	 min = -2;
-	 max = -min + 1;
-	 count = -2 * min + 1;
-	 count *= count;
-	 
-	 scale = 2.f;
-	 
-	 
-	 for(j = min; j < max; j++) {
-	 for(i = min; i < max; i++) {
-	 dx = scale * i * FRUSTNEAR/focus;
-	 dy = scale * j * FRUSTNEAR/focus;
-	 glMatrixMode(GL_PROJECTION);
-	 glLoadIdentity();
-	 glFrustum(-FRUSTDIM + dx, 
-	 FRUSTDIM + dx, 
-	 -FRUSTDIM + dy, 
-	 FRUSTDIM + dy, 
-	 FRUSTNEAR,
-	 FRUSTFAR); 
-	 glMatrixMode(GL_MODELVIEW);
-	 glLoadIdentity();
-	 glTranslatef(scale * i, scale * j, 0.f);
-	 
-	 glAccum(GL_ACCUM, 1.f/count);
-	 }
-	 } 
-	 glAccum(GL_RETURN, 1.f);*/
-	
-	//glScaled(w, h, 1);
-	/*int w, h;
-	 
-	 w = 800;
-	 h = 600;
-	 
-	 glPushMatrix();
-	 glViewport(0, -h+ h/10.0, w, h*2);
-	 
-	 float halfFov, theTan, screenFov, as;
-	 screenFov 		= 120.0f;
-	 
-	 float eyeX 		= (float)w / 2.0;
-	 float eyeY 		= (float)h / 2.0 ;
-	 halfFov 		= PI * screenFov / 360.0;
-	 theTan 			= tanf(halfFov);
-	 float dist 		= (h / 2.0) / theTan;
-	 float nearDist 	= dist / 100000.0;	// near / far clip plane
-	 float farDist 	= dist * 50000.0;
-	 as 			= (float)w/(float)h;
-	 
-	 glMatrixMode(GL_PROJECTION);
-	 glLoadIdentity();
-	 gluPerspective(screenFov, as, nearDist, farDist);
-	 
-	 glMatrixMode(GL_MODELVIEW);
-	 glLoadIdentity();
-	 gluLookAt(eyeX, eyeY, dist, eyeX, h/2.0, 0.0, 0.0, 1.0, 0.0);
-	 
-	 glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.
-	 glTranslatef(0, -h, 0);       // shift origin up to upper-left corner.
-	 
-	 glScaled(1, 0.5, 1);
-	 */
-	
-	
-	//	glScaled(1.0/ofGetWidth(), 1.0/ofGetHeight(), 1);
-	
-	//	glScaled(blur->fbo1.getWidth(), blur->fbo1.getHeight(), 1);	
-	
-	//
+
 	int n=1;
 	for(int i=0;i<n;i++){
 		[self updateStep:1.0/n];
@@ -333,7 +258,18 @@
 		ofSetColor(255, 255, 255);
 		ofFill();
 		glRotated(-45, 0, 0, 1);
-		ofRect(0, 3-3*(int(outputTime->hostTime/([wallSpeedControl floatValue]/100.0*100000.0))%10000)/10000.0-1.0, 0.06, 0.4);
+		glPushMatrix();
+		glTranslatef([floorXControl floatValue]/100.0, 1-floorPos, 0);
+		ofRect(0, 0, 0.06, 0.4);
+		glPopMatrix();
+
+		glPushMatrix();
+		glTranslatef(0, 1-hajPos, 0);
+		for(float i=-1;i<1;i+= 0.2){
+			ofTriangle(i, 0, i+1/8.0, 0, i+1/16.0, -0.07);
+		}
+		glPopMatrix();
+		
 		glPopMatrix();
 	}	
 	
@@ -369,22 +305,28 @@
 }
 
 -(void) generateObjects{
-	int i=0;
+	[wallObjects removeAllObjects];
+	floorPos = -1;
+	numLayers = 0;
 	for(float z=-1000;z<=0;z+=200){
+		int i=0;
 		for(float y=0;y<=1;y+=[wallSizeControl floatValue]/100.0){
 			for(float x=0;x<=1;x+=(1.0/aspect)*[wallSizeControl floatValue]/100.0){
 				WallObject * nObj = [[WallObject alloc] init];
-				[nObj setPos:new ofxPoint3f(x,y,ofRandom(-100, 100)+z)];
+				[nObj setPos:new ofxPoint3f(x,y,z)];
 				if([nObj pos]->x > 1/2.0){
-					[nObj setOffset:new ofxPoint3f(0.2,0,0)];					
+					[nObj setOffset:new ofxPoint3f(0.2,0,ofRandom(-100, 100))];					
 				} else {
-					[nObj setOffset:new ofxPoint3f(-0.2,0,0)];						
+					[nObj setOffset:new ofxPoint3f(-0.2,0,ofRandom(-100, 100))];						
 				}			
 				
 				[nObj setObstacle:NO];
 				[wallObjects addObject:nObj];
+				i++;
 			}
 		}
+		numPerLayer = i;
+		numLayers ++;
 	}
 	
 	for(int i=0;i<1;i++){
@@ -398,6 +340,10 @@
 	}
 }
 
-
+-(IBAction) reset:(id)sender{
+	[self generateObjects];
+	
+	
+}
 
 @end

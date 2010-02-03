@@ -67,7 +67,7 @@
 
 -(IBAction) setColorWell:(id)sender;
 
--(NSColor*) color;
+-(NSColor*) projectorColor;
 
 -(id)initWithN:(int)n;
 - (BOOL) loadNibFile;	

@@ -28,8 +28,12 @@
 @interface Strategi : ofPlugin {
 	IBOutlet NSColorWell * player1Color;
 	IBOutlet NSColorWell * player2Color;
-	IBOutlet NSColorWell * player1LineColor;
-	IBOutlet NSColorWell * player2LineColor;
+	IBOutlet NSColorWell * player3Color;
+	IBOutlet NSColorWell * player4Color;
+	
+	IBOutlet NSButton * player3ColorActive;
+	IBOutlet NSButton * player4ColorActive;
+	
 	IBOutlet NSSlider * blurSlider;
 	IBOutlet NSSlider * lineWidth;
 	IBOutlet NSSlider * fade;
@@ -38,8 +42,8 @@
 	IBOutlet NSSlider * outputBlurSlider;
 
 
-	ofxCvGrayscaleImage * images[2];
-	ofxCvContourFinder * contourFinder[2];
+	ofxCvGrayscaleImage * images[4];
+	ofxCvContourFinder * contourFinder[4];
 	NSMutableArray * blobs;
 	float area[2];
 	ofImage * texture;
@@ -49,5 +53,5 @@
 
 }
 -(IBAction) restart:(id)sender;
-
+-(IBAction) asssignBottom:(id)sender;
 @end

@@ -22,7 +22,7 @@
 	texture = new ofImage;
 	texture->loadImage("waterRingTexture1.png");
 	
-	for(int i=0;i<2;i++){
+	for(int i=0;i<4;i++){
 		blobs = [[NSMutableArray array] retain];
 		contourFinder[i] = new ofxCvContourFinder();
 		
@@ -34,12 +34,31 @@
 	
 	blur = new shaderBlur();
 	blur->setup(StrategiW, StrategiH);
-
+	
 }
 
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if([pause state] != NSOnState){
+		StrategiBlob * sblob;
+		int otherPlayer = -1;
+		for(sblob in blobs){
+			if(otherPlayer == -1){
+				if(sblob->player == 1)
+					otherPlayer = 0;
+				if(sblob->player == 0)
+					otherPlayer = 1;
+			} else {
+				sblob->player = otherPlayer;
+				if(sblob->player == 1)
+					otherPlayer = 0;
+				if(sblob->player == 0)
+					otherPlayer = 1;
+			}
+		}	
+		
+		
+		
 		BOOL flagChanged = NO;
 		for(int u=0;u< [blobs count]; u++){
 			StrategiBlob * sblob = [blobs objectAtIndex:u];
@@ -118,14 +137,16 @@
 		}
 		
 		if(flagChanged){
-			for(int u=0;u<2;u++){
-				ofxCvGrayscaleImage smallerImage;
-				smallerImage.allocate(StrategiBlobW, StrategiBlobH);
-				smallerImage.scaleIntoMe(*images[u], CV_INTER_NN);
-				contourFinder[u]->findContours(smallerImage, 20, (StrategiBlobW*StrategiBlobH)/1, 10, false, true);	
-				area[u] = 0;
-				for(int j=0;j<contourFinder[u]->nBlobs;j++){
-					area[u] += contourFinder[u]->blobs[j].area;
+			for(int u=0;u<4;u++){
+				if((u == 2 && [player3ColorActive state] == NSOnState) || (u == 3 && [player4ColorActive state] == NSOnState) || u == 0 || u == 1){
+					ofxCvGrayscaleImage smallerImage;
+					smallerImage.allocate(StrategiBlobW, StrategiBlobH);
+					smallerImage.scaleIntoMe(*images[u], CV_INTER_NN);
+					contourFinder[u]->findContours(smallerImage, 20, (StrategiBlobW*StrategiBlobH)/1, 10, false, true);	
+					area[u] = 0;
+					for(int j=0;j<contourFinder[u]->nBlobs;j++){
+						area[u] += contourFinder[u]->blobs[j].area;
+					}
 				}
 				//	cout<<u<<": "<<area[u]<<endl;
 				
@@ -133,29 +154,31 @@
 		}
 		
 		if([fade floatValue]){
-			for(int i=0;i<2;i++){
-				ofxCvGrayscaleImage g;
-				g.allocate(StrategiW, StrategiH);
-				g.set(255*[fade floatValue]/100.0);
-				*images[i] -= g;
+			for(int i=0;i<4;i++){
+				if((i == 2 && [player3ColorActive state] == NSOnState) || (i == 3 && [player4ColorActive state] == NSOnState) || i == 0 || i == 1){					
+					ofxCvGrayscaleImage g;
+					g.allocate(StrategiW, StrategiH);
+					g.set(255*[fade floatValue]/100.0);
+					*images[i] -= g;
+				}
 			}
 		}
 		
 		
 		
-	/*	
-		for(int i=0;i<5;i++){
-			for(int u=0;u<3;u++){
-				LedLamp * lamp = [GetPlugin(DMXOutput) getLamp:u y:i];
-				[lamp setLamp:0 g:0 b:0 a:0];
-			}
-		}
-		
-		
-		NSColor * c = [player2Color color];		
-		
-		[GetPlugin(DMXOutput) makeNumber:area[1]/5000 r:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*190*1.0];
-	*/	
+		/*	
+		 for(int i=0;i<5;i++){
+		 for(int u=0;u<3;u++){
+		 LedLamp * lamp = [GetPlugin(DMXOutput) getLamp:u y:i];
+		 [lamp setLamp:0 g:0 b:0 a:0];
+		 }
+		 }
+		 
+		 
+		 NSColor * c = [player2Color color];		
+		 
+		 [GetPlugin(DMXOutput) makeNumber:area[1]/5000 r:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*190*1.0];
+		 */	
 	}
 	
 	
@@ -164,7 +187,75 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ofEnableAlphaBlending();
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-
+	
+	ofFill();
+	
+	PersistentBlob * pblob;
+	for(pblob in [tracker(0) persistentBlobs]){
+		int player = -1;
+		int otherPlayer;
+		StrategiBlob * sblob;
+		for(sblob in blobs){
+			if(sblob->pid == pblob->pid){
+				sblob->aliveCounter = 0;
+				player = sblob->player;
+				break;
+			}
+		}				
+		if(player == -1){
+			int otherPlayer = 0;
+			int otherPlayerRate = 20;
+			StrategiBlob * sblob;
+			for(sblob in blobs){
+				//	if(otherPlayer == -1 || otherPlayerRate  > sblob->aliveCounter){
+				otherPlayer = 0;
+				if(sblob->player == 0)
+					otherPlayer = 1;
+				
+				otherPlayerRate = sblob->aliveCounter;
+				//	}
+			}	
+			//				cout<<otherPlayer<<endl;
+			sblob = [[StrategiBlob alloc] init]; 
+			sblob->pid = pblob->pid;
+			ofxPoint2f p = [pblob getLowestPoint]; //*pblob->centroid;
+			ofxPoint2f centroid = [GetPlugin(ProjectionSurfaces) convertFromProjection:p surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor" ]];
+			//			cout<<centroid.x<<"  "<<centroid.y<<endl;
+			/*if(centroid.x > 0.5){
+			 player = sblob->player = 1;
+			 } else {
+			 player = sblob->player = 0;	
+			 }*/
+			player = sblob->player = otherPlayer;
+			[blobs addObject:sblob];
+		}
+		
+		if(player == 0) otherPlayer = 1;
+		else otherPlayer = 0;
+		
+		Blob * b;
+		for(b in [pblob blobs]){
+			if(player ==0){
+				ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0);	
+			} else {
+				ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0);	
+			}
+			
+			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+			ofBeginShape();
+			for( int u = 0; u < [b nPts]; u++){
+				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Front" toSurface:"Floor"];
+				ofVertex(p.x, p.y);			
+			}
+			ofEndShape();
+			glPopMatrix();
+			
+		}
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -178,19 +269,19 @@
 	
 	//	ofSetupScreen();
 	
-
-
+	
+	
 	
 	
 	
 	
 	
 	for(int i=0;i<2;i++){
-
+		
 		if(i ==0){
-			ofSetColor([[player1LineColor color] redComponent]*255, [[player1LineColor color] greenComponent]*255, [[player1LineColor color] blueComponent]*255,255.0);	
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0);	
 		} else {
-			ofSetColor([[player2LineColor color] redComponent]*255, [[player2LineColor color] greenComponent]*255, [[player2LineColor color] blueComponent]*255,255.0);	
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0);	
 		}
 		
 		for(int u=0;u<contourFinder[i]->nBlobs;u++){
@@ -241,7 +332,7 @@
 			glBegin(GL_QUAD_STRIP);
 			for(int j=0;j<points.size();j++){
 				//	glTexCoord2f(0.0f, 0.0f);  
-			//	ofxVec2f hat = hats[j] * ((o)*(float)offsetSize/no);
+				//	ofxVec2f hat = hats[j] * ((o)*(float)offsetSize/no);
 				glVertex2f(points[j].x, points[j].y);
 				
 			}
@@ -259,8 +350,8 @@
 	glScaled(ofGetWidth(), ofGetHeight(), 1);
 	ofEnableAlphaBlending();
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-
-
+	
+	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	blur->draw(0, 0, 1, 1, true);
 	glPopMatrix();
@@ -269,10 +360,10 @@
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	blur->draw(0, 0, 1, 1, true);
 	glPopMatrix();
-
-
+	
+	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-
+	
 	for(int i=0;i<2;i++){
 		if(i ==0){
 			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255);	
@@ -299,13 +390,45 @@
 	glPopMatrix();
 	glPopMatrix();
 	glPopMatrix();
-
+	
+	
+	
+	
+	
 }
 
 -(IBAction) restart:(id)sender{
 	for(int i=0;i<2;i++){
 		blobs = [[NSMutableArray array] retain];
 		images[i]->set(0);
+	}
+	
+}
+
+-(IBAction) asssignBottom:(id)sender{
+	StrategiBlob * sblob;
+	StrategiBlob * lowestblob = nil;
+	
+	PersistentBlob * pblob;
+	int y = -1;
+	for(pblob in [tracker(0) persistentBlobs]){
+		if(pblob->centroid->y > y || y == -1){
+			y = pblob->centroid->y;
+			for(sblob in blobs){
+				if(sblob->pid == pblob->pid){
+					lowestblob = sblob;
+				}
+			}	
+			
+		}
+	}
+	
+	for(sblob in blobs){
+		sblob->player = 1;		
+	}	
+	
+	if(lowestblob != nil){
+		lowestblob->player = 0;
 	}
 	
 }
