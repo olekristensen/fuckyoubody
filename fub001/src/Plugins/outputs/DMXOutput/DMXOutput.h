@@ -109,7 +109,7 @@
 -(IBAction) setBackgroundBlue:(id)sender;
 -(IBAction) setBackground:(id)sender;
 
-
+-(void) setup;
 
 //-(LedLamp*) getLamp:(int)x y:(int)y;
 

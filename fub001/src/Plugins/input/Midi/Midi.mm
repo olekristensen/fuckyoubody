@@ -372,12 +372,10 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 			if ([[theBinding controller] intValue] == [[binding controller] intValue]) {
 				[theBinding setConflict:YES];
 				[binding setConflict:YES];
-				NSLog(@"theere is a conflict bewteeen: %i %i   and    %i %i", [[theBinding channel] intValue], [[theBinding controller] intValue], [[binding channel] intValue], [[binding controller] intValue] );
-				
 				showMidiConflictAlert = YES;
 				[NSObject cancelPreviousPerformRequestsWithTarget:self];
 				[self performSelector:@selector(showConflictSheet) withObject:nil afterDelay:1.0];
-			}
+			 }
 		}
 	}
 	

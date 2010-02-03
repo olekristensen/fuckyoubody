@@ -54,10 +54,17 @@
 				 options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
 													 forKey:@"NSContinuouslyUpdatesValue"]];
 	
+	[blobAlphaSlider bind:@"value"
+				toObject:blobcolor
+			 withKeyPath:[NSString stringWithFormat:@"alpha", playerNumber+1]
+				 options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+													 forKey:@"NSContinuouslyUpdatesValue"]];
+	
 	
 	NSColor * c = [NSColor colorWithCalibratedRed:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.red",playerNumber+1]] green:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.green",playerNumber+1]] blue:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.blue",playerNumber+1]] alpha:1.0];
 	[color setColor:c];
 	int i=12;
+	
 	[[addTopButton midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
 	[[addTopButton midi] setLabel: [NSString stringWithFormat:@"Player %i - Tilføj top blob", playerNumber+1]];
 	
@@ -79,21 +86,12 @@
 	[[blobBlurSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
 	[[blobBlurSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob blur", playerNumber+1]];
 
-	[[blobRedSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
-	[[blobRedSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob red", playerNumber+1]];
-
-	[[blobGreenSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
-	[[blobGreenSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob green", playerNumber+1]];
+	[color setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[color setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Color", playerNumber+1]];
 	
-	[[blobBlueSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
-	[[blobBlueSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob blue", playerNumber+1]];
+	[blobcolor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i+=4 +(20*playerNumber+1)]];
+	[blobcolor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Blob", playerNumber+1]];
 
-	[[blobAlphaSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
-	[[blobAlphaSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob alpha", playerNumber+1
-									   
-									   ]];
-
-	
 	return YES;
 }
 

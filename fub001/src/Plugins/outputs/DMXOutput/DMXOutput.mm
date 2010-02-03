@@ -36,12 +36,10 @@
 	}
 	[box addColor:c onLamp:lamp withBlending:[generalNumberBlendmode selectedSegment]];
 	
-	
 	//Random noise
 	c = [[noiseColor1 color] blendedColorWithFraction:ofRandom(0, 1) ofColor:[noiseColor2 color]];
 	//c = [c colorWithAlphaComponent:[noiseAlpha floatValue]/[noiseAlpha maxValue]];
 	[box addColor:c onLamp:lamp withBlending:[noiseBlendMode selectedSegment]];
-	
 	
 /*	if(lamp.x == 0 && lamp.y == 0){
 		if([patchButton state] == NSOnState){
@@ -420,16 +418,21 @@
 	}glPopMatrix();
 }
 
+-(void) setup {
+	/** BINDING MISSING 
+	[[brightnessSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
+	[[brightnessSlider midi] setController: [[NSNumber alloc] initWithInt:14+(20*camNumber)]];
+	[[brightnessSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
+	[[brightnessSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Brightness", camNumber]];
+	 **/
+}
+
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	DiodeBox * box;
 	int n= 0;
 	for(box in diodeboxes){
 		[box reset];
-		
-		
-		
-		
 		/*//Background
 		 for(int x=0;x<3;x++){
 		 for(int y=0;y<5;y++){

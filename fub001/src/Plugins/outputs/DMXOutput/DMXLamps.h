@@ -43,7 +43,6 @@
 @end
 
 
-
 @interface NormalLamp : Lamp
 {
 @public
