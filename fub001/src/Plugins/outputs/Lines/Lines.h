@@ -32,6 +32,7 @@
 	IBOutlet NSSegmentedControl * trackingDirection;
 	IBOutlet PluginUISlider * balanceSlider;
 	IBOutlet PluginUISlider * lineWidthSlider;
+	IBOutlet NSButton * addButton;
 	IBOutlet NSButton * trackingButton;
 	IBOutlet NSButton * timeoutLinesButton;
 	
