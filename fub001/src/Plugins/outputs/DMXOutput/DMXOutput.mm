@@ -373,7 +373,7 @@
 	for(int i=0;i<4;i++){
 		DiodeBox * box = [[DiodeBox alloc] initWithStartaddress:address];
 		[diodeboxes addObject:box];
-		address +=62;
+		address +=60;
 	}
 	
 	

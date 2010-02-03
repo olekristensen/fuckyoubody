@@ -16,7 +16,7 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>740</string>
-				<string>1.2.5</string>
+				<string>1.2.2</string>
 			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
@@ -159,7 +159,6 @@
 						<bool key="BWGBHasTopBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -207,7 +206,6 @@
 						<bool key="BWGBHasTopBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -436,7 +434,6 @@
 						<bool key="BWGBHasTopBorder">YES</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -922,6 +919,12 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSUserDefaultsController" id="198778574">
+				<object class="NSMutableArray" key="NSDeclaredKeys">
+					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>midi.appleScriptMachine</string>
+					<string>midi.appleScriptUsername</string>
+					<string>midi.appleScriptPassword</string>
+				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomView" id="420934078">
@@ -1799,6 +1802,78 @@
 					</object>
 					<int key="connectionID">425</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.midi.appleScriptMachine</string>
+						<reference key="source" ref="290741874"/>
+						<reference key="destination" ref="198778574"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="290741874"/>
+							<reference key="NSDestination" ref="198778574"/>
+							<string key="NSLabel">value: values.midi.appleScriptMachine</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.midi.appleScriptMachine</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">455</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.midi.appleScriptUsername</string>
+						<reference key="source" ref="373360423"/>
+						<reference key="destination" ref="198778574"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="373360423"/>
+							<reference key="NSDestination" ref="198778574"/>
+							<string key="NSLabel">value: values.midi.appleScriptUsername</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.midi.appleScriptUsername</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">457</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.midi.appleScriptPassword</string>
+						<reference key="source" ref="98917501"/>
+						<reference key="destination" ref="198778574"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="98917501"/>
+							<reference key="NSDestination" ref="198778574"/>
+							<string key="NSLabel">value: values.midi.appleScriptPassword</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.midi.appleScriptPassword</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">459</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">appleScriptMachine</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="290741874"/>
+					</object>
+					<int key="connectionID">460</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">appleScriptPassword</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="98917501"/>
+					</object>
+					<int key="connectionID">461</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">appleScriptUsername</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="373360423"/>
+					</object>
+					<int key="connectionID">462</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -2462,7 +2537,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>{{276, 216}, {854, 591}}</string>
+					<string>{{45, 63}, {854, 591}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>
@@ -2552,7 +2627,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">450</int>
+			<int key="maxID">462</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2581,6 +2656,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>appleScriptMachine</string>
+							<string>appleScriptPassword</string>
+							<string>appleScriptUsername</string>
 							<string>boundControlsController</string>
 							<string>midiInterface</string>
 							<string>midiMappingsList</string>
@@ -2589,6 +2667,9 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSTextField</string>
+							<string>NSSecureTextField</string>
+							<string>NSTextField</string>
 							<string>NSArrayController</string>
 							<string>NSPopUpButton</string>
 							<string>NSTableView</string>

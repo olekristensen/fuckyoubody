@@ -20,16 +20,15 @@
 #define DEATH_DURATION 0.5
 #define SPLAT_DURATION 0.5
 #define RADIUS_SQUARED 0.0009
-
+#define SCREEN_MARGIN 0.08
 
 @interface Lemmings : ofPlugin {
 
 	NSUserDefaults	*userDefaults;
 
 	bool			doReset;
+	bool			doClearAllLemmings;
 	
-	IBOutlet PluginUIColorWell * testColor;
-
 	float			screenTrackingLeft;
 	float			screenTrackingRight;
 	float			screenTrackingHeight;
@@ -38,7 +37,6 @@
 	Filter *		screenTrackingRightFilter;
 	Filter *		screenTrackingHeightFilter;
 	
-	ofImage			*coinImage;
 	ofPoint			*screenDoorPos;
 	
 	ofxVec2f		* screenBottomOnFloorLeft;
@@ -72,6 +70,8 @@
 
 	IBOutlet NSSlider * screenLemmingsBrightness;	//	0 ... 1 black ... white
 
+	IBOutlet NSSlider * screenPlayerSquareAlpha;	//	0 ... 1 transparent ... visible
+
 	IBOutlet NSButton * screenFloor;				//	BOOL
 
 	// floor world
@@ -85,6 +85,7 @@
 	IBOutlet NSSlider * floorBlobFarForceThreshold;	//	0 ... 1
 
 	IBOutlet NSSlider * floorLemmingsColor;			//	0 ... 1 black ... white
+	IBOutlet NSSlider * floorLemmingsDistanceAlpha;	//	0 ... 1 black ... white
 	IBOutlet NSSlider * floorColor;					//	0 ... 1 black ... white
 
 	IBOutlet NSSlider * floorLemmingsCoins;			//	0 ... 1 transparent ... visible
@@ -99,12 +100,15 @@
 	IBOutlet NSSlider * motionGravity;
 
 	IBOutlet NSSlider * lemmingSize;
-
+	
 	int lemmingDiff;
 	pthread_mutex_t mutex;
 	
+	ofImage			*parachuteImage;
+	
 }
 
+@property (readonly) ofImage *parachuteImage;
 @property (readonly) int numberLemmings;
 @property (readonly) float screenGravityAsFloat;
 
@@ -113,12 +117,17 @@
 -(IBAction) addScreenLemming:(id)sender;
 -(IBAction) resetLemmings:(id)sender;
 -(IBAction) killAllLemmings:(id)sender;
+-(IBAction) clearAllLemmings:(id)sender;
+
+
 -(void) updateLemmingArray:(NSMutableArray*) theLemmingArray timeInterval:(CFTimeInterval)timeInterval;
 -(void) makeFloorLemmingFromShadowAtX:(float)xPosition Y: (float)yPosition;
 -(void) reset;
 -(float) getScreenGravityAsFloat;
 -(float) getScreenSplatVelocityAsFloat;
 -(float) getScreenElementsAlphaAsFloat;
+-(float) getLemmingsSizeAsFloat;
+
 
 @end
 
@@ -126,6 +135,8 @@
 
 	float			radius;
 	float			scaleFactor;
+	float			coinyness;
+	float			alpha;
 	ofxVec2f		*position;
 	ofxVec2f		*vel;
 	ofxVec2f		*totalforce;
@@ -140,6 +151,8 @@
 -(id) initWithX:(float)xPosition Y:(float)yPosition spawnTime:(CFTimeInterval)timeInterval;
 
 @property (readwrite) float radius;
+@property (readwrite) float alpha;
+@property (readwrite) float coinyness;
 @property (readwrite) float scaleFactor;
 @property (assign, readwrite) ofxVec2f *position;
 @property (assign, readwrite) ofxVec2f *totalforce;

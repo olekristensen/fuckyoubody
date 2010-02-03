@@ -28,6 +28,9 @@
 	IBOutlet NSTableView	* midiMappingsListForPrint;
 	IBOutlet NSView			* printHeaderView;
 	IBOutlet NSPopUpButton	* midiInterface;
+	IBOutlet NSTextField	* appleScriptMachine;
+	IBOutlet NSTextField	* appleScriptUsername;
+	IBOutlet NSSecureTextField	* appleScriptPassword;
 	
 	CFTimeInterval			updateTimeInterval;
 	CFTimeInterval			midiTimeInterval;
