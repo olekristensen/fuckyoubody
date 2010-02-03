@@ -316,7 +316,7 @@
 					for(int i=0;i<[b nPts];i++){
 						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
 
-						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:5p fromProjection:"Front" toSurface:"Floor"];
+						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
 						ofxPoint2f backP = [GetPlugin(ProjectionSurfaces) convertPoint:floorP toProjection:"Back" fromSurface:"Floor"];
 						if(backLeft->x == -1 || backP.x > backLeft->x){
 							*backLeft = backP;

@@ -79,6 +79,7 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if(going){
+		ofFill();
 		ofSetColor(255, 0, 0);
 		ofLine(0, 1.0-percent, 0.5, 1.0-percent);
 		StregkodePlayer * player;

@@ -274,4 +274,8 @@
 	[userDefaults setFloat:[[sender color] greenComponent] forKey:[NSString stringWithFormat:@"player.%i.color.green",playerNumber+1]];
 	[userDefaults setFloat:[[sender color] blueComponent] forKey:[NSString stringWithFormat:@"player.%i.color.blue",playerNumber+1]];
 }
+
+-(NSColor*) color{
+	return [color color];
+}
 @end

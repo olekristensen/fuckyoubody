@@ -67,6 +67,8 @@
 
 -(IBAction) setColorWell:(id)sender;
 
+-(NSColor*) color;
+
 -(id)initWithN:(int)n;
 - (BOOL) loadNibFile;	
 @end

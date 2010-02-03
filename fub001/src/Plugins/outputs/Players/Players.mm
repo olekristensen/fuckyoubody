@@ -46,19 +46,9 @@
 		[players[i] draw];
 	}
 }
-/*
+
 -(NSColor*) playerColor:(int)player{
-	if(player == 0){
-		return [player1color color];
-	}
-	if(player == 1){
-		return [player2color color];
-	}
-	if(player == 2){
-		return [player3color color];
-	}
-	if(player == 3){
-		return [player4color color];
-	}
-}*/
+	return [players[player] color];
+
+}
 @end
