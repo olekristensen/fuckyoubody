@@ -16,10 +16,10 @@
 #include "Players.h"
 
 
-#define RADIUS 0.05
+#define RADIUS 0.03
 #define DEATH_DURATION 0.5
 #define SPLAT_DURATION 0.5
-#define RADIUS_SQUARED 0.0025
+#define RADIUS_SQUARED 0.0009
 
 
 @interface Lemmings : ofPlugin {
@@ -97,6 +97,8 @@
 	IBOutlet NSSlider * motionTreshold;
 	IBOutlet NSSlider * motionMultiplier;
 	IBOutlet NSSlider * motionGravity;
+
+	IBOutlet NSSlider * lemmingSize;
 
 	int lemmingDiff;
 	pthread_mutex_t mutex;

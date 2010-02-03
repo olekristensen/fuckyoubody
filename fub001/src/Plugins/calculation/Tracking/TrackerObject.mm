@@ -277,7 +277,7 @@
 	
 	[[learnBackgroundButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Grab Background", trackerNumber]];
 	[[learnBackgroundButton midi] setChannel: [[NSNumber alloc] initWithInt:2]];
-	[[learnBackgroundButton midi] setController: [[NSNumber alloc] initWithInt:10+(20*trackerNumber)]];
+	[[learnBackgroundButton midi] setController: [[NSNumber alloc] initWithInt:60+(20*trackerNumber)]];
 	[[learnBackgroundButton midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:0]];
 	
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];

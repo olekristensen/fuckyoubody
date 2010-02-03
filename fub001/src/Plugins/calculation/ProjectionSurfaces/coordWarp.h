@@ -20,13 +20,10 @@ public:
 	void calculateMatrix(ofxPoint2f src[4], ofxPoint2f dst[4]);
 	
 	ofxPoint2f transform(float xIn, float yIn);
-	ofxPoint2f transform2(float xIn, float yIn);
-
 	ofxPoint2f inversetransform(float xIn, float yIn);
 
 	ofxPoint2f transform(ofxPoint2f p);
 	ofxPoint2f inversetransform(ofxPoint2f p);
-
 	
 	CvMat *translate;
 	CvMat *itranslate;

@@ -38,26 +38,6 @@ ofxPoint2f coordWarping::inversetransform(ofxPoint2f p){
 	return inversetransform(p.x,p.y);	
 }
 
-
-ofxPoint2f coordWarping::transform2(float xIn, float yIn){
-	double pts[] = {xIn, yIn};
-	
-	//CvMat * srcPnt = cvCreateMat(1,1,CV_32FC2);
-
-	CvMat srcPnt = cvMat(1, 1, CV_32FC2, pts);
-	CvMat * dstPnt = cvCreateMat(1, 1, CV_32FC2);
-	
-	//	cvInvert(cv_translate_3x3, dst);
-	
-	cvPerspectiveTransform(&srcPnt, dstPnt, itranslate);
-	
-	float *matrix = dstPnt->data.fl;
-	
-	
-	
-	cout<<"In: "<<pts[0]<<", "<<pts[1]<<"  Out:"<<matrix[0]<<","<<matrix[1]<<endl;;
-}
-
 //---------------------------		
 ofxPoint2f coordWarping::transform(float xIn, float yIn){
 	ofxPoint2f out;

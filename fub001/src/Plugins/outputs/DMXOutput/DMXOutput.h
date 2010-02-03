@@ -11,25 +11,25 @@
 @interface DMXEffectColumn : NSObject
 {
 	IBOutlet PluginUIColorWell * backgroundColor;
-	IBOutlet NSSlider * backgroundColorR;
-	IBOutlet NSSlider * backgroundColorG;
-	IBOutlet NSSlider * backgroundColorB;
-	IBOutlet NSSlider * backgroundColorA;
+	IBOutlet PluginUISlider * backgroundColorR;
+	IBOutlet PluginUISlider * backgroundColorG;
+	IBOutlet PluginUISlider * backgroundColorB;
+	IBOutlet PluginUISlider * backgroundColorA;
 	
 	IBOutlet PluginUIColorWell * generalNumberColor;
-	IBOutlet NSSlider * generalNumberValue;	
-	IBOutlet NSSegmentedControl * generalNumberBlendmode;
-	IBOutlet NSSlider * generalNumberColorR;
-	IBOutlet NSSlider * generalNumberColorG;
-	IBOutlet NSSlider * generalNumberColorB;
-	IBOutlet NSSlider * generalNumberColorA;
+	IBOutlet PluginUISlider * generalNumberValue;	
+	IBOutlet PluginUISegmentedControl * generalNumberBlendmode;
+	IBOutlet PluginUISlider * generalNumberColorR;
+	IBOutlet PluginUISlider * generalNumberColorG;
+	IBOutlet PluginUISlider * generalNumberColorB;
+	IBOutlet PluginUISlider * generalNumberColorA;
 
 	//Noise
 	IBOutlet PluginUIColorWell * noiseColor1;	
 	IBOutlet PluginUIColorWell * noiseColor2;	
-	IBOutlet NSSegmentedControl * noiseBlendMode;
+	IBOutlet PluginUISegmentedControl * noiseBlendMode;
 	
-	IBOutlet NSButton * patchButton;
+	IBOutlet PluginUIButton * patchButton;
 	
 	IBOutlet NSView * settingsView;
 	int number;
@@ -38,6 +38,7 @@
 @property (assign,readwrite) NSView * settingsView;
 @property (assign, readwrite) int number;
 
+- (id) initWithNumber:(int)aNumber;
 -(BOOL) loadNibFile;
 -(void)addColorForLamp:(ofPoint)lamp box:(DiodeBox*)box;
 @end

@@ -384,4 +384,8 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	pthread_mutex_unlock(&mutex);
 }
 
+-(NSString*) getAppleScriptConnectionString{
+	return @"eppc://ole:5om75ytten.@ole-kristensens-MacBook-Pro-15.local";
+}
+
 @end

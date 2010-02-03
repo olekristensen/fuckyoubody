@@ -214,14 +214,14 @@
 			for (element in screenElements){
 				if([element active]){
 					if([lemming vel]->y >= 0 ){
-						if([lemming position]->y+(RADIUS*0.5*[lemming scaleFactor]) > [element position]->y){
-							if([lemming position]->y+(RADIUS*0.5*[lemming scaleFactor]) < [element position]->y+0.03 ){
+						if([lemming position]->y+(RADIUS*[lemming scaleFactor]) > [element position]->y){
+							if([lemming position]->y+(RADIUS*[lemming scaleFactor]) < [element position]->y+0.03 ){
 								// just in height of surface
 								if([lemming position]->x+(RADIUS*[lemming scaleFactor]) > [element position]->x){
 									if([lemming position]->x-(RADIUS*[lemming scaleFactor]) < [element position]->x+[element size]){
-										[lemming vel]->y *= -0.75;
-										[lemming vel]->x *= 1.004;
-										[lemming position]->y = [element position]->y-(RADIUS*0.5*[lemming scaleFactor]);
+										[lemming vel]->y *= -0.5;
+										[lemming vel]->x *= 1.01;
+										[lemming position]->y = [element position]->y-(RADIUS*[lemming scaleFactor]);
 									}
 								}
 							}
@@ -234,14 +234,14 @@
 #pragma mark bless with dancer box
 		
 		if([lemming vel]->y >= 0 ){
-			if([lemming position]->y+(RADIUS*0.5*[lemming scaleFactor]) > screenTrackingHeight){
-				if([lemming position]->y+(RADIUS*0.5*[lemming scaleFactor]) < screenTrackingHeight+0.03 ){
+			if([lemming position]->y+(RADIUS*[lemming scaleFactor]) > screenTrackingHeight){
+				if([lemming position]->y+(RADIUS*[lemming scaleFactor]) < screenTrackingHeight+0.03 ){
 					if([lemming position]->x+(RADIUS*[lemming scaleFactor]) > screenTrackingLeft){
 						if([lemming position]->x-(RADIUS*[lemming scaleFactor]) < screenTrackingRight){
 							[lemming vel]->y *= -0.1;
 							[lemming vel]->x *= 0.9;
 							[lemming setBlessed:YES];
-							[lemming position]->y = screenTrackingHeight-(RADIUS*0.5*[lemming scaleFactor]);
+							[lemming position]->y = screenTrackingHeight-(RADIUS*[lemming scaleFactor]);
 						}
 					}
 				}
@@ -264,7 +264,7 @@
 		for(int i = 0;i < [screenLemmings count];i++){
 			lemming = [screenLemmings objectAtIndex:i];
 			if ([lemming splatTime] < 0) {
-				if([lemming position]->y + (RADIUS*0.5) > 0.9999){
+				if([lemming position]->y + (RADIUS) > 0.9999){
 					
 					ofxVec2f lemmingPosition = [GetPlugin(ProjectionSurfaces) convertPoint:*[lemming position] toProjection:"Front" fromSurface:"Backwall"];
 					lemmingPosition= [GetPlugin(ProjectionSurfaces) convertPoint:lemmingPosition fromProjection:"Front" toSurface:"Floor"];
@@ -329,22 +329,22 @@
 	
 #pragma mark screen edge collision
 	for(lemming in screenLemmings){
-		if([lemming position]->x - RADIUS < 0 ){
+		if([lemming position]->x - (RADIUS) < 0 ){
 			[lemming vel]->x *= -0.9;
-			[lemming position]->x = 0.00001 + RADIUS;
+			[lemming position]->x = 0.00001 + (RADIUS);
 		}
-		if([lemming position]->y - RADIUS < -0.0 ){
+		if([lemming position]->y - (RADIUS) < -0.0 ){
 			[lemming vel]->y *= -0.9;
-			[lemming position]->y = 0.00001 + RADIUS;				
+			[lemming position]->y = 0.00001 + (RADIUS);				
 		}
-		if([lemming position]->x + RADIUS > [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]){
-			[lemming vel]->x *= -0.9;
-			[lemming position]->x = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] - (0.00001 + RADIUS);				
+		if([lemming position]->x + (RADIUS) > [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]){
+			[lemming vel]->x *= -0.5;
+			[lemming position]->x = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] - (0.0001 + (RADIUS));				
 		}
-		if([lemming position]->y + (RADIUS*0.5) > 1){
+		if([lemming position]->y + (RADIUS) > 1){
 			[lemming collision:timeInterval];
-			[lemming vel]->y *= -0.9;
-			[lemming position]->y = 0.99999 - (RADIUS*0.5);								
+			[lemming vel]->y *= -0.5;
+			[lemming position]->y = 0.99999 - (RADIUS);								
 		}
 	}
 	
@@ -397,7 +397,7 @@
 				ofxVec2f diff = *[lemming position] - *[anotherLemming position];
 				diff.normalize();
 				pthread_mutex_lock(&mutex);
-				double iDist = ((double)RADIUS_SQUARED*1.1 - (double)distSq)/(double)(RADIUS_SQUARED*1.1); 
+				double iDist = ((double)RADIUS_SQUARED - (double)distSq)/(double)(RADIUS_SQUARED); 
 				diff *= MIN(iDist*3, 0.02);
 				*[lemming totalforce] += diff;
 				*[anotherLemming totalforce] -= diff;
@@ -516,8 +516,6 @@
 	ofEnableAlphaBlending();
 	
 	NSColor * playerColor = [NSColor orangeColor];// [GetPlugin(Players) playerColor:0];
-	
-	
 	
 	Lemming * lemming;
 		 
@@ -752,7 +750,8 @@
 			glTranslated(position->x, position->y, 0);
 			glRotatef(atan2(vel->y, vel->x)*360, 0, 0, 1);
 			glTranslated(-position->x, -position->y, 0);
-			ofEllipse(position->x, position->y, radius/*-(0.001*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])*/, (0.015*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])+radius);
+			ofCircle(position->x, position->y, radius);
+			//ofEllipse(position->x, position->y, radius/*-(0.001*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])*/, (0.015*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])+radius);
 		}glPopMatrix();
 		//ofCircle(position->x, position->y, radius);
 	}

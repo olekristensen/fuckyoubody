@@ -12,11 +12,46 @@
 
 @implementation DMXEffectColumn
 @synthesize backgroundColorR, settingsView, number;
+
+- (id) initWithNumber:(int)aNumber {
+	self = [super init];
+	if(self){
+		[self setNumber:aNumber];
+	}
+	return self;
+}
+
 - (BOOL) loadNibFile {	
 	if (![NSBundle loadNibNamed:@"DMXColumn"  owner:self]){
 		NSLog(@"Warning! Could not load the nib for dmx ");
 		return NO;
 	}
+	
+	int i = 10;
+	
+	[backgroundColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[backgroundColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Background Color", number]];
+	i+=3;
+	[generalNumberColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[generalNumberColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i General Number Color", number]];
+	i+=3;
+	[[generalNumberBlendmode midi] setController:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[[generalNumberBlendmode midi] setLabel:[NSString stringWithFormat:@"Box %i General Number Blendmode", number]];
+	
+	[[generalNumberValue midi] setController:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[[generalNumberValue midi] setLabel:[NSString stringWithFormat:@"Box %i General Number Value", number]];
+	
+	[noiseColor1 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[noiseColor1 setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Noise Color From", number]];
+	i+=3;
+	
+	[noiseColor2 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[noiseColor2 setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Noise Color To", number]];
+	i+=3;
+	
+	[[noiseBlendMode midi] setController:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[[noiseBlendMode midi] setLabel:[NSString stringWithFormat:@"Box %i Noise Blendmode", number]];
+	
 	return YES;
 }
 
@@ -358,9 +393,8 @@
 	
 	
 	for(int i=0;i<5;i++){
-		columns[i] = [[DMXEffectColumn alloc] init];	
+		columns[i] = [[DMXEffectColumn alloc] initWithNumber:i];
 		[columns[i] loadNibFile];
-		[columns[i] setNumber:i];
 		NSView * dest;
 		
 		if(i == 0) dest = column0; 		
@@ -416,15 +450,6 @@
 			
 		}
 	}glPopMatrix();
-}
-
--(void) setup {
-	/** BINDING MISSING 
-	[[brightnessSlider midi] setChannel: [[NSNumber alloc] initWithInt:1]];
-	[[brightnessSlider midi] setController: [[NSNumber alloc] initWithInt:14+(20*camNumber)]];
-	[[brightnessSlider midi] setSmoothingPercent: [[NSNumber alloc] initWithInt:50]];
-	[[brightnessSlider midi] setLabel: [NSString stringWithFormat:@"Camera %i Brightness", camNumber]];
-	 **/
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
