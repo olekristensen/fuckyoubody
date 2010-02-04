@@ -11,7 +11,7 @@
 			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="142"/>
+			<integer value="153"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -410,33 +410,33 @@
 												<reference key="NSNextResponder" ref="205756826"/>
 												<int key="NSvFlags">258</int>
 												<array class="NSMutableArray" key="NSSubviews">
-													<object class="NSTextField" id="729011877">
+													<object class="NSTextField" id="785149826">
 														<reference key="NSNextResponder" ref="885464631"/>
 														<int key="NSvFlags">268</int>
 														<string key="NSFrame">{{29, 298}, {143, 17}}</string>
 														<reference key="NSSuperview" ref="885464631"/>
 														<bool key="NSEnabled">YES</bool>
-														<object class="NSTextFieldCell" key="NSCell" id="499029252">
+														<object class="NSTextFieldCell" key="NSCell" id="902216669">
 															<int key="NSCellFlags">68288064</int>
 															<int key="NSCellFlags2">71304192</int>
 															<string key="NSContents">Lemmings per minute</string>
 															<reference key="NSSupport" ref="514039748"/>
-															<reference key="NSControlView" ref="729011877"/>
+															<reference key="NSControlView" ref="785149826"/>
 															<reference key="NSBackgroundColor" ref="57401170"/>
 															<reference key="NSTextColor" ref="856719074"/>
 														</object>
 													</object>
-													<object class="NSSlider" id="858354019">
+													<object class="NSSlider" id="443485988">
 														<reference key="NSNextResponder" ref="885464631"/>
 														<int key="NSvFlags">266</int>
 														<string key="NSFrame">{{175, 294}, {370, 21}}</string>
 														<reference key="NSSuperview" ref="885464631"/>
 														<bool key="NSEnabled">YES</bool>
-														<object class="NSSliderCell" key="NSCell" id="106515354">
+														<object class="NSSliderCell" key="NSCell" id="841526403">
 															<int key="NSCellFlags">-2080244224</int>
 															<int key="NSCellFlags2">0</int>
 															<string key="NSContents"/>
-															<reference key="NSControlView" ref="858354019"/>
+															<reference key="NSControlView" ref="443485988"/>
 															<double key="NSMaxValue">320</double>
 															<double key="NSMinValue">0.0</double>
 															<double key="NSValue">0.0</double>
@@ -484,18 +484,18 @@
 															<bool key="NSVertical">NO</bool>
 														</object>
 													</object>
-													<object class="NSButton" id="113292117">
+													<object class="NSButton" id="504869726">
 														<reference key="NSNextResponder" ref="885464631"/>
 														<int key="NSvFlags">268</int>
 														<string key="NSFrame">{{20, 319}, {149, 25}}</string>
 														<reference key="NSSuperview" ref="885464631"/>
 														<bool key="NSEnabled">YES</bool>
-														<object class="NSButtonCell" key="NSCell" id="781650107">
+														<object class="NSButtonCell" key="NSCell" id="473827795">
 															<int key="NSCellFlags">-2080244224</int>
 															<int key="NSCellFlags2">0</int>
 															<string key="NSContents">Add Rumiko's</string>
 															<reference key="NSSupport" ref="514039748"/>
-															<reference key="NSControlView" ref="113292117"/>
+															<reference key="NSControlView" ref="504869726"/>
 															<int key="NSButtonFlags">-2036055809</int>
 															<int key="NSButtonFlags2">163</int>
 															<string key="NSAlternateContents"/>
@@ -2126,7 +2126,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">addRumikosLemming:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="113292117"/>
+						<reference key="destination" ref="504869726"/>
 					</object>
 					<int key="connectionID">436</int>
 				</object>
@@ -2141,10 +2141,10 @@
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.lemmings.floor.lemmingsPerMinute</string>
-						<reference key="source" ref="858354019"/>
+						<reference key="source" ref="443485988"/>
 						<reference key="destination" ref="502006415"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="858354019"/>
+							<reference key="NSSource" ref="443485988"/>
 							<reference key="NSDestination" ref="502006415"/>
 							<string key="NSLabel">value: values.lemmings.floor.lemmingsPerMinute</string>
 							<string key="NSBinding">value</string>
@@ -2158,7 +2158,7 @@
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">floorLemmingsAddRate</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="858354019"/>
+						<reference key="destination" ref="443485988"/>
 					</object>
 					<int key="connectionID">444</int>
 				</object>
@@ -2304,9 +2304,9 @@
 							<reference ref="809360116"/>
 							<reference ref="539323674"/>
 							<reference ref="268162996"/>
-							<reference ref="113292117"/>
-							<reference ref="858354019"/>
-							<reference ref="729011877"/>
+							<reference ref="504869726"/>
+							<reference ref="443485988"/>
+							<reference ref="785149826"/>
 						</array>
 						<reference key="parent" ref="205756826"/>
 					</object>
@@ -2494,7 +2494,6 @@
 							<reference ref="914509282"/>
 							<reference ref="539935122"/>
 							<reference ref="611175209"/>
-							<reference ref="861797134"/>
 							<reference ref="535826576"/>
 							<reference ref="137400954"/>
 							<reference ref="708766620"/>
@@ -2507,6 +2506,7 @@
 							<reference ref="834698192"/>
 							<reference ref="468123293"/>
 							<reference ref="887093079"/>
+							<reference ref="861797134"/>
 						</array>
 						<reference key="parent" ref="205756826"/>
 					</object>
@@ -3002,47 +3002,47 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">433</int>
-						<reference key="object" ref="113292117"/>
+						<reference key="object" ref="504869726"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="781650107"/>
+							<reference ref="473827795"/>
 						</array>
 						<reference key="parent" ref="885464631"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">434</int>
-						<reference key="object" ref="781650107"/>
-						<reference key="parent" ref="113292117"/>
+						<reference key="object" ref="473827795"/>
+						<reference key="parent" ref="504869726"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">438</int>
-						<reference key="object" ref="858354019"/>
+						<reference key="object" ref="443485988"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="106515354"/>
+							<reference ref="841526403"/>
 						</array>
 						<reference key="parent" ref="885464631"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">439</int>
-						<reference key="object" ref="106515354"/>
-						<reference key="parent" ref="858354019"/>
+						<reference key="object" ref="841526403"/>
+						<reference key="parent" ref="443485988"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">442</int>
-						<reference key="object" ref="729011877"/>
+						<reference key="object" ref="785149826"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="499029252"/>
+							<reference ref="902216669"/>
 						</array>
 						<reference key="parent" ref="885464631"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">443</int>
-						<reference key="object" ref="499029252"/>
-						<reference key="parent" ref="729011877"/>
+						<reference key="object" ref="902216669"/>
+						<reference key="parent" ref="785149826"/>
 					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="1.IBEditorWindowLastContentRect">{{-111, 75}, {1125, 744}}</string>
+				<string key="1.IBEditorWindowLastContentRect">{{151, 112}, {1125, 744}}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1.WindowOrigin">{628, 654}</string>
 				<string key="1.editorWindowContentRectSynchronizationRect">{{217, 442}, {480, 272}}</string>
@@ -3062,11 +3062,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Tracking of Humans</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3094,11 +3089,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Screen Entrance Door</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3131,11 +3121,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="0.0" key="value"/>
 							</object>
@@ -3162,11 +3147,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Screen Gravity</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3198,11 +3178,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Screen Floor</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3259,11 +3234,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="50" key="value"/>
 							</object>
@@ -3289,11 +3259,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Coinyness</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3326,11 +3291,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="0.0" key="value"/>
 							</object>
@@ -3357,11 +3317,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Floor Human Near Distance</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3394,11 +3349,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="50" key="value"/>
 							</object>
@@ -3428,11 +3378,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="50" key="value"/>
 							</object>
@@ -3457,11 +3402,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Floor Human Far Force</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3503,11 +3443,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="0.0" key="value"/>
 							</object>
@@ -3535,11 +3470,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Screen Elements Alpha</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3574,11 +3504,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="50" key="value"/>
 							</object>
@@ -3605,11 +3530,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Screen Splat Threshold</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3641,11 +3561,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="50" key="value"/>
 							</object>
@@ -3670,11 +3585,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Floor Lemming Brightness</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3703,11 +3613,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="60" key="value"/>
 							</object>
@@ -3728,11 +3633,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiController</string>
 								<real value="22" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3762,11 +3662,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Let Lemmings in from corner</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3824,7 +3719,7 @@
 					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
 					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
 						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
-						<reference key="object" ref="113292117"/>
+						<reference key="object" ref="504869726"/>
 						<array key="userDefinedRuntimeAttributes">
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3841,7 +3736,7 @@
 					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
 					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
 						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
-						<reference key="object" ref="858354019"/>
+						<reference key="object" ref="443485988"/>
 						<array key="userDefinedRuntimeAttributes">
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3852,11 +3747,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Floor Lemmings Per Minute</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3884,11 +3774,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Intra-Lemming Damping</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
@@ -3925,11 +3810,6 @@
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiSmoothing</string>
 								<real value="50" key="value"/>
 							</object>
@@ -3956,11 +3836,6 @@
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>
 								<string key="keyPath">midiLabel</string>
 								<string key="value">Lemmings Reset Scene</string>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">midiChannel</string>
-								<real value="8" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>

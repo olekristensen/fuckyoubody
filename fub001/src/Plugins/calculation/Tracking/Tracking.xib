@@ -12,7 +12,6 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -46,8 +45,9 @@
 					<object class="NSSlider" id="898825440">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{155, 74}, {219, 21}}</string>
+						<string key="NSFrame">{{155, 43}, {219, 21}}</string>
 						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="917725558">
 							<int key="NSCellFlags">-2080244224</int>
@@ -67,8 +67,9 @@
 					<object class="NSSlider" id="358801722">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{155, 97}, {219, 21}}</string>
+						<string key="NSFrame">{{155, 66}, {219, 21}}</string>
 						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="622204083">
 							<int key="NSCellFlags">-2080244224</int>
@@ -88,8 +89,9 @@
 					<object class="NSButton" id="96750502">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 92}, {118, 25}}</string>
+						<string key="NSFrame">{{20, 61}, {118, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="798729215">
 							<int key="NSCellFlags">-2080244224</int>
@@ -119,6 +121,7 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrameSize">{1260, 226}</string>
 								<reference key="NSSuperview" ref="635092164"/>
+								<reference key="NSWindow"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 							<object class="NSCustomView" id="244948088">
@@ -126,6 +129,7 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 226}, {1260, 226}}</string>
 								<reference key="NSSuperview" ref="635092164"/>
+								<reference key="NSWindow"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 							<object class="NSCustomView" id="192315281">
@@ -133,25 +137,22 @@
 								<int key="NSvFlags">268</int>
 								<string key="NSFrame">{{0, 452}, {1260, 226}}</string>
 								<reference key="NSSuperview" ref="635092164"/>
+								<reference key="NSWindow"/>
 								<string key="NSClassName">NSView</string>
 							</object>
 						</object>
-						<string key="NSFrame">{{20, 135}, {1260, 678}}</string>
+						<string key="NSFrame">{{20, 104}, {1260, 678}}</string>
 						<reference key="NSSuperview" ref="1005"/>
+						<reference key="NSWindow"/>
 						<string key="NSClassName">PluginOpenGLControlView</string>
 					</object>
 				</object>
-				<string key="NSFrameSize">{1300, 833}</string>
+				<string key="NSFrameSize">{1300, 802}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<string key="NSClassName">ofPlugin</string>
 			</object>
 			<object class="NSUserDefaultsController" id="256022236">
-				<object class="NSMutableArray" key="NSDeclaredKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>walltrackingon</string>
-					<string>walltrackingcorner1x</string>
-					<string>walltrackingcorner1y</string>
-				</object>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</object>
@@ -421,7 +422,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 						</object>
 					</object>
-					<string>{{63, 243}, {1300, 833}}</string>
+					<string>{{63, 54}, {1300, 802}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{628, 654}</string>
 					<string>{{217, 442}, {480, 272}}</string>

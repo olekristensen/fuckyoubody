@@ -89,15 +89,17 @@
 	[[blobBlurSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
 	[[blobBlurSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob blur", playerNumber+1]];
 
-	[_ledColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
-	[_ledColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Color", playerNumber+1]];
-	
-	[blobcolor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i+=4 +(20*playerNumber+1)]];
+	[_projectorColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[_projectorColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Color", playerNumber+1]];
+	i+=3;
+	[blobcolor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
 	[blobcolor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Blob", playerNumber+1]];
-	
+	i+=3;	
 	[_ledColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
 	[_ledColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Color", playerNumber+1]];
-
+	i+=3;
+	[[trackingPosition midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[[trackingPosition midi] setLabel: [NSString stringWithFormat:@"Player %i - Tracking Position", playerNumber+1]];
 
 	return YES;
 }

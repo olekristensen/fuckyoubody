@@ -71,7 +71,7 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addPlugin:[[Combat alloc] initWithMidiChannel:13]];
 
 	[pluginManagerController addPlugin:[[DMXOutput alloc] initWithMidiChannel:15]];
-	[pluginManagerController addPlugin:[[HardwareBox alloc] initWithMidiChannel:16]];
+	[pluginManagerController addPlugin:[[HardwareBox alloc] initWithMidiChannel:1]];
 
 	//	[pluginManagerController addPlugin:[[_ExampleOutputAgain alloc] init]];
 	
