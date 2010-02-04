@@ -31,6 +31,7 @@
 	int i = 3;
 	
 	[backgroundColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
+	
 	[backgroundColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Background Color", number]];
 	i+=3;
 	[generalNumberColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
@@ -59,6 +60,18 @@
 	[[noiseSpeed midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[[noiseSpeed midi] setLabel:[NSString stringWithFormat:@"Box %i Noise Speed", number]];
 	
+	[[backgroundTakeColor midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
+	[[backgroundTakeColor midi] setLabel:[NSString stringWithFormat:@"Box %i Take player color background", number]];
+
+	[[generalNumberTakeColor midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
+	[[generalNumberTakeColor midi] setLabel:[NSString stringWithFormat:@"Box %i Take player color numbers", number]];
+
+	i = 10;
+	[[topCrop midi] setController:[[NSNumber alloc] initWithInt:i++ +(10*number)]];
+	[[topCrop midi] setChannel:[NSNumber numberWithInt:16]];
+	[[topCrop midi] setLabel:[NSString stringWithFormat:@"Box %i Background top crop ", number]];
+
+	
 	for(int i=0;i<3;i++){
 		for(int u=0;u<5;u++){
 			noiseValues[i][u] = 0;
@@ -72,7 +85,9 @@
 
 -(void)addColorForLamp:(ofPoint)lamp box:(DiodeBox*)box{
 	//Background
-	[box addColor:[backgroundColor color] onLamp:lamp withBlending:0];
+	if(lamp.y >= 5*[topCrop floatValue]/100.0){
+		[box addColor:[backgroundColor color] onLamp:lamp withBlending:0];
+	}
 	
 	//Number	
 	int tal = [generalNumberValue intValue];	
@@ -444,25 +459,23 @@
 				}
 			}
 			
-			/** RAINBOW
-			 
-			 
-			 float hue, sat, bright, alph;
-			 float add = 0.1;
-			 [[NSColor redColor] getHue:&hue saturation:&sat brightness:&bright alpha:&alph];	
-			 for(int y=0;y<5;y++){
-			 for(int x=0;x<3;x++){
-			 //NSColor * c = [color copy];
-			 float h = hue+add*x + y*0.1;
-			 if(h > 1)
-			 h -= 1;
-			 NSColor * c = [NSColor colorWithCalibratedHue:h saturation:sat brightness:bright alpha:alph];
-			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
-			 
-			 }
-			 }
-			 
-			 **/
+			//RAINBOW			
+			float hue=0, sat=1, bright=1, alph=1;
+			float add = 0.1;
+			for(int y=0;y<5;y++){
+				for(int x=0;x<3;x++){
+					//NSColor * c = [color copy];
+					float h = hue+add*x + y*0.1;
+					if(h > 1)
+						h -= 1;
+					NSColor * c = [NSColor colorWithCalibratedHue:h saturation:sat brightness:bright alpha:alph];
+					c = [c colorWithAlphaComponent:[rainbowAlpha floatValue]/100.0];
+					[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+					
+				}
+			}
+			
+			
 			
 			
 			
@@ -478,9 +491,9 @@
 					d = 1;
 				NSColor * c ;
 				if(n == 0 || n == 2){
-				c = [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];			
+					c = [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];			
 				} else {
-				c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];								
+					c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];								
 				}
 				
 				for(int y=0;y<5;y++){
@@ -489,10 +502,20 @@
 				}
 			}
 			
+			//Boksering pæle
+			float bluePos = 12*[bokseringPale floatValue]/100.0;
+			float greenPos = 6+ 12*[bokseringPale floatValue]/100.0;			
+			
+			switch (n) {
+/*				case <#constant#>:
+					<#statements#>
+					break;
+				default:
+					break;*/
+			}
 			
 			
 			
-
 			for(int y=0;y<5;y++){
 				for(int x=0;x<3;x++){
 					LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];

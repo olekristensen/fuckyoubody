@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<dictionary class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="com.apple.InterfaceBuilder.CocoaPlugin">740</string>
-			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
+			<string key="com.brandonwalkin.BWToolkit">1.2.2</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<integer value="1"/>
@@ -32,22 +32,22 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSTextField" id="513667593">
+					<object class="NSTextField" id="630043459">
 						<reference key="NSNextResponder" ref="954911258"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{1005, 669}, {76, 17}}</string>
+						<string key="NSFrame">{{1005, 632}, {101, 17}}</string>
 						<reference key="NSSuperview" ref="954911258"/>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="22143440">
+						<object class="NSTextFieldCell" key="NSCell" id="982586762">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">Rainbow</string>
+							<string key="NSContents">Boksering pæle</string>
 							<object class="NSFont" key="NSSupport" id="473974446">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">13</double>
 								<int key="NSfFlags">1044</int>
 							</object>
-							<reference key="NSControlView" ref="513667593"/>
+							<reference key="NSControlView" ref="630043459"/>
 							<object class="NSColor" key="NSBackgroundColor" id="340973370">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
@@ -66,6 +66,43 @@
 									<bytes key="NSWhite">MAA</bytes>
 								</object>
 							</object>
+						</object>
+					</object>
+					<object class="NSSlider" id="817800026">
+						<reference key="NSNextResponder" ref="954911258"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{1006, 616}, {278, 21}}</string>
+						<reference key="NSSuperview" ref="954911258"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSSliderCell" key="NSCell" id="108999459">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents"/>
+							<reference key="NSControlView" ref="817800026"/>
+							<double key="NSMaxValue">100</double>
+							<double key="NSMinValue">0.0</double>
+							<double key="NSValue">0.0</double>
+							<double key="NSAltIncValue">0.0</double>
+							<int key="NSNumberOfTickMarks">0</int>
+							<int key="NSTickMarkPosition">1</int>
+							<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
+							<bool key="NSVertical">NO</bool>
+						</object>
+					</object>
+					<object class="NSTextField" id="513667593">
+						<reference key="NSNextResponder" ref="954911258"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{1005, 669}, {76, 17}}</string>
+						<reference key="NSSuperview" ref="954911258"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="22143440">
+							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags2">272630784</int>
+							<string key="NSContents">Rainbow</string>
+							<reference key="NSSupport" ref="473974446"/>
+							<reference key="NSControlView" ref="513667593"/>
+							<reference key="NSBackgroundColor" ref="340973370"/>
+							<reference key="NSTextColor" ref="565350990"/>
 						</object>
 					</object>
 					<object class="NSSlider" id="648180946">
@@ -355,7 +392,6 @@
 						<bool key="BWGBHasTopBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -473,6 +509,30 @@
 					</object>
 					<int key="connectionID">225</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">rainbowAlpha</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="648180946"/>
+					</object>
+					<int key="connectionID">226</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">label</string>
+						<reference key="source" ref="817800026"/>
+						<reference key="destination" ref="630043459"/>
+					</object>
+					<int key="connectionID">231</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">bokseringPale</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="817800026"/>
+					</object>
+					<int key="connectionID">232</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -515,6 +575,8 @@
 							<reference ref="663418452"/>
 							<reference ref="648180946"/>
 							<reference ref="513667593"/>
+							<reference ref="817800026"/>
+							<reference ref="630043459"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -694,10 +756,36 @@
 						<reference key="object" ref="915699447"/>
 						<reference key="parent" ref="648180946"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">227</int>
+						<reference key="object" ref="817800026"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="108999459"/>
+						</array>
+						<reference key="parent" ref="954911258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">228</int>
+						<reference key="object" ref="630043459"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="982586762"/>
+						</array>
+						<reference key="parent" ref="954911258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">229</int>
+						<reference key="object" ref="982586762"/>
+						<reference key="parent" ref="630043459"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">230</int>
+						<reference key="object" ref="108999459"/>
+						<reference key="parent" ref="817800026"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="1.IBEditorWindowLastContentRect">{{-187, 54}, {1345, 802}}</string>
+				<string key="1.IBEditorWindowLastContentRect">{{0, 76}, {1345, 802}}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="168.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="169.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -766,6 +854,30 @@
 				<string key="220.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="221.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="222.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="227.CustomClassName">PluginUISlider</string>
+				<object class="NSMutableDictionary" key="227.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="817800026"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiChannel</string>
+								<real value="16" key="value"/>
+							</object>
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiController</string>
+								<real value="61" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
+				<string key="227.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="228.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="229.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="230.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="58.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="59.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
@@ -776,7 +888,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">225</int>
+			<int key="maxID">232</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -799,6 +911,7 @@
 						<string key="backgroundGradientSpeed">NSSlider</string>
 						<string key="backgroundGreenColor">NSSlider</string>
 						<string key="backgroundRedColor">NSSlider</string>
+						<string key="bokseringPale">NSSlider</string>
 						<string key="column0">NSView</string>
 						<string key="column1">NSView</string>
 						<string key="column2">NSView</string>
@@ -816,6 +929,7 @@
 						<string key="noiseBlending">NSSegmentedControl</string>
 						<string key="noiseColor1">NSColorWell</string>
 						<string key="noiseColor2">NSColorWell</string>
+						<string key="rainbowAlpha">NSSlider</string>
 						<string key="trackingLight">NSButton</string>
 						<string key="worklight">NSSlider</string>
 					</dictionary>

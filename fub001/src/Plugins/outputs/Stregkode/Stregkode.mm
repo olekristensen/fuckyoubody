@@ -47,9 +47,9 @@
 				if([pblob getLowestPoint].y > (1.0-percent)){
 					StregkodePlayer * newp = [[StregkodePlayer alloc] init];
 					newp->pid = pblob->pid;					
-					newp->r = 255*[[GetPlugin(Players) playerColor:num] redComponent];
-					newp->g = 255*[[GetPlugin(Players) playerColor:num] greenComponent];
-					newp->b = 255*[[GetPlugin(Players) playerColor:num] blueComponent];
+					newp->r = 255*[[GetPlugin(Players) playerColor:num+1] redComponent];
+					newp->g = 255*[[GetPlugin(Players) playerColor:num+1] greenComponent];
+					newp->b = 255*[[GetPlugin(Players) playerColor:num+1] blueComponent];
 					newp->t = 0;
 					newp->startM = 0.0f;
 					newp->whiteAdd = 255.0f;

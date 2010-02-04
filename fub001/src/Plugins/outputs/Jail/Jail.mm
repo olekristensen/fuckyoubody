@@ -5,6 +5,7 @@
 @implementation Jail
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	ofFill();
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		ofRect(0, 0, 0.01, [leftWall floatValue]/100.0);
 		ofRect(0, 0.05, [backWall floatValue]/100.0, 0.01);		

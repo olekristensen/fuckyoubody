@@ -15,10 +15,14 @@
 	IBOutlet PluginUISlider * backgroundColorG;
 	IBOutlet PluginUISlider * backgroundColorB;
 	IBOutlet PluginUISlider * backgroundColorA;
-	
+	IBOutlet PluginUISegmentedControl * backgroundTakeColor;
+	IBOutlet PluginUISlider * topCrop;
+
 	IBOutlet PluginUIColorWell * generalNumberColor;
 	IBOutlet PluginUISlider * generalNumberValue;	
 	IBOutlet PluginUISegmentedControl * generalNumberBlendmode;
+	IBOutlet PluginUISegmentedControl * generalNumberTakeColor;
+
 	IBOutlet PluginUISlider * generalNumberColorR;
 	IBOutlet PluginUISlider * generalNumberColorG;
 	IBOutlet PluginUISlider * generalNumberColorB;
@@ -88,7 +92,8 @@
 	
 	IBOutlet NSSlider * GTAEffect;
 	IBOutlet NSSlider * GTAUlykke;
-
+	IBOutlet NSSlider * rainbowAlpha;
+	IBOutlet NSSlider * bokseringPale;
 	
 	float r,g,b;
 	float r2,g2,b2;
