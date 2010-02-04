@@ -7,8 +7,14 @@
 #include "ofMain.h"
 #include "ofxOpenCv.h"
 #include "ofxVectorMath.h"
+#include "Filter.h"
 
 @interface Jail : ofPlugin {
+	IBOutlet NSSlider * backWall;
+	IBOutlet NSSlider * leftWall;
+	
+	IBOutlet NSSlider * rotation;
+
 
 }
 

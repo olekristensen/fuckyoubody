@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<dictionary class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="com.apple.InterfaceBuilder.CocoaPlugin">740</string>
-			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
+			<string key="com.brandonwalkin.BWToolkit">1.2.2</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<integer value="1"/>
@@ -151,7 +151,7 @@
 					<object class="NSSegmentedControl" id="932248445">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{39, 103}, {169, 25}}</string>
+						<string key="NSFrame">{{39, 117}, {169, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSegmentedCell" key="NSCell" id="761281971">
@@ -942,7 +942,6 @@
 						<bool key="BWGBHasTopBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -989,7 +988,6 @@
 						<bool key="BWGBHasTopBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -1036,7 +1034,6 @@
 						<bool key="BWGBHasTopBorder">NO</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -1524,9 +1521,9 @@
 							<reference ref="597750089"/>
 							<reference ref="888086043"/>
 							<reference ref="908596722"/>
-							<reference ref="932248445"/>
 							<reference ref="253209509"/>
 							<reference ref="338615863"/>
+							<reference ref="932248445"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -2154,7 +2151,7 @@
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="1.IBEditorWindowLastContentRect">{{624, 54}, {250, 802}}</string>
+				<string key="1.IBEditorWindowLastContentRect">{{624, 76}, {250, 802}}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="1.IBViewEditorWindowController.showingLayoutRectangles"/>
 				<string key="1.WindowOrigin">{628, 654}</string>

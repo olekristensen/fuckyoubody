@@ -1,14 +1,22 @@
-//
-//  Jail.m
-//  openFrameworks
-//
-//  Created by Fuck You Buddy on 29/01/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
 
 #import "Jail.h"
-
+#include "ProjectionSurfaces.h"
 
 @implementation Jail
+
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+		ofRect(0, 0, 0.01, [leftWall floatValue]/100.0);
+		ofRect(0, 0.05, [backWall floatValue]/100.0, 0.01);		
+		
+		
+		glRotated([rotation floatValue], 0, 0, 1);
+		for(int i=0;i<3;i++){
+			ofRect(0, 0, 0.01, 2);
+			glRotated(20, 0, 0, 1);
+		}
+		
+	}glPopMatrix();
+}
 
 @end

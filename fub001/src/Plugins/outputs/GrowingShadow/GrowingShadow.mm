@@ -33,8 +33,8 @@
 	histPos = 0;
 	
 	scalePoint = new ofxVec2f;
-
-
+	
+	
 }
 
 
@@ -54,7 +54,7 @@
 			for( int u = 0; u < [b nPts]; u++){
 				float pointPercent = (float)u/[b nPts];
 				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Back" toSurface:"Floor"];
-
+				
 				ofxVec2f blobP;
 				blobP.x = int(p.x*ShadowSizeX);
 				blobP.y = int(p.y*ShadowSizeY);				
@@ -69,21 +69,21 @@
 				//				cout<<pointArray[u].x<<"  "<<pointArray[u].y<<endl;
 			}
 			int nPts = [b nPts];
-			cvFillPoly(newestShadowTemp->getCvImage(),&pointArray , &nPts, 1, cvScalar(255, 255, 255, 255.0));			
+			 cvFillPoly(newestShadowTemp->getCvImage(),&pointArray , &nPts, 1, cvScalar(255, 255, 255, 255.0));			
 			newestShadowTemp->flagImageChanged();
 		}
 		
 		history[histPos] = *newestShadowTemp;	
-
+		
 	}
-
+	
 	
 	int pos = histPos - [delaySlider  intValue];
 	while(pos < 0){
 		pos += BufferLength;
 	}
 	
-//	cvAddWeighted(shadow->getCvImage() ,[fadeSlider floatValue]/100.0, history[pos].getCvImage(),1, -0.35, shadowTemp->getCvImage());¨
+	//	cvAddWeighted(shadow->getCvImage() ,[fadeSlider floatValue]/100.0, history[pos].getCvImage(),1, -0.35, shadowTemp->getCvImage());¨
 	//*shadow = *shadowTemp;
 	*shadow =  history[pos];
 	
@@ -95,7 +95,7 @@
 		cvThreshold( shadow->getCvImage(), shadowTemp->getCvImage(), [thresholdSlider intValue], 255, CV_THRESH_BINARY );		
 		*shadow = *shadowTemp;
 		
-	//	shadow->threshold([thresholdSlider intValue]);
+		//	shadow->threshold([thresholdSlider intValue]);
 	}
 	
 	shadow->flagImageChanged();
@@ -120,39 +120,40 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ofFill();
-	float a = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]).angle(ofxVec2f(1,0));
+	float a = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]).angle(ofxVec2f(1,0)) - 20;
 	//ofxVec2f v = (*scalePoint-[GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1]);
 	
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-	float v = [invertSlider floatValue]*2.5;
-	ofSetColor(v, v, v);
-	ofRect(0, 0, 1, 1);
-	
-	glTranslated(scalePoint->x, scalePoint->y, 0);	
-	glRotatef(90-a,0,0,1);
-	
-	glScaled(1, [scaleSlider floatValue]/10.0, 0);
-
-	glRotatef(-(90-a),0,0,1);
-	glTranslated(-scalePoint->x, -scalePoint->y, 0);
-	
-	ofEnableAlphaBlending();
-	float r = [distanceBlurAngleSlider floatValue];
-	glRotatef(-r, 0, 0, 1);
-	int n = [distanceBlurPassesSlider intValue];
-//	ofSetColor(255.0/n, 255.0/n, 255.0/n,255.0);
-//	ofSetColor(255, 255, 255, 255.0/n);
-	v = 255-v;
-	ofSetColor(v, v, v,2*255.0/n);
-
-	for(int i=0;i<n;i++){
-		glRotatef((2.0*r)/n, 0, 0, 1);
-		shadow->draw(0,0,1,1);
-	}
-	ofSetColor(255, 255, 255);
-	ofLine(scalePoint->x, scalePoint->y, [GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1].x, [GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1].y);
-	
-	glPopMatrix();
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+		float v = [invertSlider floatValue]*2.5;
+		ofSetColor(v, v, v);
+		ofRect(0, 0, 1, 1);
+		
+		glTranslated(scalePoint->x, scalePoint->y, 0);	
+		glRotatef(90-a,0,0,1);
+		
+		glScaled(1, [scaleSlider floatValue]/10.0, 0);
+		
+		glRotatef(-(90-a),0,0,1);
+		glTranslated(-scalePoint->x, -scalePoint->y, 0);
+		
+		ofEnableAlphaBlending();
+		float r = [distanceBlurAngleSlider floatValue];
+		glRotatef(-r, 0, 0, 1);
+		int n = [distanceBlurPassesSlider intValue];
+		//	ofSetColor(255.0/n, 255.0/n, 255.0/n,255.0);
+		//	ofSetColor(255, 255, 255, 255.0/n);
+		v = 255-v;
+		ofSetColor(v, v, v,2*255.0/n);
+		
+		for(int i=0;i<n;i++){
+			glRotatef((2.0*r)/n, 0, 0, 1);
+			shadow->draw(0,0,1,1);
+		}
+		ofSetColor(255, 255, 255);
+		ofLine(scalePoint->x, scalePoint->y, [GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1].x, [GetPlugin(ProjectionSurfaces) getFloorCoordinateOfProjector:1].y);
+		
+		
+	}glPopMatrix();
 }
 
 @end
