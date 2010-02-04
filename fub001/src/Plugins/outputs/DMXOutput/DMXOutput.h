@@ -27,12 +27,18 @@
 	//Noise
 	IBOutlet PluginUIColorWell * noiseColor1;	
 	IBOutlet PluginUIColorWell * noiseColor2;	
+	IBOutlet PluginUISlider * noiseThreshold;
+	IBOutlet PluginUISlider * noiseSpeed;
+
 	IBOutlet PluginUISegmentedControl * noiseBlendMode;
 	
 	IBOutlet PluginUIButton * patchButton;
 	
 	IBOutlet NSView * settingsView;
 	int number;
+	
+	float noiseValues[3][5];
+	float noiseNextUpdate[3][5];
 }
 @property (assign,readwrite) NSSlider * backgroundColorR;
 @property (assign,readwrite) NSView * settingsView;
@@ -41,6 +47,8 @@
 - (id) initWithNumber:(int)aNumber;
 -(BOOL) loadNibFile;
 -(void)addColorForLamp:(ofPoint)lamp box:(DiodeBox*)box;
+
+
 @end
 
 
@@ -78,6 +86,8 @@
 	IBOutlet NSColorWell * noiseColor1;
 	IBOutlet NSColorWell * noiseColor2;
 	
+	IBOutlet NSSlider * GTAEffect;
+	
 	float r,g,b;
 	float r2,g2,b2;
 	float master;
@@ -100,6 +110,8 @@
 	IBOutlet NSButton * trackingLight;
 	
 	vector<unsigned char> * serialBuffer;
+	
+	vector<ofxPoint3f> gtaPositions;
 }
 
 -(void) updateDmx:(id)param;
@@ -111,6 +123,7 @@
 -(IBAction) setBackground:(id)sender;
 
 -(void) setup;
+
 
 //-(LedLamp*) getLamp:(int)x y:(int)y;
 

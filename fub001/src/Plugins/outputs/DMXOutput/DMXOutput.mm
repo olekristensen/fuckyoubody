@@ -17,6 +17,7 @@
 	self = [super init];
 	if(self){
 		[self setNumber:aNumber];
+		
 	}
 	return self;
 }
@@ -29,28 +30,42 @@
 	
 	int i = 3;
 	
-	[backgroundColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
+	[backgroundColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[backgroundColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Background Color", number]];
 	i+=3;
-	[generalNumberColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
+	[generalNumberColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[generalNumberColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i General Number Color", number]];
 	i+=3;
-	[[generalNumberBlendmode midi] setController:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
+	[[generalNumberBlendmode midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[[generalNumberBlendmode midi] setLabel:[NSString stringWithFormat:@"Box %i General Number Blendmode", number]];
 	
-	[[generalNumberValue midi] setController:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
+	[[generalNumberValue midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[[generalNumberValue midi] setLabel:[NSString stringWithFormat:@"Box %i General Number Value", number]];
 	
-	[noiseColor1 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
+	[noiseColor1 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[noiseColor1 setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Noise Color From", number]];
 	i+=3;
 	
-	[noiseColor2 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
+	[noiseColor2 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[noiseColor2 setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Noise Color To", number]];
 	i+=3;
-	 
-	[[noiseBlendMode midi] setController:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
+	
+	[[noiseBlendMode midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[[noiseBlendMode midi] setLabel:[NSString stringWithFormat:@"Box %i Noise Blendmode", number]];
+	
+	[[noiseThreshold midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
+	[[noiseThreshold midi] setLabel:[NSString stringWithFormat:@"Box %i Noise Threshold", number]];
+	
+	[[noiseSpeed midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
+	[[noiseSpeed midi] setLabel:[NSString stringWithFormat:@"Box %i Noise Speed", number]];
+	
+	for(int i=0;i<3;i++){
+		for(int u=0;u<5;u++){
+			noiseValues[i][u] = 0;
+			noiseNextUpdate[i][u] = ofRandom(0, 10000);
+		}
+	}
+	
 	
 	return YES;
 }
@@ -71,17 +86,35 @@
 	}
 	[box addColor:c onLamp:lamp withBlending:[generalNumberBlendmode selectedSegment]];
 	
+	
 	//Random noise
-	c = [[noiseColor1 color] blendedColorWithFraction:ofRandom(0, 1) ofColor:[noiseColor2 color]];
+	
+	noiseNextUpdate[(int)lamp.x][(int)lamp.y] -= [noiseSpeed floatValue] * 10.0/ofGetFrameRate();
+	if(noiseNextUpdate[(int)lamp.x][(int)lamp.y] < 0 ){
+		
+		noiseNextUpdate[(int)lamp.x][(int)lamp.y] += 1000;
+		
+		
+		float r = ofRandom(0, 1);
+		if([noiseThreshold floatValue] > 0){
+			if(r < [noiseThreshold floatValue]/100.0)
+				r = 0;
+			else 
+				r = 1;
+		}
+		noiseValues[(int)lamp.x][(int)lamp.y] = r;
+	}
+	
+	c = [[noiseColor1 color] blendedColorWithFraction:noiseValues[(int)lamp.x][(int)lamp.y] ofColor:[noiseColor2 color]];
 	//c = [c colorWithAlphaComponent:[noiseAlpha floatValue]/[noiseAlpha maxValue]];
 	[box addColor:c onLamp:lamp withBlending:[noiseBlendMode selectedSegment]];
 	
-/*	if(lamp.x == 0 && lamp.y == 0){
-		if([patchButton state] == NSOnState){
-			[box addColor:[NSColor whiteColor] onLamp:lamp withBlending:0];	
-		}
-	}
-*/	
+	/*	if(lamp.x == 0 && lamp.y == 0){
+	 if([patchButton state] == NSOnState){
+	 [box addColor:[NSColor whiteColor] onLamp:lamp withBlending:0];	
+	 }
+	 }
+	 */	
 	
 	
 }
@@ -213,6 +246,7 @@
 	
 	
 }
+
 
 
 @end
@@ -372,6 +406,7 @@
 	int address = 1;
 	for(int i=0;i<4;i++){
 		DiodeBox * box = [[DiodeBox alloc] initWithStartaddress:address];
+		[box setNumber:i];
 		[diodeboxes addObject:box];
 		address +=60;
 	}
@@ -408,6 +443,12 @@
 		[dest addSubview:[columns[i] settingsView]];
 		
 	}
+	
+	
+	for(int i=0;i<12;i++){
+		gtaPositions.push_back(ofxPoint3f(round(ofRandom(0, 1)), round(ofRandom(0, 5)), ofRandom(-10, 0)));
+	}
+	
 	
 	
 	
@@ -453,242 +494,98 @@
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	
-	DiodeBox * box;
-	int n= 0;
-	for(box in diodeboxes){
-		[box reset];
-		/*//Background
-		 for(int x=0;x<3;x++){
-		 for(int y=0;y<5;y++){
-		 [box addColor:[backgroundColor color] onLamp:ofPoint(x,y) withBlending:0];
-		 }
-		 }*/
-		int num = 0;
-		for(int y=0;y<5;y++){
-			for(int x=0;x<3;x++){
-				NSColor * c;
-				[columns[n] addColorForLamp:ofPoint(x,y) box:box];
-				num++;
+	if(ofGetFrameRate() > 2){
+		for(int i=0;i<gtaPositions.size();i++){
+			gtaPositions[i].z += 0.1 * 60.0/ofGetFrameRate();
+			if(gtaPositions[i].z > 9){
+				gtaPositions[i].z -= 10;
+				gtaPositions[i].y = roundf(ofRandom(0, 4));
+				gtaPositions[i].x = roundf(ofRandom(0, 1));
 			}
+			
+			//	cout<<gtaPositions[i].z<<endl;
 		}
 		
-		num = 0;
-		for(int y=0;y<5;y++){
-			for(int x=0;x<3;x++){
-				NSColor * c;
-				[columns[4] addColorForLamp:ofPoint(x,y) box:box];
-				num++;
+		DiodeBox * box;
+		int n= 0;
+		for(box in diodeboxes){
+			[box reset];
+			/*//Background
+			 for(int x=0;x<3;x++){
+			 for(int y=0;y<5;y++){
+			 [box addColor:[backgroundColor color] onLamp:ofPoint(x,y) withBlending:0];
+			 }
+			 }*/
+			int num = 0;
+			for(int y=0;y<5;y++){
+				for(int x=0;x<3;x++){
+					NSColor * c;
+					[columns[n] addColorForLamp:ofPoint(x,y) box:box];
+					num++;
+				}
 			}
-		}
-		
-		
-		
-		
-		
-		
-
-		
-		
-		
-		
-		for(int y=0;y<5;y++){
-			for(int x=0;x<3;x++){
-				LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
-				//				cout<<"Lamp : "<<lamp->g<<" channel : "<<lamp->channel+1<<endl;			
-				[GetPlugin(HardwareBox) setDmxValue:lamp->r onChannel:lamp->channel];
-				[GetPlugin(HardwareBox) setDmxValue:lamp->g onChannel:lamp->channel+1];
-				[GetPlugin(HardwareBox) setDmxValue:lamp->b onChannel:lamp->channel+2];
-				[GetPlugin(HardwareBox) setDmxValue:master onChannel:lamp->channel+3];
-				
+			
+			num = 0;
+			for(int y=0;y<5;y++){
+				for(int x=0;x<3;x++){
+					NSColor * c;
+					[columns[4] addColorForLamp:ofPoint(x,y) box:box];
+					num++;
+				}
 			}
+			
+			
+			for(int y=0;y<5;y++){
+				for(int x=0;x<3;x++){
+					for(int i=0;i<gtaPositions.size();i++){
+						ofxPoint3f p = gtaPositions[i];
+						p.z = roundf(p.z);
+						
+						NSColor * c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+						
+						
+						if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p]){
+							c = [c colorWithAlphaComponent:1.0*[GTAEffect floatValue]/100.0];
+							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+						} else if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p-ofxPoint3f(0,0,1)]){
+							c = [c colorWithAlphaComponent:0.6*[GTAEffect floatValue]/100.0];
+							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+						} else if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p-ofxPoint3f(0,0,2)]){
+							c = [c colorWithAlphaComponent:0.2*[GTAEffect floatValue]/100.0];
+							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+						}
+						
+					}
+					
+				}
+			}
+			
+			
+			
+			
+			for(int y=0;y<5;y++){
+				for(int x=0;x<3;x++){
+					LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
+					//				cout<<"Lamp : "<<lamp->g<<" channel : "<<lamp->channel+1<<endl;			
+					[GetPlugin(HardwareBox) setDmxValue:lamp->r onChannel:lamp->channel];
+					[GetPlugin(HardwareBox) setDmxValue:lamp->g onChannel:lamp->channel+1];
+					[GetPlugin(HardwareBox) setDmxValue:lamp->b onChannel:lamp->channel+2];
+					[GetPlugin(HardwareBox) setDmxValue:master onChannel:lamp->channel+3];
+					
+				}
+			}
+			
+			//[GetPlugin(HardwareBox) setDmxValue:255 onChannel:1];
+			
+			
+			n++;
+			
 		}
-		
-		//[GetPlugin(HardwareBox) setDmxValue:255 onChannel:1];
-		
-		
-		n++;
-		
 	}
 	
-	/*	pthread_mutex_lock(&mutex);
-	 //Normal light
-	 Lamp * lamp;
-	 for(lamp in lamps){
-	 if(lamp->channel > 18 && lamp->channel < 25){
-	 if([trackingLight state] == NSOnState){
-	 ((NormalLamp*)lamp)->value  = 254/2.0;
-	 }
-	 else {
-	 ((NormalLamp*)lamp)->value  = 0;
-	 }
-	 }
-	 if(lamp->channel == 6 || lamp->channel == 3 ||lamp->channel == 4 ||lamp->channel == 23){
-	 ((NormalLamp*)lamp)->value  = [worklight intValue];
-	 }
-	 }
-	 
-	 
-	 //Background
-	 for(int i=0;i<5;i++){
-	 for(int u=0;u<3;u++){
-	 LedLamp * lamp = [self getLamp:u y:i];
-	 NSColor * c = [backgroundColor color];
-	 [lamp setLamp:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*254];
-	 }
-	 }
-	 
-	 //Gradient
-	 if([backgroundGradient state] == NSOnState){
-	 float hue, sat, bright, alph;
-	 float add = 0.1;
-	 [color getHue:&hue saturation:&sat brightness:&bright alpha:&alph];	
-	 
-	 for(int i=0;i<5;i++){
-	 for(int u=0;u<3;u++){
-	 LedLamp * lamp = [self getLamp:u y:i];
-	 //NSColor * c = [color copy];
-	 float h = hue+add*i + u*[backgroundGradientRotation floatValue];
-	 if(h > 1)
-	 h -= 1;
-	 NSColor * c = [NSColor colorWithCalibratedHue:h saturation:sat brightness:bright alpha:alph];
-	 [lamp setLamp:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:254];
-	 }
-	 }
-	 
-	 
-	 hue += add*[backgroundGradientSpeed floatValue];
-	 if(hue > 1){
-	 hue -= 1;	
-	 }
-	 [color release];
-	 color = [NSColor colorWithCalibratedHue:hue saturation:sat brightness:bright alpha:alph];
-	 [color retain];
-	 
-	 }
-	 
-	 
-	 
-	 //Led counter 
-	 
-	 if([ledCounter state] == NSOnState){
-	 
-	 //	if(shownNumber != int(timeInterval)%10){
-	 float seconds = ofGetElapsedTimeMillis() / 1000.0;
-	 shownNumber = int(seconds)%10;
-	 
-	 //	shownNumber = int(ofRandom(0, 10));
-	 //	[self makeNumber:int(timeInterval)%10 r:int(ofRandom(0, 254)) g:int(ofRandom(0, 254)) b:int(ofRandom(0, 254))];
-	 
-	 if([ledCounterFade state] == NSOnState){
-	 
-	 if(seconds - int(seconds) < 0.6){
-	 master += 0.1;
-	 if(master > 1) 
-	 master = 1;
-	 } else {
-	 master -= 0.1;
-	 if(master < 0) 
-	 master = 0;	
-	 }
-	 
-	 } else {
-	 master = 1;	
-	 }
-	 
-	 NSColor * c = [ledCounterColor color];		
-	 [self makeNumber:shownNumber r:[c redComponent]*254 g:[c greenComponent]*254 b:[c blueComponent]*254 a:[c alphaComponent]*190*master];
-	 for(int i=0;i<5;i++){
-	 for(int u=0;u<3;u++){
-	 LedLamp * lamp = [self getLamp:u y:i];
-	 if(lamp->a > 0){
-	 
-	 //				lamp->a = ofRandom(0, 190*master);
-	 }
-	 }
-	 }
-	 
-	 }
-	 
-	 float x = controlMouseY / 300.0;
-	 
-	 for(int i=0;i<5;i++){
-	 for(int u=0;u<3;u++){
-	 LedLamp * lamp = [self getLamp:u y:i];
-	 if(x > (6 - i)/5.0){  
-	 if(i == 0)
-	 [lamp setLamp:254 g:0 b:0 a:254];
-	 else if(i == 1 || i == 1)
-	 [lamp setLamp:254 g:254 b:0 a:254];
-	 else
-	 [lamp setLamp:0 g:254 b:0 a:254];
-	 }
-	 }
-	 }
-	 
-	 pthread_mutex_unlock(&mutex);
-	 */	
-	//	}
 }
 
 -(void) updateDmx:(id)param{
-	/*
-	 if(connected){
-	 
-	 while(1){
-	 
-	 //		cout<<"Buffer size: "<<serialBuffer->size()<<endl;
-	 if(serial->available()){
-	 serial->flush(true, false);
-	 ok = true;
-	 //			cout<<"Flush"<<endl;
-	 }
-	 if(ok){	
-	 //			cout<<"OK"<<endl;
-	 if(serialBuffer->size() > 0){
-	 //				cout<<"Prepare to send ";
-	 int n = MIN(90,serialBuffer->size());
-	 //				cout<<n<<" bytes"<<endl;
-	 unsigned char * bytes = new unsigned char[n];;
-	 for(int i=0;i<n;i++){				
-	 bytes[i] = serialBuffer->at(0);
-	 serialBuffer->erase(serialBuffer->begin());
-	 }
-	 //				cout<<"Send "<<n<<" bytes"<<endl;
-	 serial->writeBytes(bytes, n);
-	 ok = false;
-	 } else {
-	 //				cout<<"make buffer"<<endl;
-	 int n=0;
-	 pthread_mutex_lock(&mutex);
-	 
-	 Lamp * lamp;
-	 if(master != sentMaster ){
-	 sentMaster = master;
-	 //					serial->writeBytes(buffer, 3);
-	 serialBuffer->push_back((unsigned char)255);
-	 serialBuffer->push_back((unsigned char)0);
-	 serialBuffer->push_back((unsigned char)round(master*254));
-	 }
-	 
-	 for(lamp in lamps){
-	 
-	 if(![lamp updateDmx:serialBuffer mutex:mutex]){
-	 n++;
-	 
-	 }
-	 
-	 }
-	 pthread_mutex_unlock(&mutex);
-	 
-	 //								cout<<"make buffer end"<<endl;
-	 }
-	 }
-	 
-	 
-	 [NSThread sleepForTimeInterval:0.003];
-	 }
-	 }*/
 }
 
 
@@ -709,4 +606,5 @@
 	[backgroundGreenColor setFloatValue:[[sender color] greenComponent]*512];
 	[backgroundBlueColor setFloatValue:[[sender color] blueComponent]*512];
 }
+
 @end

@@ -152,7 +152,7 @@
 
 
 @implementation DiodeBox
-@synthesize lamps;
+@synthesize lamps, number;
 
 -(id) initWithStartaddress:(int) address{
 	if([super init]){
@@ -214,13 +214,13 @@
 				curColors[i] = MAX(newColors[i] * newColors[3], curColors[i]);
 			}	
 			break;
-			case BLENDING_MULT:
+		case BLENDING_MULT:
 			for(int i=0;i<3;i++){
 				curColors[i] *= (1-newColors[3]) + newColors[i] * newColors[3];
 			}					
 			
-				break;
-
+			break;
+			
 		default:
 			break;
 	}
@@ -242,5 +242,35 @@
 		lamp->b = 0;
 	}
 }
+
+
+-(BOOL)isLamp:(ofxPoint2f)lampPos atCoordinate:(ofxPoint3f)cord{
+	ofxPoint3f p;
+	p.y = lampPos.y;
+	if(number == 0 || number == 1)
+		p.x = 0;
+	else 
+		p.x = 1;
+	
+	switch (number) {
+		case 0:
+			p.z = 2-lampPos.x;
+			break;
+		case 1:
+			p.z = 5-lampPos.x;
+			break;
+		case 2:
+			p.z = lampPos.x+3;
+			break;
+		case 3:
+			p.z = lampPos.x;			
+			break;
+		default:
+			break;
+	}
+	
+	return (p.distance(cord) < 0.1);
+} 
+
 
 @end
