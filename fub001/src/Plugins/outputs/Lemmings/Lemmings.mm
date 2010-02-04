@@ -6,6 +6,7 @@
 
 #include "ProjectionSurfaces.h"
 #include "Tracking.h"
+#include "GrowingShadow.h"
 #include "Lemmings.h"
 
 
@@ -92,6 +93,18 @@
 		doReset = false;
 	}
 	
+#pragma mark add rumiko's lemming
+	
+	if(doAddRumikosLemming){
+		
+		Lemming * rumikosLemming = [[[Lemming alloc]initWithX: [[GetPlugin(GrowingShadow) coordinateX] floatValue] Y:[[GetPlugin(GrowingShadow) coordinateY] floatValue] spawnTime:timeInterval]autorelease];
+		
+		[rumikosLemming setScaleFactor:0.5];
+		
+		[floorLemmings addObject:rumikosLemming];
+		doAddRumikosLemming = NO;
+	}
+	
 #pragma mark add lemmings from door
 	
 	if ([screenEntranceDoor floatValue] > 0.65) {
@@ -100,6 +113,18 @@
 			[screenLemmings addObject:[[[Lemming alloc]initWithX: screenDoorPos->x Y:screenDoorPos->y spawnTime:timeInterval]autorelease]];
 		}
 		lastLemmingInterval = lemmingInterval;
+	}
+
+#pragma mark add lemmings from floor front
+	
+	if ([floorAddLemmingsFromFront state] == NSOnState) {
+		float lemmingInterval = fmodf(timeInterval, 1/([floorLemmingsAddRate floatValue]/60));
+		if(lemmingInterval - lastFloorLemmingInterval < 0.0){
+			Lemming * floorLemming = [[[Lemming alloc]initWithX:1.0 Y:1.0 spawnTime:timeInterval]autorelease];
+			[floorLemming setScaleFactor:0.45];
+			[floorLemmings addObject:floorLemming];
+		}
+		lastFloorLemmingInterval = lemmingInterval;
 	}
 	
 	Lemming * lemming;
@@ -255,7 +280,8 @@
 #pragma mark add screen gravity
 		if([lemming blessed]){
 			[lemming vel]->y = [screenGravity floatValue]*0.1;
-			[lemming vel]->x = sinf((timeInterval-[lemming spawnTime])*PI*0.5)*0.2;
+			if([lemming position]->y > 0.45)
+				[lemming vel]->x = sinf((timeInterval-[lemming spawnTime])*PI*0.5)*0.2;
 		} else {
 			*[lemming totalforce] += ofxPoint2f(0,[screenGravity floatValue]/50.0);
 		}
@@ -315,15 +341,25 @@
 			PersistentBlob * blob;
 			for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 				ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*blob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-				if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
-					shortestDist = c.distanceSquared(*[lemming position]);
-					nearestBlob = blob;
+				if(c.y > 1.0-[floorBlobMask floatValue]){
+					if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
+						shortestDist = c.distanceSquared(*[lemming position]);
+						nearestBlob = blob;
+					}
 				}
 			}
 			
 			if(shortestDist != -1){	
 				ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*nearestBlob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-				*[lemming totalforce] += (c - *[lemming position])*([motionGravity floatValue]/100.0) ;
+				
+				if (shortestDist < [floorBlobFarForceThreshold floatValue]){
+					*[lemming totalforce] += (c - *[lemming position])*([floorBlobFarForce floatValue]/50.0) ;
+				}
+				if (shortestDist < [floorBlobNearForceThreshold floatValue]*0.25){
+					*[lemming totalforce] += (c - *[lemming position])*([floorBlobNearForce floatValue]/5.0) ;
+				}
+				//				*[lemming totalforce] += (c - *[lemming position])*([motionGravity floatValue]/100.0) ;
+				
 				[lemming setAlpha:fmaxf(0.0,1.0-(shortestDist*30.0*[floorLemmingsDistanceAlpha floatValue]))];
 			}
 		}
@@ -404,9 +440,6 @@
 			Lemming * anotherLemming = [theLemmingArray objectAtIndex:u];
 			ofxPoint2f l1 = *[lemming position];
 			ofxPoint2f l2 = *[anotherLemming position];
-			
-			//			if(fabs(l1.x - l2.x) < 0.1){
-			//				if(fabs(l1.y - l2.y) < 0.1){
 			double distSq =	l1.distanceSquared(l2);
 			if(distSq < RADIUS_SQUARED ){
 				ofxVec2f diff = *[lemming position] - *[anotherLemming position];
@@ -418,8 +451,6 @@
 				*[anotherLemming totalforce] -= diff;
 				pthread_mutex_unlock(&mutex);
 			}
-			//				}
-			//			}
 		}
 		i++;
 	}
@@ -691,12 +722,8 @@
 	return [lemmingSize floatValue];
 }
 
--(IBAction) addLemming:(id)sender{
-	lemmingDiff++;
-}
-
--(IBAction) removeOldestLemming:(id)sender{
-	lemmingDiff--;
+-(IBAction) addRumikosLemming:(id)sender{
+	doAddRumikosLemming = YES;
 }
 
 -(IBAction) resetLemmings:(id)sender{
@@ -768,26 +795,26 @@
 			
 			if (blessed && vel->y > 0.02) {
 				glPushMatrix();{
-				ofPushStyle();
-				ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
-				//ofCircle(position->x, position->y-(radius*7.5*vel->y), (vel->y*0.27)+(radius*0.33));
+					ofPushStyle();
+					ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
+					//ofCircle(position->x, position->y-(radius*7.5*vel->y), (vel->y*0.27)+(radius*0.33));
 					glTranslated(position->x, position->y, 0);
-					glRotatef((atan2(-vel->y, -vel->x)*45)+180, 0, 0, 1);
+					glRotatef((atan2(-vel->y, -vel->x)*20)+40, 0, 0, 1);
 					glTranslated(-position->x, -position->y, 0);
 					[GetPlugin(Lemmings) parachuteImage]->draw(position->x-((vel->y*0.33)+(radius*0.33)), (position->y-((vel->y*0.33)+(radius*0.33)))-(radius*15.0*vel->y), ((vel->y*0.33)+(radius*0.33))*2, ((vel->y*0.33)+(radius*0.33))*2);
-				
-				ofPopStyle();
+					
+					ofPopStyle();
 				}glPopMatrix();
 			}
 			/**
-			glTranslated(position->x, position->y, 0);
-			glRotatef(atan2(-vel->y, vel->x), 0, 0, 1);
-			glTranslated(-position->x, -position->y, 0);
-			**/
-			 ofSetColor(theColor.r, theColor.g, theColor.b, theColor.a);
+			 glTranslated(position->x, position->y, 0);
+			 glRotatef(atan2(-vel->y, vel->x), 0, 0, 1);
+			 glTranslated(-position->x, -position->y, 0);
+			 **/
+			ofSetColor(theColor.r, theColor.g, theColor.b, theColor.a);
 			ofCircle(position->x, position->y, radius+[GetPlugin(Lemmings) getLemmingsSizeAsFloat]);
 			//ofEllipse(position->x, position->y, radius/*-(0.001*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])*/, (0.015*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])+radius);
-			}glPopMatrix();
+		}glPopMatrix();
 		//ofCircle(position->x, position->y, radius);
 	}
 	ofPopStyle();

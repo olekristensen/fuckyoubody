@@ -44,6 +44,8 @@
 	IBOutlet NSTextField * coordinateY;
 	
 }
+@property (readonly) NSTextField * coordinateX;
+@property (readonly) NSTextField * coordinateY;
 
 -(IBAction) startGrow:(id)sender;
 

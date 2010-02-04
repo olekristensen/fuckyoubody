@@ -28,6 +28,7 @@
 
 	bool			doReset;
 	bool			doClearAllLemmings;
+	bool			doAddRumikosLemming;
 	
 	float			screenTrackingLeft;
 	float			screenTrackingRight;
@@ -52,6 +53,7 @@
 
 	int numberLemmings;
 	float lastLemmingInterval;
+	float lastFloorLemmingInterval;
 	
 	// screen world
 
@@ -90,7 +92,13 @@
 
 	IBOutlet NSSlider * floorLemmingsCoins;			//	0 ... 1 transparent ... visible
 
+	IBOutlet NSSlider * floorLemmingsAddRate;		//	0 ... 1 none ... fast
+
 	IBOutlet NSSlider * floorBlobMask;				//  0 ... 1
+	
+	IBOutlet NSButton * floorAddLemmingsFromFront;
+
+	
 	
 	// intra-lemming
 	
@@ -110,18 +118,15 @@
 
 @property (readonly) ofImage *parachuteImage;
 @property (readonly) int numberLemmings;
-@property (readonly) float screenGravityAsFloat;
 
 
--(IBAction) addFloorLemming:(id)sender;
--(IBAction) addScreenLemming:(id)sender;
+-(IBAction) addRumikosLemming:(id)sender;
 -(IBAction) resetLemmings:(id)sender;
 -(IBAction) killAllLemmings:(id)sender;
 -(IBAction) clearAllLemmings:(id)sender;
 
 
 -(void) updateLemmingArray:(NSMutableArray*) theLemmingArray timeInterval:(CFTimeInterval)timeInterval;
--(void) makeFloorLemmingFromShadowAtX:(float)xPosition Y: (float)yPosition;
 -(void) reset;
 -(float) getScreenGravityAsFloat;
 -(float) getScreenSplatVelocityAsFloat;

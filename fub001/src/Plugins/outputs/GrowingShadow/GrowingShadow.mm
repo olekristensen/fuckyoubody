@@ -5,6 +5,8 @@
 
 @implementation GrowingShadow
 
+@synthesize coordinateX, coordinateY;
+
 -(void) initPlugin{
 	
 }
