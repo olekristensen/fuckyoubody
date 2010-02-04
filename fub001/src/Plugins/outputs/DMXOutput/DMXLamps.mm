@@ -257,13 +257,13 @@
 			p.z = 2-lampPos.x;
 			break;
 		case 1:
-			p.z = 7-lampPos.x;
+			p.z = 6-lampPos.x;
 			break;
 		case 2:
-			p.z = lampPos.x;
+			p.z = lampPos.x+4;
 			break;
 		case 3:
-			p.z = lampPos.x+5;			
+			p.z = lampPos.x;			
 			break;
 		default:
 			break;

@@ -159,7 +159,7 @@
 		
 		for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 			
-			ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"];
+			ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
 			
 			ofxVec2f pf11 = *screenBottomOnFloorLeft;
 			ofxVec2f pf12 = *screenBottomOnFloorRight;
@@ -335,7 +335,7 @@
 #pragma mark add forces from humans on the floor
 		
 		for (lemming in floorLemmings) {
-			PersistentBlob * nearestBlob;	
+			PersistentBlob * nearestBlob;
 			float shortestDist = -1;
 			
 			PersistentBlob * blob;
@@ -362,6 +362,9 @@
 				
 				[lemming setAlpha:fmaxf(0.0,1.0-(shortestDist*30.0*[floorLemmingsDistanceAlpha floatValue]))];
 			}
+			
+			[lemming setCoinyness:[floorLemmingsCoins floatValue]];
+			
 		}
 	}
 	
@@ -563,7 +566,7 @@
 	ofFill();
 	ofEnableAlphaBlending();
 	
-	NSColor * playerColor = [NSColor orangeColor];// [GetPlugin(Players) playerColor:0];
+	NSColor * playerColor = [GetPlugin(Players) playerColor:3];
 	
 	Lemming * lemming;
 	
@@ -572,6 +575,7 @@
 	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
 	ofRect(0, 0, 1, 1);
 	
+	/** floor box
 	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
 	glPushMatrix();{
 		glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
@@ -587,6 +591,7 @@
 			   screenTrackingHeight);
 		
 	}glPopMatrix();
+	**/
 	
 	glPopMatrix();
 	
@@ -595,6 +600,7 @@
 	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
 	ofRect(0, 0, 1, 1);
 	
+	/** floor box
 	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
 	glPushMatrix();{
 		glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
@@ -610,7 +616,8 @@
 			   screenTrackingHeight);
 		
 	}glPopMatrix();
-	
+	 **/
+	 
 	glPopMatrix();
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
@@ -648,13 +655,23 @@
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
 		
 		//background
-		ofSetColor(0,0,0,127);
+		ofSetColor(0,0,0,255);
 		ofRect(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1);
 		
 		//dancers' mask
-		
+		/**
 		ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
 		ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 1.0-screenTrackingHeight);
+		**/
+
+		if((1.0-screenTrackingHeight) > SCREEN_MARGIN){
+			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*255);
+		} else {
+			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*0);
+		}
+
+			
+		ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 0.03);
 		
 		//Screen Elements
 		ScreenElement * element;
@@ -802,7 +819,6 @@
 					glRotatef((atan2(-vel->y, -vel->x)*20)+40, 0, 0, 1);
 					glTranslated(-position->x, -position->y, 0);
 					[GetPlugin(Lemmings) parachuteImage]->draw(position->x-((vel->y*0.33)+(radius*0.33)), (position->y-((vel->y*0.33)+(radius*0.33)))-(radius*15.0*vel->y), ((vel->y*0.33)+(radius*0.33))*2, ((vel->y*0.33)+(radius*0.33))*2);
-					
 					ofPopStyle();
 				}glPopMatrix();
 			}
@@ -811,7 +827,10 @@
 			 glRotatef(atan2(-vel->y, vel->x), 0, 0, 1);
 			 glTranslated(-position->x, -position->y, 0);
 			 **/
-			ofSetColor(theColor.r, theColor.g, theColor.b, theColor.a);
+			ofSetColor((theColor.r*(1.0-coinyness))+(coinyness*ofRandom(200, 220)), 
+					   (theColor.g*(1.0-coinyness))+(coinyness*ofRandom(127, 200)), 
+					   (theColor.b*(1.0-coinyness))+(coinyness*ofRandom(0, 127)),
+					   theColor.a);
 			ofCircle(position->x, position->y, radius+[GetPlugin(Lemmings) getLemmingsSizeAsFloat]);
 			//ofEllipse(position->x, position->y, radius/*-(0.001*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])*/, (0.015*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])+radius);
 		}glPopMatrix();

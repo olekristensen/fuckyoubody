@@ -371,7 +371,7 @@
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if(ofGetFrameRate() > 2){
 		for(int i=0;i<gtaPositions.size();i++){
-			gtaPositions[i].z += 0.1 * 60.0/ofGetFrameRate();
+			gtaPositions[i].z += 0.2 * 60.0/ofGetFrameRate();
 			if(gtaPositions[i].z > 9){
 				gtaPositions[i].z -= 10+ofRandom(-2, 2);
 				gtaPositions[i].y = roundf(ofRandom(0, 4));
@@ -444,6 +444,27 @@
 				}
 			}
 			
+			/** RAINBOW
+			 
+			 
+			 float hue, sat, bright, alph;
+			 float add = 0.1;
+			 [[NSColor redColor] getHue:&hue saturation:&sat brightness:&bright alpha:&alph];	
+			 for(int y=0;y<5;y++){
+			 for(int x=0;x<3;x++){
+			 //NSColor * c = [color copy];
+			 float h = hue+add*x + y*0.1;
+			 if(h > 1)
+			 h -= 1;
+			 NSColor * c = [NSColor colorWithCalibratedHue:h saturation:sat brightness:bright alpha:alph];
+			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+			 
+			 }
+			 }
+			 
+			 **/
+			
+			
 			
 			//GTA Ulykke
 			num = 0;
@@ -451,13 +472,17 @@
 				int xPos = x;
 				if(n > 1)
 					xPos = 2-x;
-					
+				
 				float d = fabs(xPos - ulykkePos[n])*0.5;
 				if(d > 1)
 					d = 1;
+				NSColor * c ;
+				if(n == 0 || n == 2){
+				c = [NSColor colorWithCalibratedRed:0.0 green:0.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];			
+				} else {
+				c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];								
+				}
 				
-				NSColor * c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];			
-
 				for(int y=0;y<5;y++){
 					[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
 					num++;
@@ -467,6 +492,7 @@
 			
 			
 			
+
 			for(int y=0;y<5;y++){
 				for(int x=0;x<3;x++){
 					LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
@@ -484,8 +510,22 @@
 			
 			n++;
 			
+			
+			
 		}
+		
+		
+		
+		//Gradient
+		//if([backgroundGradient state] == NSOnState){
+		
+		
+		//	}
+		
+		
 	}
+	
+	
 	
 }
 

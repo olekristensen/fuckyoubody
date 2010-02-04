@@ -74,7 +74,6 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	
 	for(int i=0;i<3;i++){
 		[trackerObj[i] draw];
 	}
