@@ -385,8 +385,6 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 }
 
 -(NSString*) getAppleScriptConnectionString{
-	NSLog([[NSString alloc] initWithFormat:@"eppc://%@:%@@%@", [appleScriptUsername stringValue], [appleScriptPassword stringValue], [appleScriptMachine stringValue] ]); 
-
 	return [[NSString alloc] initWithFormat:@"eppc://%@:%@@%@", [appleScriptUsername stringValue], [appleScriptPassword stringValue], [appleScriptMachine stringValue] ]; 
 }
 
