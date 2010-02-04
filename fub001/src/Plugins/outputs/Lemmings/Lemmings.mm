@@ -772,7 +772,7 @@
 				ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
 				//ofCircle(position->x, position->y-(radius*7.5*vel->y), (vel->y*0.27)+(radius*0.33));
 					glTranslated(position->x, position->y, 0);
-					glRotatef((atan2(-vel->y, -vel->x)*45)-127, 0, 0, 1);
+					glRotatef((atan2(-vel->y, -vel->x)*45)+180, 0, 0, 1);
 					glTranslated(-position->x, -position->y, 0);
 					[GetPlugin(Lemmings) parachuteImage]->draw(position->x-((vel->y*0.33)+(radius*0.33)), (position->y-((vel->y*0.33)+(radius*0.33)))-(radius*15.0*vel->y), ((vel->y*0.33)+(radius*0.33))*2, ((vel->y*0.33)+(radius*0.33))*2);
 				
