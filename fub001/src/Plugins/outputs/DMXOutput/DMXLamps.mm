@@ -257,19 +257,19 @@
 			p.z = 2-lampPos.x;
 			break;
 		case 1:
-			p.z = 5-lampPos.x;
+			p.z = 7-lampPos.x;
 			break;
 		case 2:
-			p.z = lampPos.x+3;
+			p.z = lampPos.x;
 			break;
 		case 3:
-			p.z = lampPos.x;			
+			p.z = lampPos.x+5;			
 			break;
 		default:
 			break;
 	}
 	
-	return (p.distance(cord) < 0.1);
+	return(p.distance(cord) < 0.4);
 } 
 
 

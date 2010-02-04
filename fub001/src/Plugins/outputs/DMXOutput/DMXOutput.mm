@@ -255,133 +255,6 @@
 
 @implementation DMXOutput
 
--(void) makeNumber:(int)n intoArray:(bool*) array{
-	
-	if(n == 0){
-		int a[15] = { 
-			1 , 1 , 1 ,
-			1 , 0 , 1 ,
-			1 , 0 , 1 ,
-			1 , 0 , 1 ,
-			1 , 1 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 1){
-		int a[15] = { 
-			0 , 0 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 2){
-		int a[15] = { 
-			1 , 1 , 1 ,
-			0 , 0 , 1 ,
-			1 , 1 , 1 ,
-			1 , 0 , 0 ,
-			1 , 1 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 3){
-		int a[15] = { 
-			1 , 1 , 1 ,
-			0 , 0 , 1 ,
-			1 , 1 , 1 ,
-			0 , 0 , 1 ,
-			1 , 1 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 4){
-		int a[15] = { 
-			1 , 0 , 1 ,
-			1 , 0 , 1 ,
-			1 , 1 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 5){
-		int a[15] = { 
-			1 , 1 , 1 ,
-			1 , 0 , 0 ,
-			1 , 1 , 1 ,
-			0 , 0 , 1 ,
-			1 , 1 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 6){
-		int a[15] = { 
-			1 , 0 , 0 ,
-			1 , 0 , 0 ,
-			1 , 1 , 1 ,
-			1 , 0 , 1 ,
-			1 , 1 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 7){
-		int a[15] = { 
-			1 , 1 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 8){
-		int a[15] = { 
-			1 , 1 , 1 ,
-			1 , 0 , 1 ,
-			1 , 1 , 1 ,
-			1 , 0 , 1 ,
-			1 , 1 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	if(n == 9){
-		int a[15] = { 
-			1 , 1 , 1 ,
-			1 , 0 , 1 ,
-			1 , 1 , 1 ,
-			0 , 0 , 1 ,
-			0 , 0 , 1 };		
-		
-		for(int i=0;i<15;i++){
-			array[i] = a[i];
-		}		
-	}
-	
-	//	pthread_mutex_unlock(&mutex);
-	
-	
-}
 
 /*-(LedLamp*) getLamp:(int)x y:(int)y{
  LedLamp * lamp;
@@ -445,11 +318,13 @@
 	}
 	
 	
-	for(int i=0;i<12;i++){
-		gtaPositions.push_back(ofxPoint3f(round(ofRandom(0, 1)), round(ofRandom(0, 5)), ofRandom(-10, 0)));
+	for(int i=0;i<5;i++){
+		gtaPositions.push_back(ofxPoint3f(((i<2)?0:1), round(ofRandom(0, 5)), ofRandom(-10, 0)));
 	}
 	
-	
+	for (int i=0; i<4; i++) {
+		ulykkePos[i] = ofRandom(0, 5);
+	}
 	
 	
 }
@@ -498,13 +373,20 @@
 		for(int i=0;i<gtaPositions.size();i++){
 			gtaPositions[i].z += 0.1 * 60.0/ofGetFrameRate();
 			if(gtaPositions[i].z > 9){
-				gtaPositions[i].z -= 10;
+				gtaPositions[i].z -= 10+ofRandom(-2, 2);
 				gtaPositions[i].y = roundf(ofRandom(0, 4));
-				gtaPositions[i].x = roundf(ofRandom(0, 1));
+				//	gtaPositions[i].x = roundf(ofRandom(0, 1));
 			}
 			
 			//	cout<<gtaPositions[i].z<<endl;
 		}
+		for(int i=0;i<4;i++){
+			ulykkePos[i] += 0.1 * 60.0/ofGetFrameRate();
+			if (ulykkePos[i] > 4) {
+				ulykkePos[i]-= 6;
+			}
+		}
+		
 		
 		DiodeBox * box;
 		int n= 0;
@@ -535,6 +417,8 @@
 			}
 			
 			
+			
+			//GTA road effect
 			for(int y=0;y<5;y++){
 				for(int x=0;x<3;x++){
 					for(int i=0;i<gtaPositions.size();i++){
@@ -557,6 +441,26 @@
 						
 					}
 					
+				}
+			}
+			
+			
+			//GTA Ulykke
+			num = 0;
+			for(int x=0;x<3;x++){
+				int xPos = x;
+				if(n > 1)
+					xPos = 2-x;
+					
+				float d = fabs(xPos - ulykkePos[n])*0.5;
+				if(d > 1)
+					d = 1;
+				
+				NSColor * c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:(1.0-d)*[GTAUlykke floatValue]/100.0];			
+
+				for(int y=0;y<5;y++){
+					[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+					num++;
 				}
 			}
 			

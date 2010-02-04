@@ -87,6 +87,8 @@
 	IBOutlet NSColorWell * noiseColor2;
 	
 	IBOutlet NSSlider * GTAEffect;
+	IBOutlet NSSlider * GTAUlykke;
+
 	
 	float r,g,b;
 	float r2,g2,b2;
@@ -112,6 +114,8 @@
 	vector<unsigned char> * serialBuffer;
 	
 	vector<ofxPoint3f> gtaPositions;
+	
+	float ulykkePos[4];
 }
 
 -(void) updateDmx:(id)param;
