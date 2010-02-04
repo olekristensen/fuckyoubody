@@ -62,7 +62,10 @@
 	
 	
 	NSColor * c = [NSColor colorWithCalibratedRed:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.red",playerNumber+1]] green:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.green",playerNumber+1]] blue:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.color.blue",playerNumber+1]] alpha:1.0];
-	[color setColor:c];
+	[_ledColor setColor:c];
+	
+	c = [NSColor colorWithCalibratedRed:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.projcolor.red",playerNumber+1]] green:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.projcolor.green",playerNumber+1]] blue:[userDefaults floatForKey:[NSString stringWithFormat:@"player.%i.projcolor.blue",playerNumber+1]] alpha:1.0];
+	[_projectorColor setColor:c];
 	int i=12;
 	
 	[[addTopButton midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
@@ -86,11 +89,15 @@
 	[[blobBlurSlider midi] setController: [[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
 	[[blobBlurSlider midi] setLabel: [NSString stringWithFormat:@"Player %i - Blob blur", playerNumber+1]];
 
-	[color setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
-	[color setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Color", playerNumber+1]];
+	[_ledColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[_ledColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Color", playerNumber+1]];
 	
 	[blobcolor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i+=4 +(20*playerNumber+1)]];
 	[blobcolor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Blob", playerNumber+1]];
+	
+	[_ledColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*playerNumber+1)]];
+	[_ledColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Player %i - Color", playerNumber+1]];
+
 
 	return YES;
 }
@@ -114,7 +121,7 @@
 -(void) draw{
 	//glViewport(0, 0, ofGetWidth()/2.0, ofGetHeight());
 	if(pblobs.size() > 0 && [blobAlphaSlider floatValue] > 0){
-		NSColor * c = [[blobcolor color] blendedColorWithFraction:(1-[colorBalanceSlider floatValue]/100.0) ofColor:[color color] ];
+		NSColor * c = [[blobcolor color] blendedColorWithFraction:(1-[colorBalanceSlider floatValue]/100.0) ofColor:[_projectorColor color] ];
 
 		[GetPlugin(CameraCalibration) applyWarpOnCam:[trackingPosition selectedSegment]];
 		ofSetColor([c redComponent]*255.0, [c greenComponent]*255.0, [c blueComponent]*255.0,[c alphaComponent]*255.0* [blobAlphaSlider floatValue]);
@@ -272,8 +279,18 @@
 	[userDefaults setFloat:[[sender color] greenComponent] forKey:[NSString stringWithFormat:@"player.%i.color.green",playerNumber+1]];
 	[userDefaults setFloat:[[sender color] blueComponent] forKey:[NSString stringWithFormat:@"player.%i.color.blue",playerNumber+1]];
 }
+-(IBAction) setColorWellProjector:(id)sender{
+	[userDefaults setFloat:[[sender color] redComponent] forKey:[NSString stringWithFormat:@"player.%i.projcolor.red",playerNumber+1]];
+	[userDefaults setFloat:[[sender color] greenComponent] forKey:[NSString stringWithFormat:@"player.%i.projcolor.green",playerNumber+1]];
+	[userDefaults setFloat:[[sender color] blueComponent] forKey:[NSString stringWithFormat:@"player.%i.projcolor.blue",playerNumber+1]];
+}
+
 
 -(NSColor*) projectorColor{
-	return [color color];
+	return [_projectorColor color];
 }
+-(NSColor*) ledColor{
+	return [_ledColor color];
+}
+
 @end

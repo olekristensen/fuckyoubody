@@ -17,6 +17,6 @@
 		IBOutlet NSView * player4View;
 }
 
+-(NSColor*) playerColorLed:(int)player;
 -(NSColor*) playerColor:(int)player;
-
 @end

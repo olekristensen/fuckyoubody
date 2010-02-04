@@ -17,7 +17,8 @@
 	
 	IBOutlet NSTextField * title;
 	IBOutlet NSTextField * name;
-	IBOutlet PluginUIColorWell * color;
+	IBOutlet PluginUIColorWell * _ledColor;
+	IBOutlet PluginUIColorWell * _projectorColor;
 	
 	IBOutlet NSTextField * numberPBlobs;
 	IBOutlet PluginUIButton * addTopButton;
@@ -66,8 +67,10 @@
 -(IBAction) resetBlobButton:(id)sender;
 
 -(IBAction) setColorWell:(id)sender;
+-(IBAction) setColorWellProjector:(id)sender;
 
 -(NSColor*) projectorColor;
+-(NSColor*) ledColor;
 
 -(id)initWithN:(int)n;
 - (BOOL) loadNibFile;	

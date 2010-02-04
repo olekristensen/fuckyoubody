@@ -21,5 +21,6 @@
 #include "Players.h"
 #include "GrowingShadow.h"
 #include "Jail.h"
+#include "Combat.h"
 
 #include "HardwareBox.h"

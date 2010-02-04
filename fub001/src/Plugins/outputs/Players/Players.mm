@@ -49,6 +49,9 @@
 
 -(NSColor*) playerColor:(int)player{
 	return [players[player-1] projectorColor];
+}
 
+-(NSColor*) playerColorLed:(int)player{
+	return [players[player-1] ledColor];
 }
 @end

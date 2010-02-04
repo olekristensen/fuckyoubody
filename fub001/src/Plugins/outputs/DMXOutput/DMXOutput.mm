@@ -27,29 +27,29 @@
 		return NO;
 	}
 	
-	int i = 10;
+	int i = 3;
 	
-	[backgroundColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[backgroundColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
 	[backgroundColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Background Color", number]];
 	i+=3;
-	[generalNumberColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[generalNumberColor setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
 	[generalNumberColor setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i General Number Color", number]];
 	i+=3;
-	[[generalNumberBlendmode midi] setController:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[[generalNumberBlendmode midi] setController:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
 	[[generalNumberBlendmode midi] setLabel:[NSString stringWithFormat:@"Box %i General Number Blendmode", number]];
 	
-	[[generalNumberValue midi] setController:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[[generalNumberValue midi] setController:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
 	[[generalNumberValue midi] setLabel:[NSString stringWithFormat:@"Box %i General Number Value", number]];
 	
-	[noiseColor1 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[noiseColor1 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
 	[noiseColor1 setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Noise Color From", number]];
 	i+=3;
 	
-	[noiseColor2 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	[noiseColor2 setMidiControllersStartingWith:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
 	[noiseColor2 setMidiLabelsPrefix:[NSString stringWithFormat:@"Box %i Noise Color To", number]];
 	i+=3;
-	
-	[[noiseBlendMode midi] setController:[[NSNumber alloc] initWithInt:i++ +(20*number)]];
+	 
+	[[noiseBlendMode midi] setController:[[NSNumber alloc] initWithInt:i++ +(25*number)]];
 	[[noiseBlendMode midi] setLabel:[NSString stringWithFormat:@"Box %i Noise Blendmode", number]];
 	
 	return YES;

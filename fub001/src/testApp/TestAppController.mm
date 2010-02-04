@@ -68,7 +68,8 @@ extern ofAppBaseWindow * window;
 	[pluginManagerController addPlugin:[[Ulykke alloc] initWithMidiChannel:10]];
 	[pluginManagerController addPlugin:[[Arkade alloc] initWithMidiChannel:11]];
 	[pluginManagerController addPlugin:[[Jail alloc] initWithMidiChannel:12]];
-	
+	[pluginManagerController addPlugin:[[Combat alloc] initWithMidiChannel:13]];
+
 	[pluginManagerController addPlugin:[[DMXOutput alloc] initWithMidiChannel:15]];
 	[pluginManagerController addPlugin:[[HardwareBox alloc] initWithMidiChannel:16]];
 
