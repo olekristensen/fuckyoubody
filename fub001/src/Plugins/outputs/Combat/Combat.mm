@@ -39,7 +39,7 @@
 	}
 	glPopMatrix();
 	glPopMatrix();
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+	/*[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	glPushMatrix();
 	glTranslated(0.5, 0.5, 0);
 	glRotated([rotation floatValue], 0, 0, 1);
@@ -61,6 +61,6 @@
 				   1.0, 1.0);
 	}
 	glPopMatrix();
-	glPopMatrix();
+	glPopMatrix();*/
 }
 @end

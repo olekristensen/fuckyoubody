@@ -8,7 +8,7 @@
 
 #import "DMXOutput.h"
 #include "HardwareBox.h"
-
+#include "Players.h"
 
 @implementation DMXEffectColumn
 @synthesize backgroundColorR, settingsView, number;
@@ -62,15 +62,15 @@
 	
 	[[backgroundTakeColor midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[[backgroundTakeColor midi] setLabel:[NSString stringWithFormat:@"Box %i Take player color background", number]];
-
+	
 	[[generalNumberTakeColor midi] setController:[[NSNumber alloc] initWithInt:i++ +(24*number)]];
 	[[generalNumberTakeColor midi] setLabel:[NSString stringWithFormat:@"Box %i Take player color numbers", number]];
-
+	
 	i = 10;
 	[[topCrop midi] setController:[[NSNumber alloc] initWithInt:i++ +(10*number)]];
 	[[topCrop midi] setChannel:[NSNumber numberWithInt:16]];
 	[[topCrop midi] setLabel:[NSString stringWithFormat:@"Box %i Background top crop ", number]];
-
+	
 	
 	for(int i=0;i<3;i++){
 		for(int u=0;u<5;u++){
@@ -503,16 +503,97 @@
 			}
 			
 			//Boksering pæle
-			float bluePos = 12*[bokseringPale floatValue]/100.0;
-			float greenPos = 6+ 12*[bokseringPale floatValue]/100.0;			
-			
+			int off = 0;
 			switch (n) {
-/*				case <#constant#>:
-					<#statements#>
+				case 0:
+					off = 6;
 					break;
+				case 1:
+					off = 9;
+					break;
+				case 3:
+					off = 3;
+					break;					
 				default:
-					break;*/
+					break;
 			}
+			
+			if([bokseringPale floatValue] > 0){
+				int bluePos = 12*[bokseringPale floatValue]/100.1;
+				int greenPos = 6+ 12*[bokseringPale floatValue]/100.1;			
+				
+				
+				
+				if(greenPos >= 12)
+					greenPos -= 12;
+				
+				for(int i=0;i<3;i++){
+					if(bluePos == i+off){
+						for(int y=0;y<5;y++){
+							int x = i;
+							//if(n > 1)
+							x = 2-x;
+							
+							NSColor * c = [GetPlugin(Players) playerColorLed:2];
+							c = [c colorWithAlphaComponent:1];
+							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+						}
+					}	
+					if(greenPos == i+off){
+						for(int y=0;y<5;y++){
+							int x = i;
+							//if(n > 1)
+							x = 2-x;
+							
+							NSColor * c = [GetPlugin(Players) playerColorLed:4];
+							c = [c colorWithAlphaComponent:1];
+							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+						}
+					}	
+				}
+			}
+			
+			
+			//Green wall
+			bool taken[] = {false, false, false};
+			if([bokseringGreen floatValue] > 0){
+				int greenPos = 6+ 12*[bokseringGreen floatValue]/99.0;	
+				
+				for(int i=0;i<3;i++){
+					if((greenPos > i+off && off >= 6)  || (greenPos > 12 && greenPos - 12 > i+off) ){
+						taken[i] = true;
+						for(int y=0;y<5;y++){							
+							int x = 2-i;							
+							NSColor * c = [GetPlugin(Players) playerColorLed:4];
+							c = [c colorWithAlphaComponent:1];
+							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+						}
+					}
+					
+					
+				}
+			}	
+			
+			//Blue wall
+			if([bokseringBlue floatValue] > 0){
+				int bluePos = 12*[bokseringBlue floatValue]/99.0;	
+				
+				for(int i=0;i<3;i++){
+					if((bluePos > i+off ) && (!taken[i] || n < 2)  ){
+						for(int y=0;y<5;y++){							
+							int x = 2-i;							
+							NSColor * c = [GetPlugin(Players) playerColorLed:2];
+							c = [c colorWithAlphaComponent:1];
+							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];
+						}
+					}
+					
+					
+				}
+			}	
+			
+			
+			
 			
 			
 			

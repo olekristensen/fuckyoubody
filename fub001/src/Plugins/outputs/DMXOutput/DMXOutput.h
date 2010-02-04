@@ -94,6 +94,8 @@
 	IBOutlet NSSlider * GTAUlykke;
 	IBOutlet NSSlider * rainbowAlpha;
 	IBOutlet NSSlider * bokseringPale;
+	IBOutlet NSSlider * bokseringGreen;
+	IBOutlet NSSlider * bokseringBlue;
 	
 	float r,g,b;
 	float r2,g2,b2;
