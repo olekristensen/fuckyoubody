@@ -31,6 +31,7 @@
 		[dest addSubview:[trackerObj[i] settingsView]];
 		
 	}
+
 }
 
 -(void) setup{

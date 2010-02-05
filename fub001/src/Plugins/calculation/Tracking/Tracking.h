@@ -21,7 +21,7 @@
 	IBOutlet NSButton * wallTracking;
 	IBOutlet NSSlider* wallTrackingC1X;
 	IBOutlet NSSlider* wallTrackingC1Y;
-	Filter * wallTracking[8];
+	Filter * wallTrackingFilter[8];
 
 }
 
