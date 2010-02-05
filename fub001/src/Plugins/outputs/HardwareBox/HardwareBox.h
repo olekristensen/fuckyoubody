@@ -27,6 +27,7 @@
 	
 	bool xbeeLedOn;
 	bool laserOn;
+	bool projectorsOn;
 	
 	float projTemps[6];
 	
@@ -44,12 +45,16 @@
 	IBOutlet NSTextField * buffersizeStatus;
 	IBOutlet NSTextField * projector1Status;
 	IBOutlet NSTextField * projector2Status;
-		IBOutlet NSTextField * projector1Temperature;
-			IBOutlet NSTextField * projector2Temperature;
+	IBOutlet NSTextField * projector1Temperature;
+	IBOutlet NSTextField * projector2Temperature;
 	IBOutlet NSTextField * xbeeStatus;
 	IBOutlet NSLevelIndicator * xbeeSignalStrength;
 	IBOutlet NSTextField * xbeeLEDStatus;
 	IBOutlet NSTextField * laserStatus;
+	
+	IBOutlet PluginUIButton * xbeeLedButton;
+	IBOutlet PluginUIButton * projectorButton;
+	IBOutlet PluginUIButton * laserButton;
 
 
 }
