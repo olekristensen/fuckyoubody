@@ -220,7 +220,7 @@
 				if(!needMoreData){
 					inCommandProcess = false;
 					commandInProcess = -1;
-					ok = true;
+					ok = true; 
 				}
 			}
 			if(ok){	
@@ -230,7 +230,7 @@
 					
 					for(int i=0;i<n;i++){
 						bytes[i] = serialBuffer->at(0);
-				//		cout<<(int)bytes[i]<<endl;
+						//		cout<<(int)bytes[i]<<endl;
 						
 						if(bytes[i] == 255 && inCommandProcess){
 							//Begin of new commando
@@ -260,7 +260,25 @@
 					int n=0;
 					pthread_mutex_lock(&mutex);
 					
-					if(timeSinceLastProjUpdate > 200){
+					if(([laserButton state] == NSOnState) != laserOn){
+						laserOn = ([laserButton state] == NSOnState);
+						serialBuffer->push_back(255);
+						serialBuffer->push_back(4);
+						serialBuffer->push_back(0);
+						
+						serialBuffer->push_back(laserOn);
+						serialBuffer->push_back(255);
+						serialBuffer->push_back(4);
+						serialBuffer->push_back(1);
+						
+						serialBuffer->push_back(laserOn);
+					} else if(([ledButton state] == NSOnState) != xbeeLedOn){
+						xbeeLedOn = ([ledButton state] == NSOnState);						
+						serialBuffer->push_back(255);
+						serialBuffer->push_back(3);
+						serialBuffer->push_back(xbeeLedOn);
+					}
+					else if(timeSinceLastProjUpdate > 200){
 						serialBuffer->push_back(255);
 						serialBuffer->push_back(5);					
 						timeSinceLastProjUpdate = 0;
@@ -342,24 +360,62 @@
 -(void) setDmxValue:(int)val onChannel:(int)channel{
 	
 	//if(channel < 40){
-		if(channel > stopDmxChannel)
-			stopDmxChannel = channel;
-		
-		dmxValues[channel] = ofClamp(val, 0,252);
-//	dmxValues[channel] = 252;
+	if(channel > stopDmxChannel)
+		stopDmxChannel = channel;
 	
-/*	if(channel % 4 == 1){
-		dmxValues[channel] = 252;
-	} else if(channel % 4 == 0){
-		dmxValues[channel] = 252;
-	}else if(channel % 4 == 2){
-		dmxValues[channel] = 252;
-		cout<<ofClamp(val, 0,251)<<"   "<<val<<endl;
-	} else if(channel % 4 == 3){
-		dmxValues[channel] = ofClamp(val, 0,251);
-		
-	}*/
+	dmxValues[channel] = ofClamp(val, 0,252);
+	//	dmxValues[channel] = 252;
+	
+	/*	if(channel % 4 == 1){
+	 dmxValues[channel] = 252;
+	 } else if(channel % 4 == 0){
+	 dmxValues[channel] = 252;
+	 }else if(channel % 4 == 2){
+	 dmxValues[channel] = 252;
+	 cout<<ofClamp(val, 0,251)<<"   "<<val<<endl;
+	 } else if(channel % 4 == 3){
+	 dmxValues[channel] = ofClamp(val, 0,251);
+	 
+	 }*/
 	
 	//}
 }
+
+-(IBAction) resetLensshift:(id)sender{
+	pthread_mutex_lock(&mutex);
+	
+	for(int i=0;i<2;i++){
+		for(int u=0;u<40;u++){
+			serialBuffer->push_back(255);
+			serialBuffer->push_back(6);
+			serialBuffer->push_back(i);
+			serialBuffer->push_back('5');
+			serialBuffer->push_back('E');
+		}
+		
+	}
+	pthread_mutex_unlock(&mutex);		
+	
+}
+
+-(IBAction) pos1Lensshift:(id)sender{
+	pthread_mutex_lock(&mutex);
+	
+	for(int i=0;i<2;i++){
+		for(int u=0;u<9;u++){
+			
+			serialBuffer->push_back(255);
+			serialBuffer->push_back(6);
+			serialBuffer->push_back(i);
+			serialBuffer->push_back('5');
+			serialBuffer->push_back('D');
+		}
+	}	
+	pthread_mutex_unlock(&mutex);		
+	
+}
+-(IBAction) pos2Lensshift:(id)sender{
+	
+}
+
 @end

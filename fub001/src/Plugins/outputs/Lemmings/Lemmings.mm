@@ -97,7 +97,9 @@
 	
 	if(doAddRumikosLemming){
 		
-		Lemming * rumikosLemming = [[[Lemming alloc]initWithX: [[GetPlugin(GrowingShadow) coordinateX] floatValue] Y:[[GetPlugin(GrowingShadow) coordinateY] floatValue] spawnTime:timeInterval]autorelease];
+		//Lemming * rumikosLemming = [[[Lemming alloc]initWithX: [[GetPlugin(GrowingShadow) coordinateX] floatValue] Y:[[GetPlugin(GrowingShadow) coordinateY] floatValue] spawnTime:timeInterval]autorelease];
+		
+		Lemming * rumikosLemming = [[[Lemming alloc]initWithX: 0.85 Y:0.85 spawnTime:timeInterval]autorelease];
 		
 		[rumikosLemming setScaleFactor:0.5];
 		

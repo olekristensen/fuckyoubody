@@ -108,6 +108,8 @@
 	ofxCvOpticalFlowLK	* opticalFlow;
 	ofxCvContourFinder 	* contourFinder;
 	
+	BOOL loadBackgroundNow;
+	
 	NSMutableArray * persistentBlobs;
 	NSMutableArray * blobs;
 
@@ -129,6 +131,8 @@
 	IBOutlet NSTextField * pblobCounter;
 	IBOutlet NSTextField * currrentPblobCounter;
 	IBOutlet NSTextField * newestId;
+	
+	IBOutlet NSSegmentedControl * presetPicker;
 	
 	NSThread * thread;
 	pthread_mutex_t mutex;

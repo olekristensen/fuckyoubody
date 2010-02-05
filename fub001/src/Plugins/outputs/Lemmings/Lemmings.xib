@@ -8,10 +8,10 @@
 		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<dictionary class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="com.apple.InterfaceBuilder.CocoaPlugin">740</string>
-			<string key="com.brandonwalkin.BWToolkit">1.2.5</string>
+			<string key="com.brandonwalkin.BWToolkit">1.2.2</string>
 		</dictionary>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="153"/>
+			<integer value="32"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -397,7 +397,6 @@
 														<bool key="BWGBHasTopBorder">NO</bool>
 														<bool key="BWGBHasBottomBorder">NO</bool>
 														<bool key="BWGBHasGradient">YES</bool>
-														<bool key="BWGBHasFillColor">NO</bool>
 														<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 														<float key="BWGBBottomInsetAlpha">0.0</float>
 													</object>
@@ -662,7 +661,6 @@
 														<bool key="BWGBHasTopBorder">NO</bool>
 														<bool key="BWGBHasBottomBorder">NO</bool>
 														<bool key="BWGBHasGradient">YES</bool>
-														<bool key="BWGBHasFillColor">NO</bool>
 														<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 														<float key="BWGBBottomInsetAlpha">0.0</float>
 													</object>
@@ -1145,7 +1143,6 @@
 										<bool key="BWGBHasTopBorder">NO</bool>
 										<bool key="BWGBHasBottomBorder">NO</bool>
 										<bool key="BWGBHasGradient">YES</bool>
-										<bool key="BWGBHasFillColor">NO</bool>
 										<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 										<float key="BWGBBottomInsetAlpha">0.0</float>
 									</object>
@@ -1404,7 +1401,6 @@
 						<bool key="BWGBHasTopBorder">YES</bool>
 						<bool key="BWGBHasBottomBorder">NO</bool>
 						<bool key="BWGBHasGradient">YES</bool>
-						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.30000001192092896</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -1414,9 +1410,6 @@
 				<string key="NSClassName">ofPlugin</string>
 			</object>
 			<object class="NSUserDefaultsController" id="502006415">
-				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>lemmings.floor.lemmingsPerMinute</string>
-				</array>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
@@ -3830,7 +3823,7 @@
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiController</string>
-								<real value="3" key="value"/>
+								<real value="127" key="value"/>
 							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.string</string>

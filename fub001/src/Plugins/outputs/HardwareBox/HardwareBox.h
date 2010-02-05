@@ -50,14 +50,20 @@
 	IBOutlet NSLevelIndicator * xbeeSignalStrength;
 	IBOutlet NSTextField * xbeeLEDStatus;
 	IBOutlet NSTextField * laserStatus;
-
+	
+	IBOutlet NSButton * laserButton;
+	IBOutlet NSButton * ledButton;
+	
+	
 
 }
 
 -(void) updateSerial:(id)param;
 -(IBAction) toggleXBeeLed:(id)sender;
 -(IBAction) toggleLaser:(id)sender;
-
+-(IBAction) resetLensshift:(id)sender;
+-(IBAction) pos1Lensshift:(id)sender;
+-(IBAction) pos2Lensshift:(id)sender;
 -(IBAction) turnProjectorOn:(id)sender;
 -(IBAction) turnProjectorOff:(id)sender;
 

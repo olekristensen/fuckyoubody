@@ -229,6 +229,8 @@
 		
 		mouseEvent = NO;
 		
+		loadBackgroundNow = NO;
+		
 	}
 	
 	return self;
@@ -277,6 +279,10 @@
 	
 	[[learnBackgroundButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Grab Background", trackerNumber]];
 	[[learnBackgroundButton midi] setController: [[NSNumber alloc] initWithInt:60+(20*trackerNumber)]];
+	
+	[[presetPicker midi] setLabel: [NSString stringWithFormat:@"Tracker %i Pick preset", trackerNumber]];
+	[[presetPicker midi] setController: [[NSNumber alloc] initWithInt:64+(20*trackerNumber)]];
+	
 	
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	
@@ -469,7 +475,10 @@
 	}
 }
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	
+	if(loadBackgroundNow){
+		loadBackgroundNow= NO;
+		[self loadBackground];	
+	}
 	
 	if([setMaskButton state] == NSOnState && setMaskCorner == -1){
 		[activeButton setHidden:YES];
@@ -869,8 +878,8 @@
 	// NONO infinite recursion 
 	// [presetMenu selectItemAtIndex:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	[opticalFlowActiveButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.opticalFlowActive", trackerNumber,preset]]intValue]];
-	
-	[self loadBackground];
+		
+	loadBackgroundNow = YES;
 }
 
 -(ofPoint) flowAtX:(float) pointX Y: (float) pointY{
