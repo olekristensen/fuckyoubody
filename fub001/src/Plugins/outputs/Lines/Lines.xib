@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">10A432</string>
-		<string key="IBDocument.InterfaceBuilderVersion">732</string>
-		<string key="IBDocument.AppKitVersion">1038</string>
-		<string key="IBDocument.HIToolboxVersion">437.00</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
+		<string key="IBDocument.InterfaceBuilderVersion">740</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">732</string>
+			<string key="NS.object.0">740</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<integer value="1"/>
@@ -34,7 +34,7 @@
 					<object class="NSButton" id="508140559">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{20, 327}, {118, 25}}</string>
+						<string key="NSFrame">{{153, 402}, {118, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="134281228">
@@ -58,7 +58,7 @@
 					<object class="NSButton" id="1016938509">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{146, 327}, {118, 25}}</string>
+						<string key="NSFrame">{{279, 402}, {118, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="669508733">
@@ -98,7 +98,7 @@
 					<object class="NSButton" id="157294051">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{272, 327}, {118, 25}}</string>
+						<string key="NSFrame">{{405, 402}, {118, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="337771185">
@@ -118,7 +118,7 @@
 					<object class="NSTextField" id="503984733">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{72, 306}, {69, 17}}</string>
+						<string key="NSFrame">{{205, 381}, {69, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="377870545">
@@ -150,7 +150,7 @@
 					<object class="NSSlider" id="1059338461">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{144, 302}, {248, 21}}</string>
+						<string key="NSFrame">{{277, 377}, {248, 21}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="16403126">
@@ -170,8 +170,8 @@
 					</object>
 					<object class="NSTextField" id="246279534">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{89, 379}, {52, 17}}</string>
+						<int key="NSvFlags">-2147483380</int>
+						<string key="NSFrame">{{17, 126}, {52, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="673758537">
@@ -186,8 +186,8 @@
 					</object>
 					<object class="NSSlider" id="572957226">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{144, 375}, {248, 21}}</string>
+						<int key="NSvFlags">-2147483380</int>
+						<string key="NSFrame">{{72, 122}, {248, 21}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="180009024">
@@ -207,8 +207,8 @@
 					</object>
 					<object class="NSSegmentedControl" id="362569761">
 						<reference key="NSNextResponder" ref="1005"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{146, 402}, {244, 25}}</string>
+						<int key="NSvFlags">-2147483380</int>
+						<string key="NSFrame">{{74, 149}, {244, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSegmentedCell" key="NSCell" id="228640640">
@@ -243,13 +243,6 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSUserDefaultsController" id="388748012">
-				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>lines.tracking</string>
-					<string>lines.balance</string>
-					<string>lines.add</string>
-					<string>lines.timeout</string>
-					<string>lines.width</string>
-				</array>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
@@ -450,11 +443,11 @@
 							<reference ref="362569761"/>
 							<reference ref="572957226"/>
 							<reference ref="246279534"/>
-							<reference ref="508140559"/>
-							<reference ref="1016938509"/>
-							<reference ref="157294051"/>
 							<reference ref="1059338461"/>
 							<reference ref="503984733"/>
+							<reference ref="157294051"/>
+							<reference ref="1016938509"/>
+							<reference ref="508140559"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -647,6 +640,11 @@
 						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
 						<reference key="object" ref="1059338461"/>
 						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiSmoothing</string>
+								<real value="98" key="value"/>
+							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiController</string>

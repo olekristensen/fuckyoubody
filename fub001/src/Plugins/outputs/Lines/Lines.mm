@@ -111,7 +111,7 @@
 		 width = w;			*/
 	}
 	
-	if(balance == 0){
+	if(true || balance == 0){
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Projector"];
 		glBegin(GL_POLYGON);
 		glVertex2f(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,0);
@@ -273,10 +273,10 @@
 		
 		for(pblob in [t persistentBlobs]){
 			Blob * b;
-			ofxPoint2f * frontLeft=new ofxPoint2f(-1,-1),* backLeft=new ofxPoint2f(-1,-1);
-			ofxPoint2f*  frontRight=new ofxPoint2f(-1,-1), *backRight=new ofxPoint2f(-1,-1);
+			ofxPoint2f * frontLeft=new ofxPoint2f(-1,-1);
+			ofxPoint2f*  frontRight=new ofxPoint2f(-1,-1);
 			for(b in [pblob blobs]){
-				if(strcmp([[t calibrator] projector]->name->c_str(), "Front") == 0){
+				//if(strcmp([[t calibrator] projector]->name->c_str(), "Front") == 0){
 					for(int i=0;i<[b nPts];i++){
 						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
 						if(frontLeft->x == -1 || p.x < frontLeft->x){
@@ -286,7 +286,7 @@
 							*frontRight = p;
 						}
 					}
-				} else {				
+				/*} else {				
 					for(int i=0;i<[b nPts];i++){
 						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
 
@@ -299,36 +299,10 @@
 							*frontRight = frontP;
 						}
 					}				
-				}
-				
-				if(strcmp([[t calibrator] projector]->name->c_str(), "Back") == 0){
-					for(int i=0;i<[b nPts];i++){
-						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Back" toSurface:"Projector"];
-
-						if(backLeft->x == -1 || p.x > backLeft->x){
-							*backLeft = p;
-						}
-						if(backRight->x == -1 || p.x < backRight->x){
-							*backRight = p;
-						}
-					}
-				} else {				
-					for(int i=0;i<[b nPts];i++){
-						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
-
-						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
-						ofxPoint2f backP = [GetPlugin(ProjectionSurfaces) convertPoint:floorP toProjection:"Back" fromSurface:"Floor"];
-						if(backLeft->x == -1 || backP.x > backLeft->x){
-							*backLeft = backP;
-						}
-						if(backRight->x == -1 || backP.x < backRight->x){
-							*backRight = backP;
-						}
-					}				
-				}			
+				}*/
 			}
 			
-			if(frontLeft->x != -1 && backLeft->x != -1 && frontRight->x != -1 && backRight->x != -1){
+			if(frontLeft->x != -1 && frontRight->x != -1){
 				BOOL lineFound = NO;
 				
 				LineObject * line;
@@ -338,7 +312,7 @@
 						//See if blob is linked to line
 						if(link->blobId == pblob->pid && link->projId == [[[pblob blobs] objectAtIndex:0] cameraId]){
 							[line setFrontLeft:*frontLeft frontRight:*frontRight];
-							[line setBackLeft:*backLeft backRight:*backRight];
+							//[line setBackLeft:*backLeft backRight:*backRight];
 							
 							//[line setLeft:([line left] + (optimalLeft - [line left])*[corridorSpeedControl floatValue]*0.01)];
 							//[line setRight:([line right] + (optimalRight - [line right])*[corridorSpeedControl floatValue]*0.01)];
@@ -348,13 +322,13 @@
 					}
 				}
 				
-				if(lineFound == NO){
+				if(lineFound == NO && [addButton state] == NSOnState){
 					LineObject * newLine = [[LineObject alloc] init];
 					LineBlobLink * link = [[LineBlobLink alloc] init]; 
 					
 					for(int i=0;i<100;i++){
 						[newLine setFrontLeft:*frontLeft frontRight:*frontRight];
-						[newLine setBackLeft:*backLeft backRight:*backRight];
+//						[newLine setBackLeft:*backLeft backRight:*backRight];
 					}
 					
 					link->blobId = pblob->pid;
@@ -363,6 +337,14 @@
 					link->lastConfirm = outputTime->videoTime;
 					[[newLine links] addObject:link];
 					[lines addObject:newLine];
+				} else if(lineFound == NO){
+					LineObject * line;
+					for(line in lines){
+//						if([line
+						
+						LineBlobLink * link;
+						
+					}
 				}
 			}
 		}
