@@ -17,6 +17,8 @@
 	
 	pthread_mutex_init(&mutex, NULL);
 	
+	didShowMidiConflictAlert = false;
+	
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
 	manager = [PYMIDIManager sharedInstance];
@@ -60,7 +62,8 @@
 }
 
 -(void) showConflictSheet{
-	
+	if(!didShowMidiConflictAlert){
+			
 	NSBeginCriticalAlertSheet(NSLocalizedString(@"MIDI Controller Conflict", @"Title of alert panel which comes up when user chooses Quit"),
 							  NSLocalizedString(@"Continue", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
 							  NSLocalizedString(@"Quit", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
@@ -72,6 +75,9 @@
 							  nil,
 							  NSLocalizedString(@"Some of the midi controllers are conflicting, they are highlighted in red in the list of midiControllers.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents.")
 							  );
+		didShowMidiConflictAlert = true;
+	}
+
 }
 
 - (void)willEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
@@ -200,6 +206,16 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 					for (p in [globalController viewItems]) {
 						if ([p midiChannel] == channel) {
 							[p setAlpha:[[NSNumber alloc] initWithFloat:(value/127.0)]];
+						}
+					}
+					
+				} else if (number == 3) {
+					
+					ofPlugin * p;
+					
+					for (p in [globalController viewItems]) {
+						if ([p midiChannel] == channel) {
+							[p setMask:[[NSNumber alloc] initWithFloat:(value/127.0)]];
 						}
 					}
 					
@@ -354,11 +370,6 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 					didRunSelector:nil
 					   contextInfo:NULL];
 	
-	/**
-	 
-	 [[NSPrintOperation printOperationWithView:midiMappingsListForPrint printInfo:[NSPrintInfo sharedPrintInfo]] 
-	 runOperation];
-	 **/
 }
 
 -(void) bindPluginUIControl:(PluginUIMidiBinding*)binding {
@@ -367,7 +378,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	[boundControls removeObjectIdenticalTo:binding];
 	
 	id theBinding;
-	for (theBinding in boundControls){
+	for (theBinding in [boundControlsController arrangedObjects]){
 		if ([[theBinding channel] intValue] == [[binding channel] intValue]) {
 			if ([[theBinding controller] intValue] == [[binding controller] intValue]) {
 				[theBinding setConflict:YES];
@@ -380,6 +391,23 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	}
 	
 	[boundControlsController addObject:[binding retain]];
+	
+	pthread_mutex_unlock(&mutex);
+}
+
+-(void) unbindPluginUIControl:(PluginUIMidiBinding*)binding {
+	pthread_mutex_lock(&mutex);
+	
+	[boundControls removeObjectIdenticalTo:binding];
+	
+	id theBinding;
+	for (theBinding in boundControls){
+		if ([[theBinding channel] intValue] == [[binding channel] intValue]) {
+			if ([[theBinding controller] intValue] == [[binding controller] intValue]) {
+				[binding setConflict:NO];
+			}
+		}
+	}
 	
 	pthread_mutex_unlock(&mutex);
 }

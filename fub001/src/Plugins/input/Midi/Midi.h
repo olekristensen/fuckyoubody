@@ -22,29 +22,30 @@
 	
 	pthread_mutex_t mutex;
 
-	NSUserDefaults			* userDefaults;
+	NSUserDefaults				* userDefaults;
 	
-	IBOutlet NSTableView	* midiMappingsList;
-	IBOutlet NSTableView	* midiMappingsListForPrint;
-	IBOutlet NSView			* printHeaderView;
-	IBOutlet NSPopUpButton	* midiInterface;
-	IBOutlet NSTextField	* appleScriptMachine;
-	IBOutlet NSTextField	* appleScriptUsername;
+	IBOutlet NSTableView		* midiMappingsList;
+	IBOutlet NSTableView		* midiMappingsListForPrint;
+	IBOutlet NSView				* printHeaderView;
+	IBOutlet NSPopUpButton		* midiInterface;
+	IBOutlet NSTextField		* appleScriptMachine;
+	IBOutlet NSTextField		* appleScriptUsername;
 	IBOutlet NSSecureTextField	* appleScriptPassword;
 	
 	CFTimeInterval			updateTimeInterval;
 	CFTimeInterval			midiTimeInterval;
 	
-	PYMIDIManager			* manager;
-	PYMIDIVirtualSource		* endpoint;
-	PYMIDIVirtualDestination* sendEndpoint;
+	PYMIDIManager				* manager;
+	PYMIDIVirtualSource			* endpoint;
+	PYMIDIVirtualDestination	* sendEndpoint;
 	
-	IBOutlet NSArrayController		* boundControlsController;
-	NSMutableArray			* boundControls;
+	IBOutlet NSArrayController	* boundControlsController;
+	NSMutableArray				* boundControls;
 	
 	bool					midiInterfaceSelectionFound;
 	bool					updateView;
 	bool					showMidiConflictAlert;
+	bool					didShowMidiConflictAlert;
 	
 }
 
@@ -59,6 +60,7 @@
 -(void) buildMidiInterfacePopUp;
 -(void) midiSetupChanged;
 -(void) bindPluginUIControl:(PluginUIMidiBinding*)binding;
+-(void) unbindPluginUIControl:(PluginUIMidiBinding*)binding;
 
 -(void) showConflictSheet;
 - (IBAction)showSelectedControl:(id)sender;
