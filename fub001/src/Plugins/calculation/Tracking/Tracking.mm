@@ -45,30 +45,41 @@
 	}
 	
 	if([wallTracking state] == NSOnState){
-		Blob * b;
-		ofPoint topLeft = ofPoint(-1,-1), topRight= ofPoint(-1,-1), bottomLeft= ofPoint(-1,-1), bottomRight= ofPoint(-1,-1);
-		for(b in [[self trackerNumber:0] blobs]){
-			if(topLeft.x == -1 || ([b centroid].x < topLeft.x && [b centroid].y < topLeft.y)){
-				topLeft = [b centroid];
+		if([[self trackerNumber:0] numBlobs] == 4){
+			
+			Blob * b;
+			ofxPoint2f center;
+			int n= 0;
+			for(b in [[self trackerNumber:0] blobs]){
+				center += [b centroid];
+				n++;
 			}
-			if(topRight.x == -1 || ([b centroid].x > topRight.x && [b centroid].y < topRight.y)){
-				topRight = [b centroid];
+			center /= n;
+			
+			ofPoint topLeft = center, topRight= center, bottomLeft= center, bottomRight= center;
+			for(b in [[self trackerNumber:0] blobs]){
+				if(([b centroid].x < topLeft.x && [b centroid].y < topLeft.y)){
+					topLeft = [b centroid];
+				}
+				if(([b centroid].x > topRight.x && [b centroid].y < topRight.y)){
+					topRight = [b centroid];
+				}
+				if(([b centroid].x < bottomLeft.x && [b centroid].y > bottomLeft.y)){
+					bottomLeft = [b centroid];
+				}
+				if(([b centroid].x > bottomRight.x && [b centroid].y > bottomRight.y)){
+					bottomRight = [b centroid];
+				}
 			}
-			if(bottomLeft.x == -1 || ([b centroid].x < bottomLeft.x && [b centroid].y > bottomLeft.y)){
-				bottomLeft = [b centroid];
-			}
-			if(bottomRight.x == -1 || ([b centroid].x > bottomRight.x && [b centroid].y > bottomRight.y)){
-				bottomRight = [b centroid];
-			}
+			
+			ProjectionSurfacesObject * surf = [GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"];
+			surf->corners[0] = new ofxPoint2f( topLeft );
+			surf->corners[1] = new ofxPoint2f( topRight );
+			surf->corners[2] = new ofxPoint2f( bottomRight );
+			surf->corners[3] = new ofxPoint2f( bottomLeft );
+			[surf recalculate];
 		}
-		
-		ProjectionSurfacesObject * surf = [GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"];
-		surf->corners[0] = new ofxPoint2f( topLeft );
-		surf->corners[1] = new ofxPoint2f( topRight );
-		surf->corners[2] = new ofxPoint2f( bottomRight );
-		surf->corners[3] = new ofxPoint2f( bottomLeft );
-		[surf recalculate];
-}
+	}
 	
 	
 }

@@ -16,10 +16,10 @@
 	Blob *b;
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	
-	for(b in [tracker(1) blobs]){
+	for(b in [tracker(0) blobs]){
 		ofBeginShape();
 		for (int i=0; i<[b nPts]; i++) {
-			ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Back" toSurface:"Floor"];
+			ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Floor"];
 			ofVertex(p.x, p.y);
 		}
 		ofEndShape(true);
@@ -29,18 +29,16 @@
 	glPopMatrix();
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
-	
-	for(b in [tracker(1) blobs]){
-		for(b in [tracker(1) blobs]){
-			ofBeginShape();
-			for (int i=0; i<[b nPts]; i++) {
-				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Back" toSurface:"Floor"];
-				ofVertex(p.x, p.y);
-			}
-			ofEndShape(true);
-			
+	for(b in [tracker(0) blobs]){
+		ofBeginShape();
+		for (int i=0; i<[b nPts]; i++) {
+			ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Floor"];
+			ofVertex(p.x, p.y);
 		}
+		ofEndShape(true);
+		
 	}
+	
 	
 	glPopMatrix();
 	
