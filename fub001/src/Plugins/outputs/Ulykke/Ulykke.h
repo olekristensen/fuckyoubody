@@ -9,7 +9,7 @@
 
 
 @interface Ulykke : ofPlugin {
-
+	IBOutlet NSButton * fill;
 }
 
 @end

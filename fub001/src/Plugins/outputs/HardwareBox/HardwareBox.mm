@@ -25,10 +25,7 @@
 	serialBuffer = new vector<unsigned char>;
 	inCommandProcess = false;
 	commandInProcess = -1;
-	arduinoState = xbeestate = 0;
-	projector1state = projector2state = -1; 
-	[projectorButton setEnabled:NO];
-	[projectorButton setState:NSMixedState];
+	arduinoState = projector1state = projector2state = xbeestate = 0;
 	[thread start];	
 	timeout = 0;
 	
@@ -53,108 +50,26 @@
 	if(connected){
 		[usbStatus setStringValue:@"USB Status: Connected"];
 		[usbStatus setTextColor:[NSColor blackColor]];
-		// NOT THIS ONE handled later by states from projectors - [projectorButton setEnabled:NO];
-		[xbeeLedButton setEnabled:YES];
-		[laserButton setEnabled:YES];
 	} else {
 		[usbStatus setStringValue:@"USB Status: NOT Connected"];	
 		[usbStatus setTextColor:[NSColor redColor]];
-		[projectorButton setEnabled:NO];
-		[xbeeLedButton setEnabled:NO];
-		[laserButton setEnabled:NO];
 	}
+	
+	
 	
 	[buffersizeStatus setStringValue:[NSString stringWithFormat:@"Serial buffer size: %d", serialBuffer->size()]];
 	[arduinoStatus setStringValue:[NSString stringWithFormat:@"Arduino status: %d", arduinoState]];
 	
-	if(projector1state > -1 && projector2state > -1){
-		if (![projectorButton isEnabled]) {
-			if (projector1state == 0 || projector2state == 0) {
-				projectorsOn = true;
-				[projectorButton setState:NSOnState];	
-			} else {
-				projectorsOn = false;
-				[projectorButton setState:NSOffState];	
-			}
-			[projectorButton setEnabled:YES];
-		}
-	}
-	
-	if ([projectorButton isEnabled]) {
-		
-		if(projectorsOn && [projectorButton state] == NSOffState){
-			projectorsOn = false;
-			for(int i=0;i<2;i++){
-				serialBuffer->push_back(255);
-				serialBuffer->push_back(6);
-				serialBuffer->push_back(i);
-				serialBuffer->push_back('0');
-				serialBuffer->push_back('0');
-			}
-		}
-		
-		if(!projectorsOn && [projectorButton state] == NSOnState){
-			projectorsOn = true;
-			for(int i=0;i<2;i++){
-				serialBuffer->push_back(255);
-				serialBuffer->push_back(6);
-				serialBuffer->push_back(i);
-				serialBuffer->push_back('0');
-				serialBuffer->push_back('1');
-			}
-		}
-		
-	}
 	
 	[projector1Status setStringValue:[NSString stringWithFormat:@"Projector 1 status: %d %@", projector1state, [self getStatusFromCode:projector1state]]];
-	[projector1Temperature setStringValue:[NSString stringWithFormat:@"Projector 1 temperature: %f %f %f",  projTemps[0], projTemps[1], projTemps[2]]];
 	[projector2Status setStringValue:[NSString stringWithFormat:@"Projector 2 status: %d %@", projector2state, [self getStatusFromCode:projector2state]]];
+	[projector1Temperature setStringValue:[NSString stringWithFormat:@"Projector 1 temperature: %f %f %f",  projTemps[0], projTemps[1], projTemps[2]]];
 	[projector2Temperature setStringValue:[NSString stringWithFormat:@"Projector 2 temperature: %f %f %f", projTemps[3], projTemps[4], projTemps[5]]];
 	
-	if(xbeeLedOn && [xbeeLedButton state] == NSOffState){
-		xbeeLedOn = false;
-		serialBuffer->push_back(255);
-		serialBuffer->push_back(3);
-		serialBuffer->push_back(xbeeLedOn);
-	}
-	
-	if(!xbeeLedOn && [xbeeLedButton state] == NSOnState){
-		xbeeLedOn = true;
-		serialBuffer->push_back(255);
-		serialBuffer->push_back(3);
-		serialBuffer->push_back(xbeeLedOn);
-	}
-	
-	[xbeeLEDStatus setStringValue:[NSString stringWithFormat:@"XBee LED status: %d", xbeeLedOn]];
 	[xbeeStatus setStringValue:[NSString stringWithFormat:@"XBee status: %d, signal strength: %d", xbeestate, int(xbeeRSSI)]];
 	[xbeeSignalStrength setFloatValue:xbeeRSSI];
 	
-	if(laserOn && [laserButton state] == NSOffState){
-		laserOn = false;
-		serialBuffer->push_back(255);
-		serialBuffer->push_back(4);
-		serialBuffer->push_back(0);
-		serialBuffer->push_back(laserOn);
-		
-		serialBuffer->push_back(255);
-		serialBuffer->push_back(4);
-		serialBuffer->push_back(1);
-		serialBuffer->push_back(laserOn);
-	}
-	
-	if(!laserOn && [laserButton state] == NSOnState){
-		laserOn = true;
-		serialBuffer->push_back(255);
-		serialBuffer->push_back(4);
-		serialBuffer->push_back(0);
-		serialBuffer->push_back(laserOn);
-		
-		serialBuffer->push_back(255);
-		serialBuffer->push_back(4);
-		serialBuffer->push_back(1);
-		serialBuffer->push_back(laserOn);
-	}
-	
+	[xbeeLEDStatus setStringValue:[NSString stringWithFormat:@"XBee LED status: %d", xbeeLedOn]];
 	[laserStatus setStringValue:[NSString stringWithFormat:@"Laser status: %d", laserOn]];
 	
 	pthread_mutex_unlock(&mutex);
@@ -167,11 +82,8 @@
 		case 0:
 			status = @"On";
 			break;
-		case 04:
-			status = @"Power Management mode after Cooling down";
-			break;
-		case 10:
-			status = @"Power Malfunction";
+		case 80:
+			status = @"Standby";
 			break;
 		case 40:
 			status = @"Countdown";
@@ -179,17 +91,21 @@
 		case 20:
 			status = @"Cooling down";
 			break;
-		case 21:
-			status = @"Cooling down after the projector is turned off when the lamps are out.";
-			break;
-		case 24:
-			status = @"Cooling down at Power Management mode";
+		case 10:
+			status = @"Power Malfunction";
 			break;
 		case 28:
 			status = @"Cooling down at the temperature anomaly";
 			break;
-		case 80:
-			status = @"Standby";
+		case 24:
+			status = @"Cooling down at Power Management mode";
+			break;
+		case 04:
+			status = @"Power Management mode after Cooling down";
+			break;
+		case 21:
+			status = @"Cooling down after the projector is turned off when the lamps are out.";
+			
 			break;
 		case 81:
 			status = @"Stand-by mode after Cooling down when the lamps are out.";
@@ -197,9 +113,7 @@
 		case 88:
 			status = @"Stand-by mode after Cooling down at the temperature anomaly.";
 			break;
-		case -1:
-			status = @"No serial connection.";
-			break;
+			
 		default:
 			status = @"????";
 			break;
@@ -316,7 +230,7 @@
 					
 					for(int i=0;i<n;i++){
 						bytes[i] = serialBuffer->at(0);
-						//		cout<<(int)bytes[i]<<endl;
+				//		cout<<(int)bytes[i]<<endl;
 						
 						if(bytes[i] == 255 && inCommandProcess){
 							//Begin of new commando
@@ -428,23 +342,23 @@
 -(void) setDmxValue:(int)val onChannel:(int)channel{
 	
 	//if(channel < 40){
-	if(channel > stopDmxChannel)
-		stopDmxChannel = channel;
+		if(channel > stopDmxChannel)
+			stopDmxChannel = channel;
+		
+		dmxValues[channel] = ofClamp(val, 0,252);
+//	dmxValues[channel] = 252;
 	
-	dmxValues[channel] = ofClamp(val, 0,252);
-	//	dmxValues[channel] = 252;
-	
-	/*	if(channel % 4 == 1){
-	 dmxValues[channel] = 252;
-	 } else if(channel % 4 == 0){
-	 dmxValues[channel] = 252;
-	 }else if(channel % 4 == 2){
-	 dmxValues[channel] = 252;
-	 cout<<ofClamp(val, 0,251)<<"   "<<val<<endl;
-	 } else if(channel % 4 == 3){
-	 dmxValues[channel] = ofClamp(val, 0,251);
-	 
-	 }*/
+/*	if(channel % 4 == 1){
+		dmxValues[channel] = 252;
+	} else if(channel % 4 == 0){
+		dmxValues[channel] = 252;
+	}else if(channel % 4 == 2){
+		dmxValues[channel] = 252;
+		cout<<ofClamp(val, 0,251)<<"   "<<val<<endl;
+	} else if(channel % 4 == 3){
+		dmxValues[channel] = ofClamp(val, 0,251);
+		
+	}*/
 	
 	//}
 }
