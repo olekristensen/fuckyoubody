@@ -82,7 +82,7 @@
 		floorblob->nPts = originalblob->nPts = blob->nPts = 30;
 		for(int i=0;i<30;i++){
 			float a = TWO_PI*i/30.0;
-			blob->pts.push_back(ofPoint(cos(a)*0.1+point->x, sin(a)*0.1+point->y)); 
+			blob->pts.push_back(ofPoint(cos(a)*0.05+point->x, sin(a)*0.05+point->y)); 
 		}
 		floorblob->pts =  originalblob->pts = blob->pts ;
 		

@@ -8,6 +8,8 @@
 #include "ofxVectorMath.h"
 #include "Filter.h"
 
+#define NUMLINESOUNDS 5
+
 @interface LineObject : NSObject
 {
 	ofxPoint2f * frontLeft, *frontRight, *backLeft, *backRight;
@@ -20,6 +22,8 @@
 }
 @property (assign, readwrite) NSMutableArray * links;
 
+-(ofxPoint2f) getLeft;
+-(ofxPoint2f) getRight;
 -(void)drawWithBalance:(float)balance fromtAlpha:(float)frontA backAlpha:(float)backA width:(float)w timeout:(bool)timeout;
 -(void)setFrontLeft:(ofxPoint2f)frontLeft frontRight:(ofxPoint2f)frontRight;
 -(void)setBackLeft:(ofxPoint2f)backLeft backRight:(ofxPoint2f)backtRight;
@@ -38,6 +42,8 @@
 	
 	NSMutableArray * lines;
 	
+	
+	ofSoundPlayer * clicks[NUMLINESOUNDS];
 
 }
 

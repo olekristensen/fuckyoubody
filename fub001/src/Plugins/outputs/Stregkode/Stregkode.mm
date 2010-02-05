@@ -9,6 +9,7 @@
 #import "Stregkode.h"
 #include "Tracking.h"
 #include "Players.h"
+#include "DMXOutput.h"
 
 @implementation StregkodePlayer
 
@@ -24,8 +25,8 @@
 	players = [[NSMutableArray array]retain];
 	going = false;
 	
-		sound = new ofSoundPlayer();
-		sound->loadSound("stregkode.aif");
+	sound = new ofSoundPlayer();
+	sound->loadSound("stregkode.aif");
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -47,9 +48,24 @@
 				if([pblob getLowestPoint].y > (1.0-percent)){
 					StregkodePlayer * newp = [[StregkodePlayer alloc] init];
 					newp->pid = pblob->pid;					
-					newp->r = 255*[[GetPlugin(Players) playerColor:num+1] redComponent];
-					newp->g = 255*[[GetPlugin(Players) playerColor:num+1] greenComponent];
-					newp->b = 255*[[GetPlugin(Players) playerColor:num+1] blueComponent];
+					int player;
+					switch (num) {
+						case 0:
+							player = 1;
+							break;
+						case 1:
+							player = 4;
+							break;
+						case 2:
+							player = 2;
+							break;
+						case 3:
+							player = 3;
+							break;							
+					}
+					newp->r = 255*[[GetPlugin(Players) playerColor:player] redComponent];
+					newp->g = 255*[[GetPlugin(Players) playerColor:player] greenComponent];
+					newp->b = 255*[[GetPlugin(Players) playerColor:player] blueComponent];
 					newp->t = 0;
 					newp->startM = 0.0f;
 					newp->whiteAdd = 255.0f;
@@ -57,6 +73,23 @@
 					cout<<"Add "<<newp->pid<<"  "<<num<<endl;
 					sound->setPan(0.5);
 					sound->play();
+					
+					int column;
+					switch (num) {
+						case 0:
+							column = 1;
+							break;
+						case 1:
+							column = 2;
+							break;
+						case 2:
+							column = 3;
+							break;
+						case 3:
+							column = 0;
+							break;							
+					}
+					[[[GetPlugin(DMXOutput) effectColumn:column] generalNumberColor] setAlpha:1.0];
 					
 					num ++;
 					num = MIN(num,3);
@@ -81,7 +114,7 @@
 	if(going){
 		ofFill();
 		ofSetColor(255, 0, 0);
-		ofLine(0, 1.0-percent, 0.5, 1.0-percent);
+		ofRect(0, 1.0-percent, 0.5, 0.05);
 		StregkodePlayer * player;
 		
 		for(player in players){

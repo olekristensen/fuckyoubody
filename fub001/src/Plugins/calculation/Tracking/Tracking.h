@@ -16,13 +16,6 @@
 	IBOutlet NSView * tracker1settings;
 	IBOutlet NSView * tracker2settings;
 	TrackerObject * trackerObj[3];
-	
-	
-	IBOutlet NSButton * wallTracking;
-	IBOutlet NSSlider* wallTrackingC1X;
-	IBOutlet NSSlider* wallTrackingC1Y;
-	Filter * wallTrackingFilter[8];
-
 }
 
 -(TrackerObject*) trackerNumber:(int)n;

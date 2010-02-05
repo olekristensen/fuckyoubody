@@ -44,45 +44,6 @@
 	for(int i=0;i<3;i++){
 		[trackerObj[i] update:timeInterval displayTime:outputTime];
 	}
-	
-	if([wallTracking state] == NSOnState){
-		if([[self trackerNumber:0] numBlobs] == 4){
-			
-			Blob * b;
-			ofxPoint2f center;
-			int n= 0;
-			for(b in [[self trackerNumber:0] blobs]){
-				center += [b centroid];
-				n++;
-			}
-			center /= n;
-			
-			ofPoint topLeft = center, topRight= center, bottomLeft= center, bottomRight= center;
-			for(b in [[self trackerNumber:0] blobs]){
-				if(([b centroid].x < topLeft.x && [b centroid].y < topLeft.y)){
-					topLeft = [b centroid];
-				}
-				if(([b centroid].x > topRight.x && [b centroid].y < topRight.y)){
-					topRight = [b centroid];
-				}
-				if(([b centroid].x < bottomLeft.x && [b centroid].y > bottomLeft.y)){
-					bottomLeft = [b centroid];
-				}
-				if(([b centroid].x > bottomRight.x && [b centroid].y > bottomRight.y)){
-					bottomRight = [b centroid];
-				}
-			}
-			
-			ProjectionSurfacesObject * surf = [GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"];
-			surf->corners[0] = new ofxPoint2f( topLeft );
-			surf->corners[1] = new ofxPoint2f( topRight );
-			surf->corners[2] = new ofxPoint2f( bottomRight );
-			surf->corners[3] = new ofxPoint2f( bottomLeft );
-			[surf recalculate];
-		}
-	}
-	
-	
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -137,7 +98,6 @@
 		[trackerObj[i] setMouseEvent:YES];
 		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];
 	}			
-	
 }
 
 -(void) mouseDraggedPoint:(NSPoint)theEvent{
@@ -145,7 +105,6 @@
 		[trackerObj[i] setMouseEvent:YES];
 		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];
 	}			
-	
 }
 
 @end

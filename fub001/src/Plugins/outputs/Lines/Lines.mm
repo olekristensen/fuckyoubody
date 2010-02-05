@@ -12,7 +12,6 @@
 @implementation LineBlobLink
 
 
-
 @end
 
 
@@ -89,6 +88,12 @@
 }
 
 
+-(ofxPoint2f) getLeft{
+	return *frontLeft;	
+}
+-(ofxPoint2f) getRight{
+	return *frontRight;	
+}
 
 -(void) drawWithBalance:(float)balance fromtAlpha:(float)frontA backAlpha:(float)backA width:(float)w timeout:(bool)timeout{
 	LineBlobLink * link;
@@ -239,6 +244,13 @@
 	
 }
 
+-(void) setup{
+	for(int i=1;i<=NUMLINESOUNDS;i++){
+		clicks[i-1] = new ofSoundPlayer();
+		clicks[i-1]->loadSound("Samples/small click#"+ofToString(i, 0)+".aif", false);		
+	}
+}
+
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	for(int i=0;i<[lines count];i++){
 		LineObject * line = [lines objectAtIndex:i];
@@ -277,29 +289,29 @@
 			ofxPoint2f*  frontRight=new ofxPoint2f(-1,-1);
 			for(b in [pblob blobs]){
 				//if(strcmp([[t calibrator] projector]->name->c_str(), "Front") == 0){
-					for(int i=0;i<[b nPts];i++){
-						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
-						if(frontLeft->x == -1 || p.x < frontLeft->x){
-							*frontLeft = p;
-						}
-						if(frontRight->x == -1 || p.x > frontRight->x){
-							*frontRight = p;
-						}
+				for(int i=0;i<[b nPts];i++){
+					ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
+					if(frontLeft->x == -1 || p.x < frontLeft->x){
+						*frontLeft = p;
 					}
+					if(frontRight->x == -1 || p.x > frontRight->x){
+						*frontRight = p;
+					}
+				}
 				/*} else {				
-					for(int i=0;i<[b nPts];i++){
-						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
-
-						ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Back" toSurface:"Floor"];
-						ofxPoint2f frontP = [GetPlugin(ProjectionSurfaces) convertPoint:floorP toProjection:"Front" fromSurface:"Floor"];
-						if(frontLeft->x == -1 || frontP.x < frontLeft->x){
-							*frontLeft = frontP;
-						}
-						if(frontRight->x == -1 || frontP.x > frontRight->x){
-							*frontRight = frontP;
-						}
-					}				
-				}*/
+				 for(int i=0;i<[b nPts];i++){
+				 ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Front" toSurface:"Projector"];
+				 
+				 ofxPoint2f floorP = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Back" toSurface:"Floor"];
+				 ofxPoint2f frontP = [GetPlugin(ProjectionSurfaces) convertPoint:floorP toProjection:"Front" fromSurface:"Floor"];
+				 if(frontLeft->x == -1 || frontP.x < frontLeft->x){
+				 *frontLeft = frontP;
+				 }
+				 if(frontRight->x == -1 || frontP.x > frontRight->x){
+				 *frontRight = frontP;
+				 }
+				 }				
+				 }*/
 			}
 			
 			if(frontLeft->x != -1 && frontRight->x != -1){
@@ -322,29 +334,49 @@
 					}
 				}
 				
-				if(lineFound == NO && [addButton state] == NSOnState){
-					LineObject * newLine = [[LineObject alloc] init];
-					LineBlobLink * link = [[LineBlobLink alloc] init]; 
-					
-					for(int i=0;i<100;i++){
-						[newLine setFrontLeft:*frontLeft frontRight:*frontRight];
-//						[newLine setBackLeft:*backLeft backRight:*backRight];
-					}
-					
-					link->blobId = pblob->pid;
-					link->projId = [trackingDirection selectedSegment];
-					link->linkTime = outputTime->videoTime;
-					link->lastConfirm = outputTime->videoTime;
-					[[newLine links] addObject:link];
-					[lines addObject:newLine];
-				} else if(lineFound == NO){
+				if(lineFound == NO){
+					BOOL noNearLineFound = YES;
 					LineObject * line;
 					for(line in lines){
-//						if([line
-						
-						LineBlobLink * link;
-						
+						float d = 0.01;
+						if([addButton state] == NSOnState){
+							d = 0.002;
+						}
+						if(fabs([line getLeft].x - frontLeft->x) < d || fabs([line getRight].x - frontRight->x) < d ){
+							LineBlobLink * link = [[LineBlobLink alloc] init]; 
+							link->blobId = pblob->pid;
+							link->projId = [trackingDirection selectedSegment];
+							link->linkTime = outputTime->videoTime;
+							link->lastConfirm = outputTime->videoTime;
+							[[line links] addObject:link];	
+							noNearLineFound = NO;
+						}					
 					}
+					
+					if(noNearLineFound && [addButton state] == NSOnState){
+						
+						LineObject * newLine = [[LineObject alloc] init];
+						LineBlobLink * link = [[LineBlobLink alloc] init]; 
+						
+						for(int i=0;i<100;i++){
+							[newLine setFrontLeft:*frontLeft frontRight:*frontRight];
+							//						[newLine setBackLeft:*backLeft backRight:*backRight];
+						}
+						
+						
+						int sound = (int)round(ofRandom(0, NUMLINESOUNDS-1));
+						cout<<"Play sound "<<sound<<endl;
+						clicks[sound]->play();
+						
+						link->blobId = pblob->pid;
+						link->projId = [trackingDirection selectedSegment];
+						link->linkTime = outputTime->videoTime;
+						link->lastConfirm = outputTime->videoTime;
+						[[newLine links] addObject:link];
+						[lines addObject:newLine];
+					}
+				} else if(lineFound == NO){
+					
 				}
 			}
 		}
@@ -366,7 +398,7 @@
 		[line drawWithBalance:[balanceSlider floatValue] fromtAlpha:(powf(1.0-[balanceSlider floatValue],1.0/gamma))  backAlpha:powf([balanceSlider floatValue],1.0/gamma) width:[lineWidthSlider floatValue] timeout:t  ];
 	}
 	
-	[self drawDiagonal];
+	//[self drawDiagonal];
 }
 
 -(void) drawDiagonal{

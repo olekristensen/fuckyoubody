@@ -15,6 +15,7 @@
 #include "ofMain.h"
 #include "ofxVectorMath.h"
 #include "ofxXmlSettings.h"
+#include "Filter.h"
 
 #include "Warp.h"
 #include "coordWarp.h"
@@ -32,12 +33,22 @@
 	
 	ofxPoint2f * corners[4];
 	
+	Filter * trackingFilter[8];
+	ofxPoint2f * trackingOffsets[4];
+	ofxPoint2f * trackingDestinations[4];
+	
+	int trackerNumber;
+	
+	bool tracking;
+	bool calibrating;
+	
 	id projector;
 }
 -(void) recalculate;
 -(void) setCornerObject:(NSArray*)obj;
 -(void) setCorner:(int) n x:(float)x y:(float) y projector:(int)projector surface:(int)surface storeUndo:(BOOL)undo;
 -(id) initWithName:(NSString*)n projector:(id)proj;
+
 
 @end
 
@@ -58,7 +69,12 @@
 @interface ProjectionSurfaces : ofPlugin {
 	IBOutlet NSPopUpButton * projectorsButton;
 	IBOutlet NSPopUpButton * surfacesButton;	
+	IBOutlet NSPopUpButton * trackerButton;	
 	IBOutlet NSButton * showGrid;
+
+	IBOutlet NSButton * trackingButton;
+	IBOutlet NSButton * calibrateButton;
+	
 	IBOutlet PluginUISlider * aspectSlider;
 	ofTrueTypeFont	* font;
 	ofImage * recoilLogo;
@@ -81,6 +97,8 @@
 }
 -(IBAction) selectProjector:(id)sender;
 -(IBAction) selectSurface:(id)sender;
+-(IBAction) selectTracker:(id)sender;
+-(IBAction) calibrate:(id)sender;
 -(IBAction) setAspect:(id)sender;
 
 -(ProjectorObject*) getCurrentProjector;
@@ -101,7 +119,6 @@
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p toProjection:(string)projection fromSurface:(string)surface;
 -(ofxPoint2f) convertPoint:(ofxPoint2f)p fromProjection:(string)projection toSurface:(string)surface;
 -(float) getAspectForProjection:(string)projection surface:(string)surface;
-
 
 -(ofxPoint2f) getFloorCoordinateOfProjector:(int)proj;
 -(ofxVec2f) getFloorVectorBetweenProjectors;

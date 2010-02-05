@@ -47,6 +47,7 @@
 @property (assign,readwrite) NSSlider * backgroundColorR;
 @property (assign,readwrite) NSView * settingsView;
 @property (assign, readwrite) int number;
+@property (assign, readwrite) PluginUIColorWell * generalNumberColor;
 
 - (id) initWithNumber:(int)aNumber;
 -(BOOL) loadNibFile;
@@ -125,6 +126,8 @@
 	float ulykkePos[4];
 }
 
+
+-(DMXEffectColumn*) effectColumn:(int)n;
 -(void) updateDmx:(id)param;
 -(void) makeNumber:(int)n intoArray:(bool*) array;
 

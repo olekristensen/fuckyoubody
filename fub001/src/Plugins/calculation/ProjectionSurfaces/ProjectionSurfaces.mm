@@ -5,8 +5,8 @@
 //  Created by Jonas Jongejan on 15/11/09.
 
 #import "ProjectionSurfaces.h"
+#import "Tracking.h"
 #import <pthread.h>
-
 
 @implementation ProjectorObject
 @synthesize surfaces, name;
@@ -16,10 +16,10 @@
 		name =  new string([n cString]); 
 		width = 1024;
 		height = 768;
-		
 		return self;
 	}
 }
+
 @end
 
 @implementation ProjectionSurfacesObject
@@ -34,6 +34,15 @@
 		warp = new Warp();
 		coordWarp = new  coordWarping;
 		projector = proj;
+		
+		for(int i=0;i<8;i++){
+			trackingFilter[i] = new Filter();	
+			trackingFilter[i]->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
+			trackingFilter[i]->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
+		}
+		
+		
+		
 		[self recalculate];
 		return self;
 	}
@@ -56,6 +65,12 @@
 
 -(void) setCorner:(int) n x:(float)x y:(float) y projector:(int)projector surface:(int)surface storeUndo:(BOOL)undo{
 	NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+	
+	trackingDestinations[n] = new ofxPoint2f(x,y);
+	for(int i=0;i<20;i++){
+		trackingFilter[n*2]->filter(x);
+		trackingFilter[n*2+1]->filter(y);
+	}
 	
 	if(undo){
 		NSArray * a = [NSArray arrayWithObjects:[NSNumber numberWithInt:n], [NSNumber numberWithFloat:x], [NSNumber numberWithFloat:y], nil];
@@ -95,6 +110,7 @@
 	
 	[projectorsButton removeAllItems];
 	[surfacesButton removeAllItems];
+	[trackerButton removeAllItems];
 	
 	projectors = [NSMutableArray array];
 	[projectors retain];
@@ -114,7 +130,7 @@
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Floor" projector:projector]];
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Backwall" projector:projector]];
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Projector" projector:projector]];
-
+		
 		[projector setSurfaces:array];
 		//projector->surfaces = array;
 		[projectorsButton addItemWithTitle:[NSString stringWithCString:projector->name->c_str()]];
@@ -126,11 +142,13 @@
 				surface->corners[i]->x = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.x",projI, surfI, i]];
 				surface->corners[i]->y = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.y",projI, surfI, i]];
 			}
-			surface->aspect =  [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.aspect",projI, surfI]];
+			surface->aspect = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.aspect",projI, surfI]];
 			[surface recalculate];
 			surface->undoManager = undoManager;
 			
-			[surfacesButton addItemWithTitle:[NSString stringWithCString:surface->name->c_str()]];	
+			surface->trackerNumber = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.trackerNumber",projI, surfI]];
+			
+			[surfacesButton addItemWithTitle:[NSString stringWithCString:surface->name->c_str()]];
 			//			NSMenuItem * item = [surfacesButton lastItem];
 			/*	if(surfI == 0 && projI == 0){
 			 [item setKeyEquivalent:@"a"];
@@ -148,13 +166,43 @@
 	lastMousePos = new ofxVec2f;
 	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];	
 	
+	for (int i=1; i<4; i++) {
+		[trackerButton addItemWithTitle:[NSString stringWithFormat:@"Tracker %i",i]];
+	}
+	
+	[trackingButton setEnabled:NO];
+	[calibrateButton setEnabled:NO];
+	[self updateTrackerButton];	
 }
 
 -(IBAction) selectProjector:(id)sender{
 	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];
+	[self updateTrackerButton];
 }
+
 -(IBAction) selectSurface:(id)sender{
-	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];	
+	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];
+	[self updateTrackerButton];
+}
+
+-(IBAction) calibrate:(id)sender{
+	[self getCurrentSurface]->calibrating = true;
+}
+
+-(IBAction) selectTracker:(id)sender{
+	[self getCurrentSurface]->trackerNumber = [sender indexOfSelectedItem];	
+	int projector = [projectorsButton indexOfSelectedItem];
+	int surface = [surfacesButton indexOfSelectedItem];
+	[userDefaults setValue:[NSNumber numberWithInt:[sender indexOfSelectedItem]] forKey:[NSString stringWithFormat:@"projector%d.surface%d.trackerNumber",projector, surface]];
+}
+
+-(void) updateTrackerButton {
+	[trackerButton selectItemAtIndex:[self getCurrentSurface]->trackerNumber];
+	if([self getCurrentSurface]->tracking){
+		[trackingButton setState:NSOnState];
+	} else {
+		[trackingButton setState:NSOffState];
+	}
 }
 
 -(IBAction) setAspect:(id)sender{
@@ -170,6 +218,7 @@
 	recoilLogo = new ofImage();
 	NSBundle *bundle = [NSBundle mainBundle];
 	recoilLogo->loadImage([[bundle pathForResource:@"recoilLogoForCalibration" ofType:@"png"] cString]);
+	
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -214,36 +263,119 @@
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	ofSetColor(255, 255, 255, 255);
 	
-	[self applyProjection:surface width:1.0 height:aspect];	
-	
-	[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
-	glPopMatrix();
-	
-	glScaled(2.0, 1, 1);
-	glTranslated([projectorsButton indexOfSelectedItem] * -0.5, 0, 0);
-	//Draw current projectorsurface
-	for(int i=0;i<4;i++){
+	[self applyProjection:surface width:1.0 height:aspect];	{
 		
-		ofFill();
-		if(selectedCorner == i){
-			ofSetColor(220, 128,220,70);
-		} else {
-			ofSetColor(64, 128,220,70);			
+		[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
+		glPopMatrix();
+		
+		glScaled(2.0, 1, 1);
+		glTranslated([projectorsButton indexOfSelectedItem] * -0.5, 0, 0);
+		//Draw current projectorsurface
+		for(int i=0;i<4;i++){
+			
+			ofFill();
+			if(selectedCorner == i){
+				ofSetColor(220, 128,220,70);
+			} else {
+				ofSetColor(64, 128,220,70);			
+			}
+			ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
+			ofNoFill();
+			ofSetColor(0, 0,0,192);
+			ofSetLineWidth(4);
+			ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
+			ofSetColor(128, 255,255,255);
+			ofSetLineWidth(1.5);
+			ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
 		}
-		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
-		ofNoFill();
-		ofSetColor(0, 0,0,192);
-		ofSetLineWidth(4);
-		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
-		ofSetColor(128, 255,255,255);
-		ofSetLineWidth(1.5);
-		ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
-	}
-	
-	glPopMatrix();}
+		
+	}glPopMatrix();
+}
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	
 	scale = 0.5;
+	
+	// updating interface for tracker based on blobs
+	
+	if([[GetPlugin(Tracking) trackerNumber:[self getCurrentSurface]->trackerNumber] numBlobs] == 4){
+		
+		[trackingButton setEnabled:YES];
+		
+		if ([trackingButton state] == NSOnState) {
+			[calibrateButton setEnabled:NO];
+		} else {
+			[calibrateButton setEnabled:YES];
+		}
+		
+	} else {
+		[calibrateButton setEnabled:NO];
+	}
+	
+	ProjectorObject * proj;
+	
+	for(proj in projectors){
+		
+		ProjectionSurfacesObject * surf;
+		NSArray * a = proj->surfaces;
+		for(surf in a){
+			if (surf->tracking) {
+				for(int i=0;i<4;i++){
+					surf->corners[i] = new ofxPoint2f(
+													  surf->trackingFilter[i*2]->filter(surf->trackingDestinations[i]->x),
+													  surf->trackingFilter[i*2+1]->filter(surf->trackingDestinations[i]->y)  );
+				}				
+				[surf recalculate];
+				
+			}
+			if ([[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] numBlobs] == 4) {
+				
+				Blob * b;
+				ofxPoint2f center;
+				int n= 0;
+				for(b in [[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] blobs]){
+					center += [b centroid];
+					n++;
+				}
+				center /= n;
+				
+				ofxPoint2f topLeft = center, topRight= center, bottomLeft= center, bottomRight= center;
+				for(b in [[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] blobs]){
+					if(([b centroid].x < topLeft.x && [b centroid].y < topLeft.y)){
+						topLeft = [b centroid];
+					}
+					if(([b centroid].x > topRight.x && [b centroid].y < topRight.y)){
+						topRight = [b centroid];
+					}
+					if(([b centroid].x < bottomLeft.x && [b centroid].y > bottomLeft.y)){
+						bottomLeft = [b centroid];
+					}
+					if(([b centroid].x > bottomRight.x && [b centroid].y > bottomRight.y)){
+						bottomRight = [b centroid];
+					}
+				}
+				if (surf->tracking) {
+					surf->trackingDestinations[0] = new ofxPoint2f( topLeft + *surf->trackingOffsets[0]);
+					surf->trackingDestinations[1] = new ofxPoint2f( topRight + *surf->trackingOffsets[1]);
+					surf->trackingDestinations[2] = new ofxPoint2f( bottomRight + *surf->trackingOffsets[2]);
+					surf->trackingDestinations[3] = new ofxPoint2f( bottomLeft + *surf->trackingOffsets[3]);
+					[surf recalculate];
+					
+				} else if (surf->calibrating) {
+					
+					surf->trackingOffsets[0] = new ofxPoint2f(*surf->corners[0] - topLeft);
+					surf->trackingOffsets[1] = new ofxPoint2f(*surf->corners[1] - topRight);
+					surf->trackingOffsets[2] = new ofxPoint2f(*surf->corners[2] - bottomRight);
+					surf->trackingOffsets[3] = new ofxPoint2f(*surf->corners[3] - bottomLeft);
+					
+					surf->calibrating = false;
+					surf->tracking = true;
+					[self updateTrackerButton];
+					
+				}
+			}
+		}	
+	}
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -473,7 +605,7 @@
 	p2 /= ofxPoint2f((float)1.0,(float)aspect);
 	return p2;
 	//	glTranslated(-projWidth/2.0, -projHeight/2.0, 0);
- 	
+	
 }
 
 -(void) applyProjection:(ProjectionSurfacesObject*) obj width:(float) _w height:(float) _h{

@@ -11,7 +11,7 @@
 #include "Players.h"
 
 @implementation DMXEffectColumn
-@synthesize backgroundColorR, settingsView, number;
+@synthesize backgroundColorR, settingsView, number, generalNumberColor;
 
 - (id) initWithNumber:(int)aNumber {
 	self = [super init];
@@ -653,6 +653,10 @@
 	[backgroundRedColor setFloatValue:[[sender color] redComponent]*512];
 	[backgroundGreenColor setFloatValue:[[sender color] greenComponent]*512];
 	[backgroundBlueColor setFloatValue:[[sender color] blueComponent]*512];
+}
+
+-(DMXEffectColumn*) effectColumn:(int)n{
+	return columns[n];
 }
 
 @end
