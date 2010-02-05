@@ -14,7 +14,7 @@
 	IBOutlet NSSlider * leftWall;
 	
 	IBOutlet NSSlider * rotation;
-
+	IBOutlet NSSlider * samlaWall;
 
 }
 

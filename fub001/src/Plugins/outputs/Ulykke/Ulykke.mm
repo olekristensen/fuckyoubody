@@ -10,16 +10,9 @@
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 
 	for(b in [tracker(1) blobs]){
-		glBegin(GL_LINE_STRIP);
-		for (int i=0; i<[b nPts]; i++) {
-			ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i]  surface:Surf("Front","Floor")];
-			glVertex2f(p.x, p.y);
-		}
-		glEnd();
-
 		ofBeginShape();
 			for (int i=0; i<[b nPts]; i++) {
-			ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i]  surface:Surf("Front","Floor")];
+				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Back" toSurface:"Floor"];
 			ofVertex(p.x, p.y);
 		}
 		ofEndShape(true);
@@ -31,19 +24,15 @@
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	
 	for(b in [tracker(1) blobs]){
-		glBegin(GL_LINE_STRIP);
-		for (int i=0; i<[b nPts]; i++) {
-			ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i]  surface:Surf("Front","Floor")];
-			glVertex2f(p.x, p.y);
+		for(b in [tracker(1) blobs]){
+			ofBeginShape();
+			for (int i=0; i<[b nPts]; i++) {
+				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][i] fromProjection:"Back" toSurface:"Floor"];
+				ofVertex(p.x, p.y);
+			}
+			ofEndShape(true);
+			
 		}
-		glEnd();
-
-		ofBeginShape();
-		for (int i=0; i<[b nPts]; i++) {
-			ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertFromProjection:[b pts][i]  surface:Surf("Front","Floor")];
-			ofVertex(p.x, p.y);
-		}
-		ofEndShape(true);
 	}
 	
 	glPopMatrix();
