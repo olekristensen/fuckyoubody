@@ -732,7 +732,7 @@
 				PersistentBlob * blob = [persistentBlobs objectAtIndex:i];		
 				
 				blob->timeoutCounter ++;
-				if(blob->timeoutCounter > 25){
+				if(blob->timeoutCounter > 10){
 					[persistentBlobs removeObject:blob];
 					[blob release];
 				} else {
@@ -881,7 +881,17 @@
 	// NONO infinite recursion 
 	// [presetMenu selectItemAtIndex:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	[opticalFlowActiveButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.opticalFlowActive", trackerNumber,preset]]intValue]];
-		
+	
+	if(n ==0){
+		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:478];
+	}
+	if(n == 1){
+		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:1045];	
+	}
+	if(n == 2){
+		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:788];	
+	}
+	
 	loadBackgroundNow = YES;
 }
 

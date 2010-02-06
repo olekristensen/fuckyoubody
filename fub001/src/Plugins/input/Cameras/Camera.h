@@ -70,6 +70,7 @@
 @property (readwrite) 	int camNumber;
 @property (assign, readwrite) NSButton * recordButton;
 @property (readonly)Libdc1394Grabber * videoGrabber;
+@property (assign, readwrite)  PluginUISlider * gainSlider;
 
 -(float) framerate;
 -(ofTexture*) getTexture;

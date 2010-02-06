@@ -20,7 +20,7 @@ static float aCameraWillRespawnAt = -1;
 static BOOL camerasRespawning[3];
 
 @implementation Camera
-@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber, camGUID, recordButton, videoGrabber;
+@synthesize settingsView, mytimeNow, mytimeThen, width, height, camInited, live, camNumber, camGUID, recordButton, videoGrabber, gainSlider;
 
 + (float)aCameraWillRespawnAt { return aCameraWillRespawnAt; }
 + (BOOL)aCameraIsRespawning { return (camerasRespawning[0] || camerasRespawning[1] || camerasRespawning[2]); }
