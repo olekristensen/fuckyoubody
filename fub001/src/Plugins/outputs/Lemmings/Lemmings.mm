@@ -116,7 +116,7 @@
 		}
 		lastLemmingInterval = lemmingInterval;
 	}
-
+	
 #pragma mark add lemmings from floor front
 	
 	if ([floorAddLemmingsFromFront state] == NSOnState) {
@@ -182,7 +182,7 @@
 			screenBottomIntersection = new ofxVec2f(cIntesectsScreenBottom);
 			blobCentroid = new ofxVec2f(c);
 			
-			if(c.distance(cIntesectsScreenBottom) < 0.4){
+			if(c.distance(cIntesectsScreenBottom) < 0.35){
 				
 				ofxPoint2f * cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:cIntesectsScreenBottom toProjection:"Front" fromSurface:"Floor"]);
 				cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*cIntesectsScreenBottomOnScreen fromProjection:"Front" toSurface:"Backwall"]);
@@ -197,8 +197,8 @@
 						right = fminf(cIntesectsScreenBottomOnScreen->x+0.1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]);
 					}
 					
-					if (c.distance(cIntesectsScreenBottom)*(1.0/0.4) < height) {
-						height = fminf((c.distance(cIntesectsScreenBottom)*(1.0/0.4))+0.1,1.0);
+					if (c.distance(cIntesectsScreenBottom)*(0.8/0.35) < height) {
+						height = 0.6;//fminf((c.distance(cIntesectsScreenBottom)*(0.8/0.35))+0.1,1.0);
 					}
 				}
 			}
@@ -572,148 +572,103 @@
 	
 	Lemming * lemming;
 	
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-	
-	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
-	ofRect(0, 0, 1, 1);
-	
-	/** floor box
-	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
-	glPushMatrix();{
-		glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
-		glRotatef(-screenBottomOnFloorHat->angle(ofxVec2f(0,1)), 0,0,1);
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 		
-		glScaled(screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
-				 screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
-				 0);
+		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
+		ofRect(0, 0, 1, 1);
 		
-		ofRect(screenTrackingLeft, 
-			   0, 
-			   screenTrackingRight- screenTrackingLeft, 
-			   screenTrackingHeight);
-		
-	}glPopMatrix();
-	**/
-	
-	glPopMatrix();
-	
-	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
-	
-	ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
-	ofRect(0, 0, 1, 1);
-	
-	/** floor box
-	ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
-	glPushMatrix();{
-		glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
-		glRotatef(-screenBottomOnFloorHat->angle(ofxVec2f(0,1)), 0,0,1);
-		
-		glScaled(screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
-				 screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
-				 0);
-		
-		ofRect(screenTrackingLeft, 
-			   0, 
-			   screenTrackingRight- screenTrackingLeft, 
-			   screenTrackingHeight);
+		/** floor box
+		 ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
+		 glPushMatrix();{
+		 glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
+		 glRotatef(-screenBottomOnFloorHat->angle(ofxVec2f(0,1)), 0,0,1);
+		 
+		 glScaled(screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
+		 screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
+		 0);
+		 
+		 ofRect(screenTrackingLeft, 
+		 0, 
+		 screenTrackingRight- screenTrackingLeft, 
+		 screenTrackingHeight);
+		 
+		 }glPopMatrix();
+		 **/
 		
 	}glPopMatrix();
-	 **/
-	 
-	glPopMatrix();
 	
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-	
-	ofSetColor(255, 0, 0);
-	
-	ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255);
-	
-	for(lemming in floorLemmings){
-		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
-	}
-	
-	/* normal between dancer and screen
-	 
-	 ofPushStyle();{
-	 ofSetColor(255, 0,0);
-	 ofNoFill();
-	 ofSetLineWidth(1);
-	 ofLine(screenBottomIntersection->x, screenBottomIntersection->y, blobCentroid->x, blobCentroid->y);
-	 }ofPopStyle();
-	 //*/
-	
-	glPopMatrix();
-	
-	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
-	
-	ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255);
-	
-	for(lemming in floorLemmings){
-		[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
-	}
-	
-	glPopMatrix();
-	
-	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		
-		//background
-		ofSetColor(0,0,0,255);
-		ofRect(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1);
+		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
+		ofRect(0, 0, 1, 1);
 		
-		//dancers' mask
-		/**
-		ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
-		ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 1.0-screenTrackingHeight);
-		**/
-
-		if((1.0-screenTrackingHeight) > SCREEN_MARGIN){
-			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*255);
-		} else {
-			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*0);
-		}
-
-			
-		ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 0.03);
+		/** floor box
+		 ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
+		 glPushMatrix();{
+		 glTranslated(screenBottomOnFloorLeft->x, screenBottomOnFloorLeft->y, 0);
+		 glRotatef(-screenBottomOnFloorHat->angle(ofxVec2f(0,1)), 0,0,1);
+		 
+		 glScaled(screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
+		 screenBottomOnFloor->length()/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],
+		 0);
+		 
+		 ofRect(screenTrackingLeft, 
+		 0, 
+		 screenTrackingRight- screenTrackingLeft, 
+		 screenTrackingHeight);
+		 
+		 }glPopMatrix();
+		 **/
 		
-		//Screen Elements
-		ScreenElement * element;
+	}glPopMatrix();
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 		
-		for(element in screenElements){
-			[element draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
-		}
+		ofSetColor(255, 0, 0);
 		
-		//lemmings
-		ofSetColor(255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue],255.0);
+		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255);
 		
-		for(lemming in screenLemmings){
+		for(lemming in floorLemmings){
 			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
 		}
 		
-		// Door
-		ofSetColor(255, 255, 255, 255.0*[screenElementsAlpha floatValue]);
+		/* normal between dancer and screen
+		 
+		 ofPushStyle();{
+		 ofSetColor(255, 0,0);
+		 ofNoFill();
+		 ofSetLineWidth(1);
+		 ofLine(screenBottomIntersection->x, screenBottomIntersection->y, blobCentroid->x, blobCentroid->y);
+		 }ofPopStyle();
+		 //*/
 		
-		glPushMatrix(); {
-			glTranslated(screenDoorPos->x, screenDoorPos->y, 0);
-			
-			//left Door
-			glPushMatrix(); {
-				glTranslatef(-0.15, 0, 0);
-				glRotatef([screenEntranceDoor floatValue]*0.25*360, 0, 0, 1);
-				ofRect(0, 0, 0.15, 0.03);
-			} glPopMatrix();
-			
-			//left Door
-			glPushMatrix(); {
-				glTranslatef(0.15, 0, 0);
-				glRotatef([screenEntranceDoor floatValue]*-0.25*360, 0, 0, 1);
-				ofRect(0, 0, -0.15, 0.03);
-			} glPopMatrix();
-			
-		} glPopMatrix();
-		
-	} glPopMatrix();
+		// MASK
+		ofSetColor(0,0,0,255*[mask floatValue]);
+		ofRect(-1, 1, 3, 1); // stage front
+		ofRect(1, 0, 1, 1); // stage right
+		ofRect(0, 0, -1, 1); // stage left
+		ofRect(-1, 0, 3, -1); // stage back
+
+	}glPopMatrix();
 	
-	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Backwall"];{
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+		
+		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255);
+		
+		for(lemming in floorLemmings){
+			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
+		}
+		
+		//MASK
+		ofSetColor(0,0,0,255*[mask floatValue]);
+		ofRect(-1, 1, 3, 1); // stage front
+		ofRect(1, 0, 1, 1); // stage right
+		ofRect(0, 0, -1, 1); // stage left
+		ofRect(-1, 0, 3, -1); // stage back
+		
+	}glPopMatrix();
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
 		
 		//background
 		ofSetColor(0,0,0,255);
@@ -771,15 +726,6 @@
 		} glPopMatrix();
 		
 	} glPopMatrix();
-	
-	/*[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
-	 
-	 for(lemming in lemmingList){
-	 [lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
-	 }
-	 
-	 glPopMatrix();
-	 */
 	
 }
 

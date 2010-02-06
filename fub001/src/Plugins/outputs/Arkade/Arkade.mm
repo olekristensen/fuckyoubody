@@ -385,8 +385,20 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				}
 				
 			}else {
-				pongPos = new ofxPoint2f(*personPosition);
 				pongSquareSize = ofClamp(0.4+pongSquareSize,0,1);
+
+				if([lockToGrid state] == NSOffState){
+					pongPos = new ofxPoint2f(*personPosition);
+					
+				} else {
+					ofxPoint2f goal = *personPosition*8;
+					goal.x = roundf(goal.x);
+					goal.y = roundf(goal.y);
+					goal /= 8.0;
+					
+					
+					*pongPos += (goal - *pongPos)*00.1;
+				}
 			}
 		}
 		
@@ -790,7 +802,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	
 	if(pongSquareSize > 0){
 		ofRect(pongPos->x+0.5*w*(1-pongSquareSize),pongPos->y+0.5*w*(1-pongSquareSize),w*(pongSquareSize) , w*(pongSquareSize));
-
+		
 	}
 	
 	

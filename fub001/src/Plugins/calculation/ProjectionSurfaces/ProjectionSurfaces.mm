@@ -324,6 +324,10 @@
 					surf->corners[i] = new ofxPoint2f(
 													  surf->trackingFilter[i*2]->filter(surf->trackingDestinations[i]->x),
 													  surf->trackingFilter[i*2+1]->filter(surf->trackingDestinations[i]->y)  );
+					surf->corners[i] = new ofxPoint2f(
+													  surf->trackingFilter[i*2]->filter(surf->trackingDestinations[i]->x),
+													  surf->trackingFilter[i*2+1]->filter(surf->trackingDestinations[i]->y)  );
+					
 				}				
 				[surf recalculate];
 				
