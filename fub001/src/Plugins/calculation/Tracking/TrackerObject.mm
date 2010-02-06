@@ -283,6 +283,9 @@
 	[[presetPicker midi] setLabel: [NSString stringWithFormat:@"Tracker %i Pick preset", trackerNumber]];
 	[[presetPicker midi] setController: [[NSNumber alloc] initWithInt:64+(20*trackerNumber)]];
 	
+	[[activeButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Active", trackerNumber]];
+	[[activeButton midi] setController: [[NSNumber alloc] initWithInt:65+(20*trackerNumber)]];
+	
 	
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	

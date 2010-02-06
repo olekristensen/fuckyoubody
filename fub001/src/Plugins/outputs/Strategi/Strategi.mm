@@ -263,6 +263,8 @@
 			 player = sblob->player = 0;	
 			 }*/
 			player = sblob->player = otherPlayer;
+			sblob->center = new ofxPoint2f( centroid);
+
 			[blobs addObject:sblob];
 		}
 		
@@ -272,9 +274,9 @@
 		Blob * b;
 		for(b in [pblob blobs]){
 			if(player ==0){
-				ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0);	
+				ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 			} else {
-				ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0);	
+				ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 			}
 			
 			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
@@ -315,9 +317,9 @@
 	for(int i=0;i<2;i++){
 		
 		if(i ==0){
-			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0);	
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 		} else {
-			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0);	
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 		}
 		
 		for(int u=0;u<contourFinder[i]->nBlobs;u++){
@@ -402,9 +404,10 @@
 	
 	for(int i=0;i<2;i++){
 		if(i ==0){
-			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255);	
+			
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 		} else {
-			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255);	
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 		}	
 		images[i]->draw(0, 0, 1,1);
 	}
@@ -415,9 +418,9 @@
 	
 	for(int i=0;i<2;i++){
 		if(i ==0){
-			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255);	
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 		} else {
-			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255);	
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 		}	
 		images[i]->draw(0, 0, 1,1);
 	}

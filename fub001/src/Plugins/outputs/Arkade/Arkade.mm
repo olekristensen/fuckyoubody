@@ -370,6 +370,9 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		//
 		//Floor squares
 		//
+		float w = 1.0/FLOORGRIDSIZE;
+
+		
 		pongSquareSize = ofClamp(pongSquareSize-0.1,0,1);
 		if([floorSquaresButton state] == NSOnState){
 			if([moveWithPerson state] == NSOffState){				
@@ -388,7 +391,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				pongSquareSize = ofClamp(0.4+pongSquareSize,0,1);
 
 				if([lockToGrid state] == NSOffState){
-					pongPos = new ofxPoint2f(*personPosition);
+					pongPos = new ofxPoint2f(*personPosition  - ofxPoint2f(w/2.0 , w/2.0));
 					
 				} else {
 					ofxPoint2f goal = *personPosition*8;
@@ -403,7 +406,6 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		}
 		
 		int i=0;
-		float w = 1.0/FLOORGRIDSIZE;
 		for(float y=0;y<1;y+=w){
 			for(float x=0;x<1;x+=w){				
 				//Leave cookies

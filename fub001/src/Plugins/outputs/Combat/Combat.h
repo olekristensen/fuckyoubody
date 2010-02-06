@@ -9,6 +9,7 @@
 
 @interface Combat : ofPlugin {
 	IBOutlet NSSlider * rotation;
+	float rot;
 }
 
 @end

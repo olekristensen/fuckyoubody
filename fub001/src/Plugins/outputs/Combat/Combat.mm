@@ -16,10 +16,12 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ofFill();
 	
+	rot += ([rotation floatValue] -rot)*0.015;
+	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 	glPushMatrix();
 	glTranslated(0.5, 0.5, 0);
-	glRotated([rotation floatValue], 0, 0, 1);
+	glRotated(rot, 0, 0, 1);
 	for(int i=0;i<4;i++){
 		glRotated(90, 0, 0, 1);
 		NSColor * c;

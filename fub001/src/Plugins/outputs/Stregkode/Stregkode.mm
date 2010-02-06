@@ -77,19 +77,19 @@
 					int column;
 					switch (num) {
 						case 0:
-							column = 1;
-							break;
-						case 1:
 							column = 2;
 							break;
-						case 2:
+						case 1:
 							column = 3;
+							break;
+						case 2:
+							column = 1;
 							break;
 						case 3:
 							column = 0;
 							break;							
 					}
-					[[[GetPlugin(DMXOutput) effectColumn:column] generalNumberColor] setAlpha:1.0];
+					[[[GetPlugin(DMXOutput) effectColumn:column] generalNumberColor] setAlpha:0.023];
 					
 					num ++;
 					num = MIN(num,3);
