@@ -20,6 +20,7 @@
 	int pid;
 	int player;
 	int aliveCounter;
+	ofxPoint2f * center;
 }
 
 @end
@@ -50,6 +51,8 @@
 	
 	shaderBlur * blur;
 
+	IBOutlet NSButton * lockPlayerButton;
+	IBOutlet NSButton * player2Active;;
 
 }
 -(IBAction) restart:(id)sender;

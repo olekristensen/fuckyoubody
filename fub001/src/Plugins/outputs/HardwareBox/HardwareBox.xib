@@ -31,50 +31,6 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSButton" id="332727575">
-						<reference key="NSNextResponder" ref="954911258"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{142, 140}, {118, 25}}</string>
-						<reference key="NSSuperview" ref="954911258"/>
-						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="709100680">
-							<int key="NSCellFlags">-2080244224</int>
-							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">Pos 1</string>
-							<object class="NSFont" key="NSSupport" id="473974446">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">1044</int>
-							</object>
-							<reference key="NSControlView" ref="332727575"/>
-							<int key="NSButtonFlags">-2038152961</int>
-							<int key="NSButtonFlags2">163</int>
-							<string key="NSAlternateContents"/>
-							<string key="NSKeyEquivalent"/>
-							<int key="NSPeriodicDelay">400</int>
-							<int key="NSPeriodicInterval">75</int>
-						</object>
-					</object>
-					<object class="NSButton" id="340606682">
-						<reference key="NSNextResponder" ref="954911258"/>
-						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{16, 140}, {118, 25}}</string>
-						<reference key="NSSuperview" ref="954911258"/>
-						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="972938849">
-							<int key="NSCellFlags">-2080244224</int>
-							<int key="NSCellFlags2">134217728</int>
-							<string key="NSContents">Reset lensshift</string>
-							<reference key="NSSupport" ref="473974446"/>
-							<reference key="NSControlView" ref="340606682"/>
-							<int key="NSButtonFlags">-2038152961</int>
-							<int key="NSButtonFlags2">163</int>
-							<string key="NSAlternateContents"/>
-							<string key="NSKeyEquivalent"/>
-							<int key="NSPeriodicDelay">400</int>
-							<int key="NSPeriodicInterval">75</int>
-						</object>
-					</object>
 					<object class="NSButton" id="1033865287">
 						<reference key="NSNextResponder" ref="954911258"/>
 						<int key="NSvFlags">268</int>
@@ -85,7 +41,11 @@
 							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">134217728</int>
 							<string key="NSContents">Turn projector off - fuldstændig</string>
-							<reference key="NSSupport" ref="473974446"/>
+							<object class="NSFont" key="NSSupport" id="473974446">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">1044</int>
+							</object>
 							<reference key="NSControlView" ref="1033865287"/>
 							<int key="NSButtonFlags">-2038152961</int>
 							<int key="NSButtonFlags2">163</int>
@@ -497,22 +457,6 @@
 					</object>
 					<int key="connectionID">125</int>
 				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">resetLensshift:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="340606682"/>
-					</object>
-					<int key="connectionID">130</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">pos1Lensshift:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="332727575"/>
-					</object>
-					<int key="connectionID">134</int>
-				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -559,8 +503,6 @@
 							<reference ref="837830748"/>
 							<reference ref="1033865287"/>
 							<reference ref="649654206"/>
-							<reference ref="340606682"/>
-							<reference ref="332727575"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -764,45 +706,15 @@
 						<reference key="object" ref="496719085"/>
 						<reference key="parent" ref="1033865287"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">128</int>
-						<reference key="object" ref="340606682"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="972938849"/>
-						</array>
-						<reference key="parent" ref="954911258"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">129</int>
-						<reference key="object" ref="972938849"/>
-						<reference key="parent" ref="340606682"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">131</int>
-						<reference key="object" ref="332727575"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="709100680"/>
-						</array>
-						<reference key="parent" ref="954911258"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">132</int>
-						<reference key="object" ref="709100680"/>
-						<reference key="parent" ref="332727575"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="1.IBEditorWindowLastContentRect">{{193, 107}, {714, 579}}</string>
+				<string key="1.IBEditorWindowLastContentRect">{{368, 107}, {714, 579}}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="113.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="115.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="116.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="128.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="129.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="131.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="132.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<real value="0.0" key="60.IBViewIntegration.shadowBlurRadius"/>
 				<reference key="60.IBViewIntegration.shadowColor" ref="173239704"/>
@@ -857,7 +769,7 @@
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiController</string>
-								<real value="10" key="value"/>
+								<real value="105" key="value"/>
 							</object>
 						</array>
 					</object>
@@ -879,7 +791,7 @@
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiController</string>
-								<real value="11" key="value"/>
+								<real value="106" key="value"/>
 							</object>
 						</array>
 					</object>

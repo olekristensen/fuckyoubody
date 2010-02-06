@@ -229,6 +229,8 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	personFilterY->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
 	
 	
+	
+	
 	personPosition = new ofxPoint2f(0,0);
 	
 	[self reset:self];
@@ -368,16 +370,23 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		//
 		//Floor squares
 		//
+		pongSquareSize = ofClamp(pongSquareSize-0.1,0,1);
 		if([floorSquaresButton state] == NSOnState){
-			PersistentBlob * pblob;
-			TrackerObject* t = tracker(0);
-			for(pblob in [t persistentBlobs]){
-				Blob * b;
-				for(b in [pblob blobs]){
-					ofxPoint2f p = [b getLowestPoint];
-					p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
-					floorSquaresOpacity[ [self getIatX:p.x Y:p.y] ] += 0.4;
+			if([moveWithPerson state] == NSOffState){				
+				PersistentBlob * pblob;
+				TrackerObject* t = tracker(0);
+				for(pblob in [t persistentBlobs]){
+					Blob * b;
+					for(b in [pblob blobs]){
+						ofxPoint2f p = [b getLowestPoint];
+						p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
+						floorSquaresOpacity[ [self getIatX:p.x Y:p.y] ] += 0.4;
+					}
 				}
+				
+			}else {
+				pongPos = new ofxPoint2f(*personPosition);
+				pongSquareSize = ofClamp(0.4+pongSquareSize,0,1);
 			}
 		}
 		
@@ -411,13 +420,11 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		//Ball
 		//
 		if([ballUpdateButton state] == NSOnState){
-			//		*ballPosition += ([ballSpeedSlider floatValue]/100.0) * 1.0/ofGetFrameRate() * *ballDir;
 			*ballPosition += ([ballSpeedSlider floatValue]/100.0) * 1.0/ofGetFrameRate() * *ballDir;
 			
 			bool intersection = false;
 			if(ballPosition->x < 0+0.05*[ballSizeSlider floatValue]/100.0){
 				ballDir->x *= -1;
-				//			ballDir->y *= ofRandom(0.5, 1.5);
 				intersection = true;
 				ballPosition->x = 0+0.05*[ballSizeSlider floatValue]/100.0;
 			}
@@ -659,16 +666,17 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			makeChoises = false;
 			choisesSize -= 0.1;
 			
-			lightRotation += [terminatorLightSpeedSlider floatValue]/10.0;
+			lightRotation += [terminatorLightSpeedSlider floatValue]/10.0 * 30.0/ofGetFrameRate();
 			if(lightRotation > 360)
 				lightRotation -= 360;
 			
-			blobLightFactor -= [terminatorBlobLightSpeedSlider floatValue]/200.0;
+			blobLightFactor -= [terminatorBlobLightSpeedSlider floatValue]/200.0 * 30.0/ofGetFrameRate();
 			if(blobLightFactor < 0){
 				blobLightFactor = 1.0;
 			}
 			
 			cookiesRemoveFactor = ofClamp(cookiesRemoveFactor+0.1, 0, 1);
+			
 			pacmanDieFactor = ofClamp(pacmanDieFactor+0.002, 0, 1);
 			
 			if(personPosition->distance(*pacmanPosition) < 0.02 || pacmanPosition->x < -0.1){
@@ -747,7 +755,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			ofEllipse(cookies[c].x, cookies[c].y, 0.03, 0.03);		
 		}		
 		blur->endRender();
-		blur->blur(6, cookiesRemoveFactor*3.0);		
+		//		blur->blur(2, cookiesRemoveFactor*3.0);		
 		glViewport(0,0,ofGetWidth(),ofGetHeight());	
 		ofSetupScreen();
 		glScaled(ofGetWidth(), ofGetHeight(), 1);
@@ -761,7 +769,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		}
 		
 		blur->draw(0, 0, 1, 1, true);
-			
+		
 	}
 	
 	
@@ -778,6 +786,11 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
 			i++;
 		}
+	}
+	
+	if(pongSquareSize > 0){
+		ofRect(pongPos->x+0.5*w*(1-pongSquareSize),pongPos->y+0.5*w*(1-pongSquareSize),w*(pongSquareSize) , w*(pongSquareSize));
+
 	}
 	
 	
@@ -1056,7 +1069,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		
 		
 		blur->endRender();
-		blur->blur(6, (1-blobLightFactor)*0.5 + [terminatorBlobLightBlurSlider floatValue]/100.0);
+		blur->blur(2, (1-blobLightFactor)*0.5 + [terminatorBlobLightBlurSlider floatValue]/100.0);
 		
 		glViewport(0,0,ofGetWidth(),ofGetHeight());	
 		ofSetupScreen();

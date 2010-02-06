@@ -41,6 +41,32 @@
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if([pause state] != NSOnState){
 		StrategiBlob * sblob;
+		
+		if([lockPlayerButton state] == NSOnState){
+			StrategiBlob * topLeftBlob;
+			float shortestDistToCorner = -1;
+			for(sblob in blobs){
+				if(shortestDistToCorner == -1 ||  sblob->center->distance(ofxPoint2f(0,0))< shortestDistToCorner){
+					shortestDistToCorner =  sblob->center->distance(ofxPoint2f(0,0));
+					topLeftBlob = sblob;
+				}
+			}	
+			if(shortestDistToCorner != -1){
+				for(sblob in blobs){
+					sblob->player = 0;
+				}
+				topLeftBlob->player = 1;
+				
+				/*int i=0;
+				for(sblob in blobs){
+					cout<<i<<" : "<<sblob->player <<endl;;
+					i++;
+				}*/			
+			}
+		}
+		
+		
+		
 		int otherPlayer = -1;
 		for(sblob in blobs){
 			if(otherPlayer == -1){
@@ -105,11 +131,21 @@
 				 player = sblob->player = 0;	
 				 }*/
 				player = sblob->player = otherPlayer;
+				sblob->center = new ofxPoint2f( centroid);
 				[blobs addObject:sblob];
 			}
 			
 			if(player == 0) otherPlayer = 1;
 			else otherPlayer = 0;
+			
+			if([player2Active state] == NSOffState){
+				player = 0;
+				otherPlayer = 1;
+				for(sblob in blobs){
+					sblob->player = 0;
+				}	
+				
+			}
 			
 			Blob * b;
 			for(b in [pblob blobs]){

@@ -16,6 +16,9 @@
 @interface Arkade : ofPlugin {
 	@public
 	IBOutlet NSButton * floorSquaresButton;
+		IBOutlet NSButton * moveWithPerson;
+	IBOutlet NSButton * lockToGrid;
+
 	IBOutlet NSButton * leaveCookiesButton;
 	IBOutlet NSButton * pacmanButton;
 	IBOutlet NSSlider * pacmanSpeedSlider;
@@ -51,9 +54,10 @@
 	//Floor squares
 	float floorSquaresOpacity[ FLOORGRIDSIZE * FLOORGRIDSIZE ];
 	vector<ofxPoint2f> cookies;
-	float cookiesRemoveFactor;
-
-
+ 	float cookiesRemoveFactor;
+	ofxPoint2f * pongPos;
+	float pongSquareSize;
+	
 	
 	//Ball
 	ofxPoint2f * ballPosition;
