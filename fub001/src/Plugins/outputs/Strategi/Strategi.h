@@ -53,6 +53,8 @@
 
 	IBOutlet NSButton * lockPlayerButton;
 	IBOutlet NSButton * player2Active;;
+	
+	vector< vector<vector< ofPoint > > > contourPoints;
 
 }
 -(IBAction) restart:(id)sender;

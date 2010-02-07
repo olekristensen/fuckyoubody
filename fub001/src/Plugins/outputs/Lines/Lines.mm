@@ -323,7 +323,7 @@
 					for(link in [line links]){
 						//See if blob is linked to line
 						if(link->blobId == pblob->pid && link->projId == [[[pblob blobs] objectAtIndex:0] cameraId]){
-							[line setFrontLeft:*frontLeft frontRight:*frontRight];
+							[line setFrontLeft:*frontLeft+ofxPoint2f(link->offset,0) frontRight:*frontRight+ofxPoint2f(link->offset,0)];
 							//[line setBackLeft:*backLeft backRight:*backRight];
 							
 							//[line setLeft:([line left] + (optimalLeft - [line left])*[corridorSpeedControl floatValue]*0.01)];
@@ -338,7 +338,7 @@
 					BOOL noNearLineFound = YES;
 					LineObject * line;
 					for(line in lines){
-						float d = 0.01;
+						float d = 0.05;
 						if([addButton state] == NSOnState){
 							d = 0.002;
 						}
@@ -348,6 +348,7 @@
 							link->projId = [trackingDirection selectedSegment];
 							link->linkTime = outputTime->videoTime;
 							link->lastConfirm = outputTime->videoTime;
+							link->offset = (([line getLeft].x - frontLeft->x) + ([line getRight].x - frontRight->x)) / 2.0;
 							[[line links] addObject:link];	
 							noNearLineFound = NO;
 						}					
@@ -372,6 +373,7 @@
 						link->projId = [trackingDirection selectedSegment];
 						link->linkTime = outputTime->videoTime;
 						link->lastConfirm = outputTime->videoTime;
+						link->offset = 0;
 						[[newLine links] addObject:link];
 						[lines addObject:newLine];
 					}

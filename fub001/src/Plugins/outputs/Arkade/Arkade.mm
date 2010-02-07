@@ -371,7 +371,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		//Floor squares
 		//
 		float w = 1.0/FLOORGRIDSIZE;
-
+		
 		
 		pongSquareSize = ofClamp(pongSquareSize-0.1,0,1);
 		if([floorSquaresButton state] == NSOnState){
@@ -389,7 +389,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				
 			}else {
 				pongSquareSize = ofClamp(0.4+pongSquareSize,0,1);
-
+				
 				if([lockToGrid state] == NSOffState){
 					pongPos = new ofxPoint2f(*personPosition  - ofxPoint2f(w/2.0 , w/2.0));
 					
@@ -463,7 +463,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			
 			if(intersection){
 				if(!pongWallSound->getIsPlaying()){
-					pongWallSound->setPan(ballPosition->x);
+					pongWallSound->setPan(2*ballPosition->x-1);
 					pongWallSound->play();
 				}
 			}	
@@ -474,104 +474,200 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			float by = ballPosition->y;
 			int i=0;
 			float w = 1.0/FLOORGRIDSIZE;
-			for(float y=0;y<1;y+=w){
-				for(float x=0;x<1;x+=w){				
-					float s = floorSquaresOpacity[i];	
-					if(s > 0.01){
-						ofxPoint2f points[4];
-						points[0] = ofxPoint2f(  x+0.5*w*(1-s)		,	y+0.5*w*(1-s)	) - *ballPosition;
-						points[1] = ofxPoint2f(  x+w-0.5*w*(1-s)	,	y+0.5*w*(1-s)	) - *ballPosition;
-						points[2] = ofxPoint2f(  x+w-0.5*w*(1-s)	,	y+w-0.5*w*(1-s)	) - *ballPosition;
-						points[3] = ofxPoint2f(  x+0.5*w*(1-s)		,	y	+w-0.5*w*(1-s)	) - *ballPosition;
+			
+			
+			float s = pongSquareSize;	
+			
+			if(s > 0.01){
+				float x = pongPos->x;
+				float y = pongPos->y;
+				ofxPoint2f points[4];
+				points[0] = ofxPoint2f(  x+0.5*w*(1-s)		,	y+0.5*w*(1-s)	) - *ballPosition;
+				points[1] = ofxPoint2f(  x+w-0.5*w*(1-s)	,	y+0.5*w*(1-s)	) - *ballPosition;
+				points[2] = ofxPoint2f(  x+w-0.5*w*(1-s)	,	y+w-0.5*w*(1-s)	) - *ballPosition;
+				points[3] = ofxPoint2f(  x+0.5*w*(1-s)		,	y	+w-0.5*w*(1-s)	) - *ballPosition;
+				
+				for(int i=0;i<4;i++){
+					ofxPoint2f p1, p2;
+					switch (i) {
+						case 0:
+							p1 = points[0];
+							p2 = points[1];
+							break;
+						case 1:
+							p1 = points[1];
+							p2 = points[2];
+							break;
+						case 2:
+							p1 = points[2];
+							p2 = points[3];
+							break;
+						case 3:
+							p1 = points[3];
+							p2 = points[0];
+							break;
+							
+						default:
+							break;
+					}
+					float dx, dy;						
+					dx = p2.x - p1.x;
+					dy = p2.y - p1.y;
+					
+					float dr = sqrt(dx*dx +dy*dy);
+					float D = p1.x*p2.y - p2.x*p1.y;
+					
+					float sgn = (dy < 0) ? -1.0 : 1.0;
+					
+					float ix1 = (D*dy + sgn*dx*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+					float iy1 = (-D*dx + fabs(dy)*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+					
+					float ix2 = (D*dy - sgn*dx*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+					float iy2 = (-D*dx - fabs(dy)*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+					
+					float A = r*r*dr*dr-D*D;
+					
+					//	cout<<A<<"  "<<r<<"  "<<dr<<"  "<<D<<"       "<<(dx*dx )<<endl;
+					if(A >= 0){
 						
-						for(int i=0;i<4;i++){
-							ofxPoint2f p1, p2;
+						bool intersection = false;
+						if(ix1 >= points[0].x && ix1 <= points[1].x && iy1 >= points[0].y && iy1 <= points[2].y){
+							intersection = true;						
+						}
+						else if(ix2 >= points[0].x && ix2 <= points[1].x && iy2 >= points[0].y && iy2 <= points[2].y){
+							intersection = true;
+						}
+						
+						if(intersection){
+							float randomF = ofRandom(-5, 5);
 							switch (i) {
 								case 0:
-									p1 = points[0];
-									p2 = points[1];
+									ballDir->y = -1;
 									break;
 								case 1:
-									p1 = points[1];
-									p2 = points[2];
+									ballDir->x = 1;
 									break;
 								case 2:
-									p1 = points[2];
-									p2 = points[3];
+									ballDir->y = 1;
 									break;
 								case 3:
-									p1 = points[3];
-									p2 = points[0];
+									ballDir->x = -1;
 									break;
 									
 								default:
 									break;
 							}
-							float dx, dy;						
-							dx = p2.x - p1.x;
-							dy = p2.y - p1.y;
+							[GetPlugin(Stregkode) sound]->setPan(2*ballPosition->x-1);
+							if(![GetPlugin(Stregkode) sound]->getIsPlaying())
+								[GetPlugin(Stregkode) sound]->play();
 							
-							float dr = sqrt(dx*dx +dy*dy);
-							float D = p1.x*p2.y - p2.x*p1.y;
+							ballDir->rotate(randomF);
+							ballDir->normalize();
 							
-							float sgn = (dy < 0) ? -1.0 : 1.0;
-							
-							float ix1 = (D*dy + sgn*dx*sqrt(r*r*dr*dr-D*D))/(dr*dr);
-							float iy1 = (-D*dx + fabs(dy)*sqrt(r*r*dr*dr-D*D))/(dr*dr);
-							
-							float ix2 = (D*dy - sgn*dx*sqrt(r*r*dr*dr-D*D))/(dr*dr);
-							float iy2 = (-D*dx - fabs(dy)*sqrt(r*r*dr*dr-D*D))/(dr*dr);
-							
-							float A = r*r*dr*dr-D*D;
-							
-							//	cout<<A<<"  "<<r<<"  "<<dr<<"  "<<D<<"       "<<(dx*dx )<<endl;
-							if(A >= 0){
-								
-								bool intersection = false;
-								if(ix1 >= points[0].x && ix1 <= points[1].x && iy1 >= points[0].y && iy1 <= points[2].y){
-									intersection = true;						
-								}
-								else if(ix2 >= points[0].x && ix2 <= points[1].x && iy2 >= points[0].y && iy2 <= points[2].y){
-									intersection = true;
-								}
-								
-								if(intersection){
-									float randomF = ofRandom(-5, 5);
-									switch (i) {
-										case 0:
-											ballDir->y = -1;
-											break;
-										case 1:
-											ballDir->x = 1;
-											break;
-										case 2:
-											ballDir->y = 1;
-											break;
-										case 3:
-											ballDir->x = -1;
-											break;
-											
-										default:
-											break;
-									}
-									[GetPlugin(Stregkode) sound]->setPan(ballPosition->x);
-									if(![GetPlugin(Stregkode) sound]->getIsPlaying())
-										[GetPlugin(Stregkode) sound]->play();
-									
-									ballDir->rotate(randomF);
-									ballDir->normalize();
-									
-								}
-							}
 						}
-						
-						
-						
 					}
-					
-					i++;
 				}
-			}
+			}				
+			
+			
+			/*for(float y=0;y<1;y+=w){
+			 for(float x=0;x<1;x+=w){				
+			 float s = floorSquaresOpacity[i];	
+			 if(s > 0.01){
+			 ofxPoint2f points[4];
+			 points[0] = ofxPoint2f(  x+0.5*w*(1-s)		,	y+0.5*w*(1-s)	) - *ballPosition;
+			 points[1] = ofxPoint2f(  x+w-0.5*w*(1-s)	,	y+0.5*w*(1-s)	) - *ballPosition;
+			 points[2] = ofxPoint2f(  x+w-0.5*w*(1-s)	,	y+w-0.5*w*(1-s)	) - *ballPosition;
+			 points[3] = ofxPoint2f(  x+0.5*w*(1-s)		,	y	+w-0.5*w*(1-s)	) - *ballPosition;
+			 
+			 for(int i=0;i<4;i++){
+			 ofxPoint2f p1, p2;
+			 switch (i) {
+			 case 0:
+			 p1 = points[0];
+			 p2 = points[1];
+			 break;
+			 case 1:
+			 p1 = points[1];
+			 p2 = points[2];
+			 break;
+			 case 2:
+			 p1 = points[2];
+			 p2 = points[3];
+			 break;
+			 case 3:
+			 p1 = points[3];
+			 p2 = points[0];
+			 break;
+			 
+			 default:
+			 break;
+			 }
+			 float dx, dy;						
+			 dx = p2.x - p1.x;
+			 dy = p2.y - p1.y;
+			 
+			 float dr = sqrt(dx*dx +dy*dy);
+			 float D = p1.x*p2.y - p2.x*p1.y;
+			 
+			 float sgn = (dy < 0) ? -1.0 : 1.0;
+			 
+			 float ix1 = (D*dy + sgn*dx*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+			 float iy1 = (-D*dx + fabs(dy)*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+			 
+			 float ix2 = (D*dy - sgn*dx*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+			 float iy2 = (-D*dx - fabs(dy)*sqrt(r*r*dr*dr-D*D))/(dr*dr);
+			 
+			 float A = r*r*dr*dr-D*D;
+			 
+			 //	cout<<A<<"  "<<r<<"  "<<dr<<"  "<<D<<"       "<<(dx*dx )<<endl;
+			 if(A >= 0){
+			 
+			 bool intersection = false;
+			 if(ix1 >= points[0].x && ix1 <= points[1].x && iy1 >= points[0].y && iy1 <= points[2].y){
+			 intersection = true;						
+			 }
+			 else if(ix2 >= points[0].x && ix2 <= points[1].x && iy2 >= points[0].y && iy2 <= points[2].y){
+			 intersection = true;
+			 }
+			 
+			 if(intersection){
+			 float randomF = ofRandom(-5, 5);
+			 switch (i) {
+			 case 0:
+			 ballDir->y = -1;
+			 break;
+			 case 1:
+			 ballDir->x = 1;
+			 break;
+			 case 2:
+			 ballDir->y = 1;
+			 break;
+			 case 3:
+			 ballDir->x = -1;
+			 break;
+			 
+			 default:
+			 break;
+			 }
+			 [GetPlugin(Stregkode) sound]->setPan(ballPosition->x);
+			 if(![GetPlugin(Stregkode) sound]->getIsPlaying())
+			 [GetPlugin(Stregkode) sound]->play();
+			 
+			 ballDir->rotate(randomF);
+			 ballDir->normalize();
+			 
+			 }
+			 }
+			 }
+			 
+			 
+			 
+			 }
+			 
+			 i++;
+			 }
+			 }*/
 			
 			
 			ballDir->normalize();
@@ -905,36 +1001,38 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	
 	ofDisableAlphaBlending();
 	for(int u=0;u<4;u++){
-		for(int i=0;i<FLOORGRIDSIZE-1;i++){
-			float s = ofClamp(sides[u]-i, 0,1);				
-			float c = ofClamp(sidesLock[u]-i, 0,1);				
-			ofSetColor(255, 255*c, 255*c,255);
-			float x,y;
-			switch (u) {
-				case 0:
-					x = 0;
-					y = (float)(FLOORGRIDSIZE-1- i)*w;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));					
-					break;
-				case 1:
-					x = (float)(i)*w;
-					y = 0;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
-					
-					break;
-				case 2:
-					x = 1-w;
-					y = (float)(i)*w;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
-					
-					break;
-				case 3:
-					x = (float)(FLOORGRIDSIZE-1-i)*w;
-					y = 1-w;
-					ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
-					break;
-			}
+		if( (u > 1 && side == 0) || (u < 2 && side == 1)){
 			
+			for(int i=0;i<FLOORGRIDSIZE-1;i++){
+				float s = ofClamp(sides[u]-i, 0,1);				
+				float c = ofClamp(sidesLock[u]-i, 0,1);				
+				ofSetColor(255, 255*c, 255*c,255);
+				float x,y;
+				switch (u) {
+					case 0:
+						x = 0;
+						y = (float)(FLOORGRIDSIZE-1- i)*w;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));					
+						break;
+					case 1:
+						x = (float)(i)*w;
+						y = 0;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+						
+						break;
+					case 2:
+						x = 1-w;
+						y = (float)(i)*w;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+						
+						break;
+					case 3:
+						x = (float)(FLOORGRIDSIZE-1-i)*w;
+						y = 1-w;
+						ofRect(x+0.5*w*(1-s),y+0.5*w*(1-s),w*(s) , w*(s));
+						break;
+				}
+			}
 		}
 		
 	}

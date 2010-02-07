@@ -114,7 +114,7 @@
 	if(going){
 		ofFill();
 		ofSetColor(255, 0, 0);
-		ofRect(0, 1.0-percent, 0.5, 0.05);
+		ofRect(0, 1.0-percent, 0.5, 0.02);
 		StregkodePlayer * player;
 		
 		for(player in players){

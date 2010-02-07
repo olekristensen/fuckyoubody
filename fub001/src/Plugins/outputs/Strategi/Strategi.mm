@@ -40,7 +40,27 @@
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if([pause state] != NSOnState){
+		
+		PersistentBlob * pblob;
 		StrategiBlob * sblob;
+		
+		contourPoints.clear();
+		
+		for(pblob in [tracker(0) persistentBlobs]){
+			Blob * b;
+			vector< vector<ofPoint > > pv;
+			for(b in [pblob blobs]){
+				vector<ofPoint> v;
+				for( int u = 0; u < [b nPts]; u++){
+					ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Front" toSurface:"Floor"];
+					v.push_back(p);
+				}
+				pv.push_back(v);			
+			}
+			
+			contourPoints.push_back(pv);
+			
+		}
 		
 		if([lockPlayerButton state] == NSOnState){
 			StrategiBlob * topLeftBlob;
@@ -58,10 +78,10 @@
 				topLeftBlob->player = 1;
 				
 				/*int i=0;
-				for(sblob in blobs){
-					cout<<i<<" : "<<sblob->player <<endl;;
-					i++;
-				}*/			
+				 for(sblob in blobs){
+				 cout<<i<<" : "<<sblob->player <<endl;;
+				 i++;
+				 }*/			
 			}
 		}
 		
@@ -94,7 +114,6 @@
 			}
 		}
 		
-		PersistentBlob * pblob;
 		for(pblob in [tracker(0) persistentBlobs]){
 			int player = -1;
 			int otherPlayer;
@@ -227,6 +246,7 @@
 	ofFill();
 	
 	PersistentBlob * pblob;
+	int pid=0;
 	for(pblob in [tracker(0) persistentBlobs]){
 		int player = -1;
 		int otherPlayer;
@@ -264,33 +284,43 @@
 			 }*/
 			player = sblob->player = otherPlayer;
 			sblob->center = new ofxPoint2f( centroid);
-
+			
 			[blobs addObject:sblob];
 		}
 		
 		if(player == 0) otherPlayer = 1;
 		else otherPlayer = 0;
 		
-		Blob * b;
-		for(b in [pblob blobs]){
-			if(player ==0){
-				ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
-			} else {
-				ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
+		if(pid < contourPoints.size()){
+			
+			for(int i=0;i<contourPoints[pid].size();i++){
+				if(player ==0){
+					ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
+				} else {
+					ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
+				}
+				
+				
+				[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+				ofBeginShape();
+				
+				for(int u=0;u<contourPoints[pid][i].size();u++){
+					ofVertex(contourPoints[pid][i][u].x, contourPoints[pid][i][u].y);			
+				}
+				
+				ofEndShape();
+				glPopMatrix();
+				
 			}
 			
-			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-			ofBeginShape();
-			for( int u = 0; u < [b nPts]; u++){
-				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Front" toSurface:"Floor"];
-				ofVertex(p.x, p.y);			
-			}
-			ofEndShape();
-			glPopMatrix();
-			
-		}
+		}	
+		
+		
+		pid++;
+		
+		
+		
 	}
-	
 	
 	
 	

@@ -60,7 +60,7 @@
 	int projId;
 	double linkTime;
 	double lastConfirm;
-
+	double offset;
 	double timeSinceLastConfirm;
 }
 
