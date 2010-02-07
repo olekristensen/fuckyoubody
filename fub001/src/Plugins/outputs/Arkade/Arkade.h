@@ -16,7 +16,7 @@
 @interface Arkade : ofPlugin {
 	@public
 	IBOutlet NSButton * floorSquaresButton;
-		IBOutlet NSButton * moveWithPerson;
+	IBOutlet NSButton * moveWithPerson;
 	IBOutlet NSButton * lockToGrid;
 
 	IBOutlet NSButton * leaveCookiesButton;

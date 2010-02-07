@@ -99,7 +99,7 @@
 		
 		//Lemming * rumikosLemming = [[[Lemming alloc]initWithX: [[GetPlugin(GrowingShadow) coordinateX] floatValue] Y:[[GetPlugin(GrowingShadow) coordinateY] floatValue] spawnTime:timeInterval]autorelease];
 		
-		Lemming * rumikosLemming = [[[Lemming alloc]initWithX: 0.85 Y:0.85 spawnTime:timeInterval]autorelease];
+		Lemming * rumikosLemming = [[[Lemming alloc]initWithX: homePos->x Y:homePos->y spawnTime:timeInterval]autorelease];
 		
 		[rumikosLemming setScaleFactor:0.5];
 		
@@ -112,7 +112,9 @@
 	if ([screenEntranceDoor floatValue] > 0.65) {
 		float lemmingInterval = fmodf(timeInterval, 1/([screenLemmingsAddRate floatValue]/60));
 		if(lemmingInterval - lastLemmingInterval < 0.0){
-			[screenLemmings addObject:[[[Lemming alloc]initWithX: screenDoorPos->x Y:screenDoorPos->y spawnTime:timeInterval]autorelease]];
+			Lemming * lemming = [[Lemming alloc]initWithX: screenDoorPos->x Y:screenDoorPos->y spawnTime:timeInterval];
+			[lemming vel]->y = 0.45;
+			[screenLemmings addObject:[lemming autorelease]];
 		}
 		lastLemmingInterval = lemmingInterval;
 	}
@@ -122,8 +124,10 @@
 	if ([floorAddLemmingsFromFront state] == NSOnState) {
 		float lemmingInterval = fmodf(timeInterval, 1/([floorLemmingsAddRate floatValue]/60));
 		if(lemmingInterval - lastFloorLemmingInterval < 0.0){
-			Lemming * floorLemming = [[[Lemming alloc]initWithX:1.0 Y:1.0 spawnTime:timeInterval]autorelease];
-			[floorLemming setScaleFactor:0.45];
+			Lemming * floorLemming = [[[Lemming alloc]initWithX:0.99999-(RADIUS*0.5) Y:0.9999-(RADIUS*0.5) spawnTime:timeInterval]autorelease];
+			[floorLemming setScaleFactor:0.5];
+			[floorLemming vel]->y = -0.01*ofRandom(0.1, 1);
+			[floorLemming vel]->x = -0.01*ofRandom(0.1, 1);
 			[floorLemmings addObject:floorLemming];
 		}
 		lastFloorLemmingInterval = lemmingInterval;
@@ -236,23 +240,20 @@
 	 **/
 	
 #pragma omp parallel for
-	for(int i=0;i<[screenLemmings count];i++){
-		lemming =[screenLemmings objectAtIndex:i];
+	for(lemming in screenLemmings){
 #pragma mark collide with elements
-		if (true) {
-			ScreenElement * element;
-			for (element in screenElements){
-				if([element active]){
-					if([lemming vel]->y >= 0 ){
-						if([lemming position]->y+(RADIUS*[lemming scaleFactor]) > [element position]->y){
-							if([lemming position]->y+(RADIUS*[lemming scaleFactor]) < [element position]->y+0.03 ){
-								// just in height of surface
-								if([lemming position]->x+(RADIUS*[lemming scaleFactor]) > [element position]->x){
-									if([lemming position]->x-(RADIUS*[lemming scaleFactor]) < [element position]->x+[element size]){
-										[lemming vel]->y *= -0.5;
-										[lemming vel]->x *= 1.01;
-										[lemming position]->y = [element position]->y-(RADIUS*[lemming scaleFactor]);
-									}
+		ScreenElement * element;
+		for (element in screenElements){
+			if([element active]){
+				if([lemming vel]->y >= 0 ){
+					if([lemming position]->y+(RADIUS*[lemming scaleFactor]) > [element position]->y){
+						if([lemming position]->y+(RADIUS*[lemming scaleFactor]) < [element position]->y+0.032 ){
+							// just in height of surface
+							if([lemming position]->x+(RADIUS*[lemming scaleFactor]) > [element position]->x){
+								if([lemming position]->x-(RADIUS*[lemming scaleFactor]) < [element position]->x+[element size]){
+									[lemming vel]->y *= -0.5;
+									[lemming vel]->x *= 1.01;
+									[lemming position]->y = [element position]->y-(RADIUS*[lemming scaleFactor]);
 								}
 							}
 						}
@@ -310,7 +311,6 @@
 					
 					[lemming setVel:new ofxVec2f(*screenBottomOnFloorHat * wallVel.length())];
 					[lemming vel]->rotate(-wallVel.angle(ofxVec2f(0,1)));
-					[lemming setRadius:[lemming radius]*0.5];
 					[lemming setScaleFactor:0.5];
 					*[lemming vel] *= 0.35;
 					[lemming setBlessed:NO];
@@ -340,29 +340,36 @@
 			PersistentBlob * nearestBlob;
 			float shortestDist = -1;
 			
-			PersistentBlob * blob;
-			for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
-				ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*blob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
-				if(c.y > 1.0-[floorBlobMask floatValue]){
-					if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
-						shortestDist = c.distanceSquared(*[lemming position]);
-						nearestBlob = blob;
+			if ([floorLemmingsGoToHome state] == NSOnState) {
+				
+				*[lemming totalforce] += (*homePos - *[lemming position])*(1.0/33.0);
+				
+			} else {
+				
+				PersistentBlob * blob;
+				for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
+					ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*blob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+					if(c.y > 1.0-[floorBlobMask floatValue]){
+						if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
+							shortestDist = c.distanceSquared(*[lemming position]);
+							nearestBlob = blob;
+						}
 					}
 				}
-			}
-			
-			if(shortestDist != -1){	
-				ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*nearestBlob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
 				
-				if (shortestDist < [floorBlobFarForceThreshold floatValue]){
-					*[lemming totalforce] += (c - *[lemming position])*([floorBlobFarForce floatValue]/50.0) ;
+				if(shortestDist != -1){	
+					ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*nearestBlob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+					
+					if (shortestDist < [floorBlobFarForceThreshold floatValue]){
+						*[lemming totalforce] += (c - *[lemming position])*([floorBlobFarForce floatValue]/50.0) ;
+					}
+					if (shortestDist < [floorBlobNearForceThreshold floatValue]*0.25){
+						*[lemming totalforce] += (c - *[lemming position])*([floorBlobNearForce floatValue]/5.0) ;
+					}
+					//				*[lemming totalforce] += (c - *[lemming position])*([motionGravity floatValue]/100.0) ;
+					
+					[lemming setAlpha:fmaxf(0.0,1.0-(shortestDist*30.0*[floorLemmingsDistanceAlpha floatValue]))];
 				}
-				if (shortestDist < [floorBlobNearForceThreshold floatValue]*0.25){
-					*[lemming totalforce] += (c - *[lemming position])*([floorBlobNearForce floatValue]/5.0) ;
-				}
-				//				*[lemming totalforce] += (c - *[lemming position])*([motionGravity floatValue]/100.0) ;
-				
-				[lemming setAlpha:fmaxf(0.0,1.0-(shortestDist*30.0*[floorLemmingsDistanceAlpha floatValue]))];
 			}
 			
 			[lemming setCoinyness:[floorLemmingsCoins floatValue]];
@@ -409,19 +416,19 @@
 	for(lemming in floorLemmings){
 		if ([lemming isAlive]) {
 			if([lemming position]->x - (RADIUS*[lemming scaleFactor]) < 0 ){
-				[lemming vel]->x *= -0.9;
+				[lemming vel]->x *= -0.95;
 				[lemming position]->x = 0.00001 + (RADIUS*[lemming scaleFactor]);
 			}
 			if([lemming position]->y - (RADIUS*[lemming scaleFactor]) < -0.0 ){
-				[lemming vel]->y *= -0.9;
+				[lemming vel]->y *= -0.95;
 				[lemming position]->y = 0.00001 + (RADIUS*[lemming scaleFactor]);				
 			}
 			if([lemming position]->x + (RADIUS*[lemming scaleFactor]) > [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Floor"]){
-				[lemming vel]->x *= -0.9;
+				[lemming vel]->x *= -0.95;
 				[lemming position]->x = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Floor"] - (0.00001 + (RADIUS*[lemming scaleFactor]));				
 			}
 			if([lemming position]->y + (RADIUS*[lemming scaleFactor]) > 1){
-				[lemming vel]->y *= -0.9;
+				[lemming vel]->y *= -0.95;
 				[lemming position]->y = 0.99999 - (RADIUS*[lemming scaleFactor]);								
 			}
 		}
@@ -436,28 +443,42 @@
 	
 	Lemming * lemming;
 	
-	int i=0;
+	if([theLemmingArray count] > 1){ // not making threads to collide unless neccesary
+		
+		int i=0;
+		
+		float collisionRadius = RADIUS * [lemmingCollisionThreshold floatValue];
+		
 #pragma omp parallel for
-	for(int i=0;i<[theLemmingArray count];i++){
-		lemming =[theLemmingArray objectAtIndex:i];
+		for(lemming in theLemmingArray){
+			if ([lemming isAlive]) {
+				Lemming * anotherLemming;
+				NSUInteger index = 0;
 #pragma omp parallel for
-		for(int u=i+1;u<[theLemmingArray count];u++){
-			Lemming * anotherLemming = [theLemmingArray objectAtIndex:u];
-			ofxPoint2f l1 = *[lemming position];
-			ofxPoint2f l2 = *[anotherLemming position];
-			double distSq =	l1.distanceSquared(l2);
-			if(distSq < RADIUS_SQUARED ){
-				ofxVec2f diff = *[lemming position] - *[anotherLemming position];
-				diff.normalize();
-				pthread_mutex_lock(&mutex);
-				double iDist = ((double)RADIUS_SQUARED - (double)distSq)/(double)(RADIUS_SQUARED); 
-				diff *= MIN(iDist*3, 0.02);
-				*[lemming totalforce] += diff;
-				*[anotherLemming totalforce] -= diff;
-				pthread_mutex_unlock(&mutex);
+				for(anotherLemming in theLemmingArray){
+					if (index > i && [anotherLemming isAlive]) {
+						ofxPoint2f l1 = *[lemming position];
+						ofxPoint2f l2 = *[anotherLemming position];
+						double dist = l1.distance(l2);
+						if(dist < (collisionRadius*[lemming scaleFactor])+(collisionRadius*[anotherLemming scaleFactor]) ){
+							ofxVec2f diff = *[lemming position] - *[anotherLemming position];
+							diff.normalize();
+							
+							diff *= fabs(fminf(dist*0.45, collisionRadius*0.9));
+							
+							pthread_mutex_lock(&mutex);
+
+							*[lemming totalforce] += diff;
+							*[anotherLemming totalforce] -= diff;
+							
+							pthread_mutex_unlock(&mutex);
+						}
+					}
+					index++;
+				}
 			}
+			i++;
 		}
-		i++;
 	}
 	
 	//	id debugLemming = [theLemmingArray objectAtIndex:0];
@@ -468,7 +489,7 @@
 	for(lemming in theLemmingArray){
 		*[lemming vel] *= (100.0-[damp floatValue])/100.0;
 		*[lemming vel] += *[lemming totalforce];
-		[lemming setTotalforce:new ofxVec2f()];
+		*[lemming totalforce] *= 0;
 		*[lemming position] += *[lemming vel] * 1.0/ofGetFrameRate();
 	}
 	
@@ -502,6 +523,8 @@
 	screenElements = [self makeElements:elementsList];
 	parachuteImage = new ofImage;
 	parachuteImage->loadImage("lemmings/parachute.png");
+	
+	homePos = new ofxVec2f(0.85,0.85);
 	
 	[self reset];
 	
@@ -574,7 +597,7 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 		
-		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
+		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255*[alpha floatValue]);
 		ofRect(0, 0, 1, 1);
 		
 		/** floor box
@@ -599,7 +622,7 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		
-		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255);
+		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255*[alpha floatValue]);
 		ofRect(0, 0, 1, 1);
 		
 		/** floor box
@@ -623,10 +646,8 @@
 	}glPopMatrix();
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
-		
-		ofSetColor(255, 0, 0);
-		
-		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255);
+				
+		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255*[alpha floatValue]);
 		
 		for(lemming in floorLemmings){
 			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
@@ -648,12 +669,12 @@
 		ofRect(1, 0, 1, 1); // stage right
 		ofRect(0, 0, -1, 1); // stage left
 		ofRect(-1, 0, 3, -1); // stage back
-
+		
 	}glPopMatrix();
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		
-		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255);
+		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255*[alpha floatValue]);
 		
 		for(lemming in floorLemmings){
 			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
@@ -671,7 +692,7 @@
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
 		
 		//background
-		ofSetColor(0,0,0,255);
+		ofSetColor(0,0,0,255*[alpha floatValue]);
 		ofRect(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1);
 		
 		//dancers' mask
@@ -681,11 +702,10 @@
 		 **/
 		
 		if((1.0-screenTrackingHeight) > SCREEN_MARGIN){
-			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*255);
+			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*255*[alpha floatValue]);
 		} else {
-			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*0);
+			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*0*[alpha floatValue]);
 		}
-		
 		
 		ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 0.03);
 		
@@ -697,14 +717,14 @@
 		}
 		
 		//lemmings
-		ofSetColor(255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue],255.0);
+		ofSetColor(255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue],255.0*[alpha floatValue]);
 		
 		for(lemming in screenLemmings){
 			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
 		}
 		
 		// Door
-		ofSetColor(255, 255, 255, 255.0*[screenElementsAlpha floatValue]);
+		ofSetColor(255, 255, 255, 255.0*[screenElementsAlpha floatValue]*[alpha floatValue]);
 		
 		glPushMatrix(); {
 			glTranslated(screenDoorPos->x, screenDoorPos->y, 0);
@@ -760,7 +780,7 @@
 @end
 
 @implementation Lemming
-@synthesize radius, scaleFactor, position, spawnTime, splatTime, lemmingList, deathTime, vel, totalforce, blessed, coinyness, alpha;
+@synthesize radius, scaleFactor, random, position, spawnTime, splatTime, lemmingList, deathTime, vel, totalforce, blessed, coinyness, alpha;
 
 -(id) initWithX:(float)xPosition Y:(float)yPosition spawnTime:(CFTimeInterval)timeInterval{
 	
@@ -780,6 +800,7 @@
 		position->x = xPosition;
 		position->y = yPosition;
 		spawnTime = timeInterval;
+		random = ofRandom(0, 1.0);
 	}
 	
 	return self;
@@ -798,28 +819,36 @@
 	
 	theColor.a *= alpha;
 	
+	float computedAlpha = [[GetPlugin(Lemmings) alpha] floatValue]*alpha;
+	
 	NSColor * playerColor = [NSColor orangeColor];// [GetPlugin(Players) playerColor:1];
 	
-	radius -= (radius - (RADIUS*scaleFactor)) *0.01;
 	if(splatTime > 0){
 		float timeScale = ((timeInterval-splatTime)/SPLAT_DURATION);
 		ofPushStyle();
-		ofSetColor(255, 255, 255, 255.0*sinf(4.0*timeScale));
-		ofEllipse(position->x, position->y+(radius*0.5), radius+4*(radius*timeScale), (radius*timeScale));
-		ofSetColor(255, 200, 0, 255.0*sinf(4.0*timeScale));
-		ofEllipse(position->x, position->y+((radius*0.6)-0.008), radius+(radius*timeScale), (radius*0.4));
-		ofNoFill();
-		ofSetLineWidth(2);
-		ofSetColor(255, 255, 255, 255.0-(255.0*timeScale));
-		//ofCircle(position->x, position->y+(0.5*radius*((timeInterval-splatTime)/SPLAT_DURATION)), (radius*0.5)+(radius*((timeInterval-splatTime)/SPLAT_DURATION)));
+		ofSetColor(255, 255, 255, 127.0*sinf((0.5*timeScale)+2.0)*computedAlpha);
+		ofEllipse(position->x, position->y+(radius*0.5)+(sinf(timeScale*50.0)*0.01*(1.0-timeScale))+(radius*0.5*timeScale), ((radius*1.25)-(radius*((4.0*timeScale)+(SPLAT_DURATION/2.0)))), (radius*0.75)-(0.5*radius*timeScale));
+		ofSetColor(255, 255, 255, 127.0*sinf((0.5*timeScale)+2.0)*computedAlpha);
+		ofEllipse(position->x, position->y+radius, ((radius*1.25)+(radius*((2.0*timeScale)+(SPLAT_DURATION/2.0)))), (radius*0.5)+(0.5*radius*timeScale));
+		ofSetColor(255, 255, 255, 255.0*(1.0-(fmaxf(0,timeScale-0.5)*2.0))*computedAlpha);
+		ofEllipse(position->x+(0.25*radius), position->y+(radius*2.5*timeScale)+(radius*0.75)+(random*radius*0.5), (radius)-(radius*timeScale*0.5),(radius*0.5)+(ofClamp(random, 0.25, 0.75)*radius*((0.5*timeScale)+(SPLAT_DURATION/2.0))));
+		ofEllipse(position->x-(0.25*radius), position->y+(radius*3.0*timeScale)+(radius*0.5)-(random*radius*0.5), (radius*0.5)-(radius*timeScale*0.5),(radius*0.5)+(ofClamp(random, 0.25, 0.75)*radius*((0.5*timeScale)+(SPLAT_DURATION/2.0))));
+		ofEllipse(position->x, position->y+(radius*0.5*timeScale)+(radius*0.5), (radius*0.5)-(radius*timeScale*0.5),(radius*0.5)+(ofClamp(random, 0.25, 0.75)*radius*((0.5*timeScale)+(SPLAT_DURATION/2.0))));
 		ofPopStyle();
+	} else if (deathTime > 0) {
+		float timeScale = ((timeInterval-deathTime)/DEATH_DURATION);
+		glPushMatrix();{
+
+			//of
+			
+		}glPopMatrix();
+	
 	} else {
 		glPushMatrix();{
-			
 			if (blessed && vel->y > 0.02) {
 				glPushMatrix();{
 					ofPushStyle();
-					ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255);
+					ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255*computedAlpha);
 					//ofCircle(position->x, position->y-(radius*7.5*vel->y), (vel->y*0.27)+(radius*0.33));
 					glTranslated(position->x, position->y, 0);
 					glRotatef((atan2(-vel->y, -vel->x)*20)+40, 0, 0, 1);
@@ -837,7 +866,7 @@
 					   (theColor.g*(1.0-coinyness))+(coinyness*ofRandom(127, 200)), 
 					   (theColor.b*(1.0-coinyness))+(coinyness*ofRandom(0, 127)),
 					   theColor.a);
-			ofCircle(position->x, position->y, radius+[GetPlugin(Lemmings) getLemmingsSizeAsFloat]);
+			ofCircle(position->x, position->y, (radius*scaleFactor)+[GetPlugin(Lemmings) getLemmingsSizeAsFloat]);
 			//ofEllipse(position->x, position->y, radius/*-(0.001*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])*/, (0.015*vel->length()*[GetPlugin(Lemmings) getScreenGravityAsFloat])+radius);
 		}glPopMatrix();
 		//ofCircle(position->x, position->y, radius);
@@ -878,9 +907,9 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if([self active]){
-		ofSetColor(255, 255, 255, 255.0*[GetPlugin(Lemmings) getScreenElementsAlphaAsFloat]);
+		ofSetColor(255, 255, 255, 255.0*[GetPlugin(Lemmings) getScreenElementsAlphaAsFloat]*[[GetPlugin(Lemmings) alpha] floatValue]);
 	} else {
-		ofSetColor(48, 48, 48, 255.0*[GetPlugin(Lemmings) getScreenElementsAlphaAsFloat]);
+		ofSetColor(48, 48, 48, 255.0*[GetPlugin(Lemmings) getScreenElementsAlphaAsFloat]*[[GetPlugin(Lemmings) alpha] floatValue]);
 	}
 	ofRect(position->x, position->y, size, 0.03);
 }

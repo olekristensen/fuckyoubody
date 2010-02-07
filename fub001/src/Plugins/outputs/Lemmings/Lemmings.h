@@ -17,8 +17,8 @@
 
 
 #define RADIUS 0.03
-#define DEATH_DURATION 0.5
-#define SPLAT_DURATION 0.5
+#define DEATH_DURATION 1.0
+#define SPLAT_DURATION 2.0
 #define RADIUS_SQUARED 0.0009
 #define SCREEN_MARGIN 0.08
 
@@ -38,7 +38,8 @@
 	Filter *		screenTrackingRightFilter;
 	Filter *		screenTrackingHeightFilter;
 	
-	ofPoint			*screenDoorPos;
+	ofPoint			* screenDoorPos;
+	ofxVec2f		* homePos;
 	
 	ofxVec2f		* screenBottomOnFloorLeft;
 	ofxVec2f		* screenBottomOnFloorRight;
@@ -98,7 +99,8 @@
 	
 	IBOutlet NSButton * floorAddLemmingsFromFront;
 
-	
+	IBOutlet NSButton * floorLemmingsGoToHome;
+
 	
 	// intra-lemming
 	
@@ -108,8 +110,8 @@
 	IBOutlet NSSlider * motionGravity;
 
 	IBOutlet NSSlider * lemmingSize;
+	IBOutlet NSSlider * lemmingCollisionThreshold;	// 0.1 ... 2.0;
 	
-	int lemmingDiff;
 	pthread_mutex_t mutex;
 	
 	ofImage			*parachuteImage;
@@ -149,6 +151,7 @@
 	double			deathTime;
 	double			splatTime;
 	bool			blessed;
+	float			random;
 	NSMutableArray * lemmingList;
 
 }
@@ -157,6 +160,7 @@
 
 @property (readwrite) float radius;
 @property (readwrite) float alpha;
+@property (readwrite) float random;
 @property (readwrite) float coinyness;
 @property (readwrite) float scaleFactor;
 @property (assign, readwrite) ofxVec2f *position;
