@@ -66,6 +66,9 @@
 -(void) setCorner:(int) n x:(float)x y:(float) y projector:(int)projector surface:(int)surface storeUndo:(BOOL)undo{
 	NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
+	x = ofClamp(x, -1, 3);
+	y = ofClamp(y, -1, 3);
+	
 	trackingDestinations[n] = new ofxPoint2f(x,y);
 	for(int i=0;i<20;i++){
 		trackingFilter[n*2]->filter(x);
@@ -88,6 +91,8 @@
 	int corner = [[obj objectAtIndex:0] intValue];
 	float x = [[obj objectAtIndex:1] floatValue]; 
 	float y = [[obj objectAtIndex:2] floatValue];
+	x = ofClamp(x, -1, 3);
+	y = ofClamp(y, -1, 3);
 	
 	corners[corner]->set(x,y);
 	[self recalculate];			
@@ -359,60 +364,18 @@
 					}
 				}
 				if (surf->tracking) {
-					
-					
-					surf->trackingDestinations[0] = new ofxPoint2f( topLeft);
-					surf->trackingDestinations[1] = new ofxPoint2f( topRight);
-					surf->trackingDestinations[2] = new ofxPoint2f( bottomRight);
-					surf->trackingDestinations[3] = new ofxPoint2f( bottomLeft);
-					for(int i=0;i<4;i++){
-						surf->corners[i] = 	surf->trackingDestinations[i];
-					}
-					
-					[surf recalculate];
-						
-					ofxPoint2f pts[4];
-					pts[0] = ofxPoint2f(0,0)-*surf->trackingOffsets[0];
-					pts[1] = ofxPoint2f(1,0)-*surf->trackingOffsets[1];
-					pts[2] = ofxPoint2f(1,1)-*surf->trackingOffsets[2];
-					pts[3] = ofxPoint2f(0,1)-*surf->trackingOffsets[3];
-					
-					for(int i=0;i<4;i++){
-						surf->trackingDestinations[i] = new ofxPoint2f( [self convertPoint:pts[i] toProjection:"Front" fromSurface:"Backwall"]);
-					}
-					
-//					surf->trackingDestinations[1] = new ofxPoint2f( topRight);
-				//	surf->trackingDestinations[2] = new ofxPoint2f( bottomRight);
-				//	surf->trackingDestinations[3] = new ofxPoint2f( bottomLeft);
-					
-				//	[surf recalculate];
-					
-					
-				} else if (surf->calibrating) {
-					
-					surf->trackingOffsets[0] = new ofxPoint2f(ofxPoint2f(0,0) - [GetPlugin(ProjectionSurfaces) convertPoint:topLeft fromProjection:"Front" toSurface:"Backwall"]);
-					surf->trackingOffsets[1] = new ofxPoint2f(ofxPoint2f(1,0) - [GetPlugin(ProjectionSurfaces) convertPoint:topRight fromProjection:"Front" toSurface:"Backwall"]);
-					surf->trackingOffsets[2] = new ofxPoint2f(ofxPoint2f(1,1) - [GetPlugin(ProjectionSurfaces) convertPoint:bottomRight fromProjection:"Front" toSurface:"Backwall"]);
-					surf->trackingOffsets[3] = new ofxPoint2f(ofxPoint2f(0,1) - [GetPlugin(ProjectionSurfaces) convertPoint:bottomLeft fromProjection:"Front" toSurface:"Backwall"]);
-					cout<<"Topleft: "<<topLeft.x<<"  "<<topLeft.y<<endl;
-					cout<<"Punkt på væg: "<<[GetPlugin(ProjectionSurfaces) convertPoint:topLeft fromProjection:"Front" toSurface:"Backwall"].x<<"   "<<[GetPlugin(ProjectionSurfaces) convertPoint:topLeft fromProjection:"Front" toSurface:"Backwall"].y<<endl;
-					for(int i=0;i<4;i++){
-						cout<<i<<": "<<	surf->trackingOffsets[i]->x<<"   "<<surf->trackingOffsets[i]->y<<endl;
-					}
-/*
 					surf->trackingDestinations[0] = new ofxPoint2f( topLeft + *surf->trackingOffsets[0]);
 					surf->trackingDestinations[1] = new ofxPoint2f( topRight + *surf->trackingOffsets[1]);
 					surf->trackingDestinations[2] = new ofxPoint2f( bottomRight + *surf->trackingOffsets[2]);
 					surf->trackingDestinations[3] = new ofxPoint2f( bottomLeft + *surf->trackingOffsets[3]);
-					*/
-					
-					surf->trackingDestinations[0] = new ofxPoint2f( topLeft);
-					surf->trackingDestinations[1] = new ofxPoint2f( topRight);
-					surf->trackingDestinations[2] = new ofxPoint2f( bottomRight);
-					surf->trackingDestinations[3] = new ofxPoint2f( bottomLeft);
 					[surf recalculate];
 					
+				} else if (surf->calibrating) {
 					
+					surf->trackingOffsets[0] = new ofxPoint2f(*surf->corners[0] - topLeft);
+					surf->trackingOffsets[1] = new ofxPoint2f(*surf->corners[1] - topRight);
+					surf->trackingOffsets[2] = new ofxPoint2f(*surf->corners[2] - bottomRight);
+					surf->trackingOffsets[3] = new ofxPoint2f(*surf->corners[3] - bottomLeft);
 					
 					surf->calibrating = false;
 					surf->tracking = true;

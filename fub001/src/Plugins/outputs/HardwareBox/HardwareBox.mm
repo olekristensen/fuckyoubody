@@ -7,7 +7,8 @@
 //
 
 #import "HardwareBox.h"
-
+#include "ProjectionSurfaces.h"
+#include "Tracking.h"
 
 
 
@@ -40,6 +41,21 @@
 	}
 	
 	timeSinceLastProjUpdate = 0;
+	
+	
+	
+	
+	for(int i=0;i<8;i++){
+		trackingFilter[i] = new Filter();	
+		trackingFilter[i]->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
+		trackingFilter[i]->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
+	}
+	
+	trackingDestinations[0] = new ofxPoint2f(0,0);
+	trackingDestinations[1] = new ofxPoint2f(1,0);
+	trackingDestinations[2] = new ofxPoint2f(1,1);
+	trackingDestinations[3] = new ofxPoint2f(0,1);
+	
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -73,6 +89,84 @@
 	[laserStatus setStringValue:[NSString stringWithFormat:@"Laser status: %d", laserOn]];
 	
 	pthread_mutex_unlock(&mutex);
+	
+	
+	if([trackingScreen state] == NSOnState){
+		ProjectionSurfacesObject * surf = [GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"];
+		if([tracker(0) numBlobs] == 4){
+			
+			Blob * b;
+			ofxPoint2f center;
+			int n= 0;
+			for(b in [[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] blobs]){
+				center += [b centroid];
+				n++;
+			}
+			center /= n;
+			
+			ofxPoint2f topLeft = center, topRight= center, bottomLeft= center, bottomRight= center;
+			for(b in [[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] blobs]){
+				if(([b centroid].x < topLeft.x && [b centroid].y < topLeft.y)){
+					topLeft = [b centroid];
+				}
+				if(([b centroid].x > topRight.x && [b centroid].y < topRight.y)){
+					topRight = [b centroid];
+				}
+				if(([b centroid].x < bottomLeft.x && [b centroid].y > bottomLeft.y)){
+					bottomLeft = [b centroid];
+				}
+				if(([b centroid].x > bottomRight.x && [b centroid].y > bottomRight.y)){
+					bottomRight = [b centroid];
+				}
+			}
+			
+			
+			trackingDestinations[0] = new ofxPoint2f( topLeft);
+			trackingDestinations[1] = new ofxPoint2f( topRight);
+			trackingDestinations[2] = new ofxPoint2f( bottomRight);
+			trackingDestinations[3] = new ofxPoint2f( bottomLeft);
+			for(int i=0;i<4;i++){
+				surf->corners[i] = 	trackingDestinations[i];
+			}
+			
+			[surf recalculate];
+			
+			ofxPoint2f pts[4];
+			float s = 100.0;
+			
+			pts[0] = ofxPoint2f(0,0) + ofxPoint2f([offsetSliderX1 floatValue]/s , [offsetSliderY1 floatValue]/s);
+			pts[1] = ofxPoint2f(surf->aspect,0) + ofxPoint2f([offsetSliderX2 floatValue]/s , [offsetSliderY2 floatValue]/s);
+			pts[2] = ofxPoint2f(surf->aspect,1) + ofxPoint2f([offsetSliderX3 floatValue]/s , [offsetSliderY3 floatValue]/s);
+			pts[3] = ofxPoint2f(0,1) + ofxPoint2f([offsetSliderX4 floatValue]/s , [offsetSliderY4 floatValue]/s);
+			
+			for(int i=0;i<4;i++){
+				trackingDestinations[i] = new ofxPoint2f( [GetPlugin(ProjectionSurfaces) convertPoint:pts[i] toProjection:"Front" fromSurface:"Backwall"]);
+			}
+			
+			
+		}
+		
+		
+		
+		
+		for(int i=0;i<4;i++){
+			//cout<<surf->trackingDestinations[i]->x<<", "<<surf->trackingDestinations[i]->y<<"    ";
+			surf->corners[i] = new ofxPoint2f(
+											  trackingFilter[i*2]->filter(trackingDestinations[i]->x),
+											  trackingFilter[i*2+1]->filter(trackingDestinations[i]->y)  );
+			/*	surf->corners[i] = new ofxPoint2f(
+			 surf->trackingFilter[i*2]->filter(surf->trackingDestinations[i]->x),
+			 surf->trackingFilter[i*2+1]->filter(surf->trackingDestinations[i]->y)  );*/
+			
+		}				
+		//cout<<endl;
+		[surf recalculate];
+		
+		
+		
+		
+		
+	}
 	
 }
 

@@ -884,12 +884,15 @@
 	
 	if(n ==0){
 		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:478];
+		[[[GetPlugin(Cameras) getCameraWithId:0] gammaSlider] setFloatValue:875.9];	
 	}
 	if(n == 1){
-		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:1045];	
+		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:1280];	
+		[[[GetPlugin(Cameras) getCameraWithId:0] gammaSlider] setFloatValue:535.2];	
 	}
 	if(n == 2){
 		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:788];	
+		[[[GetPlugin(Cameras) getCameraWithId:0] gammaSlider] setFloatValue:535.2];	
 	}
 	
 	loadBackgroundNow = YES;

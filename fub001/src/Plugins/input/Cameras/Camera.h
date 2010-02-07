@@ -71,6 +71,7 @@
 @property (assign, readwrite) NSButton * recordButton;
 @property (readonly)Libdc1394Grabber * videoGrabber;
 @property (assign, readwrite)  PluginUISlider * gainSlider;
+@property (assign, readwrite)  PluginUISlider * gammaSlider;
 
 -(float) framerate;
 -(ofTexture*) getTexture;

@@ -6,7 +6,7 @@
 #include "Plugin.h"
 #include "ofMain.h"
 #include "ofxVectorMath.h"
-
+#include "Filter.h"
 
 
 
@@ -40,12 +40,12 @@
 	
 	IBOutlet NSTextField * usbStatus;
 	IBOutlet NSTextField * arduinoStatus;
-
+	
 	IBOutlet NSTextField * buffersizeStatus;
 	IBOutlet NSTextField * projector1Status;
 	IBOutlet NSTextField * projector2Status;
-		IBOutlet NSTextField * projector1Temperature;
-			IBOutlet NSTextField * projector2Temperature;
+	IBOutlet NSTextField * projector1Temperature;
+	IBOutlet NSTextField * projector2Temperature;
 	IBOutlet NSTextField * xbeeStatus;
 	IBOutlet NSLevelIndicator * xbeeSignalStrength;
 	IBOutlet NSTextField * xbeeLEDStatus;
@@ -55,7 +55,23 @@
 	IBOutlet NSButton * ledButton;
 	
 	
-
+	
+	Filter * trackingFilter[8];
+	ofxPoint2f * trackingDestinations[4];
+	
+	IBOutlet NSSlider * offsetSliderX1;
+	IBOutlet NSSlider * offsetSliderX2;
+	IBOutlet NSSlider * offsetSliderX3;
+	IBOutlet NSSlider * offsetSliderX4;
+	
+	IBOutlet NSSlider * offsetSliderY1;
+	IBOutlet NSSlider * offsetSliderY2;
+	IBOutlet NSSlider * offsetSliderY3;
+	IBOutlet NSSlider * offsetSliderY4;
+	
+	IBOutlet NSButton * trackingScreen;
+	
+	
 }
 
 -(void) updateSerial:(id)param;
