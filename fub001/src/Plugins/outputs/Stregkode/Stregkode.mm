@@ -67,6 +67,7 @@
 					newp->g = 255*[[GetPlugin(Players) playerColor:player] greenComponent];
 					newp->b = 255*[[GetPlugin(Players) playerColor:player] blueComponent];
 					newp->t = 0;
+					newp->playerNum = player;
 					newp->startM = 0.0f;
 					newp->whiteAdd = 255.0f;
 					[players addObject:newp];
@@ -111,6 +112,7 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	ofEnableAlphaBlending();
 	if(going){
 		ofFill();
 		ofSetColor(255, 0, 0);
@@ -122,8 +124,14 @@
 			float g =(MIN(player->g  + player->whiteAdd,255))* player->startM;
 			float b = (MIN(player->b + player->whiteAdd,255)) * player->startM ;
 			
+			float a = 255.0;
+			if(player->playerNum == 2){				
+				a *= [blueLightSlider floatValue]/100.0;	
+			} else {
+				a *= [otherLightSlider floatValue]/100.0;		
+			}
 			
-			ofSetColor(r,g,b);
+			ofSetColor(r,g,b,a);
 			
 			PersistentBlob * pblob;
 			for(pblob in [tracker(0) persistentBlobs]){

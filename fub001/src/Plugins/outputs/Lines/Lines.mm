@@ -72,12 +72,12 @@
 		frontLeft->x = leftFrontFilter->filter(l.x);			
 		frontRight->x = rightFrontFilter->filter(r.x);			
 	}
-	frontLeft->x = leftFrontFilter->filter(l.x);			
+/*	frontLeft->x = leftFrontFilter->filter(l.x);			
 	frontRight->x = rightFrontFilter->filter(r.x);			
 	if(ofGetFrameRate()<50){
 		frontLeft->x = leftFrontFilter->filter(l.x);			
 		frontRight->x = rightFrontFilter->filter(r.x);			
-	}
+	}*/
 }
 
 -(void) setBackLeft:(ofxPoint2f)l backRight:(ofxPoint2f)r{
@@ -336,6 +336,13 @@
 					for(link in [line links]){
 						//See if blob is linked to line
 						if(link->blobId == pblob->pid && link->projId == [[[pblob blobs] objectAtIndex:0] cameraId]){
+							float avg = (frontLeft->x + frontRight->x)/2.0;							
+							if([timeoutLinesButton state] == NSOffState){
+								float w = 0.01;
+								frontLeft->x = avg-w;
+								frontRight->x = avg+w;
+							}
+							
 							[line setFrontLeft:*frontLeft+ofxPoint2f(link->offset,0) frontRight:*frontRight+ofxPoint2f(link->offset,0)];
 							//[line setBackLeft:*backLeft backRight:*backRight];
 							
@@ -373,6 +380,14 @@
 						LineBlobLink * link = [[LineBlobLink alloc] init]; 
 						
 						for(int i=0;i<100;i++){
+							float avg = (frontLeft->x + frontRight->x)/2.0;							
+							if([timeoutLinesButton state] == NSOffState){
+								float w = 0.01;
+								frontLeft->x = avg-w;
+								frontRight->x = avg+w;
+							}
+							
+							
 							[newLine setFrontLeft:*frontLeft frontRight:*frontRight];
 							//						[newLine setBackLeft:*backLeft backRight:*backRight];
 						}

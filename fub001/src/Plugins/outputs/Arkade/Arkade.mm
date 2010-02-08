@@ -920,7 +920,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	//White floor square
 	//
 	
-	ofSetColor(255, 255, 255,255);
+	ofSetColor(255*[alpha floatValue], 255*[alpha floatValue], 255*[alpha floatValue],255);
 	int i=0;
 	for(float y=0;y<1;y+=w){
 		for(float x=0;x<1;x+=w){				
@@ -1037,7 +1037,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			
 			for(int i=0;i<FLOORGRIDSIZE-1;i++){
 				float s = ofClamp(sides[u]-i, 0,1);				
-				float c = ofClamp(sidesLock[u]-i, 0,1);				
+				float c = ofClamp(sidesLock[u]-i, 0,1)*[alpha floatValue];				
 				ofSetColor(255, 255*c, 255*c,255);
 				float x,y;
 				switch (u) {

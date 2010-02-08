@@ -21,8 +21,8 @@
 
 -(void) initPlugin{
 	
-	screenLemmings = [[NSMutableArray array] retain];
-	floorLemmings = [[NSMutableArray array] retain];
+	screenLemmings = [[NSMutableArray arrayWithCapacity:1000] retain];
+	floorLemmings = [[NSMutableArray arrayWithCapacity:1000] retain];
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	screenDoorPos = new ofPoint(0.5*[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],0.08);
 	[screenFloor setState:NSOnState];
@@ -456,7 +456,6 @@
 		
 		float collisionRadius = RADIUS * [lemmingCollisionThreshold floatValue];
 		
-#pragma omp parallel for
 		for(lemming in theLemmingArray){
 			if ([lemming isAlive]) {
 				Lemming * anotherLemming;
@@ -466,19 +465,20 @@
 					if (index > i && [anotherLemming isAlive]) {
 						ofxPoint2f l1 = *[lemming position];
 						ofxPoint2f l2 = *[anotherLemming position];
-						double dist = l1.distance(l2);
-						if(dist < (collisionRadius*[lemming scaleFactor])+(collisionRadius*[anotherLemming scaleFactor]) ){
+						double dist = l1.squareDistance(l2);
+						double radiusToBeSquared = (collisionRadius*[lemming scaleFactor])+(collisionRadius*[anotherLemming scaleFactor]);
+						if(dist < radiusToBeSquared*radiusToBeSquared ){
 							ofxVec2f diff = *[lemming position] - *[anotherLemming position];
 							diff.normalize();
 							
-							diff *= fabs(fminf(dist*0.45, collisionRadius*0.9));
+							diff *= fminf(sqrt(dist)*0.75, radiusToBeSquared*0.9);
 							
-							pthread_mutex_lock(&mutex);
+							//pthread_mutex_lock(&mutex);
 
 							*[lemming totalforce] += diff;
 							*[anotherLemming totalforce] -= diff;
 							
-							pthread_mutex_unlock(&mutex);
+							//pthread_mutex_unlock(&mutex);
 						}
 					}
 					index++;

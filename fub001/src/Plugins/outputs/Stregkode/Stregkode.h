@@ -14,6 +14,7 @@
 	float r, g, b;
 	float t;
 	float startM, whiteAdd;
+	int playerNum;
 }
 
 
@@ -24,6 +25,8 @@
 @interface Stregkode : ofPlugin {
 	IBOutlet NSSlider * speedSlider;
 	IBOutlet NSSlider * flashSpeedSlider;
+	IBOutlet NSSlider * blueLightSlider;
+	IBOutlet NSSlider * otherLightSlider;
 
 	ofSoundPlayer * sound;
 	NSMutableArray * players;
