@@ -368,7 +368,7 @@
 							link->projId = [trackingDirection selectedSegment];
 							link->linkTime = outputTime->videoTime;
 							link->lastConfirm = outputTime->videoTime;
-							link->offset = (([line getLeft].x - frontLeft->x) + ([line getRight].x - frontRight->x)) / 2.0;
+							link->offset = 0; //(([line getLeft].x - frontLeft->x) + ([line getRight].x - frontRight->x)) / 2.0;
 							[[line links] addObject:link];	
 							noNearLineFound = NO;
 						}					

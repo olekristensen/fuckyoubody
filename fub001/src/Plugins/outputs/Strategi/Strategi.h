@@ -61,4 +61,5 @@
 }
 -(IBAction) restart:(id)sender;
 -(IBAction) asssignBottom:(id)sender;
+-(IBAction) setVeryLow:(id)sender;
 @end

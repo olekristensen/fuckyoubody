@@ -510,5 +510,9 @@
 	}
 	
 }
+
+-(IBAction) setVeryLow:(id)sender{
+	[fade setFloatValue:0.2];
+}	
 @end
 

@@ -15,11 +15,16 @@
 	ofxPoint3f * offset;
 	BOOL obstacle;
 	ofTexture * texture;
+	BOOL visible;
+	BOOL tower;
 }
 @property (readwrite) ofxPoint3f * pos;
 @property (readwrite) ofxPoint3f * offset;
 @property (readwrite) BOOL obstacle;
 @property (readwrite) ofTexture * texture;
+@property (readwrite) BOOL tower;
+@property (readwrite) BOOL visible;
+
 -(ofxPoint3f*) position;
 
 @end
@@ -37,6 +42,8 @@
 	IBOutlet NSSlider * wallNoiseControl;
 	IBOutlet NSSlider * wallZAlphaControl;
 	IBOutlet NSSlider * wallStreetSizeControl;
+	IBOutlet NSSlider * towerSlider;
+	IBOutlet NSSlider * towerDistSlider;
 	
 	IBOutlet NSSlider * floorSpeedControl;
 	IBOutlet NSSlider * floorXControl;

@@ -31,6 +31,30 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="NSButton" id="865803033">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{345, 77}, {118, 25}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="409710748">
+							<int key="NSCellFlags">-2080244224</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents">Set very low</string>
+							<object class="NSFont" key="NSSupport" id="792355968">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">1044</int>
+							</object>
+							<reference key="NSControlView" ref="865803033"/>
+							<int key="NSButtonFlags">-2038152961</int>
+							<int key="NSButtonFlags2">163</int>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">400</int>
+							<int key="NSPeriodicInterval">75</int>
+						</object>
+					</object>
 					<object class="NSButton" id="990699528">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
@@ -41,11 +65,7 @@
 							<int key="NSCellFlags">67239424</int>
 							<int key="NSCellFlags2">134217728</int>
 							<string key="NSContents">Player 2 active</string>
-							<object class="NSFont" key="NSSupport" id="792355968">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">1044</int>
-							</object>
+							<reference key="NSSupport" ref="792355968"/>
 							<reference key="NSControlView" ref="990699528"/>
 							<int key="NSButtonFlags">914637055</int>
 							<int key="NSButtonFlags2">163</int>
@@ -230,7 +250,7 @@
 					<object class="NSSlider" id="436449919">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 5}, {321, 21}}</string>
+						<string key="NSFrame">{{18, 9}, {321, 21}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="571294740">
@@ -536,6 +556,14 @@
 					</object>
 					<int key="connectionID">113</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setVeryLow:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="865803033"/>
+					</object>
+					<int key="connectionID">116</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -576,13 +604,14 @@
 							<reference ref="768374133"/>
 							<reference ref="1004653008"/>
 							<reference ref="333120017"/>
-							<reference ref="436449919"/>
 							<reference ref="158702067"/>
 							<reference ref="602120673"/>
 							<reference ref="569620705"/>
 							<reference ref="389637846"/>
 							<reference ref="578337480"/>
 							<reference ref="990699528"/>
+							<reference ref="865803033"/>
+							<reference ref="436449919"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -783,6 +812,19 @@
 						<reference key="object" ref="536347609"/>
 						<reference key="parent" ref="990699528"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">114</int>
+						<reference key="object" ref="865803033"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="409710748"/>
+						</array>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">115</int>
+						<reference key="object" ref="409710748"/>
+						<reference key="parent" ref="865803033"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -824,6 +866,23 @@
 				</object>
 				<string key="111.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="114.CustomClassName">PluginUIButton</string>
+				<object class="NSMutableDictionary" key="114.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="865803033"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiController</string>
+								<real value="30" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
+				<string key="114.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="115.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="14.CustomClassName">PluginUISlider</string>
 				<object class="NSMutableDictionary" key="14.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
@@ -995,7 +1054,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">113</int>
+			<int key="maxID">116</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1053,6 +1112,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="asssignBottom:">id</string>
 						<string key="restart:">id</string>
+						<string key="setVeryLow:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="blurSlider">NSSlider</string>
