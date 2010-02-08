@@ -99,6 +99,19 @@
 		doReset = false;
 	}
 	
+#pragma mark Kill (explode) all lemmings
+	
+	if(doKillAllLemmings){
+		Lemming * lemming;
+		for (lemming in screenLemmings) {
+			[lemming setDeathTime:timeInterval];
+		}
+		for (lemming in floorLemmings) {
+			[lemming setDeathTime:timeInterval];
+		}
+		doKillAllLemmings = NO;
+	}
+	
 #pragma mark add rumiko's lemming
 	
 	if(doAddRumikosLemming){
@@ -143,10 +156,24 @@
 	
 	for(int i=0;i<[screenLemmings count];i++){
 		lemming =[screenLemmings objectAtIndex:i];
-#pragma mark splat the collided lemmings
+#pragma mark splat the collided lemmings and delete the exploded lemmings
 		if ([lemming splatTime] > 0) {
 			if (timeInterval - [lemming splatTime] > SPLAT_DURATION) {
 				[screenLemmings removeObject:lemming];
+			}
+		} else if ([lemming deathTime] > 0) {
+			if (timeInterval - [lemming deathTime] > DEATH_DURATION) {
+				[screenLemmings removeObject:lemming];
+			}
+		}
+	}
+	
+	for(int i=0;i<[floorLemmings count];i++){
+		lemming =[floorLemmings objectAtIndex:i];
+#pragma mark delete the exploded lemmings
+		if ([lemming deathTime] > 0) {
+			if (timeInterval - [lemming deathTime] > DEATH_DURATION) {
+				[floorLemmings removeObject:lemming];
 			}
 		}
 	}
@@ -474,7 +501,7 @@
 							diff *= fminf(sqrt(dist)*0.75, radiusToBeSquared*0.9);
 							
 							//pthread_mutex_lock(&mutex);
-
+							
 							*[lemming totalforce] += diff;
 							*[anotherLemming totalforce] -= diff;
 							
@@ -494,9 +521,13 @@
 	
 	//Move the lemming
 	for(lemming in theLemmingArray){
-		*[lemming vel] *= (100.0-[damp floatValue])/100.0;
-		*[lemming vel] += *[lemming totalforce];
-		*[lemming totalforce] *= 0;
+		//if([lemming deathTime] <=0){
+			*[lemming vel] += *[lemming totalforce];
+			*[lemming totalforce] *= 0;
+			*[lemming vel] *= (100.0-[damp floatValue])/100.0;
+		//} else {
+		//	*[lemming vel] *= (DEATH_DURATION-[lemming deathTime])/DEATH_DURATION;
+		//}
 		*[lemming position] += *[lemming vel] * 1.0/ofGetFrameRate();
 	}
 	
@@ -653,7 +684,7 @@
 	}glPopMatrix();
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
-				
+		
 		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255*[alpha floatValue]);
 		
 		for(lemming in floorLemmings){
@@ -784,6 +815,9 @@
 	doClearAllLemmings = YES;
 }
 
+-(IBAction) killAllLemmings:(id)sender{
+	doKillAllLemmings = YES;
+}
 @end
 
 @implementation Lemming
@@ -850,13 +884,38 @@
 		ofEllipse(position->x, position->y+(radius*0.5*timeScale)+(radius*0.5), (radius*0.5)-(radius*timeScale*0.5),(radius*0.5)+(ofClamp(random, 0.25, 0.75)*radius*((0.5*timeScale)+(SPLAT_DURATION/2.0))));
 		ofPopStyle();
 	} else if (deathTime > 0) {
-		float timeScale = ((timeInterval-deathTime)/DEATH_DURATION);
+		ofPushStyle();
+		float timeScale = ((timeInterval-deathTime)/DEATH_DURATION);//*(0.5+(random*0.5));
 		glPushMatrix();{
+			
+			if(timeScale > 0.25){
+				
+				cout << "  før" << timeScale << endl;
+				
+				timeScale = (timeScale-0.25)*(1.0/0.75);
 
-			//of
+				cout << "efter" << timeScale << endl;
+				
+				ofSetColor(theColor.r, theColor.g, theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*127.0);
+				
+				ofCircle(position->x, position->y, (radius*scaleFactor)*(sin(timeScale*PI)*1.25));
+
+				ofSetColor(theColor.r, theColor.g, theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
+
+				glPushMatrix();{
+					glTranslated(position->x, position->y, 0);
+					for (int i=0; i< 10; i++) {
+						glRotatef(random+(i*33), 0,0,1);
+						ofCircle(0, random*timeScale*radius*i, (1.0-timeScale)*radius*0.15);
+					}
+				}glPopMatrix();
+				
+			} else {
+				ofCircle(position->x+ofRandom(0, timeScale*radius*scaleFactor*0.33), position->y+ofRandom(0, timeScale*radius*scaleFactor*0.33), radius*scaleFactor);
+			}
 			
 		}glPopMatrix();
-	
+		ofPopStyle();
 	} else {
 		glPushMatrix();{
 			if (blessed && vel->y > 0.02) {
