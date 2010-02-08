@@ -17,6 +17,7 @@
 	
 	pthread_mutex_init(&mutex, NULL);
 	
+	showMidiConflictAlert = false;
 	didShowMidiConflictAlert = false;
 	
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
@@ -122,7 +123,7 @@
 	for (theBinding in boundControls){
 		[theBinding update:timeInterval displayTime:outputTime];
 		if([theBinding hasChanged] || [theBinding activity]){
-			NSInteger row = [boundControls indexOfObject:theBinding];
+			NSInteger row = [[boundControlsController arrangedObjects] indexOfObject:theBinding];
 			if (row != NSNotFound) {
 				[rowIndexesChanged addIndex:row];
 			}			
@@ -137,6 +138,8 @@
 	if(timeInterval - midiTimeInterval > 0.15) {
 		[[controller midiStatus] setState:NSOffState];
 	}
+	
+	[rowIndexesChanged release];
 }
 
 BOOL isDataByte (Byte b)		{ return b < 0x80; }
@@ -192,9 +195,9 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 					for (p in [globalController viewItems]) {
 						if ([p midiChannel] == channel) {
 							if (value == 0) {
-								[p setEnabled:[[NSNumber alloc] initWithInt:0]];
+								[p setEnabled:[NSNumber numberWithInt:0]];
 							} else {
-								[p setEnabled:[[NSNumber alloc] initWithInt:1]];
+								[p setEnabled:[NSNumber numberWithInt:1]];
 							}
 						}
 					}
@@ -205,7 +208,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 					
 					for (p in [globalController viewItems]) {
 						if ([p midiChannel] == channel) {
-							[p setAlpha:[[NSNumber alloc] initWithFloat:(value/127.0)]];
+							[p setAlpha:[NSNumber numberWithFloat:(value/127.0)]];
 						}
 					}
 					
@@ -215,7 +218,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 					
 					for (p in [globalController viewItems]) {
 						if ([p midiChannel] == channel) {
-							[p setMask:[[NSNumber alloc] initWithFloat:(value/127.0)]];
+							[p setMask:[NSNumber numberWithFloat:(value/127.0)]];
 						}
 					}
 					
@@ -225,7 +228,6 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 					
 					pthread_mutex_lock(&mutex);
 					
-					NSMutableIndexSet * changedIndexes = [[NSMutableIndexSet alloc] init];
 					int rowIndex = 0;
 					
 					for (theBinding in boundControls){
@@ -233,7 +235,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 							if(controlChange){
 								if ([[theBinding controller] intValue] == number) {
 									[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
-									NSInteger row = [boundControls indexOfObject:theBinding];
+									NSInteger row = [[boundControlsController arrangedObjects] indexOfObject:theBinding];
 									if (row != NSNotFound) {								
 										[rowIndexesChanged addIndex:row];
 									}
@@ -253,7 +255,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 		packet = MIDIPacketNext (packet);
 	}
 	[[controller midiStatus] setState:NSOnState];
-	[rowIndexesChanged release];
+	//[rowIndexesChanged release];
 }
 
 - (void)_reloadRows:(id)dirtyRows {
@@ -348,11 +350,48 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 		[sendEndpoint removeSender:self];
 	}
 	
-	
 }
 
 -(IBAction) sendGo:(id)sender{
-	[self sendValue:1 forNote:1 onChannel:1];
+//	[self sendValue:1 forNote:1 onChannel:1];
+	
+	Byte packetbuffer[128];
+	MIDIPacketList packetlist;
+	MIDIPacket     *packet     = MIDIPacketListInit(&packetlist);
+	
+//	F0 7F <device_ID> 02 <command_format> <command> <data> F7
+// http://www.richmondsounddesign.com/docs/midi-show-control-specification.pdf
+	
+	Byte mdata[7] = {0xf0, 0x7f, [mscDeviceID intValue], 0x02, 0x7F, 0x01, 0xf7};
+	packet = MIDIPacketListAdd(&packetlist, sizeof(packetlist),
+							   packet, 0, 7, mdata);
+	
+	if (endpoint) {
+		[sendEndpoint addSender:self];
+		[sendEndpoint processMIDIPacketList:&packetlist sender:self];
+		[sendEndpoint removeSender:self];
+	}
+}
+
+-(IBAction) sendResetAll:(id)sender{
+	//	[self sendValue:1 forNote:1 onChannel:1];
+	
+	Byte packetbuffer[128];
+	MIDIPacketList packetlist;
+	MIDIPacket     *packet     = MIDIPacketListInit(&packetlist);
+	
+	//	F0 7F <device_ID> 02 <command_format> <command> <data> F7
+	// http://www.richmondsounddesign.com/docs/midi-show-control-specification.pdf
+	
+	Byte mdata[7] = {0xf0, 0x7f, [mscDeviceID intValue] , 0x02, 0x7F, 0x0A, 0xf7};
+	packet = MIDIPacketListAdd(&packetlist, sizeof(packetlist),
+							   packet, 0, 7, mdata);
+	
+	if (endpoint) {
+		[sendEndpoint addSender:self];
+		[sendEndpoint processMIDIPacketList:&packetlist sender:self];
+		[sendEndpoint removeSender:self];
+	}
 }
 
 -(IBAction) printMidiMappingsList:(id)sender{
@@ -381,6 +420,9 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	for (theBinding in [boundControlsController arrangedObjects]){
 		if ([[theBinding channel] intValue] == [[binding channel] intValue]) {
 			if ([[theBinding controller] intValue] == [[binding controller] intValue]) {
+				
+				NSLog(@"CONFLICT: %@ and %@ \n %i, %i    %i, %i", [binding label], [theBinding label], [[binding channel] intValue], [[binding controller] intValue], [[theBinding channel] intValue], [[theBinding controller] intValue] );
+				
 				[theBinding setConflict:YES];
 				[binding setConflict:YES];
 				showMidiConflictAlert = YES;

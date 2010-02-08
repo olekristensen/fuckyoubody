@@ -23,6 +23,8 @@
 	ofxPoint2f * center;
 }
 
+-(void) dealloc;
+
 @end
 
 

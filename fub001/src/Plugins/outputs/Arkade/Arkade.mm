@@ -68,14 +68,30 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		explodeAge = ofRandom(10, 100);
 		wallRotation = new ofxVec2f(ofRandom(-0.1, 0.1), 0);
 		dead = false;
+		totalForce = new ofxVec2f();
+		floorPosition = new ofxVec2f();
+		floorVel = new ofxVec2f();
 	}
 	
 	return self;
 }
 
+-(void) dealloc {
+	delete wallPosition;
+	delete wallVel;
+	delete wallRotation;
+	if(floorPosition)
+		delete floorPosition;
+	if(floorVel)
+		delete floorVel;
+	if(totalForce)
+		delete totalForce;
+	[super dealloc];
+}
+
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if(!dead){
-		totalForce = new ofxVec2f();
+		totalForce->set(0,0);
 		age ++;
 		if(onWall){
 			*wallVel += *wallRotation;
@@ -87,7 +103,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				
 				ofxVec2f p = [GetPlugin(ProjectionSurfaces) convertPoint:*wallPosition toProjection:"Front" fromSurface:"Backwall"];
 				p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
-				floorPosition = new ofxVec2f(p);
+				floorPosition->set(p);
 				
 				ofxVec2f bottom1 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
 				ofxVec2f bottom2 = [GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"];
@@ -96,7 +112,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				
 				ofxVec2f hat = ofxVec2f(-bottom.y, bottom.x).normalized();
 				
-				floorVel = new ofxVec2f(hat * wallVel->length());
+				floorVel->set(hat * wallVel->length());
 				
 				floorVel->rotate(-wallVel->angle(ofxVec2f(0,1)));
 			}
@@ -213,6 +229,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	for(int i=0;i<FLOORGRIDSIZE*FLOORGRIDSIZE;i++){
 		floorSquaresOpacity[i] = 0;
 	}
+	[self resetScene];
 	
 }
 
@@ -228,12 +245,11 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	personFilterY->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
 	personFilterY->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
 	
-	
-	
-	
 	personPosition = new ofxPoint2f(0,0);
 	
-	[self reset:self];
+	doReset = false;
+	
+	[self resetScene];
 	
 	aliens = [[NSMutableArray array] retain];
 	images[0] = new ofImage();
@@ -288,6 +304,10 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 }
 
 -(IBAction) reset:(id)sender{
+	doReset = true;
+}
+
+-(void) resetScene{
 	cookiesRemoveFactor = 0;
 	
 	ballPosition = new ofxPoint2f(0.2,0.2);
@@ -344,6 +364,15 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
+	if(doReset) {
+	
+		[self resetScene];
+		
+		doReset = false;
+	
+	}
+	
+	
 	if(ofGetFrameRate() > 10){
 		//
 		//General person position
@@ -391,7 +420,8 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				pongSquareSize = ofClamp(0.4+pongSquareSize,0,1);
 				
 				if([lockToGrid state] == NSOffState){
-					pongPos = new ofxPoint2f(*personPosition  - ofxPoint2f(w/2.0 , w/2.0));
+					delete pongPos;
+					pongPos = new ofxVec2f(*personPosition  - ofxPoint2f(w/2.0 , w/2.0));
 					
 				} else {
 					ofxPoint2f goal = *personPosition*8;
@@ -761,8 +791,10 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		//
 		if(makeChoises){
 			if(choisesSize == 0){
-				blueChoisePosition = new ofxPoint2f(*personPosition*FLOORGRIDSIZE - ofxPoint2f(1,0));
-				redChoisePosition = new ofxPoint2f(*personPosition*FLOORGRIDSIZE + ofxPoint2f(0,1));
+				delete redChoisePosition;
+				redChoisePosition = new ofxVec2f(*personPosition*FLOORGRIDSIZE + ofxPoint2f(0,1));
+				delete blueChoisePosition;
+				blueChoisePosition = new ofxVec2f(*personPosition*FLOORGRIDSIZE - ofxPoint2f(1,0));
 			}
 			choisesSize += 0.1;
 			choisesSize = ofClamp(choisesSize, 0, 1);		
@@ -1502,7 +1534,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 }
 
 -(IBAction) resetSpaceinvaders:(id)sender{
-	spaceInvadersPosition = new ofxPoint2f(0,0);	
+	spaceInvadersPosition->set(0,0);	
 	spaceInvadersDir = 1;
 	spaceInvadersYDir = 1;
 	timeSinceLastLaunch = 0;

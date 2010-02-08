@@ -49,6 +49,19 @@
 	return self;
 }
 
+-(void) dealloc {
+	delete frontLeft;
+	delete backLeft;
+	delete frontLeft;
+	delete backRight;
+	delete leftFrontFilter;
+	delete rightFrontFilter;
+	delete leftBackFilter;
+	delete rightBackFilter;
+	[links release];
+	[super dealloc];
+}
+
 -(void) setFrontLeft:(ofxPoint2f)l frontRight:(ofxPoint2f)r{
 	frontLeft->y = l.y;
 	frontRight->y = r.y;
@@ -381,6 +394,8 @@
 					
 				}
 			}
+			delete frontLeft;
+			delete frontRight;
 		}
 	}	
 }

@@ -96,14 +96,18 @@
 -(void) mouseDownPoint:(NSPoint)theEvent{
 	for(int i=0;i<3;i++){
 		[trackerObj[i] setMouseEvent:YES];
+		ofPoint * thePoint = [trackerObj[i] mousePosition];
 		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];
+		delete thePoint;
 	}			
 }
 
 -(void) mouseDraggedPoint:(NSPoint)theEvent{
 	for(int i=0;i<3;i++){
 		[trackerObj[i] setMouseEvent:YES];
+		ofPoint * thePoint = [trackerObj[i] mousePosition];
 		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];
+		delete thePoint;
 	}			
 }
 

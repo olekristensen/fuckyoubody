@@ -55,7 +55,15 @@
 		}
 	}
 	return low;
-	
+}
+
+-(void) dealloc {
+	delete centroid;
+	delete lastcentroid;
+	delete centroidV;
+	[blobs removeAllObjects];
+	[blobs release];
+	[super dealloc];
 }
 
 @end
@@ -123,6 +131,13 @@
 	return self;
 }
 
+- (void)dealloc {
+	delete blob;
+	delete floorblob;
+	delete originalblob;
+    [super dealloc];
+}
+
 -(void) normalize:(int)w height:(int)h{
 	for(int i=0;i<blob->nPts;i++){
 		blob->pts[i].x /= (float)w;
@@ -141,6 +156,7 @@
 	originalblob->centroid = blob->centroid;
 	originalblob->boundingRect = blob->boundingRect;
 }
+
 -(void) lensCorrect{
 	Lenses * lenses = GetPlugin(Lenses);
 	for(int i=0;i<blob->nPts;i++){
@@ -619,7 +635,8 @@
 			//Clear blobs
 			for(pblob in persistentBlobs){
 				ofxPoint2f p = pblob->centroid - pblob->lastcentroid;
-				pblob->centroidV = new ofxVec2f(p.x, p.y);
+				pblob->centroidV->x = p.x;
+				pblob->centroidV->y = p.y;
 				pblob->lastcentroid = pblob->centroid ;
 				[pblob->blobs removeAllObjects];
 			}
@@ -630,17 +647,16 @@
 			if(!mouseEvent){
 				for(int i=0;i<contourFinder->nBlobs;i++){
 					ofxCvBlob * blob = &contourFinder->blobs[i];
-					Blob * blobObj = [[Blob alloc] initWithBlob:blob] ;
+					Blob * blobObj = [[[Blob alloc] initWithBlob:blob] autorelease];
 					[blobObj setCameraId:trackerNumber];
 					[blobObj lensCorrect];
 					[blobObj normalize:cw height:ch];
-					
 					[blobObj warp];
 					[blobs addObject:blobObj];
 					
 				}
 			} else {
-				Blob * blobObj = [[Blob alloc] initWithMouse:mousePosition] ;
+				Blob * blobObj = [[[Blob alloc] initWithMouse:mousePosition] autorelease];
 				[blobObj setCameraId:trackerNumber];
 				//	[blobObj normalize:cw height:ch];
 				
@@ -706,7 +722,7 @@
 					[bestBlob->blobs addObject:blob];
 					
 					//regner centroid ud fra alle blobs i den
-					bestBlob->centroid = new ofxPoint2f();
+					bestBlob->centroid->set(0, 0);
 					for(int g=0;g<[bestBlob->blobs count];g++){
 						ofxPoint2f blobCentroid = ofxPoint2f([[bestBlob->blobs objectAtIndex:g] centroid].x, [[bestBlob->blobs objectAtIndex:g] centroid].y);
 						*bestBlob->centroid += blobCentroid;					
@@ -716,7 +732,7 @@
 				
 				if(!blobFound){
 					//Der var ingen gruppe til den her blob, så vi laver en
-					PersistentBlob * newB = [[[PersistentBlob alloc] init] retain];
+					PersistentBlob * newB = [[PersistentBlob alloc] init];
 					[newB->blobs addObject:blob];
 					*newB->centroid = centroid;
 					newB->pid = pidCounter++;
@@ -726,18 +742,12 @@
 				}
 			}		
 			
-			
 			//Delete all the old pblobs
 			for(int i=0; i< [persistentBlobs count] ; i++){
-				PersistentBlob * blob = [persistentBlobs objectAtIndex:i];		
-				
+				PersistentBlob * blob = [persistentBlobs objectAtIndex:i];
 				blob->timeoutCounter ++;
 				if(blob->timeoutCounter > 10){
 					[persistentBlobs removeObject:blob];
-					[blob release];
-				} else {
-					
-					
 				}			
 			}
 		}

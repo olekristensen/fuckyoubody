@@ -36,6 +36,7 @@
 @property (assign) NSMutableArray * blobs;
 
 -(ofxPoint2f) getLowestPoint;
+-(void) dealloc;
 
 @end
 
@@ -56,6 +57,7 @@
 -(void) normalize:(int)w height:(int)h;
 -(void) lensCorrect;
 -(void) warp;
+-(void) dealloc;
 
 -(id)initWithBlob:(ofxCvBlob*)_blob;
 -(id)initWithMouse:(ofPoint*)point;

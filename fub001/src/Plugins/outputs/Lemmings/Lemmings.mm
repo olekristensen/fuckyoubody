@@ -30,6 +30,10 @@
 	doClearAllLemmings = false;
 	screenBottomIntersection = new ofxVec2f();
 	blobCentroid = new ofxVec2f();
+	screenBottomOnFloorLeft = new ofxVec2f();
+	screenBottomOnFloorRight = new ofxVec2f();
+	screenBottomOnFloor = new ofxVec2f();
+	screenBottomOnFloorHat = new ofxVec2f();
 	
 	pthread_mutex_init(&mutex, NULL);
 }
@@ -59,11 +63,10 @@
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
-	
-	screenBottomOnFloorLeft = new ofxVec2f([GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"]);
-	screenBottomOnFloorRight = new ofxVec2f([GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"]);
-	screenBottomOnFloor = new ofxVec2f(*screenBottomOnFloorRight - *screenBottomOnFloorLeft);
-	screenBottomOnFloorHat = new ofxVec2f(ofxVec2f(-screenBottomOnFloor->y, screenBottomOnFloor->x).normalized());
+	screenBottomOnFloorLeft->set([GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f(0,1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"]);
+	screenBottomOnFloorRight->set([GetPlugin(ProjectionSurfaces) convertPoint:[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"],1) toProjection:"Front" fromSurface:"Backwall"] fromProjection:"Front" toSurface:"Floor"]);
+	screenBottomOnFloor->set(*screenBottomOnFloorRight - *screenBottomOnFloorLeft);
+	screenBottomOnFloorHat->set(ofxVec2f(-screenBottomOnFloor->y, screenBottomOnFloor->x).normalized());
 	
 #pragma mark reset
 	
@@ -74,14 +77,17 @@
 	}
 	
 	if(doReset){
+		delete screenTrackingLeftFilter;
 		screenTrackingLeftFilter = new Filter();	
 		screenTrackingLeftFilter->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
 		screenTrackingLeftFilter->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
 		
+		delete screenTrackingRightFilter;
 		screenTrackingRightFilter = new Filter();	
 		screenTrackingRightFilter->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
 		screenTrackingRightFilter->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
 		
+		delete screenTrackingHeightFilter;
 		screenTrackingHeightFilter = new Filter();	
 		screenTrackingHeightFilter->setNl(9.413137469932821686e-04, 2.823941240979846506e-03, 2.823941240979846506e-03, 9.413137469932821686e-04);
 		screenTrackingHeightFilter->setDl(1, -2.5818614306773719263, 2.2466666427559748864, -.65727470210265670262);
@@ -183,13 +189,13 @@
 			//intersection xi = - (a1 - a2) / (b1 - b2) yi = a1 + b1xi
 			ofxPoint2f cIntesectsScreenBottom = ofxPoint2f(-(af1 - af2)/(bf1-bf2) , af1 + bf1*(-(af1 - af2)/(bf1-bf2)));
 			
-			screenBottomIntersection = new ofxVec2f(cIntesectsScreenBottom);
-			blobCentroid = new ofxVec2f(c);
+			screenBottomIntersection->set(cIntesectsScreenBottom);
+			blobCentroid->set(c);
 			
 			if(c.distance(cIntesectsScreenBottom) < 0.35){
 				
 				ofxPoint2f * cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:cIntesectsScreenBottom toProjection:"Front" fromSurface:"Floor"]);
-				cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*cIntesectsScreenBottomOnScreen fromProjection:"Front" toSurface:"Backwall"]);
+				cIntesectsScreenBottomOnScreen->set([GetPlugin(ProjectionSurfaces) convertPoint:*cIntesectsScreenBottomOnScreen fromProjection:"Front" toSurface:"Backwall"]);
 				
 				if (cIntesectsScreenBottomOnScreen->x > 0.0 && cIntesectsScreenBottomOnScreen->x < [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] ) {
 					
@@ -205,6 +211,7 @@
 						height = 0.6;//fminf((c.distance(cIntesectsScreenBottom)*(0.8/0.35))+0.1,1.0);
 					}
 				}
+				delete cIntesectsScreenBottomOnScreen;
 			}
 		}
 	}
@@ -309,7 +316,7 @@
 					[lemming vel]->y *= -1.0;
 					ofxVec2f wallVel = ofxVec2f(*[lemming vel]);
 					
-					[lemming setVel:new ofxVec2f(*screenBottomOnFloorHat * wallVel.length())];
+					[lemming vel]->set(*screenBottomOnFloorHat * wallVel.length());
 					[lemming vel]->rotate(-wallVel.angle(ofxVec2f(0,1)));
 					[lemming setScaleFactor:0.5];
 					*[lemming vel] *= 0.35;
@@ -435,7 +442,7 @@
 	}
 	
 	//finally count the lemmings
-	[self setValue:[[NSNumber alloc] initWithInt:([screenLemmings count] + [floorLemmings count])] forKey:@"numberLemmings"];
+	[self setValue:[NSNumber numberWithInt:([screenLemmings count] + [floorLemmings count])] forKey:@"numberLemmings"];
 	
 }
 
@@ -806,6 +813,13 @@
 	return self;
 }
 
+-(void) dealloc {
+	delete position;
+	delete vel;
+	delete totalforce;
+	[super dealloc];
+}
+
 -(bool) isAlive{
 	return (splatTime < 0 && deathTime < 0);
 }
@@ -878,7 +892,7 @@
 
 -(void) collision:(CFTimeInterval)timeInterval{
 	if(vel->length() > [GetPlugin(Lemmings) getScreenSplatVelocityAsFloat] && [self isAlive] && (!blessed)){
-		vel = new ofxVec2f();
+		vel->set(0,0);
 		splatTime = timeInterval;
 	}
 	if(blessed){

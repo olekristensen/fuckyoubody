@@ -22,6 +22,7 @@
 }
 @property (assign, readwrite) NSMutableArray * links;
 
+-(void) dealloc;
 -(ofxPoint2f) getLeft;
 -(ofxPoint2f) getRight;
 -(void)drawWithBalance:(float)balance fromtAlpha:(float)frontA backAlpha:(float)backA width:(float)w timeout:(bool)timeout;

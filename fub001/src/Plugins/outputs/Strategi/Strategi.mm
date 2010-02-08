@@ -8,8 +8,14 @@
 -(id) init{
 	if([super init]){
 		aliveCounter = 0;
+		center = new ofxPoint2f; 
 	}
 	return self;
+}
+
+-(void) dealloc {
+	delete center;
+	[super dealloc];
 }
 
 @end
@@ -150,7 +156,9 @@
 				 player = sblob->player = 0;	
 				 }*/
 				player = sblob->player = otherPlayer;
+				ofxPoint2f * deleteme = sblob->center;
 				sblob->center = new ofxPoint2f( centroid);
+				delete deleteme;
 				[blobs addObject:sblob];
 			}
 			
@@ -181,7 +189,7 @@
 				*images[otherPlayer] -= *images[player];
 				flagChanged = YES;
 				images[player]->flagImageChanged();
-				
+				delete pointArray;
 			}
 		}
 		
@@ -283,8 +291,9 @@
 			 player = sblob->player = 0;	
 			 }*/
 			player = sblob->player = otherPlayer;
-			sblob->center = new ofxPoint2f( centroid);
-			
+			ofxPoint2f * deleteme = sblob->center;
+			sblob->center = new ofxPoint2f(centroid);
+			delete deleteme;
 			[blobs addObject:sblob];
 		}
 		

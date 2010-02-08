@@ -50,6 +50,7 @@
 	
 	shaderBlur * blur;
 	
+	bool doReset;
 	
 	//Floor squares
 	float floorSquaresOpacity[ FLOORGRIDSIZE * FLOORGRIDSIZE ];
@@ -177,5 +178,6 @@
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
 -(void) drawRocket;
+-(void) dealloc;
 
 @end

@@ -264,7 +264,7 @@
 						projector1state = buffer[1];
 						projector2state = buffer[2];
 						xbeestate = buffer[3];
-						xbeeRSSI += ((float)buffer[4]-(float)xbeeRSSI)/300.0;
+						xbeeRSSI += ((float)buffer[4]-(float)xbeeRSSI)/33.0;
 						serial->flush(true, false);
 						
 						break;
@@ -349,6 +349,7 @@
 					 cout<<endl;
 					 */					
 					serial->writeBytes(bytes, n);
+					delete bytes;
 					ok = false;
 				} else {
 					int n=0;

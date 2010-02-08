@@ -28,6 +28,7 @@
 	IBOutlet NSTableView		* midiMappingsListForPrint;
 	IBOutlet NSView				* printHeaderView;
 	IBOutlet NSPopUpButton		* midiInterface;
+	IBOutlet NSTextField		* mscDeviceID;
 	IBOutlet NSTextField		* appleScriptMachine;
 	IBOutlet NSTextField		* appleScriptUsername;
 	IBOutlet NSSecureTextField	* appleScriptPassword;
@@ -54,6 +55,7 @@
 -(IBAction) selectMidiInterface:(id)sender;
 -(IBAction) printMidiMappingsList:(id)sender;
 -(IBAction) sendGo:(id)sender;
+-(IBAction) sendResetAll:(id)sender;
 
 -(void)sendValue:(int)midiValue forNote:(int)midiNote onChannel:(int)midiChannel;
 

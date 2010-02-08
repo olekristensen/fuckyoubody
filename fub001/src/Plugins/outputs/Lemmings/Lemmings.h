@@ -173,6 +173,7 @@
 @property (assign) NSMutableArray * lemmingList;
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
+-(void) dealloc;
 
 @end
 
