@@ -97,7 +97,16 @@
 	IBOutlet NSSlider * bokseringPale;
 	IBOutlet NSSlider * bokseringGreen;
 	IBOutlet NSSlider * bokseringBlue;
+	IBOutlet NSSlider * bokseringOffset;
+	IBOutlet NSSlider * bokseringVerticalEffect;
+	IBOutlet NSSlider * bokseringWaveformEffect;
 	
+	vector<int> bokseringTime;
+	float volCounter;
+	float timeSinceLastVolChange;
+	float bokseringCurValue;
+	int bokseringCounter;
+
 	float r,g,b;
 	float r2,g2,b2;
 	float master;
@@ -124,6 +133,8 @@
 	vector<ofxPoint3f> gtaPositions;
 	
 	float ulykkePos[4];
+	
+	ofSoundPlayer * music;
 }
 
 
@@ -135,6 +146,8 @@
 -(IBAction) setBackgroundGreen:(id)sender;
 -(IBAction) setBackgroundBlue:(id)sender;
 -(IBAction) setBackground:(id)sender;
+
+-(IBAction) bokseringStepTime:(id)sender;
 
 -(void) setup;
 

@@ -341,7 +341,16 @@
 		ulykkePos[i] = ofRandom(0, 5);
 	}
 	
+	for(int i=0;i<6;i++){
+		bokseringTime.push_back(0);	
+	}
 	
+}
+
+-(void) setup{
+	music = new ofSoundPlayer();
+	music->loadSound("beat.aif");
+	music->play();
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -518,85 +527,271 @@
 					break;
 			}
 			
-			if([bokseringPale floatValue] > 0){
-				int bluePos = 12*[bokseringPale floatValue]/100.1;
-				int greenPos = 6+ 12*[bokseringPale floatValue]/100.1;			
+			/*	if([bokseringPale floatValue] > 0){
+			 int bluePos = 12*[bokseringPale floatValue]/100.1;
+			 int greenPos = 6+ 12*[bokseringPale floatValue]/100.1;			
+			 
+			 
+			 
+			 if(greenPos >= 12)
+			 greenPos -= 12;
+			 
+			 for(int i=0;i<3;i++){
+			 if(bluePos == i+off){
+			 for(int y=0;y<5;y++){
+			 int x = i;
+			 //if(n > 1)
+			 x = 2-x;
+			 
+			 NSColor * c = [GetPlugin(Players) playerColorLed:2];
+			 c = [c colorWithAlphaComponent:1];
+			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+			 }
+			 }	
+			 if(greenPos == i+off){
+			 for(int y=0;y<5;y++){
+			 int x = i;
+			 //if(n > 1)
+			 x = 2-x;
+			 
+			 NSColor * c = [GetPlugin(Players) playerColorLed:4];
+			 c = [c colorWithAlphaComponent:1];
+			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+			 }
+			 }	
+			 }
+			 }
+			 
+			 
+			 //Green wall
+			 bool taken[] = {false, false, false};*/
+			/*	if([bokseringGreen floatValue] > 0){
+			 int greenPos = 6+ 12*[bokseringGreen floatValue]/99.0;	
+			 
+			 for(int i=0;i<3;i++){
+			 if((greenPos > i+off && off >= 6)  || (greenPos > 12 && greenPos - 12 > i+off) ){
+			 taken[i] = true;
+			 for(int y=0;y<5;y++){							
+			 int x = 2-i;							
+			 NSColor * c = [GetPlugin(Players) playerColorLed:4];
+			 c = [c colorWithAlphaComponent:1];
+			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+			 }
+			 }
+			 
+			 
+			 }
+			 }	
+			 
+			 //Blue wall
+			 float offSet = 12.0*[bokseringOffset floatValue]/100.0;
+			 if([bokseringBlue floatValue] > 0){
+			 int bluePos = 12*[bokseringBlue floatValue]/99.0;	
+			 
+			 for(int i=0;i<3;i++){
+			 if((bluePos > i+off-offSet && bluePos < 12-offSet ) && (!taken[i] || n < 2)  ){
+			 for(int y=0;y<5;y++){							
+			 int x = 2-i;							
+			 NSColor * c = [GetPlugin(Players) playerColorLed:2];
+			 c = [c colorWithAlphaComponent:1];
+			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];
+			 }
+			 }
+			 
+			 
+			 }
+			 }	*/
+			
+			
+			
+			
+			
+			
+			
+			
+			//[GetPlugin(HardwareBox) setDmxValue:255 onChannel:1];
+			
+			
+			n++;
+		}
+		
+		
+		
+		int bokseringCols[12];
+		for(int i=0;i<12;i++){
+			bokseringCols[i] = 0;
+		}
+		
+		if([bokseringPale floatValue] > 0){
+			int greenPos = 6+ 12*[bokseringPale floatValue]/100.1;				
+			int bluePos = 12*[bokseringPale floatValue]/100.1;
+			
+			
+			bokseringCols[greenPos] = 1;
+			bokseringCols[bluePos] = 2;
+		}
+		
+		int offSet = 12.0*[bokseringOffset floatValue]/100.0;
+		if([bokseringGreen floatValue] > 0){
+			int greenPos = 6+ 12*[bokseringGreen floatValue]/99.0;	
+			int start = 6 + offSet;
+			if(start >= 12)
+				start -= 12;			
+			int stop = start + 12*[bokseringGreen floatValue]/100.0;
+			for(int i=start;i<stop;i++){
+				bokseringCols[i] = 1;	
+			}		
+			for(int i=12;i<stop;i++){
+				bokseringCols[i-12] = 1;	
+			}	
+		}
+		
+		if([bokseringBlue floatValue] > 0){
+			int bluePos = 12*[bokseringBlue floatValue]/99.0;	
+			int start = offSet;
+			if(start >= 12)
+				start -= 12;			
+			int stop = start + 12*[bokseringBlue floatValue]/100.0;
+			
+			for(int i=start;i<stop;i++){
+				bokseringCols[i] = 2;	
+			}				
+			for(int i=12;i<stop;i++){
+				bokseringCols[i-12] = 2;	
+			}	
+		}		
+		
+		for(int i=0;i<4;i++){
+			int n = i;		
+			box = [diodeboxes objectAtIndex:n];
+			for(int u=0;u<3;u++){
+				int coln = i*3+u;
+				int x;
+				x = 2-u;
+				NSColor * c = [GetPlugin(Players) playerColorLed:4];
+				c = [c colorWithAlphaComponent:0];
+				if(bokseringCols[coln] == 1){
+					c = [GetPlugin(Players) playerColorLed:4];
+					c = [c colorWithAlphaComponent:[alpha floatValue]];
+				} else if(bokseringCols[coln] == 2){
+					c = [GetPlugin(Players) playerColorLed:2];
+					c = [c colorWithAlphaComponent:[alpha floatValue]];
+				}
+				for(int y=0;y<5;y++){
+					[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];												   
+				}				
+			}
+		}
+		
+		
+		if([bokseringVerticalEffect floatValue] > 0){
+			int greenPos = 5*[bokseringVerticalEffect floatValue]/100.0;
+			int bluePos = 5-5*[bokseringVerticalEffect floatValue]/100.0;
+			
+			for(int i=0;i<4;i++){
+				box = [diodeboxes objectAtIndex:i];
 				
-				
-				
-				if(greenPos >= 12)
-					greenPos -= 12;
-				
-				for(int i=0;i<3;i++){
-					if(bluePos == i+off){
-						for(int y=0;y<5;y++){
-							int x = i;
-							//if(n > 1)
-							x = 2-x;
-							
-							NSColor * c = [GetPlugin(Players) playerColorLed:2];
-							c = [c colorWithAlphaComponent:1];
-							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+				for(int x = 0;x<3;x++){
+					for(int y=0;y<5;y++){
+						NSColor * c = [GetPlugin(Players) playerColorLed:4];
+						c = [c colorWithAlphaComponent:0];
+						if(y == greenPos && i < 2){
+							c = [GetPlugin(Players) playerColorLed:4];
+							c = [c colorWithAlphaComponent:[alpha floatValue]];
+						} else if(y == bluePos && i > 1){
+							c = [GetPlugin(Players) playerColorLed:2];
+							c = [c colorWithAlphaComponent:[alpha floatValue]];
 						}
-					}	
-					if(greenPos == i+off){
-						for(int y=0;y<5;y++){
-							int x = i;
-							//if(n > 1)
-							x = 2-x;
+						[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];				
+					}
+				}
+			}
+		}
+		
+		float * waveform = ofSoundGetSpectrum(7);
+
+		timeSinceLastVolChange += 1.0/ofGetFrameRate();
+		volCounter += waveform[4]*6;
+		bokseringCounter++;
+		
+		if(timeSinceLastVolChange > 0.03){
+			bokseringCurValue *= [bokseringWaveformEffect floatValue]/100.0;
+			if(bokseringCurValue < 20*volCounter/(float)bokseringCounter)
+				bokseringCurValue = 20*volCounter/(float)bokseringCounter;
+			bokseringTime.erase(bokseringTime.begin());
+			bokseringTime.push_back(round(bokseringCurValue));
+			volCounter = 0;
+			timeSinceLastVolChange = 0;
+			bokseringCounter = 0;
+		}
+		
+		if([bokseringWaveformEffect floatValue] > 0){
+			//bokseringCurValue = 5*[bokseringWaveformEffect floatValue]/100.0;
+			
+			
+			
+			for(int i=0;i<4;i++){
+				int n = i;
+				
+				if(i == 0)
+					n = 1;
+				if(i==1)
+					n = 0;
+				if(i == 2)
+					n = 3;
+				if(i==3)
+					n = 2;
+				box = [diodeboxes objectAtIndex:n];
+				
+				
+				for(int u = 0;u<3;u++){
+					for(int u = 0;u<3;u++){
+						if(i < 2){
+							int x = 2-u;
 							
-							NSColor * c = [GetPlugin(Players) playerColorLed:4];
-							c = [c colorWithAlphaComponent:1];
-							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+							int time = 5-(x+i*3);
+							for(int y=0;y<5;y++){
+								
+								NSColor * c = [GetPlugin(Players) playerColorLed:4];
+								c = [c colorWithAlphaComponent:0];
+								if(5-y <= bokseringTime[time]){
+									c = [GetPlugin(Players) playerColorLed:2];
+									c = [c colorWithAlphaComponent:[alpha floatValue]];
+								} 
+								[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];				
+							}
+							
 						}
-					}	
+						
+						else {
+							int x = 2-u;
+							
+							int time = (x+i*3)-6;
+							for(int y=0;y<5;y++){
+								
+								NSColor * c = [GetPlugin(Players) playerColorLed:4];
+								c = [c colorWithAlphaComponent:0];
+								if(5-y <= bokseringTime[time]){
+									
+									
+									
+									c = [GetPlugin(Players) playerColorLed:2];
+									c = [c colorWithAlphaComponent:[alpha floatValue]];
+								} 
+								[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];				
+							}
+							
+						}
+						
+					}
+					
 				}
 			}
 			
-			
-			//Green wall
-			bool taken[] = {false, false, false};
-			if([bokseringGreen floatValue] > 0){
-				int greenPos = 6+ 12*[bokseringGreen floatValue]/99.0;	
-				
-				for(int i=0;i<3;i++){
-					if((greenPos > i+off && off >= 6)  || (greenPos > 12 && greenPos - 12 > i+off) ){
-						taken[i] = true;
-						for(int y=0;y<5;y++){							
-							int x = 2-i;							
-							NSColor * c = [GetPlugin(Players) playerColorLed:4];
-							c = [c colorWithAlphaComponent:1];
-							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
-						}
-					}
-					
-					
-				}
-			}	
-			
-			//Blue wall
-			if([bokseringBlue floatValue] > 0){
-				int bluePos = 12*[bokseringBlue floatValue]/99.0;	
-				
-				for(int i=0;i<3;i++){
-					if((bluePos > i+off ) && (!taken[i] || n < 2)  ){
-						for(int y=0;y<5;y++){							
-							int x = 2-i;							
-							NSColor * c = [GetPlugin(Players) playerColorLed:2];
-							c = [c colorWithAlphaComponent:1];
-							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];
-						}
-					}
-					
-					
-				}
-			}	
-			
-			
-			
-			
-			
-			
+		}
+		
+		
+		for(box in diodeboxes){		
 			for(int y=0;y<5;y++){
 				for(int x=0;x<3;x++){
 					LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
@@ -608,17 +803,7 @@
 					
 				}
 			}
-			
-			//[GetPlugin(HardwareBox) setDmxValue:255 onChannel:1];
-			
-			
-			n++;
-			
-			
-			
 		}
-		
-		
 		
 		//Gradient
 		//if([backgroundGradient state] == NSOnState){
@@ -657,6 +842,12 @@
 
 -(DMXEffectColumn*) effectColumn:(int)n{
 	return columns[n];
+}
+
+-(IBAction) bokseringStepTime:(id)sender{
+	bokseringTime.erase(bokseringTime.begin());
+	bokseringTime.push_back(bokseringCurValue);
+	cout<<bokseringCurValue<<endl;
 }
 
 @end
