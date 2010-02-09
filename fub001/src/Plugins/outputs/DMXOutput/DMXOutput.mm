@@ -349,7 +349,7 @@
 
 -(void) setup{
 	music = new ofSoundPlayer();
-	music->loadSound("beat.aif");
+	music->loadSound("beat.mp3");
 	music->play();
 }
 
@@ -709,11 +709,42 @@
 		}
 		
 		float * waveform = ofSoundGetSpectrum(7);
-
+		
 		timeSinceLastVolChange += 1.0/ofGetFrameRate();
 		volCounter += waveform[4]*6;
 		bokseringCounter++;
-		
+		if([bokseringBeatButton state] == NSOnState){
+			if(!music->getIsPlaying()){
+				music->play();
+				NSDictionary* errorDict;
+				NSAppleEventDescriptor* returnDescriptor = NULL;				
+				NSAppleScript* scriptObject; 				
+				scriptObject = [[NSAppleScript alloc] initWithSource:
+								@"\
+								 set volume 0\n\
+								 " 		 
+								];		
+				
+				returnDescriptor = [scriptObject executeAndReturnError: &errorDict];
+				[scriptObject release];				
+			}
+			
+		} else {
+			if(music->getIsPlaying()){
+				music->stop();
+				NSDictionary* errorDict;
+				NSAppleEventDescriptor* returnDescriptor = NULL;				
+				NSAppleScript* scriptObject; 				
+				scriptObject = [[NSAppleScript alloc] initWithSource:
+								@"\
+								set volume 100\n\
+								" 		 
+								];		
+				
+				returnDescriptor = [scriptObject executeAndReturnError: &errorDict];
+				[scriptObject release];				
+			}
+		}
 		if(timeSinceLastVolChange > 0.03){
 			bokseringCurValue *= [bokseringWaveformEffect floatValue]/100.0;
 			if(bokseringCurValue < 20*volCounter/(float)bokseringCounter)

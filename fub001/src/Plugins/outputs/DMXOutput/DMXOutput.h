@@ -100,6 +100,7 @@
 	IBOutlet NSSlider * bokseringOffset;
 	IBOutlet NSSlider * bokseringVerticalEffect;
 	IBOutlet NSSlider * bokseringWaveformEffect;
+	IBOutlet NSButton * bokseringBeatButton;
 	
 	vector<int> bokseringTime;
 	float volCounter;

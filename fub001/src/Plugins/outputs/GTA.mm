@@ -183,7 +183,7 @@
 		
 		
 		
-		ofSetColor([wallAlphaControl floatValue]/100.0* alph*255*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*255*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*255*zAlphaEffect, 255*a);
+		ofSetColor([wallAlphaControl floatValue]/100.0* alph*215*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*221*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*248*zAlphaEffect, 255*a);
 		if([obj visible]){
 			glBegin(GL_POLYGON);{
 				glTranslated(0, 0, position.z);
@@ -289,8 +289,9 @@
 	}
 	
 	if([floorActiveControl state] == NSOnState){\
+		ofSetColor(215, 221, 248);
+
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
-			ofSetColor(255, 255, 255);
 			ofFill();
 			glRotated(-45, 0, 0, 1);
 			glPushMatrix();
@@ -309,7 +310,6 @@
 		
 		
 		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
-			ofSetColor(255, 255, 255);
 			ofFill();
 			glRotated(-45, 0, 0, 1);
 			glPushMatrix();
