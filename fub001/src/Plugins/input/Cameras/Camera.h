@@ -72,7 +72,7 @@
 @property (readonly)Libdc1394Grabber * videoGrabber;
 @property (assign, readwrite)  PluginUISlider * gainSlider;
 @property (assign, readwrite)  PluginUISlider * gammaSlider;
-
+@property (assign, readwrite)  PluginUISlider * shutterSlider;
 -(float) framerate;
 -(ofTexture*) getTexture;
 -(unsigned char*) getPixels;

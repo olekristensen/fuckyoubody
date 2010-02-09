@@ -296,8 +296,15 @@
 	[[learnBackgroundButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Grab Background", trackerNumber]];
 	[[learnBackgroundButton midi] setController: [[NSNumber alloc] initWithInt:60+(20*trackerNumber)]];
 	
+	[[learnBackgroundMaskButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Grab Part Background", trackerNumber]];
+	[[learnBackgroundMaskButton midi] setController: [[NSNumber alloc] initWithInt:61+(20*trackerNumber)]];
+	
+	
 	[[presetPicker midi] setLabel: [NSString stringWithFormat:@"Tracker %i Pick preset", trackerNumber]];
 	[[presetPicker midi] setController: [[NSNumber alloc] initWithInt:64+(20*trackerNumber)]];
+	
+	[[presetMaskPicker midi] setLabel: [NSString stringWithFormat:@"Tracker %i Pick Mask preset", trackerNumber]];
+	[[presetMaskPicker midi] setController: [[NSNumber alloc] initWithInt:67+(20*trackerNumber)]];
 	
 	[[activeButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Active", trackerNumber]];
 	[[activeButton midi] setController: [[NSNumber alloc] initWithInt:65+(20*trackerNumber)]];
@@ -370,6 +377,21 @@
 	grayImage->draw(0,0,w,h);
 	
 	grayBg->draw(w,0,w,h);
+	ofSetColor(255, 0,0,255);
+	
+	ofPoint maskPoints[4];
+	[self getMaskPoints:maskPoints];
+	glPushMatrix();
+	glTranslated(0, 0, 0);
+	glBegin(GL_LINE_STRIP);
+	for(int i=0;i<4;i++){
+		glVertex2f(w*maskPoints[i].x/640.0, h*maskPoints[i].y/480.0);
+	}
+	glVertex2f(w*maskPoints[0].x/640.0, h*maskPoints[0].y/480.0);
+
+	glEnd();
+	glPopMatrix();
+	
 	ofSetColor(64, 128, 220);
 	ofSetColor(150, 171, 219);
 	grayDiff->draw(w*2,0,w,h);
@@ -454,8 +476,8 @@
 		
 		if(x < w){
 			ofPoint p = ofPoint((float)x/w, (float)y/h);
-			[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, setMaskCorner]];
-			[userDefaults setValue:[NSNumber numberWithFloat:p.y] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.y", trackerNumber,preset, setMaskCorner]];
+			[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask%d.p%d.x", trackerNumber,preset, [presetMaskPicker selectedSegment], setMaskCorner]];
+			[userDefaults setValue:[NSNumber numberWithFloat:p.y] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask%d.p%d.y", trackerNumber,preset, [presetMaskPicker selectedSegment], setMaskCorner]];
 			
 			setMaskCorner ++;
 			if(setMaskCorner == 1){
@@ -531,28 +553,7 @@
 		flowImage->scaleIntoMe(*grayImage, CV_INTER_AREA);
 		
 		
-		ofPoint maskPoints[4];
-		for(int i=0;i<4;i++){
-			maskPoints[i] = ofPoint(640.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, i]] floatValue], 480.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.y", trackerNumber,preset, i]] floatValue]);
-		}
-		
-		int nPoints = 4;
-		CvPoint _cp[4]= {{0,0}, {640,0},{maskPoints[1].x,maskPoints[1].y},{maskPoints[0].x,maskPoints[0].y}};			
-		CvPoint* cp = _cp; 
-		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0,0,0,10));
-		
-		CvPoint _cp2[4] = {{640,0}, {640,480},{maskPoints[2].x,maskPoints[2].y},{maskPoints[1].x,maskPoints[1].y}};			
-		cp = _cp2; 
-		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
-		
-		CvPoint _cp3[4] = {{640,480}, {0,480},{maskPoints[3].x,maskPoints[3].y},{maskPoints[2].x,maskPoints[2].y}};			
-		cp = _cp3; 
-		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
-		
-		CvPoint _cp4[4] = {{0,480}, {0,0},{maskPoints[0].x,maskPoints[0].y},{maskPoints[3].x,maskPoints[3].y}};			
-		cp = _cp4; 
-		cvFillPoly(grayImage->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
-		grayImage->flagImageChanged();
+
 		
 		
 		//	[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, setMaskCorner]];
@@ -600,7 +601,65 @@
 				[learnBackgroundButton setState:NSOffState];
 			}
 			
+			if ([learnBackgroundMaskButton state] == NSOnState){
+				
+				NSLog(@"Tracker %i Learn Background part", trackerNumber);
+				grayBgMask->set(255);
+				ofPoint maskPoints[4];
+				[self getMaskPoints:maskPoints];
+				
+				
+				int nPoints = 4;
+				CvPoint _cp[4];
+				for(int i=0;i<4;i++){
+					_cp[i].x = maskPoints[i].x;
+					_cp[i].y = maskPoints[i].y;
+				}
+
+				CvPoint* cp = _cp; 
+				cvFillPoly(grayBgMask->getCvImage(), &cp, &nPoints, 1, cvScalar(0,0,0,10));
+				
+								
+				 cvCopy(grayImageBlured->getCvImage(), grayBg->getCvImage(), grayBgMask->getCvImage());
+				 grayBg->flagImageChanged();
+				
+//				*grayBg = *grayImageBlured;
+				/*		 }
+				 if (!getPlugin<Cameras*>(controller)->videoPlayerActive(cameraId)) {
+				 saveBackground();
+				 }
+				 bLearnBakground = false;*/
+				[self saveBackground];
+				[learnBackgroundMaskButton setState:NSOffState];
+			}
+			
+
+			
+			
 			grayDiff->absDiff(*grayBg, *grayImageBlured);
+
+			ofPoint maskPoints[4];
+			[self getMaskPoints:maskPoints];
+			
+			
+			int nPoints = 4;
+			CvPoint _cp[4]= {{0,0}, {640,0},{maskPoints[1].x,maskPoints[1].y},{maskPoints[0].x,maskPoints[0].y}};			
+			CvPoint* cp = _cp; 
+			cvFillPoly(grayDiff->getCvImage(), &cp, &nPoints, 1, cvScalar(0,0,0,10));
+			
+			CvPoint _cp2[4] = {{640,0}, {640,480},{maskPoints[2].x,maskPoints[2].y},{maskPoints[1].x,maskPoints[1].y}};			
+			cp = _cp2; 
+			cvFillPoly(grayDiff->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
+			
+			CvPoint _cp3[4] = {{640,480}, {0,480},{maskPoints[3].x,maskPoints[3].y},{maskPoints[2].x,maskPoints[2].y}};			
+			cp = _cp3; 
+			cvFillPoly(grayDiff->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
+			
+			CvPoint _cp4[4] = {{0,480}, {0,0},{maskPoints[0].x,maskPoints[0].y},{maskPoints[3].x,maskPoints[3].y}};			
+			cp = _cp4; 
+			cvFillPoly(grayDiff->getCvImage(), &cp, &nPoints, 1, cvScalar(0));
+			grayDiff->flagImageChanged();
+			
 			grayDiff->threshold([thresholdSldier intValue]);
 			
 			int postBlur = [postBlurSlider intValue];
@@ -892,6 +951,8 @@
 	// [presetMenu selectItemAtIndex:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	[opticalFlowActiveButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.opticalFlowActive", trackerNumber,preset]]intValue]];
 	
+	
+		[[[GetPlugin(Cameras) getCameraWithId:0] shutterSlider] setFloatValue:1024];
 	if(n ==0){
 		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:566];
 		[[[GetPlugin(Cameras) getCameraWithId:0] gammaSlider] setFloatValue:875.9];	
@@ -924,6 +985,12 @@
 -(ofPoint) flowInRegionX:(float) regionX Y: (float) regionY width: (float) regionWidth height: (float) regionHeight{
 	
 	//	opticalFlow->flowInRegion(<#int x#>, <#int y#>, <#int w#>, <#int h#>);
+}
+
+-(void) getMaskPoints:(ofPoint*)maskPoints{
+	for(int i=0;i<4;i++){
+		maskPoints[i] = ofPoint(640.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask%d.p%d.x", trackerNumber,preset,[presetMaskPicker selectedSegment], i]] floatValue], 480.0*[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask%d.p%d.y", trackerNumber,preset, [presetMaskPicker selectedSegment],i]] floatValue]);
+	}	
 }
 
 @end

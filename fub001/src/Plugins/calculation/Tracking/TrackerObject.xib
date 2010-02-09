@@ -16,12 +16,12 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>740</string>
-				<string>1.2.2</string>
+				<string>1.2.5</string>
 			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="2"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -53,6 +53,37 @@
 				<int key="NSvFlags">268</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="NSSegmentedControl" id="332662669">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{1084, 48}, {137, 25}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSSegmentedCell" key="NSCell" id="399065241">
+							<int key="NSCellFlags">-2080244224</int>
+							<int key="NSCellFlags2">0</int>
+							<object class="NSFont" key="NSSupport" id="474364417">
+								<string key="NSName">LucidaGrande</string>
+								<double key="NSSize">13</double>
+								<int key="NSfFlags">16</int>
+							</object>
+							<reference key="NSControlView" ref="332662669"/>
+							<object class="NSMutableArray" key="NSSegmentImages">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSSegmentItem">
+									<string key="NSSegmentItemLabel">Mask 1</string>
+									<bool key="NSSegmentItemSelected">YES</bool>
+									<int key="NSSegmentItemImageScaling">0</int>
+								</object>
+								<object class="NSSegmentItem">
+									<string key="NSSegmentItemLabel">Mask 2</string>
+									<int key="NSSegmentItemTag">1</int>
+									<int key="NSSegmentItemImageScaling">0</int>
+								</object>
+							</object>
+							<int key="NSSegmentStyle">2</int>
+						</object>
+					</object>
 					<object class="NSSegmentedControl" id="738512626">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
@@ -62,11 +93,7 @@
 						<object class="NSSegmentedCell" key="NSCell" id="938618989">
 							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">0</int>
-							<object class="NSFont" key="NSSupport">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">16</int>
-							</object>
+							<reference key="NSSupport" ref="474364417"/>
 							<reference key="NSControlView" ref="738512626"/>
 							<object class="NSMutableArray" key="NSSegmentImages">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -367,6 +394,7 @@
 						<bool key="BWGBHasTopBorder">YES</bool>
 						<bool key="BWGBHasBottomBorder">YES</bool>
 						<bool key="BWGBHasGradient">YES</bool>
+						<bool key="BWGBHasFillColor">NO</bool>
 						<float key="BWGBTopInsetAlpha">0.0</float>
 						<float key="BWGBBottomInsetAlpha">0.0</float>
 					</object>
@@ -619,10 +647,10 @@
 									<int key="NSPeriodicInterval">25</int>
 								</object>
 							</object>
-							<object class="BWTransparentCheckbox" id="729580673">
+							<object class="BWTransparentCheckbox" id="961007590">
 								<reference key="NSNextResponder" ref="755065694"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{6, 157}, {101, 18}}</string>
+								<string key="NSFrame">{{6, 157}, {91, 18}}</string>
 								<reference key="NSSuperview" ref="755065694"/>
 								<bool key="NSViewIsLayerTreeHost">YES</bool>
 								<object class="NSShadow" key="NSViewShadow">
@@ -631,12 +659,12 @@
 								</object>
 								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<bool key="NSEnabled">YES</bool>
-								<object class="BWTransparentCheckboxCell" key="NSCell" id="208211516">
+								<object class="BWTransparentCheckboxCell" key="NSCell" id="38291764">
 									<int key="NSCellFlags">-2080244224</int>
 									<int key="NSCellFlags2">131072</int>
 									<object class="NSAttributedString" key="NSContents">
-										<string key="NSString">Optical Flow</string>
-										<object class="NSDictionary" key="NSAttributes" id="109471462">
+										<string key="NSString">Draw debug</string>
+										<object class="NSDictionary" key="NSAttributes">
 											<bool key="EncodedWithXMLCoder">YES</bool>
 											<object class="NSArray" key="dict.sortedKeys">
 												<bool key="EncodedWithXMLCoder">YES</bool>
@@ -666,37 +694,6 @@
 												</object>
 											</object>
 										</object>
-									</object>
-									<reference key="NSSupport" ref="228020202"/>
-									<reference key="NSControlView" ref="729580673"/>
-									<int key="NSButtonFlags">1211912703</int>
-									<int key="NSButtonFlags2">130</int>
-									<reference key="NSNormalImage" ref="312548612"/>
-									<reference key="NSAlternateImage" ref="902949221"/>
-									<string key="NSAlternateContents"/>
-									<string key="NSKeyEquivalent"/>
-									<int key="NSPeriodicDelay">200</int>
-									<int key="NSPeriodicInterval">25</int>
-								</object>
-							</object>
-							<object class="BWTransparentCheckbox" id="961007590">
-								<reference key="NSNextResponder" ref="755065694"/>
-								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{7, 139}, {91, 18}}</string>
-								<reference key="NSSuperview" ref="755065694"/>
-								<bool key="NSViewIsLayerTreeHost">YES</bool>
-								<object class="NSShadow" key="NSViewShadow">
-									<double key="NSShadowBlurRadius">2</double>
-									<reference key="NSShadowColor" ref="8189838"/>
-								</object>
-								<int key="NSViewLayerContentsRedrawPolicy">2</int>
-								<bool key="NSEnabled">YES</bool>
-								<object class="BWTransparentCheckboxCell" key="NSCell" id="38291764">
-									<int key="NSCellFlags">-2080244224</int>
-									<int key="NSCellFlags2">131072</int>
-									<object class="NSAttributedString" key="NSContents">
-										<string key="NSString">Draw debug</string>
-										<reference key="NSAttributes" ref="109471462"/>
 									</object>
 									<reference key="NSSupport" ref="228020202"/>
 									<reference key="NSControlView" ref="961007590"/>
@@ -796,16 +793,36 @@
 													<bool key="NSVertical">NO</bool>
 												</object>
 											</object>
+											<object class="BWTransparentButton" id="455909077">
+												<reference key="NSNextResponder" ref="306380948"/>
+												<int key="NSvFlags">268</int>
+												<string key="NSFrame">{{159, 8}, {94, 28}}</string>
+												<reference key="NSSuperview" ref="306380948"/>
+												<bool key="NSEnabled">YES</bool>
+												<object class="BWTransparentButtonCell" key="NSCell" id="720695844">
+													<int key="NSCellFlags">67239424</int>
+													<int key="NSCellFlags2">134348800</int>
+													<string key="NSContents">Grab mask</string>
+													<reference key="NSSupport" ref="26"/>
+													<reference key="NSControlView" ref="455909077"/>
+													<int key="NSButtonFlags">914505983</int>
+													<int key="NSButtonFlags2">129</int>
+													<string key="NSAlternateContents"/>
+													<string key="NSKeyEquivalent"/>
+													<int key="NSPeriodicDelay">200</int>
+													<int key="NSPeriodicInterval">25</int>
+												</object>
+											</object>
 											<object class="BWTransparentButton" id="183642210">
 												<reference key="NSNextResponder" ref="306380948"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{19, 8}, {228, 28}}</string>
+												<string key="NSFrame">{{19, 8}, {134, 28}}</string>
 												<reference key="NSSuperview" ref="306380948"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="BWTransparentButtonCell" key="NSCell" id="568007442">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134348800</int>
-													<string key="NSContents">Grab</string>
+													<string key="NSContents">Grab all</string>
 													<reference key="NSSupport" ref="26"/>
 													<reference key="NSControlView" ref="183642210"/>
 													<int key="NSButtonFlags">914505983</int>
@@ -974,22 +991,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">opticalFlowActiveButton</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="729580673"/>
-					</object>
-					<int key="connectionID">106</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">setOpticalFlowActiveButtonValue:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="729580673"/>
-					</object>
-					<int key="connectionID">107</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">blobCounter</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="485827050"/>
@@ -1076,6 +1077,22 @@
 					</object>
 					<int key="connectionID">146</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">learnBackgroundMaskButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="455909077"/>
+					</object>
+					<int key="connectionID">149</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">presetMaskPicker</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="332662669"/>
+					</object>
+					<int key="connectionID">153</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1125,6 +1142,7 @@
 							<reference ref="640970553"/>
 							<reference ref="755065694"/>
 							<reference ref="738512626"/>
+							<reference ref="332662669"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1253,6 +1271,7 @@
 							<reference ref="290742825"/>
 							<reference ref="926036448"/>
 							<reference ref="183642210"/>
+							<reference ref="455909077"/>
 						</object>
 						<reference key="parent" ref="799372496"/>
 					</object>
@@ -1545,10 +1564,9 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="692508869"/>
-							<reference ref="729580673"/>
-							<reference ref="961007590"/>
 							<reference ref="538190373"/>
 							<reference ref="504194193"/>
+							<reference ref="961007590"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1579,20 +1597,6 @@
 						<int key="objectID">134</int>
 						<reference key="object" ref="812384319"/>
 						<reference key="parent" ref="538190373"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">103</int>
-						<reference key="object" ref="729580673"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="208211516"/>
-						</object>
-						<reference key="parent" ref="755065694"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">104</int>
-						<reference key="object" ref="208211516"/>
-						<reference key="parent" ref="729580673"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">73</int>
@@ -1636,6 +1640,34 @@
 						<reference key="object" ref="1013152857"/>
 						<reference key="parent" ref="504194193"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">147</int>
+						<reference key="object" ref="455909077"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="720695844"/>
+						</object>
+						<reference key="parent" ref="306380948"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">148</int>
+						<reference key="object" ref="720695844"/>
+						<reference key="parent" ref="455909077"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">150</int>
+						<reference key="object" ref="332662669"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="399065241"/>
+						</object>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">151</int>
+						<reference key="object" ref="399065241"/>
+						<reference key="parent" ref="332662669"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1649,9 +1681,6 @@
 					<string>100.IBPluginDependency</string>
 					<string>101.IBPluginDependency</string>
 					<string>102.IBPluginDependency</string>
-					<string>103.IBPluginDependency</string>
-					<string>103.IBViewIntegration.shadowBlurRadius</string>
-					<string>104.IBPluginDependency</string>
 					<string>108.IBPluginDependency</string>
 					<string>109.IBPluginDependency</string>
 					<string>11.IBPluginDependency</string>
@@ -1684,6 +1713,12 @@
 					<string>143.CustomClassName</string>
 					<string>143.IBPluginDependency</string>
 					<string>144.IBPluginDependency</string>
+					<string>147.CustomClassName</string>
+					<string>147.IBPluginDependency</string>
+					<string>148.IBPluginDependency</string>
+					<string>150.CustomClassName</string>
+					<string>150.IBPluginDependency</string>
+					<string>151.IBPluginDependency</string>
 					<string>16.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
@@ -1735,9 +1770,6 @@
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>com.brandonwalkin.BWToolkit</string>
-					<real value="2"/>
-					<string>com.brandonwalkin.BWToolkit</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1768,6 +1800,12 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>PluginUIButton</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>PluginUIBWTransparentButton</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>com.brandonwalkin.BWToolkit</string>
+					<string>PluginUISegmentedControl</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.brandonwalkin.BWToolkit</string>
@@ -1829,7 +1867,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">146</int>
+			<int key="maxID">153</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1897,6 +1935,7 @@
 							<string>currrentPblobCounter</string>
 							<string>drawDebugButton</string>
 							<string>learnBackgroundButton</string>
+							<string>learnBackgroundMaskButton</string>
 							<string>maskText</string>
 							<string>newestId</string>
 							<string>opticalFlowActiveButton</string>
@@ -1904,6 +1943,7 @@
 							<string>persistentSlider</string>
 							<string>postBlurSlider</string>
 							<string>postThresholdSlider</string>
+							<string>presetMaskPicker</string>
 							<string>presetMenu</string>
 							<string>presetPicker</string>
 							<string>setMaskButton</string>
@@ -1919,6 +1959,7 @@
 							<string>NSTextField</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
+							<string>NSButton</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
@@ -1926,6 +1967,7 @@
 							<string>NSSlider</string>
 							<string>NSSlider</string>
 							<string>NSSlider</string>
+							<string>NSSegmentedControl</string>
 							<string>NSPopUpButton</string>
 							<string>NSSegmentedControl</string>
 							<string>NSButton</string>

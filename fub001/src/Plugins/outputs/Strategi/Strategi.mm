@@ -68,6 +68,26 @@
 			
 		}
 		
+
+		
+		
+		int otherPlayer = -1;
+		for(sblob in blobs){
+			if(otherPlayer == -1){
+				if(sblob->player == 1)
+					otherPlayer = 0;
+				if(sblob->player == 0)
+					otherPlayer = 1;
+			} else {
+				sblob->player = otherPlayer;
+				if(sblob->player == 1)
+					otherPlayer = 0;
+				if(sblob->player == 0)
+					otherPlayer = 1;
+			}
+		}	
+		
+		
 		if([lockPlayerButton state] == NSOnState){
 			StrategiBlob * topLeftBlob;
 			float shortestDistToCorner = -1;
@@ -91,23 +111,6 @@
 			}
 		}
 		
-		
-		
-		int otherPlayer = -1;
-		for(sblob in blobs){
-			if(otherPlayer == -1){
-				if(sblob->player == 1)
-					otherPlayer = 0;
-				if(sblob->player == 0)
-					otherPlayer = 1;
-			} else {
-				sblob->player = otherPlayer;
-				if(sblob->player == 1)
-					otherPlayer = 0;
-				if(sblob->player == 0)
-					otherPlayer = 1;
-			}
-		}	
 		
 		
 		

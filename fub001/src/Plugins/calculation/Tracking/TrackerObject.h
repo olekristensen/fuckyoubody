@@ -22,13 +22,13 @@
 
 @interface PersistentBlob : NSObject
 {
-	@public
+@public
 	long unsigned int pid;
 	ofxPoint2f * centroid;
 	ofxPoint2f * lastcentroid;
 	ofxVec2f   * centroidV;
 	
-
+	
 	int timeoutCounter;
 	NSMutableArray * blobs;
 	
@@ -46,8 +46,8 @@
 	ofxCvBlob * blob;
 	ofxCvBlob * originalblob;
 	ofxCvBlob * floorblob;
-
-	@public
+	
+@public
 	CvSeq * cvSeq; 
 }
 @property (readwrite) int cameraId;
@@ -76,11 +76,11 @@
 
 @end
 
- 
+
 
 @interface TrackerObject : NSObject {
 	long unsigned int pidCounter;
-
+	
 	IBOutlet NSView * settingsView;
 	int trackerNumber;
 	PluginManagerController * controller;
@@ -96,7 +96,7 @@
 	ofxCvGrayscaleImage *	grayBgMask;	
 	ofxCvGrayscaleImage *	grayBg;
 	ofxCvGrayscaleImage *	grayDiff;
-
+	
 	//Images used by thread
 	ofxCvGrayscaleImage * threadGrayDiff;
 	ofxCvGrayscaleImage * threadGrayImage;
@@ -106,7 +106,7 @@
 	
 	BOOL threadUpdateContour;
 	BOOL threadUpdateOpticalFlow;
-
+	
 	ofxCvOpticalFlowLK	* opticalFlow;
 	ofxCvContourFinder 	* contourFinder;
 	
@@ -114,7 +114,7 @@
 	
 	NSMutableArray * persistentBlobs;
 	NSMutableArray * blobs;
-
+	
 	IBOutlet NSSlider * blurSlider;
 	IBOutlet NSSlider * thresholdSldier;
 	IBOutlet NSSlider * postBlurSlider;
@@ -122,11 +122,13 @@
 	IBOutlet NSButton * activeButton;
 	IBOutlet NSButton * opticalFlowActiveButton;
 	IBOutlet NSButton * learnBackgroundButton;
+	IBOutlet NSButton * learnBackgroundMaskButton;
+	
 	IBOutlet NSButton * drawDebugButton;
 	IBOutlet NSSlider * persistentSlider;
 	IBOutlet NSPopUpButton * presetMenu;
 	IBOutlet NSButton * setMaskButton;
-		IBOutlet NSTextField * maskText;
+	IBOutlet NSTextField * maskText;
 	
 	IBOutlet NSTextField * blobCounter;
 	IBOutlet NSTextField * blobCounter2;
@@ -135,6 +137,7 @@
 	IBOutlet NSTextField * newestId;
 	
 	IBOutlet NSSegmentedControl * presetPicker;
+	IBOutlet NSSegmentedControl * presetMaskPicker;
 	
 	NSThread * thread;
 	pthread_mutex_t mutex;
@@ -148,7 +151,7 @@
 	//Mouse
 	BOOL mouseEvent;
 	ofPoint * mousePosition;
-
+	
 }
 @property (assign, readonly) NSView * settingsView;
 @property (assign, readwrite) PluginManagerController * controller;
@@ -195,5 +198,5 @@
 
 -(void) controlMousePressed:(float)x y:(float)y button:(int)button;
 
-
+-(void) getMaskPoints:(ofPoint*)maskPoints;
 @end
