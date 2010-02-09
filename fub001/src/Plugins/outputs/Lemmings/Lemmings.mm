@@ -198,7 +198,13 @@
 		
 		for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 			
-			ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
+			ofxPoint2f c;
+			
+			if ([blobPoint selectedSegment] == 0) {
+				c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"];
+			} else {
+				c = [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
+			}
 			
 			ofxVec2f pf11 = *screenBottomOnFloorLeft;
 			ofxVec2f pf12 = *screenBottomOnFloorRight;
@@ -219,7 +225,7 @@
 			screenBottomIntersection->set(cIntesectsScreenBottom);
 			blobCentroid->set(c);
 			
-			if(c.distance(cIntesectsScreenBottom) < 0.35){
+			if(c.distance(cIntesectsScreenBottom) < 0.4){
 				
 				ofxPoint2f * cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:cIntesectsScreenBottom toProjection:"Front" fromSurface:"Floor"]);
 				cIntesectsScreenBottomOnScreen->set([GetPlugin(ProjectionSurfaces) convertPoint:*cIntesectsScreenBottomOnScreen fromProjection:"Front" toSurface:"Backwall"]);
@@ -234,7 +240,7 @@
 						right = fminf(cIntesectsScreenBottomOnScreen->x+0.1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]);
 					}
 					
-					if (c.distance(cIntesectsScreenBottom)*(0.8/0.35) < height) {
+					if (c.distance(cIntesectsScreenBottom)*(0.8/0.4) < height) {
 						height = 0.6;//fminf((c.distance(cIntesectsScreenBottom)*(0.8/0.35))+0.1,1.0);
 					}
 				}
@@ -382,7 +388,15 @@
 				
 				PersistentBlob * blob;
 				for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
-					ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*blob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+					
+					ofxPoint2f c;
+					
+					if ([blobPoint selectedSegment] == 0) {
+						c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"];
+					} else {
+						c = [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
+					}
+			
 					if(c.y > 1.0-[floorBlobMask floatValue]){
 						if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
 							shortestDist = c.distanceSquared(*[lemming position]);
@@ -392,7 +406,14 @@
 				}
 				
 				if(shortestDist != -1){	
-					ofxPoint2f c = [GetPlugin(ProjectionSurfaces) convertFromProjection:*nearestBlob->centroid surface:[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Floor"]];
+
+					ofxPoint2f c;
+					
+					if ([blobPoint selectedSegment] == 0) {
+						c = [GetPlugin(ProjectionSurfaces) convertPoint:*nearestBlob->centroid fromProjection:"Front" toSurface:"Floor"];
+					} else {
+						c = [GetPlugin(ProjectionSurfaces) convertPoint:[nearestBlob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
+					}
 					
 					if (shortestDist < [floorBlobFarForceThreshold floatValue]){
 						*[lemming totalforce] += (c - *[lemming position])*([floorBlobFarForce floatValue]/50.0) ;
@@ -400,7 +421,6 @@
 					if (shortestDist < [floorBlobNearForceThreshold floatValue]*0.25){
 						*[lemming totalforce] += (c - *[lemming position])*([floorBlobNearForce floatValue]/5.0) ;
 					}
-					//				*[lemming totalforce] += (c - *[lemming position])*([motionGravity floatValue]/100.0) ;
 					
 					[lemming setAlpha:fmaxf(0.0,1.0-(shortestDist*30.0*[floorLemmingsDistanceAlpha floatValue]))];
 				}
@@ -889,13 +909,9 @@
 		glPushMatrix();{
 			
 			if(timeScale > 0.25){
-				
-				cout << "  før" << timeScale << endl;
-				
+								
 				timeScale = (timeScale-0.25)*(1.0/0.75);
 
-				cout << "efter" << timeScale << endl;
-				
 				ofSetColor(theColor.r, theColor.g, theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*127.0);
 				
 				ofCircle(position->x, position->y, (radius*scaleFactor)*(sin(timeScale*PI)*1.25));

@@ -51,6 +51,7 @@
 	ofxVec2f		* blobCentroid;
 
 	IBOutlet NSSegmentedControl * cameraControl;
+	IBOutlet NSSegmentedControl * blobPoint;
 	IBOutlet NSButton * trackingActive;
 
 	int numberLemmings;
@@ -108,7 +109,6 @@
 	IBOutlet NSSlider * damp;
 	IBOutlet NSSlider * motionTreshold;
 	IBOutlet NSSlider * motionMultiplier;
-	IBOutlet NSSlider * motionGravity;
 
 	IBOutlet NSSlider * lemmingSize;
 	IBOutlet NSSlider * lemmingCollisionThreshold;	// 0.1 ... 2.0;
