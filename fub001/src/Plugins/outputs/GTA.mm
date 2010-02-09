@@ -83,7 +83,7 @@
 				//cout<<ofGetFrameRate()<<endl;
 				[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * step * 60.0/ofGetFrameRate();
 				//float moveX = 0.003* [wallSpeedControl floatValue]/100.0 * 60.0/ofGetFrameRate();
-				
+
 				while([obj pos]->z + [obj offset]->z > 455){
 					[obj pos]->z -= 1000;
 					BOOL tower = NO;
@@ -95,6 +95,7 @@
 					
 					[obj setTower:tower];
 					[obj setVisible:visible];
+					
 					//[obj setOffset:new ofxPoint3f(0,0,0)];
 				}
 			}
@@ -174,6 +175,13 @@
 		float a = 1.0;
 		if(position.z > 200)
 			a *= (450 - position.z)/250.0;
+		
+		a += 1-[wallZScaleControl floatValue]/100.0;
+		a = ofClamp(a, 0, 1);
+		
+		a = 1;
+		
+		
 		
 		ofSetColor([wallAlphaControl floatValue]/100.0* alph*255*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*255*zAlphaEffect, [wallAlphaControl floatValue]/100.0*alph*255*zAlphaEffect, 255*a);
 		if([obj visible]){
@@ -365,6 +373,9 @@
 					[nObj setOffset:new ofxPoint3f(-0.2,0,ofRandom(-100, 100))];						
 				}			
 				
+				[nObj setTower:NO];
+				[nObj setVisible:YES];
+
 				[nObj setObstacle:NO];
 				[wallObjects addObject:nObj];
 				i++;
@@ -380,6 +391,8 @@
 		[nObj setOffset:new ofxPoint3f()];
 		[nObj setObstacle:YES];
 		[nObj setTexture:(new ofTexture())];
+		[nObj setTower:NO];
+		[nObj setVisible:YES];
 		[nObj texture]->allocate(ofGetWidth(), ofGetHeight(), OF_IMAGE_COLOR_ALPHA);
 		[wallObjects addObject:nObj];	
 	}

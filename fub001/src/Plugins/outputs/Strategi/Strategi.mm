@@ -68,7 +68,7 @@
 			
 		}
 		
-
+		
 		
 		
 		int otherPlayer = -1;
@@ -87,29 +87,6 @@
 			}
 		}	
 		
-		
-		if([lockPlayerButton state] == NSOnState){
-			StrategiBlob * topLeftBlob;
-			float shortestDistToCorner = -1;
-			for(sblob in blobs){
-				if(shortestDistToCorner == -1 ||  sblob->center->distance(ofxPoint2f(0,0))< shortestDistToCorner){
-					shortestDistToCorner =  sblob->center->distance(ofxPoint2f(0,0));
-					topLeftBlob = sblob;
-				}
-			}	
-			if(shortestDistToCorner != -1){
-				for(sblob in blobs){
-					sblob->player = 0;
-				}
-				topLeftBlob->player = 1;
-				
-				/*int i=0;
-				 for(sblob in blobs){
-				 cout<<i<<" : "<<sblob->player <<endl;;
-				 i++;
-				 }*/			
-			}
-		}
 		
 		
 		
@@ -176,6 +153,31 @@
 				}	
 				
 			}
+			
+			
+			if([lockPlayerButton state] == NSOnState){
+				StrategiBlob * topLeftBlob;
+				float shortestDistToCorner = -1;
+				for(sblob in blobs){
+					if(shortestDistToCorner == -1 ||  sblob->center->distance(ofxPoint2f(0,0))< shortestDistToCorner){
+						shortestDistToCorner =  sblob->center->distance(ofxPoint2f(0,0));
+						topLeftBlob = sblob;
+					}
+				}	
+				if(shortestDistToCorner != -1){
+					for(sblob in blobs){
+						sblob->player = 0;
+					}
+					topLeftBlob->player = 1;
+					
+					/*int i=0;
+					 for(sblob in blobs){
+					 cout<<i<<" : "<<sblob->player <<endl;;
+					 i++;
+					 }*/			
+				}
+			}
+			
 			
 			Blob * b;
 			for(b in [pblob blobs]){
@@ -482,7 +484,10 @@
 	for(int i=0;i<2;i++){
 		blobs = [[NSMutableArray array] retain];
 		images[i]->set(0);
+		contourFinder[i]->blobs.clear();
+		contourPoints.clear();
 	}
+	
 	
 }
 
