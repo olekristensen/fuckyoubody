@@ -335,10 +335,11 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	pacmanDieFactor = 0;
 	
 	cookies.clear();
+	cookiesFadeIn.clear();
 	spaceInvadersPosition = new ofxPoint2f(0,0);
 	wallPoints.clear();
 	
-	[floorSquaresButton setState:NSOnState];
+	[floorSquaresButton setState:NSOffState];
 	[pacmanButton setState:NSOffState];
 	[ballUpdateButton setState:NSOffState];
 	[ballDrawButton setState:NSOffState];
@@ -365,11 +366,11 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	if(doReset) {
-	
+		
 		[self resetScene];
 		
 		doReset = false;
-	
+		
 	}
 	
 	
@@ -421,7 +422,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				
 				if([lockToGrid state] == NSOffState){
 					delete pongPos;
-					pongPos = new ofxVec2f(*personPosition  - ofxPoint2f(w/2.0 , w/2.0));
+					pongPos = new ofxVec2f(*personPosition  - ofxPoint2f(w*0.8 , w));
 					
 				} else {
 					ofxPoint2f goal = *personPosition*8;
@@ -434,6 +435,34 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				}
 			}
 		}
+		
+		if([leaveCookiesFootButton state] == NSOnState){
+			Blob * b;
+			for(b in [tracker(0) blobs]){
+				ofxPoint2f bp = [GetPlugin(ProjectionSurfaces) convertPoint:[b centroid] fromProjection:"Front" toSurface:"Floor"];
+				float x = bp.x;
+				float y = bp.y;
+				
+				bool found = false;
+				
+				for(int c=0;c<cookies.size();c++){
+					if(cookies[c].distance(bp) < 0.05 ){
+						found = true;
+					}
+				}
+				
+				if(!found){
+					cookies.push_back(ofPoint(x,y));
+					cookiesFadeIn.push_back(0);
+				}
+			}
+		}
+		
+		for(int c=0;c<cookiesFadeIn.size();c++){
+			cookiesFadeIn[c] = ofClamp(cookiesFadeIn[c]+0.1,0,1);
+		}
+		
+		
 		
 		int i=0;
 		for(float y=0;y<1;y+=w){
@@ -449,6 +478,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 					
 					if(notFound){
 						cookies.push_back(ofPoint(x+w*0.5,y+w*0.5));
+						cookiesFadeIn.push_back(0);
 					}
 					
 				}
@@ -781,6 +811,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				
 				if(nearestCookie != -1 && pacmanPosition->distance(cookies[nearestCookie]) < 0.02){
 					cookies.erase(cookies.begin()+nearestCookie);
+					cookiesFadeIn.erase(cookiesFadeIn.begin()+nearestCookie);
 				}
 			}
 		}
@@ -858,7 +889,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		
 		if([spaceSpeedSlider floatValue] > 0){
 			*spaceInvadersPosition += ofxPoint2f(spaceInvadersDir,0)*[spaceSpeedSlider floatValue]/100.0 * 60.0/ofGetFrameRate();
-			if(spaceInvadersPosition->x > 3){
+			if(spaceInvadersPosition->x > 2*[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]){
 				spaceInvadersPosition->y += spaceInvadersYDir;
 				spaceInvadersDir = -1;
 			} else if(spaceInvadersPosition->x < 0){
@@ -889,12 +920,13 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	if(cookiesRemoveFactor < 1){
 		glPopMatrix();
 		
-		ofSetColor(155.0*(1-cookiesRemoveFactor), 0*(1-cookiesRemoveFactor), 255.0*(1-cookiesRemoveFactor));
 		
 		blur->beginRender();
 		blur->setupRenderWindow();		
 		for(int c=0;c<cookies.size();c++){	
-			ofEllipse(cookies[c].x, cookies[c].y, 0.03, 0.03);		
+			ofSetColor(155.0*(1-cookiesRemoveFactor), 0*(1-cookiesRemoveFactor), 255.0*(1-cookiesRemoveFactor), cookiesFadeIn[c]*255);
+
+			ofEllipse(cookies[c].x, cookies[c].y, 0.03 + (1-cookiesFadeIn[c])*0.1, 0.03+ (1-cookiesFadeIn[c])*0.1);		
 		}		
 		blur->endRender();
 		//		blur->blur(2, cookiesRemoveFactor*3.0);		
@@ -1528,7 +1560,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 -(IBAction) spawnRocket:(id)sender{
 	ofxPoint2f p = 	ofxPoint2f((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0) + *((Alien*)[aliens objectAtIndex:int(ofRandom(0, [aliens count]-2))])->position + ofxPoint2f(0,0.1);
 	
-	Rocket * newRocket = [[Rocket alloc] initAtPosition:p arkade:self];
+	Rocket * newRocket = [[Rocket alloc] initAtPosition:p+ofxPoint2f(0,0.04) arkade:self];
 	[rockets addObject:newRocket];
 	timeSinceLastLaunch = 0;
 }

@@ -48,7 +48,7 @@
 }
 
 -(void) setup{
-	aspect = [GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"]->aspect; 
+	aspect = 2*[GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"]->aspect; 
 	
 	[self generateObjects];
 	blur = new shaderBlur();
@@ -251,9 +251,10 @@
 		glLoadIdentity();
 		gluLookAt(eyeX, eyeY, dist, eyeX, h/2.0, 0.0, 0.0, 1.0, 0.0);
 		
-		glTranslatef(+w/2.0, 0, 0);
-		glScalef(1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"], -1, 1);           // invert Y axis so increasing Y goes down.		
-		glTranslatef(- (1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) * w/2.0, 0, 0);
+//		glTranslatef(+w/2.0, 0, 0);
+//			glScalef(1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"], -1, 1);           // invert Y axis so increasing Y goes down.		
+					glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.		
+//		glTranslatef(- (1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) * w/2.0, 0, 0);
 		
 		glTranslatef(0, -h, 0);       // shift origin up to upper-left corner.
 		

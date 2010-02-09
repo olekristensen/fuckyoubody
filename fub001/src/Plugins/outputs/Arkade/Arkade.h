@@ -18,6 +18,7 @@
 	IBOutlet NSButton * floorSquaresButton;
 	IBOutlet NSButton * moveWithPerson;
 	IBOutlet NSButton * lockToGrid;
+	IBOutlet NSButton * leaveCookiesFootButton;
 
 	IBOutlet NSButton * leaveCookiesButton;
 	IBOutlet NSButton * pacmanButton;
@@ -55,6 +56,8 @@
 	//Floor squares
 	float floorSquaresOpacity[ FLOORGRIDSIZE * FLOORGRIDSIZE ];
 	vector<ofxPoint2f> cookies;
+	vector<float> cookiesFadeIn;
+
  	float cookiesRemoveFactor;
 	ofxPoint2f * pongPos;
 	float pongSquareSize;

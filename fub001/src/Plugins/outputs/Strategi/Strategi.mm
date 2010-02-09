@@ -110,7 +110,8 @@
 					player = sblob->player;
 					break;
 				}
-			}				
+			}	
+			
 			if(player == -1){
 				int otherPlayer = 0;
 				int otherPlayerRate = 20;
