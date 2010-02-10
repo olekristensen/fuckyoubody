@@ -955,7 +955,7 @@
 	[opticalFlowActiveButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.opticalFlowActive", trackerNumber,preset]]intValue]];
 	
 	
-	[[[GetPlugin(Cameras) getCameraWithId:0] shutterSlider] setFloatValue:1024];
+	[[[GetPlugin(Cameras) getCameraWithId:0] shutterSlider] setFloatValue:1280];
 	if(n ==0){
 		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:566];
 		[[[GetPlugin(Cameras) getCameraWithId:0] gammaSlider] setFloatValue:875.9];	

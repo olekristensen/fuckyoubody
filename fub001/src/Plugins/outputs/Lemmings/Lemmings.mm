@@ -266,8 +266,8 @@
 	 **/
 	 
 	screenTrackingHeight = 0.6;
-	screenTrackingLeft = [screenPlayerSquarePosition floatValue] - 0.1 + 0.5;
-	screenTrackingRight = [screenPlayerSquarePosition floatValue] + 0.1 + 0.5;
+	screenTrackingLeft = (([screenPlayerSquarePosition floatValue] + 0.5) * [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) - 0.1;
+	screenTrackingRight = (([screenPlayerSquarePosition floatValue] + 0.5) * [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] ) + 0.1;
 	 
 	/**
 	 ScreenElement * element;

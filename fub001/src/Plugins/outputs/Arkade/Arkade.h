@@ -39,6 +39,8 @@
 	IBOutlet NSSlider * wallLockSlider;	
 	
 	IBOutlet NSSlider * gardenFadeSlider;	
+	IBOutlet NSSlider * gardenSmashSlider;	
+
 	IBOutlet NSSlider * spaceFadeSlider;	
 	IBOutlet NSSlider * spaceSpeedSlider;	
 	IBOutlet NSSlider * spaceAutoLaunchSpeedSlider;	
@@ -91,12 +93,15 @@
 	
 	//Wall
 	vector<ofxPoint2f> wallPoints;
+	vector<float> wallPointsDietime;
+
 	vector<ofxPoint2f> wallPointsTemp;
 
 	vector<ofxPoint2f> outerWall;
 	vector<
 	ofxPoint2f> innerWall;
 	float resolution;
+	BOOL pleaseCalculateWall;
 	
 	//Rockets
 	NSMutableArray * aliens;
@@ -129,6 +134,9 @@
 -(int) getIatX:(float)x Y:(float)y;
 
 -(void) draw:(int)side;
+
+-(IBAction) updateWall:(id)sender;
+
 
 @end
 

@@ -11,29 +11,56 @@
 			   255, 
 			   255);
 	
-	if([rotation floatValue] > 0){
-		
-		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
-			glPushMatrix();
+	
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+		glPushMatrix();{
 			glRotated(-45.0 * [samlaWall floatValue]/100.0, 0, 0, 1);
-			ofRect(0, 0, 0.01, [leftWall floatValue]/100.0);
-			glPopMatrix();
-			
-			glPushMatrix();
+			ofRect(0, 0, 0.01, 2*[leftWall floatValue]/100.0);
+		}glPopMatrix();
+		
+		glPushMatrix();{
 			glRotated(45.0 * [samlaWall floatValue]/100.0, 0, 0, 1);
-			ofRect(0, 0.0, [backWall floatValue]/100.0, 0.01);		
-			glPopMatrix();		
-			
-			glRotated(-[rotation floatValue], 0, 0, 1);
-			for(int i=0;i<18;i++){
-				if(- [rotation floatValue] + i*20 < 0 && - [rotation floatValue] + i*20 > - 90){
-					ofRect(0, 0, 0.01, 2);
-				}
-				glRotated(20, 0, 0, 1);
-			}
-			
+			ofRect(0, 0.0, 2*[backWall floatValue]/100.0, 0.01);		
 		}glPopMatrix();		
-	}
+		
+		
+		if([rotation floatValue] > 0){
+			glPushMatrix();{
+				glRotated(-45.0, 0, 0, 1);
+				glRotated((-[rotation floatValue]+45.0)*(1-[samlaWall floatValue]/100.0), 0, 0, 1);
+				
+				float rotated = 0;
+				for(int i=0;i<18;i++){
+					float angle = 45 - 35.0*([rotation floatValue]/360.0);
+
+					glRotated(angle*(1-[samlaWall floatValue]/100.0), 0, 0, 1);
+					rotated += angle;
+					
+					if(- [rotation floatValue] + rotated < 0 && - [rotation floatValue] + rotated	 > - 90){
+						ofRect(0, 0, 0.01, 2);
+					}
+				}
+			}glPopMatrix();
+		}
+		
+		
+		ofDisableAlphaBlending();
+		ofSetColor(0, 0, 0,255);
+		
+		if([zipSlider floatValue] > 0){
+			glPushMatrix();{
+				
+				glRotated(-45, 0, 0, 1);
+				ofRect(-1, 0, 2, 2*[zipSlider floatValue]/100.0);
+				ofRect(-1, sqrt(2), 2, -2*[zipSlider floatValue]/100.0);
+			}glPopMatrix();
+		}
+		
+	}glPopMatrix();		
+	
+	
+	
 	
 	
 	ofEnableAlphaBlending();

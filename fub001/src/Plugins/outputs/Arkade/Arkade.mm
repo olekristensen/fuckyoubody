@@ -143,14 +143,14 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				float distConstant = 0.07;
 				float dist = arkade->outerWall[i].distance(*floorPosition);
 				if(dist < distConstant){
-					if(ofRandom(0, 1) < 0.3){
+					/*if(ofRandom(0, 1) < 0.3){
 						for(int j=0;j<arkade->wallPoints.size();j++){
 							if(arkade->wallPoints[j].distance(arkade->outerWall[i]) < 0.03){
 								arkade->wallPoints.erase(arkade->wallPoints.begin()+j);
 							}
 						}
 						[arkade calculateOuterWall];
-					}
+					}*/
 					dead = true;
 				}
 			}
@@ -170,7 +170,6 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				glPushMatrix();{
 					glTranslated(wallPosition->x, wallPosition->y, 0);
 					glRotated(ofxVec2f(1,0).angle(*wallVel), 0, 0, 1);
-					ofSetColor(255, 255, 200, 255);
 					glScaled(1.0/WallScaling, 1.0/WallScaling, 1);	
 					[self drawRocket];
 					
@@ -373,6 +372,10 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		
 	}
 	
+	if(pleaseCalculateWall){
+		[self calculateOuterWall];	
+		pleaseCalculateWall = NO;
+	}
 	
 	if(ofGetFrameRate() > 10){
 		//
@@ -917,7 +920,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	//Cookies
 	//
 	
-	if(cookiesRemoveFactor < 1){
+	if(cookiesRemoveFactor < 1 && [gardenFadeSlider floatValue] < 99){
 		glPopMatrix();
 		
 		
@@ -1303,6 +1306,12 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		}glPopMatrix();	
 	}
 	
+	
+	ofEnableAlphaBlending();
+	glViewport(0, 0, ofGetWidth(), ofGetHeight());
+	ofFill();
+	ofSetColor(0, 0, 0,255*(1-[alpha floatValue]));
+	ofRect(0, 0, 1, 1);
 }
 
 -(int) getIatX:(float)x Y:(float)y{
@@ -1327,10 +1336,12 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 
 -(IBAction) generateWall:(id)sender{
 	wallPoints.clear();
+	wallPointsDietime.clear();
 	for(float y =0;y<=	FLOORGRIDSIZE;y+=resolution){		
 		for(float x =0;x<=	FLOORGRIDSIZE;x+=resolution){
-			
-			wallPoints.push_back(ofxPoint2f(x/(float)FLOORGRIDSIZE,y/(float)FLOORGRIDSIZE));
+			ofxPoint2f p = ofxPoint2f(x/(float)FLOORGRIDSIZE,y/(float)FLOORGRIDSIZE);
+			wallPointsDietime.push_back(ofRandom(0,0.1) + p.distance(ofPoint(0.5,0.5)));
+			wallPoints.push_back(p);
 		}
 	}
 	
@@ -1430,11 +1441,12 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				 }
 				 break;*/
 			} else {
-				for(int i=0;i<wallPoints.size();i++){
+				/*for(int i=0;i<wallPoints.size();i++){
 					if(wallPoints[i].distance(p / (FLOORGRIDSIZE * 1.0/resolution)) < 0.01){
 						wallPoints.erase(wallPoints.begin()+i);
+						wallPointsDietime.erase(wallPointsDietime.begin()+i);
 					}
-				}
+				}*/
 				
 				wallPointsTemp.pop_back();
 			}
@@ -1524,7 +1536,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 -(BOOL) wallPointExist:(ofxPoint2f)p{
 	BOOL r = NO;
 	for(int i=0;i<wallPoints.size();i++){
-		if(fabs(wallPoints[i].x * FLOORGRIDSIZE * 1.0/resolution - p.x) < 0.01 && fabs(wallPoints[i].y * FLOORGRIDSIZE * 1.0/resolution - p.y) < 0.01){
+		if(wallPointsDietime[i] < [gardenSmashSlider floatValue]/100.0 && fabs(wallPoints[i].x * FLOORGRIDSIZE * 1.0/resolution - p.x) < 0.01 && fabs(wallPoints[i].y * FLOORGRIDSIZE * 1.0/resolution - p.y) < 0.01){
 			r = YES;
 			break;
 		}
@@ -1535,7 +1547,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 -(ofxPoint2f) wallPoint:(ofxPoint2f)p{
 	ofxPoint2f r;
 	for(int i=0;i<wallPoints.size();i++){
-		if(fabs(wallPoints[i].x * FLOORGRIDSIZE * 1.0/resolution - p.x) < 0.01 && fabs(wallPoints[i].y * FLOORGRIDSIZE * 1.0/resolution - p.y) < 0.01){
+		if(wallPointsDietime[i] < [gardenSmashSlider floatValue]/100.0 && fabs(wallPoints[i].x * FLOORGRIDSIZE * 1.0/resolution - p.x) < 0.01 && fabs(wallPoints[i].y * FLOORGRIDSIZE * 1.0/resolution - p.y) < 0.01){
 			r = wallPoints[i];
 			break;
 		}
@@ -1573,6 +1585,10 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	[rockets removeAllObjects];
 	[self calculateOuterWall];
 	
+}
+
+-(void) updateWall:(id)sender{
+	pleaseCalculateWall = YES;
 }
 
 @end

@@ -207,8 +207,7 @@
 		
 		ofxVec2f dir1 = (leftP[1] - leftP[0]).normalized();
 		ofxVec2f dir2 = (rightP[1] - rightP[0]).normalized();
-		
-		ofSetColor(255.0*frontA, 255.0*frontA, 255.0*frontA, 255);
+		ofSetColor(215*frontA, 221*frontA, 248*frontA, 255);
 		/*	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 		 glBegin(GL_QUAD_STRIP);	
 		 glVertex2f(leftP[0].x-dir1.x, leftP[0].y-dir1.y);
@@ -224,8 +223,8 @@
 			glVertex2f(frontPoints[i].x, frontPoints[i].y);
 		}
 		glEnd();
-		
-		ofSetColor(255.0*backA, 255.0*backA, 255.0*backA, 255);
+
+		ofSetColor(215*backA, 221*backA, 248*backA, 255);
 		/*[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 		 glBegin(GL_QUAD_STRIP);
 		 glVertex2f(leftP[0].x, leftP[0].y);
