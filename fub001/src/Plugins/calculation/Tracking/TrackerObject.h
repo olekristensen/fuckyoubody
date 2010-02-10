@@ -46,6 +46,7 @@
 	ofxCvBlob * blob;
 	ofxCvBlob * originalblob;
 	ofxCvBlob * floorblob;
+	ofxPoint2f * low;
 	
 @public
 	CvSeq * cvSeq; 

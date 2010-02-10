@@ -24,9 +24,9 @@
 			ofRect(0, 0.0, [backWall floatValue]/100.0, 0.01);		
 			glPopMatrix();		
 			
-			glRotated([rotation floatValue], 0, 0, 1);
-			for(int i=0;i<14;i++){
-				if(i*20 + [rotation floatValue] < 90){
+			glRotated(-[rotation floatValue], 0, 0, 1);
+			for(int i=0;i<18;i++){
+				if(- [rotation floatValue] + i*20 < 0 && - [rotation floatValue] + i*20 > - 90){
 					ofRect(0, 0, 0.01, 2);
 				}
 				glRotated(20, 0, 0, 1);

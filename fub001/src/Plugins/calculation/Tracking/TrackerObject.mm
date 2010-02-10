@@ -101,14 +101,17 @@
 
 
 -(ofxPoint2f) getLowestPoint{
-	ofxPoint2f low;
-	for(int u=0;u< [self nPts];u++){
-		if([self pts][u].y > low.y){
-			low = [self pts][u];
-		}
-	}
 	
-	return low;
+	if(low)
+		return *low;
+	else {
+		for(int u=0;u< [self nPts];u++){
+			if([self pts][u].y > low->y){
+				low = new ofxPoint2f([self pts][u]);
+			}
+		}
+		return *low;
+	}
 	
 }
 
@@ -388,7 +391,7 @@
 		glVertex2f(w*maskPoints[i].x/640.0, h*maskPoints[i].y/480.0);
 	}
 	glVertex2f(w*maskPoints[0].x/640.0, h*maskPoints[0].y/480.0);
-
+	
 	glEnd();
 	glPopMatrix();
 	
@@ -553,7 +556,7 @@
 		flowImage->scaleIntoMe(*grayImage, CV_INTER_AREA);
 		
 		
-
+		
 		
 		
 		//	[userDefaults setValue:[NSNumber numberWithFloat:p.x] forKey:[NSString stringWithFormat:@"tracker%d.preset%d.mask.p%d.x", trackerNumber,preset, setMaskCorner]];
@@ -615,15 +618,15 @@
 					_cp[i].x = maskPoints[i].x;
 					_cp[i].y = maskPoints[i].y;
 				}
-
+				
 				CvPoint* cp = _cp; 
 				cvFillPoly(grayBgMask->getCvImage(), &cp, &nPoints, 1, cvScalar(0,0,0,10));
 				
-								
-				 cvCopy(grayImageBlured->getCvImage(), grayBg->getCvImage(), grayBgMask->getCvImage());
-				 grayBg->flagImageChanged();
 				
-//				*grayBg = *grayImageBlured;
+				cvCopy(grayImageBlured->getCvImage(), grayBg->getCvImage(), grayBgMask->getCvImage());
+				grayBg->flagImageChanged();
+				
+				//				*grayBg = *grayImageBlured;
 				/*		 }
 				 if (!getPlugin<Cameras*>(controller)->videoPlayerActive(cameraId)) {
 				 saveBackground();
@@ -633,11 +636,11 @@
 				[learnBackgroundMaskButton setState:NSOffState];
 			}
 			
-
+			
 			
 			
 			grayDiff->absDiff(*grayBg, *grayImageBlured);
-
+			
 			ofPoint maskPoints[4];
 			[self getMaskPoints:maskPoints];
 			
@@ -952,7 +955,7 @@
 	[opticalFlowActiveButton setState:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset%d.opticalFlowActive", trackerNumber,preset]]intValue]];
 	
 	
-		[[[GetPlugin(Cameras) getCameraWithId:0] shutterSlider] setFloatValue:1024];
+	[[[GetPlugin(Cameras) getCameraWithId:0] shutterSlider] setFloatValue:1024];
 	if(n ==0){
 		[[[GetPlugin(Cameras) getCameraWithId:0] gainSlider] setFloatValue:566];
 		[[[GetPlugin(Cameras) getCameraWithId:0] gammaSlider] setFloatValue:875.9];	

@@ -51,7 +51,7 @@
 	ofxVec2f		* blobCentroid;
 
 	IBOutlet NSSegmentedControl * cameraControl;
-	IBOutlet NSSegmentedControl * blobPoint;
+	IBOutlet NSSlider * blobPoint;
 	IBOutlet NSButton * trackingActive;
 
 	int numberLemmings;
@@ -76,6 +76,7 @@
 	IBOutlet NSSlider * screenLemmingsBrightness;	//	0 ... 1 black ... white
 
 	IBOutlet NSSlider * screenPlayerSquareAlpha;	//	0 ... 1 transparent ... visible
+	IBOutlet NSSlider * screenPlayerSquarePosition;	//	-0.5 ... 0.5 left ... right
 
 	IBOutlet NSButton * screenFloor;				//	BOOL
 

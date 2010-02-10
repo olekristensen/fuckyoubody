@@ -10,7 +10,6 @@
 #include "Lemmings.h"
 
 
-
 @implementation Lemmings
 
 @synthesize numberLemmings, parachuteImage;
@@ -178,6 +177,7 @@
 		}
 	}
 	
+	/*
 #pragma mark make screen box from blobs
 	
 	float left = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"];
@@ -191,20 +191,17 @@
 		
 		PersistentBlob * blob;
 		
-		/**
-		 screenPosition = &[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]/2.0, 1.0) toProjection:"Front" fromSurface:"Backwall"];
-		 screenPosition = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*screenPosition fromProjection:"Front" toSurface:"Floor"]);
-		 **/
+		 //screenPosition = &[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]/2.0, 1.0) toProjection:"Front" fromSurface:"Backwall"];
+		 //screenPosition = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*screenPosition fromProjection:"Front" toSurface:"Floor"]);
 		
 		for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 			
 			ofxPoint2f c;
 			
-			if ([blobPoint selectedSegment] == 0) {
-				c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"];
-			} else {
-				c = [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
-			}
+			c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"]
+			* [blobPoint floatValue];
+			c += [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
+			* 1.0-[blobPoint floatValue];
 			
 			ofxVec2f pf11 = *screenBottomOnFloorLeft;
 			ofxVec2f pf12 = *screenBottomOnFloorRight;
@@ -266,6 +263,12 @@
 		screenTrackingHeight = screenTrackingHeightFilter->filter(height);
 	}
 	
+	 **/
+	 
+	screenTrackingHeight = 0.6;
+	screenTrackingLeft = [screenPlayerSquarePosition floatValue] - 0.1 + 0.5;
+	screenTrackingRight = [screenPlayerSquarePosition floatValue] + 0.1 + 0.5;
+	 
 	/**
 	 ScreenElement * element;
 	 for (element in screenElements){
@@ -309,7 +312,7 @@
 					if([lemming position]->y+(RADIUS*[lemming scaleFactor]) < screenTrackingHeight+0.03 ){
 						if([lemming position]->x+(RADIUS*[lemming scaleFactor]) > screenTrackingLeft){
 							if([lemming position]->x-(RADIUS*[lemming scaleFactor]) < screenTrackingRight){
-								[lemming vel]->y *= -0.1;
+								[lemming vel]->y *= -0.15;
 								[lemming vel]->x *= 0.9;
 								[lemming setBlessed:YES];
 								[lemming position]->y = screenTrackingHeight-(RADIUS*[lemming scaleFactor]);
@@ -391,12 +394,11 @@
 					
 					ofxPoint2f c;
 					
-					if ([blobPoint selectedSegment] == 0) {
-						c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"];
-					} else {
-						c = [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
-					}
-			
+					c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"]
+					* [blobPoint floatValue];
+					c += [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
+					* 1.0-[blobPoint floatValue];
+					
 					if(c.y > 1.0-[floorBlobMask floatValue]){
 						if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
 							shortestDist = c.distanceSquared(*[lemming position]);
@@ -406,15 +408,14 @@
 				}
 				
 				if(shortestDist != -1){	
-
+					
 					ofxPoint2f c;
 					
-					if ([blobPoint selectedSegment] == 0) {
-						c = [GetPlugin(ProjectionSurfaces) convertPoint:*nearestBlob->centroid fromProjection:"Front" toSurface:"Floor"];
-					} else {
-						c = [GetPlugin(ProjectionSurfaces) convertPoint:[nearestBlob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
-					}
-					
+					c = [GetPlugin(ProjectionSurfaces) convertPoint:*nearestBlob->centroid fromProjection:"Front" toSurface:"Floor"]
+					* [blobPoint floatValue];
+					c += [GetPlugin(ProjectionSurfaces) convertPoint:[nearestBlob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
+					* 1.0-[blobPoint floatValue];
+										
 					if (shortestDist < [floorBlobFarForceThreshold floatValue]){
 						*[lemming totalforce] += (c - *[lemming position])*([floorBlobFarForce floatValue]/50.0) ;
 					}
@@ -542,9 +543,9 @@
 	//Move the lemming
 	for(lemming in theLemmingArray){
 		//if([lemming deathTime] <=0){
-			*[lemming vel] += *[lemming totalforce];
-			*[lemming totalforce] *= 0;
-			*[lemming vel] *= (100.0-[damp floatValue])/100.0;
+		*[lemming vel] += *[lemming totalforce];
+		*[lemming totalforce] *= 0;
+		*[lemming vel] *= (100.0-[damp floatValue])/100.0;
 		//} else {
 		//	*[lemming vel] *= (DEATH_DURATION-[lemming deathTime])/DEATH_DURATION;
 		//}
@@ -909,15 +910,15 @@
 		glPushMatrix();{
 			
 			if(timeScale > 0.25){
-								
+				
 				timeScale = (timeScale-0.25)*(1.0/0.75);
-
+				
 				ofSetColor(theColor.r, theColor.g, theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*127.0);
 				
 				ofCircle(position->x, position->y, (radius*scaleFactor)*(sin(timeScale*PI)*1.25));
-
+				
 				ofSetColor(theColor.r, theColor.g, theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
-
+				
 				glPushMatrix();{
 					glTranslated(position->x, position->y, 0);
 					for (int i=0; i< 10; i++) {
