@@ -13,9 +13,7 @@
 
 @interface Tracking : ofPlugin {
 	IBOutlet NSView * tracker0settings;
-	IBOutlet NSView * tracker1settings;
-	IBOutlet NSView * tracker2settings;
-	TrackerObject * trackerObj[3];
+	TrackerObject * trackerObj[1];
 }
 
 -(TrackerObject*) trackerNumber:(int)n;

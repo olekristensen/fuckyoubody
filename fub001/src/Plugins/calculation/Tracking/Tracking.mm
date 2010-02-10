@@ -16,7 +16,7 @@
 }
 
 -(void) initPlugin{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		trackerObj[i] = [[TrackerObject alloc] initWithId:i];	
 		[trackerObj[i] setController:controller];
 		[trackerObj[i] loadNibFile];
@@ -24,8 +24,6 @@
 		NSView * dest;
 		
 		if(i == 0) dest = tracker0settings; 		
-		if(i == 1) dest = tracker1settings; 
-		if(i == 2) dest = tracker2settings; 
 		
 		[[trackerObj[i] settingsView] setFrame:[dest bounds]];
 		[dest addSubview:[trackerObj[i] settingsView]];
@@ -35,32 +33,32 @@
 }
 
 -(void) setup{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		[trackerObj[i] setup];
 	}
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		[trackerObj[i] update:timeInterval displayTime:outputTime];
 	}
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		[trackerObj[i] draw];
 	}
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
-	float h = ofGetHeight()/3.0;
+	float h = ofGetHeight()/1.0;
 	h = 226;
 	float w = h * 640.0/480.0;
 	//	float w = ofGetWidth()/4.0;
 	
 	glPushMatrix();
 	glTranslated(0, 26, 0);
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		glPushMatrix();{
 			[trackerObj[i] controlDraw:timeInterval displayTime:timeStamp];
 		}glPopMatrix();
@@ -88,13 +86,13 @@
 }
 
 -(void) mouseUpPoint:(NSPoint)theEvent{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		[trackerObj[i] setMouseEvent:NO];
 	}			
 }
 
 -(void) mouseDownPoint:(NSPoint)theEvent{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		[trackerObj[i] setMouseEvent:YES];
 		ofPoint * thePoint = [trackerObj[i] mousePosition];
 		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];
@@ -103,7 +101,7 @@
 }
 
 -(void) mouseDraggedPoint:(NSPoint)theEvent{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		[trackerObj[i] setMouseEvent:YES];
 		ofPoint * thePoint = [trackerObj[i] mousePosition];
 		[trackerObj[i] setMousePosition:new ofPoint(theEvent.x, theEvent.y)];

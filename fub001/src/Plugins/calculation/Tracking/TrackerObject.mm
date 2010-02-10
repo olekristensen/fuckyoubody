@@ -106,7 +106,7 @@
 		return *low;
 	else {
 		for(int u=0;u< [self nPts];u++){
-			if([self pts][u].y > low->y){
+			if(!low || [self pts][u].y > low->y){
 				low = new ofxPoint2f([self pts][u]);
 			}
 		}
