@@ -143,8 +143,7 @@
 				[blobs addObject:sblob];
 			}
 			
-			if(player == 0) otherPlayer = 1;
-			else otherPlayer = 0;
+			
 			
 			if([player2Active state] == NSOffState){
 				player = 0;
@@ -171,6 +170,12 @@
 					}
 					topLeftBlob->player = 1;
 					
+					
+					for(sblob in blobs){						
+						if(sblob->pid == pblob->pid){
+							player = sblob->player;
+						}
+					}
 					/*int i=0;
 					 for(sblob in blobs){
 					 cout<<i<<" : "<<sblob->player <<endl;;
@@ -178,6 +183,9 @@
 					 }*/			
 				}
 			}
+			
+			if(player == 0) otherPlayer = 1;
+			else otherPlayer = 0;
 			
 			
 			Blob * b;
