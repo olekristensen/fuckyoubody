@@ -137,18 +137,30 @@
 		lastLemmingInterval = lemmingInterval;
 	}
 	
-#pragma mark add lemmings from floor front
+#pragma mark add lemmings from dancer's feet
 	
 	if ([floorAddLemmingsFromFront state] == NSOnState) {
 		float lemmingInterval = fmodf(timeInterval, 1/([floorLemmingsAddRate floatValue]/60));
 		if(lemmingInterval - lastFloorLemmingInterval < 0.0){
-			Lemming * floorLemming = [[[Lemming alloc]initWithX:0.99999-(RADIUS*0.5) Y:0.9999-(RADIUS*0.5) spawnTime:timeInterval]autorelease];
-			[floorLemming setScaleFactor:0.5];
-			[floorLemming vel]->y = -0.01*ofRandom(0.1, 1);
-			[floorLemming vel]->x = -0.01*ofRandom(0.1, 1);
-			[floorLemmings addObject:floorLemming];
+			
+			PersistentBlob * blob;
+						
+			for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
+				ofxVec2f p = [blob getLowestPoint];
+				p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
+				if (p.x > 0 && p.y > 0) {
+				Lemming * floorLemming = [[[Lemming alloc]initWithX:p.x Y:p.y spawnTime:timeInterval]autorelease];
+				[floorLemming setScaleFactor:0.5];
+				[floorLemming vel]->y = -0.01*ofRandom(0, 0.15);
+				[floorLemming vel]->x = -0.01*ofRandom(0, 0.15);
+				[floorLemmings addObject:floorLemming];
+				}
+			}
 		}
 		lastFloorLemmingInterval = lemmingInterval;
+		if ([floorLemmings count] > 700) {
+			[floorAddLemmingsFromFront setState:NSOffState];
+		}
 	}
 	
 	Lemming * lemming;
@@ -197,11 +209,11 @@
 		for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 			
 			ofxPoint2f c;
-			
+	 		
 			c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"]
-			* [blobPoint floatValue];
+			* (1.0-[blobPoint floatValue]);
 			c += [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
-			* 1.0-[blobPoint floatValue];
+			* [blobPoint floatValue];
 			
 			ofxVec2f pf11 = *screenBottomOnFloorLeft;
 			ofxVec2f pf12 = *screenBottomOnFloorRight;
@@ -395,9 +407,9 @@
 					ofxPoint2f c;
 					
 					c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"]
-					* [blobPoint floatValue];
+					* (1.0-[blobPoint floatValue]);
 					c += [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
-					* 1.0-[blobPoint floatValue];
+					* [blobPoint floatValue];
 					
 					if(c.y > 1.0-[floorBlobMask floatValue]){
 						if(shortestDist == -1 || c.distanceSquared(*[lemming position]) < shortestDist){
@@ -412,9 +424,9 @@
 					ofxPoint2f c;
 					
 					c = [GetPlugin(ProjectionSurfaces) convertPoint:*nearestBlob->centroid fromProjection:"Front" toSurface:"Floor"]
-					* [blobPoint floatValue];
+					* (1.0-[blobPoint floatValue]);
 					c += [GetPlugin(ProjectionSurfaces) convertPoint:[nearestBlob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
-					* 1.0-[blobPoint floatValue];
+					* [blobPoint floatValue];
 										
 					if (shortestDist < [floorBlobFarForceThreshold floatValue]){
 						*[lemming totalforce] += (c - *[lemming position])*([floorBlobFarForce floatValue]/50.0) ;
@@ -451,16 +463,16 @@
 			[lemming position]->x = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] - (0.0001 + (RADIUS));				
 		}
 		if([screenFloor state] == NSOffState){
-			if([lemming position]->y + (RADIUS) > 1){
+			if([lemming position]->y + (RADIUS) > 1+(SCREEN_MARGIN)){
+				[lemming collision:timeInterval];
+				[lemming vel]->y *= -0.5;
+				[lemming position]->y = (0.99999+SCREEN_MARGIN) - (RADIUS);								
+			}
+		} else {
+			if([lemming position]->y + (RADIUS) > 1.0){
 				[lemming collision:timeInterval];
 				[lemming vel]->y *= -0.5;
 				[lemming position]->y = 0.99999 - (RADIUS);								
-			}
-		} else {
-			if([lemming position]->y + (RADIUS) > 1.0-(SCREEN_MARGIN)){
-				[lemming collision:timeInterval];
-				[lemming vel]->y *= -0.5;
-				[lemming position]->y = 0.99999 - (RADIUS+SCREEN_MARGIN);								
 			}
 		}
 		
@@ -805,7 +817,7 @@
 		} glPopMatrix();
 		
 	} glPopMatrix();
-	
+
 }
 
 -(float) getScreenGravityAsFloat{
@@ -863,6 +875,9 @@
 		position->y = yPosition;
 		spawnTime = timeInterval;
 		random = ofRandom(0, 1.0);
+		pop = new ofSoundPlayer();
+		pop->loadSound("lemmings/pop.mov");
+		popPlayed = false;
 	}
 	
 	return self;
@@ -906,29 +921,40 @@
 		ofPopStyle();
 	} else if (deathTime > 0) {
 		ofPushStyle();
-		float timeScale = ((timeInterval-deathTime)/DEATH_DURATION);//*(0.5+(random*0.5));
+		float timeScale = ((timeInterval-deathTime)/DEATH_DURATION)*(1.0+(random*2.0));
 		glPushMatrix();{
 			
-			if(timeScale > 0.25){
+			if(timeScale > 0.5 && timeScale <= 1.0){
 				
-				timeScale = (timeScale-0.25)*(1.0/0.75);
-				
-				ofSetColor(theColor.r, theColor.g, theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*127.0);
-				
-				ofCircle(position->x, position->y, (radius*scaleFactor)*(sin(timeScale*PI)*1.25));
-				
-				ofSetColor(theColor.r, theColor.g, theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
+				if(!popPlayed){
+					pop->setSpeed(1.0-fmodf(random*2356345.0,0.5));
+					pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
+					pop->play();
+					popPlayed = true;
+				}
+					
+				timeScale = (timeScale-0.5)*(1.0/0.5);
+								
+				ofSetColor(theColor.r, theColor.g, theColor.b, 255*computedAlpha);// (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
 				
 				glPushMatrix();{
 					glTranslated(position->x, position->y, 0);
 					for (int i=0; i< 10; i++) {
-						glRotatef(random+(i*33), 0,0,1);
-						ofCircle(0, random*timeScale*radius*i, (1.0-timeScale)*radius*0.15);
+						glRotatef(((random+i)*233), 0,0,1);
+						ofCircle(0, (1.0-random)*timeScale*radius*2.0*i, (1.0-timeScale)*radius*0.5);
 					}
 				}glPopMatrix();
 				
-			} else {
-				ofCircle(position->x+ofRandom(0, timeScale*radius*scaleFactor*0.33), position->y+ofRandom(0, timeScale*radius*scaleFactor*0.33), radius*scaleFactor);
+				if(timeScale < 0.2){
+					ofSetColor(255.0-theColor.r, (255.0-theColor.g)*(fmodf(random*2356345.0,1.0)), theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
+					float rectWidth = (radius*scaleFactor)*(sin(timeScale*PI*5.0)*1.5);
+					ofCircle(position->x, position->y, rectWidth);
+				}
+				
+				
+				
+			} else if (timeScale <= 1.0){
+				ofCircle(position->x+ofRandom(0, timeScale*radius*scaleFactor), position->y+ofRandom(0, timeScale*radius*scaleFactor), radius*scaleFactor);
 			}
 			
 		}glPopMatrix();
