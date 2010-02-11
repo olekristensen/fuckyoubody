@@ -46,54 +46,55 @@
 			
 			if(!playerFound){
 				if([pblob getLowestPoint].y > (1.0-percent)){
-					StregkodePlayer * newp = [[StregkodePlayer alloc] init];
-					newp->pid = pblob->pid;					
-					int player;
-					switch (num) {
-						case 0:
-							player = 1;
-							break;
-						case 1:
-							player = 4;
-							break;
-						case 2:
-							player = 2;
-							break;
-						case 3:
-							player = 3;
-							break;							
+					if(num < 4){
+						StregkodePlayer * newp = [[StregkodePlayer alloc] init];
+						newp->pid = pblob->pid;					
+						int player;
+						switch (num) {
+							case 0:
+								player = 1;
+								break;
+							case 1:
+								player = 4;
+								break;
+							case 2:
+								player = 2;
+								break;
+							case 3:
+								player = 3;
+								break;							
+						}
+						newp->r = 255*[[GetPlugin(Players) playerColor:player] redComponent];
+						newp->g = 255*[[GetPlugin(Players) playerColor:player] greenComponent];
+						newp->b = 255*[[GetPlugin(Players) playerColor:player] blueComponent];
+						newp->t = 0;
+						newp->playerNum = player;
+						newp->startM = 0.0f;
+						newp->whiteAdd = 255.0f;
+						[players addObject:newp];
+						cout<<"Add "<<newp->pid<<"  "<<num<<endl;
+						sound->setPan(0.5);
+						sound->play();
+						
+						int column;
+						switch (num) {
+							case 0:
+								column = 2;
+								break;
+							case 1:
+								column = 3;
+								break;
+							case 2:
+								column = 1;
+								break;
+							case 3:
+								column = 0;
+								break;							
+						}
+						[[[GetPlugin(DMXOutput) effectColumn:column] generalNumberColor] setAlpha:0.023];
 					}
-					newp->r = 255*[[GetPlugin(Players) playerColor:player] redComponent];
-					newp->g = 255*[[GetPlugin(Players) playerColor:player] greenComponent];
-					newp->b = 255*[[GetPlugin(Players) playerColor:player] blueComponent];
-					newp->t = 0;
-					newp->playerNum = player;
-					newp->startM = 0.0f;
-					newp->whiteAdd = 255.0f;
-					[players addObject:newp];
-					cout<<"Add "<<newp->pid<<"  "<<num<<endl;
-					sound->setPan(0.5);
-					sound->play();
-					
-					int column;
-					switch (num) {
-						case 0:
-							column = 2;
-							break;
-						case 1:
-							column = 3;
-							break;
-						case 2:
-							column = 1;
-							break;
-						case 3:
-							column = 0;
-							break;							
-					}
-					[[[GetPlugin(DMXOutput) effectColumn:column] generalNumberColor] setAlpha:0.023];
-					
 					num ++;
-					num = MIN(num,3);
+					//					num = MIN(num,3);
 				}
 			}
 			

@@ -315,7 +315,7 @@
 		}
 	}
 	
-
+	
 	if([[globalController testFloorButton] state] == NSOnState){
 		ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:"Front" surface:"Floor"];
 		
@@ -548,15 +548,21 @@
 	
 	glPushMatrix();
 	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Front") == 0){
-		glViewport(0, 0, ofGetWidth()/2.0, ofGetHeight());
+		glViewport(0, 0, ofGetWidth()/3.0, ofGetHeight());
+	} else if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Extra") == 0){
+		glViewport(2*ofGetWidth()/3.0, 0, ofGetWidth()/3.0, ofGetHeight());
 	} else {
-		glViewport(ofGetWidth()/2.0, 0, ofGetWidth()/2.0, ofGetHeight());
+		glViewport(ofGetWidth()/3.0, 0, ofGetWidth()/3.0, ofGetHeight());
 	}
+	
 	
 	float setW = 1.0/ (obj->aspect);
 	float setH = 1.0;
-	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Front") != 0){
+	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Back") == 0){
 		glTranslated(-_w, 0, 0);
+	}
+	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Extra") == 0){
+		glTranslated(-2*_w, 0, 0);
 	}
 	glScaled(_w*2, _h, 1.0);
 	obj->warp->MatrixMultiply();

@@ -315,16 +315,22 @@
 -(void) applyWarp{
 	glPushMatrix();
 	if(strcmp([(projector) name]->c_str(), "Front") == 0){
-		glViewport(0, 0, ofGetWidth()/2.0, ofGetHeight());
+		glViewport(0, 0, ofGetWidth()/3.0, ofGetHeight());
+	} else if(strcmp([(projector) name]->c_str(), "Extra") == 0){
+		glViewport(2*ofGetWidth()/3.0, 0, ofGetWidth()/3.0, ofGetHeight());
 	} else {
-		glViewport(ofGetWidth()/2.0, 0, ofGetWidth()/2.0, ofGetHeight());
+		glViewport(ofGetWidth()/3.0, 0, ofGetWidth()/3.0, ofGetHeight());
 	}
 	
 	float setW = 1.0;
 	float setH = 1.0;
-	if(strcmp([(projector) name]->c_str(), "Front") != 0){
+	if(strcmp([(projector) name]->c_str(), "Back") == 0){
 		glTranslated(-1, 0, 0);
 	}
+	if(strcmp([(projector) name]->c_str(), "Extra") == 0){
+		glTranslated(-2, 0, 0);
+	}
+	
 	glScaled(1*2, 1, 1.0);
 	warp->MatrixMultiply();	
 	glScaled(setW, setH, 1.0);

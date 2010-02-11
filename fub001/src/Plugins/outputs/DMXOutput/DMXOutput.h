@@ -138,6 +138,8 @@
 
 	float ulykkePos[4];
 	
+	float rainbowadd;
+	
 	ofSoundPlayer * music;
 	
 }

@@ -345,7 +345,7 @@
 									 selector:@selector(updateDmx:)
 									   object:nil];
 	serial = new ofSerial();
-	
+	rainbowadd =0;
 	
 	
 	master = 255;
@@ -454,6 +454,12 @@
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if(ofGetFrameRate() > 2){
+		rainbowadd += 0.1 * 1.0/ofGetFrameRate();
+		if(rainbowadd > 1)
+			rainbowadd = 0;
+		
+		
+		
 		for(int i=0;i<gtaPositions.size();i++){
 			gtaPositions[i].z += ([[GetPlugin(GTA) wallSpeedControl] floatValue]/500.0 + 0.2 ) * 0.2 * 60.0/ofGetFrameRate();
 			if(gtaPositions[i].z > 9){
@@ -553,12 +559,12 @@
 			}
 			
 			//RAINBOW			
-			float hue=0, sat=1, bright=1, alph=1;
-			float add = 0.1;
+			float hue=rainbowadd, sat=1, bright=1, alph=1;
+
 			for(int y=0;y<5;y++){
 				for(int x=0;x<3;x++){
 					//NSColor * c = [color copy];
-					float h = hue+add*x + y*0.1;
+					float h = hue+0.1*x + y*0.1;
 					if(h > 1)
 						h -= 1;
 					NSColor * c = [NSColor colorWithCalibratedHue:h saturation:sat brightness:bright alpha:alph];
