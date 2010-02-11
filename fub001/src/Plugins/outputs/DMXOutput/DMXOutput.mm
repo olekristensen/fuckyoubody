@@ -116,7 +116,7 @@
 					c = [NSColor greenColor];
 					break;
 				case 2:
-					c = [NSColor whiteColor];
+					c = [NSColor magentaColor];
 					break;
 				case 3:
 					c = [NSColor redColor];

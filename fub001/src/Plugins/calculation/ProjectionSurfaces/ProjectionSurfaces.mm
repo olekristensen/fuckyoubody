@@ -299,91 +299,6 @@
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	scale = 0.5;
-	
-	// updating interface for tracker based on blobs
-	
-	if([[GetPlugin(Tracking) trackerNumber:[self getCurrentSurface]->trackerNumber] numBlobs] == 4){
-		
-		[trackingButton setEnabled:YES];
-		
-		if ([trackingButton state] == NSOnState) {
-			[calibrateButton setEnabled:NO];
-		} else {
-			[calibrateButton setEnabled:YES];
-		}
-		
-	} else {
-		[calibrateButton setEnabled:NO];
-	}
-	
-	ProjectorObject * proj;
-	
-	for(proj in projectors){
-		
-		ProjectionSurfacesObject * surf;
-		NSArray * a = proj->surfaces;
-		for(surf in a){
-			if (surf->tracking) {
-				for(int i=0;i<4;i++){
-					surf->corners[i] = new ofxPoint2f(
-													  surf->trackingFilter[i*2]->filter(surf->trackingDestinations[i]->x),
-													  surf->trackingFilter[i*2+1]->filter(surf->trackingDestinations[i]->y)  );
-					surf->corners[i] = new ofxPoint2f(
-													  surf->trackingFilter[i*2]->filter(surf->trackingDestinations[i]->x),
-													  surf->trackingFilter[i*2+1]->filter(surf->trackingDestinations[i]->y)  );
-					
-				}				
-				[surf recalculate];
-				
-			}
-			if ([[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] numBlobs] == 4) {
-				
-				Blob * b;
-				ofxPoint2f center;
-				int n= 0;
-				for(b in [[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] blobs]){
-					center += [b centroid];
-					n++;
-				}
-				center /= n;
-				
-				ofxPoint2f topLeft = center, topRight= center, bottomLeft= center, bottomRight= center;
-				for(b in [[GetPlugin(Tracking) trackerNumber:surf->trackerNumber] blobs]){
-					if(([b centroid].x < topLeft.x && [b centroid].y < topLeft.y)){
-						topLeft = [b centroid];
-					}
-					if(([b centroid].x > topRight.x && [b centroid].y < topRight.y)){
-						topRight = [b centroid];
-					}
-					if(([b centroid].x < bottomLeft.x && [b centroid].y > bottomLeft.y)){
-						bottomLeft = [b centroid];
-					}
-					if(([b centroid].x > bottomRight.x && [b centroid].y > bottomRight.y)){
-						bottomRight = [b centroid];
-					}
-				}
-				if (surf->tracking) {
-					surf->trackingDestinations[0] = new ofxPoint2f( topLeft + *surf->trackingOffsets[0]);
-					surf->trackingDestinations[1] = new ofxPoint2f( topRight + *surf->trackingOffsets[1]);
-					surf->trackingDestinations[2] = new ofxPoint2f( bottomRight + *surf->trackingOffsets[2]);
-					surf->trackingDestinations[3] = new ofxPoint2f( bottomLeft + *surf->trackingOffsets[3]);
-					[surf recalculate];
-					
-				} else if (surf->calibrating) {
-					
-					surf->trackingOffsets[0] = new ofxPoint2f(*surf->corners[0] - topLeft);
-					surf->trackingOffsets[1] = new ofxPoint2f(*surf->corners[1] - topRight);
-					surf->trackingOffsets[2] = new ofxPoint2f(*surf->corners[2] - bottomRight);
-					surf->trackingOffsets[3] = new ofxPoint2f(*surf->corners[3] - bottomLeft);
-					
-					surf->calibrating = false;
-					surf->tracking = true;
-					[self updateTrackerButton];
-					
-				}
-			}
-		}	
-	}
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -407,6 +322,33 @@
 		}
 	}
 	
+
+	if([[globalController testFloorButton] state] == NSOnState){
+		ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:"Front" surface:"Floor"];
+		
+		ofSetColor(255, 255, 255);
+		[self apply:"Front" surface:"Floor"];
+		[self drawGrid:"Floor" aspect:[self getAspect] resolution:10 drawBorder:false alpha:1.0 fontSize:1.0 simple:NO];
+		
+		glPopMatrix();
+		[self apply:"Back" surface:"Floor"];
+		[self drawGrid:"Floor" aspect:[self getAspect] resolution:10 drawBorder:false alpha:1.0 fontSize:1.0 simple:NO];
+		
+		glPopMatrix();
+	}
+	if([[globalController testScreenButton] state] == NSOnState){
+		ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:"Front" surface:"Floor"];
+		
+		ofSetColor(255, 255, 255);
+		[self apply:"Front" surface:"Backwall"];
+		[self drawGrid:"Screen" aspect:[self getAspect] resolution:10 drawBorder:false alpha:1.0 fontSize:1.0 simple:NO];
+		
+		glPopMatrix();
+		[self apply:"Back" surface:"Backwall"];
+		[self drawGrid:"Screen" aspect:[self getAspect] resolution:10 drawBorder:false alpha:1.0 fontSize:1.0 simple:NO];
+		
+		glPopMatrix();
+	}
 	/*
 	 ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	 [self applyProjection:surface];
