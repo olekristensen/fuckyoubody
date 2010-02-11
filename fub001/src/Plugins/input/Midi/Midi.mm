@@ -376,27 +376,10 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	}
 }
 
-
--(void) sendGoWithCue:(int)cueNumber{
-	//	[self sendValue:1 forNote:1 onChannel:1];
-	
-	Byte packetbuffer[128];
-	MIDIPacketList packetlist;
-	MIDIPacket     *packet     = MIDIPacketListInit(&packetlist);
-	
-	//	F0 7F <device_ID> 02 <command_format> <command> <data> F7
-	// http://www.richmondsounddesign.com/docs/midi-show-control-specification.pdf
-	
-	Byte mdata[8] = {0xf0, 0x7f, [mscDeviceID intValue], 0x02, 0x7F, 0x01, cueNumber , 0xf7};
-	packet = MIDIPacketListAdd(&packetlist, sizeof(packetlist),
-							   packet, 0, 8, mdata);
-	
-	if (endpoint) {
-		[sendEndpoint addSender:self];
-		[sendEndpoint processMIDIPacketList:&packetlist sender:self];
-		[sendEndpoint removeSender:self];
-	}
+-(IBAction) testNoteOn:(id)sender{
+	[self sendValue:1 forNote:1 onChannel:1];
 }
+
 
 -(IBAction) sendResetAll:(id)sender{
 	//	[self sendValue:1 forNote:1 onChannel:1];

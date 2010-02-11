@@ -55,8 +55,8 @@
 -(IBAction) selectMidiInterface:(id)sender;
 -(IBAction) printMidiMappingsList:(id)sender;
 -(IBAction) sendGo:(id)sender;
--(void) sendGoWithCue:(int)cueNumber;
 -(IBAction) sendResetAll:(id)sender;
+-(IBAction) testNoteOn:(id)sender;
 
 -(void)sendValue:(int)midiValue forNote:(int)midiNote onChannel:(int)midiChannel;
 
