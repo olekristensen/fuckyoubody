@@ -885,7 +885,7 @@
 		pop = new ofSoundPlayer();
 		popPlayed = false;
 		//pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
-		pop->loadSound("lemmings/fx/" + ofToString(round(random*23)+1,0) + ".wav");
+		pop->loadSound("lemmings/fx/" + ofToString(round(ofRandom(0, 1)*15)+1,0) + ".wav");
 		//pop->loadSound("lemmings/org/DIE.wav");
 		
 		splat = new ofSoundPlayer();
@@ -944,7 +944,7 @@
 			if(timeScale > 0.5 && timeScale <= 1.0){
 				
 				if(!popPlayed){
-					pop->setSpeed(ofRandom(0.01, 1.0));
+					pop->setSpeed(ofRandom(0.33, 1.0));
 					pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
 					pop->play();
 					popPlayed = true;
