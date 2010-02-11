@@ -783,7 +783,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				} else {
 					a = ((ofxVec2f)(*pacmanPosition-*ballPosition)).angle(-*pacmanDir);	
 					if(pacmanPosition->distance(*ballPosition) < 0.02){
-						[GetPlugin(Midi) sendGo:self];
+						[GetPlugin(Midi) sendGoWithCue:99];
 						
 						[ballUpdateButton setState:NSOffState];
 						[ballDrawButton setState:NSOffState];

@@ -157,6 +157,8 @@
 	NSMutableArray * lemmingList;
 	ofSoundPlayer * pop;
 	bool			popPlayed;
+	ofSoundPlayer * splat;
+	bool			splatPlayed;
 
 }
 

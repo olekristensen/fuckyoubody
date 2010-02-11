@@ -875,9 +875,15 @@
 		position->y = yPosition;
 		spawnTime = timeInterval;
 		random = ofRandom(0, 1.0);
+		
 		pop = new ofSoundPlayer();
-		pop->loadSound("lemmings/pop.mov");
 		popPlayed = false;
+		pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
+		
+		splat = new ofSoundPlayer();
+		splatPlayed = false;
+		splat->loadSound("lemmings/splat/" + ofToString(round(random*104)+1,0) + ".aif");
+		
 	}
 	
 	return self;
@@ -887,6 +893,8 @@
 	delete position;
 	delete vel;
 	delete totalforce;
+	delete pop;
+	delete splat;
 	[super dealloc];
 }
 
@@ -927,8 +935,8 @@
 			if(timeScale > 0.5 && timeScale <= 1.0){
 				
 				if(!popPlayed){
-					pop->setSpeed(1.0-fmodf(random*2356345.0,0.5));
-					pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
+					pop->setSpeed(ofRandom(0.001, 0.5));
+					//pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
 					pop->play();
 					popPlayed = true;
 				}
@@ -996,6 +1004,10 @@
 	if(vel->length() > [GetPlugin(Lemmings) getScreenSplatVelocityAsFloat] && [self isAlive] && (!blessed)){
 		vel->set(0,0);
 		splatTime = timeInterval;
+		if(!splatPlayed){
+		//	splat->play();
+			splatPlayed = true;
+		}
 	}
 	if(blessed){
 		vel->y = 0;
