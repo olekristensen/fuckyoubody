@@ -62,7 +62,7 @@
 @property (assign, readwrite) NSArray * lamps;
 @property (assign, readwrite) int number;
 
--(BOOL)isLamp:(ofxPoint2f)lampPos atCoordinate:(ofxPoint3f)cord;
+-(float)isLamp:(ofxPoint2f)lampPos atCoordinate:(ofxPoint3f)cord;
 -(id) initWithStartaddress:(int) address;
 -(void) addColor:(NSColor*)color onLamp:(ofPoint)lamp withBlending:(int)blending;
 -(LedLamp*) getLampAtPoint:(ofPoint)point;

@@ -153,12 +153,6 @@
 			surface->trackerNumber = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.trackerNumber",projI, surfI]];
 			
 			[surfacesButton addItemWithTitle:[NSString stringWithCString:surface->name->c_str()]];
-			//			NSMenuItem * item = [surfacesButton lastItem];
-			/*	if(surfI == 0 && projI == 0){
-			 [item setKeyEquivalent:@"a"];
-			 [item setKeyEquivalentModifierMask:NSCommandKeyMask];
-			 [surfacesButton set
-			 }*/
 			surfI ++;
 		}
 		projI++;
@@ -296,10 +290,8 @@
 	}glPopMatrix();
 }
 
--(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	
+-(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{	
 	scale = 0.5;
-
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -350,16 +342,8 @@
 		
 		glPopMatrix();
 	}
-	/*
-	 ProjectionSurfacesObject* surface = [self getCurrentSurface];
-	 [self applyProjection:surface];
-	 {
-	 //	[self apply:"Front" surface:"Floor"];
-	 ofSetColor(255, 255, 255);
-	 if([showGrid state] == NSOnState){
-	 [self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:false alpha:1.0 fontSize:1.0];
-	 }
-	 } glPopMatrix();*/
+	
+	
 	ofSetColor(255, 255, 255);
 	ofRect(0, 0, 0.001, 0.001);
 	ofRect(0.5, 0, -0.001, 0.001);
@@ -590,23 +574,7 @@
 }
 
 -(void) apply:(string)projection surface:(string)surface width:(float) _w height:(float) _h{
-	/*ProjectorObject * proj;
-	 for(proj in projectors){
-	 if(strcmp(proj->name->c_str(), projection.c_str()) == 0){
-	 ProjectionSurfacesObject * surf;
-	 NSArray * a = proj->surfaces;
-	 for(surf in a){
-	 if(strcmp(surf->name->c_str(), surface.c_str()) == 0){
-	 //	cout<<"found"<<endl;
-	 [self applyProjection:surf width:_w height:_h];
-	 }
-	 
-	 }
-	 }
-	 }*/
 	[self applyProjection:[self getProjectionSurfaceByName:projection surface:surface] width:_w height:_h];
-	
-	
 }
 
 -(ProjectionSurfacesObject*) getProjectionSurfaceByName:(string)projection surface:(string)surface{

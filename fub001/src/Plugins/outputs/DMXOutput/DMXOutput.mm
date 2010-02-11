@@ -9,6 +9,7 @@
 #import "DMXOutput.h"
 #include "HardwareBox.h"
 #include "Players.h"
+#include "GTA.h"
 
 @implementation DMXEffectColumn
 @synthesize backgroundColorR, settingsView, number, generalNumberColor;
@@ -393,6 +394,7 @@
 	
 	for(int i=0;i<5;i++){
 		gtaPositions.push_back(ofxPoint3f(((i<2)?0:1), round(ofRandom(0, 5)), ofRandom(-10, 0)));
+		gtaTower.push_back(NO);
 	}
 	
 	for (int i=0; i<4; i++) {
@@ -453,10 +455,14 @@
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if(ofGetFrameRate() > 2){
 		for(int i=0;i<gtaPositions.size();i++){
-			gtaPositions[i].z += 0.2 * 60.0/ofGetFrameRate();
+			gtaPositions[i].z += ([[GetPlugin(GTA) wallSpeedControl] floatValue]/500.0 + 0.2 ) * 0.2 * 60.0/ofGetFrameRate();
 			if(gtaPositions[i].z > 9){
 				gtaPositions[i].z -= 10+ofRandom(-2, 2);
 				gtaPositions[i].y = roundf(ofRandom(0, 4));
+				gtaTower[i] = YES;
+				gtaTower[i] = (ofRandom(0, [GTATower floatValue]) < 1);
+				cout<<gtaTower[i]<<endl;
+				
 				//	gtaPositions[i].x = roundf(ofRandom(0, 1));
 			}
 			
@@ -471,9 +477,23 @@
 		
 		
 		DiodeBox * box;
+		
+		for(box in diodeboxes){		
+			for(int y=0;y<5;y++){
+				for(int x=0;x<3;x++){
+					LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
+					[GetPlugin(HardwareBox) setDmxValue:lamp->r onChannel:lamp->channel];
+					[GetPlugin(HardwareBox) setDmxValue:lamp->g onChannel:lamp->channel+1];
+					[GetPlugin(HardwareBox) setDmxValue:lamp->b onChannel:lamp->channel+2];
+					[GetPlugin(HardwareBox) setDmxValue:master onChannel:lamp->channel+3];					
+				}
+			}
+			[box reset];
+		}
+		
+		
 		int n= 0;
 		for(box in diodeboxes){
-			[box reset];
 			/*//Background
 			 for(int x=0;x<3;x++){
 			 for(int y=0;y<5;y++){
@@ -509,16 +529,22 @@
 						
 						NSColor * c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0];
 						
+						int start = y;
+						int stop  = y;
+						if(gtaTower[i])
+							stop = 4;
 						
-						if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p]){
-							c = [c colorWithAlphaComponent:1.0*[GTAEffect floatValue]/100.0];
-							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
-						} else if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p-ofxPoint3f(0,0,1)]){
-							c = [c colorWithAlphaComponent:0.6*[GTAEffect floatValue]/100.0];
-							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
-						} else if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p-ofxPoint3f(0,0,2)]){
-							c = [c colorWithAlphaComponent:0.2*[GTAEffect floatValue]/100.0];
-							[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+						for(int u=start;u<=stop;u++){
+							if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p] > 0.6){
+								c = [c colorWithAlphaComponent:1.0*[GTAEffect floatValue]/100.0];
+								[box addColor:c onLamp:ofPoint(x,u) withBlending:BLENDING_ADD];
+							} else if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p-ofxPoint3f(0,0,1)] > 0.6){
+								c = [c colorWithAlphaComponent:0.6*[GTAEffect floatValue]/100.0];
+								[box addColor:c onLamp:ofPoint(x,u) withBlending:BLENDING_ADD];
+							} else if([[diodeboxes objectAtIndex:n] isLamp:ofPoint(x,y) atCoordinate:p-ofxPoint3f(0,0,2)] > 0.6){
+								c = [c colorWithAlphaComponent:0.2*[GTAEffect floatValue]/100.0];
+								[box addColor:c onLamp:ofPoint(x,u) withBlending:BLENDING_ADD];
+							}
 						}
 						
 					}
@@ -844,7 +870,7 @@
 								NSColor * c = [GetPlugin(Players) playerColorLed:4];
 								c = [c colorWithAlphaComponent:0];
 								if(5-y <= bokseringTime[time]){
-									c = [GetPlugin(Players) playerColorLed:2];
+									c = [GetPlugin(Players) playerColorLed:(i%2==0)?2:4];
 									c = [c colorWithAlphaComponent:[alpha floatValue]];
 								} 
 								[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];				
@@ -860,11 +886,9 @@
 								
 								NSColor * c = [GetPlugin(Players) playerColorLed:4];
 								c = [c colorWithAlphaComponent:0];
-								if(5-y <= bokseringTime[time]){
+								if(5-y <= bokseringTime[time]){						
 									
-									
-									
-									c = [GetPlugin(Players) playerColorLed:2];
+									c = [GetPlugin(Players) playerColorLed:(i%2==0)?2:4];
 									c = [c colorWithAlphaComponent:[alpha floatValue]];
 								} 
 								[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];				
@@ -880,19 +904,7 @@
 		}
 		
 		
-		for(box in diodeboxes){		
-			for(int y=0;y<5;y++){
-				for(int x=0;x<3;x++){
-					LedLamp * lamp = [box getLampAtPoint:ofPoint(x,y)];
-					//				cout<<"Lamp : "<<lamp->g<<" channel : "<<lamp->channel+1<<endl;			
-					[GetPlugin(HardwareBox) setDmxValue:lamp->r onChannel:lamp->channel];
-					[GetPlugin(HardwareBox) setDmxValue:lamp->g onChannel:lamp->channel+1];
-					[GetPlugin(HardwareBox) setDmxValue:lamp->b onChannel:lamp->channel+2];
-					[GetPlugin(HardwareBox) setDmxValue:master onChannel:lamp->channel+3];
-					
-				}
-			}
-		}
+		
 		
 		//Gradient
 		//if([backgroundGradient state] == NSOnState){
@@ -936,7 +948,17 @@
 -(IBAction) bokseringStepTime:(id)sender{
 	bokseringTime.erase(bokseringTime.begin());
 	bokseringTime.push_back(bokseringCurValue);
-	cout<<bokseringCurValue<<endl;
 }
 
+
+-(void)addColor:(NSColor*)c forCoordinate:(ofxPoint3f)coord withBlending:(int)blending{
+	DiodeBox * box;
+	for(box in diodeboxes){
+		for(int y=0;y<5;y++){
+			for(int x=0;x<3;x++){
+				[box addColor:[c colorWithAlphaComponent:[box isLamp:ofPoint(x,y) atCoordinate:coord]] onLamp:ofPoint(x,y) withBlending:blending];
+			}
+		}
+	}
+}
 @end

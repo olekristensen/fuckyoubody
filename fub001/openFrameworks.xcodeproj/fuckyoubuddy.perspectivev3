@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Debug</string>
+	<string>Project</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -231,6 +231,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -296,8 +298,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>107</integer>
-									<integer>105</integer>
+									<integer>92</integer>
+									<integer>82</integer>
 									<integer>65</integer>
 									<integer>28</integer>
 									<integer>26</integer>
@@ -305,7 +307,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1476}, {434, 988}}</string>
+							<string>{{0, 1039}, {434, 988}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -321,6 +323,8 @@
 							<string>MainColumn</string>
 							<real>434</real>
 						</array>
+						<key>RubberWindowFrame</key>
+						<string>5 131 1920 1047 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -336,7 +340,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>6ECA47011120B52D001CF36B</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Lemmings.mm</string>
+								<string>DMXOutput.mm</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -344,11 +348,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>6ECA47021120B52D001CF36B</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Lemmings.mm</string>
+										<string>DMXOutput.mm</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>6EF9C52F11244DA100FA9462</string>
+										<string>6EF9C62D1124788A00FA9462</string>
 										<key>history</key>
 										<array>
 											<string>6EBB67591120B97100242030</string>
@@ -359,19 +363,14 @@
 											<string>6EF3529211219F8C00A99450</string>
 											<string>6EF3529411219F8C00A99450</string>
 											<string>6EF352DE1121C4C100A99450</string>
-											<string>6EF353461121EC2800A99450</string>
-											<string>6EF353471121EC2800A99450</string>
 											<string>6EF354E71122017300A99450</string>
 											<string>6EF35548112206A200A99450</string>
 											<string>6EF355581122152E00A99450</string>
 											<string>6EF355591122152E00A99450</string>
-											<string>6EE5520F1123106600FCD4B1</string>
 											<string>6EE552101123106600FCD4B1</string>
 											<string>6EE552221123114A00FCD4B1</string>
 											<string>6EE552261123115F00FCD4B1</string>
 											<string>6EE552461123173A00FCD4B1</string>
-											<string>6EE552481123173A00FCD4B1</string>
-											<string>6EE552491123173A00FCD4B1</string>
 											<string>6EE5524A1123173A00FCD4B1</string>
 											<string>6EE5524B1123173A00FCD4B1</string>
 											<string>6EE552511123181F00FCD4B1</string>
@@ -388,8 +387,6 @@
 											<string>6EF9C479112415CD00FA9462</string>
 											<string>6EF9C47A112415CD00FA9462</string>
 											<string>6EF9C47B112415CD00FA9462</string>
-											<string>6EF9C47C112415CD00FA9462</string>
-											<string>6EF9C4C411243E6400FA9462</string>
 											<string>6EF9C4C511243E6400FA9462</string>
 											<string>6EF9C4C611243E6400FA9462</string>
 											<string>6EF9C4C711243E6400FA9462</string>
@@ -398,11 +395,19 @@
 											<string>6EF9C4E21124471300FA9462</string>
 											<string>6EF9C4E31124471300FA9462</string>
 											<string>6EF9C4E41124471300FA9462</string>
-											<string>6EF9C4E51124471300FA9462</string>
 											<string>6EF9C4E61124471300FA9462</string>
 											<string>6EF9C4F41124477100FA9462</string>
 											<string>6EF9C50D112448D800FA9462</string>
-											<string>6EF9C50E112448D800FA9462</string>
+											<string>6EF9C5341124502D00FA9462</string>
+											<string>6EF9C539112451D300FA9462</string>
+											<string>6EF9C53A112451D300FA9462</string>
+											<string>6EF9C557112453D900FA9462</string>
+											<string>6EF9C5DC11245CBC00FA9462</string>
+											<string>6EF9C5E611245CE200FA9462</string>
+											<string>6EF9C5EB11246DE000FA9462</string>
+											<string>6EF9C6051124703B00FA9462</string>
+											<string>6EF9C60D112470F900FA9462</string>
+											<string>6EF9C62B1124788500FA9462</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -417,6 +422,8 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {1464, 748}}</string>
+								<key>RubberWindowFrame</key>
+								<string>5 131 1920 1047 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -440,6 +447,8 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {1464, 226}}</string>
+										<key>RubberWindowFrame</key>
+										<string>5 131 1920 1047 0 0 1920 1178 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -577,8 +586,6 @@
 					<dict>
 						<key>Frame</key>
 						<string>{{0, 0}, {1920, 296}}</string>
-						<key>RubberWindowFrame</key>
-						<string>0 131 1920 1047 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugCLIModule</string>
@@ -653,11 +660,7 @@
 							</array>
 							<key>Frame</key>
 							<string>{{936, 0}, {984, 342}}</string>
-							<key>RubberWindowFrame</key>
-							<string>0 131 1920 1047 0 0 1920 1178 </string>
 						</dict>
-						<key>RubberWindowFrame</key>
-						<string>0 131 1920 1047 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXDebugSessionModule</string>
@@ -721,13 +724,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>6EF9C53011244DA100FA9462</string>
+		<string>6EF9C626112471C400FA9462</string>
 		<string>6EF9C488112415CF00FA9462</string>
 		<string>6EF9C489112415CF00FA9462</string>
 		<string>/Volumes/Recoil/Development/libs/of_preRelease_v006_xcode_FAT/apps/fub/fub001/openFrameworks.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>0 131 1920 1047 0 0 1920 1178 </string>
+	<string>5 131 1920 1047 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

@@ -74,6 +74,8 @@
 
 }
 
+@property (assign, readonly) NSSlider * wallSpeedControl;
+
 -(void) generateObjects;
 -(IBAction) reset:(id)sender;
 @end

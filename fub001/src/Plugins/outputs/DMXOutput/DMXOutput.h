@@ -92,6 +92,8 @@
 	IBOutlet NSColorWell * noiseColor2;
 	
 	IBOutlet NSSlider * GTAEffect;
+	IBOutlet NSSlider * GTATower;
+
 	IBOutlet NSSlider * GTAUlykke;
 	IBOutlet NSSlider * rainbowAlpha;
 	IBOutlet NSSlider * bokseringPale;
@@ -132,7 +134,8 @@
 	vector<unsigned char> * serialBuffer;
 	
 	vector<ofxPoint3f> gtaPositions;
-	
+	vector<BOOL> gtaTower;
+
 	float ulykkePos[4];
 	
 	ofSoundPlayer * music;
@@ -151,6 +154,8 @@
 -(IBAction) bokseringStepTime:(id)sender;
 
 -(void) setup;
+-(void)addColor:(NSColor*)c forCoordinate:(ofxPoint3f)coord withBlending:(int)blending;
+
 
 
 //-(LedLamp*) getLamp:(int)x y:(int)y;

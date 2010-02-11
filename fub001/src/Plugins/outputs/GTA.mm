@@ -1,5 +1,6 @@
 #include "ProjectionSurfaces.h"
 #include "GTA.h"
+#include "DMXOutput.h"
 
 @implementation WallObject
 @synthesize pos, offset, obstacle, texture, tower,visible;
@@ -42,7 +43,7 @@
 
 
 @implementation GTA
-
+@synthesize wallSpeedControl;
 -(void) initPlugin{
 	wallObjects = [[NSMutableArray array] retain];
 }
@@ -288,7 +289,17 @@
 		glPopMatrix();
 	}
 	
-	if([floorActiveControl state] == NSOnState){\
+	if([floorActiveControl state] == NSOnState){
+/*		NSColor * wc = [NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1];
+		for(int y=0;y<5;y++){
+		ofxPoint3f p = ofxPoint3f(1,y,7-floorPos*16);
+		[GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
+
+		p = ofxPoint3f(0,y,7-floorPos*16+2);
+		[GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
+
+		}*/
+		
 		ofSetColor(215, 221, 248);
 
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{

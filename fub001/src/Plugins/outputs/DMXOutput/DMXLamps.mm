@@ -244,7 +244,7 @@
 }
 
 
--(BOOL)isLamp:(ofxPoint2f)lampPos atCoordinate:(ofxPoint3f)cord{
+-(float)isLamp:(ofxPoint2f)lampPos atCoordinate:(ofxPoint3f)cord{
 	ofxPoint3f p;
 	p.y = lampPos.y;
 	if(number == 0 || number == 1)
@@ -269,7 +269,10 @@
 			break;
 	}
 	
-	return(p.distance(cord) < 0.4);
+	if(p.distance(cord) < 0.95)
+		return(1-p.distance(cord));
+	else 
+		return 0;
 } 
 
 
