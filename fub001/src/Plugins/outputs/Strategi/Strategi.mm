@@ -314,13 +314,15 @@
 		if(player == 0) otherPlayer = 1;
 		else otherPlayer = 0;
 		
+		
+		ofEnableAlphaBlending();
 		if(pid < contourPoints.size()){
 			
 			for(int i=0;i<contourPoints[pid].size();i++){
 				if(player ==0){
-					ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
+					ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
 				} else {
-					ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
+					ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
 				}
 				
 				
@@ -458,9 +460,9 @@
 	for(int i=0;i<2;i++){
 		if(i ==0){
 			
-			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
+			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
 		} else {
-			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]);	
+			ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.);	
 		}	
 		images[i]->draw(0, 0, 1,1);
 	}

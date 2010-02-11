@@ -136,8 +136,8 @@
 	float ulykkePos[4];
 	
 	ofSoundPlayer * music;
+	
 }
-
 
 -(DMXEffectColumn*) effectColumn:(int)n;
 -(void) updateDmx:(id)param;

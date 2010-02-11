@@ -43,6 +43,7 @@
 	IBOutlet NSButton * pause;
 	
 	IBOutlet NSSlider * outputBlurSlider;
+	IBOutlet NSSlider * frontProjectorSlider	;
 
 
 	ofxCvGrayscaleImage * images[4];

@@ -21,9 +21,9 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="431"/>
 			<integer value="305"/>
 			<integer value="9"/>
-			<integer value="431"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1202,7 +1202,7 @@
 							<object class="NSButton" id="729810725">
 								<reference key="NSNextResponder" ref="984062983"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{259, 14}, {118, 25}}</string>
+								<string key="NSFrame">{{243, 10}, {138, 25}}</string>
 								<reference key="NSSuperview" ref="984062983"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="868523327">
@@ -1222,13 +1222,13 @@
 							<object class="NSButton" id="409124408">
 								<reference key="NSNextResponder" ref="984062983"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{259, 44}, {118, 25}}</string>
+								<string key="NSFrame">{{243, 40}, {138, 25}}</string>
 								<reference key="NSSuperview" ref="984062983"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="883855041">
 									<int key="NSCellFlags">67239424</int>
 									<int key="NSCellFlags2">134217728</int>
-									<string key="NSContents">Skærm LED</string>
+									<string key="NSContents">Screen LED</string>
 									<reference key="NSSupport" ref="853742111"/>
 									<reference key="NSControlView" ref="409124408"/>
 									<int key="NSButtonFlags">917782783</int>
@@ -1242,7 +1242,7 @@
 							<object class="NSButton" id="71651530">
 								<reference key="NSNextResponder" ref="984062983"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{259, 74}, {118, 25}}</string>
+								<string key="NSFrame">{{243, 70}, {138, 25}}</string>
 								<reference key="NSSuperview" ref="984062983"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="141095453">
@@ -1262,15 +1262,35 @@
 							<object class="NSButton" id="263012120">
 								<reference key="NSNextResponder" ref="984062983"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{259, 104}, {118, 25}}</string>
+								<string key="NSFrame">{{243, 100}, {138, 25}}</string>
 								<reference key="NSSuperview" ref="984062983"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="1065383640">
 									<int key="NSCellFlags">67239424</int>
 									<int key="NSCellFlags2">134217728</int>
-									<string key="NSContents">Test flader</string>
+									<string key="NSContents">Test floor</string>
 									<reference key="NSSupport" ref="853742111"/>
 									<reference key="NSControlView" ref="263012120"/>
+									<int key="NSButtonFlags">917782783</int>
+									<int key="NSButtonFlags2">163</int>
+									<string key="NSAlternateContents"/>
+									<string key="NSKeyEquivalent"/>
+									<int key="NSPeriodicDelay">400</int>
+									<int key="NSPeriodicInterval">75</int>
+								</object>
+							</object>
+							<object class="NSButton" id="551371177">
+								<reference key="NSNextResponder" ref="984062983"/>
+								<int key="NSvFlags">268</int>
+								<string key="NSFrame">{{243, 130}, {138, 25}}</string>
+								<reference key="NSSuperview" ref="984062983"/>
+								<bool key="NSEnabled">YES</bool>
+								<object class="NSButtonCell" key="NSCell" id="506596569">
+									<int key="NSCellFlags">67239424</int>
+									<int key="NSCellFlags2">134217728</int>
+									<string key="NSContents">Test screentracking</string>
+									<reference key="NSSupport" ref="853742111"/>
+									<reference key="NSControlView" ref="551371177"/>
 									<int key="NSButtonFlags">917782783</int>
 									<int key="NSButtonFlags2">163</int>
 									<string key="NSAlternateContents"/>
@@ -4127,6 +4147,14 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 					</object>
 					<int key="connectionID">481</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">testDmxButton</string>
+						<reference key="source" ref="7891207"/>
+						<reference key="destination" ref="71651530"/>
+					</object>
+					<int key="connectionID">494</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -5002,6 +5030,7 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 							<reference ref="409124408"/>
 							<reference ref="71651530"/>
 							<reference ref="263012120"/>
+							<reference ref="551371177"/>
 						</object>
 						<reference key="parent" ref="7891207"/>
 					</object>
@@ -5256,6 +5285,20 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 						<reference key="object" ref="1065383640"/>
 						<reference key="parent" ref="263012120"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">492</int>
+						<reference key="object" ref="551371177"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="506596569"/>
+						</object>
+						<reference key="parent" ref="984062983"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">493</int>
+						<reference key="object" ref="506596569"/>
+						<reference key="parent" ref="551371177"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -5455,6 +5498,8 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 					<string>49.IBPluginDependency</string>
 					<string>490.IBPluginDependency</string>
 					<string>491.IBPluginDependency</string>
+					<string>492.IBPluginDependency</string>
+					<string>493.IBPluginDependency</string>
 					<string>5.IBEditorWindowLastContentRect</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.IBWindowTemplateEditedContentRect</string>
@@ -5592,7 +5637,7 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 					<real value="0.0"/>
 					<real value="0.0"/>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{255, 504}, {1158, 652}}</string>
+					<string>{{110, 504}, {1158, 652}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5682,6 +5727,8 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{458, 154}, {1024, 768}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{458, 154}, {1024, 768}}</string>
@@ -5723,7 +5770,7 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">491</int>
+			<int key="maxID">494</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5791,6 +5838,7 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 							<string>statusBusy</string>
 							<string>statusTextField</string>
 							<string>testApp</string>
+							<string>testDmxButton</string>
 							<string>testSlider</string>
 							<string>xbeeStatus</string>
 							<string>xbeeStrength</string>
@@ -5816,6 +5864,7 @@ AAAAAAAAdGV4dAAAAABDb3B5cmlnaHQgQXBwbGUsIEluYy4sIDIwMTAAA</bytes>
 							<string>NSProgressIndicator</string>
 							<string>BWInsetTextField</string>
 							<string>TestAppController</string>
+							<string>NSButton</string>
 							<string>PluginUISlider</string>
 							<string>NSButton</string>
 							<string>NSLevelIndicator</string>

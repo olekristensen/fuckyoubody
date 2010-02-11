@@ -84,52 +84,110 @@
 }
 
 -(void)addColorForLamp:(ofPoint)lamp box:(DiodeBox*)box{
-	//Background
-	if(lamp.y >= 5*[topCrop floatValue]/100.0){
-		[box addColor:[backgroundColor color] onLamp:lamp withBlending:0];
-	}
-	
-	//Number	
-	int tal = [generalNumberValue intValue];	
-	bool flags[15];
-	[self makeNumber:tal intoArray:flags];	
-	NSColor * c;
-	if(!flags[ (int)(lamp.x+lamp.y*3) ]){
-		c = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0];
-	} else {
-		c = [generalNumberColor color];
-	}
-	[box addColor:c onLamp:lamp withBlending:[generalNumberBlendmode selectedSegment]];
-	
-	
-	//Random noise
-	
-	noiseNextUpdate[(int)lamp.x][(int)lamp.y] -= [noiseSpeed floatValue] * 10.0/ofGetFrameRate();
-	if(noiseNextUpdate[(int)lamp.x][(int)lamp.y] < 0 ){
-		
-		noiseNextUpdate[(int)lamp.x][(int)lamp.y] += 1000;
-		
-		
-		float r = ofRandom(0, 1);
-		if([noiseThreshold floatValue] > 0){
-			if(r < [noiseThreshold floatValue]/100.0)
-				r = 0;
-			else 
-				r = 1;
+	if([[globalController testDmxButton] state] == NSOnState){
+		if(number < 4){
+			NSColor * c;
+			switch (number) {
+				case 0:
+					c = [NSColor redColor];
+					break;
+				case 1:
+					c = [NSColor blueColor];
+					break;
+				case 2:
+					c = [NSColor greenColor];
+					break;
+				case 3:
+					c = [NSColor yellowColor];
+					break;
+					
+				default:
+					break;
+			}
+			
+			[box addColor:c onLamp:lamp withBlending:0];
+			
+			
+			switch (number) {
+				case 0:
+					c = [NSColor blueColor];
+					break;
+				case 1:
+					c = [NSColor greenColor];
+					break;
+				case 2:
+					c = [NSColor whiteColor];
+					break;
+				case 3:
+					c = [NSColor redColor];
+					break;
+					
+				default:
+					break;
+			}
+			
+			
+			int tal =number + 1;	
+			bool flags[15];
+			[self makeNumber:tal intoArray:flags];	
+			if(!flags[ (int)(lamp.x+lamp.y*3) ]){
+				c = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0];
+			} else {
+				c = c;
+			}
+			[box addColor:c onLamp:lamp withBlending:0];
+			
 		}
-		noiseValues[(int)lamp.x][(int)lamp.y] = r;
+		
+	} else {
+		//Background
+		if(lamp.y >= 5*[topCrop floatValue]/100.0){
+			[box addColor:[backgroundColor color] onLamp:lamp withBlending:0];
+		}
+		
+		//Number	
+		int tal = [generalNumberValue intValue];	
+		bool flags[15];
+		[self makeNumber:tal intoArray:flags];	
+		NSColor * c;
+		if(!flags[ (int)(lamp.x+lamp.y*3) ]){
+			c = [NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0];
+		} else {
+			c = [generalNumberColor color];
+		}
+		[box addColor:c onLamp:lamp withBlending:[generalNumberBlendmode selectedSegment]];
+		
+		
+		//Random noise
+		
+		noiseNextUpdate[(int)lamp.x][(int)lamp.y] -= [noiseSpeed floatValue] * 10.0/ofGetFrameRate();
+		if(noiseNextUpdate[(int)lamp.x][(int)lamp.y] < 0 ){
+			
+			noiseNextUpdate[(int)lamp.x][(int)lamp.y] += 1000;
+			
+			
+			float r = ofRandom(0, 1);
+			if([noiseThreshold floatValue] > 0){
+				if(r < [noiseThreshold floatValue]/100.0)
+					r = 0;
+				else 
+					r = 1;
+			}
+			noiseValues[(int)lamp.x][(int)lamp.y] = r;
+		}
+		
+		c = [[noiseColor1 color] blendedColorWithFraction:noiseValues[(int)lamp.x][(int)lamp.y] ofColor:[noiseColor2 color]];
+		//c = [c colorWithAlphaComponent:[noiseAlpha floatValue]/[noiseAlpha maxValue]];
+		[box addColor:c onLamp:lamp withBlending:[noiseBlendMode selectedSegment]];
+		
+		/*	if(lamp.x == 0 && lamp.y == 0){
+		 if([patchButton state] == NSOnState){
+		 [box addColor:[NSColor whiteColor] onLamp:lamp withBlending:0];	
+		 }
+		 }
+		 */	
+		
 	}
-	
-	c = [[noiseColor1 color] blendedColorWithFraction:noiseValues[(int)lamp.x][(int)lamp.y] ofColor:[noiseColor2 color]];
-	//c = [c colorWithAlphaComponent:[noiseAlpha floatValue]/[noiseAlpha maxValue]];
-	[box addColor:c onLamp:lamp withBlending:[noiseBlendMode selectedSegment]];
-	
-	/*	if(lamp.x == 0 && lamp.y == 0){
-	 if([patchButton state] == NSOnState){
-	 [box addColor:[NSColor whiteColor] onLamp:lamp withBlending:0];	
-	 }
-	 }
-	 */	
 	
 	
 }
@@ -721,8 +779,8 @@
 				NSAppleScript* scriptObject; 				
 				scriptObject = [[NSAppleScript alloc] initWithSource:
 								@"\
-								 set volume 0\n\
-								 " 		 
+								set volume 0\n\
+								" 		 
 								];		
 				
 				returnDescriptor = [scriptObject executeAndReturnError: &errorDict];

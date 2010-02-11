@@ -14,7 +14,7 @@
 @interface TestAppController : NSWindow/* Specify a superclass (eg: NSObject or NSView) */ {
 	IBOutlet NSView * mainView;
 	IBOutlet PluginManagerController * pluginManagerController;
-
+	
 	ofBaseApp * baseApp;
 	ofAppBaseWindow * cocoaWindow;
 
