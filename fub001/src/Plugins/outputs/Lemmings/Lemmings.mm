@@ -849,12 +849,10 @@
 }
 
 -(IBAction) killAllLemmings:(id)sender{
-	/**
 	 ofSoundPlayer * die = new ofSoundPlayer();
 	//pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
 	die->loadSound("lemmings/org/OHNO.wav");
 	die->play();
-	**/
 	 doKillAllLemmings = YES;
 }
 @end
@@ -944,7 +942,7 @@
 			if(timeScale > 0.5 && timeScale <= 1.0){
 				
 				if(!popPlayed){
-					pop->setSpeed(ofRandom(0.33, 1.0));
+					pop->setSpeed(ofRandom(0.66, 1.0));
 					pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
 					pop->play();
 					popPlayed = true;
