@@ -178,10 +178,12 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 				value = 0; //packet->data[2+j];
 			}
 			if(packet->data[0+j] >= 176 && packet->data[0+j] <= 191){
-				controlChange = true;
-				channel = packet->data[0+j] - 175;
-				number = packet->data[1+j];
-				value = packet->data[2+j];
+				if(packet->data[2+j] < 128){
+					controlChange = true;
+					channel = packet->data[0+j] - 175;
+					number = packet->data[1+j];
+					value = packet->data[2+j];
+				}
 			}
 			
 			if([self isEnabled]){
@@ -234,6 +236,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 						if ([[theBinding channel] intValue] == channel) {
 							if(controlChange){
 								if ([[theBinding controller] intValue] == number) {
+									NSLog(@"%i", value);
 									[theBinding setSmoothingValue:[NSNumber numberWithInt:value] withTimeInterval: updateTimeInterval];
 									NSInteger row = [[boundControlsController arrangedObjects] indexOfObject:theBinding];
 									if (row != NSNotFound) {								
