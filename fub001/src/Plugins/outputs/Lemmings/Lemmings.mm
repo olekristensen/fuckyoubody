@@ -144,16 +144,16 @@
 		if(lemmingInterval - lastFloorLemmingInterval < 0.0){
 			
 			PersistentBlob * blob;
-						
+			
 			for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
 				ofxVec2f p = [blob getLowestPoint];
 				p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
 				if (p.x > 0 && p.y > 0) {
-				Lemming * floorLemming = [[[Lemming alloc]initWithX:p.x Y:p.y spawnTime:timeInterval]autorelease];
-				[floorLemming setScaleFactor:0.5];
-				[floorLemming vel]->y = -0.01*ofRandom(0, 0.15);
-				[floorLemming vel]->x = -0.01*ofRandom(0, 0.15);
-				[floorLemmings addObject:floorLemming];
+					Lemming * floorLemming = [[[Lemming alloc]initWithX:p.x Y:p.y spawnTime:timeInterval]autorelease];
+					[floorLemming setScaleFactor:0.5];
+					[floorLemming vel]->y = -0.01*ofRandom(0, 0.15);
+					[floorLemming vel]->x = -0.01*ofRandom(0, 0.15);
+					[floorLemmings addObject:floorLemming];
 				}
 			}
 		}
@@ -190,97 +190,97 @@
 	}
 	
 	/*
-#pragma mark make screen box from blobs
-	
-	float left = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"];
-	float right = 0;
-	float height = 1.0;
-	
-	
-	if([trackingActive state] == NSOnState){
-		
-		float shortestDist = -1;
-		
-		PersistentBlob * blob;
-		
-		 //screenPosition = &[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]/2.0, 1.0) toProjection:"Front" fromSurface:"Backwall"];
-		 //screenPosition = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*screenPosition fromProjection:"Front" toSurface:"Floor"]);
-		
-		for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
-			
-			ofxPoint2f c;
-	 		
-			c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"]
-			* (1.0-[blobPoint floatValue]);
-			c += [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
-			* [blobPoint floatValue];
-			
-			ofxVec2f pf11 = *screenBottomOnFloorLeft;
-			ofxVec2f pf12 = *screenBottomOnFloorRight;
-			ofxVec2f pf21 = c;
-			ofxVec2f pf22 = c+*screenBottomOnFloorHat;
-			
-			//B i y = a+bx
-			float bf1 =((float)pf12.y-pf11.y)/(pf12.x-pf11.x);
-			float bf2 =((float)pf22.y-pf21.y)/(pf22.x-pf21.x);
-			
-			//A i y = a+bx <=> a = y - bx
-			float af1 = pf11.y - bf1*pf11.x;
-			float af2 = pf21.y - bf2*pf21.x;
-			
-			//intersection xi = - (a1 - a2) / (b1 - b2) yi = a1 + b1xi
-			ofxPoint2f cIntesectsScreenBottom = ofxPoint2f(-(af1 - af2)/(bf1-bf2) , af1 + bf1*(-(af1 - af2)/(bf1-bf2)));
-			
-			screenBottomIntersection->set(cIntesectsScreenBottom);
-			blobCentroid->set(c);
-			
-			if(c.distance(cIntesectsScreenBottom) < 0.4){
-				
-				ofxPoint2f * cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:cIntesectsScreenBottom toProjection:"Front" fromSurface:"Floor"]);
-				cIntesectsScreenBottomOnScreen->set([GetPlugin(ProjectionSurfaces) convertPoint:*cIntesectsScreenBottomOnScreen fromProjection:"Front" toSurface:"Backwall"]);
-				
-				if (cIntesectsScreenBottomOnScreen->x > 0.0 && cIntesectsScreenBottomOnScreen->x < [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] ) {
-					
-					if (cIntesectsScreenBottomOnScreen->x < left) {
-						left = fmaxf(cIntesectsScreenBottomOnScreen->x-0.1,0.0);
-					}
-					
-					if (cIntesectsScreenBottomOnScreen->x > right) {
-						right = fminf(cIntesectsScreenBottomOnScreen->x+0.1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]);
-					}
-					
-					if (c.distance(cIntesectsScreenBottom)*(0.8/0.4) < height) {
-						height = 0.6;//fminf((c.distance(cIntesectsScreenBottom)*(0.8/0.35))+0.1,1.0);
-					}
-				}
-				delete cIntesectsScreenBottomOnScreen;
-			}
-		}
-	}
-	
-	screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
-	screenTrackingRight = screenTrackingRightFilter->filter(right);			
-	screenTrackingHeight = screenTrackingHeightFilter->filter(height);
-	if(ofGetFrameRate()<50){
-		screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
-		screenTrackingRight = screenTrackingRightFilter->filter(right);			
-		screenTrackingHeight = screenTrackingHeightFilter->filter(height);
-	}
-	screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
-	screenTrackingRight = screenTrackingRightFilter->filter(right);			
-	screenTrackingHeight = screenTrackingHeightFilter->filter(height);
-	if(ofGetFrameRate()<50){
-		screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
-		screenTrackingRight = screenTrackingRightFilter->filter(right);			
-		screenTrackingHeight = screenTrackingHeightFilter->filter(height);
-	}
-	
-	 **/
+	 #pragma mark make screen box from blobs
 	 
+	 float left = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"];
+	 float right = 0;
+	 float height = 1.0;
+	 
+	 
+	 if([trackingActive state] == NSOnState){
+	 
+	 float shortestDist = -1;
+	 
+	 PersistentBlob * blob;
+	 
+	 //screenPosition = &[GetPlugin(ProjectionSurfaces) convertPoint:ofxVec2f([GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]/2.0, 1.0) toProjection:"Front" fromSurface:"Backwall"];
+	 //screenPosition = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:*screenPosition fromProjection:"Front" toSurface:"Floor"]);
+	 
+	 for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
+	 
+	 ofxPoint2f c;
+	 
+	 c = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"]
+	 * (1.0-[blobPoint floatValue]);
+	 c += [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
+	 * [blobPoint floatValue];
+	 
+	 ofxVec2f pf11 = *screenBottomOnFloorLeft;
+	 ofxVec2f pf12 = *screenBottomOnFloorRight;
+	 ofxVec2f pf21 = c;
+	 ofxVec2f pf22 = c+*screenBottomOnFloorHat;
+	 
+	 //B i y = a+bx
+	 float bf1 =((float)pf12.y-pf11.y)/(pf12.x-pf11.x);
+	 float bf2 =((float)pf22.y-pf21.y)/(pf22.x-pf21.x);
+	 
+	 //A i y = a+bx <=> a = y - bx
+	 float af1 = pf11.y - bf1*pf11.x;
+	 float af2 = pf21.y - bf2*pf21.x;
+	 
+	 //intersection xi = - (a1 - a2) / (b1 - b2) yi = a1 + b1xi
+	 ofxPoint2f cIntesectsScreenBottom = ofxPoint2f(-(af1 - af2)/(bf1-bf2) , af1 + bf1*(-(af1 - af2)/(bf1-bf2)));
+	 
+	 screenBottomIntersection->set(cIntesectsScreenBottom);
+	 blobCentroid->set(c);
+	 
+	 if(c.distance(cIntesectsScreenBottom) < 0.4){
+	 
+	 ofxPoint2f * cIntesectsScreenBottomOnScreen = new ofxPoint2f([GetPlugin(ProjectionSurfaces) convertPoint:cIntesectsScreenBottom toProjection:"Front" fromSurface:"Floor"]);
+	 cIntesectsScreenBottomOnScreen->set([GetPlugin(ProjectionSurfaces) convertPoint:*cIntesectsScreenBottomOnScreen fromProjection:"Front" toSurface:"Backwall"]);
+	 
+	 if (cIntesectsScreenBottomOnScreen->x > 0.0 && cIntesectsScreenBottomOnScreen->x < [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] ) {
+	 
+	 if (cIntesectsScreenBottomOnScreen->x < left) {
+	 left = fmaxf(cIntesectsScreenBottomOnScreen->x-0.1,0.0);
+	 }
+	 
+	 if (cIntesectsScreenBottomOnScreen->x > right) {
+	 right = fminf(cIntesectsScreenBottomOnScreen->x+0.1,[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]);
+	 }
+	 
+	 if (c.distance(cIntesectsScreenBottom)*(0.8/0.4) < height) {
+	 height = 0.6;//fminf((c.distance(cIntesectsScreenBottom)*(0.8/0.35))+0.1,1.0);
+	 }
+	 }
+	 delete cIntesectsScreenBottomOnScreen;
+	 }
+	 }
+	 }
+	 
+	 screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
+	 screenTrackingRight = screenTrackingRightFilter->filter(right);			
+	 screenTrackingHeight = screenTrackingHeightFilter->filter(height);
+	 if(ofGetFrameRate()<50){
+	 screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
+	 screenTrackingRight = screenTrackingRightFilter->filter(right);			
+	 screenTrackingHeight = screenTrackingHeightFilter->filter(height);
+	 }
+	 screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
+	 screenTrackingRight = screenTrackingRightFilter->filter(right);			
+	 screenTrackingHeight = screenTrackingHeightFilter->filter(height);
+	 if(ofGetFrameRate()<50){
+	 screenTrackingLeft = screenTrackingLeftFilter->filter(left);			
+	 screenTrackingRight = screenTrackingRightFilter->filter(right);			
+	 screenTrackingHeight = screenTrackingHeightFilter->filter(height);
+	 }
+	 
+	 **/
+	
 	screenTrackingHeight = 0.6;
 	screenTrackingLeft = (([screenPlayerSquarePosition floatValue] + 0.5) * [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) - 0.1;
 	screenTrackingRight = (([screenPlayerSquarePosition floatValue] + 0.5) * [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] ) + 0.1;
-	 
+	
 	/**
 	 ScreenElement * element;
 	 for (element in screenElements){
@@ -427,7 +427,7 @@
 					* (1.0-[blobPoint floatValue]);
 					c += [GetPlugin(ProjectionSurfaces) convertPoint:[nearestBlob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
 					* [blobPoint floatValue];
-										
+					
 					if (shortestDist < [floorBlobFarForceThreshold floatValue]){
 						*[lemming totalforce] += (c - *[lemming position])*([floorBlobFarForce floatValue]/50.0) ;
 					}
@@ -817,7 +817,7 @@
 		} glPopMatrix();
 		
 	} glPopMatrix();
-
+	
 }
 
 -(float) getScreenGravityAsFloat{
@@ -849,7 +849,13 @@
 }
 
 -(IBAction) killAllLemmings:(id)sender{
-	doKillAllLemmings = YES;
+	/**
+	 ofSoundPlayer * die = new ofSoundPlayer();
+	//pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
+	die->loadSound("lemmings/org/OHNO.wav");
+	die->play();
+	**/
+	 doKillAllLemmings = YES;
 }
 @end
 
@@ -878,7 +884,9 @@
 		
 		pop = new ofSoundPlayer();
 		popPlayed = false;
-		pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
+		//pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
+		pop->loadSound("lemmings/fx/" + ofToString(round(random*23)+1,0) + ".wav");
+		//pop->loadSound("lemmings/org/DIE.wav");
 		
 		splat = new ofSoundPlayer();
 		splatPlayed = false;
@@ -932,17 +940,18 @@
 		float timeScale = ((timeInterval-deathTime)/DEATH_DURATION)*(1.0+(random*2.0));
 		glPushMatrix();{
 			
+			
 			if(timeScale > 0.5 && timeScale <= 1.0){
 				
 				if(!popPlayed){
-					pop->setSpeed(ofRandom(0.001, 0.5));
-					//pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
+					pop->setSpeed(ofRandom(0.01, 1.0));
+					pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
 					pop->play();
 					popPlayed = true;
 				}
-					
+				
 				timeScale = (timeScale-0.5)*(1.0/0.5);
-								
+				
 				ofSetColor(theColor.r, theColor.g, theColor.b, 255*computedAlpha);// (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
 				
 				glPushMatrix();{
@@ -963,6 +972,17 @@
 				
 			} else if (timeScale <= 1.0){
 				ofCircle(position->x+ofRandom(0, timeScale*radius*scaleFactor), position->y+ofRandom(0, timeScale*radius*scaleFactor), radius*scaleFactor);
+			
+				if(timeScale > 0.2){
+					if(!splatPlayed){
+						//splat->loadSound("lemmings/org/OHNO.wav");
+						//splat->setVolume((0.5-fmodf(random*23565.3,0.1)));
+						//splat->play();
+						//splatPlayed = true;
+					}
+				}
+				
+			
 			}
 			
 		}glPopMatrix();
@@ -1005,7 +1025,7 @@
 		vel->set(0,0);
 		splatTime = timeInterval;
 		if(!splatPlayed){
-		//	splat->play();
+			//	splat->play();
 			splatPlayed = true;
 		}
 	}
