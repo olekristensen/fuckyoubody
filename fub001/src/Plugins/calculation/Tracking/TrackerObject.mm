@@ -48,10 +48,8 @@
 	ofxPoint2f low;
 	Blob * blob;
 	for(blob in blobs){
-		for(int u=0;u< [blob nPts];u++){
-			if([blob pts][u].y > low.y){
-				low = [blob pts][u];
-			}
+		if([blob getLowestPoint].y > low.y){
+			low = [blob getLowestPoint];
 		}
 	}
 	return low;
@@ -107,7 +105,12 @@
 	else {
 		for(int u=0;u< [self nPts];u++){
 			if(!low || [self pts][u].y > low->y){
-				low = new ofxPoint2f([self pts][u]);
+				if(low){
+					low->x = [self pts][u].x;
+					low->y = [self pts][u].y;
+				} else {
+					low = new ofxPoint2f([self pts][u]);
+				}
 			}
 		}
 		return *low;
