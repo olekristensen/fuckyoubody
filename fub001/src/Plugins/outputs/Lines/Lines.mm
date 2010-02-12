@@ -131,6 +131,7 @@
 	
 	if(true || balance == 0){
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Projector"];
+		ofSetColor(215*frontA, 221*frontA, 248*frontA, 255);
 		glBegin(GL_POLYGON);
 		glVertex2f(frontLeft->x+(1.0-width)*(frontRight->x-frontLeft->x)*0.5,0);
 		glVertex2f(frontRight->x-(1.0-width)*(frontRight->x-frontLeft->x)*0.5,0);
@@ -140,6 +141,7 @@
 		glPopMatrix();
 	} else if(balance == 1){
 		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Projector"];
+		ofSetColor(215*backA, 221*backA, 248*backA, 255);
 		glBegin(GL_POLYGON);
 		glVertex2f(backLeft->x+(1.0-width)*(backRight->x-backLeft->x)*0.5,0);
 		glVertex2f(backRight->x-(1.0-width)*(backRight->x-backLeft->x)*0.5,0);

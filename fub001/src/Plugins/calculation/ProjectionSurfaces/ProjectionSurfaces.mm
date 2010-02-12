@@ -295,6 +295,8 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	ofPushStyle();
+	
 	if([showGrid state] == NSOnState){
 		
 		ProjectorObject * proj;
@@ -343,19 +345,18 @@
 		glPopMatrix();
 	}
 	
-	
-	ofSetColor(255, 255, 255);
+	ofSetColor(255, 255, 255, 255);
 	ofRect(0, 0, 0.001, 0.001);
-	ofRect(0.5, 0, -0.001, 0.001);
-	
-	ofRect(0.5, 0, 0.001, 0.001);
+	ofRect(0.33, 0, 0.002, 0.001);
+	ofRect(0.66, 0, -0.002, 0.001);
 	ofRect(1, 0, -0.001, 0.001);
+
+	ofRect(0, 1.0, 0.001, -0.001);
+	ofRect(0.33, 1.0, 0.002, -0.001);
+	ofRect(0.66, 1.0, 0.002, -0.001);
+	ofRect(1, 1.0, -0.001, -0.001);
 	
-	ofRect(0, 1, 0.001, -0.001);
-	ofRect(0.5, 1, -0.001, -0.001);
-	
-	ofRect(0.5, 1, 0.001, -0.001);
-	ofRect(1, 1, -0.001, -0.001);
+	ofPopStyle();
 }
 
 -(void) drawGrid:(string)text aspect:(float)aspect resolution:(float)resolution drawBorder:(bool)drawBorder alpha:(float)a fontSize:(float)fontSize simple:(BOOL)simple{
