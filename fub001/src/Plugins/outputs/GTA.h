@@ -7,6 +7,7 @@
 #include "ofMain.h"
 #include "ofxVectorMath.h"
 #include "shaderBlur.h"
+#import <QTKit/QTKit.h>
 
 
 @interface WallObject : NSObject
@@ -54,6 +55,15 @@
 	IBOutlet NSButton * floorActiveControl;
 	IBOutlet NSButton * floorToothControl;
 
+	IBOutlet NSSlider * tetrisAlphaControl;
+	IBOutlet NSButton * tetrisControl;
+	
+	QTMovie     		*movie;
+	QTVisualContextRef	textureContext;
+	CVOpenGLTextureRef  currentFrame;
+
+	BOOL isPlayingTetris;
+	
 	float camXPos;
 	float zscale;
 	

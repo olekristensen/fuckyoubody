@@ -560,7 +560,7 @@
 			
 			//RAINBOW			
 			float hue=rainbowadd, sat=1, bright=1, alph=1;
-
+			
 			for(int y=0;y<5;y++){
 				for(int x=0;x<3;x++){
 					//NSColor * c = [color copy];
@@ -617,6 +617,64 @@
 					break;
 			}
 			
+			
+			//Cross
+			/*NSColor * c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+			 for(int y=0;y<5;y++){
+			 int x = 1;
+			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+			 }
+			 for(int x=0;x<3;x++){
+			 int y = 2;
+			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
+			 
+			 }*/
+			
+			//Arrow
+			if([ArrowAlpha floatValue]/100.0 > 0){
+				NSColor * c = [NSColor colorWithCalibratedRed:1.0 green:1.0 blue:1.0 alpha:[ArrowAlpha floatValue]/100.0];
+				switch (int(round(4*[ArrowAnimation floatValue] / 100.0))) {
+					case 0:
+						[box addColor:c onLamp:ofPoint(0,0) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(1,1) withBlending:BLENDING_ADD];			
+						[box addColor:c onLamp:ofPoint(2,2) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(1,3) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(0,4) withBlending:BLENDING_ADD];
+						break;
+					case 1:
+						[box addColor:c onLamp:ofPoint(1,0) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(2,1) withBlending:BLENDING_ADD];			
+//						[box addColor:c onLamp:ofPoint(0,2) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(2,3) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(1,4) withBlending:BLENDING_ADD];
+						break;
+					case 2:
+						[box addColor:c onLamp:ofPoint(2,0) withBlending:BLENDING_ADD];
+//						[box addColor:c onLamp:ofPoint(0,1) withBlending:BLENDING_ADD];			
+						[box addColor:c onLamp:ofPoint(0,2) withBlending:BLENDING_ADD];
+//						[box addColor:c onLamp:ofPoint(0,3) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(2,4) withBlending:BLENDING_ADD];
+						break;
+					case 3:
+						//[box addColor:c onLamp:ofPoint(2,0) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(0,1) withBlending:BLENDING_ADD];			
+						[box addColor:c onLamp:ofPoint(1,2) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(0,3) withBlending:BLENDING_ADD];
+						//[box addColor:c onLamp:ofPoint(2,4) withBlending:BLENDING_ADD];
+						break;
+					case 4:
+						[box addColor:c onLamp:ofPoint(0,0) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(1,1) withBlending:BLENDING_ADD];			
+						[box addColor:c onLamp:ofPoint(2,2) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(1,3) withBlending:BLENDING_ADD];
+						[box addColor:c onLamp:ofPoint(0,4) withBlending:BLENDING_ADD];
+						break;
+						
+					default:
+						break;
+				}
+				
+			}
 			/*	if([bokseringPale floatValue] > 0){
 			 int bluePos = 12*[bokseringPale floatValue]/100.1;
 			 int greenPos = 6+ 12*[bokseringPale floatValue]/100.1;			

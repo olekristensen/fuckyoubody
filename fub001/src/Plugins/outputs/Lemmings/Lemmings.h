@@ -30,6 +30,7 @@
 	bool			doClearAllLemmings;
 	bool			doAddRumikosLemming;
 	bool			doKillAllLemmings;
+	bool			didKillAllLemmings;
 	
 	float			screenTrackingLeft;
 	float			screenTrackingRight;
@@ -119,6 +120,10 @@
 	pthread_mutex_t mutex;
 	
 	ofImage			*parachuteImage;
+	
+	ofSoundPlayer * erhdp;
+	bool			erhdpPlayed;
+
 	
 }
 

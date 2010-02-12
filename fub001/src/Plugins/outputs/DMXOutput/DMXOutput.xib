@@ -376,6 +376,80 @@
 							<bool key="NSVertical">NO</bool>
 						</object>
 					</object>
+					<object class="NSTextField" id="631400158">
+						<reference key="NSNextResponder" ref="954911258"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{1294, 717}, {109, 17}}</string>
+						<reference key="NSSuperview" ref="954911258"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="626194860">
+							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags2">272630784</int>
+							<string key="NSContents">Arrow animation</string>
+							<reference key="NSSupport" ref="473974446"/>
+							<reference key="NSControlView" ref="631400158"/>
+							<reference key="NSBackgroundColor" ref="340973370"/>
+							<reference key="NSTextColor" ref="565350990"/>
+						</object>
+					</object>
+					<object class="NSSlider" id="807293069">
+						<reference key="NSNextResponder" ref="954911258"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{1295, 701}, {278, 21}}</string>
+						<reference key="NSSuperview" ref="954911258"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSSliderCell" key="NSCell" id="474480909">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents"/>
+							<reference key="NSControlView" ref="807293069"/>
+							<double key="NSMaxValue">100</double>
+							<double key="NSMinValue">0.0</double>
+							<double key="NSValue">0.0</double>
+							<double key="NSAltIncValue">0.0</double>
+							<int key="NSNumberOfTickMarks">0</int>
+							<int key="NSTickMarkPosition">1</int>
+							<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
+							<bool key="NSVertical">NO</bool>
+						</object>
+					</object>
+					<object class="NSTextField" id="1066754600">
+						<reference key="NSNextResponder" ref="954911258"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{1294, 743}, {81, 17}}</string>
+						<reference key="NSSuperview" ref="954911258"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="994564115">
+							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags2">272630784</int>
+							<string key="NSContents">Arrow alpha</string>
+							<reference key="NSSupport" ref="473974446"/>
+							<reference key="NSControlView" ref="1066754600"/>
+							<reference key="NSBackgroundColor" ref="340973370"/>
+							<reference key="NSTextColor" ref="565350990"/>
+						</object>
+					</object>
+					<object class="NSSlider" id="790963929">
+						<reference key="NSNextResponder" ref="954911258"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{1295, 727}, {278, 21}}</string>
+						<reference key="NSSuperview" ref="954911258"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSSliderCell" key="NSCell" id="102965817">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents"/>
+							<reference key="NSControlView" ref="790963929"/>
+							<double key="NSMaxValue">100</double>
+							<double key="NSMinValue">0.0</double>
+							<double key="NSValue">0.0</double>
+							<double key="NSAltIncValue">0.0</double>
+							<int key="NSNumberOfTickMarks">0</int>
+							<int key="NSTickMarkPosition">1</int>
+							<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
+							<bool key="NSVertical">NO</bool>
+						</object>
+					</object>
 					<object class="NSTextField" id="798237936">
 						<reference key="NSNextResponder" ref="954911258"/>
 						<int key="NSvFlags">268</int>
@@ -896,6 +970,38 @@
 					</object>
 					<int key="connectionID">272</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">label</string>
+						<reference key="source" ref="790963929"/>
+						<reference key="destination" ref="1066754600"/>
+					</object>
+					<int key="connectionID">279</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">label</string>
+						<reference key="source" ref="807293069"/>
+						<reference key="destination" ref="631400158"/>
+					</object>
+					<int key="connectionID">284</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">ArrowAlpha</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="790963929"/>
+					</object>
+					<int key="connectionID">285</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">ArrowAnimation</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="807293069"/>
+					</object>
+					<int key="connectionID">286</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -953,6 +1059,10 @@
 							<reference ref="663418452"/>
 							<reference ref="643511498"/>
 							<reference ref="798237936"/>
+							<reference ref="790963929"/>
+							<reference ref="1066754600"/>
+							<reference ref="807293069"/>
+							<reference ref="631400158"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1327,6 +1437,58 @@
 						<reference key="object" ref="982593167"/>
 						<reference key="parent" ref="643511498"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">273</int>
+						<reference key="object" ref="790963929"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="102965817"/>
+						</array>
+						<reference key="parent" ref="954911258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">274</int>
+						<reference key="object" ref="1066754600"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="994564115"/>
+						</array>
+						<reference key="parent" ref="954911258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">277</int>
+						<reference key="object" ref="994564115"/>
+						<reference key="parent" ref="1066754600"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">278</int>
+						<reference key="object" ref="102965817"/>
+						<reference key="parent" ref="790963929"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">280</int>
+						<reference key="object" ref="807293069"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="474480909"/>
+						</array>
+						<reference key="parent" ref="954911258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">281</int>
+						<reference key="object" ref="631400158"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="626194860"/>
+						</array>
+						<reference key="parent" ref="954911258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">282</int>
+						<reference key="object" ref="626194860"/>
+						<reference key="parent" ref="631400158"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">283</int>
+						<reference key="object" ref="474480909"/>
+						<reference key="parent" ref="807293069"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1589,6 +1751,54 @@
 				<string key="268.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="269.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="270.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="273.CustomClassName">PluginUISlider</string>
+				<object class="NSMutableDictionary" key="273.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="790963929"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiChannel</string>
+								<real value="16" key="value"/>
+							</object>
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiController</string>
+								<real value="70" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
+				<string key="273.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="274.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="277.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="278.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="280.CustomClassName">PluginUISlider</string>
+				<object class="NSMutableDictionary" key="280.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="807293069"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiChannel</string>
+								<real value="16" key="value"/>
+							</object>
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiController</string>
+								<real value="71" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
+				<string key="280.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="281.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="282.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="283.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="58.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
 				<string key="59.IBPluginDependency">com.brandonwalkin.BWToolkit</string>
@@ -1599,7 +1809,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">272</int>
+			<int key="maxID">286</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1614,6 +1824,8 @@
 						<string key="setBackgroundRed:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="ArrowAlpha">NSSlider</string>
+						<string key="ArrowAnimation">NSSlider</string>
 						<string key="GTAEffect">NSSlider</string>
 						<string key="GTATower">NSSlider</string>
 						<string key="GTAUlykke">NSSlider</string>

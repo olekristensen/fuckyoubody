@@ -104,6 +104,9 @@
 	IBOutlet NSSlider * bokseringWaveformEffect;
 	IBOutlet NSButton * bokseringBeatButton;
 	
+	IBOutlet NSSlider * ArrowAlpha;
+	IBOutlet NSSlider * ArrowAnimation;
+	
 	vector<int> bokseringTime;
 	float volCounter;
 	float timeSinceLastVolChange;

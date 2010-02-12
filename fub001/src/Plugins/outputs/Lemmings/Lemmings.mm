@@ -27,6 +27,8 @@
 	[screenFloor setState:NSOnState];
 	doReset = false;
 	doClearAllLemmings = false;
+	didKillAllLemmings = false;
+	doKillAllLemmings = false;
 	screenBottomIntersection = new ofxVec2f();
 	blobCentroid = new ofxVec2f();
 	screenBottomOnFloorLeft = new ofxVec2f();
@@ -109,6 +111,7 @@
 			[lemming setDeathTime:timeInterval];
 		}
 		doKillAllLemmings = NO;
+		didKillAllLemmings  = YES;
 	}
 	
 #pragma mark add rumiko's lemming
@@ -351,7 +354,6 @@
 		}
 #pragma mark add random force to lemmings on screen
 		*[lemming totalforce]  += ofxVec2f(ofRandom(-1, 1), ofRandom(-1, 1))*0.005;
-		
 	}
 	
 #pragma mark let lemmings into the floor
