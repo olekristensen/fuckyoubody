@@ -146,8 +146,14 @@
 			PersistentBlob * blob;
 			
 			for(blob in [tracker([cameraControl selectedSegment]) persistentBlobs]){
-				ofxVec2f p = [blob getLowestPoint];
-				p = [GetPlugin(ProjectionSurfaces) convertPoint:p fromProjection:"Front" toSurface:"Floor"];
+				
+				ofxPoint2f p;
+				
+				p = [GetPlugin(ProjectionSurfaces) convertPoint:*blob->centroid fromProjection:"Front" toSurface:"Floor"]
+				* (1.0-[blobAddPoint floatValue]);
+				p += [GetPlugin(ProjectionSurfaces) convertPoint:[blob getLowestPoint] fromProjection:"Front" toSurface:"Floor"]
+				* [blobAddPoint floatValue];
+				
 				if (p.x > 0 && p.y > 0) {
 					Lemming * floorLemming = [[[Lemming alloc]initWithX:p.x Y:p.y spawnTime:timeInterval]autorelease];
 					[floorLemming setScaleFactor:0.5];
@@ -188,7 +194,7 @@
 			}
 		}
 	}
-	
+
 	/*
 	 #pragma mark make screen box from blobs
 	 
@@ -668,7 +674,7 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 		
-		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255*[alpha floatValue]);
+		ofSetColor(215.0*[floorColor floatValue],221.0*[floorColor floatValue], 248.0*[floorColor floatValue],255*[alpha floatValue]);
 		ofRect(0, 0, 1, 1);
 		
 		/** floor box
@@ -693,7 +699,7 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		
-		ofSetColor(255.0*[floorColor floatValue],255.0*[floorColor floatValue], 255.0*[floorColor floatValue],255*[alpha floatValue]);
+		ofSetColor(215.0*[floorColor floatValue],221.0*[floorColor floatValue], 248.0*[floorColor floatValue],255*[alpha floatValue]);
 		ofRect(0, 0, 1, 1);
 		
 		/** floor box
@@ -718,7 +724,7 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 		
-		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255*[alpha floatValue]);
+		ofSetColor(215.0*[floorLemmingsColor floatValue],221.0*[floorLemmingsColor floatValue], 248.0*[floorLemmingsColor floatValue],255*[alpha floatValue]);
 		
 		for(lemming in floorLemmings){
 			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
@@ -745,7 +751,7 @@
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		
-		ofSetColor(255.0*[floorLemmingsColor floatValue],255.0*[floorLemmingsColor floatValue], 255.0*[floorLemmingsColor floatValue],255*[alpha floatValue]);
+		ofSetColor(215.0*[floorLemmingsColor floatValue],221.0*[floorLemmingsColor floatValue], 248.0*[floorLemmingsColor floatValue],255*[alpha floatValue]);
 		
 		for(lemming in floorLemmings){
 			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
@@ -773,9 +779,9 @@
 		 **/
 		
 		if((1.0-screenTrackingHeight) > SCREEN_MARGIN){
-			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*255*[alpha floatValue]);
+			ofSetColor(215.0, 221.0, 248.0,[screenPlayerSquareAlpha floatValue]*255*[alpha floatValue]);
 		} else {
-			ofSetColor(255, 255, 255,[screenPlayerSquareAlpha floatValue]*0*[alpha floatValue]);
+			ofSetColor(215.0, 221.0, 248.0,[screenPlayerSquareAlpha floatValue]*0*[alpha floatValue]);
 		}
 		
 		ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 0.03);
@@ -788,14 +794,14 @@
 		}
 		
 		//lemmings
-		ofSetColor(255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue], 255.0*[screenLemmingsBrightness floatValue],255.0*[alpha floatValue]);
+		ofSetColor(215.0*[screenLemmingsBrightness floatValue], 221.0*[screenLemmingsBrightness floatValue], 248.0*[screenLemmingsBrightness floatValue],255.0*[alpha floatValue]);
 		
 		for(lemming in screenLemmings){
 			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
 		}
 		
 		// Door
-		ofSetColor(255, 255, 255, 255.0*[screenElementsAlpha floatValue]*[alpha floatValue]);
+		ofSetColor(215, 221, 248, 255.0*[screenElementsAlpha floatValue]*[alpha floatValue]);
 		
 		glPushMatrix(); {
 			glTranslated(screenDoorPos->x, screenDoorPos->y, 0);
@@ -924,11 +930,11 @@
 	if(splatTime > 0){
 		float timeScale = ((timeInterval-splatTime)/SPLAT_DURATION);
 		ofPushStyle();
-		ofSetColor(255, 255, 255, 127.0*sinf((0.5*timeScale)+2.0)*computedAlpha);
+		ofSetColor(215, 221, 248, 127.0*sinf((0.5*timeScale)+2.0)*computedAlpha);
 		ofEllipse(position->x, position->y+(radius*0.5)+(sinf(timeScale*50.0)*0.01*(1.0-timeScale))+(radius*0.5*timeScale), ((radius*1.25)-(radius*((4.0*timeScale)+(SPLAT_DURATION/2.0)))), (radius*0.75)-(0.5*radius*timeScale));
-		ofSetColor(255, 255, 255, 127.0*sinf((0.5*timeScale)+2.0)*computedAlpha);
+		ofSetColor(215, 221, 248, 127.0*sinf((0.5*timeScale)+2.0)*computedAlpha);
 		ofEllipse(position->x, position->y+radius, ((radius*1.25)+(radius*((2.0*timeScale)+(SPLAT_DURATION/2.0)))), (radius*0.5)+(0.5*radius*timeScale));
-		ofSetColor(255, 255, 255, 255.0*(1.0-(fmaxf(0,timeScale-0.5)*2.0))*computedAlpha);
+		ofSetColor(215, 221, 248, 255.0*(1.0-(fmaxf(0,timeScale-0.5)*2.0))*computedAlpha);
 		ofEllipse(position->x+(0.25*radius), position->y+(radius*2.5*timeScale)+(radius*0.75)+(random*radius*0.5), (radius)-(radius*timeScale*0.5),(radius*0.5)+(ofClamp(random, 0.25, 0.75)*radius*((0.5*timeScale)+(SPLAT_DURATION/2.0))));
 		ofEllipse(position->x-(0.25*radius), position->y+(radius*3.0*timeScale)+(radius*0.5)-(random*radius*0.5), (radius*0.5)-(radius*timeScale*0.5),(radius*0.5)+(ofClamp(random, 0.25, 0.75)*radius*((0.5*timeScale)+(SPLAT_DURATION/2.0))));
 		ofEllipse(position->x, position->y+(radius*0.5*timeScale)+(radius*0.5), (radius*0.5)-(radius*timeScale*0.5),(radius*0.5)+(ofClamp(random, 0.25, 0.75)*radius*((0.5*timeScale)+(SPLAT_DURATION/2.0))));
@@ -990,7 +996,7 @@
 			if (blessed && vel->y > 0.02) {
 				glPushMatrix();{
 					ofPushStyle();
-					ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,255*computedAlpha);
+					ofSetColor(215, 221, 248,255*computedAlpha);
 					//ofCircle(position->x, position->y-(radius*7.5*vel->y), (vel->y*0.27)+(radius*0.33));
 					glTranslated(position->x, position->y, 0);
 					glRotatef((atan2(-vel->y, -vel->x)*20)+40, 0, 0, 1);
@@ -1053,7 +1059,7 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	if([self active]){
-		ofSetColor(255, 255, 255, 255.0*[GetPlugin(Lemmings) getScreenElementsAlphaAsFloat]*[[GetPlugin(Lemmings) alpha] floatValue]);
+		ofSetColor(215, 221, 248, 255.0*[GetPlugin(Lemmings) getScreenElementsAlphaAsFloat]*[[GetPlugin(Lemmings) alpha] floatValue]);
 	} else {
 		ofSetColor(48, 48, 48, 255.0*[GetPlugin(Lemmings) getScreenElementsAlphaAsFloat]*[[GetPlugin(Lemmings) alpha] floatValue]);
 	}

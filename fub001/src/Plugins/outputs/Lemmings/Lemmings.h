@@ -100,6 +100,8 @@
 
 	IBOutlet NSSlider * floorBlobMask;				//  0 ... 1
 	
+	IBOutlet NSSlider * blobAddPoint;
+
 	IBOutlet NSButton * floorAddLemmingsFromFront;
 
 	IBOutlet NSButton * floorLemmingsGoToHome;
