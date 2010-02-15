@@ -56,7 +56,7 @@ extern ofAppBaseWindow * window;
 //	[pluginManagerController addPlugin:[[_ExampleOutput alloc] init]];
 	[pluginManagerController addPlugin:[[Players alloc] initWithMidiChannel:2]];
 
-	[pluginManagerController addPlugin:[[DanceSteps alloc] initWithMidiChannel:3]];
+//	[pluginManagerController addPlugin:[[DanceSteps alloc] initWithMidiChannel:3]];
 	//[pluginManagerController addPlugin:[[ParallelWorld alloc] init]];
 	[pluginManagerController addPlugin:[[Lines alloc] initWithMidiChannel:4]];
 	[pluginManagerController addPlugin:[[Stregkode alloc] initWithMidiChannel:5]];

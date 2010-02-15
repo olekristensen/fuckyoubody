@@ -304,17 +304,30 @@
 	
 	[[learnBackgroundMaskButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Grab Part Background", trackerNumber]];
 	[[learnBackgroundMaskButton midi] setController: [[NSNumber alloc] initWithInt:61+(20*trackerNumber)]];
-	
-	
+
+	[[blurSlider midi] setLabel: [NSString stringWithFormat:@"Tracker %i Blur", trackerNumber]];
+	[[blurSlider midi] setController: [[NSNumber alloc] initWithInt:62+(20*trackerNumber)]];
+
+	[[thresholdSldier midi] setLabel: [NSString stringWithFormat:@"Tracker %i Threshold", trackerNumber]];
+	[[thresholdSldier midi] setController: [[NSNumber alloc] initWithInt:63+(20*trackerNumber)]];
+
 	[[presetPicker midi] setLabel: [NSString stringWithFormat:@"Tracker %i Pick preset", trackerNumber]];
 	[[presetPicker midi] setController: [[NSNumber alloc] initWithInt:64+(20*trackerNumber)]];
-	
-	[[presetMaskPicker midi] setLabel: [NSString stringWithFormat:@"Tracker %i Pick Mask preset", trackerNumber]];
-	[[presetMaskPicker midi] setController: [[NSNumber alloc] initWithInt:67+(20*trackerNumber)]];
 	
 	[[activeButton midi] setLabel: [NSString stringWithFormat:@"Tracker %i Active", trackerNumber]];
 	[[activeButton midi] setController: [[NSNumber alloc] initWithInt:65+(20*trackerNumber)]];
 	
+	[[presetMaskPicker midi] setLabel: [NSString stringWithFormat:@"Tracker %i Pick Mask preset", trackerNumber]];
+	[[presetMaskPicker midi] setController: [[NSNumber alloc] initWithInt:67+(20*trackerNumber)]];
+
+	[[postBlurSlider midi] setLabel: [NSString stringWithFormat:@"Tracker %i Post Blur", trackerNumber]];
+	[[postBlurSlider midi] setController: [[NSNumber alloc] initWithInt:68+(20*trackerNumber)]];
+	
+	[[postThresholdSlider midi] setLabel: [NSString stringWithFormat:@"Tracker %i Post Threshold", trackerNumber]];
+	[[postThresholdSlider midi] setController: [[NSNumber alloc] initWithInt:69+(20*trackerNumber)]];
+
+	[[persistentSlider midi] setLabel: [NSString stringWithFormat:@"Tracker %i Persistent Threshold", trackerNumber]];
+	[[persistentSlider midi] setController: [[NSNumber alloc] initWithInt:70+(20*trackerNumber)]];
 	
 	[self loadPreset:[[userDefaults valueForKey:[NSString stringWithFormat:@"tracker%d.preset", trackerNumber]]intValue]];
 	

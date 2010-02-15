@@ -5,6 +5,9 @@
 
 @implementation Ulykke
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	
+	ofSetColor(215, 221, 248, 255*[alpha floatValue]);
+
 	if([fill state] == NSOnState){
 		ofFill();
 	} else {

@@ -11,8 +11,6 @@
 			   255, 
 			   255);
 	
-	
-	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		glPushMatrix();{
 			glRotated(-45.0 * [samlaWall floatValue]/100.0, 0, 0, 1);

@@ -63,7 +63,7 @@
 	
 	SetMovieVisualContext([movie quickTimeMovie], textureContext);
 	[movie setRate:1.0];
-	
+//	[movie set
 }
 
 -(void) setup{
