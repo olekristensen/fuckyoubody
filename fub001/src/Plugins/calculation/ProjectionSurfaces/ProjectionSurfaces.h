@@ -67,9 +67,10 @@
 
 
 @interface ProjectionSurfaces : ofPlugin {
-	IBOutlet NSPopUpButton * projectorsButton;
-	IBOutlet NSPopUpButton * surfacesButton;	
+	IBOutlet NSSegmentedControl * projectorsButton;
+	IBOutlet NSSegmentedControl * surfacesButton;	
 	IBOutlet NSPopUpButton * trackerButton;	
+	
 	IBOutlet NSButton * showGrid;
 
 	IBOutlet NSButton * trackingButton;
@@ -79,6 +80,8 @@
 	ofTrueTypeFont	* font;
 	ofImage * recoilLogo;
 	ofxVec2f * lastMousePos;
+	ofxVec2f * lastMousePosNotScaled;
+
 	int selectedCorner;
 	int selectedSurface;
 	pthread_mutex_t mutex;

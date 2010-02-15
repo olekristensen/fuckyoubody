@@ -112,14 +112,16 @@
 -(void) initPlugin{
 	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
 	
-	[projectorsButton removeAllItems];
-	[surfacesButton removeAllItems];
 	[trackerButton removeAllItems];
 	
 	projectors = [NSMutableArray array];
 	[projectors retain];
 	[projectors addObject:[[ProjectorObject alloc] initWithName:@"Front"]];	
 	[projectors addObject:[[ProjectorObject alloc] initWithName:@"Back"]];	
+	[projectors addObject:[[ProjectorObject alloc] initWithName:@"Extra"]];	
+	
+	[projectorsButton setSegmentCount:[projectors count]];
+	
 	
 	ProjectorObject * projector;
 	
@@ -135,9 +137,12 @@
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Backwall" projector:projector]];
 		[array addObject:[[ProjectionSurfacesObject alloc] initWithName:@"Projector" projector:projector]];
 		
+		[surfacesButton setSegmentCount:[array count]];
+		
 		[projector setSurfaces:array];
 		//projector->surfaces = array;
-		[projectorsButton addItemWithTitle:[NSString stringWithCString:projector->name->c_str()]];
+		[projectorsButton setLabel:[NSString stringWithCString:projector->name->c_str()] forSegment:projI];
+		[projectorsButton setWidth:0 forSegment:projI];
 		
 		ProjectionSurfacesObject * surface;
 		int surfI = 0;
@@ -152,16 +157,23 @@
 			
 			surface->trackerNumber = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.trackerNumber",projI, surfI]];
 			
-			[surfacesButton addItemWithTitle:[NSString stringWithCString:surface->name->c_str()]];
+			[surfacesButton setLabel:[NSString stringWithCString:surface->name->c_str()] forSegment:surfI];
+			[surfacesButton setWidth:0 forSegment:surfI];
+			
 			surfI ++;
 		}
 		projI++;
 	}
 	
-	position = new ofPoint(0,0);
-	scale = 0.8;
+	[projectorsButton setSelectedSegment:0];
+	[surfacesButton setSelectedSegment:0];	
 	
-	lastMousePos = new ofxVec2f;
+	
+	position = new ofPoint(0,0);
+	scale = 0.3;
+	
+	lastMousePos = new ofxVec2f();
+	lastMousePosNotScaled = new ofxVec2f();
 	[aspectSlider setFloatValue:[self getCurrentSurface]->aspect];	
 	
 	for (int i=1; i<4; i++) {
@@ -189,8 +201,8 @@
 
 -(IBAction) selectTracker:(id)sender{
 	[self getCurrentSurface]->trackerNumber = [sender indexOfSelectedItem];	
-	int projector = [projectorsButton indexOfSelectedItem];
-	int surface = [surfacesButton indexOfSelectedItem];
+	int projector = [projectorsButton selectedSegment];
+	int surface = [surfacesButton selectedSegment];
 	[userDefaults setValue:[NSNumber numberWithInt:[sender indexOfSelectedItem]] forKey:[NSString stringWithFormat:@"projector%d.surface%d.trackerNumber",projector, surface]];
 }
 
@@ -205,8 +217,8 @@
 
 -(IBAction) setAspect:(id)sender{
 	[self getCurrentSurface]->aspect = [sender floatValue];
-	int projector = [projectorsButton indexOfSelectedItem];
-	int surface = [surfacesButton indexOfSelectedItem];
+	int projector = [projectorsButton selectedSegment];
+	int surface = [surfacesButton selectedSegment];
 	[userDefaults setValue:[NSNumber numberWithFloat:[sender floatValue]] forKey:[NSString stringWithFormat:@"projector%d.surface%d.aspect",projector, surface]];
 }
 
@@ -222,80 +234,96 @@
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
 	w = ofGetWidth();
 	h = ofGetHeight();
+	int numProjectors = [projectors count];
+	int selectedProjector = [projectorsButton selectedSegment];
+	
+	float projWidth = [self getCurrentProjector]->width*numProjectors;
+	float projHeight = [self getCurrentProjector]->height;	
+	float aspect =(float)  projWidth/projHeight;
+	float viewAspect = (float) w / h;
+	
+	float pw = aspect/numProjectors;
+	
+	
 	ofBackground(0, 0, 0);
 	ofFill();
 	
 	ofEnableAlphaBlending();
-	glPushMatrix();
-	
-	float projWidth = [self getCurrentProjector]->width*3;
-	float projHeight = [self getCurrentProjector]->height;	
-	float aspect =(float)  projHeight/projWidth;
-	float viewAspect = (float)h / w;
-	
-	glTranslated(w/2.0, h/2.0, 0);
-	glTranslated(position->x, position->y, 0);
-	float scaleC; 
-	if(viewAspect > aspect){
-		scaleC = w;
-		glScaled(w, w, 1.0);
-	} else {
-		scaleC = h/aspect;
-		glScaled(h/aspect, h/aspect, 1.0);	
-	}
-	glScaled(scale, scale, 1);
-	glTranslated(-0.66, -aspect/3.0, 0);	 
-	ofSetColor(255, 255, 255, 30);
-	ofRect(0, 0, 1, aspect);
-	ofSetColor(255, 255, 255, 70);
-	ofLine(0.33, 0, 0.33, aspect);
-	ofLine(0.66, 0, 0.66, aspect);
-	ofNoFill();
-	ofRect(0, 0, 1, aspect);
-	ofFill();
-	
-	if([projectorsButton indexOfSelectedItem] == 0)
-		glTranslated(1.5*(1-scale), 0, 0);
-	else if([projectorsButton indexOfSelectedItem] == 1)
-		glTranslated(-0.5*(1-scale), 0, 0);		
-	else if([projectorsButton indexOfSelectedItem] == 2)
-		glTranslated(-1.5*(1-scale), 0, 0);		
-	
-	ProjectionSurfacesObject* surface = [self getCurrentSurface];
-	ofSetColor(255, 255, 255, 255);
-	
-	[self applyProjection:surface width:1.0 height:aspect];	{
+	glPushMatrix();{		
+		glTranslated(w/2.0, h/2.0, 0);
+		glTranslated(position->x, position->y, 0);
 		
-		[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
-	
-	glPopMatrix();
-		
-		glScaled(2.0, 1, 1);
-		glTranslated([projectorsButton indexOfSelectedItem] * -0.5, 0, 0);
-		//Draw current projectorsurface
-		for(int i=0;i<4;i++){
-			
-			ofFill();
-			if(selectedCorner == i){
-				ofSetColor(220, 128,220,70);
-			} else {
-				ofSetColor(64, 128,220,70);			
-			}
-			ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
-			ofNoFill();
-			ofSetColor(0, 0,0,192);
-			ofSetLineWidth(4);
-			ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
-			ofSetColor(128, 255,255,255);
-			ofSetLineWidth(1.5);
-			ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
+		float scaleC; 
+		if(viewAspect > aspect){
+			scaleC = w/aspect;
+			glScaled(w/aspect, w/aspect, 1.0);
+		} else {
+			scaleC = h;
+			glScaled(h, h, 1.0);	
 		}
 		
+		glScaled(scale, scale, 1);
+		
+		
+		float totalWidth = aspect;
+		glPushMatrix();{
+			glTranslated(-totalWidth/2.0, -0.5, 0);
+			ProjectorObject * proj;
+			int i=0;
+			for(proj in projectors){
+				if(i == selectedProjector)
+					ofSetColor(255, 255, 255, 30);
+				else
+					ofSetColor(255, 255, 255, 10);					
+				ofRect(0, 0, pw,1);				
+				ofNoFill();
+				ofSetColor(255, 255, 255, 70);
+				ofRect(0, 0, pw, 1);
+				ofFill();
+				
+				glTranslated(pw, 0, 0);
+				i++;
+			}
+		}glPopMatrix();
+		
+		ProjectionSurfacesObject* surface = [self getCurrentSurface];
+		ofSetColor(255, 255, 255, 255);
+		
+		glPushMatrix();{
+			glTranslated(-totalWidth/2.0, -0.5, 0);
+			glPushMatrix();{
+				glScaled(numProjectors*pw, 1, 1);
+				surface->warp->MatrixMultiply();
+				glScaled(1.0/surface->aspect,  1, 1);
+				[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
+			}glPopMatrix();
+			
+			
+			
+			//Draw current projectorsurface
+			for(int i=0;i<4;i++){			
+				ofFill();
+				if(selectedCorner == i){
+					ofSetColor(255, 128,220,70);
+				} else {
+					ofSetColor(64, 128,220,70);			
+				}
+				ofCircle(surface->corners[i]->x*aspect, surface->corners[i]->y, 0.045);
+				ofNoFill();
+				ofSetColor(0, 0,0,192);
+				ofSetLineWidth(4);
+				ofCircle(surface->corners[i]->x*aspect, surface->corners[i]->y, 0.045);
+				ofSetColor(128, 255,255,255);
+				ofSetLineWidth(1.5);
+				ofCircle(surface->corners[i]->x*aspect, surface->corners[i]->y, 0.045);
+			}
+			
+		}glPopMatrix();
 	} glPopMatrix();
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{	
-	scale = 0.5;
+	//scale = 0.3;
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -309,7 +337,7 @@
 		for(proj in projectors){
 			ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:*proj->name surface:s];
 			BOOL simple = YES;
-			if([projectorsButton indexOfSelectedItem] == i){
+			if([projectorsButton selectedSegment] == i){
 				simple = NO;
 			}
 			ofSetColor(255, 255, 255);
@@ -354,7 +382,7 @@
 	ofRect(0.33, 0, 0.002, 0.001);
 	ofRect(0.66, 0, -0.002, 0.001);
 	ofRect(1, 0, -0.001, 0.001);
-
+	
 	ofRect(0, 1.0, 0.001, -0.001);
 	ofRect(0.33, 1.0, 0.002, -0.001);
 	ofRect(0.66, 1.0, 0.002, -0.001);
@@ -526,23 +554,39 @@
 }
 
 -(ofxPoint2f) convertMousePoint:(ofxPoint2f)p{
+	int numProjectors = [projectors count];
+	int selectedProjector = [projectorsButton selectedSegment];
+	
 	ofxPoint2f p2 = ofxPoint2f(p.x, p.y);
-	float projWidth = [self getCurrentProjector]->width;
+	float projWidth = [self getCurrentProjector]->width*numProjectors;
 	float projHeight = [self getCurrentProjector]->height;	
-	float aspect =(float)  projHeight/projWidth;
-	float viewAspect = (float)w / h;
+	float aspect =(float)  projWidth/projHeight;
+	float viewAspect = (float) w / h;
+
 	
 	p2-= ofxPoint2f(w/2.0, h/2.0);	
+	 
+	
+	
 	p2 -= *position;
 	if(viewAspect > aspect){
-		p2 /= ofxPoint2f(w,w);
+		p2 /= ofxPoint2f(w,w)/aspect;
 	} else {
-		p2 /= ofxPoint2f((float)h/aspect,(float)h/aspect);
+		p2 /= ofxPoint2f((float)h,(float)h);
 	}
 	
-	p2 /= ofxPoint2f((float)scale,(float)scale);
-	p2 -= ofxPoint2f(-0.66, -aspect/3.0);
-	p2 /= ofxPoint2f((float)1.0,(float)aspect);
+	
+
+	p2 /= scale;
+	
+
+	p2 += ofxPoint2f(aspect*0.5, 0.5);
+	
+	
+	p2 /= ofxPoint2f((float)aspect,(float)1);
+	
+	cout<<p2.x<<"  "<<p2.y<<endl;
+
 	return p2;
 	//	glTranslated(-projWidth/2.0, -projHeight/2.0, 0);
 	
@@ -659,31 +703,34 @@
 	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
 	
 	selectedCorner = [self getCurrentSurface]->warp->GetClosestCorner(curMouse.x, curMouse.y);
-	if([self getCurrentSurface]->corners[selectedCorner]->distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.3){
+	if([self getCurrentSurface]->corners[selectedCorner]->distance(ofxPoint2f(curMouse.x, curMouse.y)) > 0.1){
 		selectedCorner = -1;
 	} else {
 		//		[[self getCurrentSurface] setCorner:selectedCorner x:[self getCurrentSurface]->corners[selectedCorner]->x y:[self getCurrentSurface]->corners[selectedCorner]->y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:true];	
 	}
 	lastMousePos->x = curMouse.x;	
 	lastMousePos->y = curMouse.y;	
+	lastMousePosNotScaled->x = x;
+	lastMousePosNotScaled->y = y;
 }
 -(void) controlMouseDragged:(float)x y:(float)y button:(int)button{
 	ofxVec2f curMouse = [self convertMousePoint:ofxPoint2f(x,y)];
 	ofxVec2f newPos =  [self getCurrentSurface]->warp->corners[selectedCorner] + (curMouse-*lastMousePos);
 	if(selectedCorner != -1){
-		[[self getCurrentSurface] setCorner:selectedCorner x:newPos.x y:newPos.y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:NO];
+		[[self getCurrentSurface] setCorner:selectedCorner x:newPos.x y:newPos.y projector:[projectorsButton selectedSegment] surface:[surfacesButton selectedSegment] storeUndo:NO];
 	} else {		
-		*position += (curMouse- ((ofxPoint2f)*lastMousePos))*500.0*scale;
+		*position += (ofPoint(x,y) - ((ofxPoint2f)*lastMousePosNotScaled))*scale*2.0;
 	}
 	lastMousePos->x = curMouse.x;	
 	lastMousePos->y = curMouse.y;	
-	
+	lastMousePosNotScaled->x = x;
+	lastMousePosNotScaled->y = y;	
 	[[self getCurrentSurface] recalculate];
 }
 
 -(void) controlMouseReleased:(float)x y:(float)y{
 	if(selectedCorner != -1){
-		[[self getCurrentSurface] setCorner:selectedCorner x:[self getCurrentSurface]->corners[selectedCorner]->x y:[self getCurrentSurface]->corners[selectedCorner]->y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:true];		
+		[[self getCurrentSurface] setCorner:selectedCorner x:[self getCurrentSurface]->corners[selectedCorner]->x y:[self getCurrentSurface]->corners[selectedCorner]->y projector:[projectorsButton selectedSegment] surface:[surfacesButton selectedSegment ] storeUndo:true];		
 	}
 }
 
@@ -714,7 +761,7 @@
 				newPos += ofxVec2f(0,-n);
 			}
 			
-			[[self getCurrentSurface] setCorner:selectedCorner x:newPos.x y:newPos.y projector:[projectorsButton indexOfSelectedItem] surface:[surfacesButton indexOfSelectedItem] storeUndo:NO];
+			[[self getCurrentSurface] setCorner:selectedCorner x:newPos.x y:newPos.y projector:[projectorsButton selectedSegment] surface:[surfacesButton selectedSegment] storeUndo:NO];
 		}
 		[[self getCurrentSurface] recalculate];
 	}
@@ -722,10 +769,10 @@
 }
 
 -(ProjectorObject*) getCurrentProjector{
-	return [projectors objectAtIndex:[projectorsButton indexOfSelectedItem]];
+	return [projectors objectAtIndex:[projectorsButton selectedSegment]];
 }
 -(ProjectionSurfacesObject*) getCurrentSurface{
-	return [[self getCurrentProjector]->surfaces objectAtIndex:[surfacesButton indexOfSelectedItem]];	
+	return [[self getCurrentProjector]->surfaces objectAtIndex:[surfacesButton selectedSegment]];	
 }
 
 -(ofxPoint2f) getFloorCoordinateOfProjector:(int)proj{
