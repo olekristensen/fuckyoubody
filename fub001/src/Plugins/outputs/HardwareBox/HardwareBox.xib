@@ -424,6 +424,26 @@
 							<reference key="NSTextColor" ref="691142205"/>
 						</object>
 					</object>
+					<object class="NSButton" id="319134467">
+						<reference key="NSNextResponder" ref="954911258"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{150, 117}, {118, 25}}</string>
+						<reference key="NSSuperview" ref="954911258"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="755175187">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents">Revert screen</string>
+							<reference key="NSSupport" ref="473974446"/>
+							<reference key="NSControlView" ref="319134467"/>
+							<int key="NSButtonFlags">-2038152961</int>
+							<int key="NSButtonFlags2">163</int>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">400</int>
+							<int key="NSPeriodicInterval">75</int>
+						</object>
+					</object>
 					<object class="NSButton" id="245204402">
 						<reference key="NSNextResponder" ref="954911258"/>
 						<int key="NSvFlags">268</int>
@@ -606,16 +626,6 @@
 				<string key="NSClassName">ofPlugin</string>
 			</object>
 			<object class="NSUserDefaultsController" id="946570056">
-				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>screentrackingx1</string>
-					<string>screentrackingy1</string>
-					<string>screentrackingx2</string>
-					<string>screentrackingy2</string>
-					<string>screentrackingx3</string>
-					<string>screentrackingy3</string>
-					<string>screentrackingx4</string>
-					<string>screentrackingy4</string>
-				</array>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 		</array>
@@ -941,6 +951,14 @@
 					</object>
 					<int key="connectionID">213</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">revertScreen:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="319134467"/>
+					</object>
+					<int key="connectionID">216</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -1002,6 +1020,7 @@
 							<reference ref="45225743"/>
 							<reference ref="156924990"/>
 							<reference ref="206092184"/>
+							<reference ref="319134467"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1400,10 +1419,23 @@
 						<reference key="object" ref="575617023"/>
 						<reference key="parent" ref="156924990"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">214</int>
+						<reference key="object" ref="319134467"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="755175187"/>
+						</array>
+						<reference key="parent" ref="954911258"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">215</int>
+						<reference key="object" ref="755175187"/>
+						<reference key="parent" ref="319134467"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="1.IBEditorWindowLastContentRect">{{606, 28}, {900, 577}}</string>
+				<string key="1.IBEditorWindowLastContentRect">{{485, 82}, {900, 577}}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="113.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1458,6 +1490,23 @@
 				<string key="192.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="193.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="194.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="214.CustomClassName">PluginUIButton</string>
+				<object class="NSMutableDictionary" key="214.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="319134467"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiController</string>
+								<real value="113" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
+				<string key="214.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="215.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<real value="0.0" key="60.IBViewIntegration.shadowBlurRadius"/>
 				<reference key="60.IBViewIntegration.shadowColor" ref="173239704"/>
@@ -1547,7 +1596,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">213</int>
+			<int key="maxID">216</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1558,6 +1607,7 @@
 						<string key="pos1Lensshift:">id</string>
 						<string key="pos2Lensshift:">id</string>
 						<string key="resetLensshift:">id</string>
+						<string key="revertScreen:">id</string>
 						<string key="toggleLaser:">id</string>
 						<string key="toggleXBeeLed:">id</string>
 						<string key="turnProjectorOff:">id</string>

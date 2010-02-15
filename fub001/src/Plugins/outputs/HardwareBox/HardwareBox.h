@@ -71,7 +71,10 @@
 	
 	IBOutlet NSButton * trackingScreen;
 	
+
 	
+	NSUserDefaults *userDefaults;
+
 }
 
 -(void) updateSerial:(id)param;
@@ -83,5 +86,6 @@
 -(IBAction) turnProjectorOn:(id)sender;
 -(IBAction) turnProjectorOff:(id)sender;
 
+-(IBAction) revertScreen:(id)sender;
 -(void) setDmxValue:(int)val onChannel:(int)channel;
 @end

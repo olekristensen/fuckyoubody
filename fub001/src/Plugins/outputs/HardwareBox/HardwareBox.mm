@@ -42,7 +42,8 @@
 	
 	timeSinceLastProjUpdate = 0;
 	
-	
+	userDefaults = [[NSUserDefaults standardUserDefaults] retain];
+
 	
 	
 	for(int i=0;i<8;i++){
@@ -525,5 +526,13 @@
 -(IBAction) pos2Lensshift:(id)sender{
 	
 }
-
+-(IBAction) revertScreen:(id)sender{
+	ProjectionSurfacesObject * surface = [GetPlugin(ProjectionSurfaces) getProjectionSurfaceByName:"Front" surface:"Backwall"];
+	for(int i=0;i<4;i++){
+		surface->corners[i]->x = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.x",0, 1, i]];
+		surface->corners[i]->y = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.corner%d.y",0, 1, i]];
+	}
+	surface->aspect = [userDefaults doubleForKey:[NSString stringWithFormat:@"projector%d.surface%d.aspect",0, 1]];
+	[surface recalculate];
+}
 @end

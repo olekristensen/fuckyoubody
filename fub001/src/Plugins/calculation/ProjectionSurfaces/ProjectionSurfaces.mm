@@ -267,7 +267,8 @@
 	[self applyProjection:surface width:1.0 height:aspect];	{
 		
 		[self drawGrid:*surface->name aspect:surface->aspect resolution:10 drawBorder:true alpha:1.0 fontSize:1.0 simple:NO];
-		glPopMatrix();
+	
+	glPopMatrix();
 		
 		glScaled(2.0, 1, 1);
 		glTranslated([projectorsButton indexOfSelectedItem] * -0.5, 0, 0);
@@ -290,7 +291,7 @@
 			ofCircle(surface->corners[i]->x, surface->corners[i]->y*aspect, 0.015);
 		}
 		
-	}glPopMatrix();
+	} glPopMatrix();
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{	
@@ -568,7 +569,7 @@
 	if(strcmp([((ProjectorObject*)obj->projector) name]->c_str(), "Extra") == 0){
 		glTranslated(-2*_w, 0, 0);
 	}
-	glScaled(_w*2, _h, 1.0);
+	glScaled(_w*3, _h, 1.0);
 	obj->warp->MatrixMultiply();
 	glScaled(setW, setH, 1.0);
 	

@@ -113,11 +113,12 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	glViewport(0, 0, ofGetWidth(), ofGetHeight());
 	ofEnableAlphaBlending();
 	if(going){
 		ofFill();
 		ofSetColor(255, 0, 0);
-		ofRect(0, 1.0-percent, 1.0, 0.02);
+		ofRect(0, 1.0-percent, 1.0/3.0, 0.02);
 		StregkodePlayer * player;
 		
 		for(player in players){
@@ -145,7 +146,6 @@
 						}
 						ofEndShape(true);
 					}
-					
 				}
 			}
 		}

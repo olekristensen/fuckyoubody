@@ -63,7 +63,7 @@
 	
 	SetMovieVisualContext([movie quickTimeMovie], textureContext);
 	[movie setRate:1.0];
-//	[movie set
+	[movie stop];
 }
 
 -(void) setup{
@@ -318,19 +318,76 @@
 		
 		
 		/*tetris->update();
-		if([tetrisControl state]){
+		*/if([tetrisControl state]){
 			if(!isPlayingTetris){
-				tetris->play();
+				[movie play];
+				[movie gotoBeginning];
 				isPlayingTetris = YES;
-				tetris->firstFrame();
 			}
 			ofSetColor(255, 255, 255,255*[tetrisAlphaControl floatValue]/100.0);
-			tetris->draw(0, 0,[GetPlugin(ProjectionSurfaces) getAspect]*2,1);
+			
+		
+			
+			// check for new frame
+			if (textureContext != NULL && QTVisualContextIsNewImageAvailable(textureContext, outputTime)) {
+				
+				// if we have a previous frame release it
+				if (NULL != currentFrame) {
+					CVOpenGLTextureRelease(currentFrame);
+					currentFrame = NULL;
+				}
+				
+				// get a "frame" (image buffer) from the Visual Context, indexed by the provided time
+				OSStatus status = QTVisualContextCopyImageForTime(textureContext, NULL, outputTime, &currentFrame);
+				
+				// the above call may produce a null frame so check for this first
+				// if we have a frame, then draw it
+				if ((noErr == status) && (NULL != currentFrame)) {
+					
+				}
+			}
+			
+			if(currentFrame != nil){
+				GLfloat topLeft[2], topRight[2], bottomRight[2], bottomLeft[2];
+				
+				GLenum target = CVOpenGLTextureGetTarget(currentFrame);	// get the texture target (for example, GL_TEXTURE_2D) of the texture
+				GLint name = CVOpenGLTextureGetName(currentFrame);		// get the texture target name of the texture
+				
+				// get the texture coordinates for the part of the image that should be displayed
+				CVOpenGLTextureGetCleanTexCoords(currentFrame, bottomLeft, bottomRight, topRight, topLeft);
+				
+				glPushMatrix();
+			//	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
+				
+				
+				// bind the texture and draw the quad
+				glEnable(target);
+				glBindTexture(target, name);
+				glBegin(GL_QUADS);
+				glTexCoord2f(0, 300);  glVertex2f(0, 0);
+				glTexCoord2f(800, 300);     glVertex2f([GetPlugin(ProjectionSurfaces) getAspect]*2,  0);
+				glTexCoord2f(800, 0);    glVertex2f( [GetPlugin(ProjectionSurfaces) getAspect]*2,  1);
+				glTexCoord2f(0, 0); glVertex2f( 0, 1);
+				glEnd();
+				glDisable(target);
+				
+			//	glPopMatrix();
+				glPopMatrix();
+				
+				// give time to the Visual Context so it can release internally held resources for later re-use
+				// this function should be called in every rendering pass, after old images have been released, new
+				// images have been used and all rendering has been flushed to the screen.
+				QTVisualContextTask(textureContext);		
+			}
+
+			
+			
 		} else {
 			isPlayingTetris = NO;
-			tetris->setPaused(YES);
+			[movie stop];		
+			[movie gotoBeginning];
+
 		}
-*/
 		glPopMatrix();
 	}
 	
@@ -414,59 +471,7 @@
 	
 	
 	
-	
-	// check for new frame
-	if (textureContext != NULL && QTVisualContextIsNewImageAvailable(textureContext, outputTime)) {
-    	
-        // if we have a previous frame release it
-		if (NULL != currentFrame) {
-        	CVOpenGLTextureRelease(currentFrame);
-        	currentFrame = NULL;
-        }
-        
-        // get a "frame" (image buffer) from the Visual Context, indexed by the provided time
-		OSStatus status = QTVisualContextCopyImageForTime(textureContext, NULL, outputTime, &currentFrame);
 		
-        // the above call may produce a null frame so check for this first
-        // if we have a frame, then draw it
-		if ((noErr == status) && (NULL != currentFrame)) {
-			
-		}
-	}
-	
-	if(currentFrame != nil){
-		GLfloat topLeft[2], topRight[2], bottomRight[2], bottomLeft[2];
-		
-		GLenum target = CVOpenGLTextureGetTarget(currentFrame);	// get the texture target (for example, GL_TEXTURE_2D) of the texture
-		GLint name = CVOpenGLTextureGetName(currentFrame);		// get the texture target name of the texture
-		
-		// get the texture coordinates for the part of the image that should be displayed
-		CVOpenGLTextureGetCleanTexCoords(currentFrame, bottomLeft, bottomRight, topRight, topLeft);
-		
-		glPushMatrix();
-		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
-		
-		
-		// bind the texture and draw the quad
-		glEnable(target);
-		glBindTexture(target, name);
-		glBegin(GL_QUADS);
-		glTexCoord2f(0, 300);  glVertex2f(0, 0);
-		glTexCoord2f(800, 300);     glVertex2f([GetPlugin(ProjectionSurfaces) getAspect]*2,  0);
-		glTexCoord2f(800, 0);    glVertex2f( [GetPlugin(ProjectionSurfaces) getAspect]*2,  1);
-		glTexCoord2f(0, 0); glVertex2f( 0, 1);
-		glEnd();
-		glDisable(target);
-		
-		glPopMatrix();
-		glPopMatrix();
-
-        // give time to the Visual Context so it can release internally held resources for later re-use
-        // this function should be called in every rendering pass, after old images have been released, new
-        // images have been used and all rendering has been flushed to the screen.
-        QTVisualContextTask(textureContext);		
-	}
-	
 }
 
 -(void) generateObjects{
