@@ -228,7 +228,7 @@
 	ofEnableAlphaBlending();
 	glPushMatrix();
 	
-	float projWidth = [self getCurrentProjector]->width*2;
+	float projWidth = [self getCurrentProjector]->width*3;
 	float projHeight = [self getCurrentProjector]->height;	
 	float aspect =(float)  projHeight/projWidth;
 	float viewAspect = (float)h / w;
@@ -244,19 +244,22 @@
 		glScaled(h/aspect, h/aspect, 1.0);	
 	}
 	glScaled(scale, scale, 1);
-	glTranslated(-0.5, -aspect/2.0, 0);	 
+	glTranslated(-0.66, -aspect/3.0, 0);	 
 	ofSetColor(255, 255, 255, 30);
 	ofRect(0, 0, 1, aspect);
 	ofSetColor(255, 255, 255, 70);
-	ofLine(0.5, 0, 0.5, aspect);
+	ofLine(0.33, 0, 0.33, aspect);
+	ofLine(0.66, 0, 0.66, aspect);
 	ofNoFill();
 	ofRect(0, 0, 1, aspect);
 	ofFill();
 	
 	if([projectorsButton indexOfSelectedItem] == 0)
-		glTranslated(1.0*(1-scale), 0, 0);
-	else 
-		glTranslated(-1.0*(1-scale), 0, 0);		
+		glTranslated(1.5*(1-scale), 0, 0);
+	else if([projectorsButton indexOfSelectedItem] == 1)
+		glTranslated(-0.5*(1-scale), 0, 0);		
+	else if([projectorsButton indexOfSelectedItem] == 2)
+		glTranslated(-1.5*(1-scale), 0, 0);		
 	
 	ProjectionSurfacesObject* surface = [self getCurrentSurface];
 	ofSetColor(255, 255, 255, 255);
@@ -537,7 +540,7 @@
 	}
 	
 	p2 /= ofxPoint2f((float)scale,(float)scale);
-	p2 -= ofxPoint2f(-0.5, -aspect/2.0);
+	p2 -= ofxPoint2f(-0.66, -aspect/3.0);
 	p2 /= ofxPoint2f((float)1.0,(float)aspect);
 	return p2;
 	//	glTranslated(-projWidth/2.0, -projHeight/2.0, 0);
