@@ -41,6 +41,26 @@
 			}
 		}glPopMatrix();
 	}glPopMatrix();
+	
+	// MASK
+	
+	ofSetColor(0, 0, 0, [mask floatValue]*255);
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+		
+		// bottom mask
+		ofRect(-1, 1, 3, 2);
+		// left mask
+		ofRect(1, -1, 2, 2);
+		
+		// top mask
+		ofRect(-1, 0, 3, -2);
+		// right mask
+		ofRect(0, -1, -2, 2);
+		
+	} glPopMatrix();
+	
+	
 	/*[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
 	 glPushMatrix();
 	 glTranslated(0.5, 0.5, 0);

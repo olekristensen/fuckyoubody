@@ -304,7 +304,7 @@
 			for(int i=0;i<4;i++){			
 				ofFill();
 				if(selectedCorner == i){
-					ofSetColor(255, 128,220,70);
+					ofSetColor(255, 255,0,70);
 				} else {
 					ofSetColor(64, 128,220,70);			
 				}
@@ -313,7 +313,12 @@
 				ofSetColor(0, 0,0,192);
 				ofSetLineWidth(4);
 				ofCircle(surface->corners[i]->x*aspect, surface->corners[i]->y, 0.045);
-				ofSetColor(128, 255,255,255);
+
+				if(selectedCorner == i){
+					ofSetColor(255, 255,0,255);
+				} else {
+					ofSetColor(128, 255,255,255);
+				}
 				ofSetLineWidth(1.5);
 				ofCircle(surface->corners[i]->x*aspect, surface->corners[i]->y, 0.045);
 			}

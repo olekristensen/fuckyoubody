@@ -409,7 +409,7 @@
 
 -(void) setup{
 	music = new ofSoundPlayer();
-	music->loadSound("beat.mp3");
+	music->loadSound("beat.aif");
 	music->play();
 }
 

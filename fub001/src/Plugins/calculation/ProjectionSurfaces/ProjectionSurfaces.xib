@@ -61,21 +61,25 @@
 							<object class="NSButton" id="601169957">
 								<reference key="NSNextResponder" ref="715828380"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{20, 465}, {118, 25}}</string>
+								<string key="NSFrame">{{20, 465}, {201, 25}}</string>
 								<reference key="NSSuperview" ref="715828380"/>
 								<bool key="NSEnabled">YES</bool>
 								<object class="NSButtonCell" key="NSCell" id="693392079">
 									<int key="NSCellFlags">67239424</int>
-									<int key="NSCellFlags2">134217728</int>
-									<string key="NSContents">Show grid</string>
+									<int key="NSCellFlags2">0</int>
+									<string key="NSContents">Show grid in projection</string>
 									<object class="NSFont" key="NSSupport">
 										<string key="NSName">LucidaGrande</string>
 										<double key="NSSize">13</double>
 										<int key="NSfFlags">1044</int>
 									</object>
 									<reference key="NSControlView" ref="601169957"/>
-									<int key="NSButtonFlags">914637055</int>
+									<int key="NSButtonFlags">917258495</int>
 									<int key="NSButtonFlags2">163</int>
+									<object class="NSCustomResource" key="NSNormalImage">
+										<string key="NSClassName">NSImage</string>
+										<string key="NSResourceName">NSEnterFullScreenTemplate</string>
+									</object>
 									<string key="NSAlternateContents"/>
 									<string key="NSKeyEquivalent"/>
 									<int key="NSPeriodicDelay">400</int>

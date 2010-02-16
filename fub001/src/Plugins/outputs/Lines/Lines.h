@@ -40,7 +40,7 @@
 	IBOutlet NSButton * addButton;
 	IBOutlet NSButton * trackingButton;
 	IBOutlet NSButton * timeoutLinesButton;
-	
+	IBOutlet NSSlider * ksMask;
 	NSMutableArray * lines;
 	
 	

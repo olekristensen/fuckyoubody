@@ -72,13 +72,13 @@
 	[self generateObjects];
 	blur = new shaderBlur();
 	blur->setup(800, 600);
-		
+	
 	/*tetris = new ofVideoPlayer();
-	tetris->loadMovie("tetris.mov");
-	 	tetris->setPaused(YES);*/
+	 tetris->loadMovie("tetris.mov");
+	 tetris->setPaused(YES);*/
 	isPlayingTetris = NO;
-
-
+	
+	
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
@@ -108,7 +108,7 @@
 				//cout<<ofGetFrameRate()<<endl;
 				[obj pos]->z += ([wallSpeedControl floatValue]/50.0) * step * 60.0/ofGetFrameRate();
 				//float moveX = 0.003* [wallSpeedControl floatValue]/100.0 * 60.0/ofGetFrameRate();
-
+				
 				while([obj pos]->z + [obj offset]->z > 455){
 					[obj pos]->z -= 1000;
 					BOOL tower = NO;
@@ -242,7 +242,7 @@
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
-
+	
 	
 	
 	
@@ -280,10 +280,10 @@
 		glLoadIdentity();
 		gluLookAt(eyeX, eyeY, dist, eyeX, h/2.0, 0.0, 0.0, 1.0, 0.0);
 		
-//		glTranslatef(+w/2.0, 0, 0);
-//			glScalef(1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"], -1, 1);           // invert Y axis so increasing Y goes down.		
-					glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.		
-//		glTranslatef(- (1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) * w/2.0, 0, 0);
+		//		glTranslatef(+w/2.0, 0, 0);
+		//			glScalef(1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"], -1, 1);           // invert Y axis so increasing Y goes down.		
+		glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.		
+		//		glTranslatef(- (1.0/[GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]) * w/2.0, 0, 0);
 		
 		glTranslatef(0, -h, 0);       // shift origin up to upper-left corner.
 		
@@ -318,92 +318,95 @@
 		
 		
 		/*tetris->update();
-		*/if([tetrisControl state]){
-			if(!isPlayingTetris){
-				[movie play];
-				[movie gotoBeginning];
-				isPlayingTetris = YES;
-			}
-			ofSetColor(255, 255, 255,255*[tetrisAlphaControl floatValue]/100.0);
-			
-		
-			
-			// check for new frame
-			if (textureContext != NULL && QTVisualContextIsNewImageAvailable(textureContext, outputTime)) {
-				
-				// if we have a previous frame release it
-				if (NULL != currentFrame) {
-					CVOpenGLTextureRelease(currentFrame);
-					currentFrame = NULL;
-				}
-				
-				// get a "frame" (image buffer) from the Visual Context, indexed by the provided time
-				OSStatus status = QTVisualContextCopyImageForTime(textureContext, NULL, outputTime, &currentFrame);
-				
-				// the above call may produce a null frame so check for this first
-				// if we have a frame, then draw it
-				if ((noErr == status) && (NULL != currentFrame)) {
-					
-				}
-			}
-			
-			if(currentFrame != nil){
-				GLfloat topLeft[2], topRight[2], bottomRight[2], bottomLeft[2];
-				
-				GLenum target = CVOpenGLTextureGetTarget(currentFrame);	// get the texture target (for example, GL_TEXTURE_2D) of the texture
-				GLint name = CVOpenGLTextureGetName(currentFrame);		// get the texture target name of the texture
-				
-				// get the texture coordinates for the part of the image that should be displayed
-				CVOpenGLTextureGetCleanTexCoords(currentFrame, bottomLeft, bottomRight, topRight, topLeft);
-				
-				glPushMatrix();
-			//	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
-				
-				
-				// bind the texture and draw the quad
-				glEnable(target);
-				glBindTexture(target, name);
-				glBegin(GL_QUADS);
-				glTexCoord2f(0, 300);  glVertex2f(0, 0);
-				glTexCoord2f(800, 300);     glVertex2f([GetPlugin(ProjectionSurfaces) getAspect]*2,  0);
-				glTexCoord2f(800, 0);    glVertex2f( [GetPlugin(ProjectionSurfaces) getAspect]*2,  1);
-				glTexCoord2f(0, 0); glVertex2f( 0, 1);
-				glEnd();
-				glDisable(target);
-				
-			//	glPopMatrix();
-				glPopMatrix();
-				
-				// give time to the Visual Context so it can release internally held resources for later re-use
-				// this function should be called in every rendering pass, after old images have been released, new
-				// images have been used and all rendering has been flushed to the screen.
-				QTVisualContextTask(textureContext);		
-			}
-
-			
-			
-		} else {
-			isPlayingTetris = NO;
-			[movie stop];		
-			[movie gotoBeginning];
-
-		}
+		 */if([tetrisControl state]){
+			 if(!isPlayingTetris){
+				 [movie play];
+				 [movie gotoBeginning];
+				 isPlayingTetris = YES;
+			 }
+			 ofSetColor(255, 255, 255,255*[tetrisAlphaControl floatValue]/100.0);
+			 
+			 
+			 
+			 // check for new frame
+			 if (textureContext != NULL && QTVisualContextIsNewImageAvailable(textureContext, outputTime)) {
+				 
+				 // if we have a previous frame release it
+				 if (NULL != currentFrame) {
+					 CVOpenGLTextureRelease(currentFrame);
+					 currentFrame = NULL;
+				 }
+				 
+				 // get a "frame" (image buffer) from the Visual Context, indexed by the provided time
+				 OSStatus status = QTVisualContextCopyImageForTime(textureContext, NULL, outputTime, &currentFrame);
+				 
+				 // the above call may produce a null frame so check for this first
+				 // if we have a frame, then draw it
+				 if ((noErr == status) && (NULL != currentFrame)) {
+					 
+				 }
+			 }
+			 
+			 if(currentFrame != nil){
+				 GLfloat topLeft[2], topRight[2], bottomRight[2], bottomLeft[2];
+				 
+				 GLenum target = CVOpenGLTextureGetTarget(currentFrame);	// get the texture target (for example, GL_TEXTURE_2D) of the texture
+				 GLint name = CVOpenGLTextureGetName(currentFrame);		// get the texture target name of the texture
+				 
+				 // get the texture coordinates for the part of the image that should be displayed
+				 CVOpenGLTextureGetCleanTexCoords(currentFrame, bottomLeft, bottomRight, topRight, topLeft);
+				 
+				 glPushMatrix();
+				 //	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
+				 
+				 
+				 // bind the texture and draw the quad
+				 ofSetColor(215, 221, 248, 255*[tetrisAlphaControl floatValue]/100.0);
+				 
+				 
+				 glEnable(target);
+				 glBindTexture(target, name);
+				 glBegin(GL_QUADS);
+				 glTexCoord2f(0, 300);  glVertex2f(0, 0);
+				 glTexCoord2f(800, 300);     glVertex2f([GetPlugin(ProjectionSurfaces) getAspect]*2,  0);
+				 glTexCoord2f(800, 0);    glVertex2f( [GetPlugin(ProjectionSurfaces) getAspect]*2,  1);
+				 glTexCoord2f(0, 0); glVertex2f( 0, 1);
+				 glEnd();
+				 glDisable(target);
+				 
+				 //	glPopMatrix();
+				 glPopMatrix();
+				 
+				 // give time to the Visual Context so it can release internally held resources for later re-use
+				 // this function should be called in every rendering pass, after old images have been released, new
+				 // images have been used and all rendering has been flushed to the screen.
+				 QTVisualContextTask(textureContext);		
+			 }
+			 
+			 
+			 
+		 } else {
+			 isPlayingTetris = NO;
+			 [movie stop];		
+			 [movie gotoBeginning];
+			 
+		 }
 		glPopMatrix();
 	}
 	
 	if([floorActiveControl state] == NSOnState){
-/*		NSColor * wc = [NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1];
-		for(int y=0;y<5;y++){
-		ofxPoint3f p = ofxPoint3f(1,y,7-floorPos*16);
-		[GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
-
-		p = ofxPoint3f(0,y,7-floorPos*16+2);
-		[GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
-
-		}*/
+		/*		NSColor * wc = [NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1];
+		 for(int y=0;y<5;y++){
+		 ofxPoint3f p = ofxPoint3f(1,y,7-floorPos*16);
+		 [GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
+		 
+		 p = ofxPoint3f(0,y,7-floorPos*16+2);
+		 [GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
+		 
+		 }*/
 		
 		ofSetColor(215, 221, 248);
-
+		
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 			ofFill();
 			glRotated(-45, 0, 0, 1);
@@ -417,6 +420,13 @@
 			for(float i=-1;i<1;i+= 0.2){
 				ofTriangle(i, 0, i+1/8.0, 0, i+1/16.0, -0.07);
 			}
+			
+			//MASK
+			ofEnableAlphaBlending();
+			ofSetColor(0, 0, 0, [mask floatValue]*255);
+			// bottom mask
+			ofRect(-1, 0, 3, 2);
+			
 			glPopMatrix();
 			
 		}glPopMatrix();
@@ -435,6 +445,16 @@
 			for(float i=-1;i<1;i+= 0.2){
 				ofTriangle(i, 0, i+1/8.0, 0, i+1/16.0, -0.07);
 			}
+			
+			//MASK
+			ofEnableAlphaBlending();
+			ofSetColor(0, 0, 0, [mask floatValue]*255);
+			// bottom mask
+			ofRect(-1, 0, 3, 2);
+			
+			
+			
+			
 			glPopMatrix();
 			
 		}glPopMatrix();
@@ -471,7 +491,7 @@
 	
 	
 	
-		
+	
 }
 
 -(void) generateObjects{
@@ -492,7 +512,7 @@
 				
 				[nObj setTower:NO];
 				[nObj setVisible:YES];
-
+				
 				[nObj setObstacle:NO];
 				[wallObjects addObject:nObj];
 				i++;

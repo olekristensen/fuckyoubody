@@ -72,12 +72,12 @@
 		frontLeft->x = leftFrontFilter->filter(l.x);			
 		frontRight->x = rightFrontFilter->filter(r.x);			
 	}
-/*	frontLeft->x = leftFrontFilter->filter(l.x);			
-	frontRight->x = rightFrontFilter->filter(r.x);			
-	if(ofGetFrameRate()<50){
-		frontLeft->x = leftFrontFilter->filter(l.x);			
-		frontRight->x = rightFrontFilter->filter(r.x);			
-	}*/
+	/*	frontLeft->x = leftFrontFilter->filter(l.x);			
+	 frontRight->x = rightFrontFilter->filter(r.x);			
+	 if(ofGetFrameRate()<50){
+	 frontLeft->x = leftFrontFilter->filter(l.x);			
+	 frontRight->x = rightFrontFilter->filter(r.x);			
+	 }*/
 }
 
 -(void) setBackLeft:(ofxPoint2f)l backRight:(ofxPoint2f)r{
@@ -225,7 +225,7 @@
 			glVertex2f(frontPoints[i].x, frontPoints[i].y);
 		}
 		glEnd();
-
+		
 		ofSetColor(215*backA, 221*backA, 248*backA, 255);
 		/*[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];
 		 glBegin(GL_QUAD_STRIP);
@@ -260,8 +260,8 @@
 
 -(void) setup{
 	for(int i=1;i<=NUMLINESOUNDS;i++){
-		clicks[i-1] = new ofSoundPlayer();
-		clicks[i-1]->loadSound("Samples/small click#"+ofToString(i, 0)+".aif", false);		
+	//	clicks[i-1] = new ofSoundPlayer();
+	//	clicks[i-1]->loadSound("Samples/small click#"+ofToString(i, 0)+".aif", false);		
 	}
 }
 
@@ -394,9 +394,9 @@
 						}
 						
 						
-						int sound = (int)round(ofRandom(0, NUMLINESOUNDS-1));
-						cout<<"Play sound "<<sound<<endl;
-						clicks[sound]->play();
+//						int sound = (int)round(ofRandom(0, NUMLINESOUNDS-1));
+//						cout<<"Play sound "<<sound<<endl;
+//						clicks[sound]->play();
 						
 						link->blobId = pblob->pid;
 						link->projId = [trackingDirection selectedSegment];
@@ -417,6 +417,7 @@
 }
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	ofEnableAlphaBlending();
 	glViewport(0, 0, ofGetWidth(), ofGetHeight());
 	
 	
@@ -428,10 +429,27 @@
 		t = true;
 	}
 	for(line in lines){
-		[line drawWithBalance:[balanceSlider floatValue] fromtAlpha:(powf(1.0-[balanceSlider floatValue],1.0/gamma))  backAlpha:powf([balanceSlider floatValue],1.0/gamma) width:[lineWidthSlider floatValue] timeout:t  ];
+		[line drawWithBalance:[balanceSlider floatValue] fromtAlpha:(powf(1.0-[balanceSlider floatValue],1.0/gamma))*[alpha floatValue]  backAlpha:powf([balanceSlider floatValue],1.0/gamma)*[alpha floatValue] width:[lineWidthSlider floatValue] timeout:t  ];
 	}
 	
 	//[self drawDiagonal];
+	
+	// MASK
+	
+	ofSetColor(0, 0, 0, [mask floatValue]*255);
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+		
+		// bottom mask
+		ofRect(-1, 1, 3, 2);
+		// left mask
+		ofRect(1, -1, 2, 2);
+		
+		//KS mask
+		ofRect(0-[ksMask floatValue], -30, -20, 60);
+		
+	} glPopMatrix();
+	
 }
 
 -(void) drawDiagonal{

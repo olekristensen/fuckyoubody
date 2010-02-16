@@ -169,28 +169,30 @@
 			}
 			
 			if(!pblobFound){
+				ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[pblob getLowestPoint] fromProjection:"Front" toSurface:"Floor"];
+				
 				if(addRule->x > 0 || bestPblob == -1){
-					if([pblob getLowestPoint].x > bestPoint.x){
+					if(p.x > bestPoint.x){
 						bestPblob = pblob->pid;
-						bestPoint = [pblob getLowestPoint];
+						bestPoint = p;
 					}
 				}
 				if(addRule->x < 0 || bestPblob == -1){
-					if([pblob getLowestPoint].x < bestPoint.x){
+					if(p.x < bestPoint.x){
 						bestPblob = pblob->pid;
-						bestPoint = [pblob getLowestPoint];
+						bestPoint = p;
 					}
 				}
 				if(addRule->y > 0 || bestPblob == -1){
-					if([pblob getLowestPoint].y > bestPoint.y){
+					if(p.y > bestPoint.y){
 						bestPblob = pblob->pid;
-						bestPoint = [pblob getLowestPoint];
+						bestPoint = p;
 					}
 				}
 				if(addRule->y < 0 || bestPblob == -1){
-					if([pblob getLowestPoint].y < bestPoint.y){
+					if(p.y < bestPoint.y){
 						bestPblob = pblob->pid;
-						bestPoint = [pblob getLowestPoint];
+						bestPoint = p;
 					}
 				}
 			}

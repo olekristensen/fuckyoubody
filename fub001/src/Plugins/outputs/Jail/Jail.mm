@@ -5,7 +5,9 @@
 @implementation Jail
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+
 	ofFill();
+	
 	ofSetColor(255, 
 			   255, 
 			   255, 
