@@ -355,7 +355,7 @@
 	}
 	
 	
-	if([[globalController testFloorButton] state] == NSOnState){
+	if([[[globalController controlPanel] testFloorButton] state] == NSOnState){
 		ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:"Front" surface:"Floor"];
 		
 		ofSetColor(255, 255, 255);
@@ -368,7 +368,7 @@
 		
 		glPopMatrix();
 	}
-	if([[globalController testScreenButton] state] == NSOnState){
+	if([[[globalController controlPanel] testScreenButton] state] == NSOnState){
 		ProjectionSurfacesObject * surf = [self getProjectionSurfaceByName:"Front" surface:"Floor"];
 		
 		ofSetColor(255, 255, 255);

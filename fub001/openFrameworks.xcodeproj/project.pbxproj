@@ -26,6 +26,7 @@
 		6EA228BA1108DDAE0067C608 /* Bomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EA228B91108DDAD0067C608 /* Bomb.png */; };
 		6EA4026710BC115E006FBAAB /* SharedContextLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */; };
 		6EA7149210FFA89000DB0246 /* PluginUIButton.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EA7149110FFA89000DB0246 /* PluginUIButton.mm */; };
+		6EB1F9F8112B36C300995DBB /* ControlPanel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB1F9F7112B36C300995DBB /* ControlPanel.mm */; };
 		6EB320C410C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */; };
 		6EB34C4E1115C164009A3B71 /* HardwareBox.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6EB34C4C1115C164009A3B71 /* HardwareBox.mm */; };
 		6EB34C4F1115C164009A3B71 /* HardwareBox.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EB34C4D1115C164009A3B71 /* HardwareBox.xib */; };
@@ -259,6 +260,8 @@
 		6EA4026610BC115E006FBAAB /* SharedContextLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SharedContextLayer.mm; path = PluginManager/SharedContextLayer.mm; sourceTree = "<group>"; };
 		6EA7149010FFA89000DB0246 /* PluginUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginUIButton.h; sourceTree = "<group>"; };
 		6EA7149110FFA89000DB0246 /* PluginUIButton.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PluginUIButton.mm; sourceTree = "<group>"; };
+		6EB1F9F6112B36C300995DBB /* ControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlPanel.h; sourceTree = "<group>"; };
+		6EB1F9F7112B36C300995DBB /* ControlPanel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ControlPanel.mm; sourceTree = "<group>"; };
 		6EB320C210C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = goFullScreen_usingLayerAppDelegate.h; sourceTree = "<group>"; };
 		6EB320C310C55E5B00CFA9D2 /* goFullScreen_usingLayerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = goFullScreen_usingLayerAppDelegate.m; sourceTree = "<group>"; };
 		6EB34C4B1115C164009A3B71 /* HardwareBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HardwareBox.h; sourceTree = "<group>"; };
@@ -1384,6 +1387,8 @@
 				DDC7728910B5846F009CAFC7 /* testApp.mm */,
 				DDC7728A10B5846F009CAFC7 /* TestAppController.h */,
 				DDC7728B10B5846F009CAFC7 /* TestAppController.mm */,
+				6EB1F9F6112B36C300995DBB /* ControlPanel.h */,
+				6EB1F9F7112B36C300995DBB /* ControlPanel.mm */,
 			);
 			path = testApp;
 			sourceTree = "<group>";
@@ -2192,6 +2197,7 @@
 				6ED46A2F1118531400165C65 /* ofxQuaternion.cpp in Sources */,
 				6ED46AFF1118651600165C65 /* DMXLamps.mm in Sources */,
 				6EE190EA111AC95C007E0C7B /* Combat.mm in Sources */,
+				6EB1F9F8112B36C300995DBB /* ControlPanel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

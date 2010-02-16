@@ -85,7 +85,7 @@
 }
 
 -(void)addColorForLamp:(ofPoint)lamp box:(DiodeBox*)box{
-	if([[globalController testDmxButton] state] == NSOnState){
+	if([[[globalController controlPanel] testDmxButton] state] == NSOnState){
 		if(number < 4){
 			NSColor * c;
 			switch (number) {

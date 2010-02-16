@@ -67,11 +67,11 @@
 	if(connected){
 		[usbStatus setStringValue:@"USB Status: Connected"];
 		[usbStatus setTextColor:[NSColor blackColor]];
-		[[controller hardwareStatus] setState:NSOnState];
+		[[[controller controlPanel] hardwareStatus] setState:NSOnState];
 	} else {
 		[usbStatus setStringValue:@"USB Status: NOT Connected"];	
 		[usbStatus setTextColor:[NSColor redColor]];
-		[[controller hardwareStatus] setState:NSOffState];
+		[[[controller controlPanel] hardwareStatus] setState:NSOffState];
 	}
 	
 	
@@ -89,15 +89,15 @@
 	
 	[xbeeStatus setStringValue:[NSString stringWithFormat:@"XBee status: %d, signal strength: %d", xbeestate, int(xbeeRSSI)]];
 	if(xbeestate)
-		[[controller xbeeStatus] setState:NSOnState];
+		[[[controller controlPanel] xbeeStatus] setState:NSOnState];
 	else {
-		[[controller xbeeStatus] setState:NSOffState];
+		[[[controller controlPanel] xbeeStatus] setState:NSOffState];
 	}
 
 
 	[xbeeSignalStrength setFloatValue:xbeeRSSI];
 	
-	[[controller xbeeStrength] setFloatValue:xbeeRSSI*0.5];
+	[[[controller controlPanel] xbeeStrength] setFloatValue:xbeeRSSI*0.5];
 
 	[xbeeLEDStatus setStringValue:[NSString stringWithFormat:@"XBee LED status: %d", xbeeLedOn]];
 	[laserStatus setStringValue:[NSString stringWithFormat:@"Laser status: %d", laserOn]];

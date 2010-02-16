@@ -81,36 +81,36 @@
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-	for(int i=0;i<3;i++){
+	for(int i=0;i<1;i++){
 		[cam[i] update:timeInterval displayTime:outputTime];
 		if(i==0){
-			[[controller cameraFps1] setFloatValue:[cam[i] framerate]];
-			[[controller cameraStatus1] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+			[[[controller controlPanel] cameraFps1] setFloatValue:[cam[i] framerate]];
+			[[[controller controlPanel] cameraStatus1] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
 			if ([cam[i] thisCameraIsRespawning]) {
-				[[controller cameraStatus1] setState:((fmodf(ofGetElapsedTimef(),0.5) < 0.2 ) ? NSOnState : NSOffState)];
+				[[[controller controlPanel] cameraStatus1] setState:((fmodf(ofGetElapsedTimef(),0.5) < 0.2 ) ? NSOnState : NSOffState)];
 			}
 		}
 		if(i==1){
-			[[controller cameraFps2] setFloatValue:[cam[i] framerate]];
-			[[controller cameraStatus2] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+			[[[controller controlPanel] cameraFps2] setFloatValue:[cam[i] framerate]];
+			[[[controller controlPanel] cameraStatus2] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
 			if ([cam[i] thisCameraIsRespawning]) {
-				[[controller cameraStatus2] setState:((fmodf(ofGetElapsedTimef(),0.5) < 0.2 ) ? NSOnState : NSOffState)];
+				[[[controller controlPanel] cameraStatus2] setState:((fmodf(ofGetElapsedTimef(),0.5) < 0.2 ) ? NSOnState : NSOffState)];
 			}
 		}
 		if(i==2){
-			[[controller cameraFps3] setFloatValue:[cam[i] framerate]];
-			[[controller cameraStatus3] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
+			[[[controller controlPanel] cameraFps3] setFloatValue:[cam[i] framerate]];
+			[[[controller controlPanel] cameraStatus3] setState:((ofGetElapsedTimef() - [cam[i] mytimeNow] < 0.05) && ([cam[i] framerate] > 5.0) ? NSOnState : NSOffState)];
 			if ([cam[i] thisCameraIsRespawning]) {
-				[[controller cameraStatus3] setState:((fmodf(ofGetElapsedTimef(),0.5) < 0.2 ) ? NSOnState : NSOffState)];
+				[[[controller controlPanel] cameraStatus3] setState:((fmodf(ofGetElapsedTimef(),0.5) < 0.2 ) ? NSOnState : NSOffState)];
 			}
 		}
 	}
 	if([Camera allCamerasAreRespawning] || [Camera aCameraIsRespawning]){
-		[[controller statusTextField] setStringValue:@"Initialising cameras"];
-		[[controller statusBusy] startAnimation:nil];
+		[[[controller controlPanel] statusTextField] setStringValue:@"Initialising cameras"];
+		[[[controller controlPanel] statusBusy] startAnimation:nil];
 	} else if (![Camera aCameraIsRespawning]){
-		[[controller statusTextField] setStringValue:@""];
-		[[controller statusBusy] stopAnimation:nil];
+		[[[controller controlPanel] statusTextField] setStringValue:@""];
+		[[[controller controlPanel] statusBusy] stopAnimation:nil];
 	} 
 }
 

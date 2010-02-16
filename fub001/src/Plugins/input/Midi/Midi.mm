@@ -136,7 +136,7 @@
 	pthread_mutex_unlock(&mutex);
 	
 	if(timeInterval - midiTimeInterval > 0.15) {
-		[[controller midiStatus] setState:NSOffState];
+		[[[controller controlPanel] midiStatus] setState:NSOffState];
 	}
 	
 	[rowIndexesChanged release];

@@ -22,8 +22,8 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="9"/>
-			<integer value="35"/>
 			<integer value="305"/>
+			<integer value="431"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -61,7 +61,7 @@
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<string key="NSWindowContentMinSize">{1024, 768}</string>
 				<object class="NSView" key="NSWindowView" id="1001764183">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -70,6 +70,7 @@
 							<int key="NSvFlags">274</int>
 							<string key="NSFrame">{{0, 34}, {1024, 734}}</string>
 							<reference key="NSSuperview" ref="1001764183"/>
+							<reference key="NSWindow"/>
 							<string key="NSClassName">NSView</string>
 						</object>
 						<object class="BWAddRegularBottomBar" id="363981268">
@@ -77,6 +78,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{221, 159}, {46, 46}}</string>
 							<reference key="NSSuperview" ref="1001764183"/>
+							<reference key="NSWindow"/>
 						</object>
 						<object class="NSProgressIndicator" id="994990017">
 							<reference key="NSNextResponder" ref="1001764183"/>
@@ -84,6 +86,7 @@
 							<object class="NSPSMatrix" key="NSDrawMatrix"/>
 							<string key="NSFrame">{{988, 8}, {16, 16}}</string>
 							<reference key="NSSuperview" ref="1001764183"/>
+							<reference key="NSWindow"/>
 							<int key="NSpiFlags">28938</int>
 							<double key="NSMaxValue">100</double>
 						</object>
@@ -92,6 +95,7 @@
 							<int key="NSvFlags">290</int>
 							<string key="NSFrame">{{39, 8}, {944, 17}}</string>
 							<reference key="NSSuperview" ref="1001764183"/>
+							<reference key="NSWindow"/>
 							<bool key="NSViewIsLayerTreeHost">YES</bool>
 							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
@@ -125,6 +129,7 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{6, 4}, {29, 25}}</string>
 							<reference key="NSSuperview" ref="1001764183"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="178124884">
 								<int key="NSCellFlags">-2080244224</int>
@@ -146,6 +151,8 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{1024, 768}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{1024, 790}</string>
@@ -1296,7 +1303,7 @@
 								<object class="NSButtonCell" key="NSCell" id="506596569">
 									<int key="NSCellFlags">67239424</int>
 									<int key="NSCellFlags2">134217728</int>
-									<string key="NSContents">Test screentracking</string>
+									<string key="NSContents">Test backscreen</string>
 									<reference key="NSSupport" ref="853742111"/>
 									<reference key="NSControlView" ref="551371177"/>
 									<int key="NSButtonFlags">917782783</int>
@@ -3593,6 +3600,9 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<string key="NSFrameAutosaveName">Output</string>
 			</object>
+			<object class="NSCustomObject" id="191333437">
+				<string key="NSClassName">ControlPanel</string>
+			</object>
 			<object class="NSCustomObject" id="876201146">
 				<string key="NSClassName">goFullScreen_usingLayerAppDelegate</string>
 			</object>
@@ -4020,14 +4030,6 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 					<int key="connectionID">374</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">statusBusy</string>
-						<reference key="source" ref="7891207"/>
-						<reference key="destination" ref="994990017"/>
-					</object>
-					<int key="connectionID">375</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">performClick:</string>
 						<reference key="source" ref="779560913"/>
@@ -4195,6 +4197,150 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 					</object>
 					<int key="connectionID">498</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">controller</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="7891207"/>
+					</object>
+					<int key="connectionID">500</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">laserButton</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="729810725"/>
+					</object>
+					<int key="connectionID">501</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">ledButton</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="409124408"/>
+					</object>
+					<int key="connectionID">502</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">testDmxButton</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="71651530"/>
+					</object>
+					<int key="connectionID">503</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">testFloorButton</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="263012120"/>
+					</object>
+					<int key="connectionID">504</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">testScreenButton</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="551371177"/>
+					</object>
+					<int key="connectionID">505</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fpsTextField</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="897122578"/>
+					</object>
+					<int key="connectionID">506</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraFps1</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="325782227"/>
+					</object>
+					<int key="connectionID">507</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cameraStatus1</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="858344197"/>
+					</object>
+					<int key="connectionID">508</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">midiStatus</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="21807050"/>
+					</object>
+					<int key="connectionID">509</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">hardwareStatus</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="609702760"/>
+					</object>
+					<int key="connectionID">510</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">xbeeStatus</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="172639539"/>
+					</object>
+					<int key="connectionID">511</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">xbeeStrength</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="116061123"/>
+					</object>
+					<int key="connectionID">512</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">statusBusy</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="994990017"/>
+					</object>
+					<int key="connectionID">513</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">statusTextField</string>
+						<reference key="source" ref="191333437"/>
+						<reference key="destination" ref="773145472"/>
+					</object>
+					<int key="connectionID">514</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: controller.fps</string>
+						<reference key="source" ref="897122578"/>
+						<reference key="destination" ref="191333437"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="897122578"/>
+							<reference key="NSDestination" ref="191333437"/>
+							<string key="NSLabel">value: controller.fps</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">controller.fps</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">519</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">controlPanel</string>
+						<reference key="source" ref="7891207"/>
+						<reference key="destination" ref="191333437"/>
+					</object>
+					<int key="connectionID">521</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -4238,11 +4384,11 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 						<reference key="object" ref="1001764183"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="546350429"/>
 							<reference ref="363981268"/>
 							<reference ref="779560913"/>
 							<reference ref="994990017"/>
 							<reference ref="773145472"/>
+							<reference ref="546350429"/>
 						</object>
 						<reference key="parent" ref="780618739"/>
 					</object>
@@ -5339,6 +5485,11 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 						<reference key="object" ref="506596569"/>
 						<reference key="parent" ref="551371177"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">499</int>
+						<reference key="object" ref="191333437"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -5540,6 +5691,7 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 					<string>491.IBPluginDependency</string>
 					<string>492.IBPluginDependency</string>
 					<string>493.IBPluginDependency</string>
+					<string>499.IBPluginDependency</string>
 					<string>5.IBEditorWindowLastContentRect</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.IBWindowTemplateEditedContentRect</string>
@@ -5602,9 +5754,9 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{368, 431}, {640, 240}}</string>
+					<string>{{1231, 155}, {640, 240}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{368, 431}, {640, 240}}</string>
+					<string>{{1231, 155}, {640, 240}}</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5677,7 +5829,7 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 					<real value="0.0"/>
 					<real value="0.0"/>
 					<string>com.brandonwalkin.BWToolkit</string>
-					<string>{{110, 408}, {1158, 652}}</string>
+					<string>{{341, 185}, {1158, 652}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5769,9 +5921,10 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{458, 154}, {1024, 768}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{458, 154}, {1024, 768}}</string>
+					<string>{{242, 61}, {1024, 768}}</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{242, 61}, {1024, 768}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>{1024, 768}</string>
@@ -5810,7 +5963,7 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">498</int>
+			<int key="maxID">521</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5821,6 +5974,53 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">../../../myAddons/ofxCocoaPlugins/src/ofAppCocoaWindow/AppDelegate.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ControlPanel</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cameraFps1</string>
+							<string>cameraStatus1</string>
+							<string>controller</string>
+							<string>fpsTextField</string>
+							<string>hardwareStatus</string>
+							<string>laserButton</string>
+							<string>ledButton</string>
+							<string>midiStatus</string>
+							<string>statusBusy</string>
+							<string>statusTextField</string>
+							<string>testDmxButton</string>
+							<string>testFloorButton</string>
+							<string>testScreenButton</string>
+							<string>xbeeStatus</string>
+							<string>xbeeStrength</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSTextField</string>
+							<string>NSButton</string>
+							<string>PluginManagerController</string>
+							<string>NSTextField</string>
+							<string>NSButton</string>
+							<string>NSButton</string>
+							<string>NSButton</string>
+							<string>NSButton</string>
+							<string>NSProgressIndicator</string>
+							<string>BWInsetTextField</string>
+							<string>NSButton</string>
+							<string>NSButton</string>
+							<string>NSButton</string>
+							<string>NSButton</string>
+							<string>NSLevelIndicator</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">src/testApp/ControlPanel.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -5862,60 +6062,24 @@ AAAAAENvcHlyaWdodCBBcHBsZSwgSW5jLiwgMjAxMAA</bytes>
 							<string>activePluginAlpha</string>
 							<string>activePluginMask</string>
 							<string>activePluginName</string>
-							<string>cameraFps1</string>
-							<string>cameraFps2</string>
-							<string>cameraFps3</string>
-							<string>cameraStatus1</string>
-							<string>cameraStatus2</string>
-							<string>cameraStatus3</string>
-							<string>fpsTextField</string>
-							<string>hardwareStatus</string>
-							<string>laserButton</string>
-							<string>ledButton</string>
-							<string>midiStatus</string>
+							<string>controlPanel</string>
 							<string>outputView</string>
 							<string>pluginHeaderView</string>
 							<string>pluginListView</string>
 							<string>pluginView</string>
-							<string>statusBusy</string>
-							<string>statusTextField</string>
 							<string>testApp</string>
-							<string>testDmxButton</string>
-							<string>testFloorButton</string>
-							<string>testScreenButton</string>
-							<string>testSlider</string>
-							<string>xbeeStatus</string>
-							<string>xbeeStrength</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>PluginUISlider</string>
 							<string>PluginUISlider</string>
 							<string>NSTextField</string>
-							<string>NSTextField</string>
-							<string>NSTextField</string>
-							<string>NSTextField</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSTextField</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
+							<string>ControlPanel</string>
 							<string>NSView</string>
 							<string>NSView</string>
 							<string>PluginListView</string>
 							<string>NSView</string>
-							<string>NSProgressIndicator</string>
-							<string>BWInsetTextField</string>
 							<string>TestAppController</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>NSButton</string>
-							<string>PluginUISlider</string>
-							<string>NSButton</string>
-							<string>NSLevelIndicator</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
