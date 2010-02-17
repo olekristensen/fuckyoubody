@@ -52,7 +52,7 @@
 		
 		contourPoints.clear();
 		
-		for(pblob in [tracker(0) persistentBlobs]){
+	/*	for(pblob in [tracker(0) persistentBlobs]){
 			Blob * b;
 			vector< vector<ofPoint > > pv;
 			for(b in [pblob blobs]){
@@ -67,7 +67,7 @@
 			contourPoints.push_back(pv);
 			
 		}
-		
+		*/
 		
 		
 		
@@ -199,6 +199,23 @@
 					//				cout<<pointArray[u].x<<"  "<<pointArray[u].y<<endl;
 				}
 				int nPts = [b nPts];
+				
+				
+/*
+				vector< vector<ofPoint > > pv;
+				for(b in [pblob blobs]){
+					vector<ofPoint> v;
+					for( int u = 0; u < [b nPts]; u++){
+						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Front" toSurface:"Floor"];
+						v.push_back(p);
+					}
+					pv.push_back(v);			
+				}
+				
+				contourPoints.push_back(pv);
+				*/
+				
+				
 				cvFillPoly(images[player]->getCvImage(),&pointArray , &nPts, 1, cvScalar(255.0, 255.0, 255.0, 255.0));			
 				*images[otherPlayer] -= *images[player];
 				flagChanged = YES;
@@ -316,39 +333,62 @@
 		
 		
 		ofEnableAlphaBlending();
-		if(pid < contourPoints.size()){
-			
-			for(int i=0;i<contourPoints[pid].size();i++){
-				if(player ==0){
-					ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
-				} else {
-					ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
-				}
-				
-				
-				[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
-				ofBeginShape();
-				
-				for(int u=0;u<contourPoints[pid][i].size();u++){
-					ofVertex(contourPoints[pid][i][u].x, contourPoints[pid][i][u].y);			
-				}
-				
-				ofEndShape();
-				glPopMatrix();
-				
-			}
-			
-		}	
-		
-		
+		/*
+		 if(pid < contourPoints.size()){
+		 
+		 for(int i=0;i<contourPoints[pid].size();i++){
+		 if(player ==0){
+		 ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
+		 } else {
+		 ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
+		 }
+		 
+		 
+		 [GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+		 ofBeginShape();
+		 
+		 for(int u=0;u<contourPoints[pid][i].size();u++){
+		 ofVertex(contourPoints[pid][i][u].x, contourPoints[pid][i][u].y);			
+		 }
+		 
+		 ofEndShape();
+		 glPopMatrix();
+		 
+		 }
+		 
+		 }	
+		 
+		 */
 		pid++;
 		
 		
 		
 	}
 	
-	
-	
+	ofEnableAlphaBlending();
+	for(int pid=0;pid<contourPoints.size();pid++){
+		for(int i=0;i<contourPoints[pid].size();i++){
+
+			
+			if(pid ==0){
+				ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
+			} else {
+				ofSetColor([[player2Color color] redComponent]*255, [[player2Color color] greenComponent]*255, [[player2Color color] blueComponent]*255,255.0*[alpha floatValue]*[frontProjectorSlider floatValue]/100.0);	
+			}
+			
+			
+			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];
+			ofBeginShape();
+			
+			for(int u=0;u<contourPoints[pid][i].size();u++){
+				ofVertex(contourPoints[pid][i][u].x, contourPoints[pid][i][u].y);			
+			}
+			
+			ofEndShape();
+			glPopMatrix();
+			
+		}
+	}
 	
 	
 	
@@ -370,7 +410,7 @@
 	
 	
 	for(int i=0;i<2;i++){
-		
+		ofEnableAlphaBlending();
 		if(i ==0){
 			ofSetColor([[player1Color color] redComponent]*255, [[player1Color color] greenComponent]*255, [[player1Color color] blueComponent]*255,255.0*[alpha floatValue]);	
 		} else {

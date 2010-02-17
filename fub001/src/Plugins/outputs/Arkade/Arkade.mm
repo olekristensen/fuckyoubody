@@ -364,6 +364,10 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
+	if([sendMidiGoButton state] == NSOnState){
+		[GetPlugin(Midi) sendValue:1 forNote:1 onChannel:1];
+	}
+	
 	if(doReset) {
 		
 		[self resetScene];
@@ -783,7 +787,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				} else {
 					a = ((ofxVec2f)(*pacmanPosition-*ballPosition)).angle(-*pacmanDir);	
 					if(pacmanPosition->distance(*ballPosition) < 0.02){
-						[GetPlugin(Midi) sendValue:1 forNote:1 onChannel:1];
+						[sendMidiGoButton setState:NSOnState];
 						[ballUpdateButton setState:NSOffState];
 						[ballDrawButton setState:NSOffState];
 					}

@@ -103,7 +103,9 @@
 	IBOutlet NSSlider * bokseringVerticalEffect;
 	IBOutlet NSSlider * bokseringWaveformEffect;
 	IBOutlet NSButton * bokseringBeatButton;
-	
+	IBOutlet NSButton * combatBeatButton;
+	IBOutlet NSSlider * combatWaveformEffect;
+
 	IBOutlet NSSlider * ArrowAlpha;
 	IBOutlet NSSlider * ArrowAnimation;
 	
@@ -144,7 +146,8 @@
 	float rainbowadd;
 	
 	ofSoundPlayer * music;
-	
+	ofSoundPlayer * combatMusic;
+
 }
 
 -(DMXEffectColumn*) effectColumn:(int)n;

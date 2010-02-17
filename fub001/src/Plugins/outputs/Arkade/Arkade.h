@@ -46,7 +46,7 @@
 	IBOutlet NSSlider * spaceAutoLaunchSpeedSlider;	
 	IBOutlet NSSlider * spaceAlienFadeSlider;	
 	IBOutlet NSSlider * spaceAlienFadeOutSlider;	
-
+	IBOutlet NSButton * sendMidiGoButton;
 	ofxPoint2f * personPosition;
 
 	Filter * personFilterX, * personFilterY;

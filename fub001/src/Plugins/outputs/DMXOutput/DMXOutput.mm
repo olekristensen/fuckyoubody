@@ -410,7 +410,12 @@
 -(void) setup{
 	music = new ofSoundPlayer();
 	music->loadSound("beat.aif");
-	music->play();
+	music->stop();
+
+	combatMusic = new ofSoundPlayer();
+	combatMusic->loadSound("Scene9_Combat_28.jan.mp3");
+	combatMusic->stop();	
+	
 }
 
 -(void) controlDraw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)timeStamp{
@@ -467,7 +472,6 @@
 				gtaPositions[i].y = roundf(ofRandom(0, 4));
 				gtaTower[i] = YES;
 				gtaTower[i] = (ofRandom(0, [GTATower floatValue]) < 1);
-				cout<<gtaTower[i]<<endl;
 				
 				//	gtaPositions[i].x = roundf(ofRandom(0, 1));
 			}
@@ -893,6 +897,41 @@
 				[scriptObject release];				
 			}
 		}
+		
+		
+		if([combatBeatButton state] == NSOnState){
+			if(!combatMusic->getIsPlaying()){
+				combatMusic->play();
+				NSDictionary* errorDict;
+				NSAppleEventDescriptor* returnDescriptor = NULL;				
+				NSAppleScript* scriptObject; 				
+				scriptObject = [[NSAppleScript alloc] initWithSource:
+								@"\
+								set volume 0\n\
+								" 		 
+								];		
+				
+				returnDescriptor = [scriptObject executeAndReturnError: &errorDict];
+				[scriptObject release];				
+			}
+			
+		} else {
+			if(combatMusic->getIsPlaying()){
+				combatMusic->stop();
+				NSDictionary* errorDict;
+				NSAppleEventDescriptor* returnDescriptor = NULL;				
+				NSAppleScript* scriptObject; 				
+				scriptObject = [[NSAppleScript alloc] initWithSource:
+								@"\
+								set volume 100\n\
+								" 		 
+								];		
+				
+				returnDescriptor = [scriptObject executeAndReturnError: &errorDict];
+				[scriptObject release];				
+			}
+		}
+		
 		if(timeSinceLastVolChange > 0.03){
 			bokseringCurValue *= [bokseringWaveformEffect floatValue]/100.0;
 			if(bokseringCurValue < 20*volCounter/(float)bokseringCounter)
@@ -935,6 +974,9 @@
 								c = [c colorWithAlphaComponent:0];
 								if(5-y <= bokseringTime[time]){
 									c = [GetPlugin(Players) playerColorLed:(i%2==0)?2:4];
+									if([combatWaveformEffect floatValue] > 50){
+										c = [GetPlugin(Players) playerColorLed:4];										
+									}
 									c = [c colorWithAlphaComponent:[alpha floatValue]];
 								} 
 								[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];				
@@ -953,6 +995,9 @@
 								if(5-y <= bokseringTime[time]){						
 									
 									c = [GetPlugin(Players) playerColorLed:(i%2==0)?2:4];
+									if([combatWaveformEffect floatValue] > 50){
+										c = [GetPlugin(Players) playerColorLed:4];										
+									}
 									c = [c colorWithAlphaComponent:[alpha floatValue]];
 								} 
 								[box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];				

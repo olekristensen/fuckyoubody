@@ -1115,6 +1115,26 @@
 							<int key="NSPeriodicInterval">75</int>
 						</object>
 					</object>
+					<object class="NSButton" id="1053636030">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{499, 531}, {132, 25}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSButtonCell" key="NSCell" id="757670550">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">134217728</int>
+							<string key="NSContents">Send midi go state</string>
+							<reference key="NSSupport" ref="1048193371"/>
+							<reference key="NSControlView" ref="1053636030"/>
+							<int key="NSButtonFlags">914637055</int>
+							<int key="NSButtonFlags2">163</int>
+							<string key="NSAlternateContents"/>
+							<string key="NSKeyEquivalent"/>
+							<int key="NSPeriodicDelay">400</int>
+							<int key="NSPeriodicInterval">75</int>
+						</object>
+					</object>
 					<object class="NSButton" id="163992743">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
@@ -2110,6 +2130,14 @@
 					</object>
 					<int key="connectionID">249</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">sendMidiGoButton</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1053636030"/>
+					</object>
+					<int key="connectionID">253</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -2197,6 +2225,7 @@
 							<reference ref="811151124"/>
 							<reference ref="544583103"/>
 							<reference ref="691788857"/>
+							<reference ref="1053636030"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -2997,6 +3026,19 @@
 						<reference key="object" ref="975266919"/>
 						<reference key="parent" ref="544583103"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">250</int>
+						<reference key="object" ref="1053636030"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="757670550"/>
+						</array>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">251</int>
+						<reference key="object" ref="757670550"/>
+						<reference key="parent" ref="1053636030"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -3596,6 +3638,28 @@
 				<string key="243.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="244.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="245.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="250.CustomClassName">PluginUIButton</string>
+				<object class="NSMutableDictionary" key="250.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+					<object class="IBUserDefinedRuntimeAttributesPlaceholder" key="NS.object.0">
+						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
+						<reference key="object" ref="1053636030"/>
+						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiController</string>
+								<real value="99" key="value"/>
+							</object>
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiChannel</string>
+								<real value="11" key="value"/>
+							</object>
+						</array>
+					</object>
+				</object>
+				<string key="250.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="251.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="28.CustomClassName">PluginUIButton</string>
 				<object class="NSMutableDictionary" key="28.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
@@ -3999,7 +4063,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">249</int>
+			<int key="maxID">253</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4030,6 +4094,7 @@
 						<string key="moveWithPerson">NSButton</string>
 						<string key="pacmanButton">NSButton</string>
 						<string key="pacmanSpeedSlider">NSSlider</string>
+						<string key="sendMidiGoButton">NSButton</string>
 						<string key="spaceAlienFadeOutSlider">NSSlider</string>
 						<string key="spaceAlienFadeSlider">NSSlider</string>
 						<string key="spaceAutoLaunchSpeedSlider">NSSlider</string>

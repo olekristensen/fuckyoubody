@@ -48,6 +48,8 @@
 	bool					showMidiConflictAlert;
 	bool					didShowMidiConflictAlert;
 	
+	float pitchBends[16];
+	
 }
 
 @property (assign) NSMutableArray * boundControls;
@@ -73,6 +75,5 @@
 -(NSString*) getAppleScriptConnectionString;
 
 -(id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex;
-
-
+-(float) getPitchBend:(int)channel;
 @end

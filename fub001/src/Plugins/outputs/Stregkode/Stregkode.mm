@@ -30,6 +30,10 @@
 }
 
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+	if(percent >= 1){
+		percent = -0.01;
+		going = false;
+	}
 	if(going && percent < 1){
 		percent += [speedSlider floatValue]*0.01*(1.0/ofGetFrameRate());
 		
@@ -118,7 +122,7 @@
 	if(going){
 		ofFill();
 		ofSetColor(255, 0, 0);
-		ofRect(0, 1.0-percent, 1.0/3.0, 0.02);
+		ofRect(0, 1.0-percent, 1.0/3.0, 0.015);
 		StregkodePlayer * player;
 		
 		for(player in players){

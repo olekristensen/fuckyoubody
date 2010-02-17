@@ -949,12 +949,12 @@
 			
 			if(timeScale > 0.5 && timeScale <= 1.0){
 				
-				if(!popPlayed){
-					pop->setSpeed(ofRandom(0.66, 1.0));
-					pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
-					pop->play();
-					popPlayed = true;
-				}
+				//if(!popPlayed){
+				//	pop->setSpeed(ofRandom(0.66, 1.0));
+				//	pop->setVolume((1.0-fmodf(random*23565.3,0.5)));
+				//	pop->play();
+				//	popPlayed = true;
+				//}
 				
 				timeScale = (timeScale-0.5)*(1.0/0.5);
 				
@@ -998,7 +998,7 @@
 			if (blessed && vel->y > 0.02) {
 				glPushMatrix();{
 					ofPushStyle();
-					ofSetColor(215, 221, 248,255*computedAlpha);
+					ofSetColor([playerColor redComponent]*255.0, [playerColor redComponent]*255.0, [playerColor redComponent]*255.0,255*computedAlpha);
 					//ofCircle(position->x, position->y-(radius*7.5*vel->y), (vel->y*0.27)+(radius*0.33));
 					glTranslated(position->x, position->y, 0);
 					glRotatef((atan2(-vel->y, -vel->x)*20)+40, 0, 0, 1);

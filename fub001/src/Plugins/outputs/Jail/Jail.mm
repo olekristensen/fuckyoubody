@@ -1,6 +1,7 @@
 
 #import "Jail.h"
 #include "ProjectionSurfaces.h"
+#include "Midi.h"
 
 @implementation Jail
 
@@ -12,32 +13,38 @@
 			   255, 
 			   255, 
 			   255);
+	float rot = 40 + 157*[GetPlugin(Midi) getPitchBend:0]/16256.0 ;
+	float samle = 100.0*[GetPlugin(Midi) getPitchBend:1]/16256.0;
+	float zip = 100.0*[GetPlugin(Midi) getPitchBend:2]/16256.0;
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		glPushMatrix();{
-			glRotated(-45.0 * [samlaWall floatValue]/100.0, 0, 0, 1);
+			glRotated(-45.0 * samle/100.0, 0, 0, 1);
 			ofRect(0, 0, 0.01, 2*[leftWall floatValue]/100.0);
 		}glPopMatrix();
 		
 		glPushMatrix();{
-			glRotated(45.0 * [samlaWall floatValue]/100.0, 0, 0, 1);
+			glRotated(45.0 * samle/100.0, 0, 0, 1);
 			ofRect(0, 0.0, 2*[backWall floatValue]/100.0, 0.01);		
 		}glPopMatrix();		
 		
 		
-		if([rotation floatValue] > 0){
+	//	if(rot > 0)
+	//		cout<<rot<<endl;
+		
+		if(rot > 0){
 			glPushMatrix();{
 				glRotated(-45.0, 0, 0, 1);
-				glRotated((-[rotation floatValue]+45.0)*(1-[samlaWall floatValue]/100.0), 0, 0, 1);
+				glRotated((-rot+45.0)*(1-samle/100.0), 0, 0, 1);
 				
 				float rotated = 0;
 				for(int i=0;i<18;i++){
-					float angle = 45 - 35.0*([rotation floatValue]/360.0);
+					float angle = 45 - 35.0*(rot/360.0);
 
-					glRotated(angle*(1-[samlaWall floatValue]/100.0), 0, 0, 1);
+					glRotated(angle*(1-samle/100.0), 0, 0, 1);
 					rotated += angle;
 					
-					if(- [rotation floatValue] + rotated < 0 && - [rotation floatValue] + rotated	 > - 90){
+					if(- rot + rotated < 0 && - rot + rotated	 > - 90){
 						ofRect(0, 0, 0.01, 2);
 					}
 				}
@@ -48,12 +55,13 @@
 		ofDisableAlphaBlending();
 		ofSetColor(0, 0, 0,255);
 		
-		if([zipSlider floatValue] > 0){
+		if(zip > 0){
 			glPushMatrix();{
 				
+				glTranslated(0.5, 0.5, 0);
 				glRotated(-45, 0, 0, 1);
-				ofRect(-1, 0, 2, 2*[zipSlider floatValue]/100.0);
-				ofRect(-1, sqrt(2), 2, -2*[zipSlider floatValue]/100.0);
+				ofRect(-1, -2, 2, 2*zip/100.0);
+				ofRect(-1, 2, 2, -2*zip/100.0);
 			}glPopMatrix();
 		}
 		

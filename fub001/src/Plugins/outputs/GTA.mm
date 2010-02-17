@@ -405,7 +405,7 @@
 		 
 		 }*/
 		
-		ofSetColor(215, 221, 248);
+		ofSetColor(215, 221, 248, 255*[alpha floatValue]/100.0);
 		
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 			ofFill();
@@ -431,6 +431,8 @@
 			
 		}glPopMatrix();
 		
+		ofSetColor(215, 221, 248, 255*[alpha floatValue]/100.0);
+
 		
 		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 			ofFill();

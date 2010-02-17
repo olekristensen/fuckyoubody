@@ -39,6 +39,11 @@
 	
 	[self buildMidiInterfacePopUp];
 	
+	
+	for(int i=0;i<16;i++){
+		pitchBends[i] = 0;
+	}
+	
 }
 
 -(void) setup{
@@ -64,21 +69,21 @@
 
 -(void) showConflictSheet{
 	if(!didShowMidiConflictAlert){
-			
-	NSBeginCriticalAlertSheet(NSLocalizedString(@"MIDI Controller Conflict", @"Title of alert panel which comes up when user chooses Quit"),
-							  NSLocalizedString(@"Continue", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
-							  NSLocalizedString(@"Quit", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
-							  NSLocalizedString(@"Show conflicts", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
-							  [NSApp mainWindow],
-							  self,
-							  @selector(willEndCloseConflictSheet:returnCode:contextInfo:),
-							  @selector(didEndCloseConflictSheet:returnCode:contextInfo:),
-							  nil,
-							  NSLocalizedString(@"Some of the midi controllers are conflicting, they are highlighted in red in the list of midiControllers.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents.")
-							  );
+		
+		NSBeginCriticalAlertSheet(NSLocalizedString(@"MIDI Controller Conflict", @"Title of alert panel which comes up when user chooses Quit"),
+								  NSLocalizedString(@"Continue", @"Choice (on a button) given to user which allows him/her to quit the application even though there are unsaved documents."),
+								  NSLocalizedString(@"Quit", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
+								  NSLocalizedString(@"Show conflicts", @"Choice (on a button) given to user which allows him/her to review all unsaved documents if he/she quits the application without saving them all first."),
+								  [NSApp mainWindow],
+								  self,
+								  @selector(willEndCloseConflictSheet:returnCode:contextInfo:),
+								  @selector(didEndCloseConflictSheet:returnCode:contextInfo:),
+								  nil,
+								  NSLocalizedString(@"Some of the midi controllers are conflicting, they are highlighted in red in the list of midiControllers.", @"Warning in the alert panel which comes up when user chooses Quit and there are unsaved documents.")
+								  );
 		didShowMidiConflictAlert = true;
 	}
-
+	
 }
 
 - (void)willEndCloseConflictSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
@@ -161,6 +166,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 			bool noteOn = false;
 			bool noteOff = false;
 			bool controlChange;
+			bool pitchbend = false;
 			int channel = -1;
 			int number = -1;
 			int value = -1;
@@ -185,6 +191,14 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 					value = packet->data[2+j];
 				}
 			}
+			if(packet->data[0+j] >= 224 && packet->data[0+j] <= 239){
+				pitchbend = true;
+				channel = packet->data[0+j] - 223;
+				value =  packet->data[1+j] + packet->data[2+j]*127;
+				pitchBends[channel-1] = value; 
+			}
+			
+			
 			
 			if([self isEnabled]){
 				
@@ -257,7 +271,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 		}	
 		packet = MIDIPacketNext (packet);
 	}
-	[[controller midiStatus] setState:NSOnState];
+	[[[controller controlPanel] midiStatus] setState:NSOnState];
 	//[rowIndexesChanged release];
 }
 
@@ -346,24 +360,25 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 	Byte mdata[3] = {(143+midiChannel), midiNote, midiValue};
 	packet = MIDIPacketListAdd(&packetlist, sizeof(packetlist),
 							   packet, 0, 3, mdata);
-	
+	cout<<"Prepare midi send"<<packet<<"  "<<midiValue<<"   "<<midiNote<<"   "<<midiChannel<<endl;
 	if (endpoint) {
 		[sendEndpoint addSender:self];
 		[sendEndpoint processMIDIPacketList:&packetlist sender:self];
 		[sendEndpoint removeSender:self];
+		cout<<"Midi send"<<packet<<"  "<<midiValue<<"   "<<midiNote<<"   "<<midiChannel<<endl;
 	}
 	
 }
 
 -(IBAction) sendGo:(id)sender{
-//	[self sendValue:1 forNote:1 onChannel:1];
+	//	[self sendValue:1 forNote:1 onChannel:1];
 	
 	Byte packetbuffer[128];
 	MIDIPacketList packetlist;
 	MIDIPacket     *packet     = MIDIPacketListInit(&packetlist);
 	
-//	F0 7F <device_ID> 02 <command_format> <command> <data> F7
-// http://www.richmondsounddesign.com/docs/midi-show-control-specification.pdf
+	//	F0 7F <device_ID> 02 <command_format> <command> <data> F7
+	// http://www.richmondsounddesign.com/docs/midi-show-control-specification.pdf
 	
 	Byte mdata[7] = {0xf0, 0x7f, [mscDeviceID intValue], 0x02, 0x7F, 0x01, 0xf7};
 	packet = MIDIPacketListAdd(&packetlist, sizeof(packetlist),
@@ -436,7 +451,7 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 				showMidiConflictAlert = YES;
 				[NSObject cancelPreviousPerformRequestsWithTarget:self];
 				[self performSelector:@selector(showConflictSheet) withObject:nil afterDelay:1.0];
-			 }
+			}
 		}
 	}
 	
@@ -464,6 +479,10 @@ BOOL isRealtimeByte (Byte b)	{ return b >= 0xF8; }
 
 -(NSString*) getAppleScriptConnectionString{
 	return [[NSString alloc] initWithFormat:@"eppc://%@:%@@%@", [appleScriptUsername stringValue], [appleScriptPassword stringValue], [appleScriptMachine stringValue] ]; 
+}
+
+-(float) getPitchBend:(int)channel{
+	return pitchBends[channel];
 }
 
 @end
