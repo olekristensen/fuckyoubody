@@ -49,7 +49,7 @@
 			}
 			
 			if(!playerFound){
-				if([pblob getLowestPoint].y > (1.0-percent)){
+				if([pblob getLowestPoint].y - 0.01 > (1.0-percent)){
 					if(num < 4){
 						StregkodePlayer * newp = [[StregkodePlayer alloc] init];
 						newp->pid = pblob->pid;					
@@ -122,7 +122,7 @@
 	if(going){
 		ofFill();
 		ofSetColor(255, 0, 0);
-		ofRect(0, 1.0-percent, 1.0/3.0, 0.015);
+		ofRect(0, 1.0-percent, 1.0/3.0, 0.005);
 		StregkodePlayer * player;
 		
 		for(player in players){

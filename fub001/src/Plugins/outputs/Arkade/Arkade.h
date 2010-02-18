@@ -187,7 +187,7 @@
 
 -(id) initAtPosition:(ofxVec2f)position arkade:(Arkade*)ark;
 -(void) update:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
--(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime;
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime surf:(int)s;
 -(void) drawRocket;
 -(void) dealloc;
 

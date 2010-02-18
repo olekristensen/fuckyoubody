@@ -47,9 +47,9 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 -(void) draw{
 	//	cout<<(int(ofGetElapsedTimeMillis()/1000.0) % 100)<<endl;
 	if((int(ofGetElapsedTimeMillis()/1000.0) % 100) % 2 == 0){
-		images[type*2]->draw(position->x, position->y+0.1, 0.1, 0.1);
+		images[type*2]->draw(position->x, position->y+0.1, 0.2, 0.2);
 	} else {
-		images[type*2+1]->draw(position->x, position->y+0.1, 0.1, 0.1);
+		images[type*2+1]->draw(position->x, position->y+0.1, 0.2, 0.2);
 	}
 }
 
@@ -162,9 +162,9 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	}
 }
 
--(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
+-(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime surf:(int)s{
 	if(!dead){
-		if(onWall){
+		if(onWall && s == 1){
 			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
 				
 				glPushMatrix();{
@@ -177,7 +177,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 				} glPopMatrix();
 			} glPopMatrix();
 			
-		}	else {
+		}	else if(s == 0){
 			[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
 				glPushMatrix();{
 					glTranslated(floorPosition->x, floorPosition->y, 0);
@@ -264,32 +264,32 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	images[5] = new ofImage();
 	images[5]->loadImage("spaceinvaders/space-32.png");
 	
-	for(int i=0;i<8;i++){
+	for(int i=0;i<4;i++){
 		Alien * newAlien = [[Alien alloc] init];
 		newAlien->images = images;
-		newAlien->position = new ofxPoint2f(i/8.0,0);
+		newAlien->position = new ofxPoint2f(i/4.0,0);
 		newAlien->type = 1;
 		[aliens addObject:newAlien];
 	}	
-	for(int i=0;i<8;i++){
+	for(int i=0;i<4;i++){
 		Alien * newAlien = [[Alien alloc] init];
 		newAlien->images = images;
-		newAlien->position = new ofxPoint2f(i/8.0,1/8.0);
+		newAlien->position = new ofxPoint2f(i/4.0,1/4.0);
 		newAlien->type = 0;
 		[aliens addObject:newAlien];
 	}	
 	
-	for(int i=0;i<8;i++){
+	for(int i=0;i<4;i++){
 		Alien * newAlien = [[Alien alloc] init];
 		newAlien->images = images;
-		newAlien->position = new ofxPoint2f(i/8.0,2/8.0);
+		newAlien->position = new ofxPoint2f(i/4.0,2/4.0);
 		newAlien->type = 2;
 		[aliens addObject:newAlien];
 	}	
-	for(int i=0;i<8;i++){
+	for(int i=0;i<4;i++){
 		Alien * newAlien = [[Alien alloc] init];
 		newAlien->images = images;
-		newAlien->position = new ofxPoint2f(i/8.0,3/8.0);
+		newAlien->position = new ofxPoint2f(i/4.0,3/4.0);
 		newAlien->type = 2;
 		[aliens addObject:newAlien];
 	}	
@@ -1288,8 +1288,19 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	Rocket * r;
 	for(int i=0;i<[rockets count]; i++){
 		r = [rockets objectAtIndex:i];
-		[r draw:timeInterval displayTime:outputTime];
+		[r draw:timeInterval displayTime:outputTime surf:0];
 	}
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{		
+		ofSetColor(0, 0, 0, [mask floatValue]*255);
+		ofRect(0, 0, 1, 1);
+	}glPopMatrix();
+	
+	for(int i=0;i<[rockets count]; i++){
+		r = [rockets objectAtIndex:i];
+		[r draw:timeInterval displayTime:outputTime surf:1];
+	}
+
 	
 	//
 	//Aliens

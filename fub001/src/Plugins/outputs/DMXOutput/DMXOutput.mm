@@ -679,89 +679,6 @@
 				}
 				
 			}
-			/*	if([bokseringPale floatValue] > 0){
-			 int bluePos = 12*[bokseringPale floatValue]/100.1;
-			 int greenPos = 6+ 12*[bokseringPale floatValue]/100.1;			
-			 
-			 
-			 
-			 if(greenPos >= 12)
-			 greenPos -= 12;
-			 
-			 for(int i=0;i<3;i++){
-			 if(bluePos == i+off){
-			 for(int y=0;y<5;y++){
-			 int x = i;
-			 //if(n > 1)
-			 x = 2-x;
-			 
-			 NSColor * c = [GetPlugin(Players) playerColorLed:2];
-			 c = [c colorWithAlphaComponent:1];
-			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
-			 }
-			 }	
-			 if(greenPos == i+off){
-			 for(int y=0;y<5;y++){
-			 int x = i;
-			 //if(n > 1)
-			 x = 2-x;
-			 
-			 NSColor * c = [GetPlugin(Players) playerColorLed:4];
-			 c = [c colorWithAlphaComponent:1];
-			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
-			 }
-			 }	
-			 }
-			 }
-			 
-			 
-			 //Green wall
-			 bool taken[] = {false, false, false};*/
-			/*	if([bokseringGreen floatValue] > 0){
-			 int greenPos = 6+ 12*[bokseringGreen floatValue]/99.0;	
-			 
-			 for(int i=0;i<3;i++){
-			 if((greenPos > i+off && off >= 6)  || (greenPos > 12 && greenPos - 12 > i+off) ){
-			 taken[i] = true;
-			 for(int y=0;y<5;y++){							
-			 int x = 2-i;							
-			 NSColor * c = [GetPlugin(Players) playerColorLed:4];
-			 c = [c colorWithAlphaComponent:1];
-			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_ADD];
-			 }
-			 }
-			 
-			 
-			 }
-			 }	
-			 
-			 //Blue wall
-			 float offSet = 12.0*[bokseringOffset floatValue]/100.0;
-			 if([bokseringBlue floatValue] > 0){
-			 int bluePos = 12*[bokseringBlue floatValue]/99.0;	
-			 
-			 for(int i=0;i<3;i++){
-			 if((bluePos > i+off-offSet && bluePos < 12-offSet ) && (!taken[i] || n < 2)  ){
-			 for(int y=0;y<5;y++){							
-			 int x = 2-i;							
-			 NSColor * c = [GetPlugin(Players) playerColorLed:2];
-			 c = [c colorWithAlphaComponent:1];
-			 [box addColor:c onLamp:ofPoint(x,y) withBlending:BLENDING_OVER];
-			 }
-			 }
-			 
-			 
-			 }
-			 }	*/
-			
-			
-			
-			
-			
-			
-			
-			
-			//[GetPlugin(HardwareBox) setDmxValue:255 onChannel:1];
 			
 			
 			n++;
@@ -777,7 +694,8 @@
 		if([bokseringPale floatValue] > 0){
 			int greenPos = 6+ 12*[bokseringPale floatValue]/100.1;				
 			int bluePos = 12*[bokseringPale floatValue]/100.1;
-			
+			if(greenPos >= 12)
+				greenPos -= 12;
 			
 			bokseringCols[greenPos] = 1;
 			bokseringCols[bluePos] = 2;
@@ -788,7 +706,9 @@
 			int greenPos = 6+ 12*[bokseringGreen floatValue]/99.0;	
 			int start = 6 + offSet;
 			if(start >= 12)
-				start -= 12;			
+				start -= 12;	
+			
+
 			int stop = start + 12*[bokseringGreen floatValue]/100.0;
 			for(int i=start;i<stop;i++){
 				bokseringCols[i] = 1;	

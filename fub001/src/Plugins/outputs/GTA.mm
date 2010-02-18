@@ -190,7 +190,7 @@
 		
 		if(i > numPerLayer*numLayers-numPerLayer){
 			position.z += [obj offset]->z * zscale/100.0;
-			position.z *= zscale/100.0;
+			position.z *= fabs(zscale)/100.0;
 		} else {
 			position += *[obj offset];	
 		}
@@ -243,6 +243,114 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	
 	
+	
+	
+	
+	
+	
+	if([floorActiveControl state] == NSOnState){
+		/*		NSColor * wc = [NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1];
+		 for(int y=0;y<5;y++){
+		 ofxPoint3f p = ofxPoint3f(1,y,7-floorPos*16);
+		 [GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
+		 
+		 p = ofxPoint3f(0,y,7-floorPos*16+2);
+		 [GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
+		 
+		 }*/
+		
+		ofSetColor(215, 221, 248, 255*[alpha floatValue]);
+		ofEnableAlphaBlending();
+		
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+			
+			ofFill();
+			glRotated(-45, 0, 0, 1);
+			glPushMatrix();
+			glTranslatef([floorXControl floatValue]/100.0, 1-floorPos, 0);
+			ofRect(0, 0, 0.06, 0.4);
+			glPopMatrix();
+			
+			glPushMatrix();
+			glTranslatef([floorXControl floatValue]/100.0, 1-hajPos, 0);
+			for(float i=-1;i<1;i+= 0.2){
+				ofTriangle(i, 0, i+1/8.0, 0, i+1/16.0, -0.07);
+			}
+			
+			//MASK
+			ofSetColor(0, 0, 0, [mask floatValue]*255);
+			// bottom mask
+			ofRect(-1, 0, 3, 2);
+			
+			glPopMatrix();
+			
+		}glPopMatrix();
+		
+		ofSetColor(215, 221, 248, 255*[alpha floatValue]);
+		
+		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
+			ofFill();
+			glRotated(-45, 0, 0, 1);
+			glPushMatrix();
+			glTranslatef([floorXControl floatValue]/100.0, 1-floorPos, 0);
+			ofRect(0, 0, 0.06, 0.4);
+			glPopMatrix();
+			
+			glPushMatrix();
+			glTranslatef([floorXControl floatValue]/100.0, 1-hajPos, 0);
+			for(float i=-1;i<1;i+= 0.2){
+				ofTriangle(i, 0, i+1/8.0, 0, i+1/16.0, -0.07);
+			}
+			
+			//MASK
+			ofEnableAlphaBlending();
+			ofSetColor(0, 0, 0, [mask floatValue]*255);
+			// bottom mask
+			ofRect(-1, 0, 3, 2);
+			
+			
+			
+			
+			glPopMatrix();
+			
+		}glPopMatrix();
+		
+		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{		
+			ofEnableAlphaBlending();
+			ofSetColor(0, 0, 0, [mask floatValue]*255);
+			ofRect(0, 0, 1, 1);
+		}glPopMatrix();
+		
+	}	
+	
+	
+	
+	//ofSetColor(255, 255, 255);
+	
+	
+	/*
+	 
+	 blur->beginRender();
+	 ofSetupScreen();	
+	 ofSetColor(255, 255, 255);
+	 ofBackground(0, 0, 0);
+	 
+	 ofRect(0.2*blur->fbo1.getWidth(), 0.2*blur->fbo1.getHeight(), 0.6*blur->fbo1.getWidth(), 0.6*blur->fbo1.getHeight());
+	 blur->endRender();
+	 
+	 
+	 ofEnableAlphaBlending();
+	 
+	 
+	 
+	 */
+	
+	
+	/*	ofSetupScreen();
+	 ofSetColor(255, 255, 255,255);
+	 blur->draw(0, 0, ofGetWidth(), ofGetHeight(), true);
+	 */	
+	//	ofRect(0, 0, 1, 1);*/
 	
 	
 	
@@ -447,107 +555,6 @@
 		 }
 		glPopMatrix();
 	}
-	
-	if([floorActiveControl state] == NSOnState){
-		/*		NSColor * wc = [NSColor colorWithCalibratedRed:0.5 green:0.5 blue:0.5 alpha:1];
-		 for(int y=0;y<5;y++){
-		 ofxPoint3f p = ofxPoint3f(1,y,7-floorPos*16);
-		 [GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
-		 
-		 p = ofxPoint3f(0,y,7-floorPos*16+2);
-		 [GetPlugin(DMXOutput) addColor:wc forCoordinate:p withBlending:0];
-		 
-		 }*/
-		
-		ofSetColor(215, 221, 248, 255*[alpha floatValue]);
-		ofEnableAlphaBlending();
-
-		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
-			
-			ofFill();
-			glRotated(-45, 0, 0, 1);
-			glPushMatrix();
-			glTranslatef([floorXControl floatValue]/100.0, 1-floorPos, 0);
-			ofRect(0, 0, 0.06, 0.4);
-			glPopMatrix();
-			
-			glPushMatrix();
-			glTranslatef([floorXControl floatValue]/100.0, 1-hajPos, 0);
-			for(float i=-1;i<1;i+= 0.2){
-				ofTriangle(i, 0, i+1/8.0, 0, i+1/16.0, -0.07);
-			}
-			
-			//MASK
-			ofSetColor(0, 0, 0, [mask floatValue]*255);
-			// bottom mask
-			ofRect(-1, 0, 3, 2);
-			
-			glPopMatrix();
-			
-		}glPopMatrix();
-		
-		ofSetColor(215, 221, 248, 255*[alpha floatValue]);
-
-		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
-			ofFill();
-			glRotated(-45, 0, 0, 1);
-			glPushMatrix();
-			glTranslatef([floorXControl floatValue]/100.0, 1-floorPos, 0);
-			ofRect(0, 0, 0.06, 0.4);
-			glPopMatrix();
-			
-			glPushMatrix();
-			glTranslatef([floorXControl floatValue]/100.0, 1-hajPos, 0);
-			for(float i=-1;i<1;i+= 0.2){
-				ofTriangle(i, 0, i+1/8.0, 0, i+1/16.0, -0.07);
-			}
-			
-			//MASK
-			ofEnableAlphaBlending();
-			ofSetColor(0, 0, 0, [mask floatValue]*255);
-			// bottom mask
-			ofRect(-1, 0, 3, 2);
-			
-			
-			
-			
-			glPopMatrix();
-			
-		}glPopMatrix();
-	}	
-	
-	
-	
-	//ofSetColor(255, 255, 255);
-	
-	
-	/*
-	 
-	 blur->beginRender();
-	 ofSetupScreen();	
-	 ofSetColor(255, 255, 255);
-	 ofBackground(0, 0, 0);
-	 
-	 ofRect(0.2*blur->fbo1.getWidth(), 0.2*blur->fbo1.getHeight(), 0.6*blur->fbo1.getWidth(), 0.6*blur->fbo1.getHeight());
-	 blur->endRender();
-	 
-	 
-	 ofEnableAlphaBlending();
-	 
-	 
-	 
-	 */
-	
-	
-	/*	ofSetupScreen();
-	 ofSetColor(255, 255, 255,255);
-	 blur->draw(0, 0, ofGetWidth(), ofGetHeight(), true);
-	 */	
-	//	ofRect(0, 0, 1, 1);*/
-	
-	
-	
-	
 }
 
 -(void) generateObjects{
