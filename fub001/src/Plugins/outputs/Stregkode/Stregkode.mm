@@ -119,7 +119,7 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	glViewport(0, 0, ofGetWidth(), ofGetHeight());
 	ofEnableAlphaBlending();
-	if(going){
+	if(going || true){
 		ofFill();
 		ofSetColor(255, 0, 0);
 		ofRect(0, 1.0-percent, 1.0/3.0, 0.005);

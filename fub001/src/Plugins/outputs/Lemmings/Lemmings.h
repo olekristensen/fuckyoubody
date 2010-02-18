@@ -17,7 +17,7 @@
 
 
 #define RADIUS 0.03
-#define DEATH_DURATION 6.0
+#define DEATH_DURATION 4.0
 #define SPLAT_DURATION 2.0
 #define RADIUS_SQUARED 0.0009
 #define SCREEN_MARGIN 0.08

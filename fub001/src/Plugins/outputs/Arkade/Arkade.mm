@@ -286,13 +286,8 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 		newAlien->type = 2;
 		[aliens addObject:newAlien];
 	}	
-	for(int i=0;i<4;i++){
-		Alien * newAlien = [[Alien alloc] init];
-		newAlien->images = images;
-		newAlien->position = new ofxPoint2f(i/4.0,3/4.0);
-		newAlien->type = 2;
-		[aliens addObject:newAlien];
-	}	
+
+	
 	
 	rockets = [[NSMutableArray array] retain];
 	
@@ -1293,7 +1288,7 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{		
 		ofSetColor(0, 0, 0, [mask floatValue]*255);
-		ofRect(0, 0, 1, 1);
+		ofRect(-0.085, -0.085, 2*([GetPlugin(ProjectionSurfaces) getAspect]+0.085), 1+(2*0.085));
 	}glPopMatrix();
 	
 	for(int i=0;i<[rockets count]; i++){

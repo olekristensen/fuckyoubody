@@ -1024,8 +1024,8 @@
 				glPushMatrix();{
 					glTranslated(position->x, position->y, 0);
 					for (int i=0; i< 10; i++) {
-						glRotatef(((random+i)*233), 0,0,1);
-						ofCircle(0, (1.0-random)*timeScale*radius*2.0*i, (1.0-timeScale)*radius*0.5);
+						glRotatef(((random+i)*333*fmodf(random*2356345.0,1.0)), 0,0,1);
+						ofCircle(0, (1.0-random)*timeScale*radius*5.0*i, (1.0-timeScale)*radius*0.5);
 					}
 				}glPopMatrix();
 				

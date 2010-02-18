@@ -307,18 +307,16 @@
 			ofSetColor(0, 0, 0, [mask floatValue]*255);
 			// bottom mask
 			ofRect(-1, 0, 3, 2);
-			
-			
-			
-			
 			glPopMatrix();
+			ofSetColor(0, 0, 0, [mask floatValue]*255);
+			ofRect(-1, 0, 3, -2);
 			
 		}glPopMatrix();
 		
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{		
 			ofEnableAlphaBlending();
 			ofSetColor(0, 0, 0, [mask floatValue]*255);
-			ofRect(0, 0, 1, 1);
+			ofRect(-0.133, -0.1, 1, 1+(2*0.1));
 		}glPopMatrix();
 		
 	}	

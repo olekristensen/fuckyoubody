@@ -13,8 +13,8 @@
 			   255, 
 			   255, 
 			   255);
-	float rot = 40 + 157*[GetPlugin(Midi) getPitchBend:0]/16256.0 ;
-	rot = [rotation floatValue];
+	float rot = 157*[GetPlugin(Midi) getPitchBend:0]/16256.0 ;
+//	rot = [rotation floatValue];
 	float samle = 100.0*[GetPlugin(Midi) getPitchBend:1]/16256.0;
 	float zip = 100.0*[GetPlugin(Midi) getPitchBend:2]/16256.0;
 	
@@ -40,7 +40,7 @@
 				
 				float rotated = 0;
 				for(int i=0;i<18;i++){
-					float angle = 25;
+					float angle = 23;
 
 					glRotated(angle*(1-samle/100.0), 0, 0, 1);
 					rotated += angle;
