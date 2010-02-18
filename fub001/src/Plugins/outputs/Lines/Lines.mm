@@ -360,8 +360,8 @@
 					LineObject * line;
 					for(line in lines){
 						float d = 0.05;
-						if([addButton state] == NSOnState){
-							d = 0.000;
+						if([addButton state] == NSOnState && [timeoutLinesButton state] == NSOnState){
+							d = 0.002;
 						}
 						if(fabs([line getLeft].x - frontLeft->x) < d || fabs([line getRight].x - frontRight->x) < d ){
 							LineBlobLink * link = [[LineBlobLink alloc] init]; 

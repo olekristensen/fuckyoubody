@@ -392,6 +392,60 @@
 			 
 		 }
 		glPopMatrix();
+		
+		
+		[GetPlugin(ProjectionSurfaces) apply:"Extra" surface:"Backwall"];
+		ofEnableAlphaBlending();
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+		
+		blur->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect]*2, 1, true);
+		
+		
+		/*tetris->update();
+		 */if([tetrisControl state]){
+			 if(!isPlayingTetris){
+				 [movie play];
+				 [movie gotoBeginning];
+				 isPlayingTetris = YES;
+			 }
+			 ofSetColor(255, 255, 255,255*[tetrisAlphaControl floatValue]/100.0);			 
+			 if(currentFrame != nil){
+				 GLfloat topLeft[2], topRight[2], bottomRight[2], bottomLeft[2];
+				 
+				 GLenum target = CVOpenGLTextureGetTarget(currentFrame);	// get the texture target (for example, GL_TEXTURE_2D) of the texture
+				 GLint name = CVOpenGLTextureGetName(currentFrame);		// get the texture target name of the texture
+				 
+				 // get the texture coordinates for the part of the image that should be displayed
+				 CVOpenGLTextureGetCleanTexCoords(currentFrame, bottomLeft, bottomRight, topRight, topLeft);
+				 
+				 glPushMatrix();
+				 //	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];
+				 
+				 
+				 // bind the texture and draw the quad
+				 ofSetColor(215, 221, 248, 255*[tetrisAlphaControl floatValue]/100.0);
+				 
+				 
+				 glEnable(target);
+				 glBindTexture(target, name);
+				 glBegin(GL_QUADS);
+				 glTexCoord2f(0, 300);  glVertex2f(0, 0);
+				 glTexCoord2f(800, 300);     glVertex2f([GetPlugin(ProjectionSurfaces) getAspect]*2,  0);
+				 glTexCoord2f(800, 0);    glVertex2f( [GetPlugin(ProjectionSurfaces) getAspect]*2,  1);
+				 glTexCoord2f(0, 0); glVertex2f( 0, 1);
+				 glEnd();
+				 glDisable(target);
+				 
+				 //	glPopMatrix();
+				 glPopMatrix();
+				 
+				 // give time to the Visual Context so it can release internally held resources for later re-use
+				 // this function should be called in every rendering pass, after old images have been released, new
+				 // images have been used and all rendering has been flushed to the screen.
+				 QTVisualContextTask(textureContext);		
+			 }			 
+		 }
+		glPopMatrix();
 	}
 	
 	if([floorActiveControl state] == NSOnState){
@@ -405,7 +459,7 @@
 		 
 		 }*/
 		
-		ofSetColor(215, 221, 248);
+		ofSetColor(215, 221, 248, 255*[alpha floatValue]);
 		ofEnableAlphaBlending();
 
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
@@ -432,7 +486,7 @@
 			
 		}glPopMatrix();
 		
-		ofSetColor(215, 221, 248);
+		ofSetColor(215, 221, 248, 255*[alpha floatValue]);
 
 		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 			ofFill();

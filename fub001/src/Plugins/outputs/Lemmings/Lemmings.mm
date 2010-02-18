@@ -826,6 +826,67 @@
 		
 	} glPopMatrix();
 	
+	
+	
+	[GetPlugin(ProjectionSurfaces) apply:"Extra" surface:"Backwall"];{
+		
+		//background
+		ofSetColor(0,0,0,255*[alpha floatValue]);
+		ofRect(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1);
+		
+		//dancers' mask
+		/**
+		 ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
+		 ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 1.0-screenTrackingHeight);
+		 **/
+		
+		if((1.0-screenTrackingHeight) > SCREEN_MARGIN){
+			ofSetColor(215.0, 221.0, 248.0,[screenPlayerSquareAlpha floatValue]*255*[alpha floatValue]);
+		} else {
+			ofSetColor(215.0, 221.0, 248.0,[screenPlayerSquareAlpha floatValue]*0*[alpha floatValue]);
+		}
+		
+		ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 0.03);
+		
+		//Screen Elements
+		ScreenElement * element;
+		
+		for(element in screenElements){
+			[element draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
+		}
+		
+		//lemmings
+		ofSetColor(215.0*[screenLemmingsBrightness floatValue], 221.0*[screenLemmingsBrightness floatValue], 248.0*[screenLemmingsBrightness floatValue],255.0*[alpha floatValue]);
+		
+		for(lemming in screenLemmings){
+			[lemming draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime];
+		}
+		
+		// Door
+		ofSetColor(215, 221, 248, 255.0*[screenElementsAlpha floatValue]*[alpha floatValue]);
+		
+		glPushMatrix(); {
+			glTranslated(screenDoorPos->x, screenDoorPos->y, 0);
+			
+			//left Door
+			glPushMatrix(); {
+				glTranslatef(-0.15, 0, 0);
+				glRotatef([screenEntranceDoor floatValue]*0.25*360, 0, 0, 1);
+				ofRect(0, 0, 0.15, 0.03);
+			} glPopMatrix();
+			
+			//left Door
+			glPushMatrix(); {
+				glTranslatef(0.15, 0, 0);
+				glRotatef([screenEntranceDoor floatValue]*-0.25*360, 0, 0, 1);
+				ofRect(0, 0, -0.15, 0.03);
+			} glPopMatrix();
+			
+		} glPopMatrix();
+		
+	} glPopMatrix();
+	
+	
 }
 
 -(float) getScreenGravityAsFloat{
@@ -857,11 +918,11 @@
 }
 
 -(IBAction) killAllLemmings:(id)sender{
-	 ofSoundPlayer * die = new ofSoundPlayer();
+	//ofSoundPlayer * die = new ofSoundPlayer();
 	//pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
-	die->loadSound("lemmings/org/OHNO.wav");
-	die->play();
-	 doKillAllLemmings = YES;
+	//die->loadSound("lemmings/org/OHNO.wav");
+	//die->play();
+	doKillAllLemmings = YES;
 }
 @end
 
@@ -888,15 +949,15 @@
 		spawnTime = timeInterval;
 		random = ofRandom(0, 1.0);
 		
-		pop = new ofSoundPlayer();
-		popPlayed = false;
+		//pop = new ofSoundPlayer();
+		//popPlayed = false;
 		//pop->loadSound("lemmings/pop/" + ofToString(round(random*69)+1,0) + ".aif");
-		pop->loadSound("lemmings/fx/" + ofToString(round(ofRandom(0, 1)*15)+1,0) + ".wav");
+		//pop->loadSound("lemmings/fx/" + ofToString(round(ofRandom(0, 1)*15)+1,0) + ".wav");
 		//pop->loadSound("lemmings/org/DIE.wav");
 		
-		splat = new ofSoundPlayer();
-		splatPlayed = false;
-		splat->loadSound("lemmings/splat/" + ofToString(round(random*104)+1,0) + ".aif");
+		//splat = new ofSoundPlayer();
+		//splatPlayed = false;
+		//splat->loadSound("lemmings/splat/" + ofToString(round(random*104)+1,0) + ".aif");
 		
 	}
 	
@@ -907,8 +968,8 @@
 	delete position;
 	delete vel;
 	delete totalforce;
-	delete pop;
-	delete splat;
+	//delete pop;
+	//delete splat;
 	[super dealloc];
 }
 
@@ -968,11 +1029,12 @@
 					}
 				}glPopMatrix();
 				
-				if(timeScale < 0.2){
-					ofSetColor(255.0-theColor.r, (255.0-theColor.g)*(fmodf(random*2356345.0,1.0)), theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
-					float rectWidth = (radius*scaleFactor)*(sin(timeScale*PI*5.0)*1.5);
-					ofCircle(position->x, position->y, rectWidth);
-				}
+				// orange circle
+				// if(timeScale < 0.2){
+				// 	 ofSetColor(255.0-theColor.r, (255.0-theColor.g)*(fmodf(random*2356345.0,1.0)), theColor.b, (1.0-((timeScale-0.5)*2.0))*computedAlpha*255.0);
+				// 	 float rectWidth = (radius*scaleFactor)*(sin(timeScale*PI*5.0)*1.5);
+				// 	 ofCircle(position->x, position->y, rectWidth);
+				// }
 				
 				
 				
@@ -996,16 +1058,16 @@
 	} else {
 		glPushMatrix();{
 			if (blessed && vel->y > 0.02) {
-				glPushMatrix();{
-					ofPushStyle();
-					ofSetColor([playerColor redComponent]*255.0, [playerColor redComponent]*255.0, [playerColor redComponent]*255.0,255*computedAlpha);
+				//glPushMatrix();{
+				//	ofPushStyle();
+					//ofSetColor([playerColor redComponent]*255.0, [playerColor redComponent]*255.0, [playerColor redComponent]*255.0,255*computedAlpha);
 					//ofCircle(position->x, position->y-(radius*7.5*vel->y), (vel->y*0.27)+(radius*0.33));
-					glTranslated(position->x, position->y, 0);
-					glRotatef((atan2(-vel->y, -vel->x)*20)+40, 0, 0, 1);
-					glTranslated(-position->x, -position->y, 0);
-					[GetPlugin(Lemmings) parachuteImage]->draw(position->x-((vel->y*0.33)+(radius*0.33)), (position->y-((vel->y*0.33)+(radius*0.33)))-(radius*15.0*vel->y), ((vel->y*0.33)+(radius*0.33))*2, ((vel->y*0.33)+(radius*0.33))*2);
-					ofPopStyle();
-				}glPopMatrix();
+					//glTranslated(position->x, position->y, 0);
+					//glRotatef((atan2(-vel->y, -vel->x)*20)+40, 0, 0, 1);
+					//glTranslated(-position->x, -position->y, 0);
+					//[GetPlugin(Lemmings) parachuteImage]->draw(position->x-((vel->y*0.33)+(radius*0.33)), (position->y-((vel->y*0.33)+(radius*0.33)))-(radius*15.0*vel->y), ((vel->y*0.33)+(radius*0.33))*2, ((vel->y*0.33)+(radius*0.33))*2);
+				//	ofPopStyle();
+				//}glPopMatrix();
 			}
 			/**
 			 glTranslated(position->x, position->y, 0);
@@ -1030,10 +1092,10 @@
 	if(vel->length() > [GetPlugin(Lemmings) getScreenSplatVelocityAsFloat] && [self isAlive] && (!blessed)){
 		vel->set(0,0);
 		splatTime = timeInterval;
-		if(!splatPlayed){
-			//	splat->play();
-			splatPlayed = true;
-		}
+		//if(!splatPlayed){
+		//	splat->play();
+		//	splatPlayed = true;
+		//}
 	}
 	if(blessed){
 		vel->y = 0;

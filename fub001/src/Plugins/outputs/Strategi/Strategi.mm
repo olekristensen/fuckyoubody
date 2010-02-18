@@ -51,7 +51,9 @@
 		StrategiBlob * sblob;
 		
 		contourPoints.clear();
-		
+		vector< vector<ofPoint > > pv;
+		contourPoints.push_back(pv);
+		contourPoints.push_back(pv);		
 	/*	for(pblob in [tracker(0) persistentBlobs]){
 			Blob * b;
 			vector< vector<ofPoint > > pv;
@@ -201,19 +203,18 @@
 				int nPts = [b nPts];
 				
 				
-/*
-				vector< vector<ofPoint > > pv;
+
 				for(b in [pblob blobs]){
 					vector<ofPoint> v;
 					for( int u = 0; u < [b nPts]; u++){
 						ofxPoint2f p = [GetPlugin(ProjectionSurfaces) convertPoint:[b pts][u] fromProjection:"Front" toSurface:"Floor"];
 						v.push_back(p);
 					}
-					pv.push_back(v);			
+					contourPoints[player].push_back(v);			
 				}
 				
-				contourPoints.push_back(pv);
-				*/
+
+				
 				
 				
 				cvFillPoly(images[player]->getCvImage(),&pointArray , &nPts, 1, cvScalar(255.0, 255.0, 255.0, 255.0));			
@@ -461,7 +462,6 @@
 			}
 			
 			//Draw it
-			
 			glBegin(GL_QUAD_STRIP);
 			for(int j=0;j<points.size();j++){
 				//	glTexCoord2f(0.0f, 0.0f);  
@@ -573,5 +573,13 @@
 -(IBAction) setVeryLow:(id)sender{
 	[fade setFloatValue:0.2];
 }	
+
+-(IBAction) fillPlayers:(id)sender{
+	for(int i=0;i<2;i++){
+		if(contourPoints[i].size() > 0){
+			images[(i==0)?1:0]->set(255);			
+		}
+	}		
+}
 @end
 
