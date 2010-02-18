@@ -405,9 +405,11 @@
 		 
 		 }*/
 		
-		ofSetColor(215, 221, 248, 255*[alpha floatValue]/100.0);
-		
+		ofSetColor(215, 221, 248);
+		ofEnableAlphaBlending();
+
 		[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Floor"];{
+			
 			ofFill();
 			glRotated(-45, 0, 0, 1);
 			glPushMatrix();
@@ -422,7 +424,6 @@
 			}
 			
 			//MASK
-			ofEnableAlphaBlending();
 			ofSetColor(0, 0, 0, [mask floatValue]*255);
 			// bottom mask
 			ofRect(-1, 0, 3, 2);
@@ -431,9 +432,8 @@
 			
 		}glPopMatrix();
 		
-		ofSetColor(215, 221, 248, 255*[alpha floatValue]/100.0);
+		ofSetColor(215, 221, 248);
 
-		
 		[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 			ofFill();
 			glRotated(-45, 0, 0, 1);
