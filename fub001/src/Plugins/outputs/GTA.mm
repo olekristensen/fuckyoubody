@@ -420,7 +420,7 @@
 		ofEnableAlphaBlending();
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 		
-		blur->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect]*2, 1, true);
+	//	blur->draw(0, 0, [GetPlugin(ProjectionSurfaces) getAspect]*2, 1, true);
 		
 		
 		/*tetris->update();
@@ -470,7 +470,7 @@
 				 ofSetColor(215, 221, 248, 255*[tetrisAlphaControl floatValue]/100.0);
 				 
 				 
-				 glEnable(target);
+				/* glEnable(target);
 				 glBindTexture(target, name);
 				 glBegin(GL_QUADS);
 				 glTexCoord2f(0, 300);  glVertex2f(0, 0);
@@ -478,7 +478,7 @@
 				 glTexCoord2f(800, 0);    glVertex2f( [GetPlugin(ProjectionSurfaces) getAspect]*2,  1);
 				 glTexCoord2f(0, 0); glVertex2f( 0, 1);
 				 glEnd();
-				 glDisable(target);
+				 glDisable(target);*/
 				 
 				 //	glPopMatrix();
 				 glPopMatrix();

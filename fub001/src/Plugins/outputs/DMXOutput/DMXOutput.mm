@@ -413,7 +413,7 @@
 	music->stop();
 
 	combatMusic = new ofSoundPlayer();
-	combatMusic->loadSound("Scene9_Combat_28.jan.mp3");
+	combatMusic->loadSound("Scene9_Combat_28.jan.aif");
 	combatMusic->stop();	
 	
 }

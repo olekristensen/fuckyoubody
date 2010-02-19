@@ -6,7 +6,7 @@
 @implementation Jail
 
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
-
+	
 	ofFill();
 	
 	ofSetColor(255, 
@@ -14,24 +14,42 @@
 			   255, 
 			   255);
 	float rot = 157*[GetPlugin(Midi) getPitchBend:0]/16256.0 ;
-//	rot = [rotation floatValue];
+	//rot = [rotation floatValue];
 	float samle = 100.0*[GetPlugin(Midi) getPitchBend:1]/16256.0;
+	//samle = [samlaWall floatValue];
 	float zip = 100.0*[GetPlugin(Midi) getPitchBend:2]/16256.0;
-	
+
+	float s = (0.8*[widthSlider floatValue]/100.0)*((100-samle)/100.0);
+
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		glPushMatrix();{
 			glRotated(-45.0 * samle/100.0, 0, 0, 1);
+			/*
+			glBegin(GL_POLYGON);
+			glVertex2f(0, 0);
+			glVertex2f(0.01, 0);
+			glVertex2f(0.01+s, 2*[leftWall floatValue]/100.0);
+			glVertex2f(0, 2*[leftWall floatValue]/100.0);
+			glEnd();
+			*/
 			ofRect(0, 0, 0.01, 2*[leftWall floatValue]/100.0);
 		}glPopMatrix();
 		
 		glPushMatrix();{
 			glRotated(45.0 * samle/100.0, 0, 0, 1);
+			/*glBegin(GL_POLYGON);
+			glVertex2f(0, 0);
+			glVertex2f(0,0.01);
+			glVertex2f(2*[backWall floatValue]/100.0, 0.01+s);
+			glVertex2f(2*[backWall floatValue]/100.0, 0);
+			glEnd();*/
+			
 			ofRect(0, 0.0, 2*[backWall floatValue]/100.0, 0.01);		
 		}glPopMatrix();		
 		
 		
-	//	if(rot > 0)
-	//		cout<<rot<<endl;
+		//	if(rot > 0)
+		//		cout<<rot<<endl;
 		
 		if(rot > 0){
 			glPushMatrix();{
@@ -40,17 +58,39 @@
 				
 				float rotated = 0;
 				for(int i=0;i<18;i++){
-					float angle = 23;
-
+					//					float angle = 23;
+					float angle = 45 - 35.0*(rot/360.0);
+					
 					glRotated(angle*(1-samle/100.0), 0, 0, 1);
 					rotated += angle;
 					
 					if(- rot + rotated < 0 && - rot + rotated	 > - 90){
-						ofRect(0, 0, 0.01, 2);
+						glBegin(GL_POLYGON);
+						glVertex2f(0, 0);
+						glVertex2f(0.01, 0);
+						glVertex2f(0.01+s, 2);
+						glVertex2f(0-s, 2);
+						glEnd();
 					}
 				}
 			}glPopMatrix();
 		}
+		
+		ofSetColor(0, 0, 0, 255);
+		
+		// left mask
+		ofRect(0, -1, -2, 2);
+		
+		// top mask
+		ofRect(-1, 0, 3, -2);
+		
+	
+		// right mask
+		ofRect(1+1*(1-[mask floatValue]), -1, 3, 3);
+		
+		// bottom mask
+		ofRect(-1, 1+1*(1-[mask floatValue]), 3, 3);
+				
 		
 		
 		ofDisableAlphaBlending();

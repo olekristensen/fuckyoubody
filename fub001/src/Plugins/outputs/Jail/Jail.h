@@ -16,6 +16,7 @@
 	IBOutlet NSSlider * rotation;
 	IBOutlet NSSlider * samlaWall;
 	IBOutlet NSSlider * zipSlider;
+	IBOutlet NSSlider * widthSlider;
 
 	IBOutlet NSSlider * screenBarsAlpha;
 	IBOutlet NSSlider * screenBarsWidth;
