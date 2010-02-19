@@ -767,7 +767,7 @@
 		ofRect(-1, 0, 3, -1); // stage back
 		
 	}glPopMatrix();
-	
+	/*
 	[GetPlugin(ProjectionSurfaces) apply:"Front" surface:"Backwall"];{
 		
 		//background
@@ -775,10 +775,6 @@
 		ofRect(0, 0, [GetPlugin(ProjectionSurfaces) getAspect], 1);
 		
 		//dancers' mask
-		/**
-		 ofSetColor([playerColor redComponent]*255, [playerColor greenComponent]*255, [playerColor blueComponent]*255,[screenPlayerSquareAlpha floatValue]*255);
-		 ofRect(screenTrackingLeft, screenTrackingHeight, screenTrackingRight-screenTrackingLeft, 1.0-screenTrackingHeight);
-		 **/
 		
 		if((1.0-screenTrackingHeight) > SCREEN_MARGIN){
 			ofSetColor(215.0, 221.0, 248.0,[screenPlayerSquareAlpha floatValue]*255*[alpha floatValue]);
@@ -825,7 +821,7 @@
 		} glPopMatrix();
 		
 	} glPopMatrix();
-	
+	*/
 	
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Extra" surface:"Backwall"];{
