@@ -359,7 +359,7 @@
 					BOOL noNearLineFound = YES;
 					LineObject * line;
 					for(line in lines){
-						float d = 0.05;
+						float d = 0.0;
 						if([addButton state] == NSOnState && [timeoutLinesButton state] != NSOnState){
 							d = 0.002;
 						} 
