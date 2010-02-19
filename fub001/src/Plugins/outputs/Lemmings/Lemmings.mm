@@ -466,9 +466,9 @@
 			[lemming vel]->y *= -0.9;
 			[lemming position]->y = 0.00001 + (RADIUS);				
 		}
-		if([lemming position]->x + (RADIUS) > [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]){
+		if([lemming position]->x + (RADIUS*2) > [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"]){
 			[lemming vel]->x *= -0.5;
-			[lemming position]->x = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] - (0.0001 + (RADIUS));				
+			[lemming position]->x = [GetPlugin(ProjectionSurfaces) getAspectForProjection:"Front" surface:"Backwall"] - (0.0001 + (RADIUS*2));				
 		}
 		if([screenFloor state] == NSOffState){
 			if([lemming position]->y + (RADIUS) > 1+(SCREEN_MARGIN)){
