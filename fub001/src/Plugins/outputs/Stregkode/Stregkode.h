@@ -41,5 +41,5 @@
 @property (readonly) ofSoundPlayer * sound;
 
 -(IBAction) go:(id)sender;
-
+-(IBAction) reset:(id)sender;
 @end

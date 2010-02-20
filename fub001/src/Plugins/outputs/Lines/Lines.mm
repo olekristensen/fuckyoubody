@@ -361,7 +361,7 @@
 					for(line in lines){
 						float d = 0.0;
 						if([addButton state] == NSOnState && [timeoutLinesButton state] != NSOnState){
-							d = 0.002;
+							d = 0.0025;
 						} 
 						if(fabs([line getLeft].x - frontLeft->x) < d || fabs([line getRight].x - frontRight->x) < d ){
 							LineBlobLink * link = [[LineBlobLink alloc] init]; 
@@ -447,6 +447,10 @@
 		
 		//KS mask
 		ofRect(0-[ksMask floatValue], -30, -20, 60);
+		
+		//Back mask
+		ofRect(-1, -5*[backMask floatValue], 4, -60);
+
 		
 	} glPopMatrix();
 	

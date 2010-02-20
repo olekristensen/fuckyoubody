@@ -19,6 +19,7 @@
 	//samle = [samlaWall floatValue];
 	float zip = 100.0*[GetPlugin(Midi) getPitchBend:2]/16256.0;
 
+
 	float s = (0.8*[widthSlider floatValue]/100.0)*((100-samle)/100.0);
 
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
@@ -84,7 +85,6 @@
 		// top mask
 		ofRect(-1, 0, 3, -2);
 		
-	
 		// right mask
 		ofRect(1+1*(1-[mask floatValue]), -1, 3, 3);
 		

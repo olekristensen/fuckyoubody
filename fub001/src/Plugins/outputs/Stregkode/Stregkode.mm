@@ -119,47 +119,51 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	glViewport(0, 0, ofGetWidth(), ofGetHeight());
 	ofEnableAlphaBlending();
-	if(going || true){
-		ofFill();
-		ofSetColor(255, 0, 0);
-		ofRect(0, 1.0-percent, 1.0/3.0, 0.005);
-		StregkodePlayer * player;
+	ofFill();
+	ofSetColor(255, 0, 0);
+	ofRect(0, 1.0-percent, 1.0/3.0, 0.005);
+	StregkodePlayer * player;
+	
+	for(player in players){
+		float r = (MIN(player->r  + player->whiteAdd,255))* player->startM;
+		float g =(MIN(player->g  + player->whiteAdd,255))* player->startM;
+		float b = (MIN(player->b + player->whiteAdd,255)) * player->startM ;
 		
-		for(player in players){
-			float r = (MIN(player->r  + player->whiteAdd,255))* player->startM;
-			float g =(MIN(player->g  + player->whiteAdd,255))* player->startM;
-			float b = (MIN(player->b + player->whiteAdd,255)) * player->startM ;
-			
-			float a = 255.0;
-			if(player->playerNum == 2){				
-				a *= [blueLightSlider floatValue]/100.0;	
-			} else {
-				a *= [otherLightSlider floatValue]/100.0;		
-			}
-			
-			ofSetColor(r,g,b,a);
-			
-			PersistentBlob * pblob;
-			for(pblob in [tracker(0) persistentBlobs]){
-				if(pblob->pid == player->pid){
-					Blob * blob;
-					for(blob in [pblob blobs]){
-						ofBeginShape();
-						for(int i=0;i<[blob nPts];i++){
-							ofVertex([blob pts][i].x, [blob pts][i].y);
-						}
-						ofEndShape(true);
+		float a = 255.0;
+		if(player->playerNum == 2){				
+			a *= [blueLightSlider floatValue]/100.0;	
+		} else {
+			a *= [otherLightSlider floatValue]/100.0;		
+		}
+		
+		ofSetColor(r,g,b,a);
+		
+		PersistentBlob * pblob;
+		for(pblob in [tracker(0) persistentBlobs]){
+			if(pblob->pid == player->pid){
+				Blob * blob;
+				for(blob in [pblob blobs]){
+					ofBeginShape();
+					for(int i=0;i<[blob nPts];i++){
+						ofVertex([blob pts][i].x, [blob pts][i].y);
 					}
+					ofEndShape(true);
 				}
 			}
 		}
 	}
+	
 }
 
 -(IBAction) go:(id)sender{
-	[[self players] removeAllObjects];
 	[self setPercent:0];
 	[self setGoing:true]; 
 	num = 0;
 }
+
+-(IBAction) reset:(id)sender{
+	[[self players] removeAllObjects];
+	
+}
+
 @end

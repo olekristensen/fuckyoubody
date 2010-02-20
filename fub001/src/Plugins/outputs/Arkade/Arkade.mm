@@ -1307,7 +1307,8 @@ bool InsidePolygon(vector<ofxPoint2f> polygon,ofPoint p)
 			r = ofRandom(1-[spaceAlienFadeOutSlider floatValue]/100.0, 1 );
 			
 			ofSetColor(255, 255, 255, 255*([spaceAlienFadeSlider floatValue]/100.0) * r);
-			glTranslated((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0, 0);
+			//glTranslated((round(spaceInvadersPosition->x*12)/12.0) / 8.0, spaceInvadersPosition->y / 8.0, 0);
+			glTranslated(0.2, 0, 0);
 			Alien *alien;
 			for(alien in aliens){
 				[alien draw];

@@ -694,8 +694,8 @@
 							<reference ref="865803033"/>
 							<reference ref="436449919"/>
 							<reference ref="737698152"/>
-							<reference ref="868273073"/>
 							<reference ref="607687058"/>
+							<reference ref="868273073"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1014,6 +1014,11 @@
 						<string key="name">IBUserDefinedRuntimeAttributesPlaceholderName</string>
 						<reference key="object" ref="868273073"/>
 						<array key="userDefinedRuntimeAttributes">
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">midiSmoothing</string>
+								<real value="90" key="value"/>
+							</object>
 							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
 								<string key="keyPath">midiController</string>

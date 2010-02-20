@@ -9,6 +9,7 @@
 #import "Combat.h"
 #include "ProjectionSurfaces.h"
 #include "Players.h"
+#include "Midi.h"
 
 @implementation Combat
 
@@ -16,7 +17,9 @@
 -(void) draw:(CFTimeInterval)timeInterval displayTime:(const CVTimeStamp *)outputTime{
 	ofFill();
 	
-	rot += ([rotation floatValue] -rot)*0.015;
+	rot += (360*[GetPlugin(Midi) getPitchBend:12] /16256.0 -rot)*0.015;
+	
+
 	
 	[GetPlugin(ProjectionSurfaces) apply:"Back" surface:"Floor"];{
 		glPushMatrix();{

@@ -11,7 +11,6 @@
 #include "Tracking.h"
 
 
-
 @implementation HardwareBox
 
 -(void) initPlugin{
@@ -75,9 +74,7 @@
 	}
 	
 	
-	
-	
-	
+
 	[buffersizeStatus setStringValue:[NSString stringWithFormat:@"Serial buffer size: %d", serialBuffer->size()]];
 	[arduinoStatus setStringValue:[NSString stringWithFormat:@"Arduino status: %d", arduinoState]];
 	

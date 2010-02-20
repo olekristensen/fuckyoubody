@@ -115,18 +115,18 @@
 							<int key="NSPeriodicInterval">75</int>
 						</object>
 					</object>
-					<object class="NSTextField" id="348406202">
+					<object class="NSTextField" id="312703327">
 						<reference key="NSNextResponder" ref="1005"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{205, 350}, {69, 17}}</string>
+						<string key="NSFrame">{{205, 325}, {78, 17}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="389815628">
+						<object class="NSTextFieldCell" key="NSCell" id="986466560">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
-							<string key="NSContents">KS Mask</string>
+							<string key="NSContents">Back Mask</string>
 							<reference key="NSSupport" ref="976635905"/>
-							<reference key="NSControlView" ref="348406202"/>
+							<reference key="NSControlView" ref="312703327"/>
 							<object class="NSColor" key="NSBackgroundColor" id="156834937">
 								<int key="NSColorSpace">6</int>
 								<string key="NSCatalogName">System</string>
@@ -145,6 +145,43 @@
 									<bytes key="NSWhite">MAA</bytes>
 								</object>
 							</object>
+						</object>
+					</object>
+					<object class="NSSlider" id="861250848">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{277, 321}, {248, 21}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSSliderCell" key="NSCell" id="864942055">
+							<int key="NSCellFlags">67239424</int>
+							<int key="NSCellFlags2">0</int>
+							<string key="NSContents"/>
+							<reference key="NSControlView" ref="861250848"/>
+							<double key="NSMaxValue">1</double>
+							<double key="NSMinValue">0.0</double>
+							<double key="NSValue">1</double>
+							<double key="NSAltIncValue">0.0</double>
+							<int key="NSNumberOfTickMarks">0</int>
+							<int key="NSTickMarkPosition">1</int>
+							<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
+							<bool key="NSVertical">NO</bool>
+						</object>
+					</object>
+					<object class="NSTextField" id="348406202">
+						<reference key="NSNextResponder" ref="1005"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{205, 350}, {69, 17}}</string>
+						<reference key="NSSuperview" ref="1005"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="389815628">
+							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags2">272630784</int>
+							<string key="NSContents">KS Mask</string>
+							<reference key="NSSupport" ref="976635905"/>
+							<reference key="NSControlView" ref="348406202"/>
+							<reference key="NSBackgroundColor" ref="156834937"/>
+							<reference key="NSTextColor" ref="440183187"/>
 						</object>
 					</object>
 					<object class="NSSlider" id="748376892">
@@ -281,7 +318,7 @@
 			</object>
 			<object class="NSUserDefaultsController" id="388748012">
 				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>lines.ksMask</string>
+					<string>lines.backMask</string>
 				</array>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
@@ -480,6 +517,38 @@
 					</object>
 					<int key="connectionID">55</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">label</string>
+						<reference key="source" ref="861250848"/>
+						<reference key="destination" ref="312703327"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">backMask</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="861250848"/>
+					</object>
+					<int key="connectionID">62</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.lines.backMask</string>
+						<reference key="source" ref="861250848"/>
+						<reference key="destination" ref="388748012"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="861250848"/>
+							<reference key="NSDestination" ref="388748012"/>
+							<string key="NSLabel">value: values.lines.backMask</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.lines.backMask</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">63</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -522,6 +591,8 @@
 							<reference ref="508140559"/>
 							<reference ref="748376892"/>
 							<reference ref="348406202"/>
+							<reference ref="861250848"/>
+							<reference ref="312703327"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -673,6 +744,32 @@
 						<reference key="object" ref="704017271"/>
 						<reference key="parent" ref="748376892"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">56</int>
+						<reference key="object" ref="861250848"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="864942055"/>
+						</array>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">57</int>
+						<reference key="object" ref="312703327"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="986466560"/>
+						</array>
+						<reference key="parent" ref="1005"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">58</int>
+						<reference key="object" ref="986466560"/>
+						<reference key="parent" ref="312703327"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">59</int>
+						<reference key="object" ref="864942055"/>
+						<reference key="parent" ref="861250848"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -797,6 +894,12 @@
 				<string key="49.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="50.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="56.CustomClassName">PluginUISlider</string>
+				<dictionary class="NSMutableDictionary" key="56.IBAttributePlaceholdersKey"/>
+				<string key="56.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="57.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="7.CustomClassName">PluginUISegmentedControl</string>
 				<object class="NSMutableDictionary" key="7.IBAttributePlaceholdersKey">
 					<string key="NS.key.0">IBUserDefinedRuntimeAttributesPlaceholderName</string>
@@ -822,7 +925,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">55</int>
+			<int key="maxID">63</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -835,6 +938,7 @@
 					</object>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="addButton">NSButton</string>
+						<string key="backMask">NSSlider</string>
 						<string key="balanceSlider">PluginUISlider</string>
 						<string key="ksMask">NSSlider</string>
 						<string key="lineWidthSlider">PluginUISlider</string>
